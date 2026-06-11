@@ -1,0 +1,16 @@
+# Cloudflare Pages 응답 헤더 규칙
+
+# 정적 자산 — 1년 불변 캐시
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/_next/image*
+  Cache-Control: public, max-age=86400
+
+# 전역 보안 헤더
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  X-DNS-Prefetch-Control: on

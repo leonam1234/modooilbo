@@ -1,0 +1,105 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css");
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-serif: "Nanum Myeongjo", Georgia, "Times New Roman", serif;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+    /* 스티키 헤더에 가려지지 않게 앵커 점프 여백 */
+    scroll-padding-top: 6rem;
+  }
+  body {
+    @apply bg-white text-ink-900 antialiased dark:bg-ink-950 dark:text-ink-100;
+    font-family: var(--font-sans);
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  ::selection {
+    @apply bg-signal-600 text-white;
+  }
+  /* 키보드 포커스 가시성 (접근성) */
+  :focus-visible {
+    outline: 2px solid #ef3a2c;
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-container px-4 sm:px-6 lg:px-8;
+  }
+  .font-headline {
+    font-family: var(--font-serif);
+    word-break: keep-all;
+  }
+  /* 텍스트 줄임 (line clamp) — 다국어 안전 */
+  .clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* 커스텀 스크롤바 (데스크톱) */
+@media (pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-ink-300 dark:bg-ink-700;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+}
+
+/* 모션 최소화 선호 존중 (접근성) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 인쇄: 기사 본문 중심으로, 사이트 크롬 제거 */
+@media print {
+  header,
+  footer,
+  aside,
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  #article-body {
+    font-size: 12pt !important;
+    line-height: 1.7 !important;
+  }
+}
