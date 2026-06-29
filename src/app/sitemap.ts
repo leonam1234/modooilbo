@@ -5,7 +5,7 @@ import { ALL_ARTICLES } from "@/lib/news";
 // 정적 export 호환: 빌드 타임에 sitemap.xml 생성
 export const dynamic = "force-static";
 
-const BASE = "https://modooilbo.kr";
+const BASE = "https://modooilbo.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [

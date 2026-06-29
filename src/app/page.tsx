@@ -7,7 +7,7 @@ import { MediaGrid } from "@/components/MediaGrid";
 import { NewsletterCTA } from "@/components/NewsletterCTA";
 import JsonLd from "@/components/JsonLd";
 
-const SITE_URL = "https://modooilbo.kr";
+const SITE_URL = "https://modooilbo.com";
 
 const organizationLd = {
   "@context": "https://schema.org",

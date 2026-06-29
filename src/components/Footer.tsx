@@ -111,7 +111,7 @@ export function Footer() {
             <span>등록번호 서울 아00000</span>
             <span>등록일 2026.01.01</span>
             <span>대표전화 02-0000-0000</span>
-            <span>이메일 contact@modooilbo.kr</span>
+            <span>이메일 contact@modooilbo.com</span>
           </p>
           <p className="mt-4 text-ink-400">
             © 2026 MODOO ILBO. All rights reserved. · 본 사이트의 모든 콘텐츠는 데모용 가상

@@ -158,7 +158,7 @@ export default function PrivacyPage() {
                   <dt className="w-24 shrink-0 font-medium text-ink-700 dark:text-ink-200">
                     이메일
                   </dt>
-                  <dd>privacy@modooilbo.example</dd>
+                  <dd>privacy@modooilbo.com</dd>
                 </div>
                 <div className="flex gap-3">
                   <dt className="w-24 shrink-0 font-medium text-ink-700 dark:text-ink-200">

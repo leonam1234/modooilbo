@@ -160,10 +160,10 @@ export default function EthicsPage() {
               <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
                 정정 및 반론 보도 청구는 이메일{" "}
                 <a
-                  href="mailto:correction@modooilbo.co.kr"
+                  href="mailto:correction@modooilbo.com"
                   className="font-medium text-signal-600 hover:text-signal-700 dark:text-signal-400"
                 >
-                  correction@modooilbo.co.kr
+                  correction@modooilbo.com
                 </a>{" "}
                 로 접수한다. 접수된 사안은 편집위원회가 검토하며, 분쟁이 원만히 해결되지 않을 경우
                 언론중재위원회의 조정 절차를 따른다.
@@ -260,10 +260,10 @@ export default function EthicsPage() {
                     </dt>
                     <dd className="text-ink-700 dark:text-ink-200">
                       <a
-                        href="mailto:youth@modooilbo.co.kr"
+                        href="mailto:youth@modooilbo.com"
                         className="font-medium text-signal-600 hover:text-signal-700 dark:text-signal-400"
                       >
-                        youth@modooilbo.co.kr
+                        youth@modooilbo.com
                       </a>
                     </dd>
                   </div>

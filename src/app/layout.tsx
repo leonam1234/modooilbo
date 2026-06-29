@@ -5,7 +5,7 @@ import { BreakingTicker } from "@/components/BreakingTicker";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://modooilbo.kr"),
+  metadataBase: new URL("https://modooilbo.com"),
   title: {
     default: "모두일보 — 모두를 위한 신뢰의 뉴스",
     template: "%s | 모두일보",

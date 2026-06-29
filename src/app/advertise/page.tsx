@@ -313,10 +313,10 @@ export default function AdvertisePage() {
             <p className="mt-6 text-center text-sm text-ink-500 dark:text-ink-400">
               빠른 상담이 필요하신가요? 광고·제휴 문의{" "}
               <a
-                href="mailto:ad@modooilbo.kr"
+                href="mailto:ad@modooilbo.com"
                 className="font-semibold text-signal-600 hover:text-signal-700"
               >
-                ad@modooilbo.kr
+                ad@modooilbo.com
               </a>
             </p>
           </div>
