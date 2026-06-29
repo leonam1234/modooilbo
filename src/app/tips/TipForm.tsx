@@ -24,7 +24,7 @@ function makeReceiptNo(): string {
     now.getDate(),
   ).padStart(2, "0")}`;
   const rand = Math.floor(1000 + Math.random() * 9000);
-  return `SJ-${ymd}-${rand}`;
+  return `MI-${ymd}-${rand}`;
 }
 
 export function TipForm() {
@@ -206,7 +206,7 @@ export function TipForm() {
           />
           <span>
             <strong className="font-semibold text-ink-700 dark:text-ink-200">익명으로 제보</strong>
-            하겠습니다. 연락처를 남기지 않으며, 시그널저널은 제보자의 신원을 특정하지 않습니다.
+            하겠습니다. 연락처를 남기지 않으며, 모두일보는 제보자의 신원을 특정하지 않습니다.
           </span>
         </label>
 

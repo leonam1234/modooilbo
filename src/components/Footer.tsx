@@ -42,14 +42,14 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2">
               <span className="grid h-8 w-8 place-items-center rounded-sm bg-signal-600 font-headline text-base font-black text-white">
-                S
+                M
               </span>
               <span className="font-headline text-2xl font-extrabold text-ink-900 dark:text-white">
-                시그널<span className="text-signal-600">저널</span>
+                모두<span className="text-signal-600">일보</span>
               </span>
             </div>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-ink-500 dark:text-ink-400">
-              노이즈 속에서 신호를 읽습니다. 시그널저널은 신뢰할 수 있는 사실과 깊이 있는 분석으로
+              모두를 위한 신뢰의 뉴스. 모두일보는 신뢰할 수 있는 사실과 깊이 있는 분석으로
               더 나은 공론장을 만듭니다.
             </p>
             <div className="mt-5 flex gap-2">
@@ -57,7 +57,7 @@ export function Footer() {
                 <a
                   key={s}
                   href="#"
-                  aria-label={`시그널저널 ${s}`}
+                  aria-label={`모두일보 ${s}`}
                   className="grid h-9 w-9 place-items-center rounded-full border border-ink-300 text-sm font-bold text-ink-600 transition-colors hover:border-signal-500 hover:bg-signal-600 hover:text-white dark:border-ink-700 dark:text-ink-300"
                 >
                   {s}
@@ -101,20 +101,20 @@ export function Footer() {
         {/* 법적 정보 */}
         <div className="mt-10 border-t border-ink-200 pt-6 text-xs leading-relaxed text-ink-400 dark:border-ink-800">
           <p className="flex flex-wrap gap-x-3 gap-y-1">
-            <span>(주)시그널저널</span>
+            <span>(주)모두일보</span>
             <span>대표이사·발행인 한도현</span>
             <span>편집인 윤서진</span>
             <span>청소년보호책임자 김민재</span>
           </p>
           <p className="mt-1 flex flex-wrap gap-x-3 gap-y-1">
-            <span>서울특별시 중구 세종대로 124 시그널빌딩</span>
+            <span>서울특별시 중구 세종대로 124 모두일보빌딩</span>
             <span>등록번호 서울 아00000</span>
             <span>등록일 2026.01.01</span>
             <span>대표전화 02-0000-0000</span>
-            <span>이메일 contact@signaljournal.kr</span>
+            <span>이메일 contact@modooilbo.kr</span>
           </p>
           <p className="mt-4 text-ink-400">
-            © 2026 SIGNAL JOURNAL. All rights reserved. · 본 사이트의 모든 콘텐츠는 데모용 가상
+            © 2026 MODOO ILBO. All rights reserved. · 본 사이트의 모든 콘텐츠는 데모용 가상
             데이터입니다.
           </p>
         </div>

@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/PageHeader";
 export const metadata: Metadata = {
   title: "윤리강령",
   description:
-    "시그널저널의 편집강령, 취재·보도 윤리, 정정·반론 보도 원칙, 댓글·커뮤니티 정책과 청소년보호정책을 안내합니다.",
+    "모두일보의 편집강령, 취재·보도 윤리, 정정·반론 보도 원칙, 댓글·커뮤니티 정책과 청소년보호정책을 안내합니다.",
 };
 
 const TOC: { id: string; label: string }[] = [
@@ -20,7 +20,7 @@ export default function EthicsPage() {
     <>
       <PageHeader
         title="윤리강령"
-        subtitle="시그널저널이 모든 보도와 운영에서 지키는 약속입니다. 편집강령, 취재 윤리, 정정·반론, 커뮤니티 및 청소년보호정책을 담았습니다."
+        subtitle="모두일보가 모든 보도와 운영에서 지키는 약속입니다. 편집강령, 취재 윤리, 정정·반론, 커뮤니티 및 청소년보호정책을 담았습니다."
         breadcrumb={[{ label: "윤리강령" }]}
       />
 
@@ -50,7 +50,7 @@ export default function EthicsPage() {
 
           {/* 본문 */}
           <article className="max-w-3xl">
-            <p className="text-sm text-ink-400">최종 개정 2026년 5월 1일 · 시그널저널 편집위원회</p>
+            <p className="text-sm text-ink-400">최종 개정 2026년 5월 1일 · 모두일보 편집위원회</p>
 
             {/* 편집강령 전문 */}
             <section id="preamble" className="scroll-mt-24">
@@ -58,19 +58,19 @@ export default function EthicsPage() {
                 편집강령 전문
               </h2>
               <p className="mt-5 leading-relaxed text-ink-600 dark:text-ink-300">
-                시그널저널은 사실에 충실하고 진실을 추구하는 언론을 지향한다. 우리는 헌법이
+                모두일보는 사실에 충실하고 진실을 추구하는 언론을 지향한다. 우리는 헌법이
                 보장하는 언론의 자유와 그에 따르는 사회적 책임을 함께 짊어지며, 시민의 알 권리에
                 봉사하는 것을 존립의 이유로 삼는다.
               </p>
               <p className="mt-4 leading-relaxed text-ink-600 dark:text-ink-300">
-                본 강령은 시그널저널의 모든 임직원과 기고자에게 적용되며, 취재와 편집, 보도의 전
+                본 강령은 모두일보의 모든 임직원과 기고자에게 적용되며, 취재와 편집, 보도의 전
                 과정에서 판단의 기준이 된다. 우리는 어떠한 외부의 압력이나 이해관계로부터도
                 독립하여 보도하며, 그 독립성을 제도와 관행으로 지켜 나간다.
               </p>
 
               <h3 className="mt-7 text-lg font-bold text-ink-900 dark:text-white">제1조(목적)</h3>
               <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
-                이 강령은 시그널저널이 추구하는 저널리즘의 가치와 행동 기준을 명시하여, 보도의
+                이 강령은 모두일보가 추구하는 저널리즘의 가치와 행동 기준을 명시하여, 보도의
                 신뢰성과 공정성을 높이고 독자의 권익을 보호하는 데 목적이 있다.
               </p>
 
@@ -151,7 +151,7 @@ export default function EthicsPage() {
               </h3>
               <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
                 보도로 인해 자신의 권익이 침해되었다고 판단하는 당사자는 반론 보도를 요청할 수 있다.
-                시그널저널은 정당한 반론 요청을 성실히 검토하여 합리적인 범위에서 신속히 반영한다.
+                모두일보는 정당한 반론 요청을 성실히 검토하여 합리적인 범위에서 신속히 반영한다.
               </p>
 
               <h3 className="mt-7 text-lg font-bold text-ink-900 dark:text-white">
@@ -160,10 +160,10 @@ export default function EthicsPage() {
               <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
                 정정 및 반론 보도 청구는 이메일{" "}
                 <a
-                  href="mailto:correction@signaljournal.co.kr"
+                  href="mailto:correction@modooilbo.co.kr"
                   className="font-medium text-signal-600 hover:text-signal-700 dark:text-signal-400"
                 >
-                  correction@signaljournal.co.kr
+                  correction@modooilbo.co.kr
                 </a>{" "}
                 로 접수한다. 접수된 사안은 편집위원회가 검토하며, 분쟁이 원만히 해결되지 않을 경우
                 언론중재위원회의 조정 절차를 따른다.
@@ -180,7 +180,7 @@ export default function EthicsPage() {
                 제11조(건강한 토론)
               </h3>
               <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
-                시그널저널의 댓글과 커뮤니티는 서로 다른 의견이 존중받으며 만나는 공론장이다.
+                모두일보의 댓글과 커뮤니티는 서로 다른 의견이 존중받으며 만나는 공론장이다.
                 독자는 기사에 대해 자유롭게 의견을 나눌 수 있으나, 그 자유는 타인의 권리를 해치지
                 않는 범위에서 행사되어야 한다.
               </p>
@@ -215,7 +215,7 @@ export default function EthicsPage() {
                 청소년보호정책
               </h2>
               <p className="mt-5 leading-relaxed text-ink-600 dark:text-ink-300">
-                시그널저널은 청소년이 건전한 인격체로 성장할 수 있도록 유해 정보로부터 청소년을
+                모두일보는 청소년이 건전한 인격체로 성장할 수 있도록 유해 정보로부터 청소년을
                 보호하고, 관련 법령(정보통신망법, 청소년보호법 등)을 준수한다.
               </p>
 
@@ -231,7 +231,7 @@ export default function EthicsPage() {
                 제15조(청소년보호책임자)
               </h3>
               <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
-                시그널저널은 청소년 보호 업무를 총괄하는 청소년보호책임자를 지정하여 운영한다.
+                모두일보는 청소년 보호 업무를 총괄하는 청소년보호책임자를 지정하여 운영한다.
                 청소년 유해정보 신고 및 관련 문의는 아래로 연락하면 된다.
               </p>
               <div className="mt-4 rounded-xl border border-ink-200 bg-ink-50 p-6 dark:border-ink-800 dark:bg-ink-900/40">
@@ -260,10 +260,10 @@ export default function EthicsPage() {
                     </dt>
                     <dd className="text-ink-700 dark:text-ink-200">
                       <a
-                        href="mailto:youth@signaljournal.co.kr"
+                        href="mailto:youth@modooilbo.co.kr"
                         className="font-medium text-signal-600 hover:text-signal-700 dark:text-signal-400"
                       >
-                        youth@signaljournal.co.kr
+                        youth@modooilbo.co.kr
                       </a>
                     </dd>
                   </div>

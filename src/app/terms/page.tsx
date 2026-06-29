@@ -3,7 +3,7 @@ import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
   title: "이용약관",
-  description: "시그널저널 서비스 이용약관 — 회원과 회사의 권리·의무 및 이용 조건을 안내합니다.",
+  description: "모두일보 서비스 이용약관 — 회원과 회사의 권리·의무 및 이용 조건을 안내합니다.",
 };
 
 export default function TermsPage() {
@@ -11,7 +11,7 @@ export default function TermsPage() {
     <>
       <PageHeader
         title="이용약관"
-        subtitle="시그널저널 서비스 이용에 관한 회원과 회사의 권리·의무 및 책임사항을 규정합니다."
+        subtitle="모두일보 서비스 이용에 관한 회원과 회사의 권리·의무 및 책임사항을 규정합니다."
         breadcrumb={[{ label: "이용약관" }]}
       />
 
@@ -24,7 +24,7 @@ export default function TermsPage() {
               제1조 (목적)
             </h2>
             <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
-              본 약관은 시그널저널(이하 &ldquo;회사&rdquo;)이 운영하는 온라인 뉴스 서비스(이하
+              본 약관은 모두일보(이하 &ldquo;회사&rdquo;)이 운영하는 온라인 뉴스 서비스(이하
               &ldquo;서비스&rdquo;)를 이용함에 있어 회사와 이용자 간의 권리, 의무 및 책임사항,
               기타 필요한 사항을 규정함을 목적으로 합니다.
             </p>

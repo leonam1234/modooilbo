@@ -3,7 +3,7 @@ import { LoginForm } from "./LoginForm";
 
 export const metadata: Metadata = {
   title: "로그인",
-  description: "시그널저널 회원 로그인 — 더 깊이 있는 뉴스를 경험하세요.",
+  description: "모두일보 회원 로그인 — 더 깊이 있는 뉴스를 경험하세요.",
 };
 
 export default function LoginPage() {
@@ -16,7 +16,7 @@ export default function LoginPage() {
               로그인
             </h1>
             <p className="mt-2 text-sm text-ink-500 dark:text-ink-300">
-              시그널저널 계정으로 더 깊이 있는 저널리즘을 만나보세요.
+              모두일보 계정으로 더 깊이 있는 저널리즘을 만나보세요.
             </p>
           </div>
           <LoginForm />

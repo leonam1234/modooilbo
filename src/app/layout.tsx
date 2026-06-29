@@ -5,20 +5,55 @@ import { BreakingTicker } from "@/components/BreakingTicker";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://signaljournal.kr"),
+  metadataBase: new URL("https://modooilbo.kr"),
   title: {
-    default: "시그널저널 — 노이즈 속에서 신호를 읽다",
-    template: "%s | 시그널저널",
+    default: "모두일보 — 모두를 위한 신뢰의 뉴스",
+    template: "%s | 모두일보",
   },
   description:
-    "시그널저널(Signal Journal)은 정치·경제·사회·국제·문화·테크 전 분야의 신뢰할 수 있는 뉴스와 깊이 있는 분석을 전합니다.",
-  keywords: ["시그널저널", "Signal Journal", "뉴스", "신문", "언론", "속보", "오피니언"],
+    "모두일보(Modoo Ilbo)는 정치·경제·사회·국제·문화·테크 전 분야의 신뢰할 수 있는 뉴스와 깊이 있는 분석을 전합니다. 모두를 위한 신뢰의 뉴스.",
+  keywords: ["모두일보", "Modoo Ilbo", "뉴스", "신문", "언론", "속보", "오피니언"],
+  applicationName: "모두일보",
+  authors: [{ name: "모두일보" }],
+  creator: "모두일보",
+  publisher: "모두일보",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "시그널저널",
-    description: "노이즈 속에서 신호를 읽다 — 시그널저널",
+    title: "모두일보 — 모두를 위한 신뢰의 뉴스",
+    description:
+      "모두일보(Modoo Ilbo)는 정치·경제·사회·국제·문화·테크 전 분야의 신뢰할 수 있는 뉴스와 깊이 있는 분석을 전합니다. 모두를 위한 신뢰의 뉴스.",
     type: "website",
     locale: "ko_KR",
-    siteName: "시그널저널",
+    url: "/",
+    siteName: "모두일보",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "모두일보 — 모두를 위한 신뢰의 뉴스",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "모두일보 — 모두를 위한 신뢰의 뉴스",
+    description:
+      "모두일보(Modoo Ilbo)는 정치·경제·사회·국제·문화·테크 전 분야의 신뢰할 수 있는 뉴스와 깊이 있는 분석을 전합니다. 모두를 위한 신뢰의 뉴스.",
+    images: ["/og.png"],
   },
 };
 
@@ -26,7 +61,7 @@ export const metadata: Metadata = {
 const themeInitScript = `
 (function() {
   try {
-    var stored = localStorage.getItem('sj-theme');
+    var stored = localStorage.getItem('modoo-theme');
     var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     if (stored === 'dark' || (!stored && prefersDark)) {
       document.documentElement.classList.add('dark');

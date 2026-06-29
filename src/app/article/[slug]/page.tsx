@@ -9,6 +9,9 @@ import { formatKoreanDateTime, formatCount } from "@/lib/utils";
 import { ArticleCard } from "@/components/ArticleCard";
 import { RankingList } from "@/components/RankingList";
 import { ArticleActions } from "@/components/ArticleActions";
+import JsonLd from "@/components/JsonLd";
+
+const SITE_URL = "https://modooilbo.kr";
 
 // 정적 export: 전체 기사 슬러그만 생성, 그 외 경로는 404
 export const dynamicParams = false;
@@ -44,24 +47,59 @@ export default async function ArticlePage({
   const cat = CATEGORY_MAP[article.category];
   const related = getRelated(article, 4);
   const readMinutes = Math.max(1, Math.round(article.body.join(" ").length / 600));
-  const jsonLd = {
+  const articleUrl = `${SITE_URL}/article/${article.slug}`;
+
+  const newsArticleLd = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
+    mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
     headline: article.title,
     description: article.summary,
     image: [article.imageUrl],
     datePublished: article.publishedAt,
+    dateModified: article.publishedAt,
+    inLanguage: "ko-KR",
+    isAccessibleForFree: true,
     author: [{ "@type": "Person", name: article.author.name }],
-    publisher: { "@type": "Organization", name: "시그널저널" },
+    publisher: {
+      "@type": "Organization",
+      name: "모두일보",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo.png`,
+      },
+    },
     articleSection: cat?.name,
+  };
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "홈", item: SITE_URL },
+      ...(cat
+        ? [
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: cat.name,
+              item: `${SITE_URL}/${article.category}`,
+            },
+          ]
+        : []),
+      {
+        "@type": "ListItem",
+        position: cat ? 3 : 2,
+        name: article.title,
+        item: articleUrl,
+      },
+    ],
   };
 
   return (
     <div className="container-page py-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={newsArticleLd} />
+      <JsonLd data={breadcrumbLd} />
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
         <article className="min-w-0">
           <nav className="mb-4 flex items-center gap-1.5 text-xs text-ink-400">
@@ -138,7 +176,7 @@ export default async function ArticlePage({
               {article.author.name} <span className="font-normal text-ink-500">{article.author.role}</span>
             </p>
             <p className="mt-1 text-sm text-ink-500">
-              signaljournal.kr · 본 기사와 기자 프로필은 데모용 가상 정보입니다.
+              modooilbo.kr · 본 기사와 기자 프로필은 데모용 가상 정보입니다.
             </p>
           </div>
 
@@ -163,7 +201,7 @@ export default async function ArticlePage({
               독립 저널리즘을 후원하세요
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-ink-500 dark:text-ink-300">
-              광고가 아닌 독자의 힘으로 만드는 뉴스. 시그널저널과 함께해 주세요.
+              광고가 아닌 독자의 힘으로 만드는 뉴스. 모두일보와 함께해 주세요.
             </p>
             <Link
               href="/subscribe"

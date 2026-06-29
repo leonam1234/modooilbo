@@ -1,4 +1,4 @@
-# 시그널저널 — Claude / 에이전트 진입점
+# 모두일보 — Claude / 에이전트 진입점
 
 한국어 온라인 신문사 프론트엔드. **Next.js 15 (App Router) · 정적 export · Cloudflare Pages**.
 

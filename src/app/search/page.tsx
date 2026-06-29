@@ -7,7 +7,7 @@ import { SearchClient } from "./SearchClient";
 
 export const metadata: Metadata = {
   title: "검색",
-  description: "시그널저널 기사 검색",
+  description: "모두일보 기사 검색",
 };
 
 export default function SearchPage() {

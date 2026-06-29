@@ -5,10 +5,38 @@ import { RankingList } from "@/components/RankingList";
 import { OpinionStrip } from "@/components/OpinionStrip";
 import { MediaGrid } from "@/components/MediaGrid";
 import { NewsletterCTA } from "@/components/NewsletterCTA";
+import JsonLd from "@/components/JsonLd";
+
+const SITE_URL = "https://modooilbo.kr";
+
+const organizationLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "모두일보",
+  alternateName: "Modoo Ilbo",
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo.png`,
+};
+
+const websiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "모두일보",
+  alternateName: "Modoo Ilbo",
+  url: SITE_URL,
+  inLanguage: "ko-KR",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${SITE_URL}/search?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
+};
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={organizationLd} />
+      <JsonLd data={websiteLd} />
       <HeroLead />
 
       <div className="container-page grid gap-x-10 gap-y-12 py-8 lg:grid-cols-[minmax(0,1fr)_320px]">
@@ -26,7 +54,7 @@ export default function Home() {
               독립 저널리즘을 후원하세요
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-ink-500 dark:text-ink-300">
-              광고가 아닌 독자의 힘으로 만드는 뉴스. 시그널저널의 후원회원이 되어주세요.
+              광고가 아닌 독자의 힘으로 만드는 뉴스. 모두일보의 후원회원이 되어주세요.
             </p>
             <Link
               href="/subscribe"

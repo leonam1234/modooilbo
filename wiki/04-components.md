@@ -8,7 +8,7 @@
 | [Header](../src/components/Header.tsx) | client | 상단 유틸바(날짜·로그인·테마) + 마스트헤드(로고·검색·로그인) + GNB(8섹션, `aria-current`) + 검색 오버레이 + 모바일 드로어. 스티키. |
 | [BreakingTicker](../src/components/BreakingTicker.tsx) | server | 속보 마퀴(`getBreaking`), 호버 시 정지, 우측 페이드. |
 | [Footer](../src/components/Footer.tsx) | server | 브랜드·SNS·링크 컬럼(회사/서비스/약관)·법적 정보·섹션 바로가기. |
-| [ThemeToggle](../src/components/ThemeToggle.tsx) | client | 라이트/다크 토글(localStorage `sj-theme`). |
+| [ThemeToggle](../src/components/ThemeToggle.tsx) | client | 라이트/다크 토글(localStorage `modoo-theme`). |
 | [PageHeader](../src/components/PageHeader.tsx) | server | 회사/유틸 페이지 상단 타이틀 블록. props `{title, subtitle?, breadcrumb?, align?}`. |
 | [SectionHeading](../src/components/SectionHeading.tsx) | server | 섹션 제목 + "더보기" 링크. |
 | [CategoryBadge](../src/components/CategoryBadge.tsx) | server | 카테고리 라벨(링크). |

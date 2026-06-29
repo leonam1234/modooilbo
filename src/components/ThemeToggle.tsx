@@ -18,7 +18,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     setDark(next);
     document.documentElement.classList.toggle("dark", next);
     try {
-      localStorage.setItem("sj-theme", next ? "dark" : "light");
+      localStorage.setItem("modoo-theme", next ? "dark" : "light");
     } catch {}
   }
 

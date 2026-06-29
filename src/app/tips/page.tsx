@@ -5,7 +5,7 @@ import { TipForm } from "./TipForm";
 export const metadata: Metadata = {
   title: "제보하기",
   description:
-    "당신의 제보가 세상을 바꿉니다. 시그널저널은 제보자의 신원을 철저히 보호하며, 모든 제보를 신중하게 검증해 보도로 이어갑니다.",
+    "당신의 제보가 세상을 바꿉니다. 모두일보는 제보자의 신원을 철저히 보호하며, 모든 제보를 신중하게 검증해 보도로 이어갑니다.",
 };
 
 function ShieldIcon({ className }: { className?: string }) {
@@ -59,7 +59,7 @@ export default function TipsPage() {
           <div className="space-y-4 leading-relaxed text-ink-600 dark:text-ink-300">
             <p>
               권력의 부조리, 우리 사회가 놓치고 있는 진실, 누군가는 반드시 알아야 할 사실. 작은
-              제보 하나가 큰 변화의 출발점이 됩니다. 시그널저널의 기자들은 여러분이 보내주신 단서를
+              제보 하나가 큰 변화의 출발점이 됩니다. 모두일보의 기자들은 여러분이 보내주신 단서를
               끝까지 추적해 보도로 완성합니다.
             </p>
             <p>
@@ -68,7 +68,7 @@ export default function TipsPage() {
               제보가 곧바로 기사가 되지 않더라도, 모든 단서는 후속 취재의 소중한 밑거름이 됩니다.
             </p>
             <p>
-              무엇보다 제보자의 안전을 최우선으로 합니다. 시그널저널은 취재원 보호를 언론 윤리의
+              무엇보다 제보자의 안전을 최우선으로 합니다. 모두일보는 취재원 보호를 언론 윤리의
               근간으로 삼으며, 어떤 경우에도 제보자의 신원과 제보 사실을 외부에 밝히지 않습니다.
             </p>
 

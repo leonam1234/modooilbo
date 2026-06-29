@@ -39,7 +39,7 @@
 
 ## 4. 다크 모드
 - 전략: `darkMode: "class"` — `<html class="dark">` 토글.
-- [ThemeToggle](../src/components/ThemeToggle.tsx): `localStorage["sj-theme"]` 저장 + 최초엔 `prefers-color-scheme` 반영.
+- [ThemeToggle](../src/components/ThemeToggle.tsx): `localStorage["modoo-theme"]` 저장 + 최초엔 `prefers-color-scheme` 반영.
 - 모든 색 유틸은 `dark:` 변형을 동반(위 페어링 규칙).
 
 ## 5. 애니메이션
@@ -57,4 +57,4 @@
 - 커스텀 스크롤바(데스크톱), `@media print`(기사 본문 중심).
 
 ## 7. 브랜드 마크
-- 워드마크: `시그널` + `저널`(signal-600) + 정사각 `S`(bg-signal-600, 흰 글자). Header/Footer 인라인.
+- 워드마크: `모두` + `일보`(signal-600) + 정사각 `M`(bg-signal-600, 흰 글자). Header/Footer 인라인.

@@ -1,9 +1,9 @@
-# 시그널저널 — 페이지 빌드 에이전트 공통 브리핑
+# 모두일보 — 페이지 빌드 에이전트 공통 브리핑
 
 > 이 문서를 먼저 읽고, 배정된 페이지를 이 규칙에 **정확히** 맞춰 작성하세요.
 
 ## 프로젝트
-- 시그널저널 (Signal Journal) — 대한민국 온라인 신문사. Next.js 15 App Router + TypeScript + Tailwind CSS.
+- 모두일보 (Modoo Ilbo) — 대한민국 온라인 신문사. Next.js 15 App Router + TypeScript + Tailwind CSS.
 - 루트: `C:\Users\namdg\signaljournal`, 소스: `src/`. 임포트 별칭 `@/` → `src/`.
 - 오늘 날짜 2026-06-10. 모든 콘텐츠는 한국어, 진중한 언론 브랜드 톤, 가상(데모) 데이터.
 

@@ -7,7 +7,7 @@ import { ApplyForm } from "./ApplyForm";
 export const metadata: Metadata = {
   title: "인재채용",
   description:
-    "시그널저널과 함께 노이즈 속에서 신호를 읽어낼 동료를 찾습니다. 기자·PD·데이터 저널리스트·개발자·마케터 채용 공고와 지원 안내.",
+    "모두일보와 함께 모두를 위한 신뢰의 뉴스를 만들 동료를 찾습니다. 기자·PD·데이터 저널리스트·개발자·마케터 채용 공고와 지원 안내.",
 };
 
 type IconProps = SVGProps<SVGSVGElement>;
@@ -248,14 +248,14 @@ export default function CareersPage() {
       <section className="container-page py-10 sm:py-12">
         <div className="max-w-3xl">
           <p className="text-sm font-semibold uppercase tracking-wider text-signal-600">
-            Why Signal Journal
+            Why Modoo Ilbo
           </p>
           <h2 className="mt-2 font-headline text-2xl font-extrabold text-ink-900 dark:text-white sm:text-3xl">
             우리는 노이즈가 아니라 신호를 만듭니다
           </h2>
           <div className="mt-5 space-y-4 text-lg leading-relaxed text-ink-600 dark:text-ink-300">
             <p>
-              매일 쏟아지는 정보 속에서 무엇이 진짜 중요한지 가려내는 일. 시그널저널은 속도
+              매일 쏟아지는 정보 속에서 무엇이 진짜 중요한지 가려내는 일. 모두일보는 속도
               경쟁이 아니라 신뢰 경쟁에서 이기는 언론을 지향합니다. 우리는 클릭이 아니라
               독자의 시간을 존중하는 저널리즘을 만듭니다.
             </p>
@@ -267,7 +267,7 @@ export default function CareersPage() {
             </p>
             <p>
               저널리즘의 본질을 지키면서도 가장 현대적인 방식으로 뉴스를 전하고 싶은 분이라면,
-              지금 시그널저널의 문을 두드려 주세요. 당신이 찾던 신호가 여기 있을지 모릅니다.
+              지금 모두일보의 문을 두드려 주세요. 당신이 찾던 신호가 여기 있을지 모릅니다.
             </p>
           </div>
         </div>
@@ -280,7 +280,7 @@ export default function CareersPage() {
             우리가 찾는 사람
           </h2>
           <p className="mt-2 max-w-2xl text-ink-500 dark:text-ink-300">
-            시그널저널의 동료라면 함께 지키고 싶은 네 가지 태도입니다.
+            모두일보의 동료라면 함께 지키고 싶은 네 가지 태도입니다.
           </p>
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {TALENTS.map((t) => (

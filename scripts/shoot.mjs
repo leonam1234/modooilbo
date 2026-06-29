@@ -1,4 +1,4 @@
-// 시그널저널 리뷰용 스크린샷 캡쳐 — PC(1440) / 모바일(390) 풀페이지
+// 모두일보 리뷰용 스크린샷 캡쳐 — PC(1440) / 모바일(390) 풀페이지
 // 사용: node scripts/shoot.mjs <round> <theme:light|dark> <set:core|full>
 import { chromium } from "playwright";
 import { mkdirSync } from "node:fs";

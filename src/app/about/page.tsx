@@ -6,7 +6,7 @@ import { ArrowRightIcon } from "@/components/icons";
 export const metadata: Metadata = {
   title: "회사소개",
   description:
-    "시그널저널은 노이즈 속에서 신호를 읽어내는 독립 디지털 언론입니다. 미션과 핵심 가치, 연혁, 편집 원칙을 소개합니다.",
+    "모두일보는 모두를 위한 신뢰의 뉴스를 전하는 독립 디지털 언론입니다. 미션과 핵심 가치, 연혁, 편집 원칙을 소개합니다.",
 };
 
 const VALUES: { title: string; body: string }[] = [
@@ -31,7 +31,7 @@ const VALUES: { title: string; body: string }[] = [
 const TIMELINE: { year: string; event: string }[] = [
   {
     year: "2026",
-    event: "시그널저널 창간. ‘노이즈 속에서 신호를 읽다’를 슬로건으로 디지털 데일리 서비스 시작.",
+    event: "모두일보 창간. ‘모두를 위한 신뢰의 뉴스’를 슬로건으로 디지털 데일리 서비스 시작.",
   },
   {
     year: "2026",
@@ -39,7 +39,7 @@ const TIMELINE: { year: string; event: string }[] = [
   },
   {
     year: "2027",
-    event: "구독자 10만 돌파. 독자 후원 멤버십 ‘시그널 멤버스’ 도입.",
+    event: "구독자 10만 돌파. 독자 후원 멤버십 ‘모두 멤버스’ 도입.",
   },
   {
     year: "2028",
@@ -79,7 +79,7 @@ export default function AboutPage() {
     <>
       <PageHeader
         title="회사소개"
-        subtitle="시그널저널은 노이즈 속에서 신호를 읽어내는 독립 디지털 언론입니다."
+        subtitle="모두일보는 모두를 위한 신뢰의 뉴스를 전하는 독립 디지털 언론입니다."
         breadcrumb={[{ label: "회사소개" }]}
       />
 
@@ -91,14 +91,14 @@ export default function AboutPage() {
               Our Mission
             </p>
             <h2 className="mt-3 font-headline text-3xl font-extrabold leading-tight text-ink-900 dark:text-white sm:text-4xl">
-              노이즈 속에서
+              모두를 위한
               <br />
-              신호를 읽다
+              신뢰의 뉴스
             </h2>
           </div>
           <div className="space-y-5 text-lg leading-relaxed text-ink-600 dark:text-ink-300">
             <p>
-              하루에도 수만 건의 정보가 쏟아집니다. 시그널저널은 그 소음 속에서 진짜 중요한
+              하루에도 수만 건의 정보가 쏟아집니다. 모두일보는 그 소음 속에서 진짜 중요한
               ‘신호’를 가려내, 시민이 세상을 더 또렷하게 볼 수 있도록 돕기 위해 태어났습니다.
             </p>
             <p>
@@ -107,7 +107,7 @@ export default function AboutPage() {
               현장을 함께 들여다보는 것이 우리가 정의하는 좋은 저널리즘입니다.
             </p>
             <p>
-              시그널저널은 독자의 신뢰를 가장 큰 자산으로 여깁니다. 누구의 눈치도 보지 않는
+              모두일보는 독자의 신뢰를 가장 큰 자산으로 여깁니다. 누구의 눈치도 보지 않는
               독립 언론으로서, 오늘도 더 나은 질문을 던지고 더 정직한 답을 찾아 나섭니다.
             </p>
           </div>
@@ -148,7 +148,7 @@ export default function AboutPage() {
           연혁
         </h2>
         <p className="mt-2 max-w-2xl text-ink-500 dark:text-ink-300">
-          창간에서 오늘에 이르기까지, 시그널저널이 걸어온 길입니다.
+          창간에서 오늘에 이르기까지, 모두일보가 걸어온 길입니다.
         </p>
         <ol className="mt-8 border-l-2 border-ink-200 dark:border-ink-800">
           {TIMELINE.map((t, i) => (
@@ -176,7 +176,7 @@ export default function AboutPage() {
                   편집 원칙
                 </h2>
                 <p className="mt-4 leading-relaxed text-ink-600 dark:text-ink-300">
-                  시그널저널의 모든 콘텐츠는 사실 확인, 출처 투명성, 이해상충 회피라는 세 기둥
+                  모두일보의 모든 콘텐츠는 사실 확인, 출처 투명성, 이해상충 회피라는 세 기둥
                   위에 세워집니다. 우리는 추측을 사실처럼 전하지 않으며, 오류가 있으면 숨기지
                   않고 정정합니다. 취재 윤리와 정정·반론 원칙, 청소년보호정책의 전문은 윤리강령
                   페이지에서 확인하실 수 있습니다.
@@ -236,7 +236,7 @@ export default function AboutPage() {
                 <div className="flex gap-3">
                   <dt className="w-14 shrink-0 font-semibold text-ink-500 dark:text-ink-400">주소</dt>
                   <dd className="text-ink-700 dark:text-ink-200">
-                    서울특별시 중구 세종대로 124 시그널빌딩 (우 04520)
+                    서울특별시 중구 세종대로 124 모두일보빌딩 (우 04520)
                   </dd>
                 </div>
                 <div className="flex gap-3">

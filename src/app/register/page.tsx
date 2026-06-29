@@ -3,7 +3,7 @@ import { RegisterForm } from "./RegisterForm";
 
 export const metadata: Metadata = {
   title: "회원가입",
-  description: "시그널저널 회원가입 — 신뢰할 수 있는 저널리즘의 구독자가 되어보세요.",
+  description: "모두일보 회원가입 — 신뢰할 수 있는 저널리즘의 구독자가 되어보세요.",
 };
 
 export default function RegisterPage() {
@@ -16,7 +16,7 @@ export default function RegisterPage() {
               회원가입
             </h1>
             <p className="mt-2 text-sm text-ink-500 dark:text-ink-300">
-              몇 가지 정보만 입력하면 시그널저널의 구독자가 됩니다.
+              몇 가지 정보만 입력하면 모두일보의 구독자가 됩니다.
             </p>
           </div>
           <RegisterForm />

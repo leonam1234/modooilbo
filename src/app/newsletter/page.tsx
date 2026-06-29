@@ -7,7 +7,7 @@ import { NewsletterToggle } from "./NewsletterToggle";
 export const metadata: Metadata = {
   title: "뉴스레터",
   description:
-    "시그널저널 에디터가 엄선한 뉴스를 메일함으로. 매일 아침의 핵심 브리핑부터 경제·테크·문화 심층 레터까지, 원하는 주제만 골라 구독하세요.",
+    "모두일보 에디터가 엄선한 뉴스를 메일함으로. 매일 아침의 핵심 브리핑부터 경제·테크·문화 심층 레터까지, 원하는 주제만 골라 구독하세요.",
 };
 
 interface Newsletter {
@@ -22,7 +22,7 @@ interface Newsletter {
 const NEWSLETTERS: Newsletter[] = [
   {
     id: "morning",
-    name: "모닝 시그널",
+    name: "모두의 아침",
     cadence: "매일 아침 7시",
     day: "매일",
     description:
@@ -59,7 +59,7 @@ const NEWSLETTERS: Newsletter[] = [
     cadence: "주 1회 · 일요일",
     day: "주 1회",
     description:
-      "한 주의 쟁점을 깊이 들여다보는 칼럼 모음. 시그널저널 논설위원과 외부 필진의 시선을 한자리에서 만나보세요.",
+      "한 주의 쟁점을 깊이 들여다보는 칼럼 모음. 모두일보 논설위원과 외부 필진의 시선을 한자리에서 만나보세요.",
   },
 ];
 
@@ -76,7 +76,7 @@ export default function NewsletterPage() {
         <div className="max-w-3xl">
           <p className="leading-relaxed text-ink-600 dark:text-ink-300">
             넘쳐나는 정보 속에서 정말 중요한 것만 골라 전합니다. 관심 있는 주제의 뉴스레터를
-            구독하면, 시그널저널 에디터가 직접 선별하고 정리한 소식을 정해진 시간에 받아볼 수
+            구독하면, 모두일보 에디터가 직접 선별하고 정리한 소식을 정해진 시간에 받아볼 수
             있습니다. 모든 뉴스레터는 무료이며 언제든 구독을 취소할 수 있습니다.
           </p>
         </div>

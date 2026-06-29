@@ -1,9 +1,9 @@
-# 시그널저널 (Signal Journal) — 온라인 신문사 풀빌드 + 리뷰루프 계획
+# 모두일보 (Modoo Ilbo) — 온라인 신문사 풀빌드 + 리뷰루프 계획
 
 > Ralph Mode (병렬 멀티에이전트). 빌드 → 20인 전문가 리뷰(스크린샷 기반) → 수정을 10회 반복.
 
 ## 1. 개요
-- **브랜드**: 시그널저널 (Signal Journal) — *"노이즈 속에서 신호를 읽다"*
+- **브랜드**: 모두일보 (Modoo Ilbo) — *"모두를 위한 신뢰의 뉴스"*
 - **유형**: 온라인 신문사 / 언론사 종합 홈페이지 (프론트엔드)
 - **스택**: Next.js(App Router) + TypeScript + Tailwind CSS / 폰트 Pretendard + Nanum Myeongjo
 - **이미지**: picsum.photos 시드 기반 더미

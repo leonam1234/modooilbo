@@ -179,7 +179,7 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
           required
           value={intro}
           onChange={(e) => setIntro(e.target.value)}
-          placeholder="지원 동기와 본인의 강점, 시그널저널에서 만들고 싶은 저널리즘을 자유롭게 들려주세요."
+          placeholder="지원 동기와 본인의 강점, 모두일보에서 만들고 싶은 저널리즘을 자유롭게 들려주세요."
           className={textareaCls}
         />
       </div>

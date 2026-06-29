@@ -38,4 +38,4 @@ App Router. 전부 정적(Static) 또는 SSG. 빌드 시 90개 페이지 생성.
 | `/sitemap.xml` | [sitemap.ts](../src/app/sitemap.ts) | 정적+카테고리+기사 전체 |
 
 ## 공통 레이아웃
-[layout.tsx](../src/app/layout.tsx): `<skip-link>` → `<Header/>` → `<BreakingTicker/>` → `<main id="content">{children}</main>` → `<Footer/>`. 메타데이터 `title.template = "%s | 시그널저널"`.
+[layout.tsx](../src/app/layout.tsx): `<skip-link>` → `<Header/>` → `<BreakingTicker/>` → `<main id="content">{children}</main>` → `<Footer/>`. 메타데이터 `title.template = "%s | 모두일보"`.

@@ -1,6 +1,6 @@
 # 배포 가이드 — Cloudflare 최적화
 
-시그널저널은 전 페이지가 **정적(SSG/Static)** 이므로 **Cloudflare Pages 정적 호스팅**에 최적화되어 있습니다. (서버 비용 0, 전 세계 엣지 CDN, 즉시 캐싱)
+모두일보는 전 페이지가 **정적(SSG/Static)** 이므로 **Cloudflare Pages 정적 호스팅**에 최적화되어 있습니다. (서버 비용 0, 전 세계 엣지 CDN, 즉시 캐싱)
 
 ## 권장: Cloudflare Pages (정적 export)
 
@@ -19,7 +19,7 @@ npm run preview:static   # http://localhost:3001 에서 out/ 서빙
 ### 3) 배포 (둘 중 하나)
 - **CLI (Wrangler)**
   ```bash
-  npx wrangler pages deploy out --project-name signaljournal
+  npx wrangler pages deploy out --project-name modooilbo
   # 또는
   npm run deploy:cf
   ```

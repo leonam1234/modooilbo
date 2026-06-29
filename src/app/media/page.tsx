@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
   title: "포토·영상",
-  description: "시그널저널의 사진과 영상으로 보는 뉴스",
+  description: "모두일보의 사진과 영상으로 보는 뉴스",
 };
 
 export default function MediaPage() {

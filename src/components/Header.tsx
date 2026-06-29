@@ -20,12 +20,12 @@ const COMPANY_LINKS = [
 
 function Logo({ className }: { className?: string }) {
   return (
-    <Link href="/" className={cn("flex items-center gap-2", className)} aria-label="시그널저널 홈">
+    <Link href="/" className={cn("flex items-center gap-2", className)} aria-label="모두일보 홈">
       <span className="grid h-7 w-7 place-items-center rounded-sm bg-signal-600 font-headline text-sm font-black text-white">
-        S
+        M
       </span>
       <span className="font-headline text-xl font-extrabold tracking-tight text-ink-900 dark:text-white sm:text-2xl">
-        시그널<span className="text-signal-600">저널</span>
+        모두<span className="text-signal-600">일보</span>
       </span>
     </Link>
   );

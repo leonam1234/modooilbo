@@ -1,5 +1,5 @@
 {
-  "name": "signaljournal",
+  "name": "modooilbo",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "preview:static": "node scripts/static-server.mjs",
-    "deploy:cf": "next build && wrangler pages deploy out --project-name signaljournal"
+    "deploy:cf": "next build && wrangler pages deploy out --project-name modooilbo"
   },
   "dependencies": {
     "next": "15.1.6",

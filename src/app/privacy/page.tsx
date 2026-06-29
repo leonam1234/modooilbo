@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/PageHeader";
 export const metadata: Metadata = {
   title: "개인정보처리방침",
   description:
-    "시그널저널은 이용자의 개인정보를 소중히 다루며, 관련 법령에 따라 수집·이용·보관·파기 절차를 투명하게 안내합니다.",
+    "모두일보는 이용자의 개인정보를 소중히 다루며, 관련 법령에 따라 수집·이용·보관·파기 절차를 투명하게 안내합니다.",
 };
 
 export default function PrivacyPage() {
@@ -12,7 +12,7 @@ export default function PrivacyPage() {
     <>
       <PageHeader
         title="개인정보처리방침"
-        subtitle="시그널저널은 이용자의 개인정보를 소중히 여기며 관련 법령을 준수합니다."
+        subtitle="모두일보는 이용자의 개인정보를 소중히 여기며 관련 법령을 준수합니다."
         breadcrumb={[{ label: "개인정보처리방침" }]}
       />
 
@@ -20,7 +20,7 @@ export default function PrivacyPage() {
         <article className="mx-auto max-w-3xl">
           <p className="mb-6 text-sm text-ink-400">시행일: 2026년 1월 1일</p>
           <p className="mb-10 leading-relaxed text-ink-600 dark:text-ink-300">
-            시그널저널(이하 &ldquo;회사&rdquo;)은 「개인정보 보호법」 등 관련 법령에 따라 이용자의
+            모두일보(이하 &ldquo;회사&rdquo;)은 「개인정보 보호법」 등 관련 법령에 따라 이용자의
             개인정보를 보호하고 이와 관련한 고충을 신속하게 처리할 수 있도록 다음과 같은
             개인정보처리방침을 수립·공개합니다.
           </p>
@@ -158,7 +158,7 @@ export default function PrivacyPage() {
                   <dt className="w-24 shrink-0 font-medium text-ink-700 dark:text-ink-200">
                     이메일
                   </dt>
-                  <dd>privacy@signaljournal.example</dd>
+                  <dd>privacy@modooilbo.example</dd>
                 </div>
                 <div className="flex gap-3">
                   <dt className="w-24 shrink-0 font-medium text-ink-700 dark:text-ink-200">

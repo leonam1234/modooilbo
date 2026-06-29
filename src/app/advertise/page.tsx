@@ -7,7 +7,7 @@ import { AdInquiryForm } from "./AdInquiryForm";
 export const metadata: Metadata = {
   title: "광고·제휴",
   description:
-    "월 순방문자 1,200만, 페이지뷰 4,800만의 신뢰받는 매체 시그널저널과 함께하세요. 디스플레이·네이티브·뉴스레터·브랜디드 콘텐츠 광고 및 콘텐츠·API 제휴 안내.",
+    "월 순방문자 1,200만, 페이지뷰 4,800만의 신뢰받는 매체 모두일보와 함께하세요. 디스플레이·네이티브·뉴스레터·브랜디드 콘텐츠 광고 및 콘텐츠·API 제휴 안내.",
 };
 
 type IconProps = SVGProps<SVGSVGElement>;
@@ -128,7 +128,7 @@ const PARTNERSHIPS = [
   {
     icon: PlugIcon,
     title: "API · 신디케이션",
-    body: "콘텐츠 피드 API와 신디케이션으로 시그널저널의 기사를 귀사 서비스에 안정적으로 공급합니다.",
+    body: "콘텐츠 피드 API와 신디케이션으로 모두일보의 기사를 귀사 서비스에 안정적으로 공급합니다.",
   },
   {
     icon: EventIcon,
@@ -166,7 +166,7 @@ export default function AdvertisePage() {
             품질이 곧 도달입니다
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-ink-600 dark:text-ink-300">
-            시그널저널은 정치·경제·사회·국제·문화·테크 전 분야에서 깊이 있는 저널리즘을
+            모두일보는 정치·경제·사회·국제·문화·테크 전 분야에서 깊이 있는 저널리즘을
             선보이는 종합 뉴스 매체입니다. 신뢰를 우선하는 콘텐츠는 구매력과 의사결정권을 가진
             독자층을 모으고, 그만큼 브랜드 메시지의 영향력도 커집니다.
           </p>
@@ -313,10 +313,10 @@ export default function AdvertisePage() {
             <p className="mt-6 text-center text-sm text-ink-500 dark:text-ink-400">
               빠른 상담이 필요하신가요? 광고·제휴 문의{" "}
               <a
-                href="mailto:ad@signaljournal.kr"
+                href="mailto:ad@modooilbo.kr"
                 className="font-semibold text-signal-600 hover:text-signal-700"
               >
-                ad@signaljournal.kr
+                ad@modooilbo.kr
               </a>
             </p>
           </div>

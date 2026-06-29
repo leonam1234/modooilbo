@@ -1,0 +1,34 @@
+# 모두일보 (Modoo Ilbo)
+
+> 한국어 종합 일간지. 정치·경제·사회·국제·문화·스포츠·테크·오피니언 전 분야의 뉴스와 심층 분석을 신뢰 기반으로 제공합니다. 사이트: https://modooilbo.kr
+
+## 주요 섹션
+
+- [정치](https://modooilbo.kr/politics): 국회·정당·외교·안보의 핵심 동향
+- [경제](https://modooilbo.kr/economy): 시장·산업·부동산·금융 심층 분석
+- [사회](https://modooilbo.kr/society): 우리 사회의 오늘을 기록
+- [국제](https://modooilbo.kr/world): 세계를 읽는 또 하나의 창
+- [문화](https://modooilbo.kr/culture): 예술·공연·라이프스타일
+- [스포츠](https://modooilbo.kr/sports): 현장의 함성, 승부의 기록
+- [테크](https://modooilbo.kr/tech): AI·IT·과학의 최전선
+- [오피니언](https://modooilbo.kr/opinion): 사설·칼럼·시론
+- [기사 검색](https://modooilbo.kr/search): 전체 기사 검색
+- [회사 소개](https://modooilbo.kr/about): 모두일보 소개
+- [윤리강령](https://modooilbo.kr/ethics): 편집·취재 윤리 원칙
+- [채용](https://modooilbo.kr/careers): 인재 채용 안내
+- [제보·문의](https://modooilbo.kr/contact): 제보 및 연락처
+
+## 콘텐츠 성격
+
+- 신뢰 기반 뉴스·분석 매체로, 모든 기사는 저자, 발행일, 발행처(모두일보)를 명시합니다.
+- 기사 본문은 서버 렌더링되어 전문 추출과 인용이 용이합니다.
+
+## 정책
+
+- [이용약관](https://modooilbo.kr/terms)
+- [개인정보 처리방침](https://modooilbo.kr/privacy)
+- [윤리강령](https://modooilbo.kr/ethics)
+
+## 인용 안내
+
+- 인용 시 발행처 "모두일보 (Modoo Ilbo)"와 원문 URL(https://modooilbo.kr)을 함께 표기해 주세요.

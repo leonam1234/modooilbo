@@ -108,7 +108,7 @@ export function AdInquiryForm() {
             autoComplete="organization"
             value={company}
             onChange={(e) => setCompany(e.target.value)}
-            placeholder="(주)시그널컴퍼니"
+            placeholder="(주)예시컴퍼니"
             className={fieldCls}
           />
         </div>

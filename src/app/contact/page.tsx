@@ -6,38 +6,38 @@ import { ContactForm } from "./ContactForm";
 export const metadata: Metadata = {
   title: "고객센터",
   description:
-    "시그널저널 부서별 연락처와 자주 묻는 질문, 온라인 문의 양식을 안내합니다. 구독·광고·제보 등 무엇이든 문의해 주세요.",
+    "모두일보 부서별 연락처와 자주 묻는 질문, 온라인 문의 양식을 안내합니다. 구독·광고·제보 등 무엇이든 문의해 주세요.",
 };
 
 const DEPARTMENTS: { name: string; desc: string; email: string; phone: string }[] = [
   {
     name: "편집국",
     desc: "보도 내용 및 기사 관련 문의",
-    email: "newsroom@signaljournal.co.kr",
+    email: "newsroom@modooilbo.co.kr",
     phone: "02-1234-5601",
   },
   {
     name: "광고·제휴",
     desc: "광고 집행, 콘텐츠 제휴 제안",
-    email: "ad@signaljournal.co.kr",
+    email: "ad@modooilbo.co.kr",
     phone: "02-1234-5620",
   },
   {
     name: "구독·후원",
     desc: "유료 구독, 멤버십, 결제 문의",
-    email: "members@signaljournal.co.kr",
+    email: "members@modooilbo.co.kr",
     phone: "02-1234-5630",
   },
   {
     name: "제보",
     desc: "단독·탐사 보도를 위한 취재 제보",
-    email: "tip@signaljournal.co.kr",
+    email: "tip@modooilbo.co.kr",
     phone: "02-1234-5640",
   },
   {
     name: "일반문의",
     desc: "그 밖의 모든 문의 및 의견",
-    email: "help@signaljournal.co.kr",
+    email: "help@modooilbo.co.kr",
     phone: "02-1234-5678",
   },
 ];
@@ -53,15 +53,15 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "기사에 오류를 발견했습니다. 어떻게 알리나요?",
-    a: "정정 요청은 correction@signaljournal.co.kr 또는 아래 문의 양식(유형: 기타)으로 접수해 주세요. 편집위원회 검토 후 신속히 정정하고 그 내용을 기사에 밝힙니다.",
+    a: "정정 요청은 correction@modooilbo.co.kr 또는 아래 문의 양식(유형: 기타)으로 접수해 주세요. 편집위원회 검토 후 신속히 정정하고 그 내용을 기사에 밝힙니다.",
   },
   {
     q: "제보한 내용은 안전하게 보호되나요?",
-    a: "제보자의 신원은 철저히 보호되며, 본인이 동의하지 않는 한 외부에 공개되지 않습니다. 민감한 제보는 제보 전용 채널(tip@signaljournal.co.kr)을 이용해 주세요.",
+    a: "제보자의 신원은 철저히 보호되며, 본인이 동의하지 않는 한 외부에 공개되지 않습니다. 민감한 제보는 제보 전용 채널(tip@modooilbo.co.kr)을 이용해 주세요.",
   },
   {
     q: "기사를 다른 매체에 인용해도 되나요?",
-    a: "출처(시그널저널)와 원문 링크를 명확히 표기하는 범위에서 인용이 가능합니다. 전문 전재나 상업적 활용은 광고·제휴 부서와 사전 협의가 필요합니다.",
+    a: "출처(모두일보)와 원문 링크를 명확히 표기하는 범위에서 인용이 가능합니다. 전문 전재나 상업적 활용은 광고·제휴 부서와 사전 협의가 필요합니다.",
   },
   {
     q: "답변은 얼마나 걸리나요?",
