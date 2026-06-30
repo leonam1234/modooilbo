@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { CHANGE_EVENT, fetchWeather, getSavedCity, type WxCondition } from "@/lib/weather";
+import { WeatherCanvas } from "./WeatherCanvas";
 
 /**
  * 날씨 배경 모션 — 콘텐츠 뒤(z-0)에 무채색·아주 옅게.
@@ -37,11 +38,11 @@ export function WeatherBackground() {
 
   if (cond === "clear") return null;
 
+  // 비·눈 = 캔버스(실제 입자), 안개 = CSS 블러
+  if (cond === "rain" || cond === "snow") return <WeatherCanvas kind={cond} />;
   return (
     <div aria-hidden className="wx-layer text-ink-900 dark:text-white">
-      {cond === "rain" && <div className="wx-rain" />}
-      {cond === "fog" && <div className="wx-fog" />}
-      {cond === "snow" && <div className="wx-snow" />}
+      <div className="wx-fog" />
     </div>
   );
 }
