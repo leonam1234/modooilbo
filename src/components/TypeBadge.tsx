@@ -17,10 +17,11 @@ export function TypeBadge({
   onDark?: boolean;
 }) {
   let label: string | null = null;
-  let kind: "solid" | "outline" = "solid";
+  let kind: "solid" | "outline" | "breaking" = "solid";
 
   if (article.isBreaking) {
     label = "속보";
+    kind = "breaking";
   } else if (article.type === "video") {
     label = "영상";
   } else if (article.type === "photo") {
@@ -40,11 +41,19 @@ export function TypeBadge({
     ? "border border-white text-white"
     : "border border-ink-900 text-ink-900 dark:border-ink-100 dark:text-ink-100";
 
+  // 속보는 표면·모드와 무관하게 항상 딥 마룬 레드 칩(긴급 신호)
+  const style =
+    kind === "breaking"
+      ? "bg-breaking text-white shadow-sm"
+      : kind === "solid"
+        ? cn(solid, "shadow-sm")
+        : outline;
+
   return (
     <span
       className={cn(
         "inline-flex items-center rounded-[3px] px-1.5 py-0.5 text-[11px] font-bold leading-none tracking-tight",
-        kind === "solid" ? cn(solid, "shadow-sm") : outline,
+        style,
         className,
       )}
     >

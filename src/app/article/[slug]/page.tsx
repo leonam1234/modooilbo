@@ -9,7 +9,7 @@ import { formatKoreanDateTime, formatCount } from "@/lib/utils";
 import { ArticleCard } from "@/components/ArticleCard";
 import { RankingList } from "@/components/RankingList";
 import { ArticleActions } from "@/components/ArticleActions";
-import { EditorialCover, isPlaceholderImage } from "@/components/EditorialCover";
+import { displayImageUrl } from "@/lib/stock";
 import JsonLd from "@/components/JsonLd";
 
 const SITE_URL = "https://modooilbo.com";
@@ -137,18 +137,15 @@ export default async function ArticlePage({
 
           <figure className="mt-6">
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-ink-100 dark:bg-ink-800">
-              {isPlaceholderImage(article.imageUrl) ? (
-                <EditorialCover category={article.category} keyword={article.tags?.[0]} size="lg" />
-              ) : (
-                <Image
-                  src={article.imageUrl}
-                  alt={article.title}
-                  fill
-                  priority
-                  sizes="(max-width:1024px) 100vw, 66vw"
-                  className="object-cover"
-                />
-              )}
+              <Image
+                src={displayImageUrl(article)}
+                alt={article.title}
+                fill
+                priority
+                sizes="(max-width:1024px) 100vw, 66vw"
+                unoptimized
+                className="object-cover animate-kenburns"
+              />
             </div>
             {article.imageCaption && (
               <figcaption className="mt-2 text-xs text-ink-400">{article.imageCaption}</figcaption>

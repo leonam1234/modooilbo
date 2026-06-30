@@ -21,6 +21,8 @@ const config: Config = {
           900: "#36363b",
           950: "#222226",
         },
+        // 속보 전용 레드(딥 마룬) — 정당색(밝은 #E61E2B) 아님. "속보" 긴급 라벨에만 사용.
+        breaking: "#700000",
         // 잉크 — 본문/헤드라인 뉴트럴
         ink: {
           50: "#f6f7f8",
@@ -52,10 +54,17 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(8px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        // 켄번스 슬로 줌: 1.0 → 1.1 → 1.0 왕복 전체가 10초
+        kenburns: {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.1)" },
+        },
       },
       animation: {
         marquee: "marquee 30s linear infinite",
         "fade-up": "fade-up 0.4s ease-out both",
+        // 1.0→1.1→1.0 한 사이클 = 10초
+        kenburns: "kenburns 10s ease-in-out infinite",
       },
     },
   },

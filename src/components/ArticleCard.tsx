@@ -4,7 +4,7 @@ import type { ArticleListItem } from "@/lib/types";
 import { CATEGORY_MAP } from "@/lib/categories";
 import { cn, formatKoreanDateTime } from "@/lib/utils";
 import { PlayIcon } from "./icons";
-import { EditorialCover, isPlaceholderImage } from "./EditorialCover";
+import { displayImageUrl } from "@/lib/stock";
 import { TypeBadge } from "./TypeBadge";
 
 type Variant = "feature" | "horizontal" | "compact" | "text" | "overlay";
@@ -47,31 +47,28 @@ function Thumb({
   sizes,
   priority,
   className,
-  coverSize = "lg",
+  zoom = false,
 }: {
   article: ArticleListItem;
   sizes: string;
   priority?: boolean;
   className?: string;
-  coverSize?: "lg" | "sm";
+  zoom?: boolean;
 }) {
-  const placeholder = isPlaceholderImage(article.imageUrl);
   return (
     <div className={cn("relative overflow-hidden rounded-md bg-ink-100 dark:bg-ink-800", className)}>
-      {placeholder ? (
-        <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]">
-          <EditorialCover category={article.category} keyword={article.tags?.[0]} size={coverSize} />
-        </div>
-      ) : (
-        <Image
-          src={article.imageUrl}
-          alt={article.title}
-          fill
-          sizes={sizes}
-          priority={priority}
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-      )}
+      <Image
+        src={displayImageUrl(article)}
+        alt={article.title}
+        fill
+        sizes={sizes}
+        priority={priority}
+        unoptimized
+        className={cn(
+          "object-cover",
+          zoom ? "animate-kenburns" : "transition-transform duration-500 group-hover:scale-105",
+        )}
+      />
       <TypeBadge article={article} className="absolute left-2 top-2 z-10" />
       {article.type === "video" && (
         <span className="absolute inset-0 grid place-items-center">
@@ -98,7 +95,7 @@ export function ArticleCard({
     return (
       <article className={cn("group flex gap-4", className)}>
         <Link href={href} className="block w-28 shrink-0 sm:w-40">
-          <Thumb article={article} sizes="160px" className="aspect-[4/3]" coverSize="sm" />
+          <Thumb article={article} sizes="160px" className="aspect-[4/3]" />
         </Link>
         <div className="min-w-0 flex-1">
           <h3
@@ -126,7 +123,7 @@ export function ArticleCard({
     return (
       <article className={cn("group flex items-start gap-3", className)}>
         <Link href={href} className="block w-[72px] shrink-0">
-          <Thumb article={article} sizes="80px" className="aspect-square" coverSize="sm" />
+          <Thumb article={article} sizes="80px" className="aspect-square" />
         </Link>
         <div className="min-w-0 flex-1">
           <h3
@@ -171,20 +168,15 @@ export function ArticleCard({
       <article className={cn("group relative overflow-hidden rounded-lg", className)}>
         <Link href={href} className="block">
           <div className="relative aspect-[4/3] w-full bg-ink-200 dark:bg-ink-800">
-            {isPlaceholderImage(article.imageUrl) ? (
-              <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]">
-                <EditorialCover category={article.category} keyword={article.tags?.[0]} size="lg" tone="dark" />
-              </div>
-            ) : (
-              <Image
-                src={article.imageUrl}
-                alt={article.title}
-                fill
-                sizes="(max-width:768px) 50vw, 25vw"
-                priority={priority}
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            )}
+            <Image
+              src={displayImageUrl(article)}
+              alt={article.title}
+              fill
+              sizes="(max-width:768px) 50vw, 25vw"
+              priority={priority}
+              unoptimized
+              className="object-cover animate-kenburns"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
             <TypeBadge article={article} onDark className="absolute left-3 top-3 z-10" />
             {article.type === "video" && (
@@ -220,6 +212,7 @@ export function ArticleCard({
           sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
           priority={priority}
           className="aspect-[16/10]"
+          zoom
         />
       </Link>
       <div className="mt-3">

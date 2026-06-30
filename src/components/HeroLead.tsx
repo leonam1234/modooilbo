@@ -4,7 +4,7 @@ import { getLeadArticle, getSubLeads } from "@/lib/queries";
 import { CATEGORY_MAP } from "@/lib/categories";
 import { formatKoreanDateTime } from "@/lib/utils";
 import { ArticleCard } from "./ArticleCard";
-import { EditorialCover, isPlaceholderImage } from "./EditorialCover";
+import { displayImageUrl } from "@/lib/stock";
 import { TypeBadge } from "./TypeBadge";
 
 export function HeroLead() {
@@ -19,20 +19,15 @@ export function HeroLead() {
         <article className="group">
           <Link href={href} className="block">
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-ink-100 dark:bg-ink-800">
-              {isPlaceholderImage(lead.imageUrl) ? (
-                <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]">
-                  <EditorialCover category={lead.category} keyword={lead.tags?.[0]} size="lg" />
-                </div>
-              ) : (
-                <Image
-                  src={lead.imageUrl}
-                  alt={lead.title}
-                  fill
-                  priority
-                  sizes="(max-width:1024px) 100vw, 66vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                />
-              )}
+              <Image
+                src={displayImageUrl(lead)}
+                alt={lead.title}
+                fill
+                priority
+                sizes="(max-width:1024px) 100vw, 66vw"
+                unoptimized
+                className="object-cover animate-kenburns"
+              />
               <TypeBadge article={lead} className="absolute left-3 top-3 z-10" />
             </div>
           </Link>
