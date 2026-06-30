@@ -35,11 +35,30 @@ export async function generateMetadata({
   const a = getArticleBySlug(slug);
   if (!a) return { title: "기사를 찾을 수 없습니다" };
   const imageUrl = absoluteImageUrl(displayImageUrl(a));
+  const cat = CATEGORY_MAP[a.category];
   return {
     title: a.title,
     description: a.summary,
     alternates: { canonical: `/article/${a.slug}/` },
-    openGraph: { title: a.title, description: a.summary, images: [imageUrl], type: "article" },
+    openGraph: {
+      title: a.title,
+      description: a.summary,
+      type: "article",
+      locale: "ko_KR",
+      siteName: "모두일보",
+      url: `/article/${a.slug}/`,
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: a.title }],
+      publishedTime: a.publishedAt,
+      authors: [a.author.name],
+      section: cat?.name,
+      tags: a.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: a.title,
+      description: a.summary,
+      images: [imageUrl],
+    },
   };
 }
 
@@ -186,7 +205,7 @@ export default async function ArticlePage({
               {article.author.name} <span className="font-normal text-ink-500">{article.author.role}</span>
             </p>
             <p className="mt-1 text-sm text-ink-500">
-              modooilbo.com · 본 기사와 기자 프로필은 데모용 가상 정보입니다.
+              modooilbo.com · 모두일보 편집국
             </p>
           </div>
 

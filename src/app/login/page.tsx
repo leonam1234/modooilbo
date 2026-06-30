@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "로그인",
   description: "모두일보 회원 로그인 — 더 깊이 있는 뉴스를 경험하세요.",
   alternates: { canonical: "/login/" },
+  robots: { index: false, follow: true },
 };
 
 export default function LoginPage() {

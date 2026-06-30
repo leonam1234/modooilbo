@@ -10,7 +10,6 @@ const BASE = "https://modooilbo.com";
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
     "",
-    "/search",
     "/media",
     "/about",
     "/careers",
@@ -20,26 +19,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/tips",
     "/contact",
     "/ethics",
-    "/login",
-    "/register",
     "/terms",
     "/privacy",
   ];
 
   const staticEntries: MetadataRoute.Sitemap = staticPaths.map((p) => ({
-    url: `${BASE}${p}`,
+    url: `${BASE}${p}/`,
     changeFrequency: "daily",
     priority: p === "" ? 1 : 0.6,
   }));
 
   const categoryEntries: MetadataRoute.Sitemap = CATEGORIES.map((c) => ({
-    url: `${BASE}/${c.slug}`,
+    url: `${BASE}/${c.slug}/`,
     changeFrequency: "hourly",
     priority: 0.8,
   }));
 
   const articleEntries: MetadataRoute.Sitemap = ALL_ARTICLES.map((a) => ({
-    url: `${BASE}/article/${a.slug}`,
+    url: `${BASE}/article/${a.slug}/`,
     lastModified: new Date(a.publishedAt),
     changeFrequency: "weekly",
     priority: 0.7,

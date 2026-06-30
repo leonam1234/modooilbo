@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "검색",
   description: "모두일보 기사 검색",
   alternates: { canonical: "/search/" },
+  robots: { index: false, follow: true },
 };
 
 export default function SearchPage() {

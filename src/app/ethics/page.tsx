@@ -274,7 +274,7 @@ export default function EthicsPage() {
 
             <p className="mt-12 border-t border-ink-200 pt-6 text-sm text-ink-400 dark:border-ink-800">
               본 윤리강령은 사회 변화와 독자 의견을 반영하여 편집위원회의 의결을 거쳐 개정될 수
-              있습니다. 본 페이지의 내용은 데모용으로 작성된 가상의 문서입니다.
+              있습니다.
             </p>
           </article>
         </div>

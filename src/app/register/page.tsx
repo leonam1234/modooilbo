@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "회원가입",
   description: "모두일보 회원가입 — 신뢰할 수 있는 저널리즘의 구독자가 되어보세요.",
   alternates: { canonical: "/register/" },
+  robots: { index: false, follow: true },
 };
 
 export default function RegisterPage() {

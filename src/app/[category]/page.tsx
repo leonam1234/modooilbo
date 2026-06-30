@@ -21,7 +21,24 @@ export async function generateMetadata({
   const { category } = await params;
   const c = getCategory(category);
   if (!c) return { title: "페이지를 찾을 수 없습니다" };
-  return { title: c.name, description: c.description, alternates: { canonical: `/${c.slug}/` } };
+  const title = c.seoTitle ?? c.name;
+  const description = c.seoDescription ?? c.description;
+  return {
+    title,
+    description,
+    alternates: { canonical: `/${c.slug}/` },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: `/${c.slug}/`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+  };
 }
 
 export default async function CategoryPage({

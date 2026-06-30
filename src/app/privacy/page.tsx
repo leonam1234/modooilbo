@@ -100,8 +100,8 @@ export default function PrivacyPage() {
               있으며, 위탁 시 관련 법령에 따라 수탁자가 개인정보를 안전하게 처리하도록 관리·감독합니다.
             </p>
             <ul className="mt-3 list-disc space-y-2 pl-5 leading-relaxed text-ink-600 dark:text-ink-300">
-              <li>클라우드 인프라 운영: 가상 클라우드 서비스 제공사 (데이터 보관 및 서버 운영)</li>
-              <li>이메일·뉴스레터 발송: 가상 메시징 대행사 (발송 업무)</li>
+              <li>클라우드 인프라 운영: 클라우드 인프라 사업자 (데이터 보관 및 서버 운영)</li>
+              <li>이메일·뉴스레터 발송: 이메일·뉴스레터 발송 대행사 (발송 업무)</li>
             </ul>
           </section>
 
