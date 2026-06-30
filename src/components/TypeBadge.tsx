@@ -17,7 +17,7 @@ export function TypeBadge({
   onDark?: boolean;
 }) {
   let label: string | null = null;
-  let kind: "solid" | "outline" | "breaking" = "solid";
+  let kind: "solid" | "breaking" = "solid";
 
   if (article.isBreaking) {
     label = "속보";
@@ -28,26 +28,18 @@ export function TypeBadge({
     label = "포토";
   } else if (article.type === "opinion" || article.category === "opinion") {
     label = "칼럼";
-    kind = "outline";
   }
 
   if (!label) return null;
 
   // 표면이 어두우면(흰 칩) / 밝으면(검은 칩). 자동 커버는 모드에 따라 표면이 뒤집히므로 dark: 페어링.
+  // 모든 배지는 꽉 찬(불투명) 칩 — 그림 위에서도 또렷하게.
   const solid = onDark
     ? "bg-white text-ink-900"
     : "bg-ink-900 text-white dark:bg-ink-50 dark:text-ink-900";
-  const outline = onDark
-    ? "border border-white text-white"
-    : "border border-ink-900 text-ink-900 dark:border-ink-100 dark:text-ink-100";
 
   // 속보는 표면·모드와 무관하게 항상 딥 마룬 레드 칩(긴급 신호)
-  const style =
-    kind === "breaking"
-      ? "bg-breaking text-white shadow-sm"
-      : kind === "solid"
-        ? cn(solid, "shadow-sm")
-        : outline;
+  const style = kind === "breaking" ? "bg-breaking text-white shadow-sm" : cn(solid, "shadow-sm");
 
   return (
     <span
