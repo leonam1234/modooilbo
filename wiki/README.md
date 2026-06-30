@@ -24,6 +24,15 @@
 | 07 | [리뷰·QA](07-review-qa.md) | 스크린샷 리뷰 루프 방법론 + 결과 |
 | 08 | [컨벤션](08-conventions.md) | 코드 규칙·불변식·추가 방법·에이전트 가이드 |
 
+## 🚀 운영 로드맵 (매체화 — 반드시 해야 할 작업)
+프로토타입을 **실제 운영 언론 매체**로 만들기 위해 다음 작업자가 반드시 진행해야 하는 작업의 SSOT. → **[operations/README.md](operations/README.md)**
+| 순위 | 문서 | 내용 |
+|---|------|------|
+| 0(선행) | [operations/00-prerequisites](operations/00-prerequisites.md) | CMS 실데이터화·한국 유통(네이버/다음/구글뉴스)·인터넷신문 법적등록 |
+| 2 | [operations/01-trust-eeat](operations/01-trust-eeat.md) | 기자 프로필·정정/반론 워크플로·사진 저작권 |
+| 3 | [operations/02-growth-and-revenue](operations/02-growth-and-revenue.md) | 측정(애널리틱스/GSC)·뉴스레터·수익화·댓글 |
+| 보조 | [operations/03-supplementary](operations/03-supplementary.md) | 실시간성(ISR)·AI인용(GEO/AEO)·이미지 파이프라인·접근성/다국어 |
+
 ## 🗺️ 리포 맵 (핵심 경로)
 ```
 src/

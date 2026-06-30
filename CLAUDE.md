@@ -5,6 +5,7 @@
 ## 📖 먼저 읽을 것
 **[wiki/README.md](wiki/README.md)** — LLM 지식베이스(방향성·아키텍처·디자인·콘텐츠·페이지·배포·컨벤션).
 작업 전 **[wiki/08-conventions.md](wiki/08-conventions.md)** 의 불변식을 반드시 확인하세요.
+매체화(실데이터·신뢰·유통·수익·법무) **반드시 해야 할 작업**은 **[wiki/operations/README.md](wiki/operations/README.md)** 참조.
 
 ## 자주 쓰는 명령
 - `npm run dev` (3000) · `npm run build` (정적 export → `out/`) · `npm run preview:static` (3001)
