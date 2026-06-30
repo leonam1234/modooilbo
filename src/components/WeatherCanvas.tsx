@@ -81,14 +81,14 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
     }
     const blobs: Blob[] = [];
     if (kind === "fog") {
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < 14; i++) {
         blobs.push({
           x: rnd(0, w),
           y: rnd(0, h),
-          r: rnd(0.36, 0.64) * Math.max(w, h),
-          vx: rnd(-0.16, 0.16),
-          vy: rnd(-0.05, 0.05),
-          a: rnd(0.1, 0.18),
+          r: rnd(0.1, 0.4) * Math.max(w, h), // 크고 작은 구름 조각 섞임
+          vx: rnd(-0.3, 0.3),
+          vy: rnd(-0.08, 0.08),
+          a: rnd(0.12, 0.28), // 회색 구름답게 진하게(겹치며 더 진해짐)
         });
       }
     }
@@ -102,7 +102,7 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
       const dark = isDark();
 
       if (kind === "fog") {
-        const fc = dark ? "206,221,243" : "118,136,168"; // 쿨 그레이-블루
+        const fc = dark ? "184,189,200" : "118,121,130"; // 회색 구름
         for (const b of blobs) {
           const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
           g.addColorStop(0, `rgba(${fc},${b.a})`);
@@ -178,5 +178,13 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
     };
   }, [kind]);
 
-  return <canvas ref={ref} aria-hidden className="wx-layer" />;
+  // 안개는 콘텐츠 위(헤더 아래)로 떠다니게 — 회색 구름이 화면을 가로지르는 느낌
+  return (
+    <canvas
+      ref={ref}
+      aria-hidden
+      className="wx-layer"
+      style={kind === "fog" ? { zIndex: 25 } : undefined}
+    />
+  );
 }
