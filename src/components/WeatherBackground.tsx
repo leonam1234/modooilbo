@@ -36,6 +36,6 @@ export function WeatherBackground() {
     };
   }, []);
 
-  if (cond === "clear") return null;
+  if (cond === "clear" || cond === "fog") return null;
   return <WeatherCanvas kind={cond} />;
 }
