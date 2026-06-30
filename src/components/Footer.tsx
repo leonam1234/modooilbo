@@ -102,16 +102,16 @@ export function Footer() {
         <div className="mt-10 border-t border-ink-200 pt-6 text-xs leading-relaxed text-ink-400 dark:border-ink-800">
           <p className="flex flex-wrap gap-x-3 gap-y-1">
             <span>(주)모두일보</span>
-            <span>대표이사·발행인 한도현</span>
-            <span>편집인 윤서진</span>
-            <span>청소년보호책임자 김민재</span>
+            <span>대표이사·발행인 남동균</span>
+            <span>편집인 유수화</span>
+            <span>청소년보호책임자 김영환</span>
           </p>
           <p className="mt-1 flex flex-wrap gap-x-3 gap-y-1">
             <span>서울특별시 중구 세종대로 124 모두일보빌딩</span>
             <span>등록번호 서울 아00000</span>
             <span>등록일 2026.01.01</span>
             <span>대표전화 02-0000-0000</span>
-            <span>이메일 contact@modooilbo.com</span>
+            <span>이메일 bridzzikorea@gmail.com</span>
           </p>
           <p className="mt-4 text-ink-400">
             © 2026 MODOO ILBO. All rights reserved. · 본 사이트의 모든 콘텐츠는 데모용 가상
