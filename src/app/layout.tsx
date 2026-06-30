@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   publisher: "모두일보",
   alternates: {
     canonical: "/",
+    types: {
+      "application/rss+xml": "/rss.xml",
+    },
   },
   verification: {
     google: "CskNi9Cx1aINJrfcM020I8qjTFUDFaUS6jrGxcn6nbY",
