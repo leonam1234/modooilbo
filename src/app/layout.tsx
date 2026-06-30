@@ -94,8 +94,11 @@ export default function RootLayout({
         >
           본문 바로가기
         </a>
-        <Header />
-        <BreakingTicker />
+        {/* 헤더 + 속보 티커를 한 덩어리로 sticky 고정 (스크롤 시 같이 따라옴) */}
+        <div className="sticky top-0 z-40">
+          <Header />
+          <BreakingTicker />
+        </div>
         <main id="content">{children}</main>
         <Footer />
       </body>

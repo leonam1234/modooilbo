@@ -74,7 +74,7 @@ export function Header() {
   const isActive = (slug: string) => pathname === `/${slug}`;
 
   return (
-    <header className="sticky top-0 z-40">
+    <header className="relative">
       {/* 상단 유틸리티 바 */}
       <div className="hidden border-b border-ink-100 bg-ink-50 text-xs text-ink-500 dark:border-ink-800 dark:bg-ink-950 dark:text-ink-400 md:block">
         <div className="container-page flex h-9 items-center justify-between">
