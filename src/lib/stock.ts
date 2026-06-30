@@ -11,12 +11,17 @@ import type { ArticleListItem } from "./types";
 
 const PLACEHOLDER = /picsum\.photos|placehold|placeholder|via\.placeholder|dummyimage/i;
 
+// 스톡 이미지를 교체(재생성)할 때 이 값을 올리면 브라우저 캐시가 무효화된다.
+// 파일명(/stock/<id>.jpg)은 그대로고 내용만 바뀌므로, 버전 쿼리가 없으면 브라우저가 옛 이미지를 계속 보여준다.
+const STOCK_VERSION = "20260630";
+
 export function isPlaceholderImage(url?: string): boolean {
   return !url || PLACEHOLDER.test(url);
 }
 
 /** 카드/히어로/상세에 표시할 이미지 URL. 플레이스홀더면 셀프호스팅 스톡(/stock/<id>.jpg). */
 export function displayImageUrl(article: ArticleListItem): string {
-  if (!isPlaceholderImage(article.imageUrl)) return article.imageUrl;
-  return `/stock/${article.id}.jpg`;
+  const url = isPlaceholderImage(article.imageUrl) ? `/stock/${article.id}.jpg` : article.imageUrl!;
+  // 셀프호스팅 스톡은 파일명이 같고 내용만 바뀌므로 버전 쿼리로 캐시를 강제 갱신
+  return url.startsWith("/stock/") ? `${url}?v=${STOCK_VERSION}` : url;
 }
