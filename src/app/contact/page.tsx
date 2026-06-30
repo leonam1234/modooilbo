@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "고객센터",
   description:
     "모두일보 부서별 연락처와 자주 묻는 질문, 온라인 문의 양식을 안내합니다. 구독·광고·제보 등 무엇이든 문의해 주세요.",
+  alternates: { canonical: "/contact/" },
 };
 
 const DEPARTMENTS: { name: string; desc: string; email: string; phone: string }[] = [

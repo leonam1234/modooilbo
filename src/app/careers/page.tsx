@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "인재채용",
   description:
     "모두일보와 함께 모두를 위한 신뢰의 뉴스를 만들 동료를 찾습니다. 기자·PD·데이터 저널리스트·개발자·마케터 채용 공고와 지원 안내.",
+  alternates: { canonical: "/careers/" },
 };
 
 type IconProps = SVGProps<SVGSVGElement>;

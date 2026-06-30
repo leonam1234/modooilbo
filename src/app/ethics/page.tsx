@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "윤리강령",
   description:
     "모두일보의 편집강령, 취재·보도 윤리, 정정·반론 보도 원칙, 댓글·커뮤니티 정책과 청소년보호정책을 안내합니다.",
+  alternates: { canonical: "/ethics/" },
 };
 
 const TOC: { id: string; label: string }[] = [

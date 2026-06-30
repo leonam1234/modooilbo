@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { HeroLead } from "@/components/HeroLead";
 import { SectionBlock } from "@/components/SectionBlock";
@@ -29,6 +30,15 @@ const websiteLd = {
     "@type": "SearchAction",
     target: `${SITE_URL}/search?q={search_term_string}`,
     "query-input": "required name=search_term_string",
+  },
+};
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+    types: {
+      "application/rss+xml": "/rss.xml",
+    },
   },
 };
 

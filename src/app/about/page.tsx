@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "회사소개",
   description:
     "모두일보는 모두를 위한 신뢰의 뉴스를 전하는 독립 디지털 언론입니다. 미션과 핵심 가치, 연혁, 편집 원칙을 소개합니다.",
+  alternates: { canonical: "/about/" },
 };
 
 const VALUES: { title: string; body: string }[] = [

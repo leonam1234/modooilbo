@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/PageHeader";
 export const metadata: Metadata = {
   title: "이용약관",
   description: "모두일보 서비스 이용약관 — 회원과 회사의 권리·의무 및 이용 조건을 안내합니다.",
+  alternates: { canonical: "/terms/" },
 };
 
 export default function TermsPage() {

@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "뉴스레터",
   description:
     "모두일보 에디터가 엄선한 뉴스를 메일함으로. 매일 아침의 핵심 브리핑부터 경제·테크·문화 심층 레터까지, 원하는 주제만 골라 구독하세요.",
+  alternates: { canonical: "/newsletter/" },
 };
 
 interface Newsletter {

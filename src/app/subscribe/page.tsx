@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "구독·후원",
   description:
     "독자의 힘으로 만드는 독립 저널리즘. 모두일보의 멤버십과 후원으로 광고에 휘둘리지 않는 보도를 함께 만들어주세요.",
+  alternates: { canonical: "/subscribe/" },
 };
 
 interface Plan {

@@ -19,7 +19,6 @@ export const metadata: Metadata = {
   creator: "모두일보",
   publisher: "모두일보",
   alternates: {
-    canonical: "/",
     types: {
       "application/rss+xml": "/rss.xml",
     },

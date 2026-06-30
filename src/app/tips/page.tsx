@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "제보하기",
   description:
     "당신의 제보가 세상을 바꿉니다. 모두일보는 제보자의 신원을 철저히 보호하며, 모든 제보를 신중하게 검증해 보도로 이어갑니다.",
+  alternates: { canonical: "/tips/" },
 };
 
 function ShieldIcon({ className }: { className?: string }) {

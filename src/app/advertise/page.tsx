@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "광고·제휴",
   description:
     "월 순방문자 1,200만, 페이지뷰 4,800만의 신뢰받는 매체 모두일보와 함께하세요. 디스플레이·네이티브·뉴스레터·브랜디드 콘텐츠 광고 및 콘텐츠·API 제휴 안내.",
+  alternates: { canonical: "/advertise/" },
 };
 
 type IconProps = SVGProps<SVGSVGElement>;

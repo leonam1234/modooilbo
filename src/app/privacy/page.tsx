@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "개인정보처리방침",
   description:
     "모두일보는 이용자의 개인정보를 소중히 다루며, 관련 법령에 따라 수집·이용·보관·파기 절차를 투명하게 안내합니다.",
+  alternates: { canonical: "/privacy/" },
 };
 
 export default function PrivacyPage() {
