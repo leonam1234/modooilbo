@@ -6,9 +6,9 @@ type Kind = "rain" | "snow" | "fog";
 
 /**
  * 비/눈/안개 — 캔버스 렌더(이미지·영상 없이 가볍게·저작권 0).
- * 깊이(depth)에 따라 색·크기·속도·투명도가 달라져 입체감.
- * 라이트=쿨 블루-그레이(흰 배경에서 보이게), 다크=흰+하늘톤.
- * 비는 우→좌로 흩날림. prefers-reduced-motion 미실행, 탭 숨김 시 정지.
+ * 비/눈: 깊이별 색·크기·속도로 입체감. 비는 우→좌.
+ * 안개: 저해상도 버퍼에 그려 확대 → 또렷한 픽셀(모자이크) 회색 구름. 콘텐츠 뒤.
+ * 라이트=쿨톤(흰 배경 가시성), 다크=흰+하늘. reduced-motion 미실행, 탭 숨김 시 정지.
  */
 export function WeatherCanvas({ kind }: { kind: Kind }) {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -19,8 +19,14 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
     if (!canvas || !ctx) return;
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const BLOCK = 14; // 안개 모자이크 블록 크기(px)
+    const off = kind === "fog" ? document.createElement("canvas") : null;
+    const offCtx = off ? off.getContext("2d") : null;
+
     let w = 0;
     let h = 0;
+    let bw = 0;
+    let bh = 0;
     const resize = () => {
       w = window.innerWidth;
       h = window.innerHeight;
@@ -29,6 +35,12 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
       canvas.style.width = `${w}px`;
       canvas.style.height = `${h}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (off && offCtx) {
+        bw = Math.max(1, Math.ceil(w / BLOCK));
+        bh = Math.max(1, Math.ceil(h / BLOCK));
+        off.width = bw;
+        off.height = bh;
+      }
     };
     resize();
     window.addEventListener("resize", resize);
@@ -36,11 +48,9 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
     const rnd = (a: number, b: number) => a + Math.random() * (b - a);
     const isDark = () => document.documentElement.classList.contains("dark");
 
-    // 깊이 d(0=먼·푸른·옅음, 1=가까운·밝은·진함) → 색 보간
-    // 라이트는 흰색을 안 씀(흰 배경에 안 보임) → 쿨 블루-그레이 범위.
     const colorFor = (dark: boolean, d: number) => {
-      const far = dark ? [150, 192, 232] : [126, 146, 178]; // 푸른톤(먼)
-      const near = dark ? [255, 255, 255] : [66, 88, 126]; // 밝은톤(가까운). 라이트는 진한 쿨블루
+      const far = dark ? [150, 192, 232] : [126, 146, 178];
+      const near = dark ? [255, 255, 255] : [66, 88, 126];
       const r = Math.round(far[0] + (near[0] - far[0]) * d);
       const g = Math.round(far[1] + (near[1] - far[1]) * d);
       const b = Math.round(far[2] + (near[2] - far[2]) * d);
@@ -70,7 +80,6 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
       }
     }
 
-    // 안개: 큰 소프트 블롭이 천천히 드리프트 (또렷하게)
     interface Blob {
       x: number;
       y: number;
@@ -81,19 +90,19 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
     }
     const blobs: Blob[] = [];
     if (kind === "fog") {
-      for (let i = 0; i < 24; i++) {
+      for (let i = 0; i < 26; i++) {
         blobs.push({
           x: rnd(0, w),
           y: rnd(0, h),
-          r: rnd(0.05, 0.14) * Math.max(w, h), // 작은 구름 조각들(블러로 뭉개짐)
+          r: rnd(0.05, 0.14) * Math.max(w, h),
           vx: rnd(-0.4, 0.4),
           vy: rnd(-0.1, 0.1),
-          a: rnd(0.14, 0.3),
+          a: rnd(0.16, 0.34),
         });
       }
     }
 
-    const slant = 1.7; // 우→좌 기울기
+    const slant = 1.7;
     let raf = 0;
     let running = true;
 
@@ -101,14 +110,23 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
       ctx.clearRect(0, 0, w, h);
       const dark = isDark();
 
-      if (kind === "fog") {
-        const fc = dark ? "184,189,200" : "118,121,130"; // 회색 구름
+      if (kind === "fog" && offCtx && off) {
+        // 저해상도 버퍼에 그린 뒤 픽셀 확대 = 모자이크
+        const fc = dark ? "184,189,200" : "118,121,130";
+        offCtx.clearRect(0, 0, bw, bh);
         for (const b of blobs) {
-          const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
+          const g = offCtx.createRadialGradient(
+            b.x / BLOCK,
+            b.y / BLOCK,
+            0,
+            b.x / BLOCK,
+            b.y / BLOCK,
+            Math.max(1, b.r / BLOCK),
+          );
           g.addColorStop(0, `rgba(${fc},${b.a})`);
           g.addColorStop(1, `rgba(${fc},0)`);
-          ctx.fillStyle = g;
-          ctx.fillRect(0, 0, w, h);
+          offCtx.fillStyle = g;
+          offCtx.fillRect(0, 0, bw, bh);
           b.x += b.vx;
           b.y += b.vy;
           if (b.x < -b.r) b.x = w + b.r;
@@ -116,16 +134,18 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
           if (b.y < -b.r) b.y = h + b.r;
           if (b.y > h + b.r) b.y = -b.r;
         }
+        ctx.imageSmoothingEnabled = false;
+        ctx.drawImage(off, 0, 0, bw, bh, 0, 0, w, h);
       } else if (kind === "rain") {
         ctx.lineWidth = 1;
         for (const p of ps) {
           ctx.strokeStyle = `rgba(${colorFor(dark, p.d)},${p.a})`;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
-          ctx.lineTo(p.x - slant * 3, p.y + p.s); // 아래-왼쪽으로
+          ctx.lineTo(p.x - slant * 3, p.y + p.s);
           ctx.stroke();
           p.y += p.v;
-          p.x -= slant * 0.7; // 왼쪽으로 흩날림
+          p.x -= slant * 0.7;
           if (p.y > h) {
             p.y = -p.s;
             p.x = rnd(0, w);
@@ -133,7 +153,7 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
             p.x = w;
           }
         }
-      } else {
+      } else if (kind === "snow") {
         for (const p of ps) {
           ctx.fillStyle = `rgba(${colorFor(dark, p.d)},${p.a})`;
           ctx.beginPath();
@@ -178,13 +198,12 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
     };
   }, [kind]);
 
-  // 안개는 강한 블러로 점들을 뭉개 부드러운 회색 안개처럼
   return (
     <canvas
       ref={ref}
       aria-hidden
       className="wx-layer"
-      style={kind === "fog" ? { filter: "blur(26px)" } : undefined}
+      style={kind === "fog" ? { imageRendering: "pixelated" } : undefined}
     />
   );
 }
