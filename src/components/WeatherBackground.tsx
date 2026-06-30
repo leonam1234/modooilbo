@@ -12,6 +12,12 @@ export function WeatherBackground() {
 
   useEffect(() => {
     let alive = true;
+    // 테스트 모드: ?wx=rain|fog|snow|clear 로 실제 날씨와 무관하게 강제 미리보기
+    const override = new URLSearchParams(window.location.search).get("wx");
+    if (override && ["clear", "fog", "rain", "snow"].includes(override)) {
+      setCond(override as WxCondition);
+      return;
+    }
     const load = async () => {
       const w = await fetchWeather(getSavedCity());
       if (alive) setCond(w.condition);
