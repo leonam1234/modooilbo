@@ -5,6 +5,9 @@ import { getByCategory } from "@/lib/queries";
 import { ArticleCard } from "@/components/ArticleCard";
 import { RankingList } from "@/components/RankingList";
 import { PageHeader } from "@/components/PageHeader";
+import JsonLd from "@/components/JsonLd";
+
+const SITE_URL = "https://modooilbo.com";
 
 // 정적 export: 아래 목록의 카테고리만 생성, 그 외 경로는 404
 export const dynamicParams = false;
@@ -54,8 +57,29 @@ export default async function CategoryPage({
   const lead = articles[0];
   const rest = articles.slice(1);
 
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${SITE_URL}/${cat.slug}/`,
+    url: `${SITE_URL}/${cat.slug}/`,
+    name: cat.name,
+    description: cat.description,
+    inLanguage: "ko-KR",
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: articles.map((a, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `${SITE_URL}/article/${a.slug}/`,
+        name: a.title,
+      })),
+    },
+  };
+
   return (
     <>
+      <JsonLd data={collectionLd} />
       <PageHeader
         title={cat.name}
         subtitle={cat.description}

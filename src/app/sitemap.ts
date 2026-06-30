@@ -7,6 +7,9 @@ export const dynamic = "force-static";
 
 const BASE = "https://modooilbo.com";
 
+const latest = (list: typeof ALL_ARTICLES): Date | undefined =>
+  list.length ? new Date(Math.max(...list.map((a) => new Date(a.publishedAt).getTime()))) : undefined;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
     "",
@@ -25,12 +28,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticEntries: MetadataRoute.Sitemap = staticPaths.map((p) => ({
     url: `${BASE}${p}/`,
+    ...(p === "" ? { lastModified: latest(ALL_ARTICLES) } : {}),
     changeFrequency: "daily",
     priority: p === "" ? 1 : 0.6,
   }));
 
   const categoryEntries: MetadataRoute.Sitemap = CATEGORIES.map((c) => ({
     url: `${BASE}/${c.slug}/`,
+    lastModified: latest(ALL_ARTICLES.filter((a) => a.category === c.slug)),
     changeFrequency: "hourly",
     priority: 0.8,
   }));

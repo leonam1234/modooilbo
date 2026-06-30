@@ -20,6 +20,9 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "*", allow: "/" },
       ...AI_CRAWLERS.map((userAgent) => ({ userAgent, allow: "/" })),
     ],
-    sitemap: "https://modooilbo.com/sitemap.xml",
+    sitemap: [
+      "https://modooilbo.com/sitemap.xml",
+      "https://modooilbo.com/news-sitemap.xml",
+    ],
   };
 }

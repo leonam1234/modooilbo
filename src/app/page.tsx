@@ -7,28 +7,46 @@ import { OpinionStrip } from "@/components/OpinionStrip";
 import { MediaGrid } from "@/components/MediaGrid";
 import { NewsletterCTA } from "@/components/NewsletterCTA";
 import JsonLd from "@/components/JsonLd";
+import { SITE } from "@/lib/site";
 
 const SITE_URL = "https://modooilbo.com";
 
 const organizationLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "모두일보",
+  "@type": "NewsMediaOrganization",
+  "@id": `${SITE_URL}/#organization`,
+  name: SITE.name,
   alternateName: "Modoo Ilbo",
   url: SITE_URL,
-  logo: `${SITE_URL}/logo.png`,
+  logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png`, width: 512, height: 512 },
+  foundingDate: SITE.regDate.replace(/\./g, "-"),
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: SITE.address,
+    postalCode: SITE.addressZip,
+    addressCountry: "KR",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    email: SITE.email,
+    telephone: SITE.tel,
+  },
+  sameAs: [],
 };
 
 const websiteLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
   name: "모두일보",
   alternateName: "Modoo Ilbo",
   url: SITE_URL,
   inLanguage: "ko-KR",
+  publisher: { "@id": `${SITE_URL}/#organization` },
   potentialAction: {
     "@type": "SearchAction",
-    target: `${SITE_URL}/search?q={search_term_string}`,
+    target: `${SITE_URL}/search/?q={search_term_string}`,
     "query-input": "required name=search_term_string",
   },
 };
@@ -47,6 +65,7 @@ export default function Home() {
     <>
       <JsonLd data={organizationLd} />
       <JsonLd data={websiteLd} />
+      <h1 className="sr-only">모두일보 — 정치·경제·사회·국제·문화·테크 최신 뉴스</h1>
       <HeroLead />
 
       <div className="container-page grid gap-x-10 gap-y-12 py-8 lg:grid-cols-[minmax(0,1fr)_320px]">

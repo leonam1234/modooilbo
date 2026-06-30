@@ -32,8 +32,6 @@ const FOOTER_COLS: { title: string; links: { href: string; label: string }[] }[]
   },
 ];
 
-const SNS = ["X", "f", "Y", "in"];
-
 export function Footer() {
   return (
     <footer className="mt-16 border-t-2 border-ink-900 bg-ink-50 dark:border-ink-700 dark:bg-ink-950">
@@ -53,18 +51,6 @@ export function Footer() {
               모두를 위한 신뢰의 뉴스. 모두일보는 신뢰할 수 있는 사실과 깊이 있는 분석으로
               더 나은 공론장을 만듭니다.
             </p>
-            <div className="mt-5 flex gap-2">
-              {SNS.map((s) => (
-                <a
-                  key={s}
-                  href="#"
-                  aria-label={`모두일보 ${s}`}
-                  className="grid h-9 w-9 place-items-center rounded-full border border-ink-300 text-sm font-bold text-ink-600 transition-colors hover:border-signal-500 hover:bg-signal-600 hover:text-white dark:border-ink-700 dark:text-ink-300"
-                >
-                  {s}
-                </a>
-              ))}
-            </div>
             {/* 섹션 빠른 이동 */}
             <ul className="mt-6 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-ink-500 dark:text-ink-400">
               {CATEGORIES.map((c) => (

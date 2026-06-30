@@ -7,6 +7,16 @@
 /_next/image*
   Cache-Control: public, max-age=86400
 
+# 스톡/브랜드 정적 자산 — 1년 불변 (스톡은 78d57da의 ?v 쿼리로 버전 무효화)
+/stock/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/og.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/logo.png
+  Cache-Control: public, max-age=31536000, immutable
+
 # LLM/AEO — 머신 판독용 사이트 요약
 /llms.txt
   Content-Type: text/markdown; charset=utf-8
@@ -19,3 +29,4 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   X-DNS-Prefetch-Control: on
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload

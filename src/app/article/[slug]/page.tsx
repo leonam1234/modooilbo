@@ -77,24 +77,33 @@ export default async function ArticlePage({
   const articleUrl = `${SITE_URL}/article/${article.slug}`;
   const imageUrl = absoluteImageUrl(displayImageUrl(article));
 
+  const isOpinion = article.type === "opinion" || article.category === "opinion";
+  const wordCount = article.body.join(" ").trim().split(/\s+/).filter(Boolean).length;
+
   const newsArticleLd = {
     "@context": "https://schema.org",
-    "@type": "NewsArticle",
+    "@type": isOpinion ? "OpinionNewsArticle" : "NewsArticle",
     mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
     headline: article.title,
     description: article.summary,
-    image: [imageUrl],
+    image: [{ "@type": "ImageObject", url: imageUrl, width: 1600, height: 900 }],
+    thumbnailUrl: imageUrl,
     datePublished: article.publishedAt,
     dateModified: article.publishedAt,
+    keywords: article.tags.join(","),
+    wordCount,
     inLanguage: "ko-KR",
     isAccessibleForFree: true,
     author: [{ "@type": "Person", name: article.author.name }],
     publisher: {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: "모두일보",
       logo: {
         "@type": "ImageObject",
         url: `${SITE_URL}/logo.png`,
+        width: 512,
+        height: 512,
       },
     },
     articleSection: cat?.name,
@@ -166,7 +175,7 @@ export default async function ArticlePage({
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-ink-100 dark:bg-ink-800">
               <Image
                 src={displayImageUrl(article)}
-                alt={article.title}
+                alt={article.imageAlt ?? article.imageCaption ?? article.title}
                 fill
                 priority
                 sizes="(max-width:1024px) 100vw, 66vw"

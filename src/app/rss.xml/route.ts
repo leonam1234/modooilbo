@@ -16,31 +16,37 @@ function esc(s: string): string {
 }
 
 export function GET() {
-  const items = [...ALL_ARTICLES]
-    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+  const sorted = [...ALL_ARTICLES].sort(
+    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+  );
+  const items = sorted
     .slice(0, 50)
     .map((a) => {
       const url = `${SITE}/article/${a.slug}/`;
       const cat = CATEGORY_MAP[a.category]?.name ?? "";
+      const img = a.imageUrl.startsWith("http") ? a.imageUrl : `${SITE}${a.imageUrl}`;
       return `    <item>
       <title>${esc(a.title)}</title>
       <link>${url}</link>
       <guid isPermaLink="true">${url}</guid>
       <description>${esc(a.summary)}</description>
       <category>${esc(cat)}</category>
+      <dc:creator>${esc(a.author.name)}</dc:creator>
+      <enclosure url="${esc(img)}" type="image/jpeg" />
       <pubDate>${new Date(a.publishedAt).toUTCString()}</pubDate>
     </item>`;
     })
     .join("\n");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>모두일보</title>
     <link>${SITE}</link>
     <atom:link href="${SITE}/rss.xml" rel="self" type="application/rss+xml" />
     <description>모두일보 — 모두를 위한 신뢰의 뉴스. 정치·경제·사회·국제·문화·테크.</description>
     <language>ko</language>
+    <lastBuildDate>${sorted.length ? new Date(sorted[0].publishedAt).toUTCString() : new Date(0).toUTCString()}</lastBuildDate>
 ${items}
   </channel>
 </rss>`;

@@ -35,6 +35,7 @@ export interface Article {
   publishedAt: string; // ISO 8601
   imageUrl: string;
   imageCaption?: string;
+  imageAlt?: string; // 대표이미지 대체텍스트(없으면 imageCaption→title 폴백)
   tags: string[];
   isBreaking?: boolean;
   isLead?: boolean; // 메인 톱기사

@@ -38,11 +38,11 @@ export function HeroLead() {
             >
               {CATEGORY_MAP[lead.category]?.name}
             </Link>
-            <h1 className="mt-2 font-headline text-2xl font-extrabold leading-tight text-ink-900 dark:text-white sm:text-3xl lg:text-[40px] lg:leading-[1.15]">
+            <h2 className="mt-2 font-headline text-2xl font-extrabold leading-tight text-ink-900 dark:text-white sm:text-3xl lg:text-[40px] lg:leading-[1.15]">
               <Link href={href} className="hover:text-signal-700 dark:hover:text-signal-400">
                 {lead.title}
               </Link>
-            </h1>
+            </h2>
             <p className="clamp-3 mt-3 text-base leading-relaxed text-ink-600 dark:text-ink-300">
               {lead.summary}
             </p>
