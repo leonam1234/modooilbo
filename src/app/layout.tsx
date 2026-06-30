@@ -3,6 +3,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { BreakingTicker } from "@/components/BreakingTicker";
 import { Footer } from "@/components/Footer";
+import { WeatherBackground } from "@/components/WeatherBackground";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://modooilbo.com"),
@@ -97,6 +98,7 @@ export default function RootLayout({
         )}
       </head>
       <body className="font-sans">
+        <WeatherBackground />
         <a
           href="#content"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-signal-600 focus:px-4 focus:py-2 focus:font-semibold focus:text-white"
@@ -108,8 +110,10 @@ export default function RootLayout({
           <Header />
           <BreakingTicker />
         </div>
-        <main id="content">{children}</main>
-        <Footer />
+        <div className="relative z-10">
+          <main id="content">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

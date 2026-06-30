@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { CATEGORIES } from "@/lib/categories";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./ThemeToggle";
+import { LocationPicker } from "./LocationPicker";
 import { SearchIcon, MenuIcon, CloseIcon, UserIcon } from "./icons";
 
 const COMPANY_LINKS = [
@@ -117,6 +118,7 @@ export function Header() {
               <SearchIcon className="h-5 w-5" />
             </button>
             <ThemeToggle className="md:hidden" />
+            <LocationPicker className="ml-1 hidden sm:inline-flex" />
             <Link
               href="/login"
               className="ml-1 hidden items-center gap-1.5 rounded-full border border-ink-200 px-3.5 py-1.5 text-sm font-medium text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:border-ink-700 dark:text-ink-200 sm:inline-flex"
