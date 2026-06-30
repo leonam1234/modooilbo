@@ -11,7 +11,8 @@
     "deploy:preview": "node scripts/deploy.mjs preview",
     "deploy:prod": "node scripts/deploy.mjs prod",
     "deploy:cf": "node scripts/deploy.mjs prod",
-    "report:tracking": "node scripts/tracking-report.mjs"
+    "report:tracking": "node scripts/tracking-report.mjs",
+    "fetch:stock": "node scripts/fetch-stock.mjs"
   },
   "dependencies": {
     "next": "15.1.6",
