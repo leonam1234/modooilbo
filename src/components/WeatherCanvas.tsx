@@ -85,10 +85,10 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
         blobs.push({
           x: rnd(0, w),
           y: rnd(0, h),
-          r: rnd(0.045, 0.13) * Math.max(w, h), // 작은 구름 조각들
+          r: rnd(0.05, 0.14) * Math.max(w, h), // 작은 구름 조각들(블러로 뭉개짐)
           vx: rnd(-0.4, 0.4),
           vy: rnd(-0.1, 0.1),
-          a: rnd(0.1, 0.22),
+          a: rnd(0.14, 0.3),
         });
       }
     }
@@ -178,5 +178,13 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
     };
   }, [kind]);
 
-  return <canvas ref={ref} aria-hidden className="wx-layer" />;
+  // 안개는 강한 블러로 점들을 뭉개 부드러운 회색 안개처럼
+  return (
+    <canvas
+      ref={ref}
+      aria-hidden
+      className="wx-layer"
+      style={kind === "fog" ? { filter: "blur(26px)" } : undefined}
+    />
+  );
 }
