@@ -37,12 +37,5 @@ export function WeatherBackground() {
   }, []);
 
   if (cond === "clear") return null;
-
-  // 비·눈 = 캔버스(실제 입자), 안개 = CSS 블러
-  if (cond === "rain" || cond === "snow") return <WeatherCanvas kind={cond} />;
-  return (
-    <div aria-hidden className="wx-layer text-ink-900 dark:text-white">
-      <div className="wx-fog" />
-    </div>
-  );
+  return <WeatherCanvas kind={cond} />;
 }

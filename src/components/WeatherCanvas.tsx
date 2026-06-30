@@ -2,12 +2,14 @@
 
 import { useEffect, useRef } from "react";
 
+type Kind = "rain" | "snow" | "fog";
+
 /**
- * 비/눈 — 캔버스로 실제 떨어지는 입자 렌더(이미지·영상 없이 가볍게·저작권 0).
- * 무채색(라이트=잉크, 다크=화이트), 옅은 투명도로 "튀지 않게".
- * prefers-reduced-motion에서는 애니메이션 미실행(빈 화면), 탭 숨김 시 일시정지.
+ * 비/눈/안개 — 캔버스 렌더(이미지·영상 없이 가볍게·저작권 0).
+ * 깊이(depth)에 따라 색(푸른톤↔흰/밝은톤)·크기·속도·투명도가 달라져 입체감.
+ * 라이트=어두운 쿨톤, 다크=흰+하늘톤. prefers-reduced-motion 미실행, 탭 숨김 시 정지.
  */
-export function WeatherCanvas({ kind }: { kind: "rain" | "snow" }) {
+export function WeatherCanvas({ kind }: { kind: Kind }) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -33,36 +35,89 @@ export function WeatherCanvas({ kind }: { kind: "rain" | "snow" }) {
     const rnd = (a: number, b: number) => a + Math.random() * (b - a);
     const isDark = () => document.documentElement.classList.contains("dark");
 
+    // 깊이 d(0=먼·푸른·옅음, 1=가까운·밝은·진함) → 색 보간
+    const colorFor = (dark: boolean, d: number) => {
+      const far = dark ? [150, 188, 228] : [150, 166, 196]; // 푸른톤
+      const near = dark ? [255, 255, 255] : [44, 60, 92]; // 흰/밝은톤(라이트는 딥블루)
+      const r = Math.round(far[0] + (near[0] - far[0]) * d);
+      const g = Math.round(far[1] + (near[1] - far[1]) * d);
+      const b = Math.round(far[2] + (near[2] - far[2]) * d);
+      return `${r},${g},${b}`;
+    };
+
     interface P {
       x: number;
       y: number;
-      v: number; // 낙하 속도
-      s: number; // 크기/길이
-      a: number; // 투명도
-      ph: number; // 눈 흔들림 위상
-      dr: number; // 눈 좌우 폭
+      d: number;
+      s: number;
+      v: number;
+      a: number;
+      ph: number;
+      dr: number;
     }
-    const N = kind === "rain" ? 140 : 90;
     const ps: P[] = [];
-    for (let i = 0; i < N; i++) {
-      ps.push(
-        kind === "rain"
-          ? { x: rnd(0, w), y: rnd(0, h), v: rnd(7, 12), s: rnd(10, 18), a: rnd(0.05, 0.16), ph: 0, dr: 0 }
-          : { x: rnd(0, w), y: rnd(0, h), v: rnd(0.5, 1.5), s: rnd(1, 2.4), a: rnd(0.18, 0.5), ph: rnd(0, 6.28), dr: rnd(0.3, 1) },
-      );
+    if (kind === "rain" || kind === "snow") {
+      const N = kind === "rain" ? 150 : 110;
+      for (let i = 0; i < N; i++) {
+        const d = Math.random();
+        ps.push(
+          kind === "rain"
+            ? { x: rnd(0, w), y: rnd(0, h), d, s: 7 + 16 * d, v: 5 + 8 * d, a: 0.05 + 0.14 * d, ph: 0, dr: 0 }
+            : { x: rnd(0, w), y: rnd(0, h), d, s: 0.8 + 2.6 * d, v: 0.4 + 1.5 * d, a: 0.18 + 0.42 * d, ph: rnd(0, 6.28), dr: rnd(0.3, 1.1) },
+        );
+      }
     }
 
-    const slant = 1.4; // 비 사선 기울기
+    // 안개: 큰 소프트 블롭이 천천히 드리프트
+    interface Blob {
+      x: number;
+      y: number;
+      r: number;
+      vx: number;
+      vy: number;
+      a: number;
+    }
+    const blobs: Blob[] = [];
+    if (kind === "fog") {
+      for (let i = 0; i < 6; i++) {
+        blobs.push({
+          x: rnd(0, w),
+          y: rnd(0, h),
+          r: rnd(0.32, 0.6) * Math.max(w, h),
+          vx: rnd(-0.18, 0.18),
+          vy: rnd(-0.06, 0.06),
+          a: rnd(0.05, 0.1),
+        });
+      }
+    }
+
+    const slant = 1.4;
     let raf = 0;
     let running = true;
 
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
-      const base = isDark() ? "255,255,255" : "26,26,30";
-      if (kind === "rain") {
+      const dark = isDark();
+
+      if (kind === "fog") {
+        const fc = dark ? "205,220,240" : "120,136,166"; // 쿨 그레이-블루
+        for (const b of blobs) {
+          const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
+          g.addColorStop(0, `rgba(${fc},${b.a})`);
+          g.addColorStop(1, `rgba(${fc},0)`);
+          ctx.fillStyle = g;
+          ctx.fillRect(0, 0, w, h);
+          b.x += b.vx;
+          b.y += b.vy;
+          if (b.x < -b.r) b.x = w + b.r;
+          if (b.x > w + b.r) b.x = -b.r;
+          if (b.y < -b.r) b.y = h + b.r;
+          if (b.y > h + b.r) b.y = -b.r;
+        }
+      } else if (kind === "rain") {
         ctx.lineWidth = 1;
         for (const p of ps) {
-          ctx.strokeStyle = `rgba(${base},${p.a})`;
+          ctx.strokeStyle = `rgba(${colorFor(dark, p.d)},${p.a})`;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(p.x + slant * 3, p.y + p.s);
@@ -78,7 +133,7 @@ export function WeatherCanvas({ kind }: { kind: "rain" | "snow" }) {
         }
       } else {
         for (const p of ps) {
-          ctx.fillStyle = `rgba(${base},${p.a})`;
+          ctx.fillStyle = `rgba(${colorFor(dark, p.d)},${p.a})`;
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.s, 0, Math.PI * 2);
           ctx.fill();
@@ -95,7 +150,12 @@ export function WeatherCanvas({ kind }: { kind: "rain" | "snow" }) {
     };
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!reduce) raf = requestAnimationFrame(draw);
+    if (reduce) {
+      running = false;
+      draw(); // 정적 1프레임
+    } else {
+      raf = requestAnimationFrame(draw);
+    }
 
     const onVis = () => {
       if (document.hidden) {
