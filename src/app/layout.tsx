@@ -101,6 +101,7 @@ export default function RootLayout({
           <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700;900&display=swap" />
         </noscript>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <link rel="dns-prefetch" href="https://api.open-meteo.com" />
         {/* 트래픽 수집: Cloudflare Web Analytics. 토큰(NEXT_PUBLIC_CF_BEACON_TOKEN)이 있을 때만 삽입.
             없으면 beacon 미삽입 → 수집 안 함(가짜 수치 없음). 기준: docs/tracking.md */}
         {process.env.NEXT_PUBLIC_CF_BEACON_TOKEN && (

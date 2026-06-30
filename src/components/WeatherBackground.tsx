@@ -23,7 +23,13 @@ export function WeatherBackground() {
       const w = await fetchWeather(getSavedCity());
       if (alive) setCond(w.condition);
     };
-    load();
+    // 초기 호출만 idle로 지연(critical 렌더 양보)
+    const supportsIdle =
+      typeof window.requestIdleCallback === "function" &&
+      typeof window.cancelIdleCallback === "function";
+    const idleId = supportsIdle
+      ? window.requestIdleCallback(() => load(), { timeout: 3000 })
+      : window.setTimeout(load, 1200);
     // 지역 변경 시 재조회
     const onChange = () => load();
     window.addEventListener(CHANGE_EVENT, onChange);
@@ -31,6 +37,8 @@ export function WeatherBackground() {
     const t = setInterval(load, 15 * 60 * 1000);
     return () => {
       alive = false;
+      if (supportsIdle) window.cancelIdleCallback(idleId as number);
+      else window.clearTimeout(idleId as number);
       window.removeEventListener(CHANGE_EVENT, onChange);
       clearInterval(t);
     };

@@ -83,6 +83,15 @@
   }
 }
 
+/* 모바일: 켄번스·팬 모션 비활성 (성능·잘림 방지) */
+@media (max-width: 640px) {
+  .animate-kenburns,
+  .animate-pan-y {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
 /* 인쇄: 기사 본문 중심으로, 사이트 크롬 제거 */
 @media print {
   header,

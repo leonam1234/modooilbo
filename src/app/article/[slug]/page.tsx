@@ -59,6 +59,7 @@ export async function generateMetadata({
       description: a.summary,
       images: [imageUrl],
     },
+    other: { news_keywords: a.tags.join(", ") },
   };
 }
 
@@ -74,7 +75,7 @@ export default async function ArticlePage({
   const cat = CATEGORY_MAP[article.category];
   const related = getRelated(article, 4);
   const readMinutes = Math.max(1, Math.round(article.body.join(" ").length / 600));
-  const articleUrl = `${SITE_URL}/article/${article.slug}`;
+  const articleUrl = `${SITE_URL}/article/${article.slug}/`;
   const imageUrl = absoluteImageUrl(displayImageUrl(article));
 
   const isOpinion = article.type === "opinion" || article.category === "opinion";
@@ -84,12 +85,12 @@ export default async function ArticlePage({
     "@context": "https://schema.org",
     "@type": isOpinion ? "OpinionNewsArticle" : "NewsArticle",
     mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
-    headline: article.title,
+    headline: article.title.slice(0, 110),
     description: article.summary,
     image: [{ "@type": "ImageObject", url: imageUrl, width: 1600, height: 900 }],
     thumbnailUrl: imageUrl,
     datePublished: article.publishedAt,
-    dateModified: article.publishedAt,
+    dateModified: article.updatedAt ?? article.publishedAt,
     keywords: article.tags.join(","),
     wordCount,
     inLanguage: "ko-KR",
@@ -113,14 +114,14 @@ export default async function ArticlePage({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "홈", item: SITE_URL },
+      { "@type": "ListItem", position: 1, name: "홈", item: `${SITE_URL}/` },
       ...(cat
         ? [
             {
               "@type": "ListItem",
               position: 2,
               name: cat.name,
-              item: `${SITE_URL}/${article.category}`,
+              item: `${SITE_URL}/${article.category}/`,
             },
           ]
         : []),
@@ -139,12 +140,16 @@ export default async function ArticlePage({
       <JsonLd data={breadcrumbLd} />
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
         <article className="min-w-0">
-          <nav className="mb-4 flex items-center gap-1.5 text-xs text-ink-400">
+          <nav className="mb-4 flex min-w-0 items-center gap-1.5 text-xs text-ink-400">
             <Link href="/" className="hover:text-signal-600">홈</Link>
             <span aria-hidden>/</span>
-            <Link href={`/${article.category}`} className="hover:text-signal-600">
+            <Link href={`/${article.category}`} className="shrink-0 hover:text-signal-600">
               {cat?.name}
             </Link>
+            <span aria-hidden>/</span>
+            <span aria-current="page" className="truncate text-ink-500 dark:text-ink-400">
+              {article.title}
+            </span>
           </nav>
 
           <Link
@@ -165,6 +170,11 @@ export default async function ArticlePage({
               <span className="font-medium text-ink-800 dark:text-ink-100">{article.author.name}</span>{" "}
               {article.author.role} ·{" "}
               <time dateTime={article.publishedAt}>{formatKoreanDateTime(article.publishedAt)}</time>
+              {article.updatedAt && (
+                <span className="ml-2 text-ink-400">
+                  수정 <time dateTime={article.updatedAt}>{formatKoreanDateTime(article.updatedAt)}</time>
+                </span>
+              )}
               <span className="ml-2 text-ink-400">조회 {formatCount(article.readCount)}</span>
               <span className="ml-2 text-ink-400">읽는 시간 {readMinutes}분</span>
             </div>

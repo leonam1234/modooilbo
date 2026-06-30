@@ -33,6 +33,7 @@ export interface Article {
   category: CategorySlug;
   author: Author;
   publishedAt: string; // ISO 8601
+  updatedAt?: string; // ISO 8601, 수정 시각 (있을 때만 표시)
   imageUrl: string;
   imageCaption?: string;
   imageAlt?: string; // 대표이미지 대체텍스트(없으면 imageCaption→title 폴백)

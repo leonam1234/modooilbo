@@ -97,7 +97,7 @@ export function ArticleCard({
     return (
       <article className={cn("group flex gap-4", className)}>
         <Link href={href} className="block w-28 shrink-0 sm:w-40">
-          <Thumb article={article} sizes="160px" className="aspect-[4/3]" motion="pan" />
+          <Thumb article={article} sizes="(max-width:640px) 112px, 160px" className="aspect-[4/3]" motion="pan" />
         </Link>
         <div className="min-w-0 flex-1">
           <h3
