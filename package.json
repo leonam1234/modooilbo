@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "tsc --noEmit",
     "preview:static": "node scripts/static-server.mjs",
     "deploy:preview": "node scripts/deploy.mjs preview",
     "deploy:prod": "node scripts/deploy.mjs prod",

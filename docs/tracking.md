@@ -13,12 +13,13 @@
 | 영역 | 현황 | 결론 |
 |---|---|---|
 | 사이트 구조 | Next.js **정적 export** + Cloudflare Pages. **백엔드/Functions/DB 바인딩 없음** | 서버에 저장할 곳이 없음 |
-| 애널리틱스 | GA·CF Web Analytics·Plausible 등 **미설치** (코드에 beacon/gtag 없음) | 트래픽 수집 안 됨 |
+| 애널리틱스(beacon) | CF Web Analytics **beacon 코드는 존재**(`src/app/layout.tsx`). 단 `NEXT_PUBLIC_CF_BEACON_TOKEN`이 **없으면 실제 빌드 결과물에는 삽입되지 않음**. 현재 토큰 미설정 → 미삽입 | 토큰 설정 + 배포해야 수집 시작 |
+| 애널리틱스(집계) | 리포트의 CF GraphQL 어댑터 **구현 완료**(`scripts/tracking-report.mjs`). 조회용 `CLOUDFLARE_API_TOKEN`/`CF_ACCOUNT_ID`/`CF_WEB_ANALYTICS_SITE_TAG` 설정 시 실집계 | 토큰 미설정 → unavailable |
 | `/register` | `RegisterForm`은 `useState`만 변경, 화면에 "데모 환경이므로 실제 계정은 생성되지 않습니다" 표시 | **가입자 저장 안 됨 (데모)** |
 | `/newsletter` | `NewsletterToggle`은 `useState` 토글뿐 | **구독자 저장 안 됨 (데모)** |
 | `/subscribe` | 정적 안내 페이지, 결제·후원 연동 없음 | **유료/후원 집계 안 됨 (데모)** |
 
-➡️ **따라서 현재 8개 지표는 전부 `unavailable`이 정상입니다.** 데모 버튼 클릭·프론트 상태 변경은 **집계에 절대 포함하지 않습니다.**
+➡️ **현재 보고 기준:** 트래픽 3종은 토큰 미설정이라 `unavailable`, 회원·뉴스레터·유료 5종은 데모(실제 레코드 생성 없음)라 **`0` + 비고**(`운영 DB/ESP/PG 없음 / 데모 동작 / 실제 레코드 생성 없음`)로 출력합니다. 데모 버튼 클릭·프론트 상태 변경은 **집계에 절대 포함하지 않습니다.**
 
 ---
 
@@ -52,7 +53,7 @@
    - 역할이 `admin` / `reporter`(기자) / `editor`(편집자) 인 계정
    - `test` / `seed` / `demo` 플래그가 있거나 이메일이 내부 도메인·`+test`·`example.com` 등인 계정
    - 구현 시: DB 쿼리에 `WHERE role NOT IN ('admin','reporter','editor') AND is_test = 0 AND is_seed = 0` 류의 필터를 **항상** 건다.
-4. **미구현 = `unavailable`.** 데이터 소스가 없으면 0이나 추정치를 만들지 않고 `확인 불가 / unavailable`로 표기한다.
+4. **미구현 = `unavailable`.** 어댑터가 없거나 데이터 소스가 없으면 추정치를 만들지 않고 `확인 불가 / unavailable`로 표기한다. (단, 회원/뉴스레터/유료처럼 "백엔드가 없어 레코드가 0인 것이 사실"인 경우는 `0` + 비고로 표기.)
 5. **출처 명시.** 모든 숫자는 어느 소스에서 왔는지(또는 왜 unavailable인지) 함께 표기한다.
 
 ## 3. 개인정보 / 보안
@@ -63,7 +64,10 @@
 
 ## 4. 데이터 소스 연동 방법 (구현 시 = unavailable 해제)
 
-리포트 도구(`scripts/tracking-report.mjs`)는 아래 환경변수가 채워지면 자동으로 해당 지표를 실집계한다. 비어 있으면 `unavailable`.
+리포트 도구(`scripts/tracking-report.mjs`)는 **환경변수와 어댑터 구현이 모두 완료되면** 해당 지표를 실집계한다. 비어 있거나 어댑터가 없으면 `unavailable`(데모로 레코드가 0인 항목은 `0`+비고).
+
+- **트래픽 3종**: CF GraphQL 어댑터 **구현 완료** → 아래 환경변수만 채우면 실집계.
+- **회원·뉴스레터·유료**: 어댑터·백엔드 **미구현** → 환경변수와 어댑터가 **둘 다** 갖춰져야 실집계(현재는 데모라 0).
 
 | 지표군 | 필요한 것 | 환경변수(예) |
 |---|---|---|
@@ -72,9 +76,24 @@
 | 뉴스레터(신규/누적) | ESP 계정 + 구독 API | `ESP_PROVIDER`, `ESP_API_KEY`, `ESP_LIST_ID` |
 | 유료/후원 | 결제 PG 계정 + 웹훅 기록 | `PAY_PROVIDER`, `PAY_API_KEY` |
 
-> ⚠️ 정적 export 사이트라 **폼 저장·결제·웹훅은 백엔드가 필요**하다(Cloudflare Pages Functions + D1, 또는 외부 ESP/PG). 이 백엔드는 별도 구현·승인 대상이다. 트래픽(CF Web Analytics)은 beacon만 넣으면 수집이 시작된다.
+> ⚠️ 정적 export 사이트라 **폼 저장·결제·웹훅은 백엔드가 필요**하다(Cloudflare Pages Functions + D1, 또는 외부 ESP/PG). 이 백엔드는 별도 구현·승인 대상이다.
+>
+> 트래픽: beacon 코드는 `layout.tsx`에 **이미 존재**하나 `NEXT_PUBLIC_CF_BEACON_TOKEN`이 있어야 빌드에 삽입되어 수집이 시작된다. 리포트 집계 어댑터(CF GraphQL)는 구현 완료라, 조회 토큰까지 설정하면 실집계된다. (CF Web Analytics는 쿠키 없는 측정이라 일일 고유 방문자는 시간별 합산 **상한 추정**이며 중복 가능 — 리포트 비고에 명시된다.)
 
 ## 5. 관리자 리포트
 
 - 현재: **CLI 리포트** `npm run report:tracking` (트래킹 담당자가 로컬/Codex에서 하루 단위 실행).
-- 향후(백엔드 생기면): 인증 보호된 관리자 API(`/admin/metrics`, Pages Function + 토큰)로 동일 집계를 노출 가능. 이때도 위 4·5·6 기준을 그대로 적용한다.
+- 향후(백엔드 생기면): 인증 보호된 관리자 API(`/admin/metrics`, Pages Function + 토큰)로 동일 집계를 노출 가능. 이때도 위 2·3 기준을 그대로 적용한다.
+
+## 6. 검증 / CI 명령
+
+| 명령 | 용도 |
+|---|---|
+| `npm run build` | 정적 export 빌드(타입 포함) |
+| `npm run lint` | 비대화형 타입체크(`tsc --noEmit`). ESLint 설정 프롬프트 없이 pass/fail 반환 |
+| `npm run report:tracking -- --date=2026-06-29` | 사람용 표 리포트(KST) |
+| `npm run report:tracking -- --date=2026-06-29 --json` | 기계용 JSON |
+
+- **JSON을 파이프할 때**는 `npm run` 배너(stdout)가 섞이므로 `npm run --silent report:tracking -- --json` 또는 `node scripts/tracking-report.mjs --json`을 쓴다.
+- CF 트래픽 실집계 환경변수: `CLOUDFLARE_API_TOKEN`, `CF_ACCOUNT_ID`, `CF_WEB_ANALYTICS_SITE_TAG` (모두 env로만 주입, 코드/리포트에 평문 금지). beacon 삽입: 빌드 시 `NEXT_PUBLIC_CF_BEACON_TOKEN`.
+- ⚠️ CF Web Analytics RUM 스키마(`sum.visits`, `uniq.uniques`, `datetimeHour`)는 실제 계정 첫 연결 시 한 번 검증 권장(데이터셋 필드명 변동 가능). 어댑터는 오류 시 숫자를 만들지 않고 `unavailable`로 떨어진다.
