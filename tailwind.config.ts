@@ -59,12 +59,19 @@ const config: Config = {
           "0%, 100%": { transform: "scale(1)" },
           "50%": { transform: "scale(1.1)" },
         },
+        // 사이드 썸네일 세로 팬: 스케일 1.2 고정, 위(상)→아래 5초 / 아래→위 5초
+        "pan-y": {
+          "0%, 100%": { transform: "translateY(7%) scale(1.2)" }, // 상단 프레이밍
+          "50%": { transform: "translateY(-7%) scale(1.2)" }, // 하단 프레이밍
+        },
       },
       animation: {
         marquee: "marquee 30s linear infinite",
         "fade-up": "fade-up 0.4s ease-out both",
         // 1.0→1.1→1.0 한 사이클 = 10초
         kenburns: "kenburns 10s ease-in-out infinite",
+        // 상→하 5초, 하→상 5초 (총 10초)
+        "pan-y": "pan-y 10s ease-in-out infinite",
       },
     },
   },

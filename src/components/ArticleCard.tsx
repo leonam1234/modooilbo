@@ -47,13 +47,13 @@ function Thumb({
   sizes,
   priority,
   className,
-  zoom = false,
+  motion,
 }: {
   article: ArticleListItem;
   sizes: string;
   priority?: boolean;
   className?: string;
-  zoom?: boolean;
+  motion?: "zoom" | "pan";
 }) {
   return (
     <div className={cn("relative overflow-hidden rounded-md bg-ink-100 dark:bg-ink-800", className)}>
@@ -66,7 +66,9 @@ function Thumb({
         unoptimized
         className={cn(
           "object-cover",
-          zoom ? "animate-kenburns" : "transition-transform duration-500 group-hover:scale-105",
+          motion === "zoom" && "animate-kenburns",
+          motion === "pan" && "animate-pan-y",
+          !motion && "transition-transform duration-500 group-hover:scale-105",
         )}
       />
       <TypeBadge article={article} className="absolute left-2 top-2 z-10" />
@@ -95,7 +97,7 @@ export function ArticleCard({
     return (
       <article className={cn("group flex gap-4", className)}>
         <Link href={href} className="block w-28 shrink-0 sm:w-40">
-          <Thumb article={article} sizes="160px" className="aspect-[4/3]" />
+          <Thumb article={article} sizes="160px" className="aspect-[4/3]" motion="pan" />
         </Link>
         <div className="min-w-0 flex-1">
           <h3
@@ -123,7 +125,7 @@ export function ArticleCard({
     return (
       <article className={cn("group flex items-start gap-3", className)}>
         <Link href={href} className="block w-[72px] shrink-0">
-          <Thumb article={article} sizes="80px" className="aspect-square" />
+          <Thumb article={article} sizes="80px" className="aspect-square" motion="pan" />
         </Link>
         <div className="min-w-0 flex-1">
           <h3
@@ -212,7 +214,7 @@ export function ArticleCard({
           sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
           priority={priority}
           className="aspect-[16/10]"
-          zoom
+          motion="zoom"
         />
       </Link>
       <div className="mt-3">
