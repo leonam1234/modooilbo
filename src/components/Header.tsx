@@ -74,7 +74,7 @@ export function Header() {
   const isActive = (slug: string) => pathname === `/${slug}`;
 
   return (
-    <header className="relative">
+    <header className="sticky top-0 z-40">
       {/* 상단 유틸리티 바 */}
       <div className="hidden border-b border-ink-100 bg-ink-50 text-xs text-ink-500 dark:border-ink-800 dark:bg-ink-950 dark:text-ink-400 md:block">
         <div className="container-page flex h-9 items-center justify-between">
@@ -92,8 +92,8 @@ export function Header() {
         </div>
       </div>
 
-      {/* 마스트헤드 + 내비 (스티키) */}
-      <div className="sticky top-0 z-40 border-b border-ink-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:border-ink-800 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/80">
+      {/* 마스트헤드 + 내비 (헤더 전체가 sticky) */}
+      <div className="border-b border-ink-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:border-ink-800 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/80">
         <div className="container-page flex h-14 items-center justify-between gap-3 sm:h-16">
           <div className="flex items-center gap-2">
             <button
