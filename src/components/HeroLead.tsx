@@ -4,6 +4,8 @@ import { getLeadArticle, getSubLeads } from "@/lib/queries";
 import { CATEGORY_MAP } from "@/lib/categories";
 import { formatKoreanDateTime } from "@/lib/utils";
 import { ArticleCard } from "./ArticleCard";
+import { EditorialCover, isPlaceholderImage } from "./EditorialCover";
+import { TypeBadge } from "./TypeBadge";
 
 export function HeroLead() {
   const lead = getLeadArticle();
@@ -13,18 +15,25 @@ export function HeroLead() {
   return (
     <section className="container-page py-6 sm:py-8">
       <div className="grid gap-8 lg:grid-cols-[1.7fr_1fr]">
-        {/* 리드 기사 */}
+        {/* 리드 기사 — 이미지 위, 제목 아래 (2안) */}
         <article className="group">
           <Link href={href} className="block">
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-ink-100 dark:bg-ink-800">
-              <Image
-                src={lead.imageUrl}
-                alt={lead.title}
-                fill
-                priority
-                sizes="(max-width:1024px) 100vw, 66vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-              />
+              {isPlaceholderImage(lead.imageUrl) ? (
+                <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]">
+                  <EditorialCover category={lead.category} keyword={lead.tags?.[0]} size="lg" />
+                </div>
+              ) : (
+                <Image
+                  src={lead.imageUrl}
+                  alt={lead.title}
+                  fill
+                  priority
+                  sizes="(max-width:1024px) 100vw, 66vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              )}
+              <TypeBadge article={lead} className="absolute left-3 top-3 z-10" />
             </div>
           </Link>
           <div className="mt-4">
