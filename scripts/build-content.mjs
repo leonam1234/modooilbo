@@ -127,6 +127,14 @@ async function run() {
     }
     slugs.add(slug);
 
+    // 발행 시각(KST). 미래글(예약)은 발행시각 전 빌드에선 게시하지 않는다.
+    // (정적 사이트라 그 시각 이후 빌드/배포 때 자동으로 나타남)
+    const publishedAt = normDate(fm.publishedAt || fm.date);
+    if (new Date(publishedAt).getTime() > Date.now() + 9 * 60 * 60 * 1000) {
+      console.log(`  ⏳ 예약: ${slug} (${(fm.publishedAt || fm.date || "").trim()} KST) — 발행시각 전이라 건너뜀`);
+      continue;
+    }
+
     // 이미지: image 지정 우선 → 없으면 스톡 다운로드 → 실패 시 카테고리 fallback
     let imageUrl = (fm.image || "").trim();
     if (!imageUrl) {
@@ -154,7 +162,7 @@ async function run() {
       body: paragraphs,
       category,
       author: { name: name || "모두일보", role: role || "기자" },
-      publishedAt: normDate(fm.publishedAt || fm.date),
+      publishedAt,
       imageUrl,
       imageCaption: (fm.imageCaption || "").trim() || undefined,
       tags,
