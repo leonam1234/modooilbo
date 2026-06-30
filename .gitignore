@@ -34,3 +34,6 @@ next-env.d.ts
 
 # 배포 로그 (로컬 원장 — 커밋 안 함, iCloud로 환경 간 공유. DEPLOYMENT.md 참고)
 /deployments/deploy-log.jsonl
+
+# Cloudflare 분석 조회 토큰(읽기전용) — wrangler 배포 토큰과 분리 보관
+/.cf-analytics.env
