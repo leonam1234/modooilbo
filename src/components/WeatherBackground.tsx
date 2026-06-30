@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CHANGE_EVENT, fetchCondition, getSavedCity, type WxCondition } from "@/lib/weather";
+import { CHANGE_EVENT, fetchWeather, getSavedCity, type WxCondition } from "@/lib/weather";
 
 /**
  * 날씨 배경 모션 — 콘텐츠 뒤(z-0)에 무채색·아주 옅게.
@@ -13,8 +13,8 @@ export function WeatherBackground() {
   useEffect(() => {
     let alive = true;
     const load = async () => {
-      const c = await fetchCondition(getSavedCity());
-      if (alive) setCond(c);
+      const w = await fetchWeather(getSavedCity());
+      if (alive) setCond(w.condition);
     };
     load();
     // 지역 변경 시 재조회

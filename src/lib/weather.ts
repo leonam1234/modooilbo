@@ -15,12 +15,18 @@ export const CITIES: City[] = [
   { name: "춘천", lat: 37.8813, lon: 127.7298 },
   { name: "강릉", lat: 37.7519, lon: 128.8761 },
   { name: "대전", lat: 36.3504, lon: 127.3845 },
+  { name: "세종", lat: 36.48, lon: 127.289 },
   { name: "청주", lat: 36.6424, lon: 127.489 },
+  { name: "천안", lat: 36.8151, lon: 127.1139 },
   { name: "대구", lat: 35.8714, lon: 128.6014 },
+  { name: "포항", lat: 36.019, lon: 129.3435 },
+  { name: "안동", lat: 36.5684, lon: 128.7294 },
   { name: "부산", lat: 35.1796, lon: 129.0756 },
   { name: "울산", lat: 35.5384, lon: 129.3114 },
+  { name: "창원", lat: 35.2281, lon: 128.6811 },
   { name: "광주", lat: 35.1595, lon: 126.8526 },
   { name: "전주", lat: 35.8242, lon: 127.148 },
+  { name: "여수", lat: 34.7604, lon: 127.6622 },
   { name: "제주", lat: 33.4996, lon: 126.5312 },
 ];
 
@@ -51,16 +57,54 @@ export function getSavedCity(): City {
   return CITIES.find((c) => c.name === DEFAULT_CITY) ?? CITIES[0];
 }
 
-/** 현재 날씨 분류를 가져온다. 실패 시 'clear'. */
-export async function fetchCondition(city: City): Promise<WxCondition> {
+/** WMO weather code → 한국어 짧은 날씨 라벨(표시용) */
+export function codeToLabel(code: number): string {
+  const m: Record<number, string> = {
+    0: "맑음", 1: "대체로 맑음", 2: "구름 많음", 3: "흐림",
+    45: "안개", 48: "안개",
+    51: "이슬비", 53: "이슬비", 55: "이슬비", 56: "어는 이슬비", 57: "어는 이슬비",
+    61: "비", 63: "비", 65: "강한 비", 66: "어는 비", 67: "어는 비",
+    71: "눈", 73: "눈", 75: "많은 눈", 77: "싸락눈",
+    80: "소나기", 81: "소나기", 82: "강한 소나기", 85: "눈 소나기", 86: "눈 소나기",
+    95: "뇌우", 96: "뇌우", 99: "뇌우",
+  };
+  return m[code] ?? "흐림";
+}
+
+export interface Weather {
+  condition: WxCondition; // 배경 모션용
+  code: number;
+  label: string; // 표시용 한국어
+  temperature: number | null; // ℃
+}
+
+// 같은 지역 중복 조회 방지(10분 캐시) — 배경/표시 컴포넌트가 각자 호출해도 1회만 네트워크
+const _cache = new Map<string, { at: number; data: Weather }>();
+const TTL = 10 * 60 * 1000;
+const CLEAR: Weather = { condition: "clear", code: 0, label: "맑음", temperature: null };
+
+/** 현재 날씨(분류+온도+라벨)를 가져온다. 실패 시 맑음/온도 null. */
+export async function fetchWeather(city: City): Promise<Weather> {
+  const key = `${city.lat},${city.lon}`;
+  const hit = _cache.get(key);
+  if (hit && Date.now() - hit.at < TTL) return hit.data;
   try {
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&current=weather_code`;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&current=weather_code,temperature_2m`;
     const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
-    if (!res.ok) return "clear";
+    if (!res.ok) return CLEAR;
     const json = await res.json();
     const code = json?.current?.weather_code;
-    return typeof code === "number" ? codeToCondition(code) : "clear";
+    const temp = json?.current?.temperature_2m;
+    if (typeof code !== "number") return CLEAR;
+    const data: Weather = {
+      condition: codeToCondition(code),
+      code,
+      label: codeToLabel(code),
+      temperature: typeof temp === "number" ? Math.round(temp) : null,
+    };
+    _cache.set(key, { at: Date.now(), data });
+    return data;
   } catch {
-    return "clear";
+    return CLEAR;
   }
 }

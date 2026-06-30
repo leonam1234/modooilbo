@@ -1,24 +1,77 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CITIES, CHANGE_EVENT, DEFAULT_CITY, STORAGE_KEY } from "@/lib/weather";
+import {
+  CITIES,
+  CHANGE_EVENT,
+  DEFAULT_CITY,
+  STORAGE_KEY,
+  fetchWeather,
+  type Weather,
+  type WxCondition,
+} from "@/lib/weather";
 import { cn } from "@/lib/utils";
 
+function WxIcon({ cond, className }: { cond: WxCondition; className?: string }) {
+  const s = { fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinecap: "round" as const };
+  if (cond === "rain")
+    return (
+      <svg viewBox="0 0 24 24" className={className} aria-hidden>
+        <path d="M7 15a4 4 0 010-8 5 5 0 019.6-1.3A3.5 3.5 0 1117 15H7z" {...s} />
+        <path d="M9 18l-1 2M13 18l-1 2M17 18l-1 2" {...s} />
+      </svg>
+    );
+  if (cond === "snow")
+    return (
+      <svg viewBox="0 0 24 24" className={className} aria-hidden>
+        <path d="M7 14a4 4 0 010-8 5 5 0 019.6-1.3A3.5 3.5 0 1117 14H7z" {...s} />
+        <circle cx="9" cy="19" r="0.8" fill="currentColor" />
+        <circle cx="13" cy="20" r="0.8" fill="currentColor" />
+        <circle cx="16" cy="18.5" r="0.8" fill="currentColor" />
+      </svg>
+    );
+  if (cond === "fog")
+    return (
+      <svg viewBox="0 0 24 24" className={className} aria-hidden>
+        <path d="M7 13a4 4 0 010-8 5 5 0 019.6-1.3A3.5 3.5 0 1117 13H7z" {...s} />
+        <path d="M5 17h14M7 20h12" {...s} />
+      </svg>
+    );
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden>
+      <circle cx="12" cy="12" r="4" {...s} />
+      <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4" {...s} />
+    </svg>
+  );
+}
+
 /**
- * 지역 선택기 — 헤더 로그인 옆. 선택 시 localStorage 저장 + 이벤트 발행 →
- * WeatherBackground가 해당 지역 날씨로 배경 모션을 갱신.
+ * 지역 선택기 + 현재 날씨/온도 — 헤더 로그인 옆.
+ * 선택 시 localStorage 저장 + 이벤트 발행(배경 모션 갱신). 동시에 해당 지역 날씨를 표시.
  */
 export function LocationPicker({ className }: { className?: string }) {
   const [city, setCity] = useState(DEFAULT_CITY);
+  const [wx, setWx] = useState<Weather | null>(null);
 
   useEffect(() => {
+    let saved = DEFAULT_CITY;
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved && CITIES.some((c) => c.name === saved)) setCity(saved);
+      const v = localStorage.getItem(STORAGE_KEY);
+      if (v && CITIES.some((c) => c.name === v)) saved = v;
     } catch {
       /* ignore */
     }
+    setCity(saved);
   }, []);
+
+  useEffect(() => {
+    let alive = true;
+    const target = CITIES.find((c) => c.name === city) ?? CITIES[0];
+    fetchWeather(target).then((w) => alive && setWx(w));
+    return () => {
+      alive = false;
+    };
+  }, [city]);
 
   function change(next: string) {
     setCity(next);
@@ -31,42 +84,40 @@ export function LocationPicker({ className }: { className?: string }) {
   }
 
   return (
-    <label
+    <span
       className={cn(
-        "relative inline-flex items-center gap-1 rounded-full border border-ink-200 py-1.5 pl-2.5 pr-1.5 text-sm text-ink-700 hover:border-ink-400 dark:border-ink-700 dark:text-ink-200",
+        "inline-flex items-center gap-1.5 rounded-full border border-ink-200 py-1.5 pl-2.5 pr-2 text-sm text-ink-700 hover:border-ink-400 dark:border-ink-700 dark:text-ink-200",
         className,
       )}
-      title="지역 설정 (배경 날씨)"
+      title={wx ? `${city} · ${wx.label}${wx.temperature !== null ? ` ${wx.temperature}°` : ""}` : "지역 설정"}
     >
       <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" fill="none" aria-hidden>
-        <path
-          d="M12 21s7-5.686 7-11a7 7 0 10-14 0c0 5.314 7 11 7 11z"
-          stroke="currentColor"
-          strokeWidth="1.6"
-        />
+        <path d="M12 21s7-5.686 7-11a7 7 0 10-14 0c0 5.314 7 11 7 11z" stroke="currentColor" strokeWidth="1.6" />
         <circle cx="12" cy="10" r="2.4" stroke="currentColor" strokeWidth="1.6" />
       </svg>
-      <span className="sr-only">지역 선택</span>
-      <select
-        value={city}
-        onChange={(e) => change(e.target.value)}
-        className="cursor-pointer appearance-none bg-transparent pr-4 font-medium outline-none"
-        aria-label="배경 날씨 지역 선택"
-      >
-        {CITIES.map((c) => (
-          <option key={c.name} value={c.name} className="text-ink-900">
-            {c.name}
-          </option>
-        ))}
-      </select>
-      <svg
-        viewBox="0 0 24 24"
-        className="pointer-events-none absolute right-2 h-3.5 w-3.5 text-ink-400"
-        fill="none"
-        aria-hidden
-      >
-        <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="1.8" />
-      </svg>
-    </label>
+      <span className="relative inline-flex items-center">
+        <select
+          value={city}
+          onChange={(e) => change(e.target.value)}
+          className="cursor-pointer appearance-none bg-transparent pr-3.5 font-medium outline-none"
+          aria-label="배경 날씨 지역 선택"
+        >
+          {CITIES.map((c) => (
+            <option key={c.name} value={c.name} className="text-ink-900">
+              {c.name}
+            </option>
+          ))}
+        </select>
+        <svg viewBox="0 0 24 24" className="pointer-events-none absolute right-0 h-3 w-3 text-ink-400" fill="none" aria-hidden>
+          <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" />
+        </svg>
+      </span>
+      {wx && (
+        <span className="flex items-center gap-1 border-l border-ink-200 pl-2 text-ink-500 dark:border-ink-700 dark:text-ink-300">
+          <WxIcon cond={wx.condition} className="h-4 w-4" />
+          {wx.temperature !== null && <span className="tabular-nums font-medium">{wx.temperature}°</span>}
+        </span>
+      )}
+    </span>
   );
 }
