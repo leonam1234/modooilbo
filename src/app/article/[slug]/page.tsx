@@ -14,6 +14,11 @@ import JsonLd from "@/components/JsonLd";
 
 const SITE_URL = "https://modooilbo.com";
 
+function absoluteImageUrl(pathOrUrl: string): string {
+  if (/^https?:\/\//i.test(pathOrUrl)) return pathOrUrl;
+  return `${SITE_URL}${pathOrUrl.startsWith("/") ? pathOrUrl : `/${pathOrUrl}`}`;
+}
+
 // 정적 export: 전체 기사 슬러그만 생성, 그 외 경로는 404
 export const dynamicParams = false;
 
@@ -29,10 +34,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const a = getArticleBySlug(slug);
   if (!a) return { title: "기사를 찾을 수 없습니다" };
+  const imageUrl = absoluteImageUrl(displayImageUrl(a));
   return {
     title: a.title,
     description: a.summary,
-    openGraph: { title: a.title, description: a.summary, images: [a.imageUrl], type: "article" },
+    openGraph: { title: a.title, description: a.summary, images: [imageUrl], type: "article" },
   };
 }
 
@@ -49,6 +55,7 @@ export default async function ArticlePage({
   const related = getRelated(article, 4);
   const readMinutes = Math.max(1, Math.round(article.body.join(" ").length / 600));
   const articleUrl = `${SITE_URL}/article/${article.slug}`;
+  const imageUrl = absoluteImageUrl(displayImageUrl(article));
 
   const newsArticleLd = {
     "@context": "https://schema.org",
@@ -56,7 +63,7 @@ export default async function ArticlePage({
     mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
     headline: article.title,
     description: article.summary,
-    image: [article.imageUrl],
+    image: [imageUrl],
     datePublished: article.publishedAt,
     dateModified: article.publishedAt,
     inLanguage: "ko-KR",

@@ -20,6 +20,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-06-30T18:00:00Z",
     "imageUrl": "/stock/2026-06-30-agent-publishing-test.jpg",
+    "imageCaption": "실제 현장이 아닌 기사 이해를 돕기 위한 AI 생성 이미지.",
     "tags": [
       "모두일보",
       "발행시스템",
