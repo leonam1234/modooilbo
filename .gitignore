@@ -28,3 +28,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Cloudflare wrangler 로컬 상태
+/.wrangler/
+
+# 배포 로그 (로컬 원장 — 커밋 안 함, iCloud로 환경 간 공유. DEPLOYMENT.md 참고)
+/deployments/deploy-log.jsonl

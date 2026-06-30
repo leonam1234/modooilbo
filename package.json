@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "preview:static": "node scripts/static-server.mjs",
-    "deploy:cf": "next build && wrangler pages deploy out --project-name modooilbo"
+    "deploy:preview": "node scripts/deploy.mjs preview",
+    "deploy:prod": "node scripts/deploy.mjs prod",
+    "deploy:cf": "node scripts/deploy.mjs prod"
   },
   "dependencies": {
     "next": "15.1.6",
