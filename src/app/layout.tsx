@@ -20,6 +20,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  verification: {
+    google: "CskNi9Cx1aINJrfcM020I8qjTFUDFaUS6jrGxcn6nbY",
+    other: {
+      "naver-site-verification": "9fa5ad35d86ef9d80fc2a12bc20f8a57d5512de7",
+    },
+  },
   robots: {
     index: true,
     follow: true,
