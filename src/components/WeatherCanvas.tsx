@@ -81,14 +81,14 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
     }
     const blobs: Blob[] = [];
     if (kind === "fog") {
-      for (let i = 0; i < 14; i++) {
+      for (let i = 0; i < 24; i++) {
         blobs.push({
           x: rnd(0, w),
           y: rnd(0, h),
-          r: rnd(0.1, 0.4) * Math.max(w, h), // 크고 작은 구름 조각 섞임
-          vx: rnd(-0.3, 0.3),
-          vy: rnd(-0.08, 0.08),
-          a: rnd(0.12, 0.28), // 회색 구름답게 진하게(겹치며 더 진해짐)
+          r: rnd(0.045, 0.13) * Math.max(w, h), // 작은 구름 조각들
+          vx: rnd(-0.4, 0.4),
+          vy: rnd(-0.1, 0.1),
+          a: rnd(0.1, 0.22),
         });
       }
     }
@@ -178,13 +178,5 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
     };
   }, [kind]);
 
-  // 안개는 콘텐츠 위(헤더 아래)로 떠다니게 — 회색 구름이 화면을 가로지르는 느낌
-  return (
-    <canvas
-      ref={ref}
-      aria-hidden
-      className="wx-layer"
-      style={kind === "fog" ? { zIndex: 25 } : undefined}
-    />
-  );
+  return <canvas ref={ref} aria-hidden className="wx-layer" />;
 }
