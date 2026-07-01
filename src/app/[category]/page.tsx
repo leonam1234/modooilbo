@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CATEGORIES, getCategory } from "@/lib/categories";
-import { getByCategory } from "@/lib/queries";
+import { getByCategory, getMostRead } from "@/lib/queries";
 import { ArticleCard } from "@/components/ArticleCard";
 import { RankingList } from "@/components/RankingList";
 import { PageHeader } from "@/components/PageHeader";
@@ -69,7 +69,10 @@ export default async function CategoryPage({
         </div>
 
         <aside className="space-y-10">
-          <RankingList count={6} />
+          <RankingList
+            count={6}
+            pool={getMostRead(60).map((a) => ({ id: a.id, slug: a.slug, title: a.title, category: a.category }))}
+          />
         </aside>
       </div>
     </>

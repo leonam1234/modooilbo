@@ -30,8 +30,9 @@ function parseHardcoded(file) {
     const pub = chunk.match(/\bpublishedAt:\s*"([^"]+)"/);
     const tagsM = chunk.match(/\btags:\s*\[([^\]]*)\]/);
     if (!slug || !tagsM) continue;
+    const idM = chunk.match(/\bid:\s*"([^"]+)"/);
     const tags = [...tagsM[1].matchAll(/"([^"]+)"/g)].map((m) => m[1]);
-    out.push({ slug: slug[1], publishedAt: pub ? pub[1] : "", tags });
+    out.push({ id: idM ? idM[1] : slug[1], slug: slug[1], publishedAt: pub ? pub[1] : "", tags });
   }
   return out;
 }
@@ -50,7 +51,7 @@ function parseGenerated() {
   } catch {
     return [];
   }
-  return arr.map((a) => ({ slug: a.slug, publishedAt: a.publishedAt || "", tags: Array.isArray(a.tags) ? a.tags : [] }));
+  return arr.map((a) => ({ id: a.id || a.slug, slug: a.slug, publishedAt: a.publishedAt || "", tags: Array.isArray(a.tags) ? a.tags : [] }));
 }
 
 const articles = [
@@ -77,7 +78,7 @@ const data = {
   articleCount: articles.length,
   tags: [...index.values()].sort((x, y) => y.count - x.count),
   // 추후 트래픽 신호(조회 많은 기사 경로→태그)용 매핑
-  articles: articles.map((a) => ({ slug: a.slug, tags: a.tags, publishedAt: a.publishedAt })),
+  articles: articles.map((a) => ({ id: a.id, slug: a.slug, tags: a.tags, publishedAt: a.publishedAt })),
 };
 delete data.generatedAt;
 

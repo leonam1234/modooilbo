@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ALL_ARTICLES } from "@/lib/news";
-import { getArticleBySlug, getRelated, getPrevNext } from "@/lib/queries";
+import { getArticleBySlug, getRelated, getPrevNext, getMostRead } from "@/lib/queries";
 import { CATEGORY_MAP } from "@/lib/categories";
 import { formatKoreanDateTime, formatCount } from "@/lib/utils";
 import { ArticleCard } from "@/components/ArticleCard";
@@ -11,6 +11,7 @@ import { RankingList } from "@/components/RankingList";
 import { ArticleActions } from "@/components/ArticleActions";
 import { ListenButton } from "@/components/ListenButton";
 import { ReactionBar } from "@/components/ReactionBar";
+import { ViewBeacon } from "@/components/ViewBeacon";
 import { displayImageUrl } from "@/lib/stock";
 import JsonLd from "@/components/JsonLd";
 
@@ -198,6 +199,7 @@ export default async function ArticlePage({
             ))}
           </div>
 
+          <ViewBeacon articleId={article.id} />
           <ReactionBar articleId={article.id} />
 
           <div className="mt-8 rounded-xl border border-ink-200 bg-ink-50 p-5 dark:border-ink-800 dark:bg-ink-900">
@@ -270,7 +272,10 @@ export default async function ArticlePage({
         </article>
 
         <aside className="space-y-10">
-          <RankingList count={6} />
+          <RankingList
+            count={6}
+            pool={getMostRead(60).map((a) => ({ id: a.id, slug: a.slug, title: a.title, category: a.category }))}
+          />
           <div className="rounded-xl border border-ink-200 bg-ink-50 p-6 dark:border-ink-800 dark:bg-ink-900">
             <h3 className="font-headline text-lg font-bold text-ink-900 dark:text-white">
               독립 저널리즘을 후원하세요

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { HeroLead } from "@/components/HeroLead";
 import { SectionBlock } from "@/components/SectionBlock";
 import { RankingList } from "@/components/RankingList";
+import { getMostRead } from "@/lib/queries";
 import { OpinionStrip } from "@/components/OpinionStrip";
 import { MediaGrid } from "@/components/MediaGrid";
 import { NewsletterCTA } from "@/components/NewsletterCTA";
@@ -47,7 +48,10 @@ export default function Home() {
         </div>
 
         <aside className="space-y-10">
-          <RankingList count={6} />
+          <RankingList
+            count={6}
+            pool={getMostRead(60).map((a) => ({ id: a.id, slug: a.slug, title: a.title, category: a.category }))}
+          />
 
           <div className="rounded-xl border border-ink-200 bg-ink-50 p-6 dark:border-ink-800 dark:bg-ink-900">
             <h3 className="font-headline text-lg font-bold text-ink-900 dark:text-white">
