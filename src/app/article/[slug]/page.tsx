@@ -209,6 +209,9 @@ export default async function ArticlePage({
                   className="group flex items-center gap-3 rounded-lg border border-ink-200 px-4 py-3.5 transition-colors hover:border-ink-400 dark:border-ink-800 dark:hover:border-ink-600"
                 >
                   <span aria-hidden className="shrink-0 text-lg text-ink-400">‹</span>
+                  <span className="relative h-12 w-16 shrink-0 overflow-hidden rounded bg-ink-100 dark:bg-ink-800">
+                    <Image src={displayImageUrl(prev)} alt="" fill sizes="64px" unoptimized className="object-cover" />
+                  </span>
                   <span className="min-w-0">
                     <span className="block text-xs text-ink-400">이전 기사</span>
                     <span className="block truncate font-medium text-ink-800 group-hover:text-signal-700 dark:text-ink-100">
@@ -229,6 +232,9 @@ export default async function ArticlePage({
                     <span className="block truncate font-medium text-ink-800 group-hover:text-signal-700 dark:text-ink-100">
                       {next.title}
                     </span>
+                  </span>
+                  <span className="relative h-12 w-16 shrink-0 overflow-hidden rounded bg-ink-100 dark:bg-ink-800">
+                    <Image src={displayImageUrl(next)} alt="" fill sizes="64px" unoptimized className="object-cover" />
                   </span>
                   <span aria-hidden className="shrink-0 text-lg text-ink-400">›</span>
                 </Link>
