@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /** 자체 무채색 라인 아이콘(네이버 이모지 복제 아님). 전부 긍정·중립 반응(찬반 없음). */
 const S = { fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
@@ -46,6 +46,7 @@ type State = { counts: Record<string, number>; chosen: string | null };
 export function ReactionBar({ articleId }: { articleId: string }) {
   const [s, setS] = useState<State | null>(null);
   const [busy, setBusy] = useState(false);
+  const busyRef = useRef(false); // 연타 방지(동기 락 — setState 지연으로 인한 동시 POST 차단)
 
   useEffect(() => {
     let alive = true;
@@ -61,7 +62,8 @@ export function ReactionBar({ articleId }: { articleId: string }) {
   }, [articleId]);
 
   async function react(type: string) {
-    if (busy) return;
+    if (busyRef.current) return;
+    busyRef.current = true;
     setBusy(true);
     // 낙관적 갱신: 하나만 선택 — 갈아타기 / 같은 것 취소
     setS((prev) => {
@@ -89,6 +91,7 @@ export function ReactionBar({ articleId }: { articleId: string }) {
     } catch {
       /* 실패 시 낙관적 갱신 유지(다음 로드에서 정정) */
     }
+    busyRef.current = false;
     setBusy(false);
   }
 
