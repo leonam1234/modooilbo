@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ALL_ARTICLES } from "@/lib/news";
-import { getArticleBySlug, getRelated } from "@/lib/queries";
+import { getArticleBySlug, getRelated, getPrevNext } from "@/lib/queries";
 import { CATEGORY_MAP } from "@/lib/categories";
 import { formatKoreanDateTime, formatCount } from "@/lib/utils";
 import { ArticleCard } from "@/components/ArticleCard";
@@ -55,6 +55,7 @@ export default async function ArticlePage({
 
   const cat = CATEGORY_MAP[article.category];
   const related = getRelated(article, 4);
+  const { prev, next } = getPrevNext(article);
   const readMinutes = Math.max(1, Math.round(article.body.join(" ").length / 600));
   const articleUrl = `${SITE_URL}/article/${article.slug}`;
   const imageUrl = absoluteImageUrl(displayImageUrl(article));
@@ -196,6 +197,46 @@ export default async function ArticlePage({
               modooilbo.com · 본 기사와 기자 프로필은 데모용 가상 정보입니다.
             </p>
           </div>
+
+          {(prev || next) && (
+            <nav
+              aria-label="이전 다음 기사"
+              className="mt-10 grid gap-3 border-t border-ink-100 pt-8 dark:border-ink-800 sm:grid-cols-2"
+            >
+              {prev ? (
+                <Link
+                  href={`/article/${prev.slug}`}
+                  className="group flex items-center gap-3 rounded-lg border border-ink-200 px-4 py-3.5 transition-colors hover:border-ink-400 dark:border-ink-800 dark:hover:border-ink-600"
+                >
+                  <span aria-hidden className="shrink-0 text-lg text-ink-400">‹</span>
+                  <span className="min-w-0">
+                    <span className="block text-xs text-ink-400">이전 기사</span>
+                    <span className="block truncate font-medium text-ink-800 group-hover:text-signal-700 dark:text-ink-100">
+                      {prev.title}
+                    </span>
+                  </span>
+                </Link>
+              ) : (
+                <span className="hidden sm:block" />
+              )}
+              {next ? (
+                <Link
+                  href={`/article/${next.slug}`}
+                  className="group flex items-center justify-end gap-3 rounded-lg border border-ink-200 px-4 py-3.5 text-right transition-colors hover:border-ink-400 dark:border-ink-800 dark:hover:border-ink-600"
+                >
+                  <span className="min-w-0">
+                    <span className="block text-xs text-ink-400">다음 기사</span>
+                    <span className="block truncate font-medium text-ink-800 group-hover:text-signal-700 dark:text-ink-100">
+                      {next.title}
+                    </span>
+                  </span>
+                  <span aria-hidden className="shrink-0 text-lg text-ink-400">›</span>
+                </Link>
+              ) : (
+                <span className="hidden sm:block" />
+              )}
+            </nav>
+          )}
 
           {related.length > 0 && (
             <section className="mt-12">
