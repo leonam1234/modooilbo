@@ -219,3 +219,8 @@
 .tw-live { animation: tw-blink 1s ease-in-out infinite; }
 .tw-chip { animation: tw-twinkle 2.4s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .tw-live, .tw-chip { animation: none; } }
+
+/* 본문 듣기 — 재생 중 이퀄라이저 바 */
+@keyframes eq-bounce { 0%, 100% { height: 35%; } 50% { height: 100%; } }
+.eq-bar { height: 100%; animation: eq-bounce 0.85s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .eq-bar { animation: none; height: 70%; } }
