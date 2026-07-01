@@ -9,6 +9,7 @@ import { formatKoreanDateTime, formatCount } from "@/lib/utils";
 import { ArticleCard } from "@/components/ArticleCard";
 import { RankingList } from "@/components/RankingList";
 import { ArticleActions } from "@/components/ArticleActions";
+import { ListenButton } from "@/components/ListenButton";
 import { ReactionBar } from "@/components/ReactionBar";
 import { displayImageUrl } from "@/lib/stock";
 import JsonLd from "@/components/JsonLd";
@@ -141,6 +142,10 @@ export default async function ArticlePage({
               <span className="ml-2 text-ink-400">읽는 시간 {readMinutes}분</span>
             </div>
             <ArticleActions title={article.title} />
+          </div>
+
+          <div className="mt-4">
+            <ListenButton text={[article.title, article.summary, ...article.body].join(" ")} />
           </div>
 
           <figure className="mt-6">
