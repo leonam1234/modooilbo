@@ -239,7 +239,7 @@ export function AdInquiryForm() {
           문의 보내기
         </button>
         <p className="text-xs text-ink-400">
-          본 양식은 데모용으로 실제로 전송되거나 저장되지 않습니다.
+          문의는 이메일 bridzzitimes@gmail.com 으로 보내주세요.
         </p>
       </div>
     </form>

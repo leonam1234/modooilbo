@@ -235,7 +235,7 @@ export function TipForm() {
       </button>
 
       <p className="text-xs text-ink-400">
-        본 양식은 데모용으로 입력하신 내용은 어디에도 전송·저장되지 않습니다.
+        정식 오픈 준비 중입니다.
       </p>
     </form>
   );

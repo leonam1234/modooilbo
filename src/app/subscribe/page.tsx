@@ -314,7 +314,7 @@ export default function SubscribePage() {
       {/* 데모 안내 */}
       <section className="container-page pb-16">
         <p className="rounded-lg border border-ink-200 bg-ink-50 px-4 py-3 text-center text-sm text-ink-500 dark:border-ink-800 dark:bg-ink-900 dark:text-ink-400">
-          본 페이지는 데모용으로 실제 결제나 후원이 이루어지지 않습니다. 표기된 금액과 혜택은
+          정식 오픈 준비 중으로 실제 결제·후원은 진행되지 않습니다. 표기 금액·혜택은
           예시입니다.
         </p>
       </section>

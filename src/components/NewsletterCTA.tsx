@@ -47,7 +47,7 @@ export function NewsletterCTA() {
             </form>
           )}
           <p className="mt-3 text-xs text-ink-500">
-            언제든 구독을 취소할 수 있습니다. 데모용 양식으로 실제 전송되지 않습니다.
+            언제든 구독을 취소할 수 있습니다. 정식 오픈 준비 중입니다.
           </p>
         </div>
       </div>

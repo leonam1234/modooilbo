@@ -225,7 +225,7 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
           지원서 제출하기
         </button>
         <p className="text-xs text-ink-400">
-          본 양식은 데모용으로 실제로 전송되거나 저장되지 않습니다.
+          정식 오픈 준비 중입니다.
         </p>
       </div>
     </form>

@@ -184,7 +184,7 @@ export default function AdvertisePage() {
           ))}
         </dl>
         <p className="mt-4 text-xs text-ink-400">
-          ※ 상기 수치는 데모용 가상 통계이며, 실제 집행 시점의 매체 자료를 별도로
+          ※ 상기 수치는 예시이며, 실제 집행 시점의 매체 자료를 별도로
           제공해 드립니다.
         </p>
       </section>

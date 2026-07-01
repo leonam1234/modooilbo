@@ -168,7 +168,7 @@ export function ContactForm() {
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs text-ink-400">
-          데모용 양식으로 실제로 전송되지 않습니다.
+          문의는 이메일 bridzzitimes@gmail.com 으로 보내주세요.
         </p>
         <button
           type="submit"

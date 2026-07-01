@@ -207,7 +207,7 @@ export default async function ArticlePage({
               {article.author.name} <span className="font-normal text-ink-500">{article.author.role}</span>
             </p>
             <p className="mt-1 text-sm text-ink-500">
-              modooilbo.com · 본 기사와 기자 프로필은 데모용 가상 정보입니다.
+              modooilbo.com
             </p>
           </div>
 

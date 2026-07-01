@@ -124,7 +124,7 @@ export default function NewsletterPage() {
         </div>
 
         <p className="mt-8 text-center text-sm text-ink-500 dark:text-ink-400">
-          구독 버튼은 데모용으로 실제 메일이 발송되지 않습니다.
+          정식 오픈 준비 중입니다.
         </p>
       </section>
 

@@ -64,6 +64,16 @@ export function Footer() {
                 </a>
               ))}
             </div>
+            <a
+              href="mailto:bridzzitimes@gmail.com?subject=%5B%EB%AA%A8%EB%91%90%EC%9D%BC%EB%B3%B4%5D%20%EA%B8%B0%EC%97%85%20%EB%AC%B8%EC%9D%98&body=%ED%9A%8C%EC%82%AC%EB%AA%85%3A%0A%EB%8B%B4%EB%8B%B9%EC%9E%90%3A%0A%EC%97%B0%EB%9D%BD%EC%B2%98%3A%0A%EB%AC%B8%EC%9D%98%20%EB%82%B4%EC%9A%A9%3A%0A"
+              className="mt-5 inline-flex items-center gap-2 rounded-full bg-ink-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-ink-700 dark:bg-white dark:text-ink-900 dark:hover:bg-ink-100"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <rect x="3" y="5" width="18" height="14" rx="2" />
+                <path d="m3 7 9 6 9-6" />
+              </svg>
+              기업 문의
+            </a>
             {/* 섹션 빠른 이동 */}
             <ul className="mt-6 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-ink-500 dark:text-ink-400">
               {CATEGORIES.map((c) => (
@@ -110,12 +120,11 @@ export function Footer() {
             <span>서울특별시 중구 세종대로 124 모두일보빌딩</span>
             <span>등록번호 서울 아00000</span>
             <span>등록일 2026.01.01</span>
-            <span>대표전화 02-0000-0000</span>
+            <span>대표전화 070-4323-1233</span>
             <span>이메일 bridzzitimes@gmail.com</span>
           </p>
           <p className="mt-4 text-ink-400">
-            © 2026 MODOO ILBO. All rights reserved. · 본 사이트의 모든 콘텐츠는 데모용 가상
-            데이터입니다.
+            © 2026 MODOO ILBO. All rights reserved.
           </p>
         </div>
       </div>
