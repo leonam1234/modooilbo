@@ -31,14 +31,14 @@ export function TrendingTags() {
 
   return (
     <div className="border-b border-ink-100 bg-white dark:border-ink-800 dark:bg-ink-950">
-      <div className="container-page no-scrollbar flex items-center gap-3 overflow-x-auto whitespace-nowrap py-1.5">
-        <span className="flex shrink-0 items-center gap-1.5 text-xs font-bold text-ink-800 dark:text-ink-100">
-          <span className="tw-live inline-block h-1.5 w-1.5 rounded-full bg-breaking" />
+      <div className="container-page no-scrollbar flex items-baseline gap-3 overflow-x-auto whitespace-nowrap py-1.5">
+        <span className="shrink-0 text-xs font-bold text-ink-800 dark:text-ink-100">
+          <span className="tw-live mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-breaking align-middle" />
           실시간 인기
         </span>
         <span className="shrink-0 text-[11px] text-ink-400">{data.label}</span>
-        <span className="mx-0.5 hidden h-3 w-px shrink-0 bg-ink-200 dark:bg-ink-700 sm:block" />
-        <div className="flex items-center gap-3">
+        <span className="mx-0.5 hidden h-3 w-px shrink-0 self-center bg-ink-200 dark:bg-ink-700 sm:block" />
+        <div className="flex items-baseline gap-3">
           {data.tags.map((t, i) => (
             <Link
               key={t}
