@@ -87,7 +87,7 @@ export function ListenButton({ text }: { text: string }) {
   const playing = state === "playing";
 
   return (
-    <div className="inline-flex items-center gap-2.5">
+    <div className="relative inline-flex items-center">
       <button
         type="button"
         onClick={playing ? pause : play}
@@ -102,7 +102,7 @@ export function ListenButton({ text }: { text: string }) {
           type="button"
           onClick={stop}
           aria-label="본문 읽기 정지"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink-200 text-ink-500 transition-colors hover:border-ink-400 hover:text-ink-900 dark:border-ink-700 dark:text-ink-400 dark:hover:text-white"
+          className="absolute left-full top-1/2 ml-2.5 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-ink-200 bg-white text-ink-500 transition-colors hover:border-ink-400 hover:text-ink-900 dark:border-ink-700 dark:bg-ink-950 dark:text-ink-400 dark:hover:text-white"
         >
           <Stop />
         </button>
