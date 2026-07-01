@@ -15,8 +15,8 @@ export const CONTENT_ARTICLES: Article[] = [
     ],
     "category": "tech",
     "author": {
-      "name": "모두일보",
-      "role": "디지털팀"
+      "name": "박유주",
+      "role": "테크부 기자"
     },
     "publishedAt": "2026-06-30T18:00:00Z",
     "imageUrl": "/stock/2026-06-30-agent-publishing-test.jpg",
@@ -50,7 +50,7 @@ export const CONTENT_ARTICLES: Article[] = [
     ],
     "category": "economy",
     "author": {
-      "name": "조민혁",
+      "name": "김영환",
       "role": "경제부 기자"
     },
     "publishedAt": "2026-07-01T10:30:00Z",
@@ -93,7 +93,7 @@ export const CONTENT_ARTICLES: Article[] = [
     ],
     "category": "tech",
     "author": {
-      "name": "문세아",
+      "name": "박유주",
       "role": "테크부 기자"
     },
     "publishedAt": "2026-07-01T14:00:00Z",
@@ -130,8 +130,8 @@ export const CONTENT_ARTICLES: Article[] = [
     ],
     "category": "sports",
     "author": {
-      "name": "남기훈",
-      "role": "스포츠부 기자"
+      "name": "남동균",
+      "role": "문화·스포츠부 기자"
     },
     "publishedAt": "2026-07-01T08:00:00Z",
     "imageUrl": "/stock/2026-07-01-mexico-ecuador-worldcup.jpg",
@@ -166,7 +166,7 @@ export const CONTENT_ARTICLES: Article[] = [
     ],
     "category": "society",
     "author": {
-      "name": "신다은",
+      "name": "유승현",
       "role": "사회부 기자"
     },
     "publishedAt": "2026-07-01T11:00:00Z",
@@ -206,7 +206,7 @@ export const CONTENT_ARTICLES: Article[] = [
     ],
     "category": "economy",
     "author": {
-      "name": "유하진",
+      "name": "김영환",
       "role": "경제부 기자"
     },
     "publishedAt": "2026-07-01T09:30:00Z",
