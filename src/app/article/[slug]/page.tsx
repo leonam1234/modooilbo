@@ -9,6 +9,7 @@ import { formatKoreanDateTime, formatCount } from "@/lib/utils";
 import { ArticleCard } from "@/components/ArticleCard";
 import { RankingList } from "@/components/RankingList";
 import { ArticleActions } from "@/components/ArticleActions";
+import { ReactionBar } from "@/components/ReactionBar";
 import { displayImageUrl } from "@/lib/stock";
 import JsonLd from "@/components/JsonLd";
 
@@ -179,6 +180,8 @@ export default async function ArticlePage({
               </Link>
             ))}
           </div>
+
+          <ReactionBar articleId={article.id} />
 
           <div className="mt-8 rounded-xl border border-ink-200 bg-ink-50 p-5 dark:border-ink-800 dark:bg-ink-900">
             <p className="text-sm font-bold text-ink-900 dark:text-white">
