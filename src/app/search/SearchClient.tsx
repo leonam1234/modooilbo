@@ -6,6 +6,7 @@ import type { ArticleListItem } from "@/lib/types";
 import { CATEGORY_MAP } from "@/lib/categories";
 import { ArticleCard } from "@/components/ArticleCard";
 import { SearchIcon } from "@/components/icons";
+import { TrendingTags } from "@/components/TrendingTags";
 
 export function SearchClient({ index }: { index: ArticleListItem[] }) {
   const router = useRouter();
@@ -50,6 +51,8 @@ export function SearchClient({ index }: { index: ArticleListItem[] }) {
           검색
         </button>
       </form>
+
+      <TrendingTags />
 
       {q ? (
         <>

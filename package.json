@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "content": "node scripts/build-content.mjs",
-    "prebuild": "node scripts/build-content.mjs",
+    "prebuild": "node scripts/build-content.mjs && node scripts/build-trending-data.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "tsc --noEmit",
