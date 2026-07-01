@@ -144,10 +144,6 @@ export default async function ArticlePage({
             <ArticleActions title={article.title} />
           </div>
 
-          <div className="mt-4">
-            <ListenButton text={[article.title, article.summary, ...article.body].join(" ")} />
-          </div>
-
           <figure className="mt-6">
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-ink-100 dark:bg-ink-800">
               <Image
@@ -164,6 +160,10 @@ export default async function ArticlePage({
               <figcaption className="mt-2 text-xs text-ink-400">{article.imageCaption}</figcaption>
             )}
           </figure>
+
+          <div className="mt-6 flex justify-center">
+            <ListenButton text={[article.title, article.summary, ...article.body].join(" ")} />
+          </div>
 
           <div
             id="article-body"

@@ -65,20 +65,20 @@ export function ListenButton({ text }: { text: string }) {
   const playing = state === "playing";
 
   return (
-    <div className="inline-flex items-center gap-1 rounded-full border border-ink-200 py-1 pl-3 pr-1.5 text-sm text-ink-600 dark:border-ink-700 dark:text-ink-300">
+    <div className="inline-flex items-center gap-2 rounded-full border border-ink-300 bg-white py-2.5 pl-6 pr-3 text-base text-ink-800 shadow-sm dark:border-ink-600 dark:bg-ink-900 dark:text-ink-100">
       <button
         type="button"
         onClick={playing ? pause : play}
         aria-label={playing ? "본문 읽기 일시정지" : state === "paused" ? "본문 읽기 이어듣기" : "본문 읽어주기"}
-        className="inline-flex items-center gap-1.5 font-medium hover:text-ink-900 dark:hover:text-white"
+        className="inline-flex items-center gap-2 font-semibold hover:text-ink-950 dark:hover:text-white"
       >
         {playing ? (
-          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden>
+          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden>
             <rect x="7" y="6" width="3.5" height="12" rx="1" />
             <rect x="13.5" y="6" width="3.5" height="12" rx="1" />
           </svg>
         ) : (
-          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden>
+          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden>
             <path d="M8 5.5v13l11-6.5-11-6.5Z" strokeLinejoin="round" />
           </svg>
         )}
@@ -89,9 +89,9 @@ export function ListenButton({ text }: { text: string }) {
           type="button"
           onClick={stop}
           aria-label="본문 읽기 정지"
-          className="ml-0.5 rounded-full p-1 text-ink-400 hover:text-ink-800 dark:hover:text-white"
+          className="ml-1 rounded-full p-1.5 text-ink-400 hover:text-ink-800 dark:hover:text-white"
         >
-          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden>
+          <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden>
             <rect x="7" y="7" width="10" height="10" rx="1.5" />
           </svg>
         </button>
