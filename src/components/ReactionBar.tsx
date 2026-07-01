@@ -41,7 +41,7 @@ const REACTIONS = [
   { type: "followup", label: "후속 기대", Icon: Bookmark },
 ] as const;
 
-type State = { counts: Record<string, number>; voted: Record<string, boolean> };
+type State = { counts: Record<string, number>; chosen: string | null };
 
 export function ReactionBar({ articleId }: { articleId: string }) {
   const [s, setS] = useState<State | null>(null);
@@ -52,7 +52,7 @@ export function ReactionBar({ articleId }: { articleId: string }) {
     fetch(`/api/reactions?article=${encodeURIComponent(articleId)}`)
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
-        if (alive && d?.counts) setS(d);
+        if (alive && d?.counts) setS({ counts: d.counts, chosen: d.chosen ?? null });
       })
       .catch(() => {});
     return () => {
@@ -61,13 +61,23 @@ export function ReactionBar({ articleId }: { articleId: string }) {
   }, [articleId]);
 
   async function react(type: string) {
-    if (busy || s?.voted?.[type]) return;
+    if (busy) return;
     setBusy(true);
-    setS((prev) =>
-      prev
-        ? { counts: { ...prev.counts, [type]: (prev.counts[type] || 0) + 1 }, voted: { ...prev.voted, [type]: true } }
-        : prev,
-    );
+    // 낙관적 갱신: 하나만 선택 — 갈아타기 / 같은 것 취소
+    setS((prev) => {
+      if (!prev) return prev;
+      const counts = { ...prev.counts };
+      let chosen: string | null = prev.chosen;
+      if (prev.chosen === type) {
+        counts[type] = Math.max(0, (counts[type] || 0) - 1);
+        chosen = null;
+      } else {
+        if (prev.chosen) counts[prev.chosen] = Math.max(0, (counts[prev.chosen] || 0) - 1);
+        counts[type] = (counts[type] || 0) + 1;
+        chosen = type;
+      }
+      return { counts, chosen };
+    });
     try {
       const r = await fetch("/api/reactions", {
         method: "POST",
@@ -75,7 +85,7 @@ export function ReactionBar({ articleId }: { articleId: string }) {
         body: JSON.stringify({ article: articleId, type }),
       });
       const d = await r.json();
-      if (d?.counts) setS({ counts: d.counts, voted: d.voted });
+      if (d?.counts) setS({ counts: d.counts, chosen: d.chosen ?? null });
     } catch {
       /* 실패 시 낙관적 갱신 유지(다음 로드에서 정정) */
     }
@@ -87,19 +97,19 @@ export function ReactionBar({ articleId }: { articleId: string }) {
       <h3 className="text-center text-sm font-bold text-ink-700 dark:text-ink-200">이 기사를 추천합니다</h3>
       <div className="mx-auto mt-4 grid max-w-lg grid-cols-5 gap-1.5 sm:gap-3">
         {REACTIONS.map(({ type, label, Icon }) => {
-          const on = !!s?.voted?.[type];
+          const on = s?.chosen === type;
           const n = s?.counts?.[type] ?? 0;
           return (
             <button
               key={type}
               onClick={() => react(type)}
-              disabled={on || busy}
+              disabled={busy}
               aria-pressed={on}
-              className={`flex flex-col items-center gap-1.5 rounded-lg px-1 py-2.5 transition-colors ${
+              className={`flex cursor-pointer flex-col items-center gap-1.5 rounded-lg px-1 py-2.5 transition-colors ${
                 on
                   ? "bg-white text-ink-900 shadow-sm ring-1 ring-ink-900/70 dark:bg-ink-800 dark:text-white dark:ring-white/60"
                   : "text-ink-500 hover:bg-white/70 hover:text-ink-800 dark:text-ink-400 dark:hover:bg-ink-800/60 dark:hover:text-ink-100"
-              } ${on ? "" : "cursor-pointer"}`}
+              }`}
             >
               <Icon />
               <span className="whitespace-nowrap text-[11px] font-medium sm:text-xs">{label}</span>
@@ -108,7 +118,7 @@ export function ReactionBar({ articleId }: { articleId: string }) {
           );
         })}
       </div>
-      <p className="mt-3 text-center text-[11px] text-ink-400">로그인 없이 참여 · 반응별 하루 1회</p>
+      <p className="mt-3 text-center text-[11px] text-ink-400">로그인 없이 참여 · 하나만 선택(다시 누르면 취소) · 하루 1회</p>
     </section>
   );
 }

@@ -1,15 +1,19 @@
 /**
  * Cloudflare Pages Function — 기사 반응("이 기사를 추천합니다").
  *
- * 로그인 없이 반응 가능. 남용 방지 = IP 해시 + KST 날짜 키로 "기사×반응 하루 1회"(KST 자정 리셋).
- * IP 원문은 저장하지 않고 SHA-256 해시만 사용(개인정보 보호). 전부 긍정·중립 반응(찬반 없음).
+ * 로그인 없이 반응. **한 기사에 한 IP당 하나만 선택**(단일 선택):
+ *   - 아무것도 안 골랐으면 → 선택.
+ *   - 다른 걸 누르면 → 갈아타기(이전 것 -1, 새 것 +1).
+ *   - 같은 걸 다시 누르면 → 취소(-1).
+ * 남용 방지 = IP 해시 + KST 날짜 키(하루 단위, 자정 리셋). IP 원문은 저장하지 않고 SHA-256 해시만.
+ * 전부 긍정·중립 반응(찬반 없음).
  *
  * 저장: Cloudflare KV(binding REACTIONS)
- *   - 카운트:  react:<article>:<type>            → 정수 문자열
- *   - 중복방지: voted:<article>:<type>:<ipHash>:<KST날짜> → "1" (자정까지 TTL)
+ *   - 카운트: react:<article>:<type>            → 정수 문자열
+ *   - 선택:   choice:<article>:<ipHash>:<KST날짜> → 선택한 type (자정까지 TTL)
  *
- * GET  /api/reactions?article=<id>      → { counts, voted }
- * POST /api/reactions  {article, type}  → { counts, voted, counted }
+ * GET  /api/reactions?article=<id>      → { counts, chosen }
+ * POST /api/reactions  {article, type}  → { counts, chosen }
  */
 
 const TYPES = ["info", "interesting", "empathy", "insight", "followup"] as const;
@@ -32,13 +36,11 @@ function pad(n: number) {
   return String(n).padStart(2, "0");
 }
 
-// KST 날짜 문자열(YYYYMMDD)
 function kstDate(ms: number): string {
   const d = new Date(ms + 9 * 3600 * 1000);
   return `${d.getUTCFullYear()}${pad(d.getUTCMonth() + 1)}${pad(d.getUTCDate())}`;
 }
 
-// 다음 KST 자정까지 남은 초(중복키 TTL)
 function secsToKstMidnight(ms: number): number {
   const kstMs = ms + 9 * 3600 * 1000;
   const d = new Date(kstMs);
@@ -58,11 +60,8 @@ async function readCounts(kv: any, article: string): Promise<Record<string, numb
   return counts;
 }
 
-async function readVoted(kv: any, article: string, ipHash: string, day: string): Promise<Record<string, boolean>> {
-  const vals = await Promise.all(TYPES.map((t) => kv.get(`voted:${article}:${t}:${ipHash}:${day}`)));
-  const voted: Record<string, boolean> = {};
-  TYPES.forEach((t, i) => (voted[t] = !!vals[i]));
-  return voted;
+async function ipHashOf(request: any): Promise<string> {
+  return sha256(SALT + (request.headers.get("CF-Connecting-IP") || ""));
 }
 
 export async function onRequestGet(context: any): Promise<Response> {
@@ -71,10 +70,13 @@ export async function onRequestGet(context: any): Promise<Response> {
   const article = cleanArticle(url.searchParams.get("article"));
   if (!kv || !article) return json({ error: "bad request" }, 400);
 
-  const ipHash = await sha256(SALT + (context.request.headers.get("CF-Connecting-IP") || ""));
+  const ipHash = await ipHashOf(context.request);
   const day = kstDate(Date.now());
-  const [counts, voted] = await Promise.all([readCounts(kv, article), readVoted(kv, article, ipHash, day)]);
-  return json({ counts, voted });
+  const [counts, chosen] = await Promise.all([
+    readCounts(kv, article),
+    kv.get(`choice:${article}:${ipHash}:${day}`),
+  ]);
+  return json({ counts, chosen: chosen || null });
 }
 
 export async function onRequestPost(context: any): Promise<Response> {
@@ -91,23 +93,29 @@ export async function onRequestPost(context: any): Promise<Response> {
   const type = body?.type as ReactionType;
   if (!article || !TYPES.includes(type)) return json({ error: "bad request" }, 400);
 
-  const ipHash = await sha256(SALT + (context.request.headers.get("CF-Connecting-IP") || ""));
+  const ipHash = await ipHashOf(context.request);
   const day = kstDate(Date.now());
-  const dedupKey = `voted:${article}:${type}:${ipHash}:${day}`;
+  const choiceKey = `choice:${article}:${ipHash}:${day}`;
 
-  const [counts, voted, already] = await Promise.all([
-    readCounts(kv, article),
-    readVoted(kv, article, ipHash, day),
-    kv.get(dedupKey),
-  ]);
+  const [counts, prev] = await Promise.all([readCounts(kv, article), kv.get(choiceKey)]);
+  let chosen: string | null = prev || null;
 
-  let counted = false;
-  if (!already) {
-    await kv.put(`react:${article}:${type}`, String((counts[type] || 0) + 1));
-    await kv.put(dedupKey, "1", { expirationTtl: secsToKstMidnight(Date.now()) });
-    counts[type] = (counts[type] || 0) + 1; // 즉시 반영(KV 최종일관성 우회)
-    voted[type] = true;
-    counted = true;
+  if (prev === type) {
+    // 같은 걸 다시 → 취소
+    counts[type] = Math.max(0, (counts[type] || 0) - 1);
+    await kv.put(`react:${article}:${type}`, String(counts[type]));
+    await kv.delete(choiceKey);
+    chosen = null;
+  } else {
+    // 갈아타기 or 신규 선택
+    if (prev && (TYPES as readonly string[]).includes(prev)) {
+      counts[prev] = Math.max(0, (counts[prev] || 0) - 1);
+      await kv.put(`react:${article}:${prev}`, String(counts[prev]));
+    }
+    counts[type] = (counts[type] || 0) + 1;
+    await kv.put(`react:${article}:${type}`, String(counts[type]));
+    await kv.put(choiceKey, type, { expirationTtl: secsToKstMidnight(Date.now()) });
+    chosen = type;
   }
-  return json({ counts, voted, counted });
+  return json({ counts, chosen });
 }
