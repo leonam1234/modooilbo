@@ -210,3 +210,12 @@
     background-position: 0 104px;
   }
 }
+
+/* 실시간 인기 해시태그 스트립 — 반짝임 + 가로 스크롤바 숨김 */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+@keyframes tw-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+@keyframes tw-twinkle { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+.tw-live { animation: tw-blink 1s ease-in-out infinite; }
+.tw-chip { animation: tw-twinkle 2.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .tw-live, .tw-chip { animation: none; } }

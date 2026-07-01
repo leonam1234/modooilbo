@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { BreakingTicker } from "@/components/BreakingTicker";
+import { TrendingTags } from "@/components/TrendingTags";
 import { Footer } from "@/components/Footer";
 import { WeatherBackground } from "@/components/WeatherBackground";
 
@@ -108,6 +109,7 @@ export default function RootLayout({
         {/* 헤더 + 속보 티커를 한 덩어리로 sticky 고정 (스크롤 시 같이 따라옴) */}
         <div className="sticky top-0 z-40">
           <Header />
+          <TrendingTags />
           <BreakingTicker />
         </div>
         <div className="relative z-10">
