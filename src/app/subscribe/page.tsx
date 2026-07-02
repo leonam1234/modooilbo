@@ -61,9 +61,9 @@ const PLANS: Plan[] = [
       "오프라인 저널리즘 행사 협력",
       "전용 담당자 배정 및 정기 리포트",
     ],
-    cta: "기업 후원 문의하기",
+    cta: "제휴·후원 문의하기",
     href: `mailto:help@modooilbo.com?subject=${encodeURIComponent(
-      "[모두일보] 기업 후원 문의",
+      "[모두일보] 제휴·후원 문의",
     )}&body=${encodeURIComponent("회사명:\n담당자:\n연락처:\n후원 희망 형태:\n문의 내용:\n")}`,
   },
 ];
