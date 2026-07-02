@@ -18,6 +18,7 @@ interface Plan {
   cta: string;
   highlight?: boolean;
   badge?: string;
+  href?: string;
 }
 
 const PLANS: Plan[] = [
@@ -50,18 +51,20 @@ const PLANS: Plan[] = [
     badge: "인기",
   },
   {
-    name: "후원 서포터",
-    price: "20,000원~",
-    period: "/월",
-    tagline: "독립 언론의 든든한 동반자가 되어주세요.",
+    name: "기업 후원",
+    price: "별도 협의",
+    tagline: "기업·기관과 함께하는 신뢰 저널리즘.",
     features: [
-      "디지털 멤버십의 모든 혜택",
-      "분기별 후원자 리포트 발송",
-      "취재 현장·제작 비하인드 공유",
-      "오프라인 저널리즘 행사 초대",
-      "엔딩 크레디트 후원자 명단 등재",
+      "맞춤형 후원·제휴 프로그램 설계",
+      "공익 저널리즘 후원으로 브랜드 신뢰 제고",
+      "지면·뉴스레터 감사 표기",
+      "오프라인 저널리즘 행사 협력",
+      "전용 담당자 배정 및 정기 리포트",
     ],
-    cta: "후원 서포터 되기",
+    cta: "기업 후원 문의하기",
+    href: `mailto:help@modooilbo.com?subject=${encodeURIComponent(
+      "[모두일보] 기업 후원 문의",
+    )}&body=${encodeURIComponent("회사명:\n담당자:\n연락처:\n후원 희망 형태:\n문의 내용:\n")}`,
   },
 ];
 
@@ -88,7 +91,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "멤버십과 후원은 무엇이 다른가요?",
-    a: "디지털 멤버십은 모든 기사와 아카이브를 제한 없이 이용하는 유료 구독입니다. 후원 서포터는 멤버십 혜택에 더해, 독립 저널리즘을 직접 후원하고 제작 과정에 함께하는 단계입니다.",
+    a: "디지털 멤버십은 모든 기사와 아카이브를 제한 없이 이용하는 유료 구독입니다. 기업 후원은 기업·기관이 맞춤형으로 공익 저널리즘을 후원·제휴하는 방식이며, 별도 협의로 진행됩니다.",
   },
   {
     q: "언제든 해지할 수 있나요?",
@@ -214,18 +217,32 @@ export default function SubscribePage() {
                 ))}
               </ul>
 
-              <Link
-                href="#"
-                aria-disabled
-                className={cn(
-                  "mt-8 block rounded-md px-6 py-3 text-center font-semibold transition-colors",
-                  plan.highlight
-                    ? "bg-signal-600 text-white hover:bg-signal-700"
-                    : "border border-ink-300 text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200",
-                )}
-              >
-                {plan.cta}
-              </Link>
+              {plan.href ? (
+                <a
+                  href={plan.href}
+                  className={cn(
+                    "mt-8 block rounded-md px-6 py-3 text-center font-semibold transition-colors",
+                    plan.highlight
+                      ? "bg-signal-600 text-white hover:bg-signal-700"
+                      : "border border-ink-300 text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200",
+                  )}
+                >
+                  {plan.cta}
+                </a>
+              ) : (
+                <Link
+                  href="#"
+                  aria-disabled
+                  className={cn(
+                    "mt-8 block rounded-md px-6 py-3 text-center font-semibold transition-colors",
+                    plan.highlight
+                      ? "bg-signal-600 text-white hover:bg-signal-700"
+                      : "border border-ink-300 text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200",
+                  )}
+                >
+                  {plan.cta}
+                </Link>
+              )}
             </div>
           ))}
         </div>
@@ -250,7 +267,7 @@ export default function SubscribePage() {
                   디지털 멤버십
                 </th>
                 <th className="px-4 py-4 text-center font-semibold text-ink-700 dark:text-ink-200">
-                  후원 서포터
+                  기업 후원
                 </th>
               </tr>
             </thead>
