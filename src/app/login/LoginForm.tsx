@@ -51,16 +51,37 @@ export function LoginForm() {
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);
   const [notice, setNotice] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setNotice(
-      `데모 환경입니다. ${email || "입력하신 계정"}으로의 실제 로그인은 지원되지 않습니다.`,
-    );
+    if (busy) return;
+    if (!email || !password) {
+      setNotice("이메일과 비밀번호를 입력해 주세요.");
+      return;
+    }
+    setBusy(true);
+    setNotice(null);
+    try {
+      const r = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const d = await r.json();
+      if (r.ok && d?.user) {
+        window.location.href = "/";
+        return;
+      }
+      setNotice(d?.error || "로그인에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+    } catch {
+      setNotice("네트워크 오류입니다. 잠시 후 다시 시도해 주세요.");
+    }
+    setBusy(false);
   }
 
   function handleSocial(provider: string) {
-    setNotice(`데모 환경입니다. ${provider} 소셜 로그인은 동작하지 않습니다.`);
+    setNotice(`${provider} 간편 로그인은 준비 중입니다. 이메일로 가입해 주시면 나중에 같은 계정에 연결됩니다.`);
   }
 
   return (
@@ -126,9 +147,10 @@ export function LoginForm() {
 
       <button
         type="submit"
+        disabled={busy}
         className="w-full rounded-md bg-signal-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-signal-700 disabled:opacity-50"
       >
-        로그인
+        {busy ? "로그인 중…" : "로그인"}
       </button>
 
       {notice && (

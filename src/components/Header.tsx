@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { CATEGORIES } from "@/lib/categories";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./ThemeToggle";
+import { AuthMenu } from "./AuthMenu";
 import { LocationPicker } from "./LocationPicker";
 import { SearchIcon, MenuIcon, CloseIcon, UserIcon } from "./icons";
 
@@ -85,8 +86,7 @@ export function Header() {
               후원·구독
             </Link>
             <span aria-hidden className="text-ink-200 dark:text-ink-700">|</span>
-            <Link href="/login" className="hover:text-ink-900 dark:hover:text-white">로그인</Link>
-            <Link href="/register" className="hover:text-ink-900 dark:hover:text-white">회원가입</Link>
+            <AuthMenu variant="links" />
             <Link href="/newsletter" className="hover:text-ink-900 dark:hover:text-white">뉴스레터</Link>
             <ThemeToggle className="h-7 w-7" />
           </nav>
@@ -119,13 +119,7 @@ export function Header() {
             </button>
             <ThemeToggle className="md:hidden" />
             <LocationPicker className="ml-1 hidden sm:inline-flex" />
-            <Link
-              href="/login"
-              className="ml-1 hidden items-center gap-1.5 rounded-full border border-ink-200 px-3.5 py-1.5 text-sm font-medium text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:border-ink-700 dark:text-ink-200 sm:inline-flex"
-            >
-              <UserIcon className="h-4 w-4" />
-              로그인
-            </Link>
+            <AuthMenu variant="pill" />
           </div>
         </div>
 

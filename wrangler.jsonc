@@ -7,5 +7,12 @@
       "binding": "REACTIONS",
       "id": "b73697771f59450790ada8c6b695374c"
     }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "modooilbo-members",
+      "database_id": "68ca4b6d-3084-4dbc-b514-0d09ac82c5a4"
+    }
   ]
 }
