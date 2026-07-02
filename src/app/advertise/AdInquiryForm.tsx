@@ -239,7 +239,7 @@ export function AdInquiryForm() {
           문의 보내기
         </button>
         <p className="text-xs text-ink-400">
-          문의는 이메일 bridzzitimes@gmail.com 으로 보내주세요.
+          문의는 이메일 help@modooilbo.com 으로 보내주세요.
         </p>
       </div>
     </form>

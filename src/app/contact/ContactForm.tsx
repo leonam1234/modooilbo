@@ -168,7 +168,7 @@ export function ContactForm() {
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs text-ink-400">
-          문의는 이메일 bridzzitimes@gmail.com 으로 보내주세요.
+          문의는 이메일 help@modooilbo.com 으로 보내주세요.
         </p>
         <button
           type="submit"
