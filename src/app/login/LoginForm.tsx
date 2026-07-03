@@ -81,14 +81,18 @@ export function LoginForm() {
   }
 
   useEffect(() => {
-    if (new URLSearchParams(window.location.search).get("error") === "kakao") {
-      setNotice("카카오 로그인에 실패했습니다. 잠시 후 다시 시도해 주세요.");
-    }
+    const err = new URLSearchParams(window.location.search).get("error");
+    if (err === "kakao") setNotice("카카오 로그인에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+    if (err === "google") setNotice("구글 로그인에 실패했습니다. 잠시 후 다시 시도해 주세요.");
   }, []);
 
   function handleSocial(provider: string) {
     if (provider === "카카오") {
       window.location.href = "/api/auth/kakao/start";
+      return;
+    }
+    if (provider === "구글") {
+      window.location.href = "/api/auth/google/start";
       return;
     }
     setNotice(`${provider} 간편 로그인은 준비 중입니다. 이메일로 가입해 주시면 나중에 같은 계정에 연결됩니다.`);
