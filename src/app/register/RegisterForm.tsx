@@ -79,17 +79,17 @@ export function RegisterForm() {
           htmlFor="reg-name"
           className="mb-1.5 block text-sm font-medium text-ink-700 dark:text-ink-200"
         >
-          이름
+          닉네임
         </label>
         <input
           id="reg-name"
           name="name"
           type="text"
-          autoComplete="name"
+          autoComplete="nickname"
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="홍길동"
+          placeholder="모두일보에서 표시될 이름"
           className="h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white"
         />
       </div>
