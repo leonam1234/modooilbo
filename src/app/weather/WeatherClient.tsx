@@ -50,8 +50,20 @@ export function WeatherClient() {
       `&current=weather_code,temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m` +
       `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max` +
       `&timezone=Asia%2FSeoul&forecast_days=7`;
-    fetch(url, { signal: AbortSignal.timeout(10000) })
-      .then((r) => (r.ok ? r.json() : Promise.reject()))
+    // 첫 호출이 간헐적으로 늦거나 실패하는 케이스 관측 → 2회까지 재시도
+    const load = async (): Promise<any> => {
+      for (let attempt = 0; attempt < 3; attempt++) {
+        try {
+          const r = await fetch(url, { signal: AbortSignal.timeout(10000) });
+          if (r.ok) return await r.json();
+        } catch {
+          /* 재시도 */
+        }
+        if (attempt < 2) await new Promise((res) => setTimeout(res, 1500));
+      }
+      throw new Error("weather-fetch-failed");
+    };
+    load()
       .then((j) => {
         if (!alive) return;
         const c = j?.current;

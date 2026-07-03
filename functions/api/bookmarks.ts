@@ -25,7 +25,7 @@ export async function onRequestGet(ctx: any): Promise<Response> {
   if (!me) return json({ error: "로그인이 필요합니다." }, 401);
   const rows = (
     await env.DB.prepare(
-      "SELECT article_id, created_at FROM bookmarks WHERE user_id = ?1 ORDER BY created_at DESC",
+      "SELECT article_id, created_at FROM bookmarks WHERE user_id = ?1 ORDER BY created_at DESC LIMIT 100",
     )
       .bind(me.id)
       .all()

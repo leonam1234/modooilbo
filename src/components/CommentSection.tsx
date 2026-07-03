@@ -200,7 +200,8 @@ export function CommentSection({ articleId }: { articleId: string }) {
     }
   }
 
-  function Row({ c, isReply }: { c: CommentItem; isReply?: boolean }) {
+  // 컴포넌트가 아닌 렌더 함수 — 매 렌더마다 서브트리 재마운트되는 것 방지
+  function renderComment(c: CommentItem, isReply?: boolean) {
     return (
       <div className={isReply ? "" : "py-4"}>
         {c.deleted || c.hidden ? (
@@ -325,11 +326,11 @@ export function CommentSection({ articleId }: { articleId: string }) {
             const replies = repliesOf.get(c.id) ?? [];
             return (
               <div key={c.id}>
-                <Row c={c} />
+                {renderComment(c)}
                 {(replies.length > 0 || replyTo === c.id) && (
                   <div className="mb-4 ml-4 space-y-4 border-l-2 border-ink-100 pl-4 dark:border-ink-800">
                     {replies.map((r) => (
-                      <Row key={r.id} c={r} isReply />
+                      <div key={r.id}>{renderComment(r, true)}</div>
                     ))}
                     {replyTo === c.id && (
                       <WriteBox

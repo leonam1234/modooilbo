@@ -126,16 +126,6 @@ export async function onRequestPost(ctx: any): Promise<Response> {
     return json({ error: "부적절한 표현이 포함되어 등록할 수 없습니다. 표현을 다듬어 주세요." }, 400);
   }
 
-  // 도배 방지: 같은 회원 15초에 1건
-  if (env.REACTIONS) {
-    const rlKey = `crl:${me.id}`;
-    const last = await env.REACTIONS.get(rlKey);
-    if (last && Date.now() - Number(last) < 15_000) {
-      return json({ error: "너무 빠르게 연속 작성할 수 없습니다. 잠시 후 다시 시도해 주세요." }, 429);
-    }
-    await env.REACTIONS.put(rlKey, String(Date.now()), { expirationTtl: 60 });
-  }
-
   if (parent) {
     const p = (await env.DB.prepare(
       "SELECT article_id, parent_id, is_deleted FROM comments WHERE id = ?1",
@@ -145,6 +135,16 @@ export async function onRequestPost(ctx: any): Promise<Response> {
     if (!p || p.article_id !== article || p.parent_id || p.is_deleted) {
       return json({ error: "답글을 달 수 없는 댓글입니다." }, 400);
     }
+  }
+
+  // 도배 방지: 같은 회원 15초에 1건 (검증 전 실패 요청이 슬롯을 태우지 않게 맨 뒤에서 체크)
+  if (env.REACTIONS) {
+    const rlKey = `crl:${me.id}`;
+    const last = await env.REACTIONS.get(rlKey);
+    if (last && Date.now() - Number(last) < 15_000) {
+      return json({ error: "너무 빠르게 연속 작성할 수 없습니다. 잠시 후 다시 시도해 주세요." }, 429);
+    }
+    await env.REACTIONS.put(rlKey, String(Date.now()), { expirationTtl: 60 });
   }
 
   const id = crypto.randomUUID();
