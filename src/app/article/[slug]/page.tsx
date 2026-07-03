@@ -9,6 +9,7 @@ import { formatKoreanDateTime, formatCount } from "@/lib/utils";
 import { ArticleCard } from "@/components/ArticleCard";
 import { RankingList } from "@/components/RankingList";
 import { ArticleActions } from "@/components/ArticleActions";
+import { CommentSection } from "@/components/CommentSection";
 import { ListenButton } from "@/components/ListenButton";
 import { ReactionBar } from "@/components/ReactionBar";
 import { ViewBeacon } from "@/components/ViewBeacon";
@@ -210,6 +211,8 @@ export default async function ArticlePage({
               modooilbo.com
             </p>
           </div>
+
+          <CommentSection articleId={article.id} />
 
           {(prev || next) && (
             <nav

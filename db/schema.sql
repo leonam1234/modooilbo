@@ -30,3 +30,21 @@ CREATE TABLE IF NOT EXISTS sessions (
   expires_at TEXT NOT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id);
+
+-- 댓글 (2026-07-03): 기사별 댓글 + 답글 1단 + 공감. 삭제는 소프트(작성자 표시 유지).
+CREATE TABLE IF NOT EXISTS comments (
+  id TEXT PRIMARY KEY,                          -- UUID
+  article_id TEXT NOT NULL,                     -- 기사 id/slug
+  user_id TEXT NOT NULL REFERENCES users(id),
+  parent_id TEXT REFERENCES comments(id),       -- NULL=원댓글, 값=답글(1단만)
+  body TEXT NOT NULL,
+  is_deleted INTEGER NOT NULL DEFAULT 0,
+  created_at TEXT NOT NULL DEFAULT (datetime('now','+9 hours'))
+);
+CREATE INDEX IF NOT EXISTS idx_comments_article ON comments(article_id, created_at);
+CREATE TABLE IF NOT EXISTS comment_likes (
+  comment_id TEXT NOT NULL REFERENCES comments(id),
+  user_id TEXT NOT NULL REFERENCES users(id),
+  created_at TEXT NOT NULL DEFAULT (datetime('now','+9 hours')),
+  PRIMARY KEY (comment_id, user_id)
+);
