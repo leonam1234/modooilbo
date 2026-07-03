@@ -3,16 +3,17 @@
  * 간편 회원가입/로그인 (identities(naver) 로그인 / 동일이메일 병합 / 신규 자동가입).
  * 실패 시 /login/?error=naver 로 리다이렉트.
  */
-import { createSession, sessionCookie, type AuthEnv } from "../../../_lib/auth";
+import { createSession, sessionCookie, getUser, type AuthEnv } from "../../../_lib/auth";
 
-function back(url: URL, ok: boolean, extraCookie?: string): Response {
+function back(url: URL, ok: boolean, extraCookie?: string, dest?: string): Response {
   const secure = url.protocol === "https:" ? "; Secure" : "";
   const h = new Headers({
-    location: ok ? `${url.origin}/` : `${url.origin}/login/?error=naver`,
+    location: dest ?? (ok ? `${url.origin}/` : `${url.origin}/login/?error=naver`),
     "cache-control": "no-store",
   });
   if (extraCookie) h.append("set-cookie", extraCookie);
   h.append("set-cookie", `modoo_oauth_state=; Path=/; HttpOnly${secure}; SameSite=Lax; Max-Age=0`);
+  h.append("set-cookie", `modoo_oauth_link=; Path=/; HttpOnly${secure}; SameSite=Lax; Max-Age=0`);
   return new Response(null, { status: 302, headers: h });
 }
 
@@ -21,7 +22,9 @@ export async function onRequestGet(ctx: any): Promise<Response> {
   const url = new URL(ctx.request.url);
   const code = url.searchParams.get("code");
   const state = url.searchParams.get("state");
-  const saved = ((ctx.request.headers.get("Cookie") || "").match(/(?:^|;\s*)modoo_oauth_state=([a-f0-9]{32})/) || [])[1];
+  const cookieHeader = ctx.request.headers.get("Cookie") || "";
+  const saved = (cookieHeader.match(/(?:^|;\s*)modoo_oauth_state=([a-f0-9]{32})/) || [])[1];
+  const linkMode = /(?:^|;\s*)modoo_oauth_link=1(?:;|$)/.test(cookieHeader);
 
   if (!code || !state || !saved || state !== saved || !env.NAVER_CLIENT_ID || !env.NAVER_CLIENT_SECRET || !env.DB) {
     return back(url, false);
@@ -59,6 +62,29 @@ export async function onRequestGet(ctx: any): Promise<Response> {
     )
       .bind(naverId)
       .first();
+
+    // 연결 모드: 현재 로그인된 계정에 이 소셜을 연결(새 계정 생성 X)
+    if (linkMode) {
+      const current = await getUser(env, ctx.request);
+      if (!current) return back(url, false, undefined, `${url.origin}/login/`);
+      if (ident) {
+        const owner = (ident as any).user_id;
+        return back(
+          url,
+          true,
+          undefined,
+          owner === current.id
+            ? `${url.origin}/account/?linked=naver`
+            : `${url.origin}/account/?error=linked-other`,
+        );
+      }
+      await env.DB.prepare(
+        "INSERT INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'naver', ?2)",
+      )
+        .bind(current.id, naverId)
+        .run();
+      return back(url, true, undefined, `${url.origin}/account/?linked=naver`);
+    }
 
     let userId: string;
     if (ident) {

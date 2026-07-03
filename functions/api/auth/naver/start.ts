@@ -24,12 +24,13 @@ export async function onRequestGet(ctx: any): Promise<Response> {
   authorize.searchParams.set("state", state);
 
   const secure = url.protocol === "https:" ? "; Secure" : "";
-  return new Response(null, {
-    status: 302,
-    headers: {
-      location: authorize.toString(),
-      "set-cookie": `modoo_oauth_state=${state}; Path=/; HttpOnly${secure}; SameSite=Lax; Max-Age=600`,
-      "cache-control": "no-store",
-    },
-  });
+  const h = new Headers({ location: authorize.toString(), "cache-control": "no-store" });
+  h.append("set-cookie", `modoo_oauth_state=${state}; Path=/; HttpOnly${secure}; SameSite=Lax; Max-Age=600`);
+  // 연결 모드(?link=1): 로그인된 계정에 이 소셜을 연결
+  if (url.searchParams.get("link") === "1") {
+    h.append("set-cookie", `modoo_oauth_link=1; Path=/; HttpOnly${secure}; SameSite=Lax; Max-Age=600`);
+  } else {
+    h.append("set-cookie", `modoo_oauth_link=; Path=/; HttpOnly${secure}; SameSite=Lax; Max-Age=0`);
+  }
+  return new Response(null, { status: 302, headers: h });
 }

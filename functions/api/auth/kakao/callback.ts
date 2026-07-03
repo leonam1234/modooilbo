@@ -6,19 +6,21 @@
  *   - 없으면 → 자동 가입(비밀번호 없음). 이메일 미제공 시 합성 이메일(kakao_<id>@users.modooilbo.com)
  * 실패 시 /login/?error=kakao 로 리다이렉트.
  */
-import { createSession, sessionCookie, type AuthEnv } from "../../../_lib/auth";
+import { createSession, sessionCookie, getUser, type AuthEnv } from "../../../_lib/auth";
 
-function back(url: URL, ok: boolean, extraCookie?: string): Response {
+function back(url: URL, ok: boolean, extraCookie?: string, dest?: string): Response {
   const headers: Record<string, string> = {
-    location: ok ? `${url.origin}/` : `${url.origin}/login/?error=kakao`,
+    location: dest ?? (ok ? `${url.origin}/` : `${url.origin}/login/?error=kakao`),
     "cache-control": "no-store",
   };
   const secure = url.protocol === "https:" ? "; Secure" : "";
   const clearState = `modoo_oauth_state=; Path=/; HttpOnly${secure}; SameSite=Lax; Max-Age=0`;
+  const clearLink = `modoo_oauth_link=; Path=/; HttpOnly${secure}; SameSite=Lax; Max-Age=0`;
   // Set-Cookie 2개(세션+state 제거)를 위해 Headers 사용
   const h = new Headers(headers);
   if (extraCookie) h.append("set-cookie", extraCookie);
   h.append("set-cookie", clearState);
+  h.append("set-cookie", clearLink);
   return new Response(null, { status: 302, headers: h });
 }
 
@@ -29,6 +31,7 @@ export async function onRequestGet(ctx: any): Promise<Response> {
   const state = url.searchParams.get("state");
   const cookie = ctx.request.headers.get("Cookie") || "";
   const saved = (cookie.match(/(?:^|;\s*)modoo_oauth_state=([a-f0-9]{32})/) || [])[1];
+  const linkMode = /(?:^|;\s*)modoo_oauth_link=1(?:;|$)/.test(cookie);
 
   if (!code || !state || !saved || state !== saved || !env.KAKAO_REST_KEY || !env.DB) {
     return back(url, false);
@@ -70,6 +73,29 @@ export async function onRequestGet(ctx: any): Promise<Response> {
     )
       .bind(kakaoId)
       .first();
+
+    // 연결 모드: 현재 로그인된 계정에 이 소셜을 연결(새 계정 생성 X)
+    if (linkMode) {
+      const current = await getUser(env, ctx.request);
+      if (!current) return back(url, false, undefined, `${url.origin}/login/`);
+      if (ident) {
+        const owner = (ident as any).user_id;
+        return back(
+          url,
+          true,
+          undefined,
+          owner === current.id
+            ? `${url.origin}/account/?linked=kakao`
+            : `${url.origin}/account/?error=linked-other`,
+        );
+      }
+      await env.DB.prepare(
+        "INSERT INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'kakao', ?2)",
+      )
+        .bind(current.id, kakaoId)
+        .run();
+      return back(url, true, undefined, `${url.origin}/account/?linked=kakao`);
+    }
 
     let userId: string;
     if (ident) {
