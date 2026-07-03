@@ -38,3 +38,4 @@ next-env.d.ts
 # Cloudflare 분석 조회 토큰(읽기전용) — wrangler 배포 토큰과 분리 보관
 /.cf-analytics.env
 /.dev.vars
+/naver-keys.txt
