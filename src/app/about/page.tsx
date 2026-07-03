@@ -200,7 +200,7 @@ export default function AboutPage() {
               뉴스룸과 조직
             </h2>
             <p className="mt-2 max-w-2xl text-ink-500 dark:text-ink-300">
-              약 80명의 기자와 에디터, 데이터 분석가, 개발자가 함께 뉴스를 만듭니다.
+              기자와 에디터, 개발자가 함께 뉴스를 만듭니다.
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               {ORG.map((o) => (

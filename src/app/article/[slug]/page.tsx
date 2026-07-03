@@ -14,6 +14,7 @@ import { ListenButton } from "@/components/ListenButton";
 import { ReactionBar } from "@/components/ReactionBar";
 import { ViewBeacon } from "@/components/ViewBeacon";
 import { displayImageUrl } from "@/lib/stock";
+import { getReporterByName } from "@/lib/reporters";
 import JsonLd from "@/components/JsonLd";
 
 const SITE_URL = "https://modooilbo.com";
@@ -138,7 +139,16 @@ export default async function ArticlePage({
 
           <div className="mt-5 flex flex-col gap-3 border-y border-ink-100 py-3 dark:border-ink-800 sm:flex-row sm:items-center sm:justify-between">
             <div className="text-sm text-ink-500">
-              <span className="font-medium text-ink-800 dark:text-ink-100">{article.author.name}</span>{" "}
+              {getReporterByName(article.author.name) ? (
+                <Link
+                  href={`/reporter/${getReporterByName(article.author.name)!.slug}`}
+                  className="font-medium text-ink-800 hover:underline dark:text-ink-100"
+                >
+                  {article.author.name}
+                </Link>
+              ) : (
+                <span className="font-medium text-ink-800 dark:text-ink-100">{article.author.name}</span>
+              )}{" "}
               {article.author.role} ·{" "}
               <time dateTime={article.publishedAt}>{formatKoreanDateTime(article.publishedAt)}</time>
               <span className="ml-2 text-ink-400">조회 {formatCount(article.readCount)}</span>
@@ -203,13 +213,23 @@ export default async function ArticlePage({
           <ViewBeacon articleId={article.id} />
           <ReactionBar articleId={article.id} />
 
-          <div className="mt-8 rounded-xl border border-ink-200 bg-ink-50 p-5 dark:border-ink-800 dark:bg-ink-900">
-            <p className="text-sm font-bold text-ink-900 dark:text-white">
-              {article.author.name} <span className="font-normal text-ink-500">{article.author.role}</span>
-            </p>
-            <p className="mt-1 text-sm text-ink-500">
-              modooilbo.com
-            </p>
+          <div className="mt-8 flex items-center justify-between gap-3 rounded-xl border border-ink-200 bg-ink-50 p-5 dark:border-ink-800 dark:bg-ink-900">
+            <div>
+              <p className="text-sm font-bold text-ink-900 dark:text-white">
+                {article.author.name} <span className="font-normal text-ink-500">{article.author.role}</span>
+              </p>
+              <p className="mt-1 text-sm text-ink-500">
+                modooilbo.com
+              </p>
+            </div>
+            {getReporterByName(article.author.name) && (
+              <Link
+                href={`/reporter/${getReporterByName(article.author.name)!.slug}`}
+                className="shrink-0 rounded-md border border-ink-300 px-3 py-2 text-xs font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200"
+              >
+                기자의 다른 기사
+              </Link>
+            )}
           </div>
 
           <CommentSection articleId={article.id} />
