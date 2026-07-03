@@ -10,8 +10,9 @@ function fmt(n: number): string {
 }
 
 /**
- * 경제 섹션 상단 증시·환율 스트립 — 무채색 원칙이라 등락은 색이 아닌
- * ▲▼ 기호+굵기로 구분한다. 데이터 실패 시 조용히 사라진다(점진적 향상).
+ * 경제 섹션 상단 증시·환율 스트립 — 데이터 실패 시 조용히 사라진다(점진적 향상).
+ * 등락색(상승 빨강·하락 파랑)은 한국 금융 관례로, 무채색 원칙의 승인된 예외
+ * (진영색 아님 — 수화님 승인 2026-07-03). 다른 곳에 이 색을 확장하지 말 것.
  */
 export function MarketStrip() {
   const [data, setData] = useState<Data | null>(null);
@@ -44,12 +45,12 @@ export function MarketStrip() {
               <span className="text-sm font-bold tabular-nums text-ink-900 dark:text-white">{fmt(it.value)}</span>
               {diff !== null && (
                 <span
-                  className={`text-xs tabular-nums ${
+                  className={`text-xs font-semibold tabular-nums ${
                     up
-                      ? "font-semibold text-ink-900 dark:text-white"
+                      ? "text-red-600 dark:text-red-400"
                       : down
-                        ? "text-ink-500 dark:text-ink-400"
-                        : "text-ink-400"
+                        ? "text-blue-600 dark:text-blue-400"
+                        : "font-normal text-ink-400"
                   }`}
                 >
                   {up ? "▲" : down ? "▼" : "—"} {diff === 0 || pct === null ? "" : `${Math.abs(pct).toFixed(2)}%`}
