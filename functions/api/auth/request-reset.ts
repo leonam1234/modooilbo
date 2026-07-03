@@ -2,12 +2,13 @@
  * POST /api/auth/request-reset {email} — 비밀번호 재설정 링크 발송.
  * 계정 존재 여부를 숨기기 위해 항상 {ok:true} (이메일 열거 공격 방지).
  * 토큰: 랜덤 64hex, D1엔 SHA-256만, 1시간 유효 1회용.
- * 발송: CF Email Service — send_email 바인딩(EMAIL) 우선, 없으면 REST(EMAIL_API_TOKEN) 폴백.
+ * 발송: CF Email Service — Pages는 send_email 바인딩 미지원이라 전용 Worker
+ * (modooilbo-mailer, MAILER_URL+MAILER_KEY) 경유. 바인딩(EMAIL)이 생기면 그쪽 우선.
  * 남용 방지: 이메일당 15분 3회(KV).
  */
 import { json, sha256Hex, type AuthEnv } from "../../_lib/auth";
 
-type MailEnv = AuthEnv & { EMAIL?: any; EMAIL_API_TOKEN?: string; CF_ACCOUNT_ID?: string };
+type MailEnv = AuthEnv & { EMAIL?: any; MAILER_URL?: string; MAILER_KEY?: string };
 
 function randHex(bytes: number): string {
   const a = new Uint8Array(bytes);
@@ -33,22 +34,19 @@ async function sendResetMail(env: MailEnv, to: string, name: string, link: strin
       await env.EMAIL.send({ to, from, subject, text, html, replyTo: { email: "help@modooilbo.com" } });
       return true;
     }
-    if (env.EMAIL_API_TOKEN && env.CF_ACCOUNT_ID) {
-      const res = await fetch(
-        `https://api.cloudflare.com/client/v4/accounts/${env.CF_ACCOUNT_ID}/email/sending/send`,
-        {
-          method: "POST",
-          headers: { authorization: `Bearer ${env.EMAIL_API_TOKEN}`, "content-type": "application/json" },
-          body: JSON.stringify({
-            to,
-            from: { address: from.email, name: from.name },
-            reply_to: "help@modooilbo.com",
-            subject,
-            text,
-            html,
-          }),
-        },
-      );
+    if (env.MAILER_URL && env.MAILER_KEY) {
+      const res = await fetch(env.MAILER_URL, {
+        method: "POST",
+        headers: { "x-mailer-key": env.MAILER_KEY, "content-type": "application/json" },
+        body: JSON.stringify({
+          to,
+          from,
+          replyTo: { email: "help@modooilbo.com" },
+          subject,
+          text,
+          html,
+        }),
+      });
       return res.ok;
     }
   } catch {
