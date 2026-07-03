@@ -53,7 +53,7 @@ export function AuthMenu({ variant }: { variant: "links" | "pill" }) {
   if (variant === "links") {
     return user ? (
       <>
-        <span className="font-medium text-ink-700 dark:text-ink-200">{user.name}님</span>
+        <Link href="/account" className="font-medium text-ink-700 hover:text-ink-900 dark:text-ink-200 dark:hover:text-white">{user.name}님</Link>
         <button type="button" onClick={logout} className="hover:text-ink-900 dark:hover:text-white">
           로그아웃
         </button>
@@ -67,10 +67,13 @@ export function AuthMenu({ variant }: { variant: "links" | "pill" }) {
   }
 
   return user ? (
-    <span className="ml-1 hidden items-center gap-1.5 rounded-full border border-ink-200 px-3.5 py-1.5 text-sm font-medium text-ink-700 dark:border-ink-700 dark:text-ink-200 sm:inline-flex">
+    <Link
+      href="/account"
+      className="ml-1 hidden items-center gap-1.5 rounded-full border border-ink-200 px-3.5 py-1.5 text-sm font-medium text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:border-ink-700 dark:text-ink-200 sm:inline-flex"
+    >
       <UserIcon className="h-4 w-4" />
       {user.name}님
-    </span>
+    </Link>
   ) : (
     <Link
       href="/login"
