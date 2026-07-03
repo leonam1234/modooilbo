@@ -151,12 +151,17 @@ export function LoginForm() {
           />
           로그인 상태 유지
         </label>
-        <Link
-          href="/login"
+        <button
+          type="button"
+          onClick={() =>
+            setNotice(
+              "비밀번호 재설정 기능을 준비 중입니다. 카카오/구글로 가입하셨다면 아래 간편 로그인을 이용해 주세요. 급하시면 help@modooilbo.com 으로 문의 주시면 도와드립니다.",
+            )
+          }
           className="text-sm font-medium text-signal-600 hover:text-signal-700 dark:text-signal-400"
         >
           비밀번호 찾기
-        </Link>
+        </button>
       </div>
 
       <button
