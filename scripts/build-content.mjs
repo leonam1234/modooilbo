@@ -154,6 +154,9 @@ async function run() {
 
     const [name, role] = (fm.author || "모두일보 / 기자").split("/").map((s) => s.trim());
     const tags = (fm.tags || "").split(",").map((s) => s.trim()).filter(Boolean);
+    // 수정 시각(선택). 발행 시각보다 앞서면 무시.
+    const updatedRaw = (fm.updated || fm.updatedAt || "").trim();
+    const updatedAt = updatedRaw ? normDate(updatedRaw) : undefined;
     articles.push({
       id: slug,
       slug,
@@ -163,6 +166,7 @@ async function run() {
       category,
       author: { name: name || "모두일보", role: role || "기자" },
       publishedAt,
+      ...(updatedAt && updatedAt > publishedAt ? { updatedAt } : {}),
       imageUrl,
       imageCaption: (fm.imageCaption || "").trim() || undefined,
       tags,

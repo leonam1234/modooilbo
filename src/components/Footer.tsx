@@ -115,6 +115,7 @@ export function Footer() {
             <span>대표이사·발행인 남동균</span>
             <span>편집인 유수화</span>
             <span>청소년보호책임자 김영환</span>
+            <span>고충처리인 유승현</span>
           </p>
           <p className="mt-1 flex flex-wrap gap-x-3 gap-y-1">
             <span>서울특별시 중구 세종대로 124 모두일보빌딩</span>

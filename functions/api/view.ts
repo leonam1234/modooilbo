@@ -26,6 +26,16 @@ function clean(a: unknown): string | null {
   return typeof a === "string" && /^[a-z0-9][a-z0-9-]{0,80}$/i.test(a) ? a : null;
 }
 
+// GET ?article=<id> → 누적 조회수(기사 상세 표기용)
+export async function onRequestGet(ctx: any): Promise<Response> {
+  const kv = ctx.env.REACTIONS;
+  if (!kv) return json({ ok: false });
+  const article = clean(new URL(ctx.request.url).searchParams.get("article"));
+  if (!article) return json({ ok: false });
+  const count = parseInt((await kv.get(`views:${article}`)) || "0", 10) || 0;
+  return json({ ok: true, count });
+}
+
 export async function onRequestPost(ctx: any): Promise<Response> {
   const kv = ctx.env.REACTIONS;
   if (!kv) return json({ ok: false });

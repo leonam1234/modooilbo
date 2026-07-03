@@ -37,6 +37,18 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
   const [copied, setCopied] = useState(false);
   const [saved, setSaved] = useState(false);
   const [saveMsg, setSaveMsg] = useState<string | null>(null);
+  const [canShare, setCanShare] = useState(false);
+
+  // 기기 공유 시트(Web Share API) 지원 시에만 '공유' 버튼 노출 — 주로 모바일
+  useEffect(() => {
+    setCanShare(typeof navigator !== "undefined" && typeof navigator.share === "function");
+  }, []);
+
+  function nativeShare() {
+    navigator.share({ title, url: window.location.href }).catch(() => {
+      /* 사용자가 시트를 닫음 등 — 무시 */
+    });
+  }
 
   useEffect(() => {
     fetch(`/api/bookmarks?article=${encodeURIComponent(articleId)}`)
@@ -112,7 +124,7 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
     "inline-grid h-9 w-9 place-items-center rounded-full border border-ink-200 text-sm font-bold text-ink-600 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-700 dark:text-ink-300";
 
   return (
-    <div className="flex flex-wrap items-center gap-2">
+    <div className="no-print flex flex-wrap items-center gap-2">
       <div className="flex items-center rounded-full border border-ink-200 dark:border-ink-700">
         <button
           type="button"
@@ -161,6 +173,24 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
           </span>
         )}
       </div>
+      {canShare && (
+        <button type="button" onClick={nativeShare} aria-label="기기 공유" className={iconBtn}>
+          <svg
+            viewBox="0 0 24 24"
+            className="h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={1.8}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden
+          >
+            <path d="M12 15V4" />
+            <path d="m8 8 4-4 4 4" />
+            <path d="M5 12v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" />
+          </svg>
+        </button>
+      )}
       <button type="button" onClick={shareKakao} aria-label="카카오톡 공유" className={snsBtn}>
         톡
       </button>
