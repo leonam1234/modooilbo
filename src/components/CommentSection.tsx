@@ -97,11 +97,21 @@ export function CommentSection({ articleId }: { articleId: string }) {
   }, [articleId]);
   useEffect(load, [load]);
 
-  const { roots, repliesOf } = useMemo(() => {
+  const { roots, repliesOf, bestIds } = useMemo(() => {
     const list = data?.comments ?? [];
-    const roots = list.filter((c) => !c.parent_id);
-    if (sort === "likes") roots.sort((a, b) => b.likes - a.likes || b.created_at.localeCompare(a.created_at));
-    else roots.sort((a, b) => b.created_at.localeCompare(a.created_at));
+    const all = list.filter((c) => !c.parent_id);
+
+    // 베스트 댓글(네이버식): 공감 2개 이상 중 상위 3개를 상단 고정
+    const best = all
+      .filter((c) => !c.deleted && !c.hidden && c.likes >= 2)
+      .sort((a, b) => b.likes - a.likes || b.created_at.localeCompare(a.created_at))
+      .slice(0, 3);
+    const bestIds = new Set(best.map((c) => c.id));
+
+    const rest = all.filter((c) => !bestIds.has(c.id));
+    if (sort === "likes") rest.sort((a, b) => b.likes - a.likes || b.created_at.localeCompare(a.created_at));
+    else rest.sort((a, b) => b.created_at.localeCompare(a.created_at));
+
     const repliesOf = new Map<string, CommentItem[]>();
     for (const c of list) {
       if (!c.parent_id) continue;
@@ -109,7 +119,7 @@ export function CommentSection({ articleId }: { articleId: string }) {
       arr.push(c);
       repliesOf.set(c.parent_id, arr);
     }
-    return { roots, repliesOf };
+    return { roots: [...best, ...rest], repliesOf, bestIds };
   }, [data, sort]);
 
   async function submit(text: string, parent: string | null): Promise<boolean> {
@@ -211,6 +221,11 @@ export function CommentSection({ articleId }: { articleId: string }) {
         ) : (
           <>
             <p className="flex items-baseline gap-2">
+              {bestIds.has(c.id) && (
+                <span className="shrink-0 rounded border border-ink-900 px-1 text-[10px] font-black leading-4 text-ink-900 dark:border-white dark:text-white">
+                  BEST
+                </span>
+              )}
               <span className="text-sm font-semibold text-ink-900 dark:text-white">{c.author}</span>
               <span className="text-xs text-ink-400">{timeAgo(c.created_at)}</span>
             </p>

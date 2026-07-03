@@ -5,6 +5,32 @@ import { cn } from "@/lib/utils";
 import { ShareIcon, PrintIcon, BookmarkIcon } from "./icons";
 
 const SIZES = [16, 17, 18, 20, 22];
+const FONT_KEY = "modoo-fontsize";
+
+// 카카오 JavaScript 키 — 공개용(브라우저 노출 전제 설계, 카카오 콘솔의 플랫폼 도메인 등록으로 보호).
+// 비밀키(REST/Client Secret)는 서버 시크릿에만 있음.
+const KAKAO_JS_KEY = "dcba680be763b1980fab764f42acf6b6";
+
+function shareKakao() {
+  const w = window as any;
+  const doShare = () => {
+    try {
+      if (!w.Kakao.isInitialized()) w.Kakao.init(KAKAO_JS_KEY);
+      w.Kakao.Share.sendScrap({ requestUrl: window.location.href });
+    } catch {
+      /* 팝업 차단 등 — 조용히 무시 */
+    }
+  };
+  if (w.Kakao?.Share) {
+    doShare();
+    return;
+  }
+  const s = document.createElement("script");
+  s.src = "https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js";
+  s.async = true;
+  s.onload = doShare;
+  document.head.appendChild(s);
+}
 
 export function ArticleActions({ title, articleId }: { title: string; articleId: string }) {
   const [size, setSize] = useState(1);
@@ -39,11 +65,26 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
     setTimeout(() => setSaveMsg(null), 1500);
   }
 
+  // 저장된 글자 크기 복원(가+/가− 기억)
+  useEffect(() => {
+    try {
+      const saved = Number(localStorage.getItem(FONT_KEY));
+      if (Number.isInteger(saved) && saved >= 0 && saved < SIZES.length) setSize(saved);
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
   useEffect(() => {
     const el = document.getElementById("article-body");
     if (el) {
       el.style.fontSize = `${SIZES[size]}px`;
       el.style.lineHeight = "1.9";
+    }
+    try {
+      localStorage.setItem(FONT_KEY, String(size));
+    } catch {
+      /* ignore */
     }
   }, [size]);
 
@@ -120,6 +161,9 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
           </span>
         )}
       </div>
+      <button type="button" onClick={shareKakao} aria-label="카카오톡 공유" className={snsBtn}>
+        톡
+      </button>
       <button type="button" onClick={() => share("x")} aria-label="X(트위터) 공유" className={snsBtn}>
         X
       </button>
