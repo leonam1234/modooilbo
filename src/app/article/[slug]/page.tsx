@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ALL_ARTICLES } from "@/lib/news";
-import { getArticleBySlug, getRelated, getPrevNext, getMostRead } from "@/lib/queries";
+import { getArticleBySlug, getRelated, getPrevNext, getMostRead, getThreeLineSummary } from "@/lib/queries";
 import { CATEGORY_MAP } from "@/lib/categories";
 import { formatKoreanDateTime, formatCount } from "@/lib/utils";
 import { ArticleCard } from "@/components/ArticleCard";
@@ -13,6 +13,7 @@ import { CommentSection } from "@/components/CommentSection";
 import { ListenButton } from "@/components/ListenButton";
 import { RecentArticles } from "@/components/RecentArticles";
 import { ReactionBar } from "@/components/ReactionBar";
+import { ThreeLineSummary } from "@/components/ThreeLineSummary";
 import { ViewBeacon } from "@/components/ViewBeacon";
 import { displayImageUrl } from "@/lib/stock";
 import { getReporterByName } from "@/lib/reporters";
@@ -178,6 +179,8 @@ export default async function ArticlePage({
           <div className="mt-6 flex justify-center">
             <ListenButton text={[article.title, article.summary, ...article.body].join(" ")} />
           </div>
+
+          <ThreeLineSummary lines={getThreeLineSummary(article)} />
 
           <div
             id="article-body"

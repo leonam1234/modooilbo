@@ -19,8 +19,8 @@ export function SectionBlock({ slug, count = 5 }: { slug: CategorySlug; count?: 
       {rest.length > 0 && (
         <ul className="mt-5 flex flex-col divide-y divide-ink-100 dark:divide-ink-800">
           {rest.map((a) => (
-            <li key={a.id} className="py-3 first:pt-0">
-              <ArticleCard article={a} variant="compact" />
+            <li key={a.id} className="py-3.5 first:pt-0">
+              <ArticleCard article={a} variant="list" />
             </li>
           ))}
         </ul>

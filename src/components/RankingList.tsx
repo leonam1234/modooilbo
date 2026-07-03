@@ -90,7 +90,7 @@ export function RankingList({ pool, count = 6 }: { pool: Item[]; count?: number 
             <li key={a.id} className="flex gap-3">
               <span
                 className={cn(
-                  "w-6 shrink-0 font-headline text-xl font-black leading-none",
+                  "w-8 shrink-0 font-headline text-2xl font-black leading-none tracking-tight tabular-nums",
                   i < 3 ? "text-signal-600" : "text-ink-300 dark:text-ink-600",
                 )}
               >
