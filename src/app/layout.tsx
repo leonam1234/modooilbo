@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { BreakingTicker } from "@/components/BreakingTicker";
 import { TrendingTags } from "@/components/TrendingTags";
 import { Footer } from "@/components/Footer";
+import { AutoRefresh } from "@/components/AutoRefresh";
 import { WeatherBackground } from "@/components/WeatherBackground";
 
 export const metadata: Metadata = {
@@ -99,6 +100,7 @@ export default function RootLayout({
         )}
       </head>
       <body className="font-sans">
+        <AutoRefresh />
         <WeatherBackground />
         <a
           href="#content"
