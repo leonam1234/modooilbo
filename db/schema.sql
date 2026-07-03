@@ -64,3 +64,12 @@ CREATE TABLE IF NOT EXISTS bookmarks (
   created_at TEXT NOT NULL DEFAULT (datetime('now','+9 hours')),
   PRIMARY KEY (user_id, article_id)
 );
+
+-- 비밀번호 재설정 (2026-07-03): 토큰은 SHA-256만 저장, 1시간 유효, 1회용
+CREATE TABLE IF NOT EXISTS password_resets (
+  token_hash TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL REFERENCES users(id),
+  created_at TEXT NOT NULL DEFAULT (datetime('now','+9 hours')),
+  expires_at TEXT NOT NULL,
+  used INTEGER NOT NULL DEFAULT 0
+);

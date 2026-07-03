@@ -36,6 +36,7 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   await env.DB.batch([
     env.DB.prepare("DELETE FROM sessions WHERE user_id = ?1").bind(user.id),
     env.DB.prepare("DELETE FROM identities WHERE user_id = ?1").bind(user.id),
+    env.DB.prepare("DELETE FROM password_resets WHERE user_id = ?1").bind(user.id),
     env.DB.prepare("DELETE FROM comment_likes WHERE user_id = ?1").bind(user.id),
     env.DB.prepare("DELETE FROM comment_reports WHERE user_id = ?1").bind(user.id),
     env.DB.prepare("DELETE FROM bookmarks WHERE user_id = ?1").bind(user.id),

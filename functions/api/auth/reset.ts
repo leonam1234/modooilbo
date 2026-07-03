@@ -1,0 +1,59 @@
+/**
+ * POST /api/auth/reset {token, password} — 재설정 토큰으로 새 비밀번호 설정.
+ * 성공 시: 비밀번호 교체 + 모든 기존 세션 무효화(전 기기 로그아웃) + 새 세션 발급(자동 로그인).
+ * 소셜 전용 계정이었다면 이메일 로그인도 함께 열린다(identities email 추가).
+ */
+import { json, sha256Hex, hashPassword, createSession, sessionCookie, type AuthEnv } from "../../_lib/auth";
+
+export async function onRequestPost(ctx: any): Promise<Response> {
+  const env = ctx.env as AuthEnv;
+  if (!env.DB) return json({ error: "unavailable" }, 503);
+
+  let token = "";
+  let password = "";
+  try {
+    const b = await ctx.request.json();
+    token = String(b?.token || "");
+    password = String(b?.password || "");
+  } catch {
+    /* noop */
+  }
+  if (!/^[a-f0-9]{64}$/.test(token)) return json({ error: "링크가 올바르지 않습니다. 메일의 링크를 다시 확인해 주세요." }, 400);
+  if (password.length < 8) return json({ error: "비밀번호는 8자 이상이어야 합니다." }, 400);
+
+  const th = await sha256Hex(token);
+  const row = (await env.DB.prepare(
+    `SELECT pr.user_id, pr.used, pr.expires_at, u.email, u.name
+     FROM password_resets pr JOIN users u ON u.id = pr.user_id
+     WHERE pr.token_hash = ?1`,
+  )
+    .bind(th)
+    .first()) as any;
+
+  if (!row) return json({ error: "유효하지 않은 링크입니다. 재설정을 다시 요청해 주세요." }, 400);
+  if (row.used) return json({ error: "이미 사용된 링크입니다. 재설정을 다시 요청해 주세요." }, 400);
+
+  const notExpired = (await env.DB.prepare(
+    "SELECT 1 AS x FROM password_resets WHERE token_hash = ?1 AND expires_at > datetime('now','+9 hours')",
+  )
+    .bind(th)
+    .first()) as any;
+  if (!notExpired) return json({ error: "링크가 만료되었습니다(1시간 유효). 재설정을 다시 요청해 주세요." }, 400);
+
+  const { hash, salt } = await hashPassword(password);
+  await env.DB.batch([
+    env.DB.prepare("UPDATE users SET password_hash = ?2, password_salt = ?3 WHERE id = ?1").bind(row.user_id, hash, salt),
+    env.DB.prepare("UPDATE password_resets SET used = 1 WHERE token_hash = ?1").bind(th),
+    env.DB.prepare("DELETE FROM sessions WHERE user_id = ?1").bind(row.user_id), // 전 기기 로그아웃
+    env.DB.prepare(
+      "INSERT OR IGNORE INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'email', ?2)",
+    ).bind(row.user_id, row.email),
+  ]);
+
+  const session = await createSession(env, row.user_id);
+  return json(
+    { ok: true, user: { name: row.name, email: row.email } },
+    200,
+    { "set-cookie": sessionCookie(session, ctx.request.url) },
+  );
+}

@@ -19,7 +19,7 @@ const IDLE_RELOAD_MS = 15 * 60 * 1000; // 보이는 채 방치
 const HIDDEN_RELOAD_MS = 10 * 60 * 1000; // 백그라운드 체류
 const CHECK_EVERY_MS = 60 * 1000;
 
-const SKIP_PATHS = ["/login", "/register", "/account"];
+const SKIP_PATHS = ["/login", "/register", "/account", "/forgot", "/reset"];
 
 function isSafeToReload(): boolean {
   if (SKIP_PATHS.some((p) => window.location.pathname.startsWith(p))) return false;

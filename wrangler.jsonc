@@ -2,6 +2,15 @@
   "name": "modooilbo",
   "compatibility_date": "2026-06-10",
   "pages_build_output_dir": "out",
+  // 이메일 발송(CF Email Service) — modooilbo.com 발송 개통(2026-07-03). 바인딩 미지원 시 REST 폴백(EMAIL_API_TOKEN).
+  "send_email": [
+    {
+      "name": "EMAIL"
+    }
+  ],
+  "vars": {
+    "CF_ACCOUNT_ID": "21da197fad53913388920e140590b0ba"
+  },
   "kv_namespaces": [
     {
       "binding": "REACTIONS",
