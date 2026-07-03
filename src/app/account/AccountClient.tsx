@@ -50,6 +50,11 @@ export function AccountClient() {
   const [busy, setBusy] = useState(false);
   const [linkMsg, setLinkMsg] = useState<string | null>(null);
 
+  // 스크랩
+  type IndexItem = { id: string; slug: string; title: string; category: string; publishedAt: string };
+  const [scraps, setScraps] = useState<{ article_id: string; created_at: string }[] | null>(null);
+  const [artIndex, setArtIndex] = useState<Map<string, IndexItem>>(new Map());
+
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
     const linked = q.get("linked");
@@ -67,6 +72,16 @@ export function AccountClient() {
             .then((i) => {
               if (i?.providers) setProviders(i.providers);
               setHasPassword(!!i?.hasPassword);
+            })
+            .catch(() => {});
+          fetch("/api/bookmarks")
+            .then((r) => (r.ok ? r.json() : null))
+            .then((b) => setScraps(b?.items ?? []))
+            .catch(() => setScraps([]));
+          fetch("/articles-index.json")
+            .then((r) => (r.ok ? r.json() : null))
+            .then((list: IndexItem[] | null) => {
+              if (list) setArtIndex(new Map(list.map((a) => [a.id, a])));
             })
             .catch(() => {});
         }
@@ -209,6 +224,58 @@ export function AccountClient() {
           </div>
         </dl>
         {nameMsg && <p className="mt-3 text-xs text-signal-600 dark:text-signal-400">{nameMsg}</p>}
+      </Card>
+
+      {/* 스크랩 */}
+      <Card title="스크랩한 기사">
+        {scraps === null ? (
+          <p className="text-sm text-ink-400">불러오는 중…</p>
+        ) : scraps.length === 0 ? (
+          <p className="text-sm leading-relaxed text-ink-500 dark:text-ink-300">
+            스크랩한 기사가 없습니다. 기사 제목 아래 책갈피 버튼으로 저장해 두고 여기서 다시 볼 수 있어요.
+          </p>
+        ) : (
+          <ul className="divide-y divide-ink-100 dark:divide-ink-800">
+            {scraps.map((s) => {
+              const a = artIndex.get(s.article_id);
+              return (
+                <li key={s.article_id} className="flex items-center justify-between gap-3 py-3">
+                  <div className="min-w-0">
+                    {a ? (
+                      <Link
+                        href={`/article/${a.slug}`}
+                        className="block truncate text-sm font-medium text-ink-900 hover:underline dark:text-white"
+                      >
+                        {a.title}
+                      </Link>
+                    ) : (
+                      <span className="block truncate text-sm text-ink-500">{s.article_id}</span>
+                    )}
+                    <span className="text-xs text-ink-400">{s.created_at.slice(0, 10).replaceAll("-", ".")}. 저장</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      try {
+                        const r = await fetch("/api/bookmarks", {
+                          method: "POST",
+                          headers: { "content-type": "application/json" },
+                          body: JSON.stringify({ article: s.article_id }),
+                        });
+                        if (r.ok) setScraps((prev) => prev?.filter((x) => x.article_id !== s.article_id) ?? prev);
+                      } catch {
+                        /* noop */
+                      }
+                    }}
+                    className="shrink-0 text-xs text-ink-400 transition-colors hover:text-ink-700 dark:hover:text-ink-200"
+                  >
+                    해제
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </Card>
 
       {/* 로그인 수단 */}

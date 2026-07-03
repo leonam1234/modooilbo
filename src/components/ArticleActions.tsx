@@ -6,10 +6,38 @@ import { ShareIcon, PrintIcon, BookmarkIcon } from "./icons";
 
 const SIZES = [16, 17, 18, 20, 22];
 
-export function ArticleActions({ title }: { title: string }) {
+export function ArticleActions({ title, articleId }: { title: string; articleId: string }) {
   const [size, setSize] = useState(1);
   const [copied, setCopied] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [saveMsg, setSaveMsg] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch(`/api/bookmarks?article=${encodeURIComponent(articleId)}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => setSaved(!!d?.saved))
+      .catch(() => {});
+  }, [articleId]);
+
+  async function toggleSave() {
+    try {
+      const r = await fetch("/api/bookmarks", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ article: articleId }),
+      });
+      const d = await r.json();
+      if (r.ok) {
+        setSaved(!!d.saved);
+        setSaveMsg(d.saved ? "스크랩됨" : "스크랩 해제");
+      } else {
+        setSaveMsg("로그인이 필요합니다");
+      }
+    } catch {
+      setSaveMsg("오류가 났습니다");
+    }
+    setTimeout(() => setSaveMsg(null), 1500);
+  }
 
   useEffect(() => {
     const el = document.getElementById("article-body");
@@ -63,15 +91,22 @@ export function ArticleActions({ title }: { title: string }) {
           가+
         </button>
       </div>
-      <button
-        type="button"
-        onClick={() => setSaved((v) => !v)}
-        aria-label="스크랩"
-        aria-pressed={saved}
-        className={cn(iconBtn, saved && "border-signal-500 bg-signal-50 text-signal-600 dark:bg-signal-950")}
-      >
-        <BookmarkIcon className="h-4 w-4" />
-      </button>
+      <div className="relative">
+        <button
+          type="button"
+          onClick={toggleSave}
+          aria-label="스크랩"
+          aria-pressed={saved}
+          className={cn(iconBtn, saved && "border-signal-500 bg-signal-50 text-signal-600 dark:bg-signal-950")}
+        >
+          <BookmarkIcon className="h-4 w-4" />
+        </button>
+        {saveMsg && (
+          <span className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-ink-900 px-2 py-1 text-xs text-white">
+            {saveMsg}
+          </span>
+        )}
+      </div>
       <button type="button" onClick={() => window.print()} aria-label="인쇄" className={iconBtn}>
         <PrintIcon className="h-4 w-4" />
       </button>

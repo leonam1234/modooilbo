@@ -144,7 +144,7 @@ export default async function ArticlePage({
               <span className="ml-2 text-ink-400">조회 {formatCount(article.readCount)}</span>
               <span className="ml-2 text-ink-400">읽는 시간 {readMinutes}분</span>
             </div>
-            <ArticleActions title={article.title} />
+            <ArticleActions title={article.title} articleId={article.id} />
           </div>
 
           <figure className="mt-6">

@@ -48,3 +48,11 @@ CREATE TABLE IF NOT EXISTS comment_likes (
   created_at TEXT NOT NULL DEFAULT (datetime('now','+9 hours')),
   PRIMARY KEY (comment_id, user_id)
 );
+
+-- 스크랩 (2026-07-03): 회원별 기사 저장. 토글이라 행 존재 = 저장됨.
+CREATE TABLE IF NOT EXISTS bookmarks (
+  user_id TEXT NOT NULL REFERENCES users(id),
+  article_id TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now','+9 hours')),
+  PRIMARY KEY (user_id, article_id)
+);
