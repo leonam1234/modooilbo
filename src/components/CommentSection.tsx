@@ -13,6 +13,7 @@ type CommentItem = {
   liked: boolean;
   mine: boolean;
   deleted: boolean;
+  hidden: boolean;
 };
 
 type Data = { count: number; comments: CommentItem[]; me: { name: string } | null };
@@ -162,6 +163,29 @@ export function CommentSection({ articleId }: { articleId: string }) {
     }
   }
 
+  const [reported, setReported] = useState<Set<string>>(new Set());
+
+  async function report(id: string) {
+    if (!window.confirm("이 댓글을 신고할까요? 신고가 누적되면 자동으로 가려집니다.")) return;
+    try {
+      const r = await fetch("/api/comments/report", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      const d = await r.json();
+      if (!r.ok) {
+        setNotice(d?.error || "신고에 실패했습니다.");
+        return;
+      }
+      setReported((prev) => new Set(prev).add(id));
+      if (d.hidden) load();
+      else setNotice("신고가 접수되었습니다.");
+    } catch {
+      setNotice("네트워크 오류입니다.");
+    }
+  }
+
   async function remove(id: string) {
     if (!window.confirm("이 댓글을 삭제할까요?")) return;
     try {
@@ -179,8 +203,10 @@ export function CommentSection({ articleId }: { articleId: string }) {
   function Row({ c, isReply }: { c: CommentItem; isReply?: boolean }) {
     return (
       <div className={isReply ? "" : "py-4"}>
-        {c.deleted ? (
-          <p className="text-sm italic text-ink-400">삭제된 댓글입니다.</p>
+        {c.deleted || c.hidden ? (
+          <p className="text-sm italic text-ink-400">
+            {c.deleted ? "삭제된 댓글입니다." : "신고 누적으로 가려진 댓글입니다."}
+          </p>
         ) : (
           <>
             <p className="flex items-baseline gap-2">
@@ -218,6 +244,16 @@ export function CommentSection({ articleId }: { articleId: string }) {
                   className="text-xs text-ink-400 transition-colors hover:text-ink-700 dark:hover:text-ink-200"
                 >
                   삭제
+                </button>
+              )}
+              {!c.mine && data?.me && (
+                <button
+                  type="button"
+                  onClick={() => report(c.id)}
+                  disabled={reported.has(c.id)}
+                  className="text-xs text-ink-400 transition-colors hover:text-ink-700 disabled:cursor-default disabled:opacity-60 dark:hover:text-ink-200"
+                >
+                  {reported.has(c.id) ? "신고됨" : "신고"}
                 </button>
               )}
             </div>

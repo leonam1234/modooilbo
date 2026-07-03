@@ -39,9 +39,17 @@ CREATE TABLE IF NOT EXISTS comments (
   parent_id TEXT REFERENCES comments(id),       -- NULL=원댓글, 값=답글(1단만)
   body TEXT NOT NULL,
   is_deleted INTEGER NOT NULL DEFAULT 0,
+  is_hidden INTEGER NOT NULL DEFAULT 0,          -- 신고 누적(3회) 자동 가림
   created_at TEXT NOT NULL DEFAULT (datetime('now','+9 hours'))
 );
 CREATE INDEX IF NOT EXISTS idx_comments_article ON comments(article_id, created_at);
+-- 댓글 신고 (2026-07-03): 회원당 1회, 3회 누적 시 comments.is_hidden=1
+CREATE TABLE IF NOT EXISTS comment_reports (
+  comment_id TEXT NOT NULL REFERENCES comments(id),
+  user_id TEXT NOT NULL REFERENCES users(id),
+  created_at TEXT NOT NULL DEFAULT (datetime('now','+9 hours')),
+  PRIMARY KEY (comment_id, user_id)
+);
 CREATE TABLE IF NOT EXISTS comment_likes (
   comment_id TEXT NOT NULL REFERENCES comments(id),
   user_id TEXT NOT NULL REFERENCES users(id),

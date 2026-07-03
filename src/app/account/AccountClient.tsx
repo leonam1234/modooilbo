@@ -55,6 +55,9 @@ export function AccountClient() {
   const [scraps, setScraps] = useState<{ article_id: string; created_at: string }[] | null>(null);
   const [artIndex, setArtIndex] = useState<Map<string, IndexItem>>(new Map());
 
+  // 내가 쓴 댓글
+  const [myComments, setMyComments] = useState<{ article_id: string; body: string; created_at: string }[] | null>(null);
+
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
     const linked = q.get("linked");
@@ -78,6 +81,10 @@ export function AccountClient() {
             .then((r) => (r.ok ? r.json() : null))
             .then((b) => setScraps(b?.items ?? []))
             .catch(() => setScraps([]));
+          fetch("/api/comments/mine")
+            .then((r) => (r.ok ? r.json() : null))
+            .then((c) => setMyComments(c?.items ?? []))
+            .catch(() => setMyComments([]));
           fetch("/articles-index.json")
             .then((r) => (r.ok ? r.json() : null))
             .then((list: IndexItem[] | null) => {
@@ -271,6 +278,36 @@ export function AccountClient() {
                   >
                     해제
                   </button>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </Card>
+
+      {/* 내가 쓴 댓글 */}
+      <Card title="내가 쓴 댓글">
+        {myComments === null ? (
+          <p className="text-sm text-ink-400">불러오는 중…</p>
+        ) : myComments.length === 0 ? (
+          <p className="text-sm leading-relaxed text-ink-500 dark:text-ink-300">
+            아직 쓴 댓글이 없습니다. 기사 하단에서 의견을 남겨 보세요.
+          </p>
+        ) : (
+          <ul className="divide-y divide-ink-100 dark:divide-ink-800">
+            {myComments.slice(0, 10).map((c, i) => {
+              const a = artIndex.get(c.article_id);
+              return (
+                <li key={`${c.article_id}-${c.created_at}-${i}`} className="py-3">
+                  <p className="line-clamp-2 text-sm text-ink-800 dark:text-ink-100">{c.body}</p>
+                  <p className="mt-1 flex items-center gap-2 text-xs text-ink-400">
+                    <span className="shrink-0">{c.created_at.slice(0, 10).replaceAll("-", ".")}.</span>
+                    {a && (
+                      <Link href={`/article/${a.slug}`} className="min-w-0 truncate hover:underline">
+                        {a.title}
+                      </Link>
+                    )}
+                  </p>
                 </li>
               );
             })}

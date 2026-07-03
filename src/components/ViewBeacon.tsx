@@ -8,6 +8,15 @@ import { useEffect } from "react";
  */
 export function ViewBeacon({ articleId }: { articleId: string }) {
   useEffect(() => {
+    // 최근 본 기사(localStorage, 최대 10개) — RecentArticles 위젯용
+    try {
+      const KEY = "modoo_recent";
+      const prev: string[] = JSON.parse(localStorage.getItem(KEY) || "[]");
+      const next = [articleId, ...prev.filter((x) => x !== articleId)].slice(0, 10);
+      localStorage.setItem(KEY, JSON.stringify(next));
+    } catch {
+      /* ignore */
+    }
     try {
       const key = `viewed:${articleId}`;
       if (sessionStorage.getItem(key)) return;

@@ -5,6 +5,7 @@ import { getByCategory, getMostRead } from "@/lib/queries";
 import { ArticleCard } from "@/components/ArticleCard";
 import { MarketStrip } from "@/components/MarketStrip";
 import { RankingList } from "@/components/RankingList";
+import { RecentArticles } from "@/components/RecentArticles";
 import { PageHeader } from "@/components/PageHeader";
 
 // 정적 export: 아래 목록의 카테고리만 생성, 그 외 경로는 404
@@ -80,6 +81,7 @@ export default async function CategoryPage({
             count={6}
             pool={getMostRead(60).map((a) => ({ id: a.id, slug: a.slug, title: a.title, category: a.category }))}
           />
+          <RecentArticles />
         </aside>
       </div>
     </>

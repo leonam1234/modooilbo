@@ -11,11 +11,24 @@ import { json, getUser, type AuthEnv } from "../../_lib/auth";
 
 const MAX_BODY = 500;
 
+// 클린봇 v1 — 금칙어(욕설·혐오) 포함 시 등록 거부. 공백·특수문자·숫자 끼워넣기 우회 방지용 정규화.
+const BANNED = [
+  "씨발", "시발", "씨빨", "씨팔", "병신", "븅신", "개새끼", "개새키", "개색기", "지랄",
+  "좆", "존나", "썅", "니미", "미친놈", "미친년", "창녀", "걸레같",
+  "한남충", "김치녀", "틀딱", "급식충", "맘충", "짱깨", "쪽바리",
+];
+
+function hasBanned(s: string): boolean {
+  const norm = s.toLowerCase().replace(/[\s.,\-_*+~!@#$%^&()[\]{}|\\/:;'"<>?0-9]/g, "");
+  return BANNED.some((w) => norm.includes(w));
+}
+
 type Row = {
   id: string;
   parent_id: string | null;
   body: string;
   is_deleted: number;
+  is_hidden: number;
   created_at: string;
   author: string;
   user_id: string;
@@ -24,7 +37,7 @@ type Row = {
 async function loadComments(env: AuthEnv, article: string, me: { id: string; name: string } | null) {
   const rows = (
     await env.DB.prepare(
-      `SELECT c.id, c.parent_id, c.body, c.is_deleted, c.created_at, u.name AS author, c.user_id
+      `SELECT c.id, c.parent_id, c.body, c.is_deleted, c.is_hidden, c.created_at, u.name AS author, c.user_id
        FROM comments c JOIN users u ON u.id = c.user_id
        WHERE c.article_id = ?1
        ORDER BY c.created_at ASC, c.rowid ASC`,
@@ -57,27 +70,29 @@ async function loadComments(env: AuthEnv, article: string, me: { id: string; nam
     myLikes = new Set(mine.map((r) => r.comment_id));
   }
 
-  // 삭제 정책: 답글은 삭제 시 숨김. 원댓글은 살아있는 답글이 있으면 자리만 유지.
+  // 삭제·가림 정책: 답글은 그냥 숨김. 원댓글은 살아있는 답글이 있으면 자리만 유지.
+  const blocked = (r: Row) => !!r.is_deleted || !!r.is_hidden;
   const aliveReplyParents = new Set(
-    rows.filter((r) => r.parent_id && !r.is_deleted).map((r) => r.parent_id as string),
+    rows.filter((r) => r.parent_id && !blocked(r)).map((r) => r.parent_id as string),
   );
   const visible = rows.filter((r) =>
-    r.is_deleted ? !r.parent_id && aliveReplyParents.has(r.id) : true,
+    blocked(r) ? !r.parent_id && aliveReplyParents.has(r.id) : true,
   );
 
   const comments = visible.map((r) => ({
     id: r.id,
     parent_id: r.parent_id,
-    author: r.is_deleted ? "" : r.author,
-    body: r.is_deleted ? "" : r.body,
+    author: blocked(r) ? "" : r.author,
+    body: blocked(r) ? "" : r.body,
     created_at: r.created_at,
     likes: likes.get(r.id) ?? 0,
     liked: myLikes.has(r.id),
-    mine: !!me && r.user_id === me.id && !r.is_deleted,
+    mine: !!me && r.user_id === me.id && !blocked(r),
     deleted: !!r.is_deleted,
+    hidden: !r.is_deleted && !!r.is_hidden,
   }));
 
-  return { count: comments.filter((c) => !c.deleted).length, comments };
+  return { count: comments.filter((c) => !c.deleted && !c.hidden).length, comments };
 }
 
 export async function onRequestGet(ctx: any): Promise<Response> {
@@ -107,6 +122,9 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   const parent = payload?.parent ? String(payload.parent) : null;
   if (!article || !body) return json({ error: "내용을 입력해 주세요." }, 400);
   if (body.length > MAX_BODY) return json({ error: `댓글은 ${MAX_BODY}자까지 쓸 수 있습니다.` }, 400);
+  if (hasBanned(body)) {
+    return json({ error: "부적절한 표현이 포함되어 등록할 수 없습니다. 표현을 다듬어 주세요." }, 400);
+  }
 
   // 도배 방지: 같은 회원 15초에 1건
   if (env.REACTIONS) {

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
   CITIES,
@@ -12,7 +13,7 @@ import {
 } from "@/lib/weather";
 import { cn } from "@/lib/utils";
 
-function WxIcon({ cond, className }: { cond: WxCondition; className?: string }) {
+export function WxIcon({ cond, className }: { cond: WxCondition; className?: string }) {
   const s = { fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinecap: "round" as const };
   if (cond === "rain")
     return (
@@ -113,10 +114,14 @@ export function LocationPicker({ className }: { className?: string }) {
         </svg>
       </span>
       {wx && (
-        <span className="flex items-center gap-1 border-l border-ink-200 pl-2 text-ink-500 dark:border-ink-700 dark:text-ink-300">
+        <Link
+          href="/weather"
+          title="주간예보 보기"
+          className="flex items-center gap-1 border-l border-ink-200 pl-2 text-ink-500 transition-colors hover:text-signal-600 dark:border-ink-700 dark:text-ink-300"
+        >
           <WxIcon cond={wx.condition} className="h-4 w-4" />
           {wx.temperature !== null && <span className="tabular-nums font-medium">{wx.temperature}°</span>}
-        </span>
+        </Link>
       )}
     </span>
   );
