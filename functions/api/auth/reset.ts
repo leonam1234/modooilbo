@@ -46,13 +46,19 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   }
 
   const { hash, salt } = await hashPassword(password);
-  await env.DB.batch([
+  try {
+    await env.DB.batch([
     env.DB.prepare("UPDATE users SET password_hash = ?2, password_salt = ?3 WHERE id = ?1").bind(row.user_id, hash, salt),
     env.DB.prepare("DELETE FROM sessions WHERE user_id = ?1").bind(row.user_id), // 전 기기 로그아웃
     env.DB.prepare(
       "INSERT OR IGNORE INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'email', ?2)",
     ).bind(row.user_id, row.email),
-  ]);
+    ]);
+  } catch {
+    // 일시 오류로 비밀번호가 안 바뀌었는데 링크만 소진되는 것 방지 — 토큰 원복 후 재시도 유도
+    await env.DB.prepare("UPDATE password_resets SET used = 0 WHERE token_hash = ?1").bind(th).run();
+    return json({ error: "일시적인 오류로 변경하지 못했습니다. 같은 링크로 다시 시도해 주세요." }, 500);
+  }
 
   const session = await createSession(env, row.user_id);
   return json(

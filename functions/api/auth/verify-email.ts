@@ -20,7 +20,8 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   const key = `emailreg:${token}`;
   const raw = await env.REACTIONS.get(key);
   if (!raw) return json({ error: "링크가 만료되었거나 이미 사용되었습니다. 계정 페이지에서 다시 요청해 주세요." }, 410);
-  await env.REACTIONS.delete(key); // 1회용 — 검증 전에 소각(재사용 방지)
+  // 토큰 소각은 batch 성공 후에 — 일시 오류로 등록이 안 됐는데 링크만 죽는 것 방지.
+  // (동시 재사용 경쟁은 아래 UNIQUE 제약 + try/catch가 409로 흡수)
 
   let uid = "";
   let email = "";
@@ -42,11 +43,17 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   const dup = await env.DB.prepare("SELECT 1 FROM users WHERE email = ?1 LIMIT 1").bind(email).first();
   if (dup) return json({ error: "그 사이 다른 계정이 이 이메일을 사용하게 되었습니다. 다른 이메일로 다시 시도해 주세요." }, 409);
 
-  await env.DB.batch([
-    env.DB.prepare("UPDATE users SET email = ?1 WHERE id = ?2").bind(email, uid),
-    env.DB.prepare(
-      "INSERT INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'email', ?2)",
-    ).bind(uid, email),
-  ]);
+  try {
+    await env.DB.batch([
+      env.DB.prepare("UPDATE users SET email = ?1 WHERE id = ?2").bind(email, uid),
+      env.DB.prepare(
+        "INSERT INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'email', ?2)",
+      ).bind(uid, email),
+    ]);
+  } catch {
+    // UNIQUE(users.email NOCASE / identities provider+id) 경쟁 패배 등 — 500 대신 안내
+    return json({ error: "이메일 등록에 실패했습니다. 이미 사용 중이거나 일시적인 오류입니다. 다시 시도해 주세요." }, 409);
+  }
+  await env.REACTIONS.delete(key); // 성공 후 소각
   return json({ ok: true, email });
 }

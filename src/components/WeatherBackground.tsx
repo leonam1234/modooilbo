@@ -13,7 +13,7 @@ export function WeatherBackground() {
 
   useEffect(() => {
     let alive = true;
-    // 테스트 모드: ?wx=rain|fog|snow|clear|star 로 실제 날씨와 무관하게 강제 미리보기 (star=clear 별칭)
+    // 테스트 모드: ?wx=rain|snow|star(clear 별칭) 강제 미리보기. fog는 현재 미사용(렌더 안 함).
     const override = new URLSearchParams(window.location.search).get("wx");
     if (override && ["clear", "fog", "rain", "snow", "star"].includes(override)) {
       setCond(override === "star" ? "clear" : (override as WxCondition));

@@ -20,11 +20,13 @@ export function MyCommentsCard({
   // 최근 6개월 내 댓글만 월별로 묶는다 (최신 월 먼저)
   const byMonth = useMemo(() => {
     if (!myComments) return null;
-    const cutoff = new Date();
-    cutoff.setMonth(cutoff.getMonth() - KEEP_MONTHS);
+    // created_at은 KST 벽시계 문자열("YYYY-MM-DD HH:MM:SS") — timeago.ts 관례대로 정규화해 파싱
+    // (Safari는 공백 구분 문자열을 Invalid Date로 처리). 컷오프는 일수 기반(월말 setMonth 롤오버 방지).
+    const cutoffMs = Date.now() - KEEP_MONTHS * 30.5 * 86400000;
     const map = new Map<string, typeof myComments>();
     for (const c of myComments) {
-      if (new Date(c.created_at) < cutoff) continue;
+      const t = Date.parse(c.created_at.replace(" ", "T") + "+09:00");
+      if (!Number.isNaN(t) && t < cutoffMs) continue;
       const key = c.created_at.slice(0, 7);
       const arr = map.get(key) ?? [];
       arr.push(c);

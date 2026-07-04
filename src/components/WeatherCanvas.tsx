@@ -29,6 +29,9 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
     let h = 0;
     let bw = 0;
     let bh = 0;
+    // 루프가 멈춘 상태(reduced-motion, 라이트모드 별)에서 한 프레임만 재도색 — draw 정의 후 할당
+    let drawOnce: () => void = () => {};
+    let onResized: () => void = () => {};
     const resize = () => {
       w = window.innerWidth;
       h = window.innerHeight;
@@ -43,6 +46,8 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
         off.width = bw;
         off.height = bh;
       }
+      onResized(); // 별 재배치 등 — 파티클 선언 뒤에 할당됨(초기 호출 시엔 no-op)
+      drawOnce();
     };
     resize();
     window.addEventListener("resize", resize);
@@ -173,6 +178,13 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
         });
       }
       starGlow = makeBokeh(10, 0.25, "215,228,255", 0.5);
+      // 리사이즈 시 별 재배치(고정 좌표라 새 영역이 비는 문제)
+      onResized = () => {
+        for (const st of stars) {
+          st.x = rnd(0, w);
+          st.y = rnd(0, h);
+        }
+      };
     }
 
     // ── 안개(기존 유지) ─────────────────────────────────
@@ -252,8 +264,12 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
         }
         ctx.globalAlpha = 1;
       } else if (kind === "star") {
-        // 다크 모드에서만 은은하게 — 라이트에선 아무것도 그리지 않음(토글 시 자연 등장/소멸)
-        if (dark) {
+        // 다크 모드에서만 은은하게. 라이트면 루프 자체를 세워 유휴 rAF 낭비 제거(옵저버가 재가동).
+        if (!dark) {
+          running = false;
+          return;
+        }
+        {
           for (const st of stars) {
             st.ph += st.tw;
             const a = 0.22 + 0.2 * (0.5 + 0.5 * Math.sin(st.ph)); // 0.22~0.42 트윙클
@@ -286,6 +302,13 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
       if (running) raf = requestAnimationFrame(draw);
     };
 
+    drawOnce = () => {
+      const was = running;
+      running = false; // draw 말미의 rAF 예약을 막고 1프레임만
+      draw();
+      running = was;
+    };
+
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
       running = false;
@@ -294,11 +317,22 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
       raf = requestAnimationFrame(draw);
     }
 
+    // 테마 전환 감시 — 정지 프레임 재도색(reduced-motion) + 별 루프 재가동(라이트→다크)
+    const mo = new MutationObserver(() => {
+      if (kind === "star" && isDark() && !running && !reduce && !document.hidden) {
+        running = true;
+        raf = requestAnimationFrame(draw);
+      } else if (!running) {
+        drawOnce();
+      }
+    });
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+
     const onVis = () => {
       if (document.hidden) {
         running = false;
         cancelAnimationFrame(raf);
-      } else if (!reduce) {
+      } else if (!reduce && !(kind === "star" && !isDark())) {
         running = true;
         raf = requestAnimationFrame(draw);
       }
@@ -308,6 +342,7 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
     return () => {
       running = false;
       cancelAnimationFrame(raf);
+      mo.disconnect();
       window.removeEventListener("resize", resize);
       document.removeEventListener("visibilitychange", onVis);
     };

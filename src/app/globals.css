@@ -17,7 +17,7 @@
 :root {
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
-  --font-serif: "MaruBuri", Georgia, "Times New Roman", serif;
+  --font-serif: "MaruBuri", "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", Georgia, "Times New Roman", serif; /* 서브셋 밖 한자·희귀 글리프는 기기 명조로 */
 }
 
 @layer base {
