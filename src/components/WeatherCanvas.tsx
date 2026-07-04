@@ -74,7 +74,7 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
         const d = Math.random();
         ps.push(
           kind === "rain"
-            ? { x: rnd(0, w), y: rnd(0, h), d, s: 7 + 16 * d, v: 5 + 8 * d, a: 0.1 + 0.16 * d, ph: 0, dr: 0 }
+            ? { x: rnd(0, w), y: rnd(0, h), d, s: 7 + 16 * d, v: 5 + 8 * d, a: 0.16 + 0.22 * d, ph: 0, dr: 0 }
             : { x: rnd(0, w), y: rnd(0, h), d, s: 0.9 + 2.8 * d, v: 0.4 + 1.5 * d, a: 0.24 + 0.42 * d, ph: rnd(0, 6.28), dr: rnd(0.3, 1.1) },
         );
       }

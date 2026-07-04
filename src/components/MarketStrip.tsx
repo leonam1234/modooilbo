@@ -31,7 +31,7 @@ export function MarketStrip() {
   return (
     <section
       aria-label="시장 지표"
-      className="rounded-xl border border-ink-200 bg-white/80 px-4 py-3 backdrop-blur dark:border-ink-800 dark:bg-ink-900/80"
+      className="glass-card rounded-xl border border-ink-200 px-4 py-3 dark:border-ink-800"
     >
       <div className="flex items-center gap-5 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {data.items.map((it) => {

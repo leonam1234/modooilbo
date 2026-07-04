@@ -265,9 +265,22 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.09),
     inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
+/* 콘텐츠 카드용 라이트 글라스 — .glass(크롬용 18px)보다 블러를 낮춰 다수 배치에도 가볍게.
+   뒤의 날씨 캔버스(비·눈)가 흐릿하게 비쳐 보이는 것이 목적. 입력창·버튼은 불투명 유지. */
+.glass-card {
+  background: rgba(255, 255, 255, 0.72);
+  -webkit-backdrop-filter: blur(12px) saturate(1.35);
+  backdrop-filter: blur(12px) saturate(1.35);
+}
+.dark .glass-card {
+  background: rgba(16, 18, 23, 0.6);
+}
+
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .glass { background: rgba(255, 255, 255, 0.97); }
   .dark .glass { background: rgba(16, 18, 23, 0.97); }
+  .glass-card { background: rgba(255, 255, 255, 0.97); }
+  .dark .glass-card { background: rgba(16, 18, 23, 0.97); }
 }
 
 /* 글라스 크롬 등장 모션 — prefers-reduced-motion은 상단 전역 규칙이 커버 */
