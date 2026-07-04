@@ -136,3 +136,12 @@ console.log(`  commit : ${shortCommit}`);
 console.log(`  기록   : deployments/deploy-log.jsonl`);
 if (isProd) console.log(`  운영   : https://modooilbo.com`);
 console.log("");
+
+// 프로덕션 배포 후 IndexNow 핑(네이버·빙 색인 가속) — 실패해도 무해
+if (isProd) {
+  try {
+    execFileSync("node", [join(REPO, "scripts", "ping-indexnow.mjs")], { cwd: REPO, stdio: "inherit" });
+  } catch {
+    console.warn("[indexnow] 스킵");
+  }
+}
