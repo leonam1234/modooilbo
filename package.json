@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "content": "node scripts/build-content.mjs",
-    "prebuild": "node scripts/build-content.mjs && node scripts/build-trending-data.mjs",
+    "prebuild": "node scripts/convert-webp.mjs && node scripts/build-content.mjs && node scripts/build-trending-data.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "tsc --noEmit",
@@ -28,6 +28,7 @@
     "autoprefixer": "^10.4.20",
     "playwright": "^1.60.0",
     "postcss": "^8.5.1",
+    "sharp": "^0.35.3",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3",
     "wrangler": "^4.105.0"

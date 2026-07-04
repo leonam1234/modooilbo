@@ -18,7 +18,7 @@ import { ViewCount } from "@/components/ViewCount";
 import { ImageLightbox } from "@/components/ImageLightbox";
 import { ReadingProgress } from "@/components/ReadingProgress";
 import { ArticleBody, articleSpeechText } from "@/components/ArticleBody";
-import { displayImageUrl } from "@/lib/stock";
+import { ogImageUrl, displayImageUrl } from "@/lib/stock";
 import { getReporterByName } from "@/lib/reporters";
 import JsonLd from "@/components/JsonLd";
 
@@ -44,7 +44,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const a = getArticleBySlug(slug);
   if (!a) return { title: "기사를 찾을 수 없습니다" };
-  const imageUrl = absoluteImageUrl(displayImageUrl(a));
+  const imageUrl = absoluteImageUrl(ogImageUrl(a)); // og는 webp 미지원 스크레이퍼 대비 jpg 고정
   return {
     title: a.title,
     description: a.summary,
