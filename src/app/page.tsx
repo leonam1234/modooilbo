@@ -43,7 +43,7 @@ const websiteLd = {
   "@id": `${SITE_URL}/#website`,
   name: "모두일보",
   alternateName: "Modoo Ilbo",
-  url: SITE_URL,
+  url: `${SITE_URL}/`, // canonical(끝슬래시)과 동일 표기 — 구글 사이트 이름 인식 정합
   inLanguage: "ko-KR",
   publisher: { "@id": `${SITE_URL}/#organization` },
   potentialAction: {
