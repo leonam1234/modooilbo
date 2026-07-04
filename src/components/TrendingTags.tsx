@@ -126,7 +126,7 @@ export function TrendingTags() {
       {open && (
         <div
           ref={panelRef}
-          className="glass absolute inset-x-0 top-full z-30 border-b border-ink-100 shadow-lg dark:border-ink-800 sm:hidden"
+          className="absolute inset-x-0 top-full z-30 border-b border-ink-100 bg-white/95 shadow-lg backdrop-blur-xl dark:border-ink-800 dark:bg-ink-950/95 sm:hidden"
         >
           <div className="container-page py-3">
             <div className="mb-2 flex items-center justify-between">
