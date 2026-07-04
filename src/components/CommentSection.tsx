@@ -33,6 +33,9 @@ function WriteBox({
         className="w-full resize-none bg-transparent text-[15px] leading-relaxed text-ink-900 outline-none placeholder:text-ink-400 dark:text-white"
       />
       <div className="mt-2 flex items-center justify-end gap-3 border-t border-ink-100 pt-2.5 dark:border-ink-800">
+        <span className="mr-auto text-[11px] text-ink-300 dark:text-ink-600">
+          욕설·비속어가 포함된 댓글은 예고 없이 삭제될 수 있습니다.
+        </span>
         <span className="text-xs tabular-nums text-ink-400">
           {text.length}/{MAX_BODY}
         </span>

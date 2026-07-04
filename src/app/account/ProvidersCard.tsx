@@ -37,7 +37,7 @@ export function ProvidersCard({
                 <span className="text-xs font-medium text-ink-400">연결됨</span>
               ) : p === "email" ? (
                 <span className="text-xs text-ink-400">
-                  {hasRealEmail ? "아래 비밀번호 설정 시 사용 가능" : "이메일 등록 기능 준비 중"}
+                  {hasRealEmail ? "아래 비밀번호 설정 시 사용 가능" : "위 계정 정보에서 이메일 등록 시 사용 가능"}
                 </span>
               ) : (
                 <a

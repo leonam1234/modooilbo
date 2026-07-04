@@ -6,6 +6,7 @@
  * 실패 시 /login/?error=naver 로 리다이렉트.
  */
 import { createSession, sessionCookie, getUser, type AuthEnv } from "../../../_lib/auth";
+import { uniqueSignupName } from "../../../_lib/names";
 
 function back(url: URL, ok: boolean, extraCookie?: string, dest?: string): Response {
   const secure = url.protocol === "https:" ? "; Secure" : "";
@@ -94,11 +95,12 @@ export async function onRequestGet(ctx: any): Promise<Response> {
     } else {
       // 신규 가입(간편 회원가입) — 미검증 이메일 취급이라 병합 없이 합성 이메일로 새 계정
       userId = crypto.randomUUID();
+      const finalName = await uniqueSignupName(env, name, "네이버회원"); // 기본닉 전원 동일 문제 해소
       const accountEmail = `naver_${naverId}@users.modooilbo.com`;
       await env.DB.batch([
         env.DB.prepare(
           "INSERT INTO users (id, email, name, password_hash, password_salt, newsletter) VALUES (?1, ?2, ?3, NULL, NULL, 0)",
-        ).bind(userId, accountEmail, name.slice(0, 20)),
+        ).bind(userId, accountEmail, finalName),
         env.DB.prepare(
           "INSERT INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'naver', ?2)",
         ).bind(userId, naverId),

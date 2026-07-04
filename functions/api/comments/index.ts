@@ -8,7 +8,7 @@
  *   → 생성된 댓글 1건. 답글은 원댓글에만(1단 제한). 같은 회원 15초 1회(KV).
  */
 import { json, getUser, type AuthEnv } from "../../_lib/auth";
-import { hasBanned } from "../../_lib/moderation"; // 클린봇 — 댓글·닉네임 공용(한/영)
+// 댓글 본문은 금칙어 자동 차단 없이 등록(대표님 방침 2026-07-04) — 안내문 + 사후 삭제로 운영. 닉네임 필터는 moderation.ts 유지.
 
 const MAX_BODY = 500;
 const ARTICLE_RE = /^[a-z0-9][a-z0-9-]{0,80}$/i; // 기사 id 형식 — reactions.ts와 동일 규칙
@@ -113,10 +113,6 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   if (!ARTICLE_RE.test(article)) return json({ error: "잘못된 요청입니다." }, 400);
   if (!body) return json({ error: "내용을 입력해 주세요." }, 400);
   if (body.length > MAX_BODY) return json({ error: `댓글은 ${MAX_BODY}자까지 쓸 수 있습니다.` }, 400);
-  if (hasBanned(body)) {
-    return json({ error: "부적절한 표현이 포함되어 등록할 수 없습니다. 표현을 다듬어 주세요." }, 400);
-  }
-
   if (parent) {
     const p = (await env.DB.prepare(
       "SELECT article_id, parent_id, is_deleted FROM comments WHERE id = ?1",
