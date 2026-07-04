@@ -4,7 +4,7 @@
  * 토큰: 랜덤 64hex, D1엔 SHA-256만, 1시간 유효 1회용.
  * 발송: CF Email Service — Pages는 send_email 바인딩 미지원이라 전용 Worker
  * (modooilbo-mailer, MAILER_URL+MAILER_KEY) 경유. 바인딩(EMAIL)이 생기면 그쪽 우선.
- * 남용 방지: 이메일당 15분 3회(KV).
+ * 남용 방지: 이메일당 15분 3회 + IP당 15분 5회(KV).
  */
 import { json, sha256Hex, type AuthEnv } from "../../_lib/auth";
 
@@ -16,12 +16,18 @@ function randHex(bytes: number): string {
   return [...a].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
+/** 메일 HTML에 들어가는 사용자 입력(name) 이스케이프 — HTML 주입 방지 */
+function escapeHtml(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
 async function sendResetMail(env: MailEnv, to: string, name: string, link: string): Promise<boolean> {
+  const safeName = escapeHtml(name); // HTML 본문 전용(텍스트 본문은 원문 유지)
   const subject = "[모두일보] 비밀번호 재설정 안내";
   const text = `${name}님, 모두일보 비밀번호 재설정 요청을 받았습니다.\n\n아래 링크에서 새 비밀번호를 설정해 주세요. 링크는 1시간 동안만 유효합니다.\n\n${link}\n\n본인이 요청하지 않았다면 이 메일을 무시하셔도 됩니다. 계정은 안전합니다.\n\n모두일보 드림 · help@modooilbo.com`;
   const html = `<div style="font-family:'Apple SD Gothic Neo',AppleGothic,sans-serif;max-width:520px;margin:0 auto;padding:24px;color:#191919">
   <h2 style="font-weight:800;margin:0 0 16px">모두<span style="color:#6b6b73">일보</span></h2>
-  <p style="line-height:1.7"><b>${name}</b>님, 비밀번호 재설정 요청을 받았습니다.<br/>아래 버튼을 눌러 새 비밀번호를 설정해 주세요. <b>1시간 동안만</b> 유효합니다.</p>
+  <p style="line-height:1.7"><b>${safeName}</b>님, 비밀번호 재설정 요청을 받았습니다.<br/>아래 버튼을 눌러 새 비밀번호를 설정해 주세요. <b>1시간 동안만</b> 유효합니다.</p>
   <p style="margin:24px 0"><a href="${link}" style="display:inline-block;background:#191919;color:#fff;text-decoration:none;font-weight:700;padding:12px 24px;border-radius:8px">비밀번호 재설정</a></p>
   <p style="font-size:13px;color:#777;line-height:1.7">버튼이 안 되면 링크를 복사해 주소창에 붙여넣으세요:<br/><a href="${link}" style="color:#555">${link}</a></p>
   <hr style="border:none;border-top:1px solid #e5e5e5;margin:24px 0"/>
@@ -73,11 +79,16 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   const ok = json({ ok: true });
   if (email.endsWith("@users.modooilbo.com")) return ok;
 
-  // 남용 방지: 이메일당 15분 3회
+  // 남용 방지: IP당 15분 5회 + 이메일당 15분 3회 (초과해도 표면상 동일 응답)
   if (env.REACTIONS) {
+    const ipKey = `rstip:${await sha256Hex("modoo-reset-v1" + (ctx.request.headers.get("CF-Connecting-IP") || ""))}`;
+    const ipN = Number((await env.REACTIONS.get(ipKey)) || "0");
+    if (ipN >= 5) return ok;
+    await env.REACTIONS.put(ipKey, String(ipN + 1), { expirationTtl: 900 });
+
     const rlKey = `rst:${await sha256Hex(email)}`;
     const n = Number((await env.REACTIONS.get(rlKey)) || "0");
-    if (n >= 3) return ok; // 표면상 동일 응답
+    if (n >= 3) return ok;
     await env.REACTIONS.put(rlKey, String(n + 1), { expirationTtl: 900 });
   }
 

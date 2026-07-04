@@ -8,19 +8,26 @@ type User = { name: string; email: string };
 
 /** 전역 로그인 상태 — 탭 안에서 페이지 이동해도 재요청 없이 공유 */
 let cached: User | null | undefined;
+/** 진행 중인 /api/auth/me 요청 — 인스턴스가 여러 개여도 요청은 1회만 */
+let inflight: Promise<User | null> | null = null;
 const listeners = new Set<(u: User | null) => void>();
 
-async function loadUser(): Promise<User | null> {
-  if (cached !== undefined) return cached;
-  try {
-    const r = await fetch("/api/auth/me");
-    const d = r.ok ? await r.json() : null;
-    cached = d?.user ?? null;
-  } catch {
-    cached = null;
-  }
-  listeners.forEach((fn) => fn(cached!));
-  return cached!;
+function loadUser(): Promise<User | null> {
+  if (cached !== undefined) return Promise.resolve(cached);
+  if (inflight) return inflight;
+  inflight = (async () => {
+    try {
+      const r = await fetch("/api/auth/me");
+      const d = r.ok ? await r.json() : null;
+      cached = d?.user ?? null;
+    } catch {
+      cached = null;
+    }
+    inflight = null;
+    listeners.forEach((fn) => fn(cached!));
+    return cached!;
+  })();
+  return inflight;
 }
 
 export async function logout() {

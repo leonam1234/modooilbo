@@ -30,7 +30,9 @@ export function TrendingTags() {
   if (!data) return null;
 
   return (
-    <div className="border-b border-ink-100 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:border-ink-800 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/80">
+    <div className="relative border-b border-ink-100 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:border-ink-800 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/80">
+      {/* 우측 페이드 — 가로 스크롤 가능함을 시각적으로 암시 */}
+      <span aria-hidden className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-white/90 to-transparent dark:from-ink-950/90" />
       <div className="container-page no-scrollbar flex items-baseline gap-3 overflow-x-auto whitespace-nowrap py-1.5">
         <span className="shrink-0 text-xs font-bold text-ink-800 dark:text-ink-100">
           <span className="tw-live mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-breaking align-middle" />

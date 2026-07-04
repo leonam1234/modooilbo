@@ -39,7 +39,14 @@
 ## 4. 기사 상세
 | 컴포넌트 | 역할 |
 |----------|------|
-| [ArticleActions](../src/components/ArticleActions.tsx) | client. 글자크기(가−/가+, `#article-body` 조절)·스크랩·인쇄·링크복사·X/페이스북 공유 |
+| [ArticleActions](../src/components/ArticleActions.tsx) | client. 글자크기(가−/가+, `#article-body` 조절)·스크랩·인쇄·링크복사·기기공유(Web Share, 지원 시)·카톡/X/페이스북 공유 |
+| [ViewCount](../src/components/ViewCount.tsx) | client. 상세 실시간 조회수(GET /api/view). 0·실패 시 미표시 |
+| [ImageLightbox](../src/components/ImageLightbox.tsx) | client. `#article-hero`/`#article-body` 이미지 클릭 확대. body 포털(z-100), ESC/배경 클릭 닫기 |
+| [ReadingProgress](../src/components/ReadingProgress.tsx) | client. 최상단 3px 읽기 진행바(본문 끝 기준). body 포털(z-60) |
+| [BackToTop](../src/components/BackToTop.tsx) | client. 700px 스크롤 후 우하단 '맨 위로'(글라스). layout 전역 장착 |
+| [ArticleBody](../src/components/ArticleBody.tsx) | server. 본문 렌더러(##/### 소제목·이미지 마크다운) + `articleSpeechText()`(TTS용 정제) |
+| [CommentItem](../src/components/CommentItem.tsx) | client. 댓글 1개 렌더(CommentSection에서 분리) |
+| [Reveal](../src/components/Reveal.tsx) | client. 스크롤 진입 fade-up 래퍼(IntersectionObserver, no-JS 안전) — 홈 섹션에 적용 |
 
 ## 5. 폼 (모두 client·데모)
 `ApplyForm`(채용) · `ContactForm`(문의) · `TipForm`(제보) · `AdInquiryForm`(광고) · `LoginForm` · `RegisterForm` · `NewsletterToggle`. 공통: `e.preventDefault()` → 인라인 성공 메시지, 백엔드 없음. 필드 스타일은 [docs/AGENT_BRIEF.md](../docs/AGENT_BRIEF.md) 규약.

@@ -15,6 +15,16 @@ function esc(s: string): string {
     .replace(/'/g, "&apos;");
 }
 
+// publishedAt은 "KST 벽시계를 Z로 저장"하는 규약 — RFC822 pubDate는 +0900을 명시해 그대로 내보낸다.
+// (toUTCString()을 쓰면 KST 시각이 GMT로 선언되어 최대 9시간 미래 시각이 됨)
+function rfc822Kst(iso: string): string {
+  const d = new Date(iso);
+  const DAY = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const p = (n: number) => String(n).padStart(2, "0");
+  return `${DAY[d.getUTCDay()]}, ${p(d.getUTCDate())} ${MON[d.getUTCMonth()]} ${d.getUTCFullYear()} ${p(d.getUTCHours())}:${p(d.getUTCMinutes())}:${p(d.getUTCSeconds())} +0900`;
+}
+
 export function GET() {
   const items = [...ALL_ARTICLES]
     .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
@@ -28,7 +38,7 @@ export function GET() {
       <guid isPermaLink="true">${url}</guid>
       <description>${esc(a.summary)}</description>
       <category>${esc(cat)}</category>
-      <pubDate>${new Date(a.publishedAt).toUTCString()}</pubDate>
+      <pubDate>${rfc822Kst(a.publishedAt)}</pubDate>
     </item>`;
     })
     .join("\n");

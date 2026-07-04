@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { ALL_ARTICLES } from "@/lib/news";
 import { getArticleBySlug, getRelated, getPrevNext, getMostRead } from "@/lib/queries";
 import { CATEGORY_MAP } from "@/lib/categories";
-import { formatKoreanDateTime, formatCount } from "@/lib/utils";
+import { formatKoreanDateTime } from "@/lib/utils";
 import { ArticleCard } from "@/components/ArticleCard";
 import { RankingList } from "@/components/RankingList";
 import { ArticleActions } from "@/components/ArticleActions";
@@ -14,6 +14,10 @@ import { ListenButton } from "@/components/ListenButton";
 import { RecentArticles } from "@/components/RecentArticles";
 import { ReactionBar } from "@/components/ReactionBar";
 import { ViewBeacon } from "@/components/ViewBeacon";
+import { ViewCount } from "@/components/ViewCount";
+import { ImageLightbox } from "@/components/ImageLightbox";
+import { ReadingProgress } from "@/components/ReadingProgress";
+import { ArticleBody, articleSpeechText } from "@/components/ArticleBody";
 import { displayImageUrl } from "@/lib/stock";
 import { getReporterByName } from "@/lib/reporters";
 import JsonLd from "@/components/JsonLd";
@@ -72,7 +76,7 @@ export default async function ArticlePage({
     description: article.summary,
     image: [imageUrl],
     datePublished: article.publishedAt,
-    dateModified: article.publishedAt,
+    dateModified: article.updatedAt ?? article.publishedAt,
     inLanguage: "ko-KR",
     isAccessibleForFree: true,
     author: [{ "@type": "Person", name: article.author.name }],
@@ -115,7 +119,7 @@ export default async function ArticlePage({
     <div className="container-page py-8">
       <JsonLd data={newsArticleLd} />
       <JsonLd data={breadcrumbLd} />
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
+      <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_280px] lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10">
         <article className="min-w-0">
           <nav className="mb-4 flex items-center gap-1.5 text-xs text-ink-400">
             <Link href="/" className="hover:text-signal-600">홈</Link>
@@ -151,14 +155,21 @@ export default async function ArticlePage({
                 <span className="font-medium text-ink-800 dark:text-ink-100">{article.author.name}</span>
               )}{" "}
               {article.author.role} ·{" "}
-              <time dateTime={article.publishedAt}>{formatKoreanDateTime(article.publishedAt)}</time>
-              <span className="ml-2 text-ink-400">조회 {formatCount(article.readCount)}</span>
+              <span>
+                입력 <time dateTime={article.publishedAt}>{formatKoreanDateTime(article.publishedAt)}</time>
+              </span>
+              {article.updatedAt && (
+                <span className="ml-2">
+                  수정 <time dateTime={article.updatedAt}>{formatKoreanDateTime(article.updatedAt)}</time>
+                </span>
+              )}
+              <ViewCount articleId={article.id} />
               <span className="ml-2 text-ink-400">읽는 시간 {readMinutes}분</span>
             </div>
             <ArticleActions title={article.title} articleId={article.id} />
           </div>
 
-          <figure className="mt-6">
+          <figure id="article-hero" className="mt-6">
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-ink-100 dark:bg-ink-800">
               <Image
                 src={displayImageUrl(article)}
@@ -175,29 +186,11 @@ export default async function ArticlePage({
             )}
           </figure>
 
-          <div className="mt-6 flex justify-center">
-            <ListenButton text={[article.title, article.summary, ...article.body].join(" ")} />
+          <div className="no-print mt-6 flex justify-center">
+            <ListenButton text={articleSpeechText(article)} />
           </div>
 
-          <div
-            id="article-body"
-            className="mt-8 space-y-5 text-[17px] leading-[1.9] text-ink-800 dark:text-ink-200"
-          >
-            {article.body.map((p, i) => {
-              const img = p.match(/^!\[([^\]]*)\]\((\/[^)]+)\)$/);
-              if (img) {
-                return (
-                  <figure key={i} className="my-2">
-                    <span className="relative block aspect-[16/9] w-full overflow-hidden rounded-lg bg-ink-100 dark:bg-ink-800">
-                      <Image src={img[2]} alt={img[1] || ""} fill sizes="(max-width:1024px) 100vw, 66vw" unoptimized className="object-cover" />
-                    </span>
-                    {img[1] && <figcaption className="mt-2 text-xs text-ink-400">{img[1]}</figcaption>}
-                  </figure>
-                );
-              }
-              return <p key={i}>{p}</p>;
-            })}
-          </div>
+          <ArticleBody body={article.body} />
 
           <div className="mt-8 flex flex-wrap gap-2">
             {article.tags.map((t) => (
@@ -211,8 +204,29 @@ export default async function ArticlePage({
             ))}
           </div>
 
+          <div className="mt-6 border-t border-ink-100 pt-4 text-xs leading-relaxed text-ink-400 dark:border-ink-800">
+            <p>ⓒ 모두일보(modooilbo.com) — 무단 전재·재배포 및 AI 학습·활용 금지</p>
+            <p className="no-print mt-1.5">
+              기사에서 잘못된 정보나 오탈자를 발견하셨나요?{" "}
+              <a
+                href={`mailto:correction@modooilbo.com?subject=${encodeURIComponent(`[정정요청] ${article.title}`)}`}
+                className="underline underline-offset-2 hover:text-signal-600"
+              >
+                정정 요청하기
+              </a>
+              <span aria-hidden> · </span>
+              <Link href="/ethics" className="underline underline-offset-2 hover:text-signal-600">
+                정정·반론 원칙
+              </Link>
+            </p>
+          </div>
+
           <ViewBeacon articleId={article.id} />
-          <ReactionBar articleId={article.id} />
+          <ImageLightbox />
+          <ReadingProgress />
+          <div className="no-print">
+            <ReactionBar articleId={article.id} />
+          </div>
 
           <div className="mt-8 flex items-center justify-between gap-3 rounded-xl border border-ink-200 bg-ink-50 p-5 dark:border-ink-800 dark:bg-ink-900">
             <div>
@@ -233,12 +247,14 @@ export default async function ArticlePage({
             )}
           </div>
 
-          <CommentSection articleId={article.id} />
+          <div className="no-print">
+            <CommentSection articleId={article.id} />
+          </div>
 
           {(prev || next) && (
             <nav
               aria-label="이전 다음 기사"
-              className="mt-10 grid gap-3 border-t border-ink-100 pt-8 dark:border-ink-800 sm:grid-cols-2"
+              className="no-print mt-10 grid gap-3 border-t border-ink-100 pt-8 dark:border-ink-800 sm:grid-cols-2"
             >
               {prev ? (
                 <Link
@@ -282,7 +298,7 @@ export default async function ArticlePage({
           )}
 
           {related.length > 0 && (
-            <section className="mt-12">
+            <section className="no-print mt-12">
               <h2 className="mb-5 border-b-2 border-ink-900 pb-2 font-headline text-xl font-extrabold text-ink-900 dark:border-ink-100 dark:text-white">
                 관련 기사
               </h2>

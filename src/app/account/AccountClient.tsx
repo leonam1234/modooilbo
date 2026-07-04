@@ -3,29 +3,14 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { logout } from "@/components/AuthMenu";
+import { PROVIDER_LABEL, inputCls, type IndexItem, type User } from "./AccountCard";
+import { ProfileCard } from "./ProfileCard";
+import { ScrapsCard } from "./ScrapsCard";
+import { MyCommentsCard } from "./MyCommentsCard";
+import { ProvidersCard } from "./ProvidersCard";
+import { PasswordCard } from "./PasswordCard";
 
-type User = { name: string; email: string };
-
-const PROVIDER_LABEL: Record<string, string> = {
-  email: "이메일",
-  kakao: "카카오",
-  naver: "네이버",
-  google: "구글",
-};
-
-const inputCls =
-  "h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
-
-function Card({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div className="rounded-xl border border-ink-200 bg-white p-6 dark:border-ink-800 dark:bg-ink-900">
-      <h2 className="font-headline text-lg font-bold text-ink-900 dark:text-white">{title}</h2>
-      <div className="mt-5">{children}</div>
-    </div>
-  );
-}
-
-/** 마이페이지 — 계정 정보·로그인 수단·비밀번호·탈퇴. */
+/** 마이페이지 — 계정 정보·로그인 수단·비밀번호·탈퇴. 공유 상태는 여기서 소유하고 카드에 props로 전달. */
 export function AccountClient() {
   const [user, setUser] = useState<User | null | undefined>(undefined);
   const [providers, setProviders] = useState<string[]>([]);
@@ -51,7 +36,6 @@ export function AccountClient() {
   const [linkMsg, setLinkMsg] = useState<string | null>(null);
 
   // 스크랩
-  type IndexItem = { id: string; slug: string; title: string; category: string; publishedAt: string };
   const [scraps, setScraps] = useState<{ article_id: string; created_at: string }[] | null>(null);
   const [artIndex, setArtIndex] = useState<Map<string, IndexItem>>(new Map());
 
@@ -153,6 +137,19 @@ export function AccountClient() {
     setBusy(false);
   }
 
+  async function removeScrap(articleId: string) {
+    try {
+      const r = await fetch("/api/bookmarks", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ article: articleId }),
+      });
+      if (r.ok) setScraps((prev) => prev?.filter((x) => x.article_id !== articleId) ?? prev);
+    } catch {
+      /* noop */
+    }
+  }
+
   async function deleteAccount(e: React.FormEvent) {
     e.preventDefault();
     if (busy) return;
@@ -195,182 +192,43 @@ export function AccountClient() {
   return (
     <div className="mx-auto max-w-xl space-y-6">
       {/* 계정 정보 */}
-      <Card title="계정 정보">
-        <dl className="space-y-4 text-sm">
-          <div className="flex items-center justify-between gap-4 border-b border-ink-100 pb-4 dark:border-ink-800">
-            <dt className="shrink-0 font-medium text-ink-500 dark:text-ink-400">닉네임</dt>
-            <dd className="flex min-w-0 items-center gap-2">
-              {editingName ? (
-                <>
-                  <input
-                    value={nameInput}
-                    onChange={(e) => setNameInput(e.target.value)}
-                    maxLength={20}
-                    className="h-9 w-40 rounded-md border border-ink-200 bg-white px-3 text-right text-ink-900 outline-none focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white"
-                  />
-                  <button type="button" onClick={saveName} disabled={busy} className="shrink-0 rounded-md bg-signal-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-signal-700 disabled:opacity-50">
-                    저장
-                  </button>
-                  <button type="button" onClick={() => { setEditingName(false); setNameInput(user.name); }} className="shrink-0 text-xs text-ink-400 hover:text-ink-700">
-                    취소
-                  </button>
-                </>
-              ) : (
-                <>
-                  <span className="font-semibold text-ink-900 dark:text-white">{user.name}</span>
-                  <button type="button" onClick={() => setEditingName(true)} className="shrink-0 text-xs font-medium text-signal-600 hover:text-signal-700">
-                    변경
-                  </button>
-                </>
-              )}
-            </dd>
-          </div>
-          <div className="flex items-center justify-between gap-4">
-            <dt className="shrink-0 font-medium text-ink-500 dark:text-ink-400">이메일</dt>
-            <dd className="break-all font-semibold text-ink-900 dark:text-white">{user.email}</dd>
-          </div>
-        </dl>
-        {nameMsg && <p className="mt-3 text-xs text-signal-600 dark:text-signal-400">{nameMsg}</p>}
-      </Card>
+      <ProfileCard
+        user={user}
+        editingName={editingName}
+        nameInput={nameInput}
+        nameMsg={nameMsg}
+        busy={busy}
+        onEditStart={() => setEditingName(true)}
+        onCancel={() => {
+          setEditingName(false);
+          setNameInput(user.name);
+        }}
+        onNameInput={setNameInput}
+        onSave={saveName}
+      />
 
       {/* 스크랩 */}
-      <Card title="스크랩한 기사">
-        {scraps === null ? (
-          <p className="text-sm text-ink-400">불러오는 중…</p>
-        ) : scraps.length === 0 ? (
-          <p className="text-sm leading-relaxed text-ink-500 dark:text-ink-300">
-            스크랩한 기사가 없습니다. 기사 제목 아래 책갈피 버튼으로 저장해 두고 여기서 다시 볼 수 있어요.
-          </p>
-        ) : (
-          <ul className="divide-y divide-ink-100 dark:divide-ink-800">
-            {scraps.map((s) => {
-              const a = artIndex.get(s.article_id);
-              return (
-                <li key={s.article_id} className="flex items-center justify-between gap-3 py-3">
-                  <div className="min-w-0">
-                    {a ? (
-                      <Link
-                        href={`/article/${a.slug}`}
-                        className="block truncate text-sm font-medium text-ink-900 hover:underline dark:text-white"
-                      >
-                        {a.title}
-                      </Link>
-                    ) : (
-                      <span className="block truncate text-sm text-ink-500">{s.article_id}</span>
-                    )}
-                    <span className="text-xs text-ink-400">{s.created_at.slice(0, 10).replaceAll("-", ".")}. 저장</span>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={async () => {
-                      try {
-                        const r = await fetch("/api/bookmarks", {
-                          method: "POST",
-                          headers: { "content-type": "application/json" },
-                          body: JSON.stringify({ article: s.article_id }),
-                        });
-                        if (r.ok) setScraps((prev) => prev?.filter((x) => x.article_id !== s.article_id) ?? prev);
-                      } catch {
-                        /* noop */
-                      }
-                    }}
-                    className="shrink-0 text-xs text-ink-400 transition-colors hover:text-ink-700 dark:hover:text-ink-200"
-                  >
-                    해제
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-      </Card>
+      <ScrapsCard scraps={scraps} artIndex={artIndex} onRemove={removeScrap} />
 
       {/* 내가 쓴 댓글 */}
-      <Card title="내가 쓴 댓글">
-        {myComments === null ? (
-          <p className="text-sm text-ink-400">불러오는 중…</p>
-        ) : myComments.length === 0 ? (
-          <p className="text-sm leading-relaxed text-ink-500 dark:text-ink-300">
-            아직 쓴 댓글이 없습니다. 기사 하단에서 의견을 남겨 보세요.
-          </p>
-        ) : (
-          <ul className="divide-y divide-ink-100 dark:divide-ink-800">
-            {myComments.slice(0, 10).map((c, i) => {
-              const a = artIndex.get(c.article_id);
-              return (
-                <li key={`${c.article_id}-${c.created_at}-${i}`} className="py-3">
-                  <p className="line-clamp-2 text-sm text-ink-800 dark:text-ink-100">{c.body}</p>
-                  <p className="mt-1 flex items-center gap-2 text-xs text-ink-400">
-                    <span className="shrink-0">{c.created_at.slice(0, 10).replaceAll("-", ".")}.</span>
-                    {a && (
-                      <Link href={`/article/${a.slug}`} className="min-w-0 truncate hover:underline">
-                        {a.title}
-                      </Link>
-                    )}
-                  </p>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-      </Card>
+      <MyCommentsCard myComments={myComments} artIndex={artIndex} />
 
       {/* 로그인 수단 */}
-      <Card title="연결된 로그인 수단">
-        {linkMsg && (
-          <p className="mb-4 rounded-md border border-signal-200 bg-signal-50 px-4 py-3 text-sm text-signal-700 dark:border-signal-900 dark:bg-signal-950/40 dark:text-signal-300">
-            {linkMsg}
-          </p>
-        )}
-        <div className="space-y-2.5">
-          {(["email", "kakao", "naver", "google"] as const).map((p) => {
-            const connected = p === "email" ? providers.includes("email") || hasPassword : providers.includes(p);
-            return (
-              <div key={p} className="flex items-center justify-between gap-3 rounded-lg border border-ink-100 px-4 py-2.5 dark:border-ink-800">
-                <span className="flex items-center gap-2 text-sm font-medium text-ink-700 dark:text-ink-200">
-                  <span className={`h-1.5 w-1.5 rounded-full ${connected ? "bg-signal-600" : "bg-ink-200 dark:bg-ink-700"}`} />
-                  {PROVIDER_LABEL[p]}
-                </span>
-                {connected ? (
-                  <span className="text-xs font-medium text-ink-400">연결됨</span>
-                ) : p === "email" ? (
-                  <span className="text-xs text-ink-400">아래 비밀번호 설정 시 사용 가능</span>
-                ) : (
-                  <a
-                    href={`/api/auth/${p}/start?link=1`}
-                    className="rounded-md border border-ink-300 px-3 py-1.5 text-xs font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200"
-                  >
-                    연결하기
-                  </a>
-                )}
-              </div>
-            );
-          })}
-        </div>
-        <p className="mt-3 text-xs leading-relaxed text-ink-400">
-          연결해 두면 어떤 방법으로 로그인해도 같은 계정으로 들어옵니다.
-        </p>
-      </Card>
+      <ProvidersCard providers={providers} hasPassword={hasPassword} linkMsg={linkMsg} />
 
       {/* 비밀번호 */}
-      <Card title={hasPassword ? "비밀번호 변경" : "비밀번호 설정"}>
-        {!hasPassword && (
-          <p className="mb-4 text-sm leading-relaxed text-ink-500 dark:text-ink-300">
-            간편 로그인으로 가입한 계정입니다. 비밀번호를 설정하면 이메일로도 로그인할 수 있습니다.
-          </p>
-        )}
-        <form onSubmit={savePassword} className="space-y-3">
-          {hasPassword && (
-            <input type="password" value={curPw} onChange={(e) => setCurPw(e.target.value)} placeholder="현재 비밀번호" autoComplete="current-password" className={inputCls} />
-          )}
-          <input type="password" value={newPw} onChange={(e) => setNewPw(e.target.value)} placeholder="새 비밀번호 (8자 이상)" autoComplete="new-password" className={inputCls} />
-          <input type="password" value={newPw2} onChange={(e) => setNewPw2(e.target.value)} placeholder="새 비밀번호 확인" autoComplete="new-password" className={inputCls} />
-          {pwMsg && <p className="text-xs text-signal-600 dark:text-signal-400">{pwMsg}</p>}
-          <button type="submit" disabled={busy} className="w-full rounded-md bg-signal-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-signal-700 disabled:opacity-50">
-            {hasPassword ? "비밀번호 변경" : "비밀번호 설정"}
-          </button>
-        </form>
-      </Card>
+      <PasswordCard
+        hasPassword={hasPassword}
+        curPw={curPw}
+        newPw={newPw}
+        newPw2={newPw2}
+        pwMsg={pwMsg}
+        busy={busy}
+        onCurPw={setCurPw}
+        onNewPw={setNewPw}
+        onNewPw2={setNewPw2}
+        onSubmit={savePassword}
+      />
 
       {/* 로그아웃 */}
       <button type="button" onClick={logout} className="w-full rounded-md border border-ink-300 px-6 py-3 font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200">

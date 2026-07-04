@@ -6,6 +6,8 @@
  */
 import { json, getUser, type AuthEnv } from "../_lib/auth";
 
+const ARTICLE_RE = /^[a-z0-9][a-z0-9-]{0,80}$/i; // 기사 id 형식 — reactions.ts와 동일 규칙
+
 export async function onRequestGet(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
   if (!env.DB) return json({ error: "unavailable" }, 503);
@@ -13,11 +15,12 @@ export async function onRequestGet(ctx: any): Promise<Response> {
   const article = new URL(ctx.request.url).searchParams.get("article");
 
   if (article) {
+    if (!ARTICLE_RE.test(article)) return json({ error: "잘못된 요청입니다." }, 400);
     if (!me) return json({ saved: false });
     const row = await env.DB.prepare(
       "SELECT 1 AS x FROM bookmarks WHERE user_id = ?1 AND article_id = ?2",
     )
-      .bind(me.id, article.slice(0, 200))
+      .bind(me.id, article)
       .first();
     return json({ saved: !!row });
   }
@@ -41,11 +44,11 @@ export async function onRequestPost(ctx: any): Promise<Response> {
 
   let article = "";
   try {
-    article = String((await ctx.request.json())?.article || "").slice(0, 200);
+    article = String((await ctx.request.json())?.article || "");
   } catch {
     /* noop */
   }
-  if (!article) return json({ error: "잘못된 요청입니다." }, 400);
+  if (!ARTICLE_RE.test(article)) return json({ error: "잘못된 요청입니다." }, 400);
 
   const del = await env.DB.prepare(
     "DELETE FROM bookmarks WHERE user_id = ?1 AND article_id = ?2",

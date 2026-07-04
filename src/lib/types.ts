@@ -31,6 +31,7 @@ export interface Article {
   category: CategorySlug;
   author: Author;
   publishedAt: string; // ISO 8601
+  updatedAt?: string; // ISO 8601 — 최종 수정 시각(있을 때만 "입력·수정" 병기)
   imageUrl: string;
   imageCaption?: string;
   tags: string[];

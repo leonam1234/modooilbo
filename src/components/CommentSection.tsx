@@ -2,35 +2,11 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { CommentItem, type CommentData } from "@/components/CommentItem";
 
-type CommentItem = {
-  id: string;
-  parent_id: string | null;
-  author: string;
-  body: string;
-  created_at: string; // KST 벽시계 문자열
-  likes: number;
-  liked: boolean;
-  mine: boolean;
-  deleted: boolean;
-  hidden: boolean;
-};
-
-type Data = { count: number; comments: CommentItem[]; me: { name: string } | null };
+type Data = { count: number; comments: CommentData[]; me: { name: string } | null };
 
 const MAX_BODY = 500;
-
-/** KST 저장 문자열 → 상대 시각. */
-function timeAgo(kst: string): string {
-  const t = new Date(`${kst.replace(" ", "T")}+09:00`).getTime();
-  if (Number.isNaN(t)) return "";
-  const s = Math.max(0, Math.floor((Date.now() - t) / 1000));
-  if (s < 60) return "방금 전";
-  if (s < 3600) return `${Math.floor(s / 60)}분 전`;
-  if (s < 86400) return `${Math.floor(s / 3600)}시간 전`;
-  if (s < 86400 * 7) return `${Math.floor(s / 86400)}일 전`;
-  return kst.slice(0, 10).replaceAll("-", ".") + ".";
-}
 
 function WriteBox({
   placeholder,
@@ -92,13 +68,16 @@ export function CommentSection({ articleId }: { articleId: string }) {
   const load = useCallback(() => {
     fetch(`/api/comments?article=${encodeURIComponent(articleId)}`)
       .then((r) => (r.ok ? r.json() : Promise.reject()))
-      .then((d: Data) => setData(d))
+      .then((d: Data) => {
+        setFailed(false);
+        setData(d);
+      })
       .catch(() => setFailed(true));
   }, [articleId]);
   useEffect(load, [load]);
 
   const { roots, repliesOf, bestIds } = useMemo(() => {
-    const list = data?.comments ?? [];
+    const list: CommentData[] = data?.comments ?? [];
     const all = list.filter((c) => !c.parent_id);
 
     // 베스트 댓글(네이버식): 공감 2개 이상 중 상위 3개를 상단 고정
@@ -112,7 +91,7 @@ export function CommentSection({ articleId }: { articleId: string }) {
     if (sort === "likes") rest.sort((a, b) => b.likes - a.likes || b.created_at.localeCompare(a.created_at));
     else rest.sort((a, b) => b.created_at.localeCompare(a.created_at));
 
-    const repliesOf = new Map<string, CommentItem[]>();
+    const repliesOf = new Map<string, CommentData[]>();
     for (const c of list) {
       if (!c.parent_id) continue;
       const arr = repliesOf.get(c.parent_id) ?? [];
@@ -210,72 +189,21 @@ export function CommentSection({ articleId }: { articleId: string }) {
     }
   }
 
-  // 컴포넌트가 아닌 렌더 함수 — 매 렌더마다 서브트리 재마운트되는 것 방지
-  function renderComment(c: CommentItem, isReply?: boolean) {
+  // 공통 props로 CommentItem을 렌더 — 마크업은 기존과 동일
+  function renderComment(c: CommentData, isReply?: boolean) {
     return (
-      <div className={isReply ? "" : "py-4"}>
-        {c.deleted || c.hidden ? (
-          <p className="text-sm italic text-ink-400">
-            {c.deleted ? "삭제된 댓글입니다." : "신고 누적으로 가려진 댓글입니다."}
-          </p>
-        ) : (
-          <>
-            <p className="flex items-baseline gap-2">
-              {bestIds.has(c.id) && (
-                <span className="shrink-0 rounded border border-ink-900 px-1 text-[10px] font-black leading-4 text-ink-900 dark:border-white dark:text-white">
-                  BEST
-                </span>
-              )}
-              <span className="text-sm font-semibold text-ink-900 dark:text-white">{c.author}</span>
-              <span className="text-xs text-ink-400">{timeAgo(c.created_at)}</span>
-            </p>
-            <p className="mt-1.5 whitespace-pre-wrap break-words text-[15px] leading-relaxed text-ink-800 dark:text-ink-100">
-              {c.body}
-            </p>
-            <div className="mt-2 flex items-center gap-3">
-              <button
-                type="button"
-                onClick={() => toggleLike(c.id)}
-                className={`rounded-full border px-2.5 py-0.5 text-xs tabular-nums transition-colors ${
-                  c.liked
-                    ? "border-ink-900 font-semibold text-ink-900 dark:border-white dark:text-white"
-                    : "border-ink-200 text-ink-500 hover:border-ink-400 dark:border-ink-700 dark:text-ink-300"
-                }`}
-              >
-                공감 {c.likes > 0 ? c.likes : ""}
-              </button>
-              {!isReply && data?.me && (
-                <button
-                  type="button"
-                  onClick={() => setReplyTo(replyTo === c.id ? null : c.id)}
-                  className="text-xs text-ink-400 transition-colors hover:text-ink-700 dark:hover:text-ink-200"
-                >
-                  답글
-                </button>
-              )}
-              {c.mine && (
-                <button
-                  type="button"
-                  onClick={() => remove(c.id)}
-                  className="text-xs text-ink-400 transition-colors hover:text-ink-700 dark:hover:text-ink-200"
-                >
-                  삭제
-                </button>
-              )}
-              {!c.mine && data?.me && (
-                <button
-                  type="button"
-                  onClick={() => report(c.id)}
-                  disabled={reported.has(c.id)}
-                  className="text-xs text-ink-400 transition-colors hover:text-ink-700 disabled:cursor-default disabled:opacity-60 dark:hover:text-ink-200"
-                >
-                  {reported.has(c.id) ? "신고됨" : "신고"}
-                </button>
-              )}
-            </div>
-          </>
-        )}
-      </div>
+      <CommentItem
+        comment={c}
+        isReply={isReply}
+        isBest={bestIds.has(c.id)}
+        canReply={!!data?.me}
+        canReport={!!data?.me}
+        reported={reported.has(c.id)}
+        onToggleLike={() => toggleLike(c.id)}
+        onToggleReply={() => setReplyTo(replyTo === c.id ? null : c.id)}
+        onRemove={() => remove(c.id)}
+        onReport={() => report(c.id)}
+      />
     );
   }
 
@@ -314,11 +242,25 @@ export function CommentSection({ articleId }: { articleId: string }) {
 
       <div className="mt-4">
         {failed ? (
-          <p className="rounded-xl border border-ink-200 bg-ink-50 p-4 text-sm text-ink-500 dark:border-ink-800 dark:bg-ink-900 dark:text-ink-300">
-            댓글을 불러오지 못했습니다.
-          </p>
+          <div className="flex flex-col items-center gap-3 rounded-xl border border-ink-200 bg-ink-50 p-4 text-center dark:border-ink-800 dark:bg-ink-900 sm:flex-row sm:justify-between sm:text-left">
+            <p className="text-sm text-ink-500 dark:text-ink-300">댓글을 불러오지 못했습니다.</p>
+            <button
+              type="button"
+              onClick={() => {
+                setFailed(false);
+                load();
+              }}
+              className="shrink-0 rounded-md border border-ink-300 px-3 py-1.5 text-xs font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200"
+            >
+              다시 시도
+            </button>
+          </div>
         ) : data === null ? (
-          <p className="py-4 text-sm text-ink-400">댓글을 불러오는 중…</p>
+          <div className="space-y-3 py-4" role="status" aria-label="댓글을 불러오는 중">
+            <div className="h-4 w-1/4 animate-pulse rounded bg-ink-100 dark:bg-ink-800" />
+            <div className="h-4 w-full animate-pulse rounded bg-ink-100 dark:bg-ink-800" />
+            <div className="h-4 w-2/3 animate-pulse rounded bg-ink-100 dark:bg-ink-800" />
+          </div>
         ) : data.me ? (
           <WriteBox placeholder={`${data.me.name}님, 이 기사에 대한 생각을 남겨 주세요.`} busy={busy} onSubmit={(t) => submit(t, null)} />
         ) : (

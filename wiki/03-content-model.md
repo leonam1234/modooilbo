@@ -19,6 +19,7 @@ interface Article {
   category: CategorySlug;
   author: Author;
   publishedAt: string;   // ISO 8601
+  updatedAt?: string;    // ISO 8601 — 최종 수정 시각. 있으면 상세에 "입력·수정" 병기(frontmatter `updated:`)
   imageUrl: string;      // https://picsum.photos/seed/<seed>/1200/800
   imageCaption?: string;
   tags: string[];

@@ -18,9 +18,7 @@ export function ViewBeacon({ articleId }: { articleId: string }) {
       /* ignore */
     }
     try {
-      const key = `viewed:${articleId}`;
-      if (sessionStorage.getItem(key)) return;
-      sessionStorage.setItem(key, "1");
+      if (sessionStorage.getItem(`viewed:${articleId}`)) return;
     } catch {
       /* sessionStorage 불가 시에도 전송 */
     }
@@ -29,7 +27,12 @@ export function ViewBeacon({ articleId }: { articleId: string }) {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ article: articleId }),
       keepalive: true,
-    }).catch(() => {});
+    })
+      .then((r) => {
+        // 전송이 실제 성공했을 때만 세션 플래그 기록 — 실패 시 다음 진입에서 재시도
+        if (r.ok) sessionStorage.setItem(`viewed:${articleId}`, "1");
+      })
+      .catch(() => {});
   }, [articleId]);
   return null;
 }

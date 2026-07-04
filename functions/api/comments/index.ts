@@ -10,6 +10,7 @@
 import { json, getUser, type AuthEnv } from "../../_lib/auth";
 
 const MAX_BODY = 500;
+const ARTICLE_RE = /^[a-z0-9][a-z0-9-]{0,80}$/i; // 기사 id 형식 — reactions.ts와 동일 규칙
 
 // 클린봇 v1 — 금칙어(욕설·혐오) 포함 시 등록 거부. 공백·특수문자·숫자 끼워넣기 우회 방지용 정규화.
 const BANNED = [
@@ -98,8 +99,8 @@ async function loadComments(env: AuthEnv, article: string, me: { id: string; nam
 export async function onRequestGet(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
   if (!env.DB) return json({ error: "unavailable" }, 503);
-  const article = new URL(ctx.request.url).searchParams.get("article")?.slice(0, 200);
-  if (!article) return json({ error: "article이 필요합니다." }, 400);
+  const article = new URL(ctx.request.url).searchParams.get("article") || "";
+  if (!ARTICLE_RE.test(article)) return json({ error: "article이 필요합니다." }, 400);
   const me = await getUser(env, ctx.request);
   const data = await loadComments(env, article, me);
   return json({ ...data, me: me ? { name: me.name } : null });
@@ -117,10 +118,11 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   } catch {
     return json({ error: "잘못된 요청입니다." }, 400);
   }
-  const article = String(payload?.article || "").slice(0, 200);
+  const article = String(payload?.article || "");
   const body = String(payload?.body || "").trim();
   const parent = payload?.parent ? String(payload.parent) : null;
-  if (!article || !body) return json({ error: "내용을 입력해 주세요." }, 400);
+  if (!ARTICLE_RE.test(article)) return json({ error: "잘못된 요청입니다." }, 400);
+  if (!body) return json({ error: "내용을 입력해 주세요." }, 400);
   if (body.length > MAX_BODY) return json({ error: `댓글은 ${MAX_BODY}자까지 쓸 수 있습니다.` }, 400);
   if (hasBanned(body)) {
     return json({ error: "부적절한 표현이 포함되어 등록할 수 없습니다. 표현을 다듬어 주세요." }, 400);

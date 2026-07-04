@@ -42,7 +42,9 @@ function parseGenerated() {
   const p = join(ROOT, "src", "lib", "content.generated.ts");
   if (!existsSync(p)) return [];
   const src = readFileSync(p, "utf8");
-  const s = src.indexOf("[");
+  // 주의: 첫 "["는 타입 표기(Article[])의 대괄호 — 배열 리터럴은 "= [" 뒤에서 시작한다.
+  const assign = src.indexOf("= [");
+  const s = assign === -1 ? -1 : assign + 2;
   const e = src.lastIndexOf("]");
   if (s === -1 || e === -1) return [];
   let arr;
@@ -74,14 +76,11 @@ for (const a of articles) {
 }
 
 const data = {
-  generatedAt: articles.length ? undefined : undefined, // 시각은 함수에서 접속시각 사용(재현성)
   articleCount: articles.length,
   tags: [...index.values()].sort((x, y) => y.count - x.count),
   // 추후 트래픽 신호(조회 많은 기사 경로→태그)용 매핑
   articles: articles.map((a) => ({ id: a.id, slug: a.slug, tags: a.tags, publishedAt: a.publishedAt })),
 };
-delete data.generatedAt;
-
 writeFileSync(OUT, JSON.stringify(data));
 console.log(`인기태그 데이터: 기사 ${articles.length}건 / 고유 태그 ${data.tags.length}개 → src/lib/trending-data.generated.json`);
 console.log(`  상위 10: ${data.tags.slice(0, 10).map((t) => `#${t.tag}(${t.count})`).join(" ")}`);

@@ -1,6 +1,8 @@
 /**
  * GET /api/auth/naver/callback — 네이버 인가 코드 → 토큰 교환 → 프로필 조회 →
- * 간편 회원가입/로그인 (identities(naver) 로그인 / 동일이메일 병합 / 신규 자동가입).
+ * 간편 회원가입/로그인 (identities(naver) 로그인 / 신규 자동가입).
+ * 네이버는 이메일 검증 플래그를 주지 않아 미검증으로 취급 — 동일 이메일 자동 병합 없음
+ * (google/kakao의 email_verified=false 처리와 동일한 경로. 기존 계정과 합치려면 계정 페이지에서 연결).
  * 실패 시 /login/?error=naver 로 리다이렉트.
  */
 import { createSession, sessionCookie, getUser, type AuthEnv } from "../../../_lib/auth";
@@ -54,8 +56,8 @@ export async function onRequestGet(ctx: any): Promise<Response> {
 
     const name: string =
       (me.response?.nickname || me.response?.name || "").trim() || "네이버회원";
-    // 네이버는 이메일 제공 동의 시 email을 준다(검증된 네이버 계정 이메일).
-    const email: string | null = me.response?.email ? String(me.response.email).toLowerCase() : null;
+    // 네이버 프로필의 email은 검증 여부 플래그가 없어 신뢰하지 않는다(계정 병합·저장에 사용 X).
+    // 타인 이메일을 등록한 네이버 계정으로 기존 회원 계정을 탈취하는 경로를 막기 위함.
 
     const ident = await env.DB.prepare(
       "SELECT user_id FROM identities WHERE provider = 'naver' AND provider_user_id = ?1",
@@ -90,29 +92,17 @@ export async function onRequestGet(ctx: any): Promise<Response> {
     if (ident) {
       userId = (ident as any).user_id;
     } else {
-      let existing: any = null;
-      if (email) {
-        existing = await env.DB.prepare("SELECT id FROM users WHERE email = ?1").bind(email).first();
-      }
-      if (existing) {
-        userId = existing.id;
-        await env.DB.prepare(
+      // 신규 가입(간편 회원가입) — 미검증 이메일 취급이라 병합 없이 합성 이메일로 새 계정
+      userId = crypto.randomUUID();
+      const accountEmail = `naver_${naverId}@users.modooilbo.com`;
+      await env.DB.batch([
+        env.DB.prepare(
+          "INSERT INTO users (id, email, name, password_hash, password_salt, newsletter) VALUES (?1, ?2, ?3, NULL, NULL, 0)",
+        ).bind(userId, accountEmail, name.slice(0, 20)),
+        env.DB.prepare(
           "INSERT INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'naver', ?2)",
-        )
-          .bind(userId, naverId)
-          .run();
-      } else {
-        userId = crypto.randomUUID();
-        const accountEmail = email ?? `naver_${naverId}@users.modooilbo.com`;
-        await env.DB.batch([
-          env.DB.prepare(
-            "INSERT INTO users (id, email, name, password_hash, password_salt, newsletter) VALUES (?1, ?2, ?3, NULL, NULL, 0)",
-          ).bind(userId, accountEmail, name.slice(0, 20)),
-          env.DB.prepare(
-            "INSERT INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'naver', ?2)",
-          ).bind(userId, naverId),
-        ]);
-      }
+        ).bind(userId, naverId),
+      ]);
     }
 
     const session = await createSession(env, userId);
