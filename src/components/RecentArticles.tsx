@@ -42,7 +42,7 @@ export function RecentArticles({ excludeId, count = 5 }: { excludeId?: string; c
       <ul className="space-y-3">
         {items.map((a) => (
           <li key={a.id}>
-            <Link href={`/article/${a.slug}`} className="group block">
+            <Link prefetch={false} href={`/article/${a.slug}`} className="group block">
               <h3 className="clamp-2 text-sm font-medium leading-snug text-ink-700 group-hover:text-signal-600 dark:text-ink-200">
                 {a.title}
               </h3>

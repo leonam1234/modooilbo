@@ -26,7 +26,7 @@ const COMPANY_LINKS = [
 
 function Logo({ className }: { className?: string }) {
   return (
-    <Link href="/" className={cn("flex items-center gap-2", className)} aria-label="모두일보 홈">
+    <Link prefetch={false} href="/" className={cn("flex items-center gap-2", className)} aria-label="모두일보 홈">
       <span className="grid h-7 w-7 place-items-center rounded-sm bg-signal-600 font-headline text-sm font-black text-white">
         M
       </span>
@@ -140,12 +140,12 @@ export function Header() {
         <div className="container-page flex h-9 items-center justify-between">
           <span className="tabular-nums">{today || " "}</span>
           <nav className="flex items-center gap-4">
-            <Link href="/subscribe" className="font-semibold text-signal-600 hover:text-signal-700">
+            <Link prefetch={false} href="/subscribe" className="font-semibold text-signal-600 hover:text-signal-700">
               후원·구독
             </Link>
             <span aria-hidden className="text-ink-200 dark:text-ink-700">|</span>
             <AuthMenu variant="links" />
-            <Link href="/newsletter" className="hover:text-ink-900 dark:hover:text-white">뉴스레터</Link>
+            <Link prefetch={false} href="/newsletter" className="hover:text-ink-900 dark:hover:text-white">뉴스레터</Link>
             <ThemeToggle className="h-7 w-7" />
           </nav>
         </div>
@@ -185,7 +185,7 @@ export function Header() {
         <nav className="hidden border-t border-ink-100 dark:border-ink-800/60 md:block">
           <div className="container-page flex items-center gap-1">
             {CATEGORIES.map((c) => (
-              <Link
+              <Link prefetch={false}
                 key={c.slug}
                 href={`/${c.slug}`}
                 aria-current={isActive(c.slug) ? "page" : undefined}
@@ -294,7 +294,7 @@ export function Header() {
               <ul className="grid grid-cols-2 gap-1">
                 {CATEGORIES.map((c) => (
                   <li key={c.slug}>
-                    <Link
+                    <Link prefetch={false}
                       href={`/${c.slug}`}
                       className="block rounded-md px-3 py-2.5 font-semibold text-ink-800 hover:bg-ink-50 hover:text-signal-600 dark:text-ink-100 dark:hover:bg-ink-800"
                     >
@@ -307,7 +307,7 @@ export function Header() {
               <ul className="space-y-0.5">
                 {COMPANY_LINKS.map((l) => (
                   <li key={l.href}>
-                    <Link
+                    <Link prefetch={false}
                       href={l.href}
                       className="block rounded-md px-3 py-2.5 text-sm text-ink-700 hover:bg-ink-50 hover:text-signal-600 dark:text-ink-200 dark:hover:bg-ink-800"
                     >
@@ -318,13 +318,13 @@ export function Header() {
               </ul>
             </div>
             <div className="flex items-center gap-2 border-t border-ink-100 p-4 dark:border-ink-800">
-              <Link
+              <Link prefetch={false}
                 href="/login"
                 className="flex-1 rounded-md border border-ink-200 py-2.5 text-center text-sm font-semibold text-ink-700 dark:border-ink-700 dark:text-ink-100"
               >
                 로그인
               </Link>
-              <Link
+              <Link prefetch={false}
                 href="/subscribe"
                 className="flex-1 rounded-md bg-signal-600 py-2.5 text-center text-sm font-semibold text-white hover:bg-signal-700"
               >

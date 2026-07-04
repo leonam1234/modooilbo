@@ -78,7 +78,7 @@ export function Footer() {
             <ul className="mt-6 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-ink-500 dark:text-ink-400">
               {CATEGORIES.map((c) => (
                 <li key={c.slug}>
-                  <Link href={`/${c.slug}`} className="hover:text-signal-600">
+                  <Link prefetch={false} href={`/${c.slug}`} className="hover:text-signal-600">
                     {c.name}
                   </Link>
                 </li>
@@ -94,7 +94,7 @@ export function Footer() {
                 <ul className="space-y-2">
                   {col.links.map((l) => (
                     <li key={l.label}>
-                      <Link
+                      <Link prefetch={false}
                         href={l.href}
                         className="text-sm text-ink-500 hover:text-signal-600 dark:text-ink-400"
                       >
