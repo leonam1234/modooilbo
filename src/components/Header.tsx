@@ -176,7 +176,7 @@ export function Header() {
               <SearchIcon className="h-5 w-5" />
             </button>
             <ThemeToggle className="md:hidden" />
-            <LocationPicker className="ml-1 hidden sm:inline-flex" />
+            <LocationPicker className="ml-1" />
             <AuthMenu variant="pill" />
           </div>
         </div>

@@ -120,7 +120,7 @@ export function LocationPicker({ className }: { className?: string }) {
           <circle cx="12" cy="10" r="2.4" stroke="currentColor" strokeWidth="1.6" />
         </svg>
       </button>
-      <span className="relative inline-flex items-center">
+      <span className="relative hidden items-center sm:inline-flex">
         <select
           value={city}
           onChange={(e) => change(e.target.value)}
