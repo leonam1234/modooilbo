@@ -7,7 +7,7 @@ import { webpSrc } from "@/lib/stock";
  */
 /** 유튜브 URL "단독 문단"만 임베드 — 문장에 섞인 링크는 텍스트 유지. watch/shorts/youtu.be/embed/live 지원. */
 const YOUTUBE_RE =
-  /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/|live\/)|youtu\.be\/)([A-Za-z0-9_-]{6,20})(?:[?&#]\S*)?$/;
+  /^https?:\/\/(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/|live\/)|youtu\.be\/)([A-Za-z0-9_-]{6,20})\/?(?:[?&#]\S*)?$/;
 
 /** "## 출처 …" 이후를 각주 블록으로 분리. [본문, 출처라벨, 출처항목들]
  *  생성 파이프라인(build-content)이 문단 내 줄바꿈을 공백으로 접기 때문에

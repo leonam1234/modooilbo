@@ -41,26 +41,14 @@ export function TrendingTags() {
     return () => clearInterval(t);
   }, [data, open]);
 
-  // 패널 밖 탭/ESC로 닫기
+  // ESC로 닫기 (바깥 탭은 아래 백드롭이 흡수 — 뒤 요소 클릭 관통 방지)
   useEffect(() => {
     if (!open) return;
-    const onDown = (e: MouseEvent | TouchEvent) => {
-      const t = e.target as Node;
-      // 토글 버튼 자체는 제외 — touchstart로 닫힌 뒤 click 토글이 다시 열어 "안 접히는" 문제 방지
-      if (toggleRef.current?.contains(t)) return;
-      if (panelRef.current && !panelRef.current.contains(t)) setOpen(false);
-    };
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
-    document.addEventListener("mousedown", onDown);
-    document.addEventListener("touchstart", onDown);
     document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("mousedown", onDown);
-      document.removeEventListener("touchstart", onDown);
-      document.removeEventListener("keydown", onKey);
-    };
+    return () => document.removeEventListener("keydown", onKey);
   }, [open]);
 
   if (!data) return null;
@@ -83,11 +71,11 @@ export function TrendingTags() {
           aria-label="실시간 인기 전체 보기"
           className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden text-left sm:hidden"
         >
-          <span key={idx} className="tw-chip flex min-w-0 animate-fade-up items-baseline gap-1.5">
+          <span key={idx} className="flex min-w-0 animate-fade-up items-baseline gap-1.5">
             <span className="shrink-0 text-[15px] font-extrabold tabular-nums text-ink-900 dark:text-ink-100">
               {(idx % data.tags.length) + 1}
             </span>
-            <span className="truncate text-[15px] font-semibold text-ink-800 dark:text-ink-100">#{cur}</span>
+            <span className="tw-chip truncate text-[15px] font-semibold text-ink-800 dark:text-ink-100">#{cur}</span>
           </span>
           <svg
             viewBox="0 0 24 24"
@@ -122,7 +110,15 @@ export function TrendingTags() {
         <span className="hidden shrink-0 text-[11px] text-ink-400 sm:block">{data.label}</span>
       </div>
 
-      {/* 모바일 전체 순위 패널 */}
+      {/* 모바일 전체 순위 패널 (+투명 백드롭: 바깥 탭 닫기, 클릭 관통 차단) */}
+      {open && (
+        <button
+          type="button"
+          aria-label="실시간 인기 닫기"
+          onClick={() => setOpen(false)}
+          className="fixed inset-0 z-40 cursor-default bg-transparent sm:hidden"
+        />
+      )}
       {open && (
         <div
           ref={panelRef}

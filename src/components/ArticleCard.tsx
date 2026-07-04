@@ -224,12 +224,12 @@ export function ArticleCard({
             headingClassName,
           )}
         >
-          <Link prefetch={false} href={href} className="clamp-2 hover:text-signal-700 dark:hover:text-signal-400">
+          <Link prefetch={false} href={href} className="clamp-2 clamp-2-fill hover:text-signal-700 dark:hover:text-signal-400">
             {article.title}
           </Link>
         </h3>
         {showSummary && (
-          <p className="clamp-2 mt-1.5 text-sm leading-relaxed text-ink-500 dark:text-ink-300">
+          <p className="clamp-2 clamp-2-fill mt-1.5 text-sm leading-relaxed text-ink-500 dark:text-ink-300">
             {article.summary}
           </p>
         )}
