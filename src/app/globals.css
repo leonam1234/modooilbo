@@ -5,24 +5,13 @@
 @tailwind utilities;
 
 /* 헤드라인 시그니처 서체 — 마루 부리(네이버 무료 배포, 화면용 부리체).
-   공식 CSS는 웨이트별 패밀리라 font-bold와 안 맞물려서 woff2를 직접 웨이트 매핑. */
+   전 사용처가 bold 이상이라 Bold 단일 서브셋(한글 전역+라틴+기호, 275KB)만 자체 호스팅.
+   400~900 전 웨이트가 이 파일로 해석됨(별도 Regular 다운로드 없음 — 폰트 800KB→275KB). */
 @font-face {
   font-family: "MaruBuri";
-  font-weight: 400;
+  font-weight: 400 900;
   font-display: swap;
-  src: url(https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-Regular.woff2) format("woff2");
-}
-@font-face {
-  font-family: "MaruBuri";
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-SemiBold.woff2) format("woff2");
-}
-@font-face {
-  font-family: "MaruBuri";
-  font-weight: 700 900; /* 800·900도 Bold 실물 글리프 사용(합성 볼드 방지) */
-  font-display: swap;
-  src: url(https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-Bold.woff2) format("woff2");
+  src: url(/fonts/MaruBuri-Bold.subset.woff2) format("woff2");
 }
 
 :root {
@@ -63,6 +52,7 @@
   }
   .font-headline {
     font-family: var(--font-serif);
+    font-weight: 700; /* 마루부리는 Bold 단일 서브셋 — 헤드라인 기본 굵기 고정 */
     word-break: keep-all;
     letter-spacing: -0.015em; /* 부리체 헤드라인 자간 미세 축소 — 지면 밀도감 */
   }
