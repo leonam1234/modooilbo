@@ -24,9 +24,6 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
     const BLOCK = 14; // 안개 모자이크 블록 크기(px)
     const off = kind === "fog" ? document.createElement("canvas") : null;
     const offCtx = off ? off.getContext("2d") : null;
-    // 비: 유리면(물방울·궤적 누적) 지속 버퍼
-    const glass = kind === "rain" ? document.createElement("canvas") : null;
-    const glassCtx = glass ? glass.getContext("2d") : null;
 
     let w = 0;
     let h = 0;
@@ -45,11 +42,6 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
         bh = Math.max(1, Math.ceil(h / BLOCK));
         off.width = bw;
         off.height = bh;
-      }
-      if (glass && glassCtx) {
-        glass.width = Math.floor(w * dpr);
-        glass.height = Math.floor(h * dpr);
-        glassCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
     };
     resize();
@@ -80,24 +72,49 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
       }
     }
 
-    // ── 비: 유리면 물방울 ───────────────────────────────
-    const dropTone = () => (isDark() ? "205,222,248" : "88,108,138");
-    const drawDroplet = (g: CanvasRenderingContext2D, x: number, y: number, r: number, a: number) => {
-      const tone = dropTone();
-      const grad = g.createRadialGradient(x - r * 0.35, y - r * 0.4, r * 0.1, x, y, r);
-      grad.addColorStop(0, `rgba(255,255,255,${a * 0.85})`); // 하이라이트
-      grad.addColorStop(0.55, `rgba(${tone},${a * 0.5})`);
-      grad.addColorStop(1, `rgba(${tone},${a})`);
+    // ── 비: 유리면 물방울(맺힘→유지→마름 수명 관리) ─────────
+    // 누적 버퍼 + 미세 페이드 방식은 8비트 알파 반올림에 걸려 옅은 방울이 영영 안 사라짐(2026-07-04 버그).
+    // → 방울마다 수명을 두고 매 프레임 스프라이트로 다시 그린다.
+    // ⚠️ '흘러내리는 방울(runner)'과 물길 궤적은 금지 — 어떤 파라미터로도 지렁이로 보여 세 차례 반려됨.
+    const makeDropSprite = (dark: boolean) => {
+      const tone = dark ? "205,222,248" : "88,108,138";
+      const c = document.createElement("canvas");
+      c.width = c.height = 32;
+      const g = c.getContext("2d")!;
+      const r = 14;
+      const grad = g.createRadialGradient(16 - r * 0.35, 16 - r * 0.4, r * 0.1, 16, 16, r);
+      grad.addColorStop(0, "rgba(255,255,255,0.85)"); // 하이라이트
+      grad.addColorStop(0.55, `rgba(${tone},0.5)`);
+      grad.addColorStop(1, `rgba(${tone},1)`);
       g.fillStyle = grad;
       g.beginPath();
-      g.arc(x, y, r, 0, Math.PI * 2);
+      g.arc(16, 16, r, 0, Math.PI * 2);
       g.fill();
+      return c;
     };
-    if (kind === "rain" && glassCtx) {
-      for (let i = 0; i < 240; i++) drawDroplet(glassCtx, rnd(0, w), rnd(0, h), rnd(0.5, 1.9), rnd(0.1, 0.26));
+    let dropSprite: HTMLCanvasElement | null = null;
+    let dropSpriteDark = false;
+    interface Drop {
+      x: number; y: number; s: number; a: number; t: number; life: number;
     }
-    // ⚠️ '흘러내리는 방울(runner)'과 물길 궤적은 금지 — 어떤 파라미터로도 지렁이로 보여
-    //    2026-07-04 대표님이 세 차례 반려. 유리에는 정적인 맺힘만 그린다.
+    const drops: Drop[] = [];
+    const resetDrop = (d: Drop, randomPhase: boolean) => {
+      d.x = rnd(0, w);
+      d.y = rnd(0, h);
+      d.s = rnd(0.09, 0.3); // 스프라이트 32px 기준 지름 약 3~10px
+      d.a = rnd(0.14, 0.3);
+      d.life = rnd(420, 1080); // 7~18초
+      d.t = randomPhase ? rnd(0, d.life) : 0;
+    };
+    if (kind === "rain") {
+      dropSprite = makeDropSprite(isDark());
+      dropSpriteDark = isDark();
+      for (let i = 0; i < 220; i++) {
+        const d = { x: 0, y: 0, s: 0, a: 0, t: 0, life: 1 };
+        resetDrop(d, true);
+        drops.push(d);
+      }
+    }
 
     // ── 눈: 보케 스프라이트 3단(사전 렌더 — shadowBlur 없이 저비용) ──
     const makeBokeh = (size: number, soft: number, tone: string, core: number) => {
@@ -203,8 +220,8 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
         }
         ctx.imageSmoothingEnabled = false;
         ctx.drawImage(off, 0, 0, bw, bh, 0, 0, w, h);
-      } else if (kind === "rain" && glassCtx && glass) {
-        // 1) 원경 빗줄기
+      } else if (kind === "rain" && dropSprite) {
+        // 1) 원경 빗줄기 (초안 그대로)
         ctx.lineWidth = 1;
         for (const p of streaks) {
           ctx.strokeStyle = `rgba(${colorFor(dark, p.d)},${p.a})`;
@@ -218,16 +235,22 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
           else if (p.x < 0) p.x = w;
         }
 
-        // 2) 유리면 — 아주 느린 페이드(맺힌 방울이 천천히 마르고 새로 맺힘)
-        glassCtx.globalCompositeOperation = "destination-out";
-        glassCtx.fillStyle = "rgba(0,0,0,0.003)";
-        glassCtx.fillRect(0, 0, w, h);
-        glassCtx.globalCompositeOperation = "source-over";
-
-        // 3) 새 미세 방울 보충(마르는 만큼) — 맺힘만, 흘러내림 없음
-        if (frame % 2 === 0) drawDroplet(glassCtx, rnd(0, w), rnd(0, h), rnd(0.5, 1.9), rnd(0.1, 0.24));
-
-        ctx.drawImage(glass, 0, 0, glass.width, glass.height, 0, 0, w, h);
+        // 2) 유리 물방울 — 수명 봉투(맺힘 12% → 유지 → 마름 30%)로 확실히 사라졌다 다른 곳에 맺힘
+        if (dropSpriteDark !== dark) {
+          dropSprite = makeDropSprite(dark);
+          dropSpriteDark = dark;
+        }
+        for (const d of drops) {
+          d.t += 1;
+          if (d.t >= d.life) resetDrop(d, false);
+          const p = d.t / d.life;
+          const env = p < 0.12 ? p / 0.12 : p > 0.7 ? Math.max(0, (1 - p) / 0.3) : 1;
+          if (env <= 0.01) continue;
+          const size = 32 * d.s;
+          ctx.globalAlpha = d.a * env;
+          ctx.drawImage(dropSprite, d.x - size / 2, d.y - size / 2, size, size);
+        }
+        ctx.globalAlpha = 1;
       } else if (kind === "star") {
         // 다크 모드에서만 은은하게 — 라이트에선 아무것도 그리지 않음(토글 시 자연 등장/소멸)
         if (dark) {
