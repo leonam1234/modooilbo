@@ -67,7 +67,7 @@ function Thumb({
         className={cn(
           "object-cover",
           motion === "zoom" && "animate-kenburns",
-          motion === "pan" && "animate-pan-y", // ⚠️ 세로 팬은 스크롤 착시(대표님 리포트)로 사용 중단 — zoom만 쓸 것
+          motion === "pan" && "animate-pan-y", // 작은 썸네일 전용(대표님 확정: 작은=위아래 팬, 큰=줌)
           !motion && "transition-transform duration-500 group-hover:scale-105",
         )}
       />
@@ -97,7 +97,7 @@ export function ArticleCard({
     return (
       <article className={cn("group flex gap-4 transition-transform duration-300 hover:-translate-y-0.5", className)}>
         <Link prefetch={false} href={href} className="block w-28 shrink-0 sm:w-40">
-          <Thumb article={article} sizes="160px" className="aspect-[4/3]" motion="zoom" />
+          <Thumb article={article} sizes="160px" className="aspect-[4/3]" motion="pan" />
         </Link>
         <div className="min-w-0 flex-1">
           <h3
@@ -125,7 +125,7 @@ export function ArticleCard({
     return (
       <article className={cn("group flex items-start gap-3 transition-transform duration-300 hover:-translate-y-0.5", className)}>
         <Link prefetch={false} href={href} className="block w-[72px] shrink-0">
-          <Thumb article={article} sizes="80px" className="aspect-square" motion="zoom" />
+          <Thumb article={article} sizes="80px" className="aspect-square" motion="pan" />
         </Link>
         <div className="min-w-0 flex-1">
           <h3
