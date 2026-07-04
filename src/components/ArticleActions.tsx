@@ -100,9 +100,10 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
     }
   }, [size]);
 
-  function copyLink() {
+  async function copyLink() {
     try {
-      navigator.clipboard.writeText(window.location.href);
+      // 실제 복사가 성공했을 때만 "복사됨" 표시 (권한 거부·비보안 컨텍스트 대비)
+      await navigator.clipboard.writeText(window.location.href);
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     } catch {}

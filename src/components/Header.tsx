@@ -44,16 +44,25 @@ export function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [today, setToday] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const drawerCloseRef = useRef<HTMLButtonElement>(null);
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<IndexItem[]>([]);
+  const [indexReady, setIndexReady] = useState(false);
 
-  // 검색창 첫 오픈 때 인덱스 로드
+  // 검색창 첫 오픈 때 인덱스 로드 — 로드 완료를 state로 알려 이미 입력된 검색어도 즉시 추천되게 한다
   useEffect(() => {
-    if (!searchOpen || _searchIndex) return;
+    if (!searchOpen) return;
+    if (_searchIndex) {
+      setIndexReady(true);
+      return;
+    }
     fetch("/articles-index.json")
       .then((r) => (r.ok ? r.json() : null))
       .then((list: IndexItem[] | null) => {
-        if (list) _searchIndex = list;
+        if (list) {
+          _searchIndex = list;
+          setIndexReady(true);
+        }
       })
       .catch(() => {});
   }, [searchOpen]);
@@ -73,7 +82,7 @@ export function Header() {
       if (titleHit.length >= 7) break;
     }
     setSuggestions([...titleHit, ...tagHit].slice(0, 7));
-  }, [query]);
+  }, [query, indexReady]);
 
   useEffect(() => {
     const d = new Date();
@@ -87,10 +96,24 @@ export function Header() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
+    if (menuOpen) drawerCloseRef.current?.focus();
     return () => {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
+
+  // ESC로 드로어/검색 닫기 (키보드 접근성)
+  useEffect(() => {
+    if (!menuOpen && !searchOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        setSearchOpen(false);
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [menuOpen, searchOpen]);
 
   // 라우트 변경 시 메뉴/검색 닫기
   useEffect(() => {
@@ -113,7 +136,7 @@ export function Header() {
   return (
     <header className="relative">
       {/* 상단 유틸리티 바 */}
-      <div className="hidden border-b border-ink-100 bg-ink-50 text-xs text-ink-500 dark:border-ink-800 dark:bg-ink-950 dark:text-ink-400 md:block">
+      <div className="hidden border-b border-ink-100/70 bg-ink-50/75 text-xs text-ink-500 backdrop-blur-md dark:border-ink-800/70 dark:bg-ink-950/70 dark:text-ink-400 md:block">
         <div className="container-page flex h-9 items-center justify-between">
           <span className="tabular-nums">{today || " "}</span>
           <nav className="flex items-center gap-4">
@@ -129,14 +152,14 @@ export function Header() {
       </div>
 
       {/* 마스트헤드 + 내비 (헤더 전체가 sticky) */}
-      <div className="border-b border-ink-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:border-ink-800 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/80">
+      <div className="border-b border-ink-200/60 bg-white/95 backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/65 dark:border-ink-800/60 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/60">
         <div className="container-page flex h-14 items-center justify-between gap-3 sm:h-16">
           <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={() => setMenuOpen(true)}
               aria-label="전체 메뉴 열기"
-              className="-ml-1 inline-grid h-10 w-10 place-items-center rounded-md text-ink-700 hover:bg-ink-100 dark:text-ink-200 dark:hover:bg-ink-800 lg:hidden"
+              className="-ml-1 inline-grid h-10 w-10 place-items-center rounded-md text-ink-700 hover:bg-ink-100 dark:text-ink-200 dark:hover:bg-ink-800 md:hidden"
             >
               <MenuIcon className="h-6 w-6" />
             </button>
@@ -159,7 +182,7 @@ export function Header() {
         </div>
 
         {/* 데스크톱 카테고리 내비 */}
-        <nav className="hidden border-t border-ink-100 dark:border-ink-800/60 lg:block">
+        <nav className="hidden border-t border-ink-100 dark:border-ink-800/60 md:block">
           <div className="container-page flex items-center gap-1">
             {CATEGORIES.map((c) => (
               <Link
@@ -182,7 +205,7 @@ export function Header() {
 
       {/* 검색 오버레이 */}
       {searchOpen && (
-        <div className="absolute inset-x-0 top-full z-40 border-b border-ink-200 bg-white shadow-lg dark:border-ink-800 dark:bg-ink-950">
+        <div className="glass absolute inset-x-0 top-full z-40 animate-[slide-down-in_.25s_ease-out] border-b border-ink-200/50 dark:border-ink-800/50">
           <form onSubmit={submitSearch} className="container-page flex items-center gap-3 py-4">
             <SearchIcon className="h-5 w-5 shrink-0 text-ink-400" />
             <input
@@ -247,16 +270,17 @@ export function Header() {
 
       {/* 모바일 전체 메뉴 드로어 */}
       {menuOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
+        <div className="fixed inset-0 z-50 md:hidden" role="dialog" aria-modal="true" aria-label="전체 메뉴">
           <div
-            className="absolute inset-0 bg-black/50"
+            className="absolute inset-0 animate-[overlay-in_.2s_ease-out] bg-black/40 backdrop-blur-[2px]"
             onClick={() => setMenuOpen(false)}
             aria-hidden
           />
-          <div className="absolute inset-y-0 left-0 flex w-[86%] max-w-sm flex-col bg-white shadow-2xl dark:bg-ink-950">
-            <div className="flex items-center justify-between border-b border-ink-100 px-4 py-3 dark:border-ink-800">
+          <div className="glass absolute inset-y-0 left-0 flex w-[86%] max-w-sm animate-[drawer-in_.3s_cubic-bezier(0.32,0.72,0.33,1)] flex-col">
+            <div className="flex items-center justify-between border-b border-ink-100/70 px-4 py-3 dark:border-ink-800/70">
               <Logo />
               <button
+                ref={drawerCloseRef}
                 type="button"
                 onClick={() => setMenuOpen(false)}
                 aria-label="메뉴 닫기"

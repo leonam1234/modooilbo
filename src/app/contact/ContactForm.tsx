@@ -11,16 +11,28 @@ const TYPES: { value: Inquiry; label: string }[] = [
   { value: "etc", label: "기타" },
 ];
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const errorCls = "mt-1.5 text-xs text-signal-600 dark:text-signal-400";
+
 export function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [type, setType] = useState<Inquiry>("subscription");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const next: Record<string, string> = {};
+    if (!name.trim()) next.name = "이름을 입력해 주세요.";
+    if (!email.trim()) next.email = "이메일을 입력해 주세요.";
+    else if (!EMAIL_RE.test(email.trim())) next.email = "올바른 이메일 형식이 아닙니다.";
+    if (!subject.trim()) next.subject = "제목을 입력해 주세요.";
+    if (!message.trim()) next.message = "문의 내용을 입력해 주세요.";
+    setErrors(next);
+    if (Object.keys(next).length > 0) return;
     setSubmitted(true);
   }
 
@@ -30,6 +42,7 @@ export function ContactForm() {
     setType("subscription");
     setSubject("");
     setMessage("");
+    setErrors({});
     setSubmitted(false);
   }
 
@@ -84,6 +97,7 @@ export function ContactForm() {
             autoComplete="name"
             className="h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white"
           />
+          {errors.name && <p className={errorCls}>{errors.name}</p>}
         </div>
 
         <div>
@@ -104,6 +118,7 @@ export function ContactForm() {
             autoComplete="email"
             className="h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white"
           />
+          {errors.email && <p className={errorCls}>{errors.email}</p>}
         </div>
       </div>
 
@@ -146,6 +161,7 @@ export function ContactForm() {
           placeholder="문의 제목을 입력하세요"
           className="h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white"
         />
+        {errors.subject && <p className={errorCls}>{errors.subject}</p>}
       </div>
 
       <div className="mt-5">
@@ -164,6 +180,7 @@ export function ContactForm() {
           placeholder="문의 내용을 자세히 적어주세요."
           className="min-h-32 w-full rounded-md border border-ink-200 bg-white px-4 py-3 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white"
         />
+        {errors.message && <p className={errorCls}>{errors.message}</p>}
       </div>
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

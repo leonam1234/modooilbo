@@ -93,6 +93,8 @@ if (porcelain) {
 // 2) 빌드 ─────────────────────────────────────────────────────
 console.log(`\n▶ 콘텐츠 생성 (content/articles/*.md → data) ...`);
 execFileSync("node", [join(REPO, "scripts", "build-content.mjs")], { cwd: REPO, stdio: "inherit" });
+console.log(`\n▶ 인기태그 데이터 생성 (build-trending-data) ...`);
+execFileSync("node", [join(REPO, "scripts", "build-trending-data.mjs")], { cwd: REPO, stdio: "inherit" });
 console.log(`\n▶ next build ...`);
 execFileSync(join(BIN, "next"), ["build"], { cwd: REPO, stdio: "inherit" });
 

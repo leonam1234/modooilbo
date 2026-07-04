@@ -58,3 +58,9 @@
 
 ## 7. 브랜드 마크
 - 워드마크: `모두` + `일보`(signal-600) + 정사각 `M`(bg-signal-600, 흰 글자). Header/Footer 인라인.
+
+
+## 리퀴드 글라스 (2026-07 추가)
+iOS 26풍 반투명 유리 — **내비/플로팅 크롬 전용**(헤더·드로어·검색 오버레이·세그먼트 탭·맨위로). 본문 콘텐츠 카드에는 쓰지 않는다(신문 톤 유지).
+- 공용 클래스 `.glass` (globals.css): blur(18px)+saturate, 라이트/다크 배경·하이라이트, backdrop-filter 미지원 브라우저는 불투명 폴백.
+- 등장 모션 keyframes: `overlay-in` / `slide-down-in` / `drawer-in` — `animate-[name_duration_easing]` 형태로 사용. prefers-reduced-motion은 전역 규칙이 커버.

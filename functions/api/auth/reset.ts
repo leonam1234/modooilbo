@@ -23,7 +23,7 @@ export async function onRequestPost(ctx: any): Promise<Response> {
 
   const th = await sha256Hex(token);
   const row = (await env.DB.prepare(
-    `SELECT pr.user_id, pr.used, pr.expires_at, u.email, u.name
+    `SELECT pr.user_id, pr.used, (pr.expires_at > datetime('now','+9 hours')) AS alive, u.email, u.name
      FROM password_resets pr JOIN users u ON u.id = pr.user_id
      WHERE pr.token_hash = ?1`,
   )
@@ -32,18 +32,22 @@ export async function onRequestPost(ctx: any): Promise<Response> {
 
   if (!row) return json({ error: "유효하지 않은 링크입니다. 재설정을 다시 요청해 주세요." }, 400);
   if (row.used) return json({ error: "이미 사용된 링크입니다. 재설정을 다시 요청해 주세요." }, 400);
+  if (!row.alive) return json({ error: "링크가 만료되었습니다(1시간 유효). 재설정을 다시 요청해 주세요." }, 400);
 
-  const notExpired = (await env.DB.prepare(
-    "SELECT 1 AS x FROM password_resets WHERE token_hash = ?1 AND expires_at > datetime('now','+9 hours')",
+  // 원자적 사용 처리 — used/만료 검사와 사용 표시를 한 문장으로 묶어 TOCTOU(동시 요청 이중 사용) 제거.
+  // 위 검사는 안내 메시지용이고, 실제 판정은 이 UPDATE의 변경 행수(meta.changes)로 한다.
+  const claim = (await env.DB.prepare(
+    "UPDATE password_resets SET used = 1 WHERE token_hash = ?1 AND used = 0 AND expires_at > datetime('now','+9 hours')",
   )
     .bind(th)
-    .first()) as any;
-  if (!notExpired) return json({ error: "링크가 만료되었습니다(1시간 유효). 재설정을 다시 요청해 주세요." }, 400);
+    .run()) as any;
+  if (!claim?.meta?.changes) {
+    return json({ error: "이미 사용된 링크입니다. 재설정을 다시 요청해 주세요." }, 400);
+  }
 
   const { hash, salt } = await hashPassword(password);
   await env.DB.batch([
     env.DB.prepare("UPDATE users SET password_hash = ?2, password_salt = ?3 WHERE id = ?1").bind(row.user_id, hash, salt),
-    env.DB.prepare("UPDATE password_resets SET used = 1 WHERE token_hash = ?1").bind(th),
     env.DB.prepare("DELETE FROM sessions WHERE user_id = ?1").bind(row.user_id), // 전 기기 로그아웃
     env.DB.prepare(
       "INSERT OR IGNORE INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'email', ?2)",

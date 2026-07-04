@@ -71,7 +71,8 @@ function parse(md) {
 
 // "YYYY-MM-DD HH:MM"(KST 벽시계) → 표시 일관성 위해 "...Z"로 저장(기존 데이터 규약과 동일)
 function normDate(s) {
-  if (!s) return new Date().toISOString().slice(0, 16) + ":00Z";
+  // 기본값도 KST 벽시계-as-Z 규약을 따른다 (UTC 벽시계를 넣으면 9시간 이르게 표시됨)
+  if (!s) return new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 16) + ":00Z";
   let v = s.trim().replace(" ", "T");
   if (/^\d{4}-\d{2}-\d{2}$/.test(v)) v += "T09:00";
   v = v.replace(/[zZ]|[+-]\d{2}:?\d{2}$/, ""); // TZ 제거(벽시계 취급)

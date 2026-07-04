@@ -17,6 +17,7 @@ import { ViewBeacon } from "@/components/ViewBeacon";
 import { ViewCount } from "@/components/ViewCount";
 import { ImageLightbox } from "@/components/ImageLightbox";
 import { ReadingProgress } from "@/components/ReadingProgress";
+import { ArticleBody, articleSpeechText } from "@/components/ArticleBody";
 import { displayImageUrl } from "@/lib/stock";
 import { getReporterByName } from "@/lib/reporters";
 import JsonLd from "@/components/JsonLd";
@@ -118,7 +119,7 @@ export default async function ArticlePage({
     <div className="container-page py-8">
       <JsonLd data={newsArticleLd} />
       <JsonLd data={breadcrumbLd} />
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
+      <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_280px] lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10">
         <article className="min-w-0">
           <nav className="mb-4 flex items-center gap-1.5 text-xs text-ink-400">
             <Link href="/" className="hover:text-signal-600">홈</Link>
@@ -186,43 +187,10 @@ export default async function ArticlePage({
           </figure>
 
           <div className="no-print mt-6 flex justify-center">
-            <ListenButton
-              text={[article.title, article.summary, ...article.body].join(" ").replace(/#{2,3}\s+/g, "")}
-            />
+            <ListenButton text={articleSpeechText(article)} />
           </div>
 
-          <div
-            id="article-body"
-            className="mt-8 space-y-5 text-[17px] leading-[1.9] text-ink-800 dark:text-ink-200"
-          >
-            {article.body.map((p, i) => {
-              // "## 소제목" / "### 소제목" — 기사 중간 소제목
-              const heading = p.match(/^(#{2,3})\s+(.+)$/);
-              if (heading) {
-                return heading[1].length === 2 ? (
-                  <h2 key={i} className="!mt-9 border-l-4 border-signal-600 pl-3 font-headline text-[21px] font-bold leading-snug text-ink-900 dark:text-white">
-                    {heading[2]}
-                  </h2>
-                ) : (
-                  <h3 key={i} className="!mt-8 font-headline text-lg font-bold leading-snug text-ink-900 dark:text-white">
-                    {heading[2]}
-                  </h3>
-                );
-              }
-              const img = p.match(/^!\[([^\]]*)\]\((\/[^)]+)\)$/);
-              if (img) {
-                return (
-                  <figure key={i} className="my-2">
-                    <span className="relative block aspect-[16/9] w-full overflow-hidden rounded-lg bg-ink-100 dark:bg-ink-800">
-                      <Image src={img[2]} alt={img[1] || ""} fill sizes="(max-width:1024px) 100vw, 66vw" unoptimized className="object-cover" />
-                    </span>
-                    {img[1] && <figcaption className="mt-2 text-xs text-ink-400">{img[1]}</figcaption>}
-                  </figure>
-                );
-              }
-              return <p key={i}>{p}</p>;
-            })}
-          </div>
+          <ArticleBody body={article.body} />
 
           <div className="mt-8 flex flex-wrap gap-2">
             {article.tags.map((t) => (

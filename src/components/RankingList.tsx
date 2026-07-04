@@ -63,29 +63,44 @@ export function RankingList({ pool, count = 6 }: { pool: Item[]; count?: number 
   }, [pool, count]);
 
   const items: Counted[] = tab === "read" ? (ranked ?? pool.slice(0, count)) : (commented ?? []);
+  const commentedLoading = tab === "commented" && commented === null;
 
   const tabCls = (active: boolean) =>
     cn(
-      "font-headline text-xl font-extrabold transition-colors",
-      active ? "text-ink-900 dark:text-white" : "text-ink-300 hover:text-ink-500 dark:text-ink-600 dark:hover:text-ink-400",
+      "rounded-full px-3 py-1.5 text-sm font-bold transition-colors",
+      active
+        ? "bg-white text-ink-900 shadow-sm dark:bg-ink-700 dark:text-white"
+        : "text-ink-500 hover:text-ink-800 dark:text-ink-400 dark:hover:text-ink-100",
     );
 
   return (
     <section>
-      <div className="mb-4 flex items-center gap-3 border-b-2 border-ink-900 pb-2 dark:border-ink-100">
+      <div className="mb-4 flex items-center gap-2.5 border-b-2 border-ink-900 pb-2.5 dark:border-ink-100">
         <TrendingIcon className="h-5 w-5 shrink-0 text-signal-600" />
-        <button type="button" onClick={() => setTab("read")} className={tabCls(tab === "read")}>
-          많이 본
-        </button>
-        <button type="button" onClick={() => setTab("commented")} className={tabCls(tab === "commented")}>
-          댓글 많은
-        </button>
+        {/* iOS식 유리 세그먼트 탭 */}
+        <div className="glass flex rounded-full p-0.5" role="tablist" aria-label="랭킹 종류">
+          <button type="button" role="tab" aria-selected={tab === "read"} onClick={() => setTab("read")} className={tabCls(tab === "read")}>
+            많이 본
+          </button>
+          <button type="button" role="tab" aria-selected={tab === "commented"} onClick={() => setTab("commented")} className={tabCls(tab === "commented")}>
+            댓글 많은
+          </button>
+        </div>
         {tab === "read" && label && <span className="ml-auto text-[11px] font-normal text-ink-400">{label}</span>}
       </div>
-      {tab === "commented" && items.length === 0 ? (
+      {commentedLoading ? (
+        <div className="space-y-3.5" aria-hidden>
+          {Array.from({ length: 3 }, (_, i) => (
+            <div key={i} className="flex animate-pulse gap-3">
+              <span className="h-5 w-6 shrink-0 rounded bg-ink-100 dark:bg-ink-800" />
+              <span className="h-5 flex-1 rounded bg-ink-100 dark:bg-ink-800" />
+            </div>
+          ))}
+        </div>
+      ) : tab === "commented" && items.length === 0 ? (
         <p className="py-6 text-center text-sm text-ink-400">아직 댓글이 충분히 쌓이지 않았어요.</p>
       ) : (
-        <ol className="space-y-3.5">
+        <ol key={tab} className="animate-fade-up space-y-3.5">
           {items.map((a, i) => (
             <li key={a.id} className="flex gap-3">
               <span

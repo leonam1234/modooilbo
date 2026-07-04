@@ -27,6 +27,9 @@ const fieldCls =
   "h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
 const textareaCls =
   "min-h-32 w-full rounded-md border border-ink-200 bg-white px-4 py-3 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
+const errorCls = "mt-1.5 text-xs text-signal-600 dark:text-signal-400";
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function AdInquiryForm() {
   const [company, setCompany] = useState("");
@@ -37,10 +40,22 @@ export function AdInquiryForm() {
   const [budget, setBudget] = useState("");
   const [message, setMessage] = useState("");
   const [agree, setAgree] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const next: Record<string, string> = {};
+    if (!company.trim()) next.company = "회사명을 입력해 주세요.";
+    if (!manager.trim()) next.manager = "담당자를 입력해 주세요.";
+    if (!email.trim()) next.email = "이메일을 입력해 주세요.";
+    else if (!EMAIL_RE.test(email.trim())) next.email = "올바른 이메일 형식이 아닙니다.";
+    if (!phone.trim()) next.phone = "연락처를 입력해 주세요.";
+    if (!inquiryType) next.inquiryType = "문의 유형을 선택해 주세요.";
+    if (!message.trim()) next.message = "문의 내용을 입력해 주세요.";
+    if (!agree) next.agree = "개인정보 수집·이용에 동의해 주세요.";
+    setErrors(next);
+    if (Object.keys(next).length > 0) return;
     setSubmitted(true);
   }
 
@@ -81,6 +96,7 @@ export function AdInquiryForm() {
             setBudget("");
             setMessage("");
             setAgree(false);
+            setErrors({});
           }}
           className="mt-6 rounded-md border border-ink-300 px-6 py-3 font-semibold text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200"
         >
@@ -111,6 +127,7 @@ export function AdInquiryForm() {
             placeholder="(주)예시컴퍼니"
             className={fieldCls}
           />
+          {errors.company && <p className={errorCls}>{errors.company}</p>}
         </div>
         <div>
           <label htmlFor="ad-manager" className={labelCls}>
@@ -126,6 +143,7 @@ export function AdInquiryForm() {
             placeholder="홍길동 / 마케팅팀"
             className={fieldCls}
           />
+          {errors.manager && <p className={errorCls}>{errors.manager}</p>}
         </div>
         <div>
           <label htmlFor="ad-email" className={labelCls}>
@@ -141,6 +159,7 @@ export function AdInquiryForm() {
             placeholder="name@company.com"
             className={fieldCls}
           />
+          {errors.email && <p className={errorCls}>{errors.email}</p>}
         </div>
         <div>
           <label htmlFor="ad-phone" className={labelCls}>
@@ -156,6 +175,7 @@ export function AdInquiryForm() {
             placeholder="02-1234-5678"
             className={fieldCls}
           />
+          {errors.phone && <p className={errorCls}>{errors.phone}</p>}
         </div>
         <div>
           <label htmlFor="ad-type" className={labelCls}>
@@ -177,6 +197,7 @@ export function AdInquiryForm() {
               </option>
             ))}
           </select>
+          {errors.inquiryType && <p className={errorCls}>{errors.inquiryType}</p>}
         </div>
         <div>
           <label htmlFor="ad-budget" className={labelCls}>
@@ -212,6 +233,7 @@ export function AdInquiryForm() {
           placeholder="캠페인 목표, 희망 집행 시기, 타깃 등을 자유롭게 적어 주시면 맞춤 제안서를 준비해 드립니다."
           className={textareaCls}
         />
+        {errors.message && <p className={errorCls}>{errors.message}</p>}
       </div>
 
       <div className="mt-6">
@@ -228,6 +250,7 @@ export function AdInquiryForm() {
             <span className="text-signal-600">*</span>
           </span>
         </label>
+        {errors.agree && <p className={errorCls}>{errors.agree}</p>}
       </div>
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">

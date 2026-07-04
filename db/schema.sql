@@ -2,6 +2,9 @@
 -- 설계: 간편 회원가입 대비 — 사람(users) 1명에 로그인 수단(identities) 여러 개.
 --   이메일 가입 후 카카오/네이버/구글을 같은 계정에 연결(동일 이메일 충돌 시 병합 유도).
 -- 시각은 KST 벽시계(datetime('now','+9 hours')) 규약.
+--
+-- [마이그레이션 노트 2026-07-04] idx_comments_user 추가 — 이미 운영 중인 DB에는 아래를 직접 실행할 것:
+--   wrangler d1 execute modooilbo-members --remote --command "CREATE INDEX IF NOT EXISTS idx_comments_user ON comments(user_id, created_at);"
 
 CREATE TABLE IF NOT EXISTS users (
   id TEXT PRIMARY KEY,                          -- UUID
@@ -43,6 +46,7 @@ CREATE TABLE IF NOT EXISTS comments (
   created_at TEXT NOT NULL DEFAULT (datetime('now','+9 hours'))
 );
 CREATE INDEX IF NOT EXISTS idx_comments_article ON comments(article_id, created_at);
+CREATE INDEX IF NOT EXISTS idx_comments_user ON comments(user_id, created_at);
 -- 댓글 신고 (2026-07-03): 회원당 1회, 3회 누적 시 comments.is_hidden=1
 CREATE TABLE IF NOT EXISTS comment_reports (
   comment_id TEXT NOT NULL REFERENCES comments(id),

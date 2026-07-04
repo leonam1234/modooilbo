@@ -14,7 +14,7 @@ export function HeroLead() {
 
   return (
     <section className="container-page py-6 sm:py-8">
-      <div className="grid gap-8 lg:grid-cols-[1.7fr_1fr]">
+      <div className="grid gap-8 md:grid-cols-[1.6fr_1fr] lg:grid-cols-[1.7fr_1fr]">
         {/* 리드 기사 — 이미지 위, 제목 아래 (2안) */}
         <article className="group">
           <Link href={href} className="block">

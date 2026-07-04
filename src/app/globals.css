@@ -224,3 +224,41 @@
 @keyframes eq-bounce { 0%, 100% { height: 35%; } 50% { height: 100%; } }
 .eq-bar { height: 100%; animation: eq-bounce 0.85s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .eq-bar { animation: none; height: 70%; } }
+
+/* ── 리퀴드 글라스 (iOS 26풍) ─────────────────────────────────
+   내비게이션·플로팅 크롬 전용. 본문 콘텐츠에는 쓰지 않는다(신문 톤 유지).
+   backdrop-filter 미지원 브라우저는 불투명 배경 폴백. */
+.glass {
+  background: rgba(255, 255, 255, 0.66);
+  -webkit-backdrop-filter: blur(18px) saturate(1.7);
+  backdrop-filter: blur(18px) saturate(1.7);
+  box-shadow:
+    0 8px 32px rgba(15, 17, 21, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+.dark .glass {
+  background: rgba(16, 18, 23, 0.6);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass { background: rgba(255, 255, 255, 0.97); }
+  .dark .glass { background: rgba(16, 18, 23, 0.97); }
+}
+
+/* 글라스 크롬 등장 모션 — prefers-reduced-motion은 상단 전역 규칙이 커버 */
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slide-down-in {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes drawer-in {
+  from { transform: translateX(-100%); }
+  to { transform: none; }
+}

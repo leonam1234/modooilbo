@@ -95,7 +95,7 @@ export function ArticleCard({
 
   if (variant === "horizontal") {
     return (
-      <article className={cn("group flex gap-4", className)}>
+      <article className={cn("group flex gap-4 transition-transform duration-300 hover:-translate-y-0.5", className)}>
         <Link href={href} className="block w-28 shrink-0 sm:w-40">
           <Thumb article={article} sizes="160px" className="aspect-[4/3]" motion="pan" />
         </Link>
@@ -123,7 +123,7 @@ export function ArticleCard({
 
   if (variant === "compact") {
     return (
-      <article className={cn("group flex items-start gap-3", className)}>
+      <article className={cn("group flex items-start gap-3 transition-transform duration-300 hover:-translate-y-0.5", className)}>
         <Link href={href} className="block w-[72px] shrink-0">
           <Thumb article={article} sizes="80px" className="aspect-square" motion="pan" />
         </Link>
@@ -167,7 +167,7 @@ export function ArticleCard({
 
   if (variant === "overlay") {
     return (
-      <article className={cn("group relative overflow-hidden rounded-lg", className)}>
+      <article className={cn("group relative overflow-hidden rounded-lg transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-xl", className)}>
         <Link href={href} className="block">
           <div className="relative aspect-[4/3] w-full bg-ink-200 dark:bg-ink-800">
             <Image
@@ -207,7 +207,7 @@ export function ArticleCard({
 
   // variant === "feature" (default)
   return (
-    <article className={cn("group flex flex-col", className)}>
+    <article className={cn("group flex flex-col transition-transform duration-300 hover:-translate-y-1", className)}>
       <Link href={href} className="block">
         <Thumb
           article={article}

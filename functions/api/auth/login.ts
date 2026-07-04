@@ -7,6 +7,9 @@ import { json, verifyPassword, createSession, sessionCookie, sha256Hex, type Aut
 const MAX_FAILS = 8;
 const WINDOW_SECS = 900;
 const GENERIC = "이메일 또는 비밀번호가 올바르지 않습니다.";
+// 계정 미존재 시에도 같은 비용의 PBKDF2를 1회 수행해 응답 시간으로 존재 여부가 새지 않게 하는 더미 값
+const DUMMY_SALT = "00000000000000000000000000000000";
+const DUMMY_HASH = "0".repeat(64);
 
 export async function onRequestPost(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
@@ -37,10 +40,13 @@ export async function onRequestPost(ctx: any): Promise<Response> {
     .bind(email)
     .first();
 
-  const ok =
-    user && user.password_hash && user.password_salt
-      ? await verifyPassword(password, user.password_salt, user.password_hash)
-      : false;
+  let ok = false;
+  if (user && user.password_hash && user.password_salt) {
+    ok = await verifyPassword(password, user.password_salt, user.password_hash);
+  } else {
+    // 타이밍 사이드채널 제거: 계정이 없거나 비밀번호 미설정(소셜 전용)이어도 더미 검증 수행
+    await verifyPassword(password, DUMMY_SALT, DUMMY_HASH);
+  }
 
   if (!ok) {
     if (env.REACTIONS) {

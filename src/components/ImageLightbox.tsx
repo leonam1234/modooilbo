@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 /**
@@ -10,6 +10,7 @@ import { createPortal } from "react-dom";
  */
 export function ImageLightbox() {
   const [img, setImg] = useState<{ src: string; alt: string } | null>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
   const close = useCallback(() => setImg(null), []);
 
   useEffect(() => {
@@ -26,7 +27,11 @@ export function ImageLightbox() {
       r.addEventListener("click", onClick);
       r.querySelectorAll("img").forEach((i) => (i.style.cursor = "zoom-in"));
     });
-    return () => roots.forEach((r) => r.removeEventListener("click", onClick));
+    return () =>
+      roots.forEach((r) => {
+        r.removeEventListener("click", onClick);
+        r.querySelectorAll("img").forEach((i) => (i.style.cursor = ""));
+      });
   }, []);
 
   useEffect(() => {
@@ -36,6 +41,7 @@ export function ImageLightbox() {
     };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
+    closeRef.current?.focus();
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
@@ -61,10 +67,11 @@ export function ImageLightbox() {
         )}
       </figure>
       <button
+        ref={closeRef}
         type="button"
         aria-label="닫기"
         onClick={close}
-        className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-white/10 text-2xl leading-none text-white transition-colors hover:bg-white/20"
+        className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-white/10 text-2xl leading-none text-white backdrop-blur-md transition-colors hover:bg-white/25"
       >
         ×
       </button>
