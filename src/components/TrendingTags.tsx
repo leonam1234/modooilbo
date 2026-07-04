@@ -126,10 +126,10 @@ export function TrendingTags() {
       {open && (
         <div
           ref={panelRef}
-          className="absolute inset-x-0 top-full z-30 border-b border-ink-100 bg-white/95 shadow-lg backdrop-blur-xl dark:border-ink-800 dark:bg-ink-950/95 sm:hidden"
+          className="absolute inset-x-0 top-full z-50 border-b border-ink-100 bg-white/95 shadow-lg backdrop-blur-xl dark:border-ink-800 dark:bg-ink-950/95 sm:hidden"
         >
-          <div className="container-page py-3">
-            <div className="mb-2 flex items-center justify-between">
+          <div className="container-page pb-3 pt-4">
+            <div className="mb-2.5 flex items-center justify-between">
               <span className="text-xs font-bold text-ink-800 dark:text-ink-100">
                 실시간 인기 TOP {data.tags.length}
               </span>
