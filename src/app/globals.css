@@ -63,6 +63,13 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+  /* 제목 1줄/2줄 차이로 카드 하단 정렬이 어긋나는 것 방지 — 항상 2줄 높이 확보(자기 행간 기준).
+     lh 미지원 구형 브라우저는 기존(가변) 거동 유지. */
+  @supports (min-height: 2lh) {
+    .clamp-2 {
+      min-height: 2lh;
+    }
+  }
   .clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
