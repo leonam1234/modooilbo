@@ -32,7 +32,7 @@ const organizationLd = {
     email: SITE.email,
     telephone: SITE.tel,
   },
-  sameAs: [],
+  ...(SITE.sameAs.length > 0 ? { sameAs: [...SITE.sameAs] } : {}),
 };
 
 const websiteLd = {

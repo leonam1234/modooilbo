@@ -1,5 +1,6 @@
 import type { Article, CategorySlug } from "./types";
 import { ALL_ARTICLES as ARTICLES } from "./news";
+import { AUTHORS, type AuthorProfile } from "./authors";
 
 const byNewest = (a: Article, b: Article) =>
   new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
@@ -58,4 +59,19 @@ export function getRelated(article: Article, count = 4): Article[] {
     (a) => a.id !== article.id && a.category !== article.category,
   );
   return [...sameCat, ...others].slice(0, count);
+}
+
+export function getAuthors(): AuthorProfile[] {
+  return AUTHORS;
+}
+
+export function getAuthorBySlug(slug: string): AuthorProfile | undefined {
+  return AUTHORS.find((p) => p.slug === slug);
+}
+
+export function getByAuthor(slug: string, count?: number): Article[] {
+  const author = getAuthorBySlug(slug);
+  if (!author) return [];
+  const list = getAllArticles().filter((a) => a.author.name === author.name); // getAllArticles가 이미 최신순
+  return count ? list.slice(0, count) : list;
 }

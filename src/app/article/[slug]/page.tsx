@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ALL_ARTICLES } from "@/lib/news";
 import { getArticleBySlug, getRelated } from "@/lib/queries";
+import { getAuthorSlugByName } from "@/lib/authors";
 import { CATEGORY_MAP } from "@/lib/categories";
 import { formatKoreanDateTime, formatCount } from "@/lib/utils";
 import { ArticleCard } from "@/components/ArticleCard";
@@ -72,6 +73,7 @@ export default async function ArticlePage({
   const article = getArticleBySlug(slug);
   if (!article) notFound();
 
+  const authorSlug = getAuthorSlugByName(article.author.name);
   const cat = CATEGORY_MAP[article.category];
   const related = getRelated(article, 4);
   const readMinutes = Math.max(1, Math.round(article.body.join(" ").length / 600));
@@ -95,7 +97,9 @@ export default async function ArticlePage({
     wordCount,
     inLanguage: "ko-KR",
     isAccessibleForFree: true,
-    author: [{ "@type": "Person", name: article.author.name }],
+    author: authorSlug
+      ? [{ "@type": "Person", name: article.author.name, url: `${SITE_URL}/reporter/${authorSlug}/` }]
+      : [{ "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: article.author.name }],
     publisher: {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
@@ -167,7 +171,16 @@ export default async function ArticlePage({
 
           <div className="mt-5 flex flex-col gap-3 border-y border-ink-100 py-3 dark:border-ink-800 sm:flex-row sm:items-center sm:justify-between">
             <div className="text-sm text-ink-500">
-              <span className="font-medium text-ink-800 dark:text-ink-100">{article.author.name}</span>{" "}
+              {authorSlug ? (
+                <Link
+                  href={`/reporter/${authorSlug}`}
+                  className="font-medium text-ink-800 hover:text-signal-600 dark:text-ink-100 dark:hover:text-signal-400"
+                >
+                  {article.author.name}
+                </Link>
+              ) : (
+                <span className="font-medium text-ink-800 dark:text-ink-100">{article.author.name}</span>
+              )}{" "}
               {article.author.role} ·{" "}
               <time dateTime={article.publishedAt}>{formatKoreanDateTime(article.publishedAt)}</time>
               {article.updatedAt && (
@@ -221,11 +234,26 @@ export default async function ArticlePage({
 
           <div className="mt-8 rounded-xl border border-ink-200 bg-ink-50 p-5 dark:border-ink-800 dark:bg-ink-900">
             <p className="text-sm font-bold text-ink-900 dark:text-white">
-              {article.author.name} <span className="font-normal text-ink-500">{article.author.role}</span>
+              {authorSlug ? (
+                <Link href={`/reporter/${authorSlug}`} className="hover:text-signal-600 dark:hover:text-signal-400">
+                  {article.author.name}
+                </Link>
+              ) : (
+                article.author.name
+              )}{" "}
+              <span className="font-normal text-ink-500">{article.author.role}</span>
             </p>
             <p className="mt-1 text-sm text-ink-500">
               modooilbo.com · 모두일보 편집국
             </p>
+            {authorSlug && (
+              <Link
+                href={`/reporter/${authorSlug}`}
+                className="mt-2 inline-block text-sm font-medium text-signal-600 hover:text-signal-700 dark:text-signal-400"
+              >
+                기자 프로필 →
+              </Link>
+            )}
           </div>
 
           {related.length > 0 && (

@@ -24,7 +24,7 @@
 5. **쿼리**: `getByAuthor(slug, n?)`를 `lib/queries.ts`에 추가(단일 출처 원칙).
 
 ### 완료 기준 ✅
-- [ ] `/reporter/<slug>/` 정적 생성·sitemap 등재·자기경로 canonical
+- [ ] `/reporter/<slug>/` 정적 생성·자기경로 canonical (sitemap 등재는 REPORTER_INDEXABLE=true 전환 시 — ⑦ 참조)
 - [ ] ProfilePage+Person JSON-LD, 기사 author.url이 프로필로 연결
 - [ ] 바이라인 클릭→프로필, 프로필→기자 기사 목록
 - [ ] Rich Results Test 통과
@@ -86,3 +86,14 @@
 
 ### 위험
 - 미표기 통신사 사진은 즉시 법적 리스크 — 실데이터 전환 시 게이트로 검사(크레딧 없는 이미지 빌드 경고).
+
+---
+
+## ⑦ 엔티티 확립 운영 체크리스트
+
+> 브랜드 엔티티(조직 지식패널·sameAs 그래프)는 코드가 아니라 **실제 외부 자산**이 선행돼야 한다. 아래 순서대로 진행하고, 완료 즉시 코드 반영 지점을 갱신한다.
+
+- [ ] **실SNS 공식 계정 개설** — 유튜브/X/인스타그램/페이스북/네이버 등. 각 프로필에 modooilbo.com 역링크 기재. 개설 즉시 `src/lib/site.ts`의 `SITE.sameAs`에 전체 URL 추가(추가 전까지 홈 JSON-LD sameAs 필드·Footer SNS는 자동 비노출 — 데드링크 금지 원칙).
+- [ ] **위키데이터 항목 생성** — 법인 설립·정기간행물 등록(현재 자리표시 "서울 아00000" → 실번호) 후 wikidata.org에 신문사 항목 등재(P31=신문, P856=공식 웹사이트). 생성된 Q-ID URL(`https://www.wikidata.org/wiki/Q...`)도 `SITE.sameAs`에 추가.
+- [ ] **구글 지식패널 소유권 신청** — 지식패널 생성 확인 후 'Claim this knowledge panel' 절차로 인증. 공식 SNS 계정 로그인 기반 인증이므로 1번 항목 선행 필수.
+- [ ] **기자 프로필 색인 해제 절차** — 현재 저자가 가상 인물이라 `src/lib/authors.ts`의 `REPORTER_INDEXABLE=false`로 `/reporter/*`는 noindex,follow + sitemap 미등재. 실명 기자 체제(실인물·약력·연락처 검증) 전환 완료 시: ① `REPORTER_INDEXABLE`를 true로 변경(robots noindex 해제), ② `src/app/sitemap.ts`에 reporter 엔트리 추가(getAuthors() 기반, monthly/0.4), ③ Rich Results Test로 Person/ProfilePage 검증.

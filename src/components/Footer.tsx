@@ -9,6 +9,7 @@ const FOOTER_COLS: { title: string; links: { href: string; label: string }[] }[]
       { href: "/about", label: "회사소개" },
       { href: "/careers", label: "인재채용·기자모집" },
       { href: "/ethics", label: "윤리강령·편집위원회" },
+      { href: "/transparency", label: "투명성 보고" },
       { href: "/advertise", label: "광고·제휴 문의" },
     ],
   },
@@ -27,7 +28,7 @@ const FOOTER_COLS: { title: string; links: { href: string; label: string }[] }[]
       { href: "/terms", label: "이용약관" },
       { href: "/privacy", label: "개인정보처리방침" },
       { href: "/ethics", label: "청소년보호정책" },
-      { href: "/advertise", label: "광고문의" },
+      { href: "/corrections", label: "정정보도 모음" },
     ],
   },
 ];
@@ -61,6 +62,23 @@ export function Footer() {
                 </li>
               ))}
             </ul>
+            {/* 공식 SNS — SITE.sameAs에 실계정 URL이 있을 때만 렌더(데드링크 방지) */}
+            {SITE.sameAs.length > 0 && (
+              <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-ink-500 dark:text-ink-400">
+                {SITE.sameAs.map((url) => (
+                  <li key={url}>
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-signal-600"
+                    >
+                      {new URL(url).hostname.replace(/^www\./, "")}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           {/* 링크 컬럼 */}

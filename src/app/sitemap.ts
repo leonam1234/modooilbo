@@ -21,6 +21,8 @@ const STATIC_PATH_POLICY: Record<string, PathPolicy> = {
   "/about": { changeFrequency: "monthly", priority: 0.3 },
   "/careers": { changeFrequency: "monthly", priority: 0.3 },
   "/ethics": { changeFrequency: "monthly", priority: 0.3 },
+  "/transparency": { changeFrequency: "monthly", priority: 0.3 },
+  "/corrections": { changeFrequency: "monthly", priority: 0.3 },
   "/contact": { changeFrequency: "monthly", priority: 0.3 },
   "/terms": { changeFrequency: "monthly", priority: 0.3 },
   "/privacy": { changeFrequency: "monthly", priority: 0.3 },
@@ -48,6 +50,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/tips",
     "/contact",
     "/ethics",
+    "/transparency",
+    "/corrections",
     "/terms",
     "/privacy",
   ];

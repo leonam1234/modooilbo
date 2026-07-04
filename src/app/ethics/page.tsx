@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
@@ -168,6 +169,16 @@ export default function EthicsPage() {
                 </a>{" "}
                 로 접수한다. 접수된 사안은 편집위원회가 검토하며, 분쟁이 원만히 해결되지 않을 경우
                 언론중재위원회의 조정 절차를 따른다.
+              </p>
+              <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
+                게재된 정정·반론 보도의 내역은{" "}
+                <Link
+                  href="/corrections"
+                  className="font-medium text-signal-600 hover:text-signal-700 dark:text-signal-400"
+                >
+                  정정·반론 보도 모음
+                </Link>{" "}
+                페이지에서 상시 공개합니다.
               </p>
             </section>
 

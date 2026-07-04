@@ -11,4 +11,12 @@ export const SITE = {
   regNumber: "서울 아00000",
   regDate: "2026.01.01",
   copyrightYear: 2026,
+  /**
+   * 브랜드 공식 채널(sameAs). 실계정 개설 시 전체 URL을 문자열로 추가.
+   * 예: "https://www.youtube.com/@modooilbo", "https://x.com/modooilbo",
+   *     "https://www.wikidata.org/wiki/Qxxxxxxx" (위키데이터 등재 후)
+   * 비어 있으면 홈 JSON-LD의 sameAs 필드가 아예 출력되지 않고, Footer SNS도 렌더하지 않음(데드링크 방지).
+   * 운영 절차: wiki/operations/01-trust-eeat.md ⑦ 참조.
+   */
+  sameAs: [] as string[],
 } as const;
