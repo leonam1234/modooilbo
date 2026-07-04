@@ -7,7 +7,9 @@ import {
   CHANGE_EVENT,
   DEFAULT_CITY,
   STORAGE_KEY,
+  WX_COLOR,
   fetchWeather,
+  locateCity,
   type Weather,
   type WxCondition,
 } from "@/lib/weather";
@@ -53,6 +55,7 @@ export function WxIcon({ cond, className }: { cond: WxCondition; className?: str
 export function LocationPicker({ className }: { className?: string }) {
   const [city, setCity] = useState(DEFAULT_CITY);
   const [wx, setWx] = useState<Weather | null>(null);
+  const [locating, setLocating] = useState(false);
 
   useEffect(() => {
     let saved = DEFAULT_CITY;
@@ -84,6 +87,15 @@ export function LocationPicker({ className }: { className?: string }) {
     window.dispatchEvent(new CustomEvent(CHANGE_EVENT));
   }
 
+  async function useMyLocation() {
+    if (locating) return;
+    setLocating(true);
+    const found = await locateCity();
+    setLocating(false);
+    if (found) change(found.name);
+    else alert("위치 정보를 가져오지 못했습니다. 브라우저 위치 권한을 확인해 주세요.");
+  }
+
   return (
     <span
       className={cn(
@@ -92,10 +104,22 @@ export function LocationPicker({ className }: { className?: string }) {
       )}
       title={wx ? `${city} · ${wx.label}${wx.temperature !== null ? ` ${wx.temperature}°` : ""}` : "지역 설정"}
     >
-      <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" fill="none" aria-hidden>
-        <path d="M12 21s7-5.686 7-11a7 7 0 10-14 0c0 5.314 7 11 7 11z" stroke="currentColor" strokeWidth="1.6" />
-        <circle cx="12" cy="10" r="2.4" stroke="currentColor" strokeWidth="1.6" />
-      </svg>
+      <button
+        type="button"
+        onClick={useMyLocation}
+        disabled={locating}
+        title="내 위치 날씨 보기 (GPS)"
+        aria-label="내 위치로 날씨 지역 설정"
+        className={cn(
+          "shrink-0 rounded-full p-0.5 transition-colors hover:text-signal-600 dark:hover:text-white",
+          locating && "animate-pulse text-signal-600 dark:text-white",
+        )}
+      >
+        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden>
+          <path d="M12 21s7-5.686 7-11a7 7 0 10-14 0c0 5.314 7 11 7 11z" stroke="currentColor" strokeWidth="1.6" />
+          <circle cx="12" cy="10" r="2.4" stroke="currentColor" strokeWidth="1.6" />
+        </svg>
+      </button>
       <span className="relative inline-flex items-center">
         <select
           value={city}
@@ -119,7 +143,7 @@ export function LocationPicker({ className }: { className?: string }) {
           title="주간예보 보기"
           className="flex items-center gap-1 border-l border-ink-200 pl-2 text-ink-500 transition-colors hover:text-signal-600 dark:border-ink-700 dark:text-ink-300"
         >
-          <WxIcon cond={wx.condition} className="h-4 w-4" />
+          <WxIcon cond={wx.condition} className={cn("h-4 w-4", WX_COLOR[wx.condition])} />
           {wx.temperature !== null && <span className="tabular-nums font-medium">{wx.temperature}°</span>}
         </Link>
       )}

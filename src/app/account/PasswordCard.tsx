@@ -5,6 +5,7 @@ import { Card, inputCls } from "./AccountCard";
 /** 비밀번호 변경·설정 카드. 상태는 AccountClient가 소유. */
 export function PasswordCard({
   hasPassword,
+  hasRealEmail,
   curPw,
   newPw,
   newPw2,
@@ -16,6 +17,7 @@ export function PasswordCard({
   onSubmit,
 }: {
   hasPassword: boolean;
+  hasRealEmail: boolean;
   curPw: string;
   newPw: string;
   newPw2: string;
@@ -26,6 +28,19 @@ export function PasswordCard({
   onNewPw2: (v: string) => void;
   onSubmit: (e: React.FormEvent) => void;
 }) {
+  // 간편가입(실제 이메일 없음) + 비밀번호 미설정 → 이메일 로그인 자체가 불가능하므로
+  // 비밀번호 설정 폼 대신 상태 안내만 보여준다 (이메일 등록·인증 기능 도입 시 폼 오픈).
+  if (!hasPassword && !hasRealEmail) {
+    return (
+      <Card title="비밀번호 설정">
+        <p className="text-sm leading-relaxed text-ink-500 dark:text-ink-300">
+          간편 로그인 전용 계정입니다. 아직 등록된 이메일이 없어 이메일·비밀번호 로그인은 사용할 수
+          없습니다. 이메일 등록 기능이 준비되면 이곳에서 함께 설정할 수 있습니다.
+        </p>
+      </Card>
+    );
+  }
+
   return (
     <Card title={hasPassword ? "비밀번호 변경" : "비밀번호 설정"}>
       {!hasPassword && (
