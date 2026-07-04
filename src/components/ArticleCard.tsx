@@ -97,7 +97,7 @@ export function ArticleCard({
     return (
       <article className={cn("group flex gap-4 transition-transform duration-300 hover:-translate-y-0.5", className)}>
         <Link prefetch={false} href={href} className="block w-28 shrink-0 sm:w-40">
-          <Thumb article={article} sizes="160px" className="aspect-[4/3]" motion="pan" />
+          <Thumb article={article} sizes="160px" className="aspect-[4/3]" />
         </Link>
         <div className="min-w-0 flex-1">
           <h3
@@ -125,7 +125,7 @@ export function ArticleCard({
     return (
       <article className={cn("group flex items-start gap-3 transition-transform duration-300 hover:-translate-y-0.5", className)}>
         <Link prefetch={false} href={href} className="block w-[72px] shrink-0">
-          <Thumb article={article} sizes="80px" className="aspect-square" motion="pan" />
+          <Thumb article={article} sizes="80px" className="aspect-square" />
         </Link>
         <div className="min-w-0 flex-1">
           <h3
@@ -177,7 +177,7 @@ export function ArticleCard({
               sizes="(max-width:768px) 50vw, 25vw"
               priority={priority}
               unoptimized
-              className="object-cover animate-kenburns"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
             <TypeBadge article={article} onDark className="absolute left-3 top-3 z-10" />
@@ -214,7 +214,6 @@ export function ArticleCard({
           sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
           priority={priority}
           className="aspect-[16/10]"
-          motion="zoom"
         />
       </Link>
       <div className="mt-3">

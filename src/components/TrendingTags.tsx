@@ -17,6 +17,7 @@ export function TrendingTags() {
   const [idx, setIdx] = useState(0); // 모바일 롤링 현재 순위
   const [open, setOpen] = useState(false); // 모바일 전체 패널
   const panelRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     let alive = true;
@@ -44,7 +45,10 @@ export function TrendingTags() {
   useEffect(() => {
     if (!open) return;
     const onDown = (e: MouseEvent | TouchEvent) => {
-      if (panelRef.current && !panelRef.current.contains(e.target as Node)) setOpen(false);
+      const t = e.target as Node;
+      // 토글 버튼 자체는 제외 — touchstart로 닫힌 뒤 click 토글이 다시 열어 "안 접히는" 문제 방지
+      if (toggleRef.current?.contains(t)) return;
+      if (panelRef.current && !panelRef.current.contains(t)) setOpen(false);
     };
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
@@ -72,6 +76,7 @@ export function TrendingTags() {
 
         {/* 모바일: 포털식 롤링 티커 — 1개씩 크게, 탭하면 전체 펼침 */}
         <button
+          ref={toggleRef}
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
