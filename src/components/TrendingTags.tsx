@@ -83,7 +83,7 @@ export function TrendingTags() {
           aria-label="실시간 인기 전체 보기"
           className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden text-left sm:hidden"
         >
-          <span key={idx} className="flex min-w-0 animate-fade-up items-baseline gap-1.5">
+          <span key={idx} className="tw-chip flex min-w-0 animate-fade-up items-baseline gap-1.5">
             <span className="shrink-0 text-[15px] font-extrabold tabular-nums text-ink-900 dark:text-ink-100">
               {(idx % data.tags.length) + 1}
             </span>
@@ -142,13 +142,10 @@ export function TrendingTags() {
                     prefetch={false}
                     href={`/search?q=${encodeURIComponent(t)}`}
                     onClick={() => setOpen(false)}
-                    className="flex items-baseline gap-2 py-1.5"
+                    style={{ animationDelay: `${(i % 5) * 0.35}s` }}
+                    className="tw-chip flex items-baseline gap-2 py-1.5"
                   >
-                    <span
-                      className={`w-4 shrink-0 text-right text-sm font-extrabold tabular-nums ${
-                        i < 3 ? "text-ink-900 dark:text-white" : "text-ink-300 dark:text-ink-500"
-                      }`}
-                    >
+                    <span className="w-5 shrink-0 whitespace-nowrap text-right text-sm font-extrabold tabular-nums text-ink-900 dark:text-white">
                       {i + 1}
                     </span>
                     <span className="truncate text-[15px] font-medium text-ink-800 dark:text-ink-100">#{t}</span>
