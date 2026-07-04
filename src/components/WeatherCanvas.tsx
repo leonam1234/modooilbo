@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-type Kind = "rain" | "snow" | "fog";
+type Kind = "rain" | "snow" | "fog" | "star";
 
 /**
  * 비/눈/안개 — 캔버스 렌더(이미지·영상 없이 가볍게·저작권 0).
@@ -144,6 +144,23 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
       }
     }
 
+    // ── 별(다크 전용) — 은은한 반짝임. 라이트 모드에선 그리지 않음 ──
+    interface Star {
+      x: number; y: number; r: number; ph: number; tw: number; big: boolean;
+    }
+    const stars: Star[] = [];
+    let starGlow: HTMLCanvasElement | null = null;
+    if (kind === "star") {
+      for (let i = 0; i < 110; i++) {
+        const big = i < 14; // 소수만 글로우 큰 별
+        stars.push({
+          x: rnd(0, w), y: rnd(0, h), r: big ? rnd(1.1, 1.9) : rnd(0.4, 1.0),
+          ph: rnd(0, 6.28), tw: rnd(0.004, 0.014), big,
+        });
+      }
+      starGlow = makeBokeh(10, 0.25, "215,228,255", 0.5);
+    }
+
     // ── 안개(기존 유지) ─────────────────────────────────
     interface Blob {
       x: number; y: number; r: number; vx: number; vy: number; a: number;
@@ -204,9 +221,9 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
           else if (p.x < 0) p.x = w;
         }
 
-        // 2) 유리면 — 느린 페이드(궤적·방울이 서서히 마름, ~15초)
+        // 2) 유리면 — 페이드(궤적이 수 초 내 마름 — 길게 남으면 지렁이로 보임)
         glassCtx.globalCompositeOperation = "destination-out";
-        glassCtx.fillStyle = "rgba(0,0,0,0.012)";
+        glassCtx.fillStyle = "rgba(0,0,0,0.028)";
         glassCtx.fillRect(0, 0, w, h);
         glassCtx.globalCompositeOperation = "source-over";
 
@@ -221,21 +238,21 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
               r.alive = true;
               r.x = rnd(w * 0.03, w * 0.97);
               r.y = rnd(-20, h * 0.3);
-              r.r = rnd(1.8, 3.2);
-              r.v = rnd(0.8, 1.4);
+              r.r = rnd(1.6, 2.8);
+              r.v = rnd(1.8, 2.8); // 빠르게 미끄러져야 '줄기'로 읽힘(느리면 지렁이)
               r.ph = rnd(0, 6.28);
             }
             continue;
           }
           const prevX = r.x;
           const prevY = r.y;
-          r.v = Math.min(r.v + 0.035, 3.6 + r.r * 0.5);
+          r.v = Math.min(r.v + 0.07, 5.5 + r.r * 0.6);
           r.y += r.v;
-          r.ph += 0.11;
-          r.x += Math.sin(r.ph) * 0.55;
+          r.ph += 0.09;
+          r.x += Math.sin(r.ph) * 0.16; // 미세 워블만 — 크면 궤적이 지렁이가 됨
           // 젖은 궤적 — 가늘고 옅은 물길만(페이드로 수 초 내 마름)
-          glassCtx.strokeStyle = `rgba(${tone},0.055)`;
-          glassCtx.lineWidth = Math.max(0.8, r.r * 0.38);
+          glassCtx.strokeStyle = `rgba(${tone},0.038)`;
+          glassCtx.lineWidth = Math.max(0.7, r.r * 0.3);
           glassCtx.lineCap = "round";
           glassCtx.beginPath();
           glassCtx.moveTo(prevX, prevY);
@@ -249,6 +266,24 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
           }
         }
         ctx.drawImage(glass, 0, 0, glass.width, glass.height, 0, 0, w, h);
+      } else if (kind === "star") {
+        // 다크 모드에서만 은은하게 — 라이트에선 아무것도 그리지 않음(토글 시 자연 등장/소멸)
+        if (dark) {
+          for (const st of stars) {
+            st.ph += st.tw;
+            const a = 0.22 + 0.2 * (0.5 + 0.5 * Math.sin(st.ph)); // 0.22~0.42 트윙클
+            if (st.big && starGlow) {
+              const s = starGlow.width * (st.r * 1.6);
+              ctx.globalAlpha = a * 0.65;
+              ctx.drawImage(starGlow, st.x - s / 2, st.y - s / 2, s, s);
+              ctx.globalAlpha = 1;
+            }
+            ctx.fillStyle = `rgba(226,236,255,${a})`;
+            ctx.beginPath();
+            ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
       } else if (kind === "snow") {
         if (bokehDark !== dark) buildBokeh(); // 테마 전환 시 스프라이트 재생성
         for (const f of flakes) {
