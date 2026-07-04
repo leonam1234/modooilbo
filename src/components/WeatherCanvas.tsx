@@ -6,9 +6,11 @@ type Kind = "rain" | "snow" | "fog";
 
 /**
  * 비/눈/안개 — 캔버스 렌더(이미지·영상 없이 가볍게·저작권 0).
- * 비/눈: 깊이별 색·크기·속도로 입체감. 비는 우→좌.
- * 안개: 저해상도 버퍼에 그려 확대 → 또렷한 픽셀(모자이크) 회색 구름. 콘텐츠 뒤.
- * 라이트=쿨톤(흰 배경 가시성), 다크=흰+하늘. reduced-motion 미실행, 탭 숨김 시 정지.
+ * 비: "창문 유리" 연출 — 유리에 맺힌 미세 물방울 + 간헐적으로 큰 방울이 궤적을 남기며 흘러내림
+ *     (레퍼런스: 대표님 수급 푸티지의 window-rain 룩을 프로시저럴로 재현) + 원경 빗줄기.
+ * 눈: 보케(심도) 스프라이트 3단 — 가까울수록 크고 흐리게, 멀수록 작고 또렷하게.
+ * 안개: 저해상도 버퍼 모자이크(기존 유지).
+ * 라이트=쿨톤, 다크=흰+하늘. reduced-motion 정지, 탭 숨김 시 정지.
  */
 export function WeatherCanvas({ kind }: { kind: Kind }) {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -22,6 +24,9 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
     const BLOCK = 14; // 안개 모자이크 블록 크기(px)
     const off = kind === "fog" ? document.createElement("canvas") : null;
     const offCtx = off ? off.getContext("2d") : null;
+    // 비: 유리면(물방울·궤적 누적) 지속 버퍼
+    const glass = kind === "rain" ? document.createElement("canvas") : null;
+    const glassCtx = glass ? glass.getContext("2d") : null;
 
     let w = 0;
     let h = 0;
@@ -41,6 +46,11 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
         off.width = bw;
         off.height = bh;
       }
+      if (glass && glassCtx) {
+        glass.width = Math.floor(w * dpr);
+        glass.height = Math.floor(h * dpr);
+        glassCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
     };
     resize();
     window.addEventListener("resize", resize);
@@ -57,47 +67,93 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
       return `${r},${g},${b}`;
     };
 
-    interface P {
-      x: number;
-      y: number;
-      d: number;
-      s: number;
-      v: number;
-      a: number;
-      ph: number;
-      dr: number;
+    // ── 비: 원경 빗줄기(가벼운 배경 깊이감) ─────────────────
+    interface Streak {
+      x: number; y: number; d: number; s: number; v: number; a: number;
     }
-    const ps: P[] = [];
-    if (kind === "rain" || kind === "snow") {
-      const N = kind === "rain" ? 150 : 110;
-      for (let i = 0; i < N; i++) {
+    const streaks: Streak[] = [];
+    if (kind === "rain") {
+      for (let i = 0; i < 90; i++) {
         const d = Math.random();
-        ps.push(
-          kind === "rain"
-            ? { x: rnd(0, w), y: rnd(0, h), d, s: 7 + 16 * d, v: 5 + 8 * d, a: 0.16 + 0.22 * d, ph: 0, dr: 0 }
-            : { x: rnd(0, w), y: rnd(0, h), d, s: 0.9 + 2.8 * d, v: 0.4 + 1.5 * d, a: 0.24 + 0.42 * d, ph: rnd(0, 6.28), dr: rnd(0.3, 1.1) },
-        );
+        streaks.push({ x: rnd(0, w), y: rnd(0, h), d, s: 7 + 14 * d, v: 5 + 7 * d, a: 0.08 + 0.12 * d });
       }
     }
 
+    // ── 비: 유리면 물방울 ───────────────────────────────
+    const dropTone = () => (isDark() ? "205,222,248" : "88,108,138");
+    const drawDroplet = (g: CanvasRenderingContext2D, x: number, y: number, r: number, a: number) => {
+      const tone = dropTone();
+      const grad = g.createRadialGradient(x - r * 0.35, y - r * 0.4, r * 0.1, x, y, r);
+      grad.addColorStop(0, `rgba(255,255,255,${a * 0.85})`); // 하이라이트
+      grad.addColorStop(0.55, `rgba(${tone},${a * 0.5})`);
+      grad.addColorStop(1, `rgba(${tone},${a})`);
+      g.fillStyle = grad;
+      g.beginPath();
+      g.arc(x, y, r, 0, Math.PI * 2);
+      g.fill();
+    };
+    if (kind === "rain" && glassCtx) {
+      for (let i = 0; i < 240; i++) drawDroplet(glassCtx, rnd(0, w), rnd(0, h), rnd(0.5, 1.8), rnd(0.1, 0.26));
+    }
+    interface Runner {
+      x: number; y: number; r: number; v: number; ph: number; alive: boolean; wait: number;
+    }
+    const runners: Runner[] = Array.from({ length: 5 }, () => ({
+      x: 0, y: 0, r: 0, v: 0, ph: 0, alive: false, wait: Math.floor(rnd(30, 500)),
+    }));
+
+    // ── 눈: 보케 스프라이트 3단(사전 렌더 — shadowBlur 없이 저비용) ──
+    const makeBokeh = (size: number, soft: number, tone: string, core: number) => {
+      const c = document.createElement("canvas");
+      c.width = c.height = size * 2;
+      const g = c.getContext("2d")!;
+      const grad = g.createRadialGradient(size, size, 0, size, size, size);
+      grad.addColorStop(0, `rgba(${tone},${core})`);
+      grad.addColorStop(soft, `rgba(${tone},${core * 0.75})`);
+      grad.addColorStop(1, `rgba(${tone},0)`);
+      g.fillStyle = grad;
+      g.fillRect(0, 0, size * 2, size * 2);
+      return c;
+    };
+    let bokeh: HTMLCanvasElement[] = [];
+    let bokehDark = false;
+    const buildBokeh = () => {
+      const dark = isDark();
+      const tone = dark ? "235,243,255" : "168,182,204";
+      bokeh = [
+        makeBokeh(3, 0.85, tone, dark ? 0.9 : 0.8), // 원경: 작고 또렷
+        makeBokeh(8, 0.55, tone, dark ? 0.55 : 0.5), // 중경
+        makeBokeh(18, 0.3, tone, dark ? 0.3 : 0.26), // 근경: 크고 흐림(보케)
+      ];
+      bokehDark = dark;
+    };
+    interface Flake {
+      x: number; y: number; layer: number; v: number; ph: number; dr: number; scale: number;
+    }
+    const flakes: Flake[] = [];
+    if (kind === "snow") {
+      buildBokeh();
+      for (let i = 0; i < 100; i++) {
+        const layer = i < 45 ? 0 : i < 80 ? 1 : 2; // 원경 다수, 근경 소수
+        flakes.push({
+          x: rnd(0, w), y: rnd(0, h), layer,
+          v: [0.35, 0.8, 1.5][layer] * rnd(0.7, 1.3),
+          ph: rnd(0, 6.28), dr: [0.25, 0.6, 1.1][layer],
+          scale: rnd(0.7, 1.25),
+        });
+      }
+    }
+
+    // ── 안개(기존 유지) ─────────────────────────────────
     interface Blob {
-      x: number;
-      y: number;
-      r: number;
-      vx: number;
-      vy: number;
-      a: number;
+      x: number; y: number; r: number; vx: number; vy: number; a: number;
     }
     const blobs: Blob[] = [];
     if (kind === "fog") {
       for (let i = 0; i < 26; i++) {
         blobs.push({
-          x: rnd(0, w),
-          y: rnd(0, h),
-          r: rnd(0.05, 0.14) * Math.max(w, h),
-          vx: rnd(-0.4, 0.4),
-          vy: rnd(-0.1, 0.1),
-          a: rnd(0.16, 0.34),
+          x: rnd(0, w), y: rnd(0, h), r: rnd(0.05, 0.14) * Math.max(w, h),
+          vx: rnd(-0.4, 0.4), vy: rnd(-0.1, 0.1), a: rnd(0.16, 0.34),
         });
       }
     }
@@ -105,23 +161,20 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
     const slant = 1.7;
     let raf = 0;
     let running = true;
+    let frame = 0;
 
     const draw = () => {
+      frame++;
       ctx.clearRect(0, 0, w, h);
       const dark = isDark();
 
       if (kind === "fog" && offCtx && off) {
-        // 저해상도 버퍼에 그린 뒤 픽셀 확대 = 모자이크
         const fc = dark ? "184,189,200" : "118,121,130";
         offCtx.clearRect(0, 0, bw, bh);
         for (const b of blobs) {
           const g = offCtx.createRadialGradient(
-            b.x / BLOCK,
-            b.y / BLOCK,
-            0,
-            b.x / BLOCK,
-            b.y / BLOCK,
-            Math.max(1, b.r / BLOCK),
+            b.x / BLOCK, b.y / BLOCK, 0,
+            b.x / BLOCK, b.y / BLOCK, Math.max(1, b.r / BLOCK),
           );
           g.addColorStop(0, `rgba(${fc},${b.a})`);
           g.addColorStop(1, `rgba(${fc},0)`);
@@ -136,9 +189,10 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
         }
         ctx.imageSmoothingEnabled = false;
         ctx.drawImage(off, 0, 0, bw, bh, 0, 0, w, h);
-      } else if (kind === "rain") {
+      } else if (kind === "rain" && glassCtx && glass) {
+        // 1) 원경 빗줄기
         ctx.lineWidth = 1;
-        for (const p of ps) {
+        for (const p of streaks) {
           ctx.strokeStyle = `rgba(${colorFor(dark, p.d)},${p.a})`;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
@@ -146,26 +200,67 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
           ctx.stroke();
           p.y += p.v;
           p.x -= slant * 0.7;
-          if (p.y > h) {
-            p.y = -p.s;
-            p.x = rnd(0, w);
-          } else if (p.x < 0) {
-            p.x = w;
+          if (p.y > h) { p.y = -p.s; p.x = rnd(0, w); }
+          else if (p.x < 0) p.x = w;
+        }
+
+        // 2) 유리면 — 느린 페이드(궤적·방울이 서서히 마름, ~15초)
+        glassCtx.globalCompositeOperation = "destination-out";
+        glassCtx.fillStyle = "rgba(0,0,0,0.012)";
+        glassCtx.fillRect(0, 0, w, h);
+        glassCtx.globalCompositeOperation = "source-over";
+
+        // 3) 새 미세 방울 보충(마르는 만큼)
+        if (frame % 3 === 0) drawDroplet(glassCtx, rnd(0, w), rnd(0, h), rnd(0.5, 1.8), rnd(0.12, 0.26));
+
+        // 4) 흘러내리는 큰 방울
+        const tone = dropTone();
+        for (const r of runners) {
+          if (!r.alive) {
+            if (--r.wait <= 0) {
+              r.alive = true;
+              r.x = rnd(w * 0.03, w * 0.97);
+              r.y = rnd(-20, h * 0.3);
+              r.r = rnd(1.8, 3.2);
+              r.v = rnd(0.8, 1.4);
+              r.ph = rnd(0, 6.28);
+            }
+            continue;
+          }
+          const prevX = r.x;
+          const prevY = r.y;
+          r.v = Math.min(r.v + 0.035, 3.6 + r.r * 0.5);
+          r.y += r.v;
+          r.ph += 0.11;
+          r.x += Math.sin(r.ph) * 0.55;
+          // 젖은 궤적 — 가늘고 옅은 물길만(페이드로 수 초 내 마름)
+          glassCtx.strokeStyle = `rgba(${tone},0.055)`;
+          glassCtx.lineWidth = Math.max(0.8, r.r * 0.38);
+          glassCtx.lineCap = "round";
+          glassCtx.beginPath();
+          glassCtx.moveTo(prevX, prevY);
+          glassCtx.lineTo(r.x, r.y);
+          glassCtx.stroke();
+          if (frame % 14 === 0) drawDroplet(glassCtx, prevX + rnd(-1, 1), prevY, rnd(0.4, 0.8), 0.14);
+          drawDroplet(glassCtx, r.x, r.y, r.r, 0.28);
+          if (r.y > h + 6) {
+            r.alive = false;
+            r.wait = Math.floor(rnd(240, 900));
           }
         }
+        ctx.drawImage(glass, 0, 0, glass.width, glass.height, 0, 0, w, h);
       } else if (kind === "snow") {
-        for (const p of ps) {
-          ctx.fillStyle = `rgba(${colorFor(dark, p.d)},${p.a})`;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.s, 0, Math.PI * 2);
-          ctx.fill();
-          p.y += p.v;
-          p.ph += 0.02;
-          p.x += Math.sin(p.ph) * p.dr;
-          if (p.y > h + 4) {
-            p.y = -4;
-            p.x = rnd(0, w);
-          }
+        if (bokehDark !== dark) buildBokeh(); // 테마 전환 시 스프라이트 재생성
+        for (const f of flakes) {
+          const sp = bokeh[f.layer];
+          const s = sp.width * f.scale;
+          ctx.drawImage(sp, f.x - s / 2, f.y - s / 2, s, s);
+          f.y += f.v;
+          f.ph += 0.015 + f.layer * 0.006;
+          f.x += Math.sin(f.ph) * f.dr;
+          if (f.y > h + s) { f.y = -s; f.x = rnd(0, w); }
+          if (f.x < -s) f.x = w + s;
+          if (f.x > w + s) f.x = -s;
         }
       }
       if (running) raf = requestAnimationFrame(draw);
