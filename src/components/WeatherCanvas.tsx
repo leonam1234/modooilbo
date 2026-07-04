@@ -73,9 +73,10 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
     }
     const streaks: Streak[] = [];
     if (kind === "rain") {
-      for (let i = 0; i < 90; i++) {
+      // 초안(v1) 파라미터 그대로 — 대표님 픽(2026-07-04)
+      for (let i = 0; i < 150; i++) {
         const d = Math.random();
-        streaks.push({ x: rnd(0, w), y: rnd(0, h), d, s: 7 + 14 * d, v: 5 + 7 * d, a: 0.08 + 0.12 * d });
+        streaks.push({ x: rnd(0, w), y: rnd(0, h), d, s: 7 + 16 * d, v: 5 + 8 * d, a: 0.1 + 0.16 * d });
       }
     }
 
@@ -93,14 +94,10 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
       g.fill();
     };
     if (kind === "rain" && glassCtx) {
-      for (let i = 0; i < 240; i++) drawDroplet(glassCtx, rnd(0, w), rnd(0, h), rnd(0.5, 1.8), rnd(0.1, 0.26));
+      for (let i = 0; i < 240; i++) drawDroplet(glassCtx, rnd(0, w), rnd(0, h), rnd(0.5, 1.9), rnd(0.1, 0.26));
     }
-    interface Runner {
-      x: number; y: number; r: number; v: number; ph: number; alive: boolean; wait: number;
-    }
-    const runners: Runner[] = Array.from({ length: 5 }, () => ({
-      x: 0, y: 0, r: 0, v: 0, ph: 0, alive: false, wait: Math.floor(rnd(30, 500)),
-    }));
+    // ⚠️ '흘러내리는 방울(runner)'과 물길 궤적은 금지 — 어떤 파라미터로도 지렁이로 보여
+    //    2026-07-04 대표님이 세 차례 반려. 유리에는 정적인 맺힘만 그린다.
 
     // ── 눈: 보케 스프라이트 3단(사전 렌더 — shadowBlur 없이 저비용) ──
     const makeBokeh = (size: number, soft: number, tone: string, core: number) => {
@@ -221,50 +218,15 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
           else if (p.x < 0) p.x = w;
         }
 
-        // 2) 유리면 — 페이드(궤적이 수 초 내 마름 — 길게 남으면 지렁이로 보임)
+        // 2) 유리면 — 아주 느린 페이드(맺힌 방울이 천천히 마르고 새로 맺힘)
         glassCtx.globalCompositeOperation = "destination-out";
-        glassCtx.fillStyle = "rgba(0,0,0,0.028)";
+        glassCtx.fillStyle = "rgba(0,0,0,0.003)";
         glassCtx.fillRect(0, 0, w, h);
         glassCtx.globalCompositeOperation = "source-over";
 
-        // 3) 새 미세 방울 보충(마르는 만큼)
-        if (frame % 3 === 0) drawDroplet(glassCtx, rnd(0, w), rnd(0, h), rnd(0.5, 1.8), rnd(0.12, 0.26));
+        // 3) 새 미세 방울 보충(마르는 만큼) — 맺힘만, 흘러내림 없음
+        if (frame % 2 === 0) drawDroplet(glassCtx, rnd(0, w), rnd(0, h), rnd(0.5, 1.9), rnd(0.1, 0.24));
 
-        // 4) 흘러내리는 큰 방울
-        const tone = dropTone();
-        for (const r of runners) {
-          if (!r.alive) {
-            if (--r.wait <= 0) {
-              r.alive = true;
-              r.x = rnd(w * 0.03, w * 0.97);
-              r.y = rnd(-20, h * 0.3);
-              r.r = rnd(1.6, 2.8);
-              r.v = rnd(1.8, 2.8); // 빠르게 미끄러져야 '줄기'로 읽힘(느리면 지렁이)
-              r.ph = rnd(0, 6.28);
-            }
-            continue;
-          }
-          const prevX = r.x;
-          const prevY = r.y;
-          r.v = Math.min(r.v + 0.07, 5.5 + r.r * 0.6);
-          r.y += r.v;
-          r.ph += 0.09;
-          r.x += Math.sin(r.ph) * 0.16; // 미세 워블만 — 크면 궤적이 지렁이가 됨
-          // 젖은 궤적 — 가늘고 옅은 물길만(페이드로 수 초 내 마름)
-          glassCtx.strokeStyle = `rgba(${tone},0.038)`;
-          glassCtx.lineWidth = Math.max(0.7, r.r * 0.3);
-          glassCtx.lineCap = "round";
-          glassCtx.beginPath();
-          glassCtx.moveTo(prevX, prevY);
-          glassCtx.lineTo(r.x, r.y);
-          glassCtx.stroke();
-          if (frame % 14 === 0) drawDroplet(glassCtx, prevX + rnd(-1, 1), prevY, rnd(0.4, 0.8), 0.14);
-          drawDroplet(glassCtx, r.x, r.y, r.r, 0.28);
-          if (r.y > h + 6) {
-            r.alive = false;
-            r.wait = Math.floor(rnd(240, 900));
-          }
-        }
         ctx.drawImage(glass, 0, 0, glass.width, glass.height, 0, 0, w, h);
       } else if (kind === "star") {
         // 다크 모드에서만 은은하게 — 라이트에선 아무것도 그리지 않음(토글 시 자연 등장/소멸)
