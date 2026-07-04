@@ -111,7 +111,7 @@ export function RankingList({ pool, count = 6 }: { pool: Item[]; count?: number 
               >
                 {i + 1}
               </span>
-              <Link href={`/article/${a.slug}`} className="group flex-1">
+              <Link prefetch={false} href={`/article/${a.slug}`} className="group flex-1">
                 <h3 className="clamp-2 text-sm font-semibold leading-snug text-ink-800 group-hover:text-signal-600 dark:text-ink-100">
                   {a.title}
                 </h3>

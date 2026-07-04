@@ -42,7 +42,7 @@ export function TrendingTags() {
         <span className="mx-0.5 hidden h-3 w-px shrink-0 self-center bg-ink-200 dark:bg-ink-700 sm:block" />
         <div className="flex items-baseline gap-3">
           {data.tags.map((t, i) => (
-            <Link
+            <Link prefetch={false}
               key={t}
               href={`/search?q=${encodeURIComponent(t)}`}
               style={{ animationDelay: `${(i % 5) * 0.35}s` }}
