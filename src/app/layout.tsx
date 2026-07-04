@@ -112,8 +112,8 @@ export default function RootLayout({
         {/* 헤더 + 속보 티커를 한 덩어리로 sticky 고정 (스크롤 시 같이 따라옴) */}
         <div className="no-print sticky top-0 z-40">
           <Header />
-          <TrendingTags />
           <BreakingTicker />
+          <TrendingTags />
         </div>
         <div className="relative z-10">
           <main id="content">{children}</main>
