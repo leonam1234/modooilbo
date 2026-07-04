@@ -3,14 +3,16 @@
 정의 위치: [tailwind.config.ts](../tailwind.config.ts) (토큰/애니메이션), [src/app/globals.css](../src/app/globals.css) (폰트/유틸/접근성/인쇄).
 
 ## 1. 컬러 토큰
-### signal — 브랜드 액센트 ("시그널 레드")
+### signal — 브랜드 액센트 (무채색 그레이 — NYT식)
+과거 "시그널 레드"였으나 **정치적 중립을 위해 흑백 그레이로 재정의**됨(tailwind.config.ts 참고).
+클래스명은 signal-* 그대로 두고 팔레트만 교체 — 빨강은 `breaking`(#700000, 속보 라벨 전용)만 남음.
 | 토큰 | HEX | 용도 |
 |------|-----|------|
-| signal-50 | `#fff1f0` | 연한 배경/호버 틴트 |
-| signal-500 | `#ef3a2c` | 포커스 링 |
-| **signal-600** | **`#dc1f10`** | **primary** (로고·링크·CTA·액티브) |
-| signal-700 | `#b8160a` | hover |
-| signal-950 | `#450905` | 다크모드 틴트 배경 |
+| signal-50 | `#f6f6f7` | 연한 배경/호버 틴트 |
+| signal-500 | `#7c7c83` | 포커스 링 |
+| **signal-600** | **`#6b6b73`** | **primary** (로고·링크·CTA·액티브) |
+| signal-700 | `#5a5a61` | hover |
+| signal-950 | `#222226` | 다크모드 틴트 배경 |
 
 ### ink — 뉴트럴 (본문/헤드라인)
 | 토큰 | HEX | 용도 |
@@ -30,7 +32,7 @@
 
 ## 2. 타이포그래피
 - `--font-sans` = **Pretendard Variable** (본문·UI), CDN 동적 서브셋.
-- `--font-serif` = **MaruBuri(마루 부리)** (헤드라인 시그니처) — 네이버 정적 CDN woff2를 자체 @font-face로 웨이트 매핑(400/600/700–900, 800·900은 Bold 글리프 재사용해 합성 볼드 방지).
+- `--font-serif` = **MaruBuri(마루 부리)** (헤드라인 시그니처) — Bold 단일 서브셋(한글 전역+라틴, 275KB)을 `/fonts/`에 자체 호스팅, weight 400–900 전부 이 파일로 해석. `.font-headline`이 굵기 700을 기본 고정.
 - 헤드라인엔 **`.font-headline` 클래스**(세리프) 사용 — 자간 -0.015em 포함.
 - 한글 줄바꿈 안정: `word-break: keep-all` (globals.css body/.font-headline).
 
