@@ -317,7 +317,7 @@ export default async function ArticlePage({
             pool={getMostRead(60).map((a) => ({ id: a.id, slug: a.slug, title: a.title, category: a.category }))}
           />
           <RecentArticles excludeId={article.id} />
-          <div className="rounded-xl border border-ink-200 bg-ink-50 p-6 dark:border-ink-800 dark:bg-ink-900">
+          <div className="glass-card rounded-xl border border-ink-200 p-6 dark:border-ink-800">
             <h3 className="font-headline text-lg font-bold text-ink-900 dark:text-white">
               독립 저널리즘을 후원하세요
             </h3>

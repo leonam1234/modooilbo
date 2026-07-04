@@ -30,7 +30,7 @@ export const inputCls =
 
 export function Card({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-xl border border-ink-200 bg-white p-6 dark:border-ink-800 dark:bg-ink-900">
+    <div className="glass-card rounded-xl border border-ink-200 p-6 dark:border-ink-800">
       <h2 className="font-headline text-lg font-bold text-ink-900 dark:text-white">{title}</h2>
       <div className="mt-5">{children}</div>
     </div>

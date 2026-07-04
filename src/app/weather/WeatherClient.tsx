@@ -120,7 +120,7 @@ export function WeatherClient() {
   return (
     <div className="space-y-8">
       {/* 현재 날씨 카드 */}
-      <div className="rounded-xl border border-ink-200 bg-white/80 p-6 backdrop-blur dark:border-ink-800 dark:bg-ink-900/80">
+      <div className="glass-card rounded-xl border border-ink-200 p-6 dark:border-ink-800">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <label className="flex items-center gap-2 text-sm text-ink-500 dark:text-ink-300">
             지역
@@ -197,10 +197,8 @@ export function WeatherClient() {
             {days.map((d, i) => (
               <div
                 key={d.date}
-                className={`min-w-[6.2rem] flex-1 rounded-xl border p-4 text-center ${
-                  i === 0
-                    ? "border-ink-900 bg-ink-50 dark:border-white dark:bg-ink-900"
-                    : "border-ink-200 dark:border-ink-800"
+                className={`glass-card min-w-[6.2rem] flex-1 rounded-xl border p-4 text-center ${
+                  i === 0 ? "border-ink-900 dark:border-white" : "border-ink-200 dark:border-ink-800"
                 }`}
               >
                 <p className="text-xs font-semibold text-ink-500 dark:text-ink-300">{dayLabel(d.date, i)}</p>

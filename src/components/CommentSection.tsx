@@ -23,7 +23,7 @@ function WriteBox({
 }) {
   const [text, setText] = useState("");
   return (
-    <div className="rounded-xl border border-ink-200 bg-white p-3 dark:border-ink-700 dark:bg-ink-900">
+    <div className="glass-card rounded-xl border border-ink-200 p-3 dark:border-ink-700">
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value.slice(0, MAX_BODY))}
