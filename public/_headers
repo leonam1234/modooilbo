@@ -17,5 +17,9 @@
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Permissions-Policy: camera=(), microphone=(), geolocation=(self)
   X-DNS-Prefetch-Control: on
+
+# 자체 호스팅 폰트 — 불변 캐시 1년
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
