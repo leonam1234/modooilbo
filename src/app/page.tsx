@@ -17,8 +17,8 @@ const organizationLd = {
   "@context": "https://schema.org",
   "@type": "NewsMediaOrganization",
   "@id": `${SITE_URL}/#organization`,
+  // 사이트 이름은 한글 "모두일보" 단일 후보만 제공 — 영어 alternateName 금지(검색결과 영문 표기 방지)
   name: SITE.name,
-  alternateName: "Modoo Ilbo",
   url: SITE_URL,
   logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png`, width: 512, height: 512 },
   foundingDate: SITE.regDate.replace(/\./g, "-"),
@@ -41,8 +41,8 @@ const websiteLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": `${SITE_URL}/#website`,
+  // 사이트 이름은 한글 "모두일보" 단일 후보만 제공 — 영어 alternateName 금지(검색결과 영문 표기 방지)
   name: "모두일보",
-  alternateName: "Modoo Ilbo",
   url: `${SITE_URL}/`, // canonical(끝슬래시)과 동일 표기 — 구글 사이트 이름 인식 정합
   inLanguage: "ko-KR",
   publisher: { "@id": `${SITE_URL}/#organization` },
