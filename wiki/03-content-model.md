@@ -73,3 +73,8 @@ type ArticleListItem = Omit<Article, "body">;  // 목록/카드/검색용 경량
 2. **불변식**: `id`/`slug`/picsum `seed` 고유, **`isLead`는 전체 1건만**(이미 a-리드 존재 → 추가 금지).
 3. `publishedAt` ISO, `type` 누락 시 "article"로 간주.
 4. 정적 export이므로 추가 후 `npm run build` 재실행해야 `/article/<slug>` 생성.
+
+## 영상(유튜브) 임베드
+- 본문에 **유튜브 URL만 한 줄로 단독 문단**으로 쓰면 자동으로 16:9 플레이어 임베드(youtube-nocookie, lazy).
+  지원: watch?v= / youtu.be/ / shorts/ / embed/ / live/. 문장 속에 섞인 링크는 그냥 텍스트.
+- 카드 썸네일은 type: video여도 이미지+재생 배지만(썸네일에서 재생 안 됨). TTS는 URL을 낭독하지 않음.
