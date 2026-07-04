@@ -34,6 +34,43 @@ export const DEFAULT_CITY = "서울";
 export const STORAGE_KEY = "modoo-weather-city";
 export const CHANGE_EVENT = "modoo-weather-city-change";
 
+/** 좌표에서 가장 가까운 지원 도시 (국내 스케일이라 위경도 유클리드 근사로 충분) */
+export function nearestCity(lat: number, lon: number): City {
+  let best = CITIES[0];
+  let bestD = Infinity;
+  for (const c of CITIES) {
+    // 경도 1도는 위도 1도보다 짧으므로(한국 위도 기준 cos≈0.8) 보정
+    const dLat = c.lat - lat;
+    const dLon = (c.lon - lon) * 0.8;
+    const d = dLat * dLat + dLon * dLon;
+    if (d < bestD) {
+      bestD = d;
+      best = c;
+    }
+  }
+  return best;
+}
+
+/** 브라우저 GPS로 현재 위치를 얻어 가장 가까운 도시를 반환. 거부/실패/미지원 시 null. */
+export function locateCity(): Promise<City | null> {
+  return new Promise((resolve) => {
+    if (typeof navigator === "undefined" || !navigator.geolocation) return resolve(null);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => resolve(nearestCity(pos.coords.latitude, pos.coords.longitude)),
+      () => resolve(null),
+      { timeout: 8000, maximumAge: 10 * 60 * 1000 },
+    );
+  });
+}
+
+/** 날씨 상태별 아이콘 색 — 기능색(무채색 원칙 예외: 속보 레드와 무관한 정보 전달용) */
+export const WX_COLOR: Record<WxCondition, string> = {
+  clear: "text-amber-500 dark:text-amber-400",
+  rain: "text-blue-500 dark:text-blue-400",
+  snow: "text-sky-400 dark:text-sky-300",
+  fog: "text-ink-400 dark:text-ink-300",
+};
+
 /** WMO weather code → 배경 모션 분류 */
 export function codeToCondition(code: number): WxCondition {
   if (code === 45 || code === 48) return "fog"; // 안개

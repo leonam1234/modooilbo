@@ -5,7 +5,9 @@ import {
   CITIES,
   CHANGE_EVENT,
   STORAGE_KEY,
+  WX_COLOR,
   getSavedCity,
+  locateCity,
   codeToCondition,
   codeToLabel,
 } from "@/lib/weather";
@@ -35,6 +37,7 @@ export function WeatherClient() {
   const [current, setCurrent] = useState<Current | null>(null);
   const [days, setDays] = useState<Day[] | null>(null);
   const [failed, setFailed] = useState(false);
+  const [locating, setLocating] = useState(false);
 
   useEffect(() => {
     setCityName(getSavedCity().name);
@@ -103,6 +106,15 @@ export function WeatherClient() {
     window.dispatchEvent(new CustomEvent(CHANGE_EVENT));
   }
 
+  async function useMyLocation() {
+    if (locating) return;
+    setLocating(true);
+    const found = await locateCity();
+    setLocating(false);
+    if (found) changeCity(found.name);
+    else alert("위치 정보를 가져오지 못했습니다. 브라우저 위치 권한을 확인해 주세요.");
+  }
+
   if (cityName === null) return <p className="py-16 text-center text-ink-400">불러오는 중…</p>;
 
   return (
@@ -123,6 +135,18 @@ export function WeatherClient() {
                 </option>
               ))}
             </select>
+            <button
+              type="button"
+              onClick={useMyLocation}
+              disabled={locating}
+              className={`inline-flex items-center gap-1.5 rounded-md border border-ink-200 px-3 py-1.5 font-medium text-ink-700 transition-colors hover:border-ink-400 dark:border-ink-700 dark:text-ink-200 dark:hover:border-ink-500 ${locating ? "animate-pulse" : ""}`}
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden>
+                <path d="M12 21s7-5.686 7-11a7 7 0 10-14 0c0 5.314 7 11 7 11z" stroke="currentColor" strokeWidth="1.6" />
+                <circle cx="12" cy="10" r="2.4" stroke="currentColor" strokeWidth="1.6" />
+              </svg>
+              {locating ? "위치 확인 중…" : "내 위치"}
+            </button>
           </label>
           <span className="text-xs text-ink-400">자료: Open-Meteo</span>
         </div>
@@ -134,7 +158,10 @@ export function WeatherClient() {
         ) : (
           <div className="mt-5 flex flex-wrap items-center gap-x-8 gap-y-4">
             <div className="flex items-center gap-4">
-              <WxIcon cond={codeToCondition(current.code)} className="h-14 w-14 text-ink-700 dark:text-ink-200" />
+              <WxIcon
+                cond={codeToCondition(current.code)}
+                className={`h-14 w-14 ${WX_COLOR[codeToCondition(current.code)]}`}
+              />
               <div>
                 <p className="font-headline text-5xl font-extrabold tabular-nums text-ink-900 dark:text-white">
                   {current.temp !== null ? `${current.temp}°` : "—"}
@@ -178,13 +205,18 @@ export function WeatherClient() {
               >
                 <p className="text-xs font-semibold text-ink-500 dark:text-ink-300">{dayLabel(d.date, i)}</p>
                 <p className="mt-0.5 text-[11px] tabular-nums text-ink-400">{d.date.slice(5).replace("-", ".")}</p>
-                <WxIcon cond={codeToCondition(d.code)} className="mx-auto mt-3 h-8 w-8 text-ink-700 dark:text-ink-200" />
+                <WxIcon
+                  cond={codeToCondition(d.code)}
+                  className={`mx-auto mt-3 h-8 w-8 ${WX_COLOR[codeToCondition(d.code)]}`}
+                />
                 <p className="mt-1 text-[11px] text-ink-400">{codeToLabel(d.code)}</p>
-                <p className="mt-2 text-sm font-bold tabular-nums text-ink-900 dark:text-white">
-                  {d.max}° <span className="font-normal text-ink-400">/ {d.min}°</span>
+                <p className="mt-2 text-sm font-bold tabular-nums text-orange-600 dark:text-orange-400">
+                  {d.max}° <span className="font-normal text-blue-500 dark:text-blue-400">/ {d.min}°</span>
                 </p>
                 {d.rain !== null && d.rain > 0 && (
-                  <p className="mt-1 text-[11px] tabular-nums text-ink-500 dark:text-ink-400">강수 {d.rain}%</p>
+                  <p className="mt-1 text-[11px] font-medium tabular-nums text-blue-500 dark:text-blue-400">
+                    강수 {d.rain}%
+                  </p>
                 )}
               </div>
             ))}

@@ -26,6 +26,8 @@
 **라이트/다크 페어링 규칙** — 색은 항상 쌍으로:
 `text-ink-900 dark:text-white` · `bg-white dark:bg-ink-950` · `border-ink-200 dark:border-ink-800` · 보조 `text-ink-500 dark:text-ink-400`.
 
+**기능색 예외(날씨)** — 무채색 원칙의 예외로, 날씨 정보는 의미색 허용: 맑음 amber, 비/강수확률/최저기온 blue, 눈 sky, 안개는 잉크 유지, 최고기온 orange. 정의: `lib/weather.ts`의 `WX_COLOR`. 속보 레드와 혼동되는 빨강 계열은 금지.
+
 ## 2. 타이포그래피
 - `--font-sans` = **Pretendard Variable** (본문·UI), CDN 동적 서브셋.
 - `--font-serif` = **MaruBuri(마루 부리)** (헤드라인 시그니처) — 네이버 정적 CDN woff2를 자체 @font-face로 웨이트 매핑(400/600/700–900, 800·900은 Bold 글리프 재사용해 합성 볼드 방지).
