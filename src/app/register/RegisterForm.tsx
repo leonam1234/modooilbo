@@ -14,24 +14,40 @@ export function RegisterForm() {
   const [error, setError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
 
+  const [busy, setBusy] = useState(false);
   const passwordMismatch = confirm.length > 0 && password !== confirm;
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (busy) return;
 
     if (password !== confirm) {
       setError("비밀번호가 일치하지 않습니다. 다시 확인해 주세요.");
-      setSubmitted(false);
       return;
     }
     if (!agreeTerms || !agreePrivacy) {
       setError("필수 약관에 동의해 주세요.");
-      setSubmitted(false);
       return;
     }
 
+    setBusy(true);
     setError(null);
-    setSubmitted(true);
+    try {
+      const r = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ name, email, password, newsletter: agreeMarketing }),
+      });
+      const d = await r.json();
+      if (r.ok && d?.user) {
+        setSubmitted(true);
+      } else {
+        setError(d?.error || "가입에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+      }
+    } catch {
+      setError("네트워크 오류입니다. 잠시 후 다시 시도해 주세요.");
+    }
+    setBusy(false);
   }
 
   if (submitted) {
@@ -42,18 +58,15 @@ export function RegisterForm() {
           className="rounded-md border border-signal-200 bg-signal-50 px-4 py-5 text-sm text-signal-700 dark:border-signal-900 dark:bg-signal-950/40 dark:text-signal-300"
         >
           <p className="font-headline text-lg font-bold text-ink-900 dark:text-white">
-            가입 신청이 완료되었습니다
+            가입이 완료되었습니다
           </p>
-          <p className="mt-2">
-            {name ? `${name}님, ` : ""}환영합니다. 데모 환경이므로 실제 계정은 생성되지
-            않습니다.
-          </p>
+          <p className="mt-2">{name ? `${name}님, ` : ""}환영합니다. 바로 로그인되었습니다.</p>
         </div>
         <Link
-          href="/login"
+          href="/"
           className="inline-block w-full rounded-md bg-signal-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-signal-700"
         >
-          로그인하러 가기
+          홈으로 가기
         </Link>
       </div>
     );
@@ -66,17 +79,17 @@ export function RegisterForm() {
           htmlFor="reg-name"
           className="mb-1.5 block text-sm font-medium text-ink-700 dark:text-ink-200"
         >
-          이름
+          닉네임
         </label>
         <input
           id="reg-name"
           name="name"
           type="text"
-          autoComplete="name"
+          autoComplete="nickname"
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="홍길동"
+          placeholder="모두일보에서 표시될 이름"
           className="h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white"
         />
       </div>
@@ -213,9 +226,10 @@ export function RegisterForm() {
 
       <button
         type="submit"
+        disabled={busy}
         className="w-full rounded-md bg-signal-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-signal-700 disabled:opacity-50"
       >
-        가입하기
+        {busy ? "가입 중…" : "가입하기"}
       </button>
 
       <p className="pt-1 text-center text-sm text-ink-500 dark:text-ink-300">

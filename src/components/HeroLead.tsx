@@ -14,10 +14,10 @@ export function HeroLead() {
 
   return (
     <section className="container-page py-6 sm:py-8">
-      <div className="grid gap-8 lg:grid-cols-[1.7fr_1fr]">
+      <div className="grid gap-8 md:grid-cols-[1.6fr_1fr] lg:grid-cols-[1.7fr_1fr]">
         {/* 리드 기사 — 이미지 위, 제목 아래 (2안) */}
         <article className="group">
-          <Link href={href} className="block">
+          <Link prefetch={false} href={href} className="block">
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-ink-100 dark:bg-ink-800">
               <Image
                 src={displayImageUrl(lead)}
@@ -32,14 +32,14 @@ export function HeroLead() {
             </div>
           </Link>
           <div className="mt-4">
-            <Link
+            <Link prefetch={false}
               href={`/${lead.category}`}
               className="text-xs font-bold uppercase tracking-wider text-signal-600"
             >
               {CATEGORY_MAP[lead.category]?.name}
             </Link>
             <h2 className="mt-2 font-headline text-2xl font-extrabold leading-tight text-ink-900 dark:text-white sm:text-3xl lg:text-[40px] lg:leading-[1.15]">
-              <Link href={href} className="hover:text-signal-700 dark:hover:text-signal-400">
+              <Link prefetch={false} href={href} className="hover:text-signal-700 dark:hover:text-signal-400">
                 {lead.title}
               </Link>
             </h2>

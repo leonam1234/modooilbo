@@ -1,6 +1,23 @@
 {
-  // Cloudflare Pages (정적 자산) 배포 설정
   "name": "modooilbo",
   "compatibility_date": "2026-06-10",
-  "pages_build_output_dir": "out"
+  "pages_build_output_dir": "out",
+  // 이메일 발송: Pages는 send_email 바인딩 미지원(2026-07 확인) → 전용 Worker 경유.
+  // mailer-worker/(modooilbo-mailer) + 시크릿 MAILER_KEY(Worker·Pages 동일 값, Keychain modooilbo-mailer-key).
+  "vars": {
+    "MAILER_URL": "https://modooilbo-mailer.bridzzikorea.workers.dev"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "REACTIONS",
+      "id": "b73697771f59450790ada8c6b695374c"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "modooilbo-members",
+      "database_id": "68ca4b6d-3084-4dbc-b514-0d09ac82c5a4"
+    }
+  ]
 }

@@ -3,9 +3,11 @@ import Link from "next/link";
 import { HeroLead } from "@/components/HeroLead";
 import { SectionBlock } from "@/components/SectionBlock";
 import { RankingList } from "@/components/RankingList";
+import { getMostRead } from "@/lib/queries";
 import { OpinionStrip } from "@/components/OpinionStrip";
 import { MediaGrid } from "@/components/MediaGrid";
 import { NewsletterCTA } from "@/components/NewsletterCTA";
+import { Reveal } from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 import { SITE } from "@/lib/site";
 
@@ -68,15 +70,18 @@ export default function Home() {
       <h1 className="sr-only">모두일보 — 정치·경제·사회·국제·문화·테크 최신 뉴스</h1>
       <HeroLead />
 
-      <div className="container-page grid gap-x-10 gap-y-12 py-8 lg:grid-cols-[minmax(0,1fr)_320px]">
+      <div className="container-page grid gap-x-8 gap-y-12 py-8 md:grid-cols-[minmax(0,1fr)_280px] lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-x-10">
         <div className="space-y-12">
-          <SectionBlock slug="politics" count={5} />
-          <SectionBlock slug="economy" count={5} />
-          <SectionBlock slug="society" count={5} />
+          <Reveal><SectionBlock slug="politics" count={5} /></Reveal>
+          <Reveal><SectionBlock slug="economy" count={5} /></Reveal>
+          <Reveal><SectionBlock slug="society" count={5} /></Reveal>
         </div>
 
         <aside className="space-y-10">
-          <RankingList count={6} />
+          <RankingList
+            count={6}
+            pool={getMostRead(60).map((a) => ({ id: a.id, slug: a.slug, title: a.title, category: a.category }))}
+          />
 
           <div className="rounded-xl border border-ink-200 bg-ink-50 p-6 dark:border-ink-800 dark:bg-ink-900">
             <h3 className="font-headline text-lg font-bold text-ink-900 dark:text-white">
@@ -95,19 +100,19 @@ export default function Home() {
         </aside>
       </div>
 
-      <OpinionStrip />
+      <Reveal><OpinionStrip /></Reveal>
 
-      <div className="container-page grid gap-10 py-10 lg:grid-cols-2">
-        <SectionBlock slug="world" count={4} />
-        <SectionBlock slug="tech" count={4} />
+      <div className="container-page grid gap-10 py-10 md:grid-cols-2">
+        <Reveal><SectionBlock slug="world" count={4} /></Reveal>
+        <Reveal><SectionBlock slug="tech" count={4} /></Reveal>
       </div>
 
-      <div className="container-page grid gap-10 pb-4 lg:grid-cols-2">
-        <SectionBlock slug="culture" count={4} />
-        <SectionBlock slug="sports" count={4} />
+      <div className="container-page grid gap-10 pb-4 md:grid-cols-2">
+        <Reveal><SectionBlock slug="culture" count={4} /></Reveal>
+        <Reveal><SectionBlock slug="sports" count={4} /></Reveal>
       </div>
 
-      <MediaGrid />
+      <Reveal><MediaGrid /></Reveal>
       <NewsletterCTA />
     </>
   );

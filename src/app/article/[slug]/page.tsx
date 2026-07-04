@@ -3,14 +3,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ALL_ARTICLES } from "@/lib/news";
-import { getArticleBySlug, getRelated } from "@/lib/queries";
-import { getAuthorSlugByName } from "@/lib/authors";
+import { getArticleBySlug, getRelated, getPrevNext, getMostRead } from "@/lib/queries";
 import { CATEGORY_MAP } from "@/lib/categories";
-import { formatKoreanDateTime, formatCount } from "@/lib/utils";
+import { formatKoreanDateTime } from "@/lib/utils";
 import { ArticleCard } from "@/components/ArticleCard";
 import { RankingList } from "@/components/RankingList";
 import { ArticleActions } from "@/components/ArticleActions";
-import { displayImageUrl } from "@/lib/stock";
+import { CommentSection } from "@/components/CommentSection";
+import { ListenButton } from "@/components/ListenButton";
+import { RecentArticles } from "@/components/RecentArticles";
+import { ReactionBar } from "@/components/ReactionBar";
+import { ViewBeacon } from "@/components/ViewBeacon";
+import { ViewCount } from "@/components/ViewCount";
+import { ImageLightbox } from "@/components/ImageLightbox";
+import { ReadingProgress } from "@/components/ReadingProgress";
+import { ArticleBody, articleSpeechText } from "@/components/ArticleBody";
+import { ogImageUrl, displayImageUrl } from "@/lib/stock";
+import { getReporterByName } from "@/lib/reporters";
 import JsonLd from "@/components/JsonLd";
 
 const SITE_URL = "https://modooilbo.com";
@@ -35,7 +44,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const a = getArticleBySlug(slug);
   if (!a) return { title: "기사를 찾을 수 없습니다" };
-  const imageUrl = absoluteImageUrl(displayImageUrl(a));
+  const imageUrl = absoluteImageUrl(ogImageUrl(a)); // og는 webp 미지원 스크레이퍼 대비 jpg 고정
   const cat = CATEGORY_MAP[a.category];
   return {
     title: a.title,
@@ -73,9 +82,10 @@ export default async function ArticlePage({
   const article = getArticleBySlug(slug);
   if (!article) notFound();
 
-  const authorSlug = getAuthorSlugByName(article.author.name);
+  const reporter = getReporterByName(article.author.name);
   const cat = CATEGORY_MAP[article.category];
   const related = getRelated(article, 4);
+  const { prev, next } = getPrevNext(article);
   const readMinutes = Math.max(1, Math.round(article.body.join(" ").length / 600));
   const articleUrl = `${SITE_URL}/article/${article.slug}/`;
   const imageUrl = absoluteImageUrl(displayImageUrl(article));
@@ -97,8 +107,8 @@ export default async function ArticlePage({
     wordCount,
     inLanguage: "ko-KR",
     isAccessibleForFree: true,
-    author: authorSlug
-      ? [{ "@type": "Person", name: article.author.name, url: `${SITE_URL}/reporter/${authorSlug}/` }]
+    author: reporter
+      ? [{ "@type": "Person", name: article.author.name, url: `${SITE_URL}/reporter/${reporter.slug}/` }]
       : [{ "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: article.author.name }],
     publisher: {
       "@type": "Organization",
@@ -142,7 +152,7 @@ export default async function ArticlePage({
     <div className="container-page py-8">
       <JsonLd data={newsArticleLd} />
       <JsonLd data={breadcrumbLd} />
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
+      <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_280px] lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10">
         <article className="min-w-0">
           <nav className="mb-4 flex min-w-0 items-center gap-1.5 text-xs text-ink-400">
             <Link href="/" className="hover:text-signal-600">홈</Link>
@@ -171,10 +181,10 @@ export default async function ArticlePage({
 
           <div className="mt-5 flex flex-col gap-3 border-y border-ink-100 py-3 dark:border-ink-800 sm:flex-row sm:items-center sm:justify-between">
             <div className="text-sm text-ink-500">
-              {authorSlug ? (
+              {reporter ? (
                 <Link
-                  href={`/reporter/${authorSlug}`}
-                  className="font-medium text-ink-800 hover:text-signal-600 dark:text-ink-100 dark:hover:text-signal-400"
+                  href={`/reporter/${reporter.slug}`}
+                  className="font-medium text-ink-800 hover:underline dark:text-ink-100"
                 >
                   {article.author.name}
                 </Link>
@@ -182,19 +192,21 @@ export default async function ArticlePage({
                 <span className="font-medium text-ink-800 dark:text-ink-100">{article.author.name}</span>
               )}{" "}
               {article.author.role} ·{" "}
-              <time dateTime={article.publishedAt}>{formatKoreanDateTime(article.publishedAt)}</time>
+              <span>
+                입력 <time dateTime={article.publishedAt}>{formatKoreanDateTime(article.publishedAt)}</time>
+              </span>
               {article.updatedAt && (
-                <span className="ml-2 text-ink-400">
+                <span className="ml-2">
                   수정 <time dateTime={article.updatedAt}>{formatKoreanDateTime(article.updatedAt)}</time>
                 </span>
               )}
-              <span className="ml-2 text-ink-400">조회 {formatCount(article.readCount)}</span>
+              <ViewCount articleId={article.id} />
               <span className="ml-2 text-ink-400">읽는 시간 {readMinutes}분</span>
             </div>
-            <ArticleActions title={article.title} />
+            <ArticleActions title={article.title} articleId={article.id} />
           </div>
 
-          <figure className="mt-6">
+          <figure id="article-hero" className="mt-6">
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-ink-100 dark:bg-ink-800">
               <Image
                 src={displayImageUrl(article)}
@@ -211,14 +223,11 @@ export default async function ArticlePage({
             )}
           </figure>
 
-          <div
-            id="article-body"
-            className="mt-8 space-y-5 text-[17px] leading-[1.9] text-ink-800 dark:text-ink-200"
-          >
-            {article.body.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+          <div className="no-print mt-6 flex justify-center">
+            <ListenButton text={articleSpeechText(article)} />
           </div>
+
+          <ArticleBody body={article.body} />
 
           <div className="mt-8 flex flex-wrap gap-2">
             {article.tags.map((t) => (
@@ -232,32 +241,101 @@ export default async function ArticlePage({
             ))}
           </div>
 
-          <div className="mt-8 rounded-xl border border-ink-200 bg-ink-50 p-5 dark:border-ink-800 dark:bg-ink-900">
-            <p className="text-sm font-bold text-ink-900 dark:text-white">
-              {authorSlug ? (
-                <Link href={`/reporter/${authorSlug}`} className="hover:text-signal-600 dark:hover:text-signal-400">
-                  {article.author.name}
-                </Link>
-              ) : (
-                article.author.name
-              )}{" "}
-              <span className="font-normal text-ink-500">{article.author.role}</span>
-            </p>
-            <p className="mt-1 text-sm text-ink-500">
-              modooilbo.com · 모두일보 편집국
-            </p>
-            {authorSlug && (
-              <Link
-                href={`/reporter/${authorSlug}`}
-                className="mt-2 inline-block text-sm font-medium text-signal-600 hover:text-signal-700 dark:text-signal-400"
+          <div className="mt-6 border-t border-ink-100 pt-4 text-xs leading-relaxed text-ink-400 dark:border-ink-800">
+            <p>ⓒ 모두일보(modooilbo.com) — 무단 전재·재배포 및 AI 학습·활용 금지</p>
+            <p className="no-print mt-1.5">
+              기사에서 잘못된 정보나 오탈자를 발견하셨나요?{" "}
+              <a
+                href={`mailto:correction@modooilbo.com?subject=${encodeURIComponent(`[정정요청] ${article.title}`)}`}
+                className="underline underline-offset-2 hover:text-signal-600"
               >
-                기자 프로필 →
+                정정 요청하기
+              </a>
+              <span aria-hidden> · </span>
+              <Link href="/ethics" className="underline underline-offset-2 hover:text-signal-600">
+                정정·반론 원칙
+              </Link>
+            </p>
+          </div>
+
+          <ViewBeacon articleId={article.id} />
+          <ImageLightbox />
+          <ReadingProgress />
+          <div className="no-print">
+            <ReactionBar articleId={article.id} />
+          </div>
+
+          <div className="mt-8 flex items-center justify-between gap-3 rounded-xl border border-ink-200 bg-ink-50 p-5 dark:border-ink-800 dark:bg-ink-900">
+            <div>
+              <p className="text-sm font-bold text-ink-900 dark:text-white">
+                {article.author.name} <span className="font-normal text-ink-500">{article.author.role}</span>
+              </p>
+              <p className="mt-1 text-sm text-ink-500">
+                modooilbo.com
+              </p>
+            </div>
+            {getReporterByName(article.author.name) && (
+              <Link
+                href={`/reporter/${getReporterByName(article.author.name)!.slug}`}
+                className="shrink-0 rounded-md border border-ink-300 px-3 py-2 text-xs font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200"
+              >
+                기자의 다른 기사
               </Link>
             )}
           </div>
 
+          <div className="no-print">
+            <CommentSection articleId={article.id} />
+          </div>
+
+          {(prev || next) && (
+            <nav
+              aria-label="이전 다음 기사"
+              className="no-print mt-10 grid gap-3 border-t border-ink-100 pt-8 dark:border-ink-800 sm:grid-cols-2"
+            >
+              {prev ? (
+                <Link
+                  href={`/article/${prev.slug}`}
+                  className="group flex items-center gap-3 rounded-lg border border-ink-200 px-4 py-3.5 transition-colors hover:border-ink-400 dark:border-ink-800 dark:hover:border-ink-600"
+                >
+                  <span aria-hidden className="shrink-0 text-lg text-ink-400">‹</span>
+                  <span className="relative h-12 w-16 shrink-0 overflow-hidden rounded bg-ink-100 dark:bg-ink-800">
+                    <Image src={displayImageUrl(prev)} alt="" fill sizes="64px" unoptimized className="object-cover" />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-xs text-ink-400">이전 기사</span>
+                    <span className="block truncate font-medium text-ink-800 group-hover:text-signal-700 dark:text-ink-100">
+                      {prev.title}
+                    </span>
+                  </span>
+                </Link>
+              ) : (
+                <span className="hidden sm:block" />
+              )}
+              {next ? (
+                <Link
+                  href={`/article/${next.slug}`}
+                  className="group flex items-center justify-end gap-3 rounded-lg border border-ink-200 px-4 py-3.5 text-right transition-colors hover:border-ink-400 dark:border-ink-800 dark:hover:border-ink-600"
+                >
+                  <span className="min-w-0">
+                    <span className="block text-xs text-ink-400">다음 기사</span>
+                    <span className="block truncate font-medium text-ink-800 group-hover:text-signal-700 dark:text-ink-100">
+                      {next.title}
+                    </span>
+                  </span>
+                  <span className="relative h-12 w-16 shrink-0 overflow-hidden rounded bg-ink-100 dark:bg-ink-800">
+                    <Image src={displayImageUrl(next)} alt="" fill sizes="64px" unoptimized className="object-cover" />
+                  </span>
+                  <span aria-hidden className="shrink-0 text-lg text-ink-400">›</span>
+                </Link>
+              ) : (
+                <span className="hidden sm:block" />
+              )}
+            </nav>
+          )}
+
           {related.length > 0 && (
-            <section className="mt-12">
+            <section className="no-print mt-12">
               <h2 className="mb-5 border-b-2 border-ink-900 pb-2 font-headline text-xl font-extrabold text-ink-900 dark:border-ink-100 dark:text-white">
                 관련 기사
               </h2>
@@ -271,8 +349,12 @@ export default async function ArticlePage({
         </article>
 
         <aside className="space-y-10">
-          <RankingList count={6} />
-          <div className="rounded-xl border border-ink-200 bg-ink-50 p-6 dark:border-ink-800 dark:bg-ink-900">
+          <RankingList
+            count={6}
+            pool={getMostRead(60).map((a) => ({ id: a.id, slug: a.slug, title: a.title, category: a.category }))}
+          />
+          <RecentArticles excludeId={article.id} />
+          <div className="glass-card rounded-xl border border-ink-200 p-6 dark:border-ink-800">
             <h3 className="font-headline text-lg font-bold text-ink-900 dark:text-white">
               독립 저널리즘을 후원하세요
             </h3>

@@ -17,7 +17,7 @@ export function PageHeader({
   align?: "left" | "center";
 }) {
   return (
-    <div className="border-b border-ink-200 bg-ink-50 dark:border-ink-800 dark:bg-ink-900/40">
+    <div className="paper-band border-b border-ink-200 dark:border-ink-800">
       <div className={`container-page py-8 sm:py-12 ${align === "center" ? "text-center" : ""}`}>
         {breadcrumb && breadcrumb.length > 0 && (
           <nav

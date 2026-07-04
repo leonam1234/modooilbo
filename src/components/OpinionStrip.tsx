@@ -7,7 +7,7 @@ export function OpinionStrip() {
   if (!items.length) return null;
 
   return (
-    <section className="border-y border-ink-100 bg-ink-50/60 dark:border-ink-800 dark:bg-ink-900/40">
+    <section className="paper-band border-y border-ink-100 dark:border-ink-800">
       <div className="container-page py-10">
         <SectionHeading title="오피니언" en="Opinion" href="/opinion" />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

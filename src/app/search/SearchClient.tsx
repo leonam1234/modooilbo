@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { ArticleListItem } from "@/lib/types";
 import { CATEGORY_MAP } from "@/lib/categories";
@@ -12,6 +12,11 @@ export function SearchClient({ index }: { index: ArticleListItem[] }) {
   const params = useSearchParams();
   const q = (params.get("q") || "").trim();
   const [input, setInput] = useState(q);
+
+  // URL ?q가 바뀌면(뒤로가기·링크 이동 등) 입력창도 동기화
+  useEffect(() => {
+    setInput(q);
+  }, [q]);
 
   const results = q
     ? index
@@ -50,6 +55,7 @@ export function SearchClient({ index }: { index: ArticleListItem[] }) {
           검색
         </button>
       </form>
+
 
       {q ? (
         <>

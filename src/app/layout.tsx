@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { BreakingTicker } from "@/components/BreakingTicker";
+import { TrendingTags } from "@/components/TrendingTags";
 import { Footer } from "@/components/Footer";
+import { AutoRefresh } from "@/components/AutoRefresh";
 import { WeatherBackground } from "@/components/WeatherBackground";
+import { BackToTop } from "@/components/BackToTop";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://modooilbo.com"),
@@ -113,6 +116,7 @@ export default function RootLayout({
         )}
       </head>
       <body className="font-sans">
+        <AutoRefresh />
         <WeatherBackground />
         <a
           href="#content"
@@ -121,14 +125,16 @@ export default function RootLayout({
           본문 바로가기
         </a>
         {/* 헤더 + 속보 티커를 한 덩어리로 sticky 고정 (스크롤 시 같이 따라옴) */}
-        <div className="sticky top-0 z-40">
+        <div className="no-print sticky top-0 z-40">
           <Header />
           <BreakingTicker />
+          <TrendingTags />
         </div>
         <div className="relative z-10">
           <main id="content">{children}</main>
           <Footer />
         </div>
+        <BackToTop />
       </body>
     </html>
   );

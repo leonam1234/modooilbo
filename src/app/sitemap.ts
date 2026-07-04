@@ -7,8 +7,11 @@ export const dynamic = "force-static";
 
 const BASE = "https://modooilbo.com";
 
+// publishedAt은 KST 벽시계-as-Z 규약 — 9시간 빼서 실제 UTC로 보정(기사 엔트리와 동일 규약)
 const latest = (list: typeof ALL_ARTICLES): Date | undefined =>
-  list.length ? new Date(Math.max(...list.map((a) => new Date(a.publishedAt).getTime()))) : undefined;
+  list.length
+    ? new Date(Math.max(...list.map((a) => new Date(a.updatedAt ?? a.publishedAt).getTime())) - 9 * 3600 * 1000)
+    : undefined;
 
 type PathPolicy = {
   changeFrequency: NonNullable<MetadataRoute.Sitemap[number]["changeFrequency"]>;
@@ -56,10 +59,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/privacy",
   ];
 
+  // trailingSlash: true 설정과 일치하도록 모든 URL에 끝 슬래시 — 308 리다이렉트/non-canonical 경고 방지
   const staticEntries: MetadataRoute.Sitemap = staticPaths.map((p) => {
     const policy = STATIC_PATH_POLICY[p] ?? { changeFrequency: "monthly", priority: 0.3 };
     return {
-      url: `${BASE}${p}/`, // URL 생성 그대로 — 끝슬래시 동작 불변(3단계 보존)
+      url: `${BASE}${p}/`,
       ...(p === "" ? { lastModified: latest(ALL_ARTICLES) } : {}),
       changeFrequency: policy.changeFrequency,
       priority: policy.priority,
@@ -75,7 +79,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const articleEntries: MetadataRoute.Sitemap = ALL_ARTICLES.map((a) => ({
     url: `${BASE}/article/${a.slug}/`,
-    lastModified: new Date(a.publishedAt),
+    // publishedAt은 KST 벽시계-as-Z 규약 — 9시간 빼서 실제 UTC 시각으로 보정
+    lastModified: new Date(new Date(a.updatedAt ?? a.publishedAt).getTime() - 9 * 3600 * 1000),
     changeFrequency: "weekly",
     priority: 0.7,
   }));

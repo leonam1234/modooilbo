@@ -13,10 +13,10 @@ export function WeatherBackground() {
 
   useEffect(() => {
     let alive = true;
-    // 테스트 모드: ?wx=rain|fog|snow|clear 로 실제 날씨와 무관하게 강제 미리보기
+    // 테스트 모드: ?wx=rain|snow|star(clear 별칭) 강제 미리보기. fog는 현재 미사용(렌더 안 함).
     const override = new URLSearchParams(window.location.search).get("wx");
-    if (override && ["clear", "fog", "rain", "snow"].includes(override)) {
-      setCond(override as WxCondition);
+    if (override && ["clear", "fog", "rain", "snow", "star"].includes(override)) {
+      setCond(override === "star" ? "clear" : (override as WxCondition));
       return;
     }
     const load = async () => {
@@ -44,6 +44,7 @@ export function WeatherBackground() {
     };
   }, []);
 
-  if (cond === "clear" || cond === "fog") return null;
-  return <WeatherCanvas kind={cond} />;
+  if (cond === "fog") return null;
+  // 맑음 = 다크 모드에서만 은은한 별(캔버스 내부에서 라이트면 미표시)
+  return <WeatherCanvas kind={cond === "clear" ? "star" : cond} />;
 }

@@ -17,6 +17,9 @@ const fieldCls =
   "h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
 const textareaCls =
   "min-h-32 w-full rounded-md border border-ink-200 bg-white px-4 py-3 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
+const errorCls = "mt-1.5 text-xs text-signal-600 dark:text-signal-400";
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function ApplyForm({ defaultField }: { defaultField?: string }) {
   const [name, setName] = useState("");
@@ -27,10 +30,21 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
   const [intro, setIntro] = useState("");
   const [fileName, setFileName] = useState("");
   const [agree, setAgree] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const next: Record<string, string> = {};
+    if (!name.trim()) next.name = "이름을 입력해 주세요.";
+    if (!phone.trim()) next.phone = "연락처를 입력해 주세요.";
+    if (!email.trim()) next.email = "이메일을 입력해 주세요.";
+    else if (!EMAIL_RE.test(email.trim())) next.email = "올바른 이메일 형식이 아닙니다.";
+    if (!field) next.field = "지원 분야를 선택해 주세요.";
+    if (!intro.trim()) next.intro = "자기소개를 입력해 주세요.";
+    if (!agree) next.agree = "개인정보 수집·이용에 동의해 주세요.";
+    setErrors(next);
+    if (Object.keys(next).length > 0) return;
     setSubmitted(true);
   }
 
@@ -71,6 +85,7 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
             setIntro("");
             setFileName("");
             setAgree(false);
+            setErrors({});
           }}
           className="mt-6 rounded-md border border-ink-300 px-6 py-3 font-semibold text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200"
         >
@@ -101,6 +116,7 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
             placeholder="홍길동"
             className={fieldCls}
           />
+          {errors.name && <p className={errorCls}>{errors.name}</p>}
         </div>
         <div>
           <label htmlFor="apply-phone" className={labelCls}>
@@ -116,6 +132,7 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
             placeholder="010-1234-5678"
             className={fieldCls}
           />
+          {errors.phone && <p className={errorCls}>{errors.phone}</p>}
         </div>
         <div>
           <label htmlFor="apply-email" className={labelCls}>
@@ -131,6 +148,7 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
             placeholder="name@example.com"
             className={fieldCls}
           />
+          {errors.email && <p className={errorCls}>{errors.email}</p>}
         </div>
         <div>
           <label htmlFor="apply-field" className={labelCls}>
@@ -152,6 +170,7 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
               </option>
             ))}
           </select>
+          {errors.field && <p className={errorCls}>{errors.field}</p>}
         </div>
       </div>
 
@@ -182,6 +201,7 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
           placeholder="지원 동기와 본인의 강점, 모두일보에서 만들고 싶은 저널리즘을 자유롭게 들려주세요."
           className={textareaCls}
         />
+        {errors.intro && <p className={errorCls}>{errors.intro}</p>}
       </div>
 
       <div className="mt-5">
@@ -214,6 +234,7 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
             전형 종료 후 관련 법령에 따라 파기됩니다. <span className="text-signal-600">*</span>
           </span>
         </label>
+        {errors.agree && <p className={errorCls}>{errors.agree}</p>}
       </div>
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -225,7 +246,7 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
           지원서 제출하기
         </button>
         <p className="text-xs text-ink-400">
-          본 양식은 데모용으로 실제로 전송되거나 저장되지 않습니다.
+          정식 오픈 준비 중입니다.
         </p>
       </div>
     </form>

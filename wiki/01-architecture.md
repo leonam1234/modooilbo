@@ -6,7 +6,7 @@
 | 프레임워크 | **Next.js 15.1.6** (App Router) | RSC 기반, 정적 export |
 | 언어 | **TypeScript** (strict) | |
 | 스타일 | **Tailwind CSS 3.4** | `darkMode: "class"` |
-| 폰트 | Pretendard(본문) + Nanum Myeongjo(헤드라인) | CDN `@import` (globals.css) |
+| 폰트 | Pretendard(본문, CDN 동적 서브셋) + MaruBuri Bold(헤드라인, `/fonts/` 자체 서브셋 275KB) | globals.css @font-face |
 | 이미지 | `next/image` + `unoptimized` | 정적 export용, picsum 더미 |
 | 배포 | **Cloudflare Pages** (정적 `out/`) | → [06-deployment](06-deployment.md) |
 | 테스트/리뷰 | Playwright (스크린샷) | `scripts/shoot.mjs` |

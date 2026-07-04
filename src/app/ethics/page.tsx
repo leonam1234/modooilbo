@@ -180,6 +180,38 @@ export default function EthicsPage() {
                 </Link>{" "}
                 페이지에서 상시 공개합니다.
               </p>
+
+              <h3 className="mt-7 text-lg font-bold text-ink-900 dark:text-white">
+                제11조(고충처리인)
+              </h3>
+              <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
+                모두일보는 언론중재 및 피해구제 등에 관한 법률에 따라 보도로 인한 권리 침해의 예방과
+                구제를 위해 고충처리인을 두어 운영한다. 고충처리인은 독자의 불만·이의 제기를 접수해
+                처리 결과를 회신한다.
+              </p>
+              <div className="mt-4 rounded-xl border border-ink-200 bg-ink-50 p-6 dark:border-ink-800 dark:bg-ink-900/40">
+                <dl className="space-y-2.5 text-sm">
+                  <div className="flex gap-3">
+                    <dt className="w-24 shrink-0 font-semibold text-ink-500 dark:text-ink-400">직책</dt>
+                    <dd className="text-ink-700 dark:text-ink-200">고충처리인</dd>
+                  </div>
+                  <div className="flex gap-3">
+                    <dt className="w-24 shrink-0 font-semibold text-ink-500 dark:text-ink-400">성명</dt>
+                    <dd className="text-ink-700 dark:text-ink-200">유승현</dd>
+                  </div>
+                  <div className="flex gap-3">
+                    <dt className="w-24 shrink-0 font-semibold text-ink-500 dark:text-ink-400">이메일</dt>
+                    <dd className="text-ink-700 dark:text-ink-200">
+                      <a
+                        href="mailto:ombudsman@modooilbo.com"
+                        className="font-medium text-signal-600 hover:text-signal-700 dark:text-signal-400"
+                      >
+                        ombudsman@modooilbo.com
+                      </a>
+                    </dd>
+                  </div>
+                </dl>
+              </div>
             </section>
 
             {/* 댓글·커뮤니티 정책 */}
@@ -189,7 +221,7 @@ export default function EthicsPage() {
               </h2>
 
               <h3 className="mt-6 text-lg font-bold text-ink-900 dark:text-white">
-                제11조(건강한 토론)
+                제12조(건강한 토론)
               </h3>
               <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
                 모두일보의 댓글과 커뮤니티는 서로 다른 의견이 존중받으며 만나는 공론장이다.
@@ -198,7 +230,7 @@ export default function EthicsPage() {
               </p>
 
               <h3 className="mt-7 text-lg font-bold text-ink-900 dark:text-white">
-                제12조(금지되는 게시물)
+                제13조(금지되는 게시물)
               </h3>
               <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
                 다음의 게시물은 사전 통보 없이 삭제될 수 있으며, 반복 위반 시 이용이 제한된다.
@@ -212,7 +244,7 @@ export default function EthicsPage() {
               </ul>
 
               <h3 className="mt-7 text-lg font-bold text-ink-900 dark:text-white">
-                제13조(운영과 이의 제기)
+                제14조(운영과 이의 제기)
               </h3>
               <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
                 커뮤니티는 운영 원칙에 따라 관리되며, 조치에 이의가 있는 이용자는 고객센터를 통해
@@ -232,7 +264,7 @@ export default function EthicsPage() {
               </p>
 
               <h3 className="mt-7 text-lg font-bold text-ink-900 dark:text-white">
-                제14조(유해정보로부터의 보호)
+                제15조(유해정보로부터의 보호)
               </h3>
               <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
                 청소년에게 유해한 내용이 포함된 콘텐츠에는 별도의 표시를 하고, 접근을 제한하는 등의
@@ -240,7 +272,7 @@ export default function EthicsPage() {
               </p>
 
               <h3 className="mt-7 text-lg font-bold text-ink-900 dark:text-white">
-                제15조(청소년보호책임자)
+                제16조(청소년보호책임자)
               </h3>
               <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
                 모두일보는 청소년 보호 업무를 총괄하는 청소년보호책임자를 지정하여 운영한다.
@@ -258,7 +290,7 @@ export default function EthicsPage() {
                     <dt className="w-24 shrink-0 font-semibold text-ink-500 dark:text-ink-400">
                       성명
                     </dt>
-                    <dd className="text-ink-700 dark:text-ink-200">김민재</dd>
+                    <dd className="text-ink-700 dark:text-ink-200">김영환</dd>
                   </div>
                   <div className="flex gap-3">
                     <dt className="w-24 shrink-0 font-semibold text-ink-500 dark:text-ink-400">

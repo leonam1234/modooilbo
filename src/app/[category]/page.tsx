@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CATEGORIES, getCategory } from "@/lib/categories";
-import { getByCategory } from "@/lib/queries";
+import { getByCategory, getMostRead } from "@/lib/queries";
 import { ArticleCard } from "@/components/ArticleCard";
+import { MarketStrip } from "@/components/MarketStrip";
 import { RankingList } from "@/components/RankingList";
+import { RecentArticles } from "@/components/RecentArticles";
 import { PageHeader } from "@/components/PageHeader";
 import JsonLd from "@/components/JsonLd";
 
@@ -86,6 +88,12 @@ export default async function CategoryPage({
         breadcrumb={[{ label: cat.name }]}
       />
 
+      {cat.slug === "economy" && (
+        <div className="container-page pt-8">
+          <MarketStrip />
+        </div>
+      )}
+
       <div className="container-page grid gap-x-10 gap-y-10 py-10 lg:grid-cols-[minmax(0,1fr)_300px]">
         <div>
           {lead ? (
@@ -110,7 +118,11 @@ export default async function CategoryPage({
         </div>
 
         <aside className="space-y-10">
-          <RankingList count={6} />
+          <RankingList
+            count={6}
+            pool={getMostRead(60).map((a) => ({ id: a.id, slug: a.slug, title: a.title, category: a.category }))}
+          />
+          <RecentArticles />
         </aside>
       </div>
     </>

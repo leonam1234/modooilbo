@@ -42,6 +42,16 @@ const config: Config = {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         serif: ["var(--font-serif)", "Georgia", "serif"],
       },
+      // 코너 반경 — 현대카드식으로 기본 스케일보다 한 단계씩 부드럽게.
+      // 클래스는 그대로 두고 값만 재정의 (rounded-full/none은 불변).
+      borderRadius: {
+        sm: "0.25rem", // 4px  (기본 2px)
+        DEFAULT: "0.375rem", // 6px  (기본 4px)
+        md: "0.625rem", // 10px (기본 6px) — 썸네일·입력창·버튼
+        lg: "0.875rem", // 14px (기본 8px)
+        xl: "1rem", // 16px (기본 12px) — 카드·박스
+        "2xl": "1.25rem", // 20px (기본 16px)
+      },
       maxWidth: {
         container: "1280px",
       },

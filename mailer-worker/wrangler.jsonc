@@ -1,0 +1,12 @@
+{
+  "name": "modooilbo-mailer",
+  "main": "index.ts",
+  "compatibility_date": "2026-06-10",
+  // Pages가 send_email 바인딩을 지원하지 않아, 발송만 담당하는 전용 Worker.
+  // 호출 인증: MAILER_KEY 시크릿(x-mailer-key 헤더) — Pages 시크릿과 동일 값.
+  "send_email": [
+    {
+      "name": "EMAIL"
+    }
+  ]
+}

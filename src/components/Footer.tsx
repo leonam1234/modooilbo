@@ -52,11 +52,21 @@ export function Footer() {
               모두를 위한 신뢰의 뉴스. 모두일보는 신뢰할 수 있는 사실과 깊이 있는 분석으로
               더 나은 공론장을 만듭니다.
             </p>
+            <a
+              href="mailto:help@modooilbo.com?subject=%5B%EB%AA%A8%EB%91%90%EC%9D%BC%EB%B3%B4%5D%20%EA%B8%B0%EC%97%85%20%EB%AC%B8%EC%9D%98&body=%ED%9A%8C%EC%82%AC%EB%AA%85%3A%0A%EB%8B%B4%EB%8B%B9%EC%9E%90%3A%0A%EC%97%B0%EB%9D%BD%EC%B2%98%3A%0A%EB%AC%B8%EC%9D%98%20%EB%82%B4%EC%9A%A9%3A%0A"
+              className="mt-5 inline-flex items-center gap-2 rounded-full bg-ink-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-ink-700 dark:bg-white dark:text-ink-900 dark:hover:bg-ink-100"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <rect x="3" y="5" width="18" height="14" rx="2" />
+                <path d="m3 7 9 6 9-6" />
+              </svg>
+              기업 문의
+            </a>
             {/* 섹션 빠른 이동 */}
             <ul className="mt-6 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-ink-500 dark:text-ink-400">
               {CATEGORIES.map((c) => (
                 <li key={c.slug}>
-                  <Link href={`/${c.slug}`} className="hover:text-signal-600">
+                  <Link prefetch={false} href={`/${c.slug}`} className="hover:text-signal-600">
                     {c.name}
                   </Link>
                 </li>
@@ -89,7 +99,7 @@ export function Footer() {
                 <ul className="space-y-2">
                   {col.links.map((l) => (
                     <li key={l.label}>
-                      <Link
+                      <Link prefetch={false}
                         href={l.href}
                         className="text-sm text-ink-500 hover:text-signal-600 dark:text-ink-400"
                       >
@@ -110,6 +120,7 @@ export function Footer() {
             <span>{`대표이사·발행인 ${SITE.publisher}`}</span>
             <span>{`편집인 ${SITE.editor}`}</span>
             <span>{`청소년보호책임자 ${SITE.youthOfficer}`}</span>
+            <span>{`고충처리인 ${SITE.ombudsman}`}</span>
           </p>
           <p className="mt-1 flex flex-wrap gap-x-3 gap-y-1">
             <span>{SITE.address}</span>

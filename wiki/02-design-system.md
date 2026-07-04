@@ -3,14 +3,16 @@
 정의 위치: [tailwind.config.ts](../tailwind.config.ts) (토큰/애니메이션), [src/app/globals.css](../src/app/globals.css) (폰트/유틸/접근성/인쇄).
 
 ## 1. 컬러 토큰
-### signal — 브랜드 액센트 ("시그널 레드")
+### signal — 브랜드 액센트 (무채색 그레이 — NYT식)
+과거 "시그널 레드"였으나 **정치적 중립을 위해 흑백 그레이로 재정의**됨(tailwind.config.ts 참고).
+클래스명은 signal-* 그대로 두고 팔레트만 교체 — 빨강은 `breaking`(#700000, 속보 라벨 전용)만 남음.
 | 토큰 | HEX | 용도 |
 |------|-----|------|
-| signal-50 | `#fff1f0` | 연한 배경/호버 틴트 |
-| signal-500 | `#ef3a2c` | 포커스 링 |
-| **signal-600** | **`#dc1f10`** | **primary** (로고·링크·CTA·액티브) |
-| signal-700 | `#b8160a` | hover |
-| signal-950 | `#450905` | 다크모드 틴트 배경 |
+| signal-50 | `#f6f6f7` | 연한 배경/호버 틴트 |
+| signal-500 | `#7c7c83` | 포커스 링 |
+| **signal-600** | **`#6b6b73`** | **primary** (로고·링크·CTA·액티브) |
+| signal-700 | `#5a5a61` | hover |
+| signal-950 | `#222226` | 다크모드 틴트 배경 |
 
 ### ink — 뉴트럴 (본문/헤드라인)
 | 토큰 | HEX | 용도 |
@@ -26,10 +28,12 @@
 **라이트/다크 페어링 규칙** — 색은 항상 쌍으로:
 `text-ink-900 dark:text-white` · `bg-white dark:bg-ink-950` · `border-ink-200 dark:border-ink-800` · 보조 `text-ink-500 dark:text-ink-400`.
 
+**기능색 예외(날씨)** — 무채색 원칙의 예외로, 날씨 정보는 의미색 허용: 맑음 amber, 비/강수확률/최저기온 blue, 눈 sky, 안개는 잉크 유지, 최고기온 orange. 정의: `lib/weather.ts`의 `WX_COLOR`. 속보 레드와 혼동되는 빨강 계열은 금지.
+
 ## 2. 타이포그래피
 - `--font-sans` = **Pretendard Variable** (본문·UI), CDN 동적 서브셋.
-- `--font-serif` = **Nanum Myeongjo** (헤드라인), Google Fonts.
-- 헤드라인엔 **`.font-headline` 클래스**(세리프) 사용.
+- `--font-serif` = **MaruBuri(마루 부리)** (헤드라인 시그니처) — Bold 단일 서브셋(한글 전역+라틴, 275KB)을 `/fonts/`에 자체 호스팅, weight 400–900 전부 이 파일로 해석. `.font-headline`이 굵기 700을 기본 고정.
+- 헤드라인엔 **`.font-headline` 클래스**(세리프) 사용 — 자간 -0.015em 포함.
 - 한글 줄바꿈 안정: `word-break: keep-all` (globals.css body/.font-headline).
 
 ## 3. 레이아웃 & 간격
@@ -58,3 +62,9 @@
 
 ## 7. 브랜드 마크
 - 워드마크: `모두` + `일보`(signal-600) + 정사각 `M`(bg-signal-600, 흰 글자). Header/Footer 인라인.
+
+
+## 리퀴드 글라스 (2026-07 추가)
+iOS 26풍 반투명 유리 — **내비/플로팅 크롬 전용**(헤더·드로어·검색 오버레이·세그먼트 탭·맨위로). 본문 콘텐츠 카드에는 쓰지 않는다(신문 톤 유지).
+- 공용 클래스 `.glass` (globals.css): blur(18px)+saturate, 라이트/다크 배경·하이라이트, backdrop-filter 미지원 브라우저는 불투명 폴백.
+- 등장 모션 keyframes: `overlay-in` / `slide-down-in` / `drawer-in` — `animate-[name_duration_easing]` 형태로 사용. prefers-reduced-motion은 전역 규칙이 커버.
