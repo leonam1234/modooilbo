@@ -39,3 +39,6 @@ next-env.d.ts
 /.cf-analytics.env
 /.dev.vars
 /naver-keys.txt
+
+# Claude Code 세션 워크트리(로컬 격리 작업 공간 — 커밋 금지)
+.claude/worktrees/
