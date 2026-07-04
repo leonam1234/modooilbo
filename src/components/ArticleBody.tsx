@@ -5,17 +5,31 @@ import { webpSrc } from "@/lib/stock";
  * 기사 본문 렌더러 — 문단 배열을 소제목(##/###)·이미지 마크다운·일반 문단으로 그린다.
  * article/[slug]/page.tsx에서 분리(2026-07). 마크업·클래스는 분리 전과 동일.
  */
-/** "## 출처 …" 이후를 각주 블록으로 분리. [본문, 출처라벨, 출처항목들] */
+/** "## 출처 …" 이후를 각주 블록으로 분리. [본문, 출처라벨, 출처항목들]
+ *  생성 파이프라인(build-content)이 문단 내 줄바꿈을 공백으로 접기 때문에
+ *  "## 출처 메모 - 항목 - 항목"처럼 한 덩어리로 오는 형태와, 별도 문단 형태를 모두 처리.
+ *  헤딩 판정은 "출처/자료 출처/참고 자료" 단어로 끝나거나 바로 " - "가 이어질 때만
+ *  (— "## 출처 표기 논란" 같은 일반 소제목을 오인해 본문을 자르지 않도록). */
+const SOURCE_HEAD = /^(#{2,3})\s*(출처(?:\s*메모)?|자료\s*출처|참고\s*자료)\s*(?:$|-\s)/;
+
 export function splitSources(body: string[]): [string[], string | null, string[]] {
-  const idx = body.findIndex((p) => /^#{2,3}\s*(출처|자료 출처|참고 자료)/.test(p));
+  const idx = body.findIndex((p) => SOURCE_HEAD.test(p));
   if (idx === -1) return [body, null, []];
-  const label = body[idx].replace(/^#{2,3}\s*/, "").trim();
-  const items = body
-    .slice(idx + 1)
-    .flatMap((chunk) => chunk.split("\n"))
+  const chunk = body[idx];
+  const m = chunk.match(SOURCE_HEAD)!;
+  const label = m[2].replace(/\s+/g, " ").trim();
+  // 같은 덩어리 안에 " - 항목 - 항목"이 붙어 있으면 그걸 목록으로 사용
+  const inline = chunk.slice(m[0].length ? chunk.indexOf(m[2]) + m[2].length : 0);
+  const inlineItems = inline
+    .split(/\s+-\s+/)
     .map((l) => l.replace(/^-\s*/, "").trim())
     .filter(Boolean);
-  return [body.slice(0, idx), label, items];
+  const followItems = body
+    .slice(idx + 1)
+    .flatMap((c) => c.split("\n"))
+    .map((l) => l.replace(/^-\s*/, "").trim())
+    .filter(Boolean);
+  return [body.slice(0, idx), label, [...inlineItems, ...followItems]];
 }
 
 export function ArticleBody({ body }: { body: string[] }) {

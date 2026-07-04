@@ -12,7 +12,7 @@ export async function onRequestGet(ctx: any): Promise<Response> {
 
   const rows = (
     await env.DB.prepare(
-      "SELECT article_id, body, created_at FROM comments WHERE user_id = ?1 AND is_deleted = 0 ORDER BY created_at DESC LIMIT 50",
+      "SELECT article_id, body, created_at FROM comments WHERE user_id = ?1 AND is_deleted = 0 ORDER BY created_at DESC LIMIT 500",
     )
       .bind(me.id)
       .all()

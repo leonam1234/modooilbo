@@ -27,8 +27,10 @@ export function ScrapsCard({
     return ["전체", ...seen];
   }, [scraps, artIndex]);
 
+  // 선택했던 카테고리의 마지막 항목을 해제하면 목록에서 사라짐 — '전체'로 폴백
+  const activeCat = cats.includes(cat) ? cat : "전체";
   const list = (scraps ?? []).filter(
-    (s) => cat === "전체" || artIndex.get(s.article_id)?.category === cat,
+    (s) => activeCat === "전체" || artIndex.get(s.article_id)?.category === activeCat,
   );
 
   return (
@@ -50,7 +52,7 @@ export function ScrapsCard({
                   onClick={() => setCat(c)}
                   className={cn(
                     "rounded-full px-3 py-1 text-xs font-semibold transition-colors",
-                    c === cat
+                    c === activeCat
                       ? "bg-ink-900 text-white dark:bg-white dark:text-ink-900"
                       : "border border-ink-200 text-ink-500 hover:border-ink-400 dark:border-ink-700 dark:text-ink-300",
                   )}
