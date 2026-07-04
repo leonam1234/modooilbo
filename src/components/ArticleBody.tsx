@@ -5,6 +5,10 @@ import { webpSrc } from "@/lib/stock";
  * 기사 본문 렌더러 — 문단 배열을 소제목(##/###)·이미지 마크다운·일반 문단으로 그린다.
  * article/[slug]/page.tsx에서 분리(2026-07). 마크업·클래스는 분리 전과 동일.
  */
+/** 유튜브 URL "단독 문단"만 임베드 — 문장에 섞인 링크는 텍스트 유지. watch/shorts/youtu.be/embed/live 지원. */
+const YOUTUBE_RE =
+  /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/|live\/)|youtu\.be\/)([A-Za-z0-9_-]{6,20})(?:[?&#]\S*)?$/;
+
 /** "## 출처 …" 이후를 각주 블록으로 분리. [본문, 출처라벨, 출처항목들]
  *  생성 파이프라인(build-content)이 문단 내 줄바꿈을 공백으로 접기 때문에
  *  "## 출처 메모 - 항목 - 항목"처럼 한 덩어리로 오는 형태와, 별도 문단 형태를 모두 처리.
@@ -59,6 +63,25 @@ export function ArticleBody({ body }: { body: string[] }) {
             </h3>
           );
         }
+        // 유튜브 단독 문단 → 반응형 임베드(16:9, 지연 로드, 쿠키리스 도메인)
+        const yt = p.trim().match(YOUTUBE_RE);
+        if (yt) {
+          return (
+            <figure key={i} className="my-2">
+              <span className="relative block aspect-video w-full overflow-hidden rounded-lg bg-black">
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${yt[1]}`}
+                  title="기사 영상"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="absolute inset-0 h-full w-full border-0"
+                />
+              </span>
+            </figure>
+          );
+        }
+
         const img = p.match(/^!\[([^\]]*)\]\((\/[^)]+)\)$/);
         if (img) {
           return (
@@ -103,6 +126,7 @@ export function articleSpeechText(a: { title: string; summary: string; body: str
   return [a.title, a.summary, ...main]
     .join(" ")
     .replace(/!\[[^\]]*\]\([^)]*\)/g, "")
+    .replace(/https?:\/\/\S+/g, "") // URL 낭독 방지(유튜브 임베드 문단 포함)
     .replace(/#{2,3}\s+/g, "")
     .replace(/\s+/g, " ")
     .trim();
