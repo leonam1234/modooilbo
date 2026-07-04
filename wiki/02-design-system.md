@@ -28,8 +28,8 @@
 
 ## 2. 타이포그래피
 - `--font-sans` = **Pretendard Variable** (본문·UI), CDN 동적 서브셋.
-- `--font-serif` = **Nanum Myeongjo** (헤드라인), Google Fonts.
-- 헤드라인엔 **`.font-headline` 클래스**(세리프) 사용.
+- `--font-serif` = **MaruBuri(마루 부리)** (헤드라인 시그니처) — 네이버 정적 CDN woff2를 자체 @font-face로 웨이트 매핑(400/600/700–900, 800·900은 Bold 글리프 재사용해 합성 볼드 방지).
+- 헤드라인엔 **`.font-headline` 클래스**(세리프) 사용 — 자간 -0.015em 포함.
 - 한글 줄바꿈 안정: `word-break: keep-all` (globals.css body/.font-headline).
 
 ## 3. 레이아웃 & 간격

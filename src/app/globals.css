@@ -1,14 +1,34 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700;900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* 헤드라인 시그니처 서체 — 마루 부리(네이버 무료 배포, 화면용 부리체).
+   공식 CSS는 웨이트별 패밀리라 font-bold와 안 맞물려서 woff2를 직접 웨이트 매핑. */
+@font-face {
+  font-family: "MaruBuri";
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-Regular.woff2) format("woff2");
+}
+@font-face {
+  font-family: "MaruBuri";
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-SemiBold.woff2) format("woff2");
+}
+@font-face {
+  font-family: "MaruBuri";
+  font-weight: 700 900; /* 800·900도 Bold 실물 글리프 사용(합성 볼드 방지) */
+  font-display: swap;
+  src: url(https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-Bold.woff2) format("woff2");
+}
+
 :root {
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
-  --font-serif: "Noto Serif KR", Georgia, "Times New Roman", serif;
+  --font-serif: "MaruBuri", Georgia, "Times New Roman", serif;
 }
 
 @layer base {
@@ -44,6 +64,7 @@
   .font-headline {
     font-family: var(--font-serif);
     word-break: keep-all;
+    letter-spacing: -0.015em; /* 부리체 헤드라인 자간 미세 축소 — 지면 밀도감 */
   }
   /* 텍스트 줄임 (line clamp) — 다국어 안전 */
   .clamp-2 {
