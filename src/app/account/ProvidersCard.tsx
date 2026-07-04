@@ -6,10 +6,12 @@ import { Card, PROVIDER_LABEL } from "./AccountCard";
 export function ProvidersCard({
   providers,
   hasPassword,
+  hasRealEmail,
   linkMsg,
 }: {
   providers: string[];
   hasPassword: boolean;
+  hasRealEmail: boolean;
   linkMsg: string | null;
 }) {
   return (
@@ -21,7 +23,10 @@ export function ProvidersCard({
       )}
       <div className="space-y-2.5">
         {(["email", "kakao", "naver", "google"] as const).map((p) => {
-          const connected = p === "email" ? providers.includes("email") || hasPassword : providers.includes(p);
+          const connected =
+            p === "email"
+              ? hasRealEmail && (providers.includes("email") || hasPassword)
+              : providers.includes(p);
           return (
             <div key={p} className="flex items-center justify-between gap-3 rounded-lg border border-ink-100 px-4 py-2.5 dark:border-ink-800">
               <span className="flex items-center gap-2 text-sm font-medium text-ink-700 dark:text-ink-200">
@@ -31,7 +36,9 @@ export function ProvidersCard({
               {connected ? (
                 <span className="text-xs font-medium text-ink-400">연결됨</span>
               ) : p === "email" ? (
-                <span className="text-xs text-ink-400">아래 비밀번호 설정 시 사용 가능</span>
+                <span className="text-xs text-ink-400">
+                  {hasRealEmail ? "아래 비밀번호 설정 시 사용 가능" : "이메일 등록 기능 준비 중"}
+                </span>
               ) : (
                 <a
                   href={`/api/auth/${p}/start?link=1`}

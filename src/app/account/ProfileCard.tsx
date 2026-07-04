@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, type User } from "./AccountCard";
+import { Card, isSyntheticEmail, type User } from "./AccountCard";
 
 /** 계정 정보 카드 — 닉네임 변경·이메일 표시. 상태는 AccountClient가 소유. */
 export function ProfileCard({
@@ -57,7 +57,11 @@ export function ProfileCard({
         </div>
         <div className="flex items-center justify-between gap-4">
           <dt className="shrink-0 font-medium text-ink-500 dark:text-ink-400">이메일</dt>
-          <dd className="break-all font-semibold text-ink-900 dark:text-white">{user.email}</dd>
+          {isSyntheticEmail(user.email) ? (
+            <dd className="text-ink-400 dark:text-ink-500">등록된 이메일 없음 · 간편가입 계정</dd>
+          ) : (
+            <dd className="break-all font-semibold text-ink-900 dark:text-white">{user.email}</dd>
+          )}
         </div>
       </dl>
       {nameMsg && <p className="mt-3 text-xs text-signal-600 dark:text-signal-400">{nameMsg}</p>}

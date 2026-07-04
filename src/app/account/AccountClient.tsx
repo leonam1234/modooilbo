@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { logout } from "@/components/AuthMenu";
-import { PROVIDER_LABEL, inputCls, type IndexItem, type User } from "./AccountCard";
+import { PROVIDER_LABEL, inputCls, isSyntheticEmail, type IndexItem, type User } from "./AccountCard";
 import { ProfileCard } from "./ProfileCard";
 import { ScrapsCard } from "./ScrapsCard";
 import { MyCommentsCard } from "./MyCommentsCard";
@@ -214,11 +214,17 @@ export function AccountClient() {
       <MyCommentsCard myComments={myComments} artIndex={artIndex} />
 
       {/* 로그인 수단 */}
-      <ProvidersCard providers={providers} hasPassword={hasPassword} linkMsg={linkMsg} />
+      <ProvidersCard
+        providers={providers}
+        hasPassword={hasPassword}
+        hasRealEmail={!isSyntheticEmail(user.email)}
+        linkMsg={linkMsg}
+      />
 
       {/* 비밀번호 */}
       <PasswordCard
         hasPassword={hasPassword}
+        hasRealEmail={!isSyntheticEmail(user.email)}
         curPw={curPw}
         newPw={newPw}
         newPw2={newPw2}

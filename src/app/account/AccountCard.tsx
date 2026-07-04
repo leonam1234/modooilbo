@@ -12,6 +12,12 @@ export type IndexItem = {
   publishedAt: string;
 };
 
+/** 간편가입 시 발급되는 내부용 합성 이메일(naver_·kakao_·google_ 접두 + @users.modooilbo.com).
+ *  실제 수신 불가 — 화면에 노출하거나 "이메일 로그인 가능"으로 안내하면 안 된다. */
+export function isSyntheticEmail(email: string): boolean {
+  return email.endsWith("@users.modooilbo.com");
+}
+
 export const PROVIDER_LABEL: Record<string, string> = {
   email: "이메일",
   kakao: "카카오",
