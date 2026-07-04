@@ -40,7 +40,7 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   if (!String(me.email).endsWith("@users.modooilbo.com")) {
     return json({ error: "이미 이메일이 등록된 계정입니다." }, 400);
   }
-  const dup = await env.DB.prepare("SELECT 1 FROM users WHERE email = ?1 LIMIT 1").bind(email).first();
+  const dup = await env.DB.prepare("SELECT 1 FROM users WHERE email = ?1 AND id != ?2 LIMIT 1").bind(email, uid).first();
   if (dup) return json({ error: "그 사이 다른 계정이 이 이메일을 사용하게 되었습니다. 다른 이메일로 다시 시도해 주세요." }, 409);
 
   try {
