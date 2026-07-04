@@ -35,7 +35,7 @@ export function PasswordCard({
       <Card title="비밀번호 설정">
         <p className="text-sm leading-relaxed text-ink-500 dark:text-ink-300">
           간편 로그인 전용 계정입니다. 아직 등록된 이메일이 없어 이메일·비밀번호 로그인은 사용할 수
-          없습니다. 이메일 등록 기능이 준비되면 이곳에서 함께 설정할 수 있습니다.
+          없습니다. 위 계정 정보에서 이메일을 등록(인증)하면 이곳이 열립니다.
         </p>
       </Card>
     );

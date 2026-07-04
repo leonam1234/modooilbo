@@ -21,6 +21,10 @@ export function AccountClient() {
   const [nameInput, setNameInput] = useState("");
   const [nameMsg, setNameMsg] = useState<string | null>(null);
 
+  // 이메일 등록(간편가입)
+  const [emailInput, setEmailInput] = useState("");
+  const [emailMsg, setEmailMsg] = useState<string | null>(null);
+
   // 비밀번호
   const [curPw, setCurPw] = useState("");
   const [newPw, setNewPw] = useState("");
@@ -103,6 +107,26 @@ export function AccountClient() {
       setNameMsg("네트워크 오류입니다.");
     }
     setBusy(false);
+  }
+
+  async function sendVerifyEmail() {
+    if (busy) return;
+    setBusy(true);
+    setEmailMsg(null);
+    try {
+      const r = await fetch("/api/auth/request-email", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ email: emailInput.trim() }),
+      });
+      const j: any = await r.json().catch(() => ({}));
+      if (r.ok && j?.ok) setEmailMsg("인증 메일을 보냈습니다. 메일함에서 30분 안에 인증을 완료해 주세요.");
+      else setEmailMsg(String(j?.error || "발송에 실패했습니다. 잠시 후 다시 시도해 주세요."));
+    } catch {
+      setEmailMsg("네트워크 오류입니다. 잠시 후 다시 시도해 주세요.");
+    } finally {
+      setBusy(false);
+    }
   }
 
   async function savePassword(e: React.FormEvent) {
@@ -198,6 +222,10 @@ export function AccountClient() {
         nameInput={nameInput}
         nameMsg={nameMsg}
         busy={busy}
+        emailInput={emailInput}
+        emailMsg={emailMsg}
+        onEmailInput={setEmailInput}
+        onSendVerify={sendVerifyEmail}
         onEditStart={() => setEditingName(true)}
         onCancel={() => {
           setEditingName(false);

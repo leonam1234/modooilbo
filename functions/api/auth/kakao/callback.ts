@@ -7,6 +7,7 @@
  * 실패 시 /login/?error=kakao 로 리다이렉트.
  */
 import { createSession, sessionCookie, getUser, type AuthEnv } from "../../../_lib/auth";
+import { uniqueSignupName } from "../../../_lib/names";
 
 function back(url: URL, ok: boolean, extraCookie?: string, dest?: string): Response {
   const headers: Record<string, string> = {
@@ -116,11 +117,12 @@ export async function onRequestGet(ctx: any): Promise<Response> {
       } else {
         // 5) 신규 가입(간편 회원가입) — 이메일 없으면 합성(비라우팅 도메인, 유일성 보장)
         userId = crypto.randomUUID();
+        const finalName = await uniqueSignupName(env, nickname, "카카오회원");
         const accountEmail = email ?? `kakao_${kakaoId}@users.modooilbo.com`;
         await env.DB.batch([
           env.DB.prepare(
             "INSERT INTO users (id, email, name, password_hash, password_salt, newsletter) VALUES (?1, ?2, ?3, NULL, NULL, 0)",
-          ).bind(userId, accountEmail, nickname.slice(0, 20)),
+          ).bind(userId, accountEmail, finalName),
           env.DB.prepare(
             "INSERT INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'kakao', ?2)",
           ).bind(userId, kakaoId),

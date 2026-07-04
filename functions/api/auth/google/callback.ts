@@ -4,6 +4,7 @@
  * 실패 시 /login/?error=google 로 리다이렉트.
  */
 import { createSession, sessionCookie, getUser, type AuthEnv } from "../../../_lib/auth";
+import { uniqueSignupName } from "../../../_lib/names";
 
 function back(url: URL, ok: boolean, extraCookie?: string, dest?: string): Response {
   const secure = url.protocol === "https:" ? "; Secure" : "";
@@ -102,11 +103,12 @@ export async function onRequestGet(ctx: any): Promise<Response> {
           .run();
       } else {
         userId = crypto.randomUUID();
+        const finalName = await uniqueSignupName(env, name, "구글회원");
         const accountEmail = email ?? `google_${sub}@users.modooilbo.com`;
         await env.DB.batch([
           env.DB.prepare(
             "INSERT INTO users (id, email, name, password_hash, password_salt, newsletter) VALUES (?1, ?2, ?3, NULL, NULL, 0)",
-          ).bind(userId, accountEmail, name.slice(0, 20)),
+          ).bind(userId, accountEmail, finalName),
           env.DB.prepare(
             "INSERT INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'google', ?2)",
           ).bind(userId, sub),
