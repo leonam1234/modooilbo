@@ -4,6 +4,7 @@
  * IP당 시도 제한(KV, 15분 5회) — 대량 가입·409 응답을 이용한 이메일 열거 완화.
  */
 import { json, hashPassword, createSession, sessionCookie, sha256Hex, type AuthEnv } from "../../_lib/auth";
+import { hasBanned } from "../../_lib/moderation";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const MAX_TRIES = 5;
@@ -25,6 +26,7 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   const newsletter = b?.newsletter ? 1 : 0;
 
   if (name.length < 1 || name.length > 20) return json({ error: "이름은 1~20자로 입력해 주세요." }, 400);
+  if (hasBanned(name)) return json({ error: "닉네임에 부적절한 표현이 포함되어 있습니다." }, 400);
   if (!EMAIL_RE.test(email) || email.length > 100) return json({ error: "이메일 주소를 확인해 주세요." }, 400);
   if (password.length < 8 || password.length > 72)
     return json({ error: "비밀번호는 8자 이상 72자 이하로 입력해 주세요." }, 400);
@@ -41,6 +43,12 @@ export async function onRequestPost(ctx: any): Promise<Response> {
 
   const dup = await env.DB.prepare("SELECT id FROM users WHERE email = ?1").bind(email).first();
   if (dup) return json({ error: "이미 가입된 이메일입니다. 로그인해 주세요." }, 409);
+
+  // 중복 닉네임 금지(대소문자 무시) — 간편가입 기본닉('네이버회원' 등)은 대상 아님
+  const dupName = await env.DB.prepare("SELECT 1 FROM users WHERE lower(name) = lower(?1) LIMIT 1")
+    .bind(name)
+    .first();
+  if (dupName) return json({ error: "이미 사용 중인 닉네임입니다. 다른 닉네임을 골라 주세요." }, 409);
 
   const { hash, salt } = await hashPassword(password);
   const id = crypto.randomUUID();

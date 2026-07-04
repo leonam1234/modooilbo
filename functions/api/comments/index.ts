@@ -8,21 +8,10 @@
  *   → 생성된 댓글 1건. 답글은 원댓글에만(1단 제한). 같은 회원 15초 1회(KV).
  */
 import { json, getUser, type AuthEnv } from "../../_lib/auth";
+import { hasBanned } from "../../_lib/moderation"; // 클린봇 — 댓글·닉네임 공용(한/영)
 
 const MAX_BODY = 500;
 const ARTICLE_RE = /^[a-z0-9][a-z0-9-]{0,80}$/i; // 기사 id 형식 — reactions.ts와 동일 규칙
-
-// 클린봇 v1 — 금칙어(욕설·혐오) 포함 시 등록 거부. 공백·특수문자·숫자 끼워넣기 우회 방지용 정규화.
-const BANNED = [
-  "씨발", "시발", "씨빨", "씨팔", "병신", "븅신", "개새끼", "개새키", "개색기", "지랄",
-  "좆", "존나", "썅", "니미", "미친놈", "미친년", "창녀", "걸레같",
-  "한남충", "김치녀", "틀딱", "급식충", "맘충", "짱깨", "쪽바리",
-];
-
-function hasBanned(s: string): boolean {
-  const norm = s.toLowerCase().replace(/[\s.,\-_*+~!@#$%^&()[\]{}|\\/:;'"<>?0-9]/g, "");
-  return BANNED.some((w) => norm.includes(w));
-}
 
 type Row = {
   id: string;
