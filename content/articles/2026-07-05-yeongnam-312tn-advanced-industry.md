@@ -24,4 +24,3 @@ image: /stock/2026-07-05-yeongnam-312tn-advanced-industry.jpg
 
 ## 출처 메모
 - 정책브리핑, 영남권 첨단산업 312조 투자계획 관련 기사, 2026-07: https://www.korea.kr/news/policyNewsView.do?newsId=148967584
-- 확인 메모: `투자계획`으로 표기하고 지역경제 효과 확정 표현은 피함.

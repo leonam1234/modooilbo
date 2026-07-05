@@ -24,4 +24,3 @@ image: /stock/2026-07-05-typhoon-bavi-guam-saipan-travel.jpg
 
 ## 출처 메모
 - 정책브리핑 외교부 보도자료, 태풍 바비 괌·사이판 안전공지 관련, 2026-07: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156769547
-- 확인 메모: 하위 검수에서 기존 URL 오류를 확인해 156769547로 정정. 불안 조장 표현 금지.

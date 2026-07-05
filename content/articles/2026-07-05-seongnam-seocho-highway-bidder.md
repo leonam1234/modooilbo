@@ -24,4 +24,3 @@ image: /stock/2026-07-05-seongnam-seocho-highway-bidder.jpg
 
 ## 출처 메모
 - 정책브리핑, 성남-서초 민자고속도로 우선협상대상자 선정 관련 기사, 2026-07: https://www.korea.kr/news/policyNewsView.do?newsId=148966916
-- 확인 메모: 2029년 착공은 목표로 표기. 개통 확정과 교통난 해소 단정은 피함.

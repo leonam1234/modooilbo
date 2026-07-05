@@ -19,8 +19,18 @@ export function getSubLeads(count = 4): Article[] {
     .slice(0, count);
 }
 
+/** 속보 시효(48시간) — 벽시계(Date.now) 대신 '가장 최신 발행 시각' 기준이라 빌드 결정적.
+ *  발행이 이어지는 한 이틀 지난 기사는 속보 취급이 자동 해제된다. */
+const BREAKING_TTL_MS = 48 * 60 * 60 * 1000;
+export function isBreakingFresh(a: Pick<Article, "isBreaking" | "publishedAt">): boolean {
+  if (!a.isBreaking) return false;
+  const newest = getAllArticles()[0];
+  if (!newest) return false;
+  return new Date(newest.publishedAt).getTime() - new Date(a.publishedAt).getTime() <= BREAKING_TTL_MS;
+}
+
 export function getBreaking(count = 6): Article[] {
-  const breaking = getAllArticles().filter((a) => a.isBreaking);
+  const breaking = getAllArticles().filter(isBreakingFresh);
   return (breaking.length ? breaking : getAllArticles()).slice(0, count);
 }
 

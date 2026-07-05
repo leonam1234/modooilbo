@@ -10,6 +10,8 @@ import {
   locateCity,
   codeToCondition,
   codeToLabel,
+  isFxDisabled,
+  setFxDisabled,
 } from "@/lib/weather";
 import { WxIcon } from "@/components/LocationPicker";
 
@@ -38,9 +40,12 @@ export function WeatherClient() {
   const [days, setDays] = useState<Day[] | null>(null);
   const [failed, setFailed] = useState(false);
   const [locating, setLocating] = useState(false);
+  const [tryKey, setTryKey] = useState(0); // '다시 시도' 버튼 → 재조회 트리거
+  const [fxOff, setFxOffState] = useState(false); // 배경 연출 토글 표시 상태
 
   useEffect(() => {
     setCityName(getSavedCity().name);
+    setFxOffState(isFxDisabled());
   }, []);
 
   useEffect(() => {
@@ -94,7 +99,7 @@ export function WeatherClient() {
     return () => {
       alive = false;
     };
-  }, [cityName]);
+  }, [cityName, tryKey]);
 
   function changeCity(next: string) {
     setCityName(next);
@@ -151,8 +156,36 @@ export function WeatherClient() {
           <span className="text-xs text-ink-400">자료: Open-Meteo</span>
         </div>
 
+        {/* 배경 연출(비·눈·별) 켜기/끄기 — 시각 노이즈·배터리가 신경 쓰이는 독자용 */}
+        <label className="mt-4 flex w-fit cursor-pointer items-center gap-2 text-sm text-ink-500 dark:text-ink-300">
+          <input
+            type="checkbox"
+            checked={!fxOff}
+            onChange={(e) => {
+              const off = !e.target.checked;
+              setFxDisabled(off);
+              setFxOffState(off);
+            }}
+            className="h-4 w-4 accent-ink-700 dark:accent-ink-300"
+          />
+          사이트 배경 날씨 연출(비·눈·별) 표시
+        </label>
+
         {failed ? (
-          <p className="mt-6 text-sm text-ink-500 dark:text-ink-300">날씨 정보를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</p>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <p className="text-sm text-ink-500 dark:text-ink-300">날씨 정보를 불러오지 못했습니다.</p>
+            <button
+              type="button"
+              onClick={() => {
+                setCurrent(null);
+                setDays(null);
+                setTryKey((k) => k + 1);
+              }}
+              className="rounded-md border border-ink-200 px-3 py-1.5 text-sm font-medium text-ink-700 transition-colors hover:border-ink-400 dark:border-ink-700 dark:text-ink-200 dark:hover:border-ink-500"
+            >
+              다시 시도
+            </button>
+          </div>
         ) : current === null ? (
           <p className="mt-6 text-sm text-ink-400">불러오는 중…</p>
         ) : (

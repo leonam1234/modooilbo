@@ -33,12 +33,12 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
     let drawOnce: () => void = () => {};
     let onResized: () => void = () => {};
     const resize = () => {
-      w = window.innerWidth;
-      h = window.innerHeight;
+      // innerWidth는 환경에 따라 레이아웃 뷰포트보다 커질 수 있어(가로 79px 밀림 사고)
+      // 표시 크기는 CSS(fixed inset:0 + 100%)에 맡기고, 좌표계만 실측 크기로 맞춘다.
+      w = document.documentElement.clientWidth;
+      h = document.documentElement.clientHeight;
       canvas.width = Math.floor(w * dpr);
       canvas.height = Math.floor(h * dpr);
-      canvas.style.width = `${w}px`;
-      canvas.style.height = `${h}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       if (off && offCtx) {
         bw = Math.max(1, Math.ceil(w / BLOCK));

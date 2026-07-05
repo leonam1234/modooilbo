@@ -28,4 +28,3 @@ image: /stock/2026-07-05-southwest-896tn-investment-plan.jpg
 
 ## 출처 메모
 - 정책브리핑, 서남권 SK·삼성·앰코 투자계획 관련 기사, 2026-07: https://www.korea.kr/news/policyNewsView.do?newsId=148967382
-- 확인 메모: 총 896조 원은 투자계획/MOU 기준으로 표기. 집행 완료로 표현하지 않음.

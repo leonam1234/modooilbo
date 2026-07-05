@@ -23,4 +23,3 @@ image: /stock/2026-07-04-k-football-innovation-committee.jpg
 ## 출처 메모
 - 문화체육관광부 보도자료, `케이-축구 혁신위원회 출범, 한국 축구의 미래를 그린다`, 2026-07-03: https://www.mcst.go.kr/site/s_notice/press/pressView.jsp?pSeq=22563
 - 문화체육관광부 보도자료 목록: https://www.mcst.go.kr/site/s_notice/press/pressList.jsp
-- 확인 메모: PDF/HWPX 첨부 원문 확인. 7월 6일 서울 올림픽파크텔 출범 예정, 위원 구성과 논의 범위 확인. 권고안 발표 시점과 확정 개혁안은 원문에서 확인되지 않아 단정하지 않음.

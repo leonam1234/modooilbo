@@ -34,6 +34,29 @@ export const DEFAULT_CITY = "서울";
 export const STORAGE_KEY = "modoo-weather-city";
 export const CHANGE_EVENT = "modoo-weather-city-change";
 
+// 배경 날씨 연출(비·눈·별) 끄기 — 시각 노이즈·배터리 지적(QA 4인 공통) 대응
+export const FX_KEY = "modoo-wx-fx";
+export const FX_EVENT = "modoo-wx-fx-change";
+
+export function isFxDisabled(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return localStorage.getItem(FX_KEY) === "off";
+  } catch {
+    return false;
+  }
+}
+
+export function setFxDisabled(off: boolean) {
+  try {
+    if (off) localStorage.setItem(FX_KEY, "off");
+    else localStorage.removeItem(FX_KEY);
+  } catch {
+    /* ignore */
+  }
+  window.dispatchEvent(new CustomEvent(FX_EVENT));
+}
+
 /** 좌표에서 가장 가까운 지원 도시 (국내 스케일이라 위경도 유클리드 근사로 충분) */
 export function nearestCity(lat: number, lon: number): City {
   let best = CITIES[0];
@@ -118,21 +141,20 @@ export interface Weather {
 // 같은 지역 중복 조회 방지(10분 캐시) — 배경/표시 컴포넌트가 각자 호출해도 1회만 네트워크
 const _cache = new Map<string, { at: number; data: Weather }>();
 const TTL = 10 * 60 * 1000;
-const CLEAR: Weather = { condition: "clear", code: 0, label: "맑음", temperature: null };
 
-/** 현재 날씨(분류+온도+라벨)를 가져온다. 실패 시 맑음/온도 null. */
-export async function fetchWeather(city: City): Promise<Weather> {
+/** 현재 날씨(분류+온도+라벨)를 가져온다. 실패 시 null — 가짜 '맑음'으로 위장하지 않는다(UI가 중립 표기). */
+export async function fetchWeather(city: City): Promise<Weather | null> {
   const key = `${city.lat},${city.lon}`;
   const hit = _cache.get(key);
   if (hit && Date.now() - hit.at < TTL) return hit.data;
   try {
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&current=weather_code,temperature_2m`;
     const res = await fetch(url, { signal: AbortSignal.timeout(8000) });
-    if (!res.ok) return CLEAR;
+    if (!res.ok) return null;
     const json = await res.json();
     const code = json?.current?.weather_code;
     const temp = json?.current?.temperature_2m;
-    if (typeof code !== "number") return CLEAR;
+    if (typeof code !== "number") return null;
     const data: Weather = {
       condition: codeToCondition(code),
       code,
@@ -142,6 +164,6 @@ export async function fetchWeather(city: City): Promise<Weather> {
     _cache.set(key, { at: Date.now(), data });
     return data;
   } catch {
-    return CLEAR;
+    return null;
   }
 }
