@@ -35,7 +35,7 @@ const FOOTER_COLS: { title: string; links: { href: string; label: string }[] }[]
 
 export function Footer() {
   return (
-    <footer className="mt-16 border-t-2 border-ink-900 bg-ink-50 dark:border-ink-700 dark:bg-ink-950">
+    <footer className="paper-band mt-16 border-t-2 border-ink-900 dark:border-ink-700">
       <div className="container-page py-12">
         <div className="grid gap-10 lg:grid-cols-[1.4fr_2fr]">
           {/* 브랜드 + SNS */}
