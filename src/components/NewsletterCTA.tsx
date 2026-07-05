@@ -13,10 +13,10 @@ export function NewsletterCTA() {
   }
 
   return (
-    <section className="bg-ink-900">
+    <section className="gold-sheen border-t border-[#d4af37]/30 bg-ink-900">
       <div className="container-page py-14">
         <div className="mx-auto max-w-2xl text-center">
-          <MailIcon className="mx-auto h-8 w-8 text-signal-500" />
+          <MailIcon className="mx-auto h-8 w-8 text-[#d4af37]" />
           <h2 className="mt-3 font-headline text-2xl font-extrabold text-white sm:text-3xl">
             매일 아침, 오늘의 신호
           </h2>
