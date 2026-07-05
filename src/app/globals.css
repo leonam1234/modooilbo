@@ -236,6 +236,17 @@
   }
 }
 
+/* 티커 양끝 페이드 — 반투명 유리 위에 흰 조각이 생기는 그라데이션 오버레이 대신 마스크.
+   -x: 양끝(마키 — 왼쪽 배지 직전에도 부드럽게 소멸) / -r: 오른쪽만(정렬 시작하는 목록) */
+.fade-mask-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 1.75rem, #000 calc(100% - 3rem), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 1.75rem, #000 calc(100% - 3rem), transparent);
+}
+.fade-mask-r {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 2.5rem), transparent);
+  mask-image: linear-gradient(to right, #000 calc(100% - 2.5rem), transparent);
+}
+
 /* 실시간 인기 해시태그 스트립 — 반짝임 + 가로 스크롤바 숨김 */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
