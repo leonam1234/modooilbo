@@ -22,4 +22,3 @@ image: /stock/2026-07-05-fuel-support-payment-deadline-result.jpg
 
 ## 출처 메모
 - 행정안전부 보도자료, 고유가 피해지원금 신청·지급 마감 관련, 2026-07: https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&nttId=127525
-- 확인 메모: 2026년 7월 3일 18시 마감, 3540만 3928명 신청, 6조 1123억 원 지급 기준.

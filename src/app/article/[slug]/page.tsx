@@ -289,9 +289,10 @@ export default async function ArticlePage({
           </div>
 
           {(prev || next) && (
+            /* minmax(0,1fr): 긴 제목의 min-content가 트랙을 밀어 모바일 가로 스크롤을 만들던 버그 방지 */
             <nav
               aria-label="이전 다음 기사"
-              className="no-print mt-10 grid gap-3 border-t border-ink-100 pt-8 dark:border-ink-800 sm:grid-cols-2"
+              className="no-print mt-10 grid grid-cols-[minmax(0,1fr)] gap-3 border-t border-ink-100 pt-8 dark:border-ink-800 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"
             >
               {prev ? (
                 <Link
@@ -339,7 +340,8 @@ export default async function ArticlePage({
               <h2 className="mb-5 border-b-2 border-ink-900 pb-2 font-headline text-xl font-extrabold text-ink-900 dark:border-ink-100 dark:text-white">
                 관련 기사
               </h2>
-              <div className="grid gap-6 sm:grid-cols-2">
+              {/* md(사이드바 등장)에서는 본문 칼럼이 좁아 2열이면 제목이 2~3글자씩 꺾임 → 1열 */}
+              <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
                 {related.map((a) => (
                   <ArticleCard key={a.id} article={a} variant="horizontal" showSummary={false} />
                 ))}

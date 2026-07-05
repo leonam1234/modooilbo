@@ -27,4 +27,3 @@ FAO 세계식량가격지수는 곡물, 식물성 유지, 유제품, 육류, 설
 ## 출처 메모
 - FAO Food Price Index, 2026-07-03 릴리스: https://www.fao.org/worldfoodsituation/foodpricesindex/en
 - FAO Statistics Data releases, `FAO Food Price Index and Commodity Price Indices (3 July)`: https://www.fao.org/statistics/data-releases/en?Category=9801033d-cca1-40b2-a0e6-6071001a6a7d&indexCatalogue=search-index-statistics&searchQuery=%2A%3A%2A
-- 확인 메모: 2026년 6월 FAO Food Price Index 130.3포인트, 전월 대비 0.4포인트 또는 0.3% 하락. 식물성 유지와 육류 지수는 상승, 설탕·곡물·유제품 지수는 하락. 국제 식량 가격 지표와 국내 소비자 식품 물가는 직접 동일시하지 않는다.

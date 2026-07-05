@@ -135,6 +135,9 @@
 .wx-layer {
   position: fixed;
   inset: 0;
+  /* 크기는 항상 뷰포트에 고정 — 인라인 px 사이징이 뷰포트를 넘어 가로 스크롤을 만들지 않게 */
+  width: 100%;
+  height: 100%;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;

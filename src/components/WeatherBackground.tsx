@@ -1,7 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CHANGE_EVENT, fetchWeather, getSavedCity, type WxCondition } from "@/lib/weather";
+import {
+  CHANGE_EVENT,
+  FX_EVENT,
+  fetchWeather,
+  getSavedCity,
+  isFxDisabled,
+  type WxCondition,
+} from "@/lib/weather";
 import { WeatherCanvas } from "./WeatherCanvas";
 
 /**
@@ -10,6 +17,15 @@ import { WeatherCanvas } from "./WeatherCanvas";
  */
 export function WeatherBackground() {
   const [cond, setCond] = useState<WxCondition>("clear");
+  const [fxOff, setFxOff] = useState(false);
+
+  // 사용자 설정(날씨 페이지의 '배경 연출' 토글) — 변경 즉시 반영
+  useEffect(() => {
+    setFxOff(isFxDisabled());
+    const onFx = () => setFxOff(isFxDisabled());
+    window.addEventListener(FX_EVENT, onFx);
+    return () => window.removeEventListener(FX_EVENT, onFx);
+  }, []);
 
   useEffect(() => {
     let alive = true;
@@ -21,7 +37,8 @@ export function WeatherBackground() {
     }
     const load = async () => {
       const w = await fetchWeather(getSavedCity());
-      if (alive) setCond(w.condition);
+      // 실패(null) 시 마지막 상태 유지 — 실패를 '맑음'으로 오인해 연출을 껐다 켰다 하지 않게
+      if (alive && w) setCond(w.condition);
     };
     // 초기 호출만 idle로 지연(critical 렌더 양보)
     const supportsIdle =
@@ -44,7 +61,7 @@ export function WeatherBackground() {
     };
   }, []);
 
-  if (cond === "fog") return null;
+  if (fxOff || cond === "fog") return null;
   // 맑음 = 다크 모드에서만 은은한 별(캔버스 내부에서 라이트면 미표시)
   return <WeatherCanvas kind={cond === "clear" ? "star" : cond} />;
 }

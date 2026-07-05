@@ -24,4 +24,3 @@ image: /stock/2026-07-05-busan-finance-support-center.jpg
 
 ## 출처 메모
 - 정책브리핑, 부산 서민금융 복합지원센터 관련 민생브리핑, 2026-07: https://www.korea.kr/news/policyNewsView.do?newsId=148967266
-- 확인 메모: 센터 기능은 상담·연계로 표현하고 지원 확정·해결 보장 표현은 피함.

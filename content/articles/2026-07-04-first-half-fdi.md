@@ -24,4 +24,3 @@ image: /stock/2026-07-04-first-half-fdi.jpg
 - 산업통상부 보도자료: https://www.motie.go.kr/kor/article/ATCL3f49a5a8c/171996/view
 - 산업통상부 리다이렉트 확인 URL: https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/171996/view
 - 정책브리핑 정책뉴스: https://www.korea.kr/policy/civilView.do?newsId=156769485
-- 확인 메모: 산업통상부 2026-07-03 등록 자료 기준. 2026년 상반기 FDI 신고 142.8억 달러, 전년 동기 대비 9.1% 증가. 도착 107.3억 달러, 전년 동기 대비 42.6% 증가. 기준일은 2026-06-30까지의 잠정 실적이며 일부 수치는 추후 변경 가능.

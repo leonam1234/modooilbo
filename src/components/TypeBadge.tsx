@@ -1,4 +1,5 @@
 import type { ArticleListItem } from "@/lib/types";
+import { isBreakingFresh } from "@/lib/queries";
 import { cn } from "@/lib/utils";
 
 /**
@@ -19,7 +20,8 @@ export function TypeBadge({
   let label: string | null = null;
   let kind: "solid" | "breaking" = "solid";
 
-  if (article.isBreaking) {
+  // 속보 배지는 시효(48h) 안에서만 — 오래된 기사에 '속보'가 남지 않게
+  if (isBreakingFresh(article)) {
     label = "속보";
     kind = "breaking";
   } else if (article.type === "video") {

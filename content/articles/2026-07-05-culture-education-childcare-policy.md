@@ -25,4 +25,3 @@ image: /stock/2026-07-05-culture-education-childcare-policy.jpg
 ## 출처 메모
 - 정책브리핑, 문화·교육·보육 하반기 제도 변화 기사, 2026-07: https://www.korea.kr/news/policyNewsView.do?newsId=148967361
 - 정책브리핑, 관련 문화·교육·보육 세부 기사: https://www.korea.kr/news/policyNewsView.do?newsId=148967588
-- 확인 메모: 영화 할인권, 청년문화예술패스, 단기 육아휴직 등은 대상·시점·수량 제한을 분리해 표현.

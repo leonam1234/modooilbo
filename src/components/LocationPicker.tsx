@@ -111,7 +111,8 @@ export function LocationPicker({ className }: { className?: string }) {
         title="내 위치 날씨 보기 (GPS)"
         aria-label="내 위치로 날씨 지역 설정"
         className={cn(
-          "shrink-0 rounded-full p-0.5 transition-colors hover:text-signal-600 dark:hover:text-white",
+          // 히트영역 확보(-m으로 시각 크기 유지) — 20px 터치 타깃 지적 대응
+          "-m-1.5 shrink-0 rounded-full p-2 transition-colors hover:text-signal-600 dark:hover:text-white",
           locating && "animate-pulse text-signal-600 dark:text-white",
         )}
       >
@@ -137,16 +138,25 @@ export function LocationPicker({ className }: { className?: string }) {
           <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" />
         </svg>
       </span>
-      {wx && (
-        <Link
-          href="/weather"
-          title="주간예보 보기"
-          className="flex items-center gap-1 border-l border-ink-200 pl-2 text-ink-500 transition-colors hover:text-signal-600 dark:border-ink-700 dark:text-ink-300"
-        >
-          <WxIcon cond={wx.condition} className={cn("h-4 w-4", WX_COLOR[wx.condition])} />
-          {wx.temperature !== null && <span className="tabular-nums font-medium">{wx.temperature}°</span>}
-        </Link>
-      )}
+      <Link
+        href="/weather"
+        title={wx ? "주간예보 보기" : "날씨 정보를 불러오지 못했습니다 — 주간예보 보기"}
+        className="flex items-center gap-1 border-l border-ink-200 pl-2 text-ink-500 transition-colors hover:text-signal-600 dark:border-ink-700 dark:text-ink-300"
+      >
+        {wx ? (
+          <>
+            <WxIcon cond={wx.condition} className={cn("h-4 w-4", WX_COLOR[wx.condition])} />
+            {wx.temperature !== null && (
+              <span className="tabular-nums font-medium">{wx.temperature}°</span>
+            )}
+          </>
+        ) : (
+          // 로드 전/실패 — 가짜 '맑음' 아이콘 대신 중립 표기
+          <span aria-label="날씨 정보 없음" className="font-medium text-ink-400">
+            —°
+          </span>
+        )}
+      </Link>
     </span>
   );
 }

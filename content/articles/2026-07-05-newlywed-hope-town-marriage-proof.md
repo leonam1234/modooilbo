@@ -24,4 +24,3 @@ image: /stock/2026-07-05-newlywed-hope-town-marriage-proof.jpg
 
 ## 출처 메모
 - 정책브리핑, 신혼희망타운 현장 규제개선 관련 기사, 2026-07: https://www.korea.kr/news/policyNewsView.do?newsId=148967107
-- 확인 메모: 하위 검수에서 기존 URL 오류를 확인해 원문을 148967107로 정정함.

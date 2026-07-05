@@ -33,8 +33,13 @@ export function splitSources(body: string[]): [string[], string | null, string[]
     .flatMap((c) => c.split("\n"))
     .map((l) => l.replace(/^-\s*/, "").trim())
     .filter(Boolean);
-  return [body.slice(0, idx), label, [...inlineItems, ...followItems]];
+  // 내부 데스킹 메모("확인 메모: …" 등)는 독자에게 출판 금지 — 파이프라인에 섞여 와도 여기서 차단
+  const items = [...inlineItems, ...followItems].filter((l) => !INTERNAL_NOTE.test(l));
+  return [body.slice(0, idx), label, items];
 }
+
+/** 출처 목록에 섞여 들어온 내부 편집 메모 판별 (확인/검수/편집/데스크/내부 메모) */
+const INTERNAL_NOTE = /^(확인|검수|편집|데스크|데스킹|내부)\s*메모\s*[:：]/;
 
 export function ArticleBody({ body }: { body: string[] }) {
   const [main, sourceLabel, sources] = splitSources(body);

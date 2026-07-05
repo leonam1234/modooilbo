@@ -26,4 +26,3 @@ image: /stock/2026-07-05-exports-100bn-first-record.jpg
 
 ## 출처 메모
 - 정책브리핑, `6월 수출 월간 첫 1000억 달러 돌파`, 2026-07: https://www.korea.kr/news/policyNewsView.do?newsId=148967445
-- 확인 메모: 수출 1022억 5000만 달러, 무역수지 361억 5000만 달러 흑자, 반도체 수출 448억 2000만 달러는 공식 보도 기준.

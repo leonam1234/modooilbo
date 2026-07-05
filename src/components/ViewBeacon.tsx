@@ -22,10 +22,29 @@ export function ViewBeacon({ articleId }: { articleId: string }) {
     } catch {
       /* sessionStorage 불가 시에도 전송 */
     }
+    // sendBeacon 우선 — 페이지 로딩/이탈과 완전히 분리(응답 대기로 스피너가 돌지 않게).
+    // 하루 1회 중복 방지는 서버(IP+날짜)가 하므로 낙관적으로 플래그를 기록해도 안전.
+    const body = JSON.stringify({ article: articleId });
+    let sent = false;
+    try {
+      if (typeof navigator.sendBeacon === "function") {
+        sent = navigator.sendBeacon("/api/view", new Blob([body], { type: "application/json" }));
+      }
+    } catch {
+      /* fetch 폴백 */
+    }
+    if (sent) {
+      try {
+        sessionStorage.setItem(`viewed:${articleId}`, "1");
+      } catch {
+        /* ignore */
+      }
+      return;
+    }
     fetch("/api/view", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ article: articleId }),
+      body,
       keepalive: true,
     })
       .then((r) => {
