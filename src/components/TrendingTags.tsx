@@ -55,7 +55,7 @@ export function TrendingTags() {
   const cur = data.tags[idx % data.tags.length];
 
   return (
-    <div className="relative border-b border-ink-100 bg-white/95 backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/65 dark:border-ink-800 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/60">
+    <div className="relative border-b border-ink-100 bg-white/95 backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/65 dark:border-ink-800 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/80">
       <div className="container-page flex items-center gap-3 py-1.5">
         <span className="shrink-0 text-xs font-bold text-ink-800 dark:text-ink-100">
           <span className="tw-live mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-breaking align-middle" />
@@ -69,7 +69,7 @@ export function TrendingTags() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-label="실시간 인기 전체 보기"
-          className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden text-left sm:hidden"
+          className="-my-2 flex min-w-0 flex-1 items-center gap-2 overflow-hidden py-2 text-left sm:hidden"
         >
           <span key={idx} className="flex min-w-0 animate-fade-up items-baseline gap-1.5">
             <span className="shrink-0 text-[15px] font-extrabold tabular-nums text-ink-900 dark:text-ink-100">
