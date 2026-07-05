@@ -38,11 +38,22 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
   const [saved, setSaved] = useState(false);
   const [saveMsg, setSaveMsg] = useState<string | null>(null);
   const [canShare, setCanShare] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false); // 모바일 공유 메뉴
 
   // 기기 공유 시트(Web Share API) 지원 시에만 '공유' 버튼 노출 — 주로 모바일
   useEffect(() => {
     setCanShare(typeof navigator !== "undefined" && typeof navigator.share === "function");
   }, []);
+
+  // ESC로 공유 메뉴 닫기 (바깥 탭은 백드롭이 흡수)
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
 
   function nativeShare() {
     navigator.share({ title, url: window.location.href }).catch(() => {
@@ -164,7 +175,8 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
       <button type="button" onClick={() => window.print()} aria-label="인쇄" className={iconBtn}>
         <PrintIcon className="h-4 w-4" />
       </button>
-      <div className="relative">
+      {/* PC(sm+): 공유 수단 인라인 나열 — 모바일에서는 아래 '공유' 메뉴로 접힘(두 줄 감김 방지) */}
+      <div className="relative hidden sm:block">
         <button type="button" onClick={copyLink} aria-label="링크 복사" className={iconBtn}>
           <ShareIcon className="h-4 w-4" />
         </button>
@@ -175,32 +187,146 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
         )}
       </div>
       {canShare && (
-        <button type="button" onClick={nativeShare} aria-label="기기 공유" className={iconBtn}>
-          <svg
-            viewBox="0 0 24 24"
-            className="h-4 w-4"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={1.8}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden
-          >
-            <path d="M12 15V4" />
-            <path d="m8 8 4-4 4 4" />
-            <path d="M5 12v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" />
-          </svg>
+        <button
+          type="button"
+          onClick={nativeShare}
+          aria-label="기기 공유"
+          className={cn(iconBtn, "hidden sm:inline-grid")}
+        >
+          <DeviceShareIcon />
         </button>
       )}
-      <button type="button" onClick={shareKakao} aria-label="카카오톡 공유" className={snsBtn}>
+      <button
+        type="button"
+        onClick={shareKakao}
+        aria-label="카카오톡 공유"
+        className={cn(snsBtn, "hidden sm:inline-grid")}
+      >
         톡
       </button>
-      <button type="button" onClick={() => share("x")} aria-label="X(트위터) 공유" className={snsBtn}>
+      <button
+        type="button"
+        onClick={() => share("x")}
+        aria-label="X(트위터) 공유"
+        className={cn(snsBtn, "hidden sm:inline-grid")}
+      >
         X
       </button>
-      <button type="button" onClick={() => share("f")} aria-label="페이스북 공유" className={snsBtn}>
+      <button
+        type="button"
+        onClick={() => share("f")}
+        aria-label="페이스북 공유"
+        className={cn(snsBtn, "hidden sm:inline-grid")}
+      >
         f
       </button>
+
+      {/* 모바일: '공유' 버튼 하나 → 세부 공유 메뉴 */}
+      {menuOpen && (
+        <button
+          type="button"
+          aria-label="공유 메뉴 닫기"
+          onClick={() => setMenuOpen(false)}
+          className="fixed inset-0 z-40 cursor-default bg-transparent sm:hidden"
+        />
+      )}
+      <div className="relative sm:hidden">
+        <button
+          type="button"
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-expanded={menuOpen}
+          aria-haspopup="menu"
+          className="inline-flex h-9 items-center gap-1.5 rounded-full border border-ink-200 px-3.5 text-sm font-semibold text-ink-600 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-700 dark:text-ink-300"
+        >
+          <ShareIcon className="h-4 w-4" />
+          공유
+        </button>
+        {menuOpen && (
+          <div
+            role="menu"
+            className="absolute left-0 top-full z-50 mt-2 w-48 overflow-hidden rounded-xl border border-ink-200 bg-white py-1 shadow-lg animate-[slide-down-in_.2s_ease-out] dark:border-ink-700 dark:bg-ink-900"
+          >
+            {canShare && (
+              <MenuItem
+                onClick={() => {
+                  setMenuOpen(false);
+                  nativeShare();
+                }}
+                icon={<DeviceShareIcon />}
+                label="기기로 공유…"
+              />
+            )}
+            <MenuItem
+              onClick={() => {
+                setMenuOpen(false);
+                shareKakao();
+              }}
+              icon={<span className={menuBadge}>톡</span>}
+              label="카카오톡"
+            />
+            <MenuItem
+              onClick={() => {
+                setMenuOpen(false);
+                share("x");
+              }}
+              icon={<span className={menuBadge}>X</span>}
+              label="X(트위터)"
+            />
+            <MenuItem
+              onClick={() => {
+                setMenuOpen(false);
+                share("f");
+              }}
+              icon={<span className={menuBadge}>f</span>}
+              label="페이스북"
+            />
+            <MenuItem
+              onClick={async () => {
+                await copyLink();
+                setTimeout(() => setMenuOpen(false), 900);
+              }}
+              icon={<ShareIcon className="h-4 w-4" />}
+              label={copied ? "복사됨!" : "링크 복사"}
+            />
+          </div>
+        )}
+      </div>
     </div>
+  );
+}
+
+const menuBadge =
+  "inline-grid h-6 w-6 place-items-center rounded-full border border-ink-200 text-[11px] font-bold dark:border-ink-700";
+
+function MenuItem({ onClick, icon, label }: { onClick: () => void; icon: React.ReactNode; label: string }) {
+  return (
+    <button
+      type="button"
+      role="menuitem"
+      onClick={onClick}
+      className="flex w-full items-center gap-2.5 px-4 py-2.5 text-left text-sm text-ink-700 transition-colors hover:bg-ink-50 dark:text-ink-200 dark:hover:bg-ink-800"
+    >
+      <span className="grid w-6 shrink-0 place-items-center text-ink-500 dark:text-ink-400">{icon}</span>
+      {label}
+    </button>
+  );
+}
+
+function DeviceShareIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M12 15V4" />
+      <path d="m8 8 4-4 4 4" />
+      <path d="M5 12v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" />
+    </svg>
   );
 }
