@@ -55,7 +55,7 @@ export function TrendingTags() {
   const cur = data.tags[idx % data.tags.length];
 
   return (
-    <div className="relative border-b border-ink-100 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 dark:border-ink-800 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/80">
+    <div className="relative border-b border-ink-100 bg-white/95 backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/65 dark:border-ink-800 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/80">
       <div className="container-page flex items-center gap-3 py-1.5">
         <span className="shrink-0 text-xs font-bold text-ink-800 dark:text-ink-100">
           <span className="tw-live mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-breaking align-middle" />
@@ -69,13 +69,13 @@ export function TrendingTags() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-label="실시간 인기 전체 보기"
-          className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden text-left sm:hidden"
+          className="-my-2 flex min-w-0 flex-1 items-center gap-2 overflow-hidden py-2 text-left sm:hidden"
         >
           <span key={idx} className="flex min-w-0 animate-fade-up items-baseline gap-1.5">
             <span className="shrink-0 text-[15px] font-extrabold tabular-nums text-ink-900 dark:text-ink-100">
               {(idx % data.tags.length) + 1}
             </span>
-            <span className="tw-chip truncate text-[15px] font-semibold text-ink-800 dark:text-ink-100">#{cur}</span>
+            <span className="tw-chip truncate text-[15px] font-bold text-ink-800 dark:text-ink-100">#{cur}</span>
           </span>
           <svg
             viewBox="0 0 24 24"
@@ -89,15 +89,14 @@ export function TrendingTags() {
 
         {/* PC: 가로 나열(스크롤) */}
         <div className="relative hidden min-w-0 flex-1 sm:block">
-          <span aria-hidden className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-white/90 to-transparent dark:from-ink-950/90" />
-          <div className="no-scrollbar flex items-baseline gap-3 overflow-x-auto whitespace-nowrap">
+          <div className="no-scrollbar fade-mask-r flex items-baseline gap-3 overflow-x-auto whitespace-nowrap">
             {data.tags.map((t, i) => (
               <Link
                 prefetch={false}
                 key={t}
                 href={`/search?q=${encodeURIComponent(t)}`}
                 style={{ animationDelay: `${(i % 5) * 0.35}s` }}
-                className="tw-chip shrink-0 text-sm text-ink-600 transition-colors hover:text-signal-700 dark:text-ink-300"
+                className="tw-chip shrink-0 text-sm font-bold text-ink-700 transition-colors hover:text-signal-700 dark:text-ink-200"
               >
                 <span className="text-xs font-semibold text-ink-300 dark:text-ink-500">{i + 1}</span>
                 <span className="ml-0.5">#{t}</span>
@@ -144,7 +143,7 @@ export function TrendingTags() {
                     <span className="w-5 shrink-0 whitespace-nowrap text-right text-sm font-extrabold tabular-nums text-ink-900 dark:text-white">
                       {i + 1}
                     </span>
-                    <span className="truncate text-[15px] font-medium text-ink-800 dark:text-ink-100">#{t}</span>
+                    <span className="truncate text-[15px] font-bold text-ink-800 dark:text-ink-100">#{t}</span>
                   </Link>
                 </li>
               ))}
