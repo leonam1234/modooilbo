@@ -175,7 +175,8 @@ export default async function ArticlePage({
           <h1 className="mt-2 font-headline text-3xl font-extrabold leading-tight text-ink-900 dark:text-white sm:text-4xl sm:leading-tight">
             {article.title}
           </h1>
-          <p className="mt-4 text-lg leading-relaxed text-ink-600 dark:text-ink-300">
+          {/* id: 가+/가− 글자 확대 대상(본문과 함께 커져야 위계가 안 뒤집힘) */}
+          <p id="article-lede" className="mt-4 text-lg leading-relaxed text-ink-600 dark:text-ink-300">
             {article.summary}
           </p>
 
