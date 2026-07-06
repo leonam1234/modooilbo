@@ -70,6 +70,29 @@ export function getPrevNext(article: Article): { prev: Article | null; next: Art
   };
 }
 
+/** 문단에서 첫 문장만 추출(너무 길면 말줄임). 규칙 기반 — 외부 API 없음. */
+function firstSentence(paragraph: string): string {
+  const m = paragraph.match(/^.*?(?:다\.|요\.|[.!?])(?=["”')\]]*(?:\s|$))/);
+  let s = (m ? m[0] : paragraph).trim();
+  if (s.length > 90) s = `${s.slice(0, 88).trimEnd()}…`;
+  return s;
+}
+
+/**
+ * 세 줄 요약 — 본문 문단의 첫 문장 3개를 정적으로 추출(빌드 타임 결정적).
+ * 리드 문단(summary)은 기사 상단에 이미 노출되므로 본문에서만 뽑는다.
+ */
+export function getThreeLineSummary(article: Article): string[] {
+  const lines: string[] = [];
+  for (const p of article.body) {
+    if (lines.length >= 3) break;
+    if (p.startsWith("![")) continue; // 인라인 이미지 문단 제외
+    const s = firstSentence(p);
+    if (s && s !== article.summary.trim() && !lines.includes(s)) lines.push(s);
+  }
+  return lines;
+}
+
 export function getRelated(article: Article, count = 4): Article[] {
   const sameCat = getAllArticles().filter(
     (a) => a.id !== article.id && a.category === article.category,

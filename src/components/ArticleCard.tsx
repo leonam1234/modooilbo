@@ -7,7 +7,7 @@ import { PlayIcon } from "./icons";
 import { displayImageUrl } from "@/lib/stock";
 import { TypeBadge } from "./TypeBadge";
 
-type Variant = "feature" | "horizontal" | "compact" | "text" | "overlay";
+type Variant = "feature" | "horizontal" | "compact" | "list" | "text" | "overlay";
 
 interface ArticleCardProps {
   article: ArticleListItem;
@@ -117,6 +117,35 @@ export function ArticleCard({
           )}
           <CardMeta article={article} />
         </div>
+      </article>
+    );
+  }
+
+  // 밀도 높은 리스트 행 — 제목·요약 좌측 + 썸네일 우측 (섹션 목록용)
+  if (variant === "list") {
+    return (
+      <article className={cn("group flex items-start gap-4", className)}>
+        <div className="min-w-0 flex-1">
+          <h3
+            className={cn(
+              "text-[15px] font-semibold leading-snug text-ink-900 dark:text-white",
+              headingClassName,
+            )}
+          >
+            <Link href={href} className="clamp-2 hover:text-signal-700 dark:hover:text-signal-400">
+              {article.title}
+            </Link>
+          </h3>
+          {showSummary && (
+            <p className="clamp-2 mt-1 hidden text-[13px] leading-relaxed text-ink-500 dark:text-ink-400 sm:block">
+              {article.summary}
+            </p>
+          )}
+          <CardMeta article={article} />
+        </div>
+        <Link href={href} className="block w-[96px] shrink-0 sm:w-[120px]">
+          <Thumb article={article} sizes="120px" className="aspect-[3/2]" motion="pan" />
+        </Link>
       </article>
     );
   }

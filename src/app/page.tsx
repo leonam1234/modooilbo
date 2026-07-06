@@ -79,7 +79,7 @@ export default function Home() {
 
         <aside className="space-y-10">
           <RankingList
-            count={6}
+            count={10}
             pool={getMostRead(60).map((a) => ({ id: a.id, slug: a.slug, title: a.title, category: a.category }))}
           />
 
