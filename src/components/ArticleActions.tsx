@@ -3,37 +3,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { shareKakao, shareSns } from "@/lib/share";
 import { ShareIcon, PrintIcon, BookmarkIcon } from "./icons";
 
 const SIZES = [16, 17, 18, 20, 22];
 // 리드문도 함께 확대(기본 18px 유지, 항상 본문보다 크거나 같게 — 위계 역전 방지)
 const LEDE_SIZES = [17, 18, 20, 22, 24];
 const FONT_KEY = "modoo-fontsize";
-
-// 카카오 JavaScript 키 — 공개용(브라우저 노출 전제 설계, 카카오 콘솔의 플랫폼 도메인 등록으로 보호).
-// 비밀키(REST/Client Secret)는 서버 시크릿에만 있음.
-const KAKAO_JS_KEY = "dcba680be763b1980fab764f42acf6b6";
-
-function shareKakao() {
-  const w = window as any;
-  const doShare = () => {
-    try {
-      if (!w.Kakao.isInitialized()) w.Kakao.init(KAKAO_JS_KEY);
-      w.Kakao.Share.sendScrap({ requestUrl: window.location.href });
-    } catch {
-      /* 팝업 차단 등 — 조용히 무시 */
-    }
-  };
-  if (w.Kakao?.Share) {
-    doShare();
-    return;
-  }
-  const s = document.createElement("script");
-  s.src = "https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js";
-  s.async = true;
-  s.onload = doShare;
-  document.head.appendChild(s);
-}
 
 export function ArticleActions({ title, articleId }: { title: string; articleId: string }) {
   const [size, setSize] = useState(1);
@@ -137,16 +113,6 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
     } catch {}
   }
 
-  function share(network: "x" | "f") {
-    const url = encodeURIComponent(window.location.href);
-    const text = encodeURIComponent(title);
-    const href =
-      network === "x"
-        ? `https://twitter.com/intent/tweet?text=${text}&url=${url}`
-        : `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-    window.open(href, "_blank", "noopener,width=600,height=500");
-  }
-
   const iconBtn =
     "inline-grid h-9 w-9 place-items-center rounded-full border border-ink-200 text-ink-600 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-700 dark:text-ink-300";
   const snsBtn =
@@ -231,7 +197,7 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
       </button>
       <button
         type="button"
-        onClick={() => share("x")}
+        onClick={() => shareSns("x", title)}
         aria-label="X(트위터) 공유"
         className={cn(snsBtn, "hidden sm:inline-grid")}
       >
@@ -239,7 +205,7 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
       </button>
       <button
         type="button"
-        onClick={() => share("f")}
+        onClick={() => shareSns("f", title)}
         aria-label="페이스북 공유"
         className={cn(snsBtn, "hidden sm:inline-grid")}
       >
