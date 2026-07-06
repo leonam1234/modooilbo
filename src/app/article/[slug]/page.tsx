@@ -229,31 +229,9 @@ export default async function ArticlePage({
             <ListenButton text={articleSpeechText(article)} />
           </div>
 
-<<<<<<< HEAD
-          <ArticleBody body={article.body} />
-=======
           <ThreeLineSummary lines={getThreeLineSummary(article)} />
 
-          <div
-            id="article-body"
-            className="mt-8 space-y-5 text-[17px] leading-[1.9] text-ink-800 dark:text-ink-200"
-          >
-            {article.body.map((p, i) => {
-              const img = p.match(/^!\[([^\]]*)\]\((\/[^)]+)\)$/);
-              if (img) {
-                return (
-                  <figure key={i} className="my-2">
-                    <span className="relative block aspect-[16/9] w-full overflow-hidden rounded-lg bg-ink-100 dark:bg-ink-800">
-                      <Image src={img[2]} alt={img[1] || ""} fill sizes="(max-width:1024px) 100vw, 66vw" unoptimized className="object-cover" />
-                    </span>
-                    {img[1] && <figcaption className="mt-2 text-xs text-ink-400">{img[1]}</figcaption>}
-                  </figure>
-                );
-              }
-              return <p key={i}>{p}</p>;
-            })}
-          </div>
->>>>>>> origin/feature/naver-ui-3
+          <ArticleBody body={article.body} />
 
           <div className="mt-8 flex flex-wrap gap-2">
             {article.tags.map((t) => (
