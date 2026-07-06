@@ -29,7 +29,7 @@ function Logo({ className }: { className?: string }) {
   return (
     <Link prefetch={false} href="/" className={cn("flex items-center", className)} aria-label="모두일보 홈">
       {/* 정식 로고(코덱스 BW 시안 02 워드마크) — 무채색이라 다크모드는 invert 반전 */}
-      <Image src="/logo.png" alt="모두일보" width={1200} height={400} priority className="h-9 w-auto dark:invert sm:h-10" />
+      <Image src="/logo.png?v=2" alt="모두일보" width={1200} height={400} priority className="h-9 w-auto dark:invert sm:h-10" />
     </Link>
   );
 }

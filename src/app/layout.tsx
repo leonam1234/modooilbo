@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     siteName: "모두일보",
     images: [
       {
-        url: "/og.png",
+        url: "/og.png?v=2",
         width: 1200,
         height: 630,
         alt: "모두일보 — 모두를 위한 신뢰의 뉴스",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     title: "모두일보 — 모두를 위한 신뢰의 뉴스",
     description:
       "모두일보(Modoo Ilbo)는 정치·경제·사회·국제·문화·테크 전 분야의 신뢰할 수 있는 뉴스와 깊이 있는 분석을 전합니다. 모두를 위한 신뢰의 뉴스.",
-    images: ["/og.png"],
+    images: ["/og.png?v=2"],
   },
 };
 
