@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -26,13 +27,9 @@ const COMPANY_LINKS = [
 
 function Logo({ className }: { className?: string }) {
   return (
-    <Link prefetch={false} href="/" className={cn("flex items-center gap-2", className)} aria-label="모두일보 홈">
-      <span className="grid h-7 w-7 place-items-center rounded-sm bg-signal-600 font-headline text-sm font-black text-white">
-        M
-      </span>
-      <span className="font-headline text-xl font-extrabold tracking-tight text-ink-900 dark:text-white sm:text-2xl">
-        모두<span className="text-signal-600">일보</span>
-      </span>
+    <Link prefetch={false} href="/" className={cn("flex items-center", className)} aria-label="모두일보 홈">
+      {/* 정식 로고(코덱스 BW 시안 02 워드마크) — 무채색이라 다크모드는 invert 반전 */}
+      <Image src="/logo.png" alt="모두일보" width={745} height={300} priority className="h-8 w-auto dark:invert sm:h-9" />
     </Link>
   );
 }
