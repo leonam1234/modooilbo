@@ -8,8 +8,20 @@ export function getAllArticles(): Article[] {
   return [...ARTICLES].sort(byNewest);
 }
 
+/** 홈 신선도(5일) — 속보 시효와 같은 방식: 최신 발행 시각 기준 상대 나이라 빌드 결정적.
+ *  오래된 글을 홈에서 제외하진 않되(빈 섹션 방지) 우선순위만 강등한다. */
+const HOME_FRESH_MS = 5 * 24 * 60 * 60 * 1000;
+export function isHomeFresh(a: Pick<Article, "publishedAt">): boolean {
+  const newest = getAllArticles()[0];
+  if (!newest) return true;
+  return new Date(newest.publishedAt).getTime() - new Date(a.publishedAt).getTime() <= HOME_FRESH_MS;
+}
+
 export function getLeadArticle(): Article {
-  return ARTICLES.find((a) => a.isLead) ?? getAllArticles()[0];
+  const marked = ARTICLES.find((a) => a.isLead);
+  if (marked && isHomeFresh(marked)) return marked;
+  // 지정 리드가 낡았으면 최신 일반 기사가 대문을 차지
+  return getAllArticles().find((a) => a.type !== "opinion") ?? getAllArticles()[0];
 }
 
 export function getSubLeads(count = 4): Article[] {
@@ -40,7 +52,11 @@ export function getByCategory(slug: CategorySlug, count?: number): Article[] {
 }
 
 export function getMostRead(count = 5): Article[] {
-  return [...ARTICLES].sort((a, b) => b.readCount - a.readCount).slice(0, count);
+  // 신선한 글 먼저(조회수순), 모자라면 오래된 글(조회수순)로 채움
+  const byRead = (a: Article, b: Article) => b.readCount - a.readCount;
+  const fresh = ARTICLES.filter(isHomeFresh).sort(byRead);
+  const stale = ARTICLES.filter((a) => !isHomeFresh(a)).sort(byRead);
+  return [...fresh, ...stale].slice(0, count);
 }
 
 export function getOpinion(count = 4): Article[] {
