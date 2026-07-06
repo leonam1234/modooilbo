@@ -242,9 +242,12 @@ export default async function ArticlePage({
           </figure>
           )}
 
-          <div className="no-print mt-6 flex justify-center">
-            <ListenButton text={articleSpeechText(article)} />
-          </div>
+          {/* 영상(쇼츠) 기사는 본문 듣기 제외 — 영상과 TTS가 겹치지 않게 */}
+          {!article.youtubeId && (
+            <div className="no-print mt-6 flex justify-center">
+              <ListenButton text={articleSpeechText(article)} />
+            </div>
+          )}
 
           <ThreeLineSummary lines={getThreeLineSummary(article)} />
 
