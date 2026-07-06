@@ -84,16 +84,17 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
     const makeDropSprite = (dark: boolean) => {
       const tone = dark ? "205,222,248" : "88,108,138";
       const c = document.createElement("canvas");
-      c.width = c.height = 32;
+      c.width = c.height = 40; // 블러 번짐 여백(+8)
       const g = c.getContext("2d")!;
       const r = 14;
-      const grad = g.createRadialGradient(16 - r * 0.35, 16 - r * 0.4, r * 0.1, 16, 16, r);
+      g.filter = "blur(2px)"; // 유리 맺힘 소프트 블러(2.0pt) — 스프라이트에 한 번만 구워 런타임 비용 0
+      const grad = g.createRadialGradient(20 - r * 0.35, 20 - r * 0.4, r * 0.1, 20, 20, r);
       grad.addColorStop(0, "rgba(255,255,255,0.85)"); // 하이라이트
       grad.addColorStop(0.55, `rgba(${tone},0.5)`);
       grad.addColorStop(1, `rgba(${tone},1)`);
       g.fillStyle = grad;
       g.beginPath();
-      g.arc(16, 16, r, 0, Math.PI * 2);
+      g.arc(20, 20, r, 0, Math.PI * 2);
       g.fill();
       return c;
     };
@@ -258,7 +259,7 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
           const p = d.t / d.life;
           const env = p < 0.12 ? p / 0.12 : p > 0.7 ? Math.max(0, (1 - p) / 0.3) : 1;
           if (env <= 0.01) continue;
-          const size = 32 * d.s;
+          const size = 40 * d.s; // 스프라이트 40px(블러 여백 포함) 기준 — 원 크기는 기존과 동일
           ctx.globalAlpha = d.a * env;
           ctx.drawImage(dropSprite, d.x - size / 2, d.y - size / 2, size, size);
         }
