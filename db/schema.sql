@@ -77,3 +77,11 @@ CREATE TABLE IF NOT EXISTS password_resets (
   expires_at TEXT NOT NULL,
   used INTEGER NOT NULL DEFAULT 0
 );
+
+-- 기자 구독 (2026-07-06): 회원별 기자 팔로우. 행 존재 = 구독중.
+CREATE TABLE IF NOT EXISTS reporter_subs (
+  user_id TEXT NOT NULL REFERENCES users(id),
+  reporter_slug TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now','+9 hours')),
+  PRIMARY KEY (user_id, reporter_slug)
+);

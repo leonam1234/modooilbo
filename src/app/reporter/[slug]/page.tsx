@@ -7,6 +7,7 @@ import { REPORTERS, REPORTER_INDEXABLE, getReporterBySlug } from "@/lib/reporter
 import { CATEGORY_MAP } from "@/lib/categories";
 import { formatKoreanDateTime } from "@/lib/utils";
 import { displayImageUrl } from "@/lib/stock";
+import { SubscribeButton } from "@/components/SubscribeButton";
 import JsonLd from "@/components/JsonLd";
 
 const SITE_URL = "https://modooilbo.com";
@@ -72,7 +73,10 @@ export default async function ReporterPage({ params }: { params: Promise<{ slug:
             {reporter.name} <span className="text-lg font-medium text-ink-500 sm:text-xl">{reporter.role}</span>
           </h1>
           <p className="mt-1.5 text-sm leading-relaxed text-ink-500 dark:text-ink-300">{reporter.beat}</p>
-          <p className="mt-1 text-xs tabular-nums text-ink-400">기사 {articles.length}건</p>
+          <div className="mt-2 flex items-center gap-3">
+            <SubscribeButton slug={reporter.slug} />
+            <p className="text-xs tabular-nums text-ink-400">기사 {articles.length}건</p>
+          </div>
         </div>
       </header>
 

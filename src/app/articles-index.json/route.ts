@@ -11,6 +11,7 @@ export async function GET(): Promise<Response> {
     category: a.category,
     publishedAt: a.publishedAt,
     tags: a.tags,
+    author: a.author.name,
   }));
   return Response.json(items, {
     headers: { "cache-control": "public, max-age=600" },

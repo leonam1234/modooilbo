@@ -40,6 +40,7 @@ export async function onRequestPost(ctx: any): Promise<Response> {
     env.DB.prepare("DELETE FROM comment_likes WHERE user_id = ?1").bind(user.id),
     env.DB.prepare("DELETE FROM comment_reports WHERE user_id = ?1").bind(user.id),
     env.DB.prepare("DELETE FROM bookmarks WHERE user_id = ?1").bind(user.id),
+    env.DB.prepare("DELETE FROM reporter_subs WHERE user_id = ?1").bind(user.id),
     env.DB.prepare(
       "UPDATE comments SET user_id = ?2, is_deleted = 1, body = '' WHERE user_id = ?1",
     ).bind(user.id, DELETED_USER_ID),

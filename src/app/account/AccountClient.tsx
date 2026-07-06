@@ -7,6 +7,7 @@ import { PROVIDER_LABEL, inputCls, isSyntheticEmail, type IndexItem, type User }
 import { ProfileCard } from "./ProfileCard";
 import { ScrapsCard } from "./ScrapsCard";
 import { MyCommentsCard } from "./MyCommentsCard";
+import { SubsCard } from "./SubsCard";
 import { ProvidersCard } from "./ProvidersCard";
 import { PasswordCard } from "./PasswordCard";
 
@@ -43,6 +44,9 @@ export function AccountClient() {
   const [scraps, setScraps] = useState<{ article_id: string; created_at: string }[] | null>(null);
   const [artIndex, setArtIndex] = useState<Map<string, IndexItem>>(new Map());
 
+  // 구독한 기자
+  const [subs, setSubs] = useState<{ reporter_slug: string }[] | null>(null);
+
   // 내가 쓴 댓글
   const [myComments, setMyComments] = useState<{ article_id: string; body: string; created_at: string }[] | null>(null);
 
@@ -69,6 +73,10 @@ export function AccountClient() {
             .then((r) => (r.ok ? r.json() : null))
             .then((b) => setScraps(b?.items ?? []))
             .catch(() => setScraps([]));
+          fetch("/api/reporter-subs")
+            .then((r) => (r.ok ? r.json() : null))
+            .then((d) => setSubs(d?.items ?? []))
+            .catch(() => setSubs([]));
           fetch("/api/comments/mine")
             .then((r) => (r.ok ? r.json() : null))
             .then((c) => setMyComments(c?.items ?? []))
@@ -240,6 +248,24 @@ export function AccountClient() {
 
       {/* 내가 쓴 댓글 */}
       <MyCommentsCard myComments={myComments} artIndex={artIndex} />
+
+      {/* 구독한 기자 */}
+      <SubsCard
+        subs={subs}
+        artIndex={artIndex}
+        onRemove={async (slug) => {
+          try {
+            const r = await fetch("/api/reporter-subs", {
+              method: "POST",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify({ slug }),
+            });
+            if (r.ok) setSubs((prev) => prev?.filter((x) => x.reporter_slug !== slug) ?? prev);
+          } catch {
+            /* noop */
+          }
+        }}
+      />
 
       {/* 로그인 수단 */}
       <ProvidersCard
