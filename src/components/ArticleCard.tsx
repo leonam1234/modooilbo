@@ -128,7 +128,7 @@ export function ArticleCard({
         <div className="min-w-0 flex-1">
           <h3
             className={cn(
-              "text-[15px] font-semibold leading-snug text-ink-900 dark:text-white",
+              "min-h-[2.75em] text-[15px] font-semibold leading-snug text-ink-900 dark:text-white", // 2줄 공간 고정 — 두 열 나란히 설 때 행 어긋남 방지
               headingClassName,
             )}
           >
@@ -137,7 +137,7 @@ export function ArticleCard({
             </Link>
           </h3>
           {showSummary && (
-            <p className="clamp-2 mt-1 hidden text-[13px] leading-relaxed text-ink-500 dark:text-ink-400 sm:block">
+            <p className="clamp-2 mt-1 hidden min-h-[3.25em] text-[13px] leading-relaxed text-ink-500 dark:text-ink-400 sm:block">
               {article.summary}
             </p>
           )}
