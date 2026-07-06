@@ -260,7 +260,7 @@ export function WeatherCanvas({ kind }: { kind: Kind }) {
           const env = p < 0.12 ? p / 0.12 : p > 0.7 ? Math.max(0, (1 - p) / 0.3) : 1;
           if (env <= 0.01) continue;
           const size = 40 * d.s; // 스프라이트 40px(블러 여백 포함) 기준 — 원 크기는 기존과 동일
-          ctx.globalAlpha = d.a * env;
+          ctx.globalAlpha = d.a * env * 0.7; // 물방울만 투명도 30% 감소(오너 지정) — 빗줄기는 그대로
           ctx.drawImage(dropSprite, d.x - size / 2, d.y - size / 2, size, size);
         }
         ctx.globalAlpha = 1;
