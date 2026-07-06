@@ -24,6 +24,7 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   const email = String(b?.email ?? "").trim().toLowerCase();
   const password = String(b?.password ?? "");
   const newsletter = b?.newsletter ? 1 : 0;
+  if (b?.terms !== true) return json({ error: "필수 약관(이용약관·개인정보 수집)에 동의해 주세요." }, 400);
 
   if (name.length < 1 || name.length > 20) return json({ error: "이름은 1~20자로 입력해 주세요." }, 400);
   if (hasBanned(name)) return json({ error: "닉네임에 부적절한 표현이 포함되어 있습니다." }, 400);
@@ -55,7 +56,7 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   try {
     await env.DB.batch([
       env.DB.prepare(
-        "INSERT INTO users (id, email, name, password_hash, password_salt, newsletter) VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
+        "INSERT INTO users (id, email, name, password_hash, password_salt, newsletter, terms_agreed_at) VALUES (?1, ?2, ?3, ?4, ?5, ?6, datetime('now','+9 hours'))",
       ).bind(id, email, name, hash, salt, newsletter),
       env.DB.prepare(
         "INSERT INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'email', ?2)",

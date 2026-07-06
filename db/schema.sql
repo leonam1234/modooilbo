@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS users (
   password_hash TEXT,                           -- 소셜 전용 가입자는 NULL
   password_salt TEXT,
   newsletter INTEGER NOT NULL DEFAULT 0,        -- 뉴스레터 수신 동의(선택)
+  terms_agreed_at TEXT,                         -- 필수 약관(이용약관·개인정보) 동의 시각(KST). 소셜 간편가입=가입 시각으로 간주 기록
   created_at TEXT NOT NULL DEFAULT (datetime('now','+9 hours'))
 );
 

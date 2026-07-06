@@ -36,7 +36,7 @@ export function RegisterForm() {
       const r = await fetch("/api/auth/signup", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ name, email, password, newsletter: agreeMarketing }),
+        body: JSON.stringify({ name, email, password, newsletter: agreeMarketing, terms: agreeTerms && agreePrivacy }),
       });
       const d = await r.json();
       if (r.ok && d?.user) {

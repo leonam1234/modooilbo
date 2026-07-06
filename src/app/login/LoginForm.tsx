@@ -214,6 +214,12 @@ export function LoginForm() {
         </button>
       </div>
 
+      <p className="text-center text-[11px] leading-relaxed text-ink-400">
+        간편 로그인으로 처음 가입하는 경우{" "}
+        <Link href="/terms" className="underline">이용약관</Link>과{" "}
+        <Link href="/privacy" className="underline">개인정보처리방침</Link>에 동의한 것으로 간주됩니다.
+      </p>
+
       <p className="pt-1 text-center text-sm text-ink-500 dark:text-ink-300">
         아직 회원이 아니신가요?{" "}
         <Link

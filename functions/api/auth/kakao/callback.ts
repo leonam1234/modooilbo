@@ -121,7 +121,7 @@ export async function onRequestGet(ctx: any): Promise<Response> {
         const accountEmail = email ?? `kakao_${kakaoId}@users.modooilbo.com`;
         await env.DB.batch([
           env.DB.prepare(
-            "INSERT INTO users (id, email, name, password_hash, password_salt, newsletter) VALUES (?1, ?2, ?3, NULL, NULL, 0)",
+            "INSERT INTO users (id, email, name, password_hash, password_salt, newsletter, terms_agreed_at) VALUES (?1, ?2, ?3, NULL, NULL, 0, datetime('now','+9 hours'))",
           ).bind(userId, accountEmail, finalName),
           env.DB.prepare(
             "INSERT INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'kakao', ?2)",
