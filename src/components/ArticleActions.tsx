@@ -258,7 +258,7 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
             <MenuItem
               onClick={() => {
                 setMenuOpen(false);
-                share("x");
+                shareSns("x", title);
               }}
               icon={<span className={menuBadge}>X</span>}
               label="X(트위터)"
@@ -266,7 +266,7 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
             <MenuItem
               onClick={() => {
                 setMenuOpen(false);
-                share("f");
+                shareSns("f", title);
               }}
               icon={<span className={menuBadge}>f</span>}
               label="페이스북"
