@@ -141,13 +141,13 @@ export function LocationPicker({ className }: { className?: string }) {
       <Link
         href="/weather"
         title={wx ? "주간예보 보기" : "날씨 정보를 불러오지 못했습니다 — 주간예보 보기"}
-        className="flex items-center gap-1 border-l border-ink-200 pl-2 text-ink-500 transition-colors hover:text-signal-600 dark:border-ink-700 dark:text-ink-300"
+        className="flex shrink-0 items-center gap-1 whitespace-nowrap border-l border-ink-200 pl-2 text-ink-500 transition-colors hover:text-signal-600 dark:border-ink-700 dark:text-ink-300"
       >
         {wx ? (
           <>
             <WxIcon cond={wx.condition} className={cn("h-4 w-4", WX_COLOR[wx.condition])} />
             {wx.temperature !== null && (
-              <span className="tabular-nums font-medium">{wx.temperature}°</span>
+              <span className="whitespace-nowrap tabular-nums font-medium">{wx.temperature}°</span>
             )}
           </>
         ) : (
