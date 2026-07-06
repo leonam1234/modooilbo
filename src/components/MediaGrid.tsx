@@ -1,5 +1,5 @@
 import { getMultimedia } from "@/lib/queries";
-import { ArticleCard } from "./ArticleCard";
+import { ShortsCard } from "./ShortsCard";
 import { SectionHeading } from "./SectionHeading";
 
 export function MediaGrid() {
@@ -9,9 +9,9 @@ export function MediaGrid() {
   return (
     <section className="container-page py-10">
       <SectionHeading title="영상" en="Video" href="/media" />
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="flex gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {items.map((a) => (
-          <ArticleCard key={a.id} article={a} variant="overlay" />
+          <ShortsCard key={a.id} article={a} className="w-40 shrink-0 sm:w-48" />
         ))}
       </div>
     </section>

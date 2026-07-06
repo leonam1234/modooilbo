@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getMultimedia } from "@/lib/queries";
-import { ArticleCard } from "@/components/ArticleCard";
+import { ShortsCard } from "@/components/ShortsCard";
 import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
@@ -21,9 +21,9 @@ export default function MediaPage() {
       />
       <div className="container-page py-10">
         {items.length ? (
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
             {items.map((a) => (
-              <ArticleCard key={a.id} article={a} variant="overlay" />
+              <ShortsCard key={a.id} article={a} />
             ))}
           </div>
         ) : (
