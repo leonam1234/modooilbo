@@ -19,7 +19,7 @@ export function ShortsCard({ article, className }: { article: ArticleListItem; c
           fill
           sizes="(max-width:640px) 45vw, 220px"
           unoptimized
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="animate-pan-y object-cover"
         />
         {/* 하단 그라데이션 + 제목 */}
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pb-3 pt-14" />
