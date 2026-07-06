@@ -253,7 +253,6 @@ export const ARTICLES_2: Article[] = [
     tags: ["폭염", "온열질환", "취약계층", "보건"],
     isBreaking: true,
     readCount: 29600,
-    type: "photo",
   },
   {
     id: "a43",
@@ -295,7 +294,6 @@ export const ARTICLES_2: Article[] = [
     imageCaption: "실제 현장이 아닌 기사 이해를 돕기 위한 AI 생성 이미지.",
     tags: ["재개발", "원주민", "세입자", "도시재생"],
     readCount: 13400,
-    type: "photo",
   },
   {
     id: "a45",
@@ -422,7 +420,6 @@ export const ARTICLES_2: Article[] = [
     tags: ["미술관", "미디어아트", "전시", "디지털"],
     isBreaking: true,
     readCount: 26300,
-    type: "photo",
   },
   {
     id: "a51",
@@ -507,7 +504,6 @@ export const ARTICLES_2: Article[] = [
     tags: ["축구", "국가대표", "평가전", "세대교체"],
     isBreaking: true,
     readCount: 35400,
-    type: "photo",
   },
   {
     id: "a55",

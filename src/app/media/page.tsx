@@ -4,8 +4,8 @@ import { ArticleCard } from "@/components/ArticleCard";
 import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
-  title: "포토·영상",
-  description: "모두일보의 사진과 영상으로 보는 뉴스",
+  title: "영상",
+  description: "모두일보 영상으로 보는 뉴스 — 유튜브 쇼츠",
   alternates: { canonical: "/media/" },
 };
 
@@ -15,9 +15,9 @@ export default function MediaPage() {
   return (
     <>
       <PageHeader
-        title="포토 · 영상"
-        subtitle="현장의 순간을 사진과 영상으로 전합니다."
-        breadcrumb={[{ label: "포토·영상" }]}
+        title="영상"
+        subtitle="뉴스를 쇼츠 영상으로 전합니다."
+        breadcrumb={[{ label: "영상" }]}
       />
       <div className="container-page py-10">
         {items.length ? (

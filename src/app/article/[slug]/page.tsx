@@ -208,6 +208,22 @@ export default async function ArticlePage({
             <ArticleActions title={article.title} articleId={article.id} />
           </div>
 
+          {article.youtubeId ? (
+            <div className="mt-6">
+              <div className="relative mx-auto aspect-[9/16] w-full max-w-sm overflow-hidden rounded-lg bg-ink-900">
+                <iframe
+                  src={`https://www.youtube.com/embed/${article.youtubeId}`}
+                  title={article.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute inset-0 h-full w-full border-0"
+                />
+              </div>
+              {article.imageCaption && (
+                <p className="mt-2 text-center text-xs text-ink-400">{article.imageCaption}</p>
+              )}
+            </div>
+          ) : (
           <figure id="article-hero" className="mt-6">
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-ink-100 dark:bg-ink-800">
               <Image
@@ -224,6 +240,7 @@ export default async function ArticlePage({
               <figcaption className="mt-2 text-xs text-ink-400">{article.imageCaption}</figcaption>
             )}
           </figure>
+          )}
 
           <div className="no-print mt-6 flex justify-center">
             <ListenButton text={articleSpeechText(article)} />

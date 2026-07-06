@@ -26,8 +26,6 @@ export function TypeBadge({
     kind = "breaking";
   } else if (article.type === "video") {
     label = "영상";
-  } else if (article.type === "photo") {
-    label = "포토";
   } else if (article.type === "opinion" || article.category === "opinion") {
     label = "칼럼";
   }

@@ -157,6 +157,9 @@ async function run() {
     const tags = (fm.tags || "").split(",").map((s) => s.trim()).filter(Boolean);
     // 수정 시각(선택). 발행 시각보다 앞서면 무시.
     const updatedRaw = (fm.updated || fm.updatedAt || "").trim();
+    // 유튜브 쇼츠 — URL이든 ID든 11자 영상 ID 추출 (youtube: 필드)
+    const ytRaw = (fm.youtube || fm.youtubeId || "").trim();
+    const youtubeId = ytRaw ? (ytRaw.match(/(?:v=|be\/|shorts\/|embed\/)?([A-Za-z0-9_-]{11})(?:[?&#].*)?$/) || [])[1] : undefined;
     const updatedAt = updatedRaw ? normDate(updatedRaw) : undefined;
     articles.push({
       id: slug,
@@ -174,7 +177,8 @@ async function run() {
       // isLead는 콘텐츠에서 설정 불가(불변식: 전체 1건만). 항상 false.
       isBreaking: /^(true|1|y|yes)$/i.test(fm.breaking || ""),
       readCount: 0,
-      type: ["opinion", "photo", "video"].includes(fm.type) ? fm.type : (category === "opinion" ? "opinion" : "article"),
+      ...(youtubeId ? { youtubeId } : {}),
+      type: youtubeId ? "video" : (["opinion", "video"].includes(fm.type) ? fm.type : (category === "opinion" ? "opinion" : "article")),
     });
     console.log(`  ✓ ${slug} [${category}] "${fm.title.trim()}"`);
   }

@@ -8,7 +8,7 @@ export type CategorySlug =
   | "opinion"
   | "tech";
 
-export type ArticleType = "article" | "opinion" | "photo" | "video";
+export type ArticleType = "article" | "opinion" | "video";
 
 export interface Category {
   slug: CategorySlug;
@@ -36,6 +36,7 @@ export interface Article {
   updatedAt?: string; // ISO 8601 — 최종 수정 시각(있을 때만 "입력·수정" 병기)
   imageUrl: string;
   imageCaption?: string;
+  youtubeId?: string; // 영상 기사 = 유튜브 쇼츠 임베드
   imageAlt?: string; // 대표이미지 대체텍스트(없으면 imageCaption→title 폴백)
   tags: string[];
   isBreaking?: boolean;

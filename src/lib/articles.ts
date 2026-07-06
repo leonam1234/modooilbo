@@ -246,7 +246,6 @@ export const ARTICLES: Article[] = [
     imageCaption: "실제 현장이 아닌 기사 이해를 돕기 위한 AI 생성 이미지.",
     tags: ["전철", "개통", "출근길"],
     readCount: 15980,
-    type: "photo",
   },
   {
     id: "a13",
@@ -346,7 +345,6 @@ export const ARTICLES: Article[] = [
     imageCaption: "실제 현장이 아닌 기사 이해를 돕기 위한 AI 생성 이미지.",
     tags: ["해운", "물류", "공급망"],
     readCount: 18730,
-    type: "photo",
   },
   {
     id: "a18",
@@ -446,7 +444,6 @@ export const ARTICLES: Article[] = [
     imageCaption: "실제 현장이 아닌 기사 이해를 돕기 위한 AI 생성 이미지.",
     tags: ["프로야구", "신인", "홈런"],
     readCount: 26710,
-    type: "photo",
   },
   {
     id: "a23",
