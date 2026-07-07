@@ -137,7 +137,7 @@ export function ArticleCard({
             </Link>
           </h3>
           {showSummary && (
-            <p className="clamp-2 mt-1 hidden min-h-[3.25em] text-[13px] leading-relaxed text-ink-500 dark:text-ink-400 sm:block">
+            <p className="clamp-2 mt-1 hidden min-h-[3.25em] text-[13px] leading-relaxed text-ink-500 dark:text-ink-400 sm:[display:-webkit-box]">
               {article.summary}
             </p>
           )}
