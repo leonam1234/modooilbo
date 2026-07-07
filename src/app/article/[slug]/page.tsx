@@ -309,7 +309,21 @@ export default async function ArticlePage({
           </div>
 
           <div className="no-print">
-            <CommentSection articleId={article.id} />
+            {/* AI 활용 고지 + 정정요청 (정보통신망법 2026-07-07 시행 대응) */}
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-ink-100 bg-ink-50/60 px-4 py-3 text-xs leading-relaxed text-ink-500 dark:border-ink-800 dark:bg-ink-900/60 dark:text-ink-400">
+            <span>
+              이 기사는 AI 도구를 활용해 작성되고 편집국 검수를 거쳤습니다.{" "}
+              <a href="/policy" className="underline">운영정책</a>
+            </span>
+            <a
+              href={`mailto:help@modooilbo.com?subject=${encodeURIComponent(`[정정요청] ${article.title}`)}&body=${encodeURIComponent(`기사: https://modooilbo.com/article/${article.slug}/\n\n정정 요청 내용을 적어 주세요.`)}`}
+              className="shrink-0 font-semibold text-ink-700 underline dark:text-ink-200"
+            >
+              정정요청·신고
+            </a>
+          </div>
+
+          <CommentSection articleId={article.id} />
           </div>
 
           {(prev || next) && (

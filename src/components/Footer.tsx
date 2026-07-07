@@ -26,6 +26,7 @@ const FOOTER_COLS: { title: string; links: { href: string; label: string }[] }[]
     title: "약관·정책",
     links: [
       { href: "/terms", label: "이용약관" },
+      { href: "/policy", label: "운영정책" },
       { href: "/privacy", label: "개인정보처리방침" },
       { href: "/ethics", label: "청소년보호정책" },
       { href: "/corrections", label: "정정보도 모음" },
