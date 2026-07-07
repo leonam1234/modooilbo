@@ -23,7 +23,7 @@ function CardMeta({ article, light = false }: { article: ArticleListItem; light?
   return (
     <div
       className={cn(
-        "mt-2 flex flex-wrap items-center gap-x-1.5 text-xs",
+        "mt-2 flex items-center gap-x-1.5 overflow-hidden whitespace-nowrap text-xs", // 1줄 강제 — 메타 줄바꿈이 2열 행 높이를 어긋내지 않게
         light ? "text-white/80" : "text-ink-500 dark:text-ink-400",
       )}
     >
