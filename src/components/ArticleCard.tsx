@@ -249,7 +249,7 @@ export function ArticleCard({
       <div className="mt-3">
         <h3
           className={cn(
-            "font-headline text-lg font-bold leading-snug text-ink-900 dark:text-white sm:text-xl",
+            "min-h-[2.75em] font-headline text-lg font-bold leading-snug text-ink-900 dark:text-white sm:text-xl", // 2줄 공간 고정 — 섹션 2열 오와열(링크의 -webkit-box엔 min-height가 안 먹혀 h3에 건다)
             headingClassName,
           )}
         >
@@ -258,7 +258,7 @@ export function ArticleCard({
           </Link>
         </h3>
         {showSummary && (
-          <p className="clamp-2 clamp-2-fill mt-1.5 text-sm leading-relaxed text-ink-500 dark:text-ink-300">
+          <p className="clamp-2 clamp-2-fill mt-1.5 min-h-[3.25em] text-sm leading-relaxed text-ink-500 dark:text-ink-300">
             {article.summary}
           </p>
         )}
