@@ -20,17 +20,6 @@ export function NewsletterCTA() {
           <p className="mx-auto mt-6 max-w-md rounded-lg border border-[#d4af37]/30 bg-white/10 px-4 py-3 font-medium text-ink-200">
             정식 오픈 준비 중입니다 — 오픈하면 이 자리에서 바로 구독하실 수 있어요.
           </p>
-          <a
-            href="https://www.youtube.com/@모두일보"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#d4af37]/50 px-6 py-2.5 font-semibold text-[#d4af37] transition-colors hover:bg-[#d4af37] hover:text-ink-900"
-          >
-            <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current" aria-hidden>
-              <path d="M8 5.5v13l11-6.5z" />
-            </svg>
-            그동안 유튜브에서 영상 뉴스 먼저 보기
-          </a>
           <p className="mt-3 text-xs text-ink-500">모든 뉴스레터는 무료로 제공될 예정입니다.</p>
         </div>
       </div>

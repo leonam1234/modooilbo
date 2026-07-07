@@ -7,6 +7,7 @@ import { getMostRead } from "@/lib/queries";
 import { OpinionStrip } from "@/components/OpinionStrip";
 import { MediaGrid } from "@/components/MediaGrid";
 import { NewsletterCTA } from "@/components/NewsletterCTA";
+import { YoutubeBanner } from "@/components/YoutubeBanner";
 import { Reveal } from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 import { SITE } from "@/lib/site";
@@ -113,6 +114,7 @@ export default function Home() {
       </div>
 
       <Reveal><MediaGrid /></Reveal>
+      <YoutubeBanner />
       <NewsletterCTA />
     </>
   );
