@@ -10,8 +10,8 @@ export function YoutubeBanner() {
           className="group mx-auto flex max-w-3xl flex-col items-center gap-6 text-center sm:flex-row sm:justify-between sm:text-left"
         >
           <div className="flex flex-col items-center gap-5 sm:flex-row">
-            <span className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-ink-900 transition-transform duration-300 group-hover:scale-105 dark:bg-white sm:h-20 sm:w-20">
-              <svg viewBox="0 0 24 24" className="ml-1 h-8 w-8 fill-white dark:fill-ink-900 sm:h-9 sm:w-9" aria-hidden>
+            <span className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-[#FF0000] transition-transform duration-300 group-hover:scale-105 sm:h-20 sm:w-20">{/* 유튜브 고유 레드 — 브랜드 아이콘 예외(오너 지시) */}
+              <svg viewBox="0 0 24 24" className="ml-1 h-8 w-8 fill-white sm:h-9 sm:w-9" aria-hidden>
                 <path d="M8 5.5v13l11-6.5z" />
               </svg>
             </span>
