@@ -26,8 +26,17 @@ function pad(n: number): string {
 }
 
 async function fromYahoo(symbol: string): Promise<{ value: number; prev: number | null } | null> {
+  // 비공식 API 단절 내성: query1 실패 시 query2 미러로 1회 폴백
+  for (const host of ["query1", "query2"]) {
+    const r = await fromYahooHost(host, symbol);
+    if (r) return r;
+  }
+  return null;
+}
+
+async function fromYahooHost(host: string, symbol: string): Promise<{ value: number; prev: number | null } | null> {
   try {
-    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=2d`;
+    const url = `https://${host}.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=2d`;
     const res = await fetch(url, { headers: UA });
     if (!res.ok) return null;
     const d = (await res.json()) as any;

@@ -17,7 +17,7 @@
     "fetch:stock": "node scripts/fetch-stock.mjs"
   },
   "dependencies": {
-    "next": "15.1.6",
+    "next": "15.5.20",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },

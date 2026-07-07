@@ -19,5 +19,9 @@ else
   echo "$(date '+%F %T') FAIL export 실패" >> "$LOG"
   exit 1
 fi
+# 만료 데이터 청소(백업 성공 후에만 — 삭제분도 방금 백업에 포함되어 안전)
+./node_modules/.bin/wrangler d1 execute modooilbo-members --remote --command "DELETE FROM sessions WHERE expires_at < datetime('now','+9 hours'); DELETE FROM password_resets WHERE used = 1 OR expires_at < datetime('now','+9 hours')" >/dev/null 2>&1 \
+  && echo "$(date '+%F %T') CLEAN 만료 세션·토큰 정리" >> "$LOG" || echo "$(date '+%F %T') CLEAN-FAIL" >> "$LOG"
+
 # 보관 정책: 최근 30개만 유지
 ls -t "$BK"/modooilbo-members-*.sql.gz 2>/dev/null | tail -n +31 | xargs rm -f 2>/dev/null || true

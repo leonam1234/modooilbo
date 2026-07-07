@@ -13,7 +13,14 @@ const BANNED = [
   "whore", "slut", "nigger", "nigga", "motherfucker", "retard", "dumbass",
 ];
 
+// 자모 표기 욕설(초성체) — 완성형과 별도 목록. 일반 단어 오탐 없는 명시 표기만.
+const BANNED_JAMO = ["ㅅㅂ", "ㅆㅂ", "ㅄ", "ㅂㅅ", "ㅈㄹ", "ㄲㅈ", "ㅗㅗ", "ㅆ발", "ㅅ발"];
+
 export function hasBanned(s: string): boolean {
   const norm = s.toLowerCase().replace(/[\s.,\-_*+~!@#$%^&()[\]{}|\\/:;'"<>?0-9]/g, "");
-  return BANNED.some((w) => norm.includes(w));
+  const squeezed = norm.replace(/(.)\1+/g, "$1"); // "씨이이발" 문자 반복 우회 축약
+  return (
+    BANNED.some((w) => norm.includes(w) || squeezed.includes(w)) ||
+    BANNED_JAMO.some((w) => norm.includes(w))
+  );
 }
