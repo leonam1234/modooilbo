@@ -39,7 +39,7 @@ const MAIL_INQUIRY = `mailto:help@modooilbo.com?subject=${encodeURIComponent(
 )}&body=${encodeURIComponent("회사명:\n담당자:\n연락처:\n문의 내용:\n")}`;
 
 const MAIL_PARTNER = `mailto:help@modooilbo.com?subject=${encodeURIComponent(
-  "[모두일보] 기업 파트너(200만 원) 문의",
+  "[모두일보] 기업 파트너(월 200만 원) 문의",
 )}&body=${encodeURIComponent("회사명:\n담당자:\n연락처:\n희망 시작 시기:\n문의 내용:\n")}`;
 
 const MAIL_NOTIFY = `mailto:help@modooilbo.com?subject=${encodeURIComponent(
@@ -148,7 +148,7 @@ export default function SubscribePage() {
             <h2 className="font-headline text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
               모두일보 기업 파트너
             </h2>
-            <p className="font-headline text-3xl font-extrabold text-[#d4af37]">200만 원</p>
+            <p className="font-headline text-3xl font-extrabold text-[#d4af37]">월 200만 원</p>
           </div>
           <p className="mt-3 leading-relaxed text-ink-300">
             보도를 사는 광고가 아니라, 독립 저널리즘을 후원하는 파트너십입니다. 후원은 편집권에
