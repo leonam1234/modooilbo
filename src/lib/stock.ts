@@ -24,7 +24,7 @@ const PLACEHOLDER = /picsum\.photos|placehold|placeholder|via\.placeholder|dummy
 
 // 스톡 이미지를 교체(재생성)할 때 이 값을 올리면 브라우저 캐시가 무효화된다.
 // 파일명(/stock/<id>.jpg)은 그대로고 내용만 바뀌므로, 버전 쿼리가 없으면 브라우저가 옛 이미지를 계속 보여준다.
-const STOCK_VERSION = "20260631";
+const STOCK_VERSION = "20260632";
 
 export function isPlaceholderImage(url?: string): boolean {
   return !url || PLACEHOLDER.test(url);
