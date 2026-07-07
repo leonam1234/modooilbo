@@ -18,6 +18,7 @@ const FOOTER_COLS: { title: string; links: { href: string; label: string }[] }[]
     links: [
       { href: "/subscribe", label: "구독·후원 안내" },
       { href: "/newsletter", label: "뉴스레터" },
+      { href: "https://www.youtube.com/@모두일보", label: "유튜브 채널" },
       { href: "/tips", label: "제보하기" },
       { href: "/contact", label: "고객센터" },
     ],
