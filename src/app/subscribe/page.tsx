@@ -38,9 +38,22 @@ const MAIL_INQUIRY = `mailto:help@modooilbo.com?subject=${encodeURIComponent(
   "[모두일보] 제휴·후원 문의",
 )}&body=${encodeURIComponent("회사명:\n담당자:\n연락처:\n문의 내용:\n")}`;
 
+const MAIL_PARTNER = `mailto:help@modooilbo.com?subject=${encodeURIComponent(
+  "[모두일보] 기업 파트너(200만 원) 문의",
+)}&body=${encodeURIComponent("회사명:\n담당자:\n연락처:\n희망 시작 시기:\n문의 내용:\n")}`;
+
 const MAIL_NOTIFY = `mailto:help@modooilbo.com?subject=${encodeURIComponent(
   "[모두일보] 멤버십 출시 알림 신청",
 )}&body=${encodeURIComponent("모두일보 멤버십·후원 출시 소식을 받고 싶습니다. 이 메일 주소로 안내해 주세요.\n")}`;
+
+const PARTNER_BENEFITS = [
+  "후원사 크레딧 상시 노출 — 홈·기사 하단 \"모두일보와 함께하는 기업\" 로고·링크",
+  "보도자료 기사화 검토 월 2회 — 편집국 뉴스 가치 판단, 협찬 표기 원칙 준수",
+  "월간 노출 리포트 — 유입·페이지뷰·노출 지면 실측 수치 제공",
+  "뉴스레터·유튜브 크레딧 — 발송분 하단·영상 크레딧에 후원사명",
+  "인재채용 페이지 채용공고 무료 게재",
+  "공식 파트너 증서 발급 + 세금계산서 발행(광고선전비 처리 가능)",
+];
 
 function CheckIcon({ className }: { className?: string }) {
   return (
@@ -120,6 +133,46 @@ export default function SubscribePage() {
           <p className="mt-4 text-xs text-ink-400">
             문의는 help@modooilbo.com 으로도 보내실 수 있습니다.
           </p>
+        </div>
+      </section>
+
+      {/* 기업 파트너 */}
+      <section className="container-page pb-12">
+        <div className="gold-sheen mx-auto max-w-3xl rounded-2xl border border-[#d4af37]/40 bg-ink-900 p-7 sm:p-9">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="rounded-full border border-[#d4af37]/50 px-3 py-1 text-xs font-semibold text-[#d4af37]">
+              기업 파트너 · 창간 파트너 10개사 한정
+            </span>
+          </div>
+          <div className="mt-4 flex flex-wrap items-end justify-between gap-3">
+            <h2 className="font-headline text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
+              모두일보 기업 파트너
+            </h2>
+            <p className="font-headline text-3xl font-extrabold text-[#d4af37]">200만 원</p>
+          </div>
+          <p className="mt-3 leading-relaxed text-ink-300">
+            보도를 사는 광고가 아니라, 독립 저널리즘을 후원하는 파트너십입니다. 후원은 편집권에
+            일절 관여하지 않으며, 그 원칙이 후원사의 신뢰가 됩니다.
+          </p>
+          <ul className="mt-6 space-y-3 text-sm">
+            {PARTNER_BENEFITS.map((b) => (
+              <li key={b} className="flex items-start gap-2.5 text-ink-100">
+                <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-[#d4af37]" />
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-8">
+            <a
+              href={MAIL_PARTNER}
+              className="inline-flex items-center justify-center rounded-md bg-[#d4af37] px-7 py-3.5 text-sm font-bold text-ink-900 transition-opacity hover:opacity-85"
+            >
+              기업 파트너 문의하기
+            </a>
+            <p className="mt-3 text-xs text-ink-500">
+              문의 후 상담 → 계약 → 세금계산서 발행 순으로 진행됩니다.
+            </p>
+          </div>
         </div>
       </section>
 
