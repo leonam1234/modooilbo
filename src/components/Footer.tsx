@@ -132,7 +132,7 @@ export function Footer() {
             <span>{`이메일 ${SITE.email}`}</span>
           </p>
           <p className="mt-4 text-ink-400">
-            {`© ${SITE.copyrightYear} MODOO ILBO. All rights reserved.`}
+            {`© ${SITE.copyrightYear} modoo ilbo. All rights reserved.`}
           </p>
         </div>
       </div>
