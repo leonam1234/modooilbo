@@ -114,6 +114,13 @@ export default function RootLayout({
             data-cf-beacon={`{"token": "${process.env.NEXT_PUBLIC_CF_BEACON_TOKEN}"}`}
           />
         )}
+        {/* Google AdSense — 자동광고 로더 (client=ca-pub-1741876528103024) */}
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1741876528103024"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="font-sans">
         <AutoRefresh />
