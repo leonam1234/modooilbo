@@ -86,3 +86,9 @@ CREATE TABLE IF NOT EXISTS reporter_subs (
   created_at TEXT NOT NULL DEFAULT (datetime('now','+9 hours')),
   PRIMARY KEY (user_id, reporter_slug)
 );
+
+-- 뉴스레터 구독 (2026-07-07): 비회원도 이메일만으로 구독. 수신거부 = 행 삭제.
+CREATE TABLE IF NOT EXISTS newsletter_subs (
+  email TEXT PRIMARY KEY COLLATE NOCASE,
+  created_at TEXT NOT NULL DEFAULT (datetime('now','+9 hours'))
+);
