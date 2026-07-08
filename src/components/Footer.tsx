@@ -115,7 +115,7 @@ export function Footer() {
         </div>
 
         {/* 법적 정보 */}
-        <div className="mt-10 border-t border-ink-200 pt-6 text-xs leading-relaxed text-ink-400 dark:border-ink-800">
+        <div className="mt-10 border-t border-ink-200 pt-6 text-xs leading-relaxed text-ink-500 dark:text-ink-400 dark:border-ink-800">
           <p className="flex flex-wrap gap-x-3 gap-y-1">
             <span>{SITE.legalName}</span>
             <span>{`대표이사·발행인 ${SITE.publisher}`}</span>
@@ -130,7 +130,7 @@ export function Footer() {
             <span>{`대표전화 ${SITE.tel}`}</span>
             <span>{`이메일 ${SITE.email}`}</span>
           </p>
-          <p className="mt-4 text-ink-400">
+          <p className="mt-4 text-ink-500 dark:text-ink-400">
             {`© ${SITE.copyrightYear} modoo ilbo. All rights reserved.`}
           </p>
         </div>

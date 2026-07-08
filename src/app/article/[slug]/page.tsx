@@ -155,7 +155,7 @@ export default async function ArticlePage({
       <JsonLd data={breadcrumbLd} />
       <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_280px] lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10">
         <article className="min-w-0">
-          <nav className="mb-4 flex min-w-0 items-center gap-1.5 text-xs text-ink-400">
+          <nav className="mb-4 flex min-w-0 items-center gap-1.5 text-xs text-ink-500 dark:text-ink-400">
             <Link href="/" className="hover:text-signal-600">홈</Link>
             <span aria-hidden>/</span>
             <Link href={`/${article.category}`} className="shrink-0 hover:text-signal-600">
@@ -203,7 +203,7 @@ export default async function ArticlePage({
                 </span>
               )}
               <ViewCount articleId={article.id} />
-              <span className="ml-2 text-ink-400">읽는 시간 {readMinutes}분</span>
+              <span className="ml-2 text-ink-500 dark:text-ink-400">읽는 시간 {readMinutes}분</span>
             </div>
             <ArticleActions title={article.title} articleId={article.id} />
           </div>
@@ -220,7 +220,7 @@ export default async function ArticlePage({
                 />
               </div>
               {article.imageCaption && (
-                <p className="mt-2 text-center text-xs text-ink-400">{article.imageCaption}</p>
+                <p className="mt-2 text-center text-xs text-ink-500 dark:text-ink-400">{article.imageCaption}</p>
               )}
             </div>
           ) : (
@@ -237,7 +237,7 @@ export default async function ArticlePage({
               />
             </div>
             {article.imageCaption && (
-              <figcaption className="mt-2 text-xs text-ink-400">{article.imageCaption}</figcaption>
+              <figcaption className="mt-2 text-xs text-ink-500 dark:text-ink-400">{article.imageCaption}</figcaption>
             )}
           </figure>
           )}
@@ -265,7 +265,7 @@ export default async function ArticlePage({
             ))}
           </div>
 
-          <div className="mt-6 border-t border-ink-100 pt-4 text-xs leading-relaxed text-ink-400 dark:border-ink-800">
+          <div className="mt-6 border-t border-ink-100 pt-4 text-xs leading-relaxed text-ink-500 dark:text-ink-400 dark:border-ink-800">
             <p>ⓒ 모두일보(modooilbo.com) — 무단 전재·재배포 및 AI 학습·활용 금지</p>
             <p className="no-print mt-1.5">
               기사에서 잘못된 정보나 오탈자를 발견하셨나요?{" "}
@@ -337,12 +337,12 @@ export default async function ArticlePage({
                   href={`/article/${prev.slug}`}
                   className="group flex items-center gap-3 rounded-lg border border-ink-200 px-4 py-3.5 transition-colors hover:border-ink-400 dark:border-ink-800 dark:hover:border-ink-600"
                 >
-                  <span aria-hidden className="shrink-0 text-lg text-ink-400">‹</span>
+                  <span aria-hidden className="shrink-0 text-lg text-ink-500 dark:text-ink-400">‹</span>
                   <span className="relative h-12 w-16 shrink-0 overflow-hidden rounded bg-ink-100 dark:bg-ink-800">
                     <Image src={displayImageUrl(prev)} alt="" fill sizes="64px" unoptimized className="object-cover" />
                   </span>
                   <span className="min-w-0">
-                    <span className="block text-xs text-ink-400">이전 기사</span>
+                    <span className="block text-xs text-ink-500 dark:text-ink-400">이전 기사</span>
                     <span className="block truncate font-medium text-ink-800 group-hover:text-signal-700 dark:text-ink-100">
                       {prev.title}
                     </span>
@@ -357,7 +357,7 @@ export default async function ArticlePage({
                   className="group flex items-center justify-end gap-3 rounded-lg border border-ink-200 px-4 py-3.5 text-right transition-colors hover:border-ink-400 dark:border-ink-800 dark:hover:border-ink-600"
                 >
                   <span className="min-w-0">
-                    <span className="block text-xs text-ink-400">다음 기사</span>
+                    <span className="block text-xs text-ink-500 dark:text-ink-400">다음 기사</span>
                     <span className="block truncate font-medium text-ink-800 group-hover:text-signal-700 dark:text-ink-100">
                       {next.title}
                     </span>
@@ -365,7 +365,7 @@ export default async function ArticlePage({
                   <span className="relative h-12 w-16 shrink-0 overflow-hidden rounded bg-ink-100 dark:bg-ink-800">
                     <Image src={displayImageUrl(next)} alt="" fill sizes="64px" unoptimized className="object-cover" />
                   </span>
-                  <span aria-hidden className="shrink-0 text-lg text-ink-400">›</span>
+                  <span aria-hidden className="shrink-0 text-lg text-ink-500 dark:text-ink-400">›</span>
                 </Link>
               ) : (
                 <span className="hidden sm:block" />
