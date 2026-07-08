@@ -1,6 +1,11 @@
 // 모두일보 브랜드 자산 생성 — og.png / logo.png / icon.png
 // 사용: node scripts/make-assets.mjs
 // Playwright 헤드리스 크로미움으로 HTML을 렌더해 PNG로 저장한다(웹폰트 로드 후 캡쳐).
+//
+// ⚠️ 실행 금지(브랜드 오기 재발 위험): 아래 logoHtml/iconHtml은 옛 "영문 M" 규칙 그대로다.
+// 2026-07-07 브랜드 확정(커밋 a9a7b84·1efd8fa)으로 실제 커밋된 자산은 한글 '모두' 파비콘·
+// 영문 없는 로고이며 이 스크립트가 아닌 외부 도구로 생성됐다. 재실행하면 영문 'M' 파비콘이
+// 되살아나 확정 브랜드를 덮어쓴다. 자산 재생성이 필요하면 먼저 이 템플릿을 한글 규칙으로 수정할 것.
 import { chromium } from "playwright";
 import { mkdirSync } from "node:fs";
 
