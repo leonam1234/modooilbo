@@ -54,7 +54,7 @@ export function GET() {
     <title>모두일보</title>
     <link>${SITE}</link>
     <atom:link href="${SITE}/rss.xml" rel="self" type="application/rss+xml" />
-    <description>모두일보 — 모두를 위한 신뢰의 뉴스. 정치·경제·사회·국제·문화·테크.</description>
+    <description>모두일보 — 모두를 위한 신뢰의 뉴스. 경제·사회·국제·문화·스포츠·테크·오피니언.</description>
     <language>ko</language>
     <lastBuildDate>${sorted.length ? rfc822Kst(sorted[0].publishedAt) : new Date(0).toUTCString()}</lastBuildDate>
 ${items}

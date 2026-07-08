@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: "%s | 모두일보",
   },
   description:
-    "모두일보(Modoo Ilbo)는 정치·경제·사회·국제·문화·테크 전 분야의 신뢰할 수 있는 뉴스와 깊이 있는 분석을 전합니다. 모두를 위한 신뢰의 뉴스.",
+    "모두일보(Modoo Ilbo)는 경제·사회·국제·문화·스포츠·테크·오피니언 전 분야의 신뢰할 수 있는 뉴스와 깊이 있는 분석을 전합니다. 모두를 위한 신뢰의 뉴스.",
   keywords: ["모두일보", "Modoo Ilbo", "뉴스", "신문", "언론", "속보", "오피니언"],
   applicationName: "모두일보",
   authors: [{ name: "모두일보" }],
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "모두일보 — 모두를 위한 신뢰의 뉴스",
     description:
-      "모두일보(Modoo Ilbo)는 정치·경제·사회·국제·문화·테크 전 분야의 신뢰할 수 있는 뉴스와 깊이 있는 분석을 전합니다. 모두를 위한 신뢰의 뉴스.",
+      "모두일보(Modoo Ilbo)는 경제·사회·국제·문화·스포츠·테크·오피니언 전 분야의 신뢰할 수 있는 뉴스와 깊이 있는 분석을 전합니다. 모두를 위한 신뢰의 뉴스.",
     type: "website",
     locale: "ko_KR",
     url: "/",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "모두일보 — 모두를 위한 신뢰의 뉴스",
     description:
-      "모두일보(Modoo Ilbo)는 정치·경제·사회·국제·문화·테크 전 분야의 신뢰할 수 있는 뉴스와 깊이 있는 분석을 전합니다. 모두를 위한 신뢰의 뉴스.",
+      "모두일보(Modoo Ilbo)는 경제·사회·국제·문화·스포츠·테크·오피니언 전 분야의 신뢰할 수 있는 뉴스와 깊이 있는 분석을 전합니다. 모두를 위한 신뢰의 뉴스.",
     images: ["/og.png?v=2"],
   },
 };

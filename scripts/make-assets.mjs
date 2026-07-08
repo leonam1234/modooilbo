@@ -29,7 +29,7 @@ const ogHtml = `<!doctype html><html><head>${fontHead}</head><body>
     <span style="font-size:156px;font-weight:800;color:${INK};letter-spacing:-3px;">모두일보</span>
   </div>
   <div style="margin-top:34px;font-size:48px;color:#334155;font-weight:400;">모두를 위한 신뢰의 뉴스</div>
-  <div style="position:absolute;bottom:56px;font-family:${sans};font-size:26px;color:#94a3b8;letter-spacing:.5px;">정치 · 경제 · 사회 · 국제 · 문화 · 스포츠 · 테크 · 오피니언</div>
+  <div style="position:absolute;bottom:56px;font-family:${sans};font-size:26px;color:#94a3b8;letter-spacing:.5px;">경제 · 사회 · 국제 · 문화 · 스포츠 · 테크 · 오피니언</div>
 </div>
 </body></html>`;
 

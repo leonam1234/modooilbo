@@ -182,13 +182,6 @@ const BENEFITS = [
 
 const POSITIONS = [
   {
-    role: "정치부 기자",
-    dept: "편집국 정치부",
-    type: "정규직 · 경력",
-    deadline: "2026.06.30",
-    desc: "국회·정당·정책을 깊이 있게 취재하고, 정치 현상의 맥락과 본질을 분석합니다.",
-  },
-  {
     role: "경제부 기자",
     dept: "편집국 경제부",
     type: "정규직 · 경력",

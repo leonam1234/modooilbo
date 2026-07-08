@@ -167,7 +167,7 @@ export default function AdvertisePage() {
             품질이 곧 도달입니다
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-ink-600 dark:text-ink-300">
-            모두일보는 정치·경제·사회·국제·문화·테크 전 분야에서 깊이 있는 저널리즘을
+            모두일보는 경제·사회·국제·문화·스포츠·테크·오피니언 전 분야에서 깊이 있는 저널리즘을
             선보이는 종합 뉴스 매체입니다. 신뢰를 우선하는 콘텐츠는 구매력과 의사결정권을 가진
             독자층을 모으고, 그만큼 브랜드 메시지의 영향력도 커집니다.
           </p>

@@ -4,7 +4,6 @@ import { useState } from "react";
 
 /** 채용 공고와 동일한 직무 목록 (page.tsx의 POSITIONS와 일치) */
 const FIELD_OPTIONS = [
-  "정치부 기자",
   "경제부 기자",
   "디지털 뉴스 PD",
   "데이터 저널리스트",
