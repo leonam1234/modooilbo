@@ -1,7 +1,6 @@
 import type { Category, CategorySlug } from "./types";
 
 export const CATEGORIES: Category[] = [
-  { slug: "politics", name: "정치", nameEn: "Politics", description: "국회·정당·외교·안보의 핵심 동향", seoTitle: "정치 뉴스 — 국회·정당·대통령실·외교·안보", seoDescription: "국회와 정당, 대통령실, 외교·안보까지 — 모두일보가 정치권의 핵심 현안과 정책 변화를 빠르고 정확하게 전하고 깊이 있게 분석합니다." },
   { slug: "economy", name: "경제", nameEn: "Economy", description: "시장·산업·부동산·금융 심층 분석", seoTitle: "경제 뉴스 — 증시·부동산·금리·산업·기업", seoDescription: "증시와 부동산, 금리와 환율, 산업·기업 동향까지 — 모두일보가 한국 경제의 흐름을 짚고 투자와 생활에 도움이 되는 심층 분석을 전합니다." },
   { slug: "society", name: "사회", nameEn: "Society", description: "우리 사회의 오늘을 기록합니다", seoTitle: "사회 뉴스 — 사건사고·교육·노동·복지·환경", seoDescription: "사건·사고부터 교육·노동·복지·환경까지 — 모두일보가 우리 사회의 오늘을 기록하고 변화의 의미를 차분하게 풀어냅니다." },
   { slug: "world", name: "국제", nameEn: "World", description: "세계를 읽는 또 하나의 창", seoTitle: "국제 뉴스 — 미국·중국·일본·유럽 글로벌 이슈", seoDescription: "미국·중국·일본·유럽 등 세계 곳곳의 주요 뉴스 — 모두일보가 국제 정세와 글로벌 이슈를 한국의 시각으로 읽어 드립니다." },

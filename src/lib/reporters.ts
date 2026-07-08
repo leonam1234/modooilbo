@@ -11,7 +11,6 @@ export interface Reporter {
 }
 
 export const REPORTERS: Reporter[] = [
-  { slug: "jeon-jihyun", name: "전지현", role: "정치부 기자", beat: "국회·정당·행정을 취재합니다." },
   { slug: "kim-younghwan", name: "김영환", role: "경제부 기자", beat: "거시경제·산업·금융을 취재합니다." },
   { slug: "yoo-seunghyun", name: "유승현", role: "사회부 기자", beat: "사건·노동·교육 등 사회 전반을 취재합니다." },
   { slug: "kim-sungwoo", name: "김성우", role: "국제부 기자", beat: "국제 정세와 외교를 취재합니다." },

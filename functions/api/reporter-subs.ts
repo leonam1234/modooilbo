@@ -8,7 +8,7 @@ import { json, getUser, type AuthEnv } from "../_lib/auth";
 
 // 로스터 7명 고정(src/lib/reporters.ts와 동일) — 함수 번들 독립성 위해 화이트리스트 복제
 const SLUGS = new Set([
-  "jeon-jihyun", "kim-younghwan", "yoo-seunghyun", "kim-sungwoo",
+  "kim-younghwan", "yoo-seunghyun", "kim-sungwoo",
   "park-yuju", "nam-dongkyun", "yoo-suhwa",
 ]);
 

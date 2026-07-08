@@ -5,9 +5,7 @@ import { SectionBlock } from "@/components/SectionBlock";
 import { RankingList } from "@/components/RankingList";
 import { getMostRead } from "@/lib/queries";
 import { OpinionStrip } from "@/components/OpinionStrip";
-import { MediaGrid } from "@/components/MediaGrid";
 import { NewsletterCTA } from "@/components/NewsletterCTA";
-import { YoutubeBanner } from "@/components/YoutubeBanner";
 import { Reveal } from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
 import { SITE } from "@/lib/site";
@@ -73,7 +71,6 @@ export default function Home() {
 
       <div className="container-page grid gap-x-8 gap-y-12 py-8 md:grid-cols-[minmax(0,1fr)_280px] lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-x-10">
         <div className="space-y-12">
-          <Reveal><SectionBlock slug="politics" count={5} /></Reveal>
           <Reveal><SectionBlock slug="economy" count={5} /></Reveal>
           <Reveal><SectionBlock slug="society" count={5} /></Reveal>
         </div>
@@ -113,8 +110,6 @@ export default function Home() {
         <Reveal><SectionBlock slug="sports" count={4} /></Reveal>
       </div>
 
-      <Reveal><MediaGrid /></Reveal>
-      <YoutubeBanner />
       <NewsletterCTA />
     </>
   );
