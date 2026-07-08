@@ -1,12 +1,15 @@
-import { getByCategory } from "@/lib/queries";
+import { getByCategory, getLeadArticle } from "@/lib/queries";
 import { CATEGORY_MAP } from "@/lib/categories";
 import type { CategorySlug } from "@/lib/types";
 import { ArticleCard } from "./ArticleCard";
 import { SectionHeading } from "./SectionHeading";
 
 export function SectionBlock({ slug, count = 5 }: { slug: CategorySlug; count?: number }) {
+  // 홈 히어로가 쓰는 리드를 섹션에서 제외(중복 노출 방지). 정적 isLead 플래그는 데이터에
+  // 세팅되지 않아 무력 → getLeadArticle()이 실제로 해석한 리드 id로 제외한다(getSubLeads와 동일 규약).
+  const leadId = getLeadArticle().id;
   const all = getByCategory(slug, count + 1)
-    .filter((a) => !a.isLead)
+    .filter((a) => a.id !== leadId)
     .slice(0, count);
   if (!all.length) return null;
   const [lead, ...rest] = all;

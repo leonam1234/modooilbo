@@ -19,7 +19,6 @@ const FORCE = process.argv.includes("--force");
 const SIZE = "1024/683"; // 받을 원본 크기(히어로 충분, 썸네일 object-cover)
 
 const STOCK_KEYWORD = {
-  politics: "parliament",
   economy: "finance",
   society: "city",
   world: "earth",

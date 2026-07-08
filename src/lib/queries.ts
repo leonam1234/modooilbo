@@ -65,12 +65,6 @@ export function getOpinion(count = 4): Article[] {
     .slice(0, count);
 }
 
-export function getMultimedia(count = 4): Article[] {
-  return getAllArticles()
-    .filter((a) => a.type === "video")
-    .slice(0, count);
-}
-
 export function getArticleBySlug(slug: string): Article | undefined {
   return ARTICLES.find((a) => a.slug === slug);
 }

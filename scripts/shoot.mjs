@@ -35,10 +35,8 @@ try {
 
 const CORE = [
   ["home", "/"],
-  ["politics", "/politics"],
   ["economy", "/economy"],
   ["opinion", "/opinion"],
-  ["media", "/media"],
   ["search", "/search?q=" + encodeURIComponent("경제")],
   ["article", articlePath],
   ["notfound", "/__nonexistent__"],

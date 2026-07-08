@@ -32,7 +32,6 @@ const STATIC_PATH_POLICY: Record<string, PathPolicy> = {
   "/advertise": { changeFrequency: "monthly", priority: 0.3 },
   "/tips": { changeFrequency: "monthly", priority: 0.4 },
   // 주기적 갱신
-  "/media": { changeFrequency: "weekly", priority: 0.5 },
   "/subscribe": { changeFrequency: "weekly", priority: 0.5 },
   "/newsletter": { changeFrequency: "weekly", priority: 0.5 },
   // noindex(thin) — 최소 신호
@@ -44,7 +43,6 @@ const STATIC_PATH_POLICY: Record<string, PathPolicy> = {
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
     "",
-    "/media",
     "/about",
     "/careers",
     "/subscribe",
