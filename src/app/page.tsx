@@ -4,7 +4,6 @@ import { HeroLead } from "@/components/HeroLead";
 import { SectionBlock } from "@/components/SectionBlock";
 import { RankingList } from "@/components/RankingList";
 import { getMostRead } from "@/lib/queries";
-import { OpinionStrip } from "@/components/OpinionStrip";
 import { NewsletterCTA } from "@/components/NewsletterCTA";
 import { Reveal } from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
@@ -72,7 +71,6 @@ export default function Home() {
       <div className="container-page grid gap-x-8 gap-y-12 py-8 md:grid-cols-[minmax(0,1fr)_280px] lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-x-10">
         <div className="space-y-12">
           <Reveal><SectionBlock slug="economy" count={5} /></Reveal>
-          <Reveal><SectionBlock slug="society" count={5} /></Reveal>
         </div>
 
         <aside className="space-y-10">
@@ -98,7 +96,10 @@ export default function Home() {
         </aside>
       </div>
 
-      <Reveal><OpinionStrip /></Reveal>
+      <div className="container-page grid gap-10 py-10 md:grid-cols-2">
+        <Reveal><SectionBlock slug="society" count={4} /></Reveal>
+        <Reveal><SectionBlock slug="opinion" count={4} /></Reveal>
+      </div>
 
       <div className="container-page grid gap-10 py-10 md:grid-cols-2">
         <Reveal><SectionBlock slug="world" count={4} /></Reveal>
