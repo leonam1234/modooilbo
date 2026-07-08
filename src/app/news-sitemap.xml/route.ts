@@ -1,4 +1,5 @@
 import { ALL_ARTICLES } from "@/lib/news";
+import { toKstIso } from "@/lib/utils";
 
 // 정적 export: 빌드 시 out/news-sitemap.xml 로 프리렌더(동적 아님)
 export const dynamic = "force-static";
@@ -34,7 +35,7 @@ export function GET() {
         <news:name>모두일보</news:name>
         <news:language>ko</news:language>
       </news:publication>
-      <news:publication_date>${new Date(a.publishedAt).toISOString()}</news:publication_date>
+      <news:publication_date>${toKstIso(a.publishedAt)}</news:publication_date>
       <news:title>${esc(a.title)}</news:title>
     </news:news>
   </url>`;

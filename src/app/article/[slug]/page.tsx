@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { ALL_ARTICLES } from "@/lib/news";
 import { getArticleBySlug, getRelated, getPrevNext, getMostRead, getThreeLineSummary } from "@/lib/queries";
 import { CATEGORY_MAP } from "@/lib/categories";
-import { formatKoreanDateTime } from "@/lib/utils";
+import { formatKoreanDateTime, toKstIso } from "@/lib/utils";
 import { ArticleCard } from "@/components/ArticleCard";
 import { RankingList } from "@/components/RankingList";
 import { ArticleActions } from "@/components/ArticleActions";
@@ -102,8 +102,8 @@ export default async function ArticlePage({
     description: article.summary,
     image: [{ "@type": "ImageObject", url: imageUrl, width: 1600, height: 900 }],
     thumbnailUrl: imageUrl,
-    datePublished: article.publishedAt,
-    dateModified: article.updatedAt ?? article.publishedAt,
+    datePublished: toKstIso(article.publishedAt),
+    dateModified: toKstIso(article.updatedAt ?? article.publishedAt),
     keywords: article.tags.join(","),
     wordCount,
     inLanguage: "ko-KR",
@@ -195,11 +195,11 @@ export default async function ArticlePage({
               )}{" "}
               {article.author.role} ·{" "}
               <span>
-                입력 <time dateTime={article.publishedAt}>{formatKoreanDateTime(article.publishedAt)}</time>
+                입력 <time dateTime={toKstIso(article.publishedAt)}>{formatKoreanDateTime(article.publishedAt)}</time>
               </span>
               {article.updatedAt && (
                 <span className="ml-2">
-                  수정 <time dateTime={article.updatedAt}>{formatKoreanDateTime(article.updatedAt)}</time>
+                  수정 <time dateTime={toKstIso(article.updatedAt)}>{formatKoreanDateTime(article.updatedAt)}</time>
                 </span>
               )}
               <ViewCount articleId={article.id} />

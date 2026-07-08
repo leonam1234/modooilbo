@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ArticleListItem } from "@/lib/types";
 import { CATEGORY_MAP } from "@/lib/categories";
-import { cn, formatKoreanDateTime } from "@/lib/utils";
+import { cn, formatKoreanDateTime, toKstIso } from "@/lib/utils";
 import { PlayIcon } from "./icons";
 import { displayImageUrl } from "@/lib/stock";
 import { TypeBadge } from "./TypeBadge";
@@ -35,7 +35,7 @@ function CardMeta({ article, light = false }: { article: ArticleListItem; light?
       <span aria-hidden className="hidden sm:inline">
         ·
       </span>
-      <time className="hidden sm:inline" dateTime={article.publishedAt}>
+      <time className="hidden sm:inline" dateTime={toKstIso(article.publishedAt)}>
         {formatKoreanDateTime(article.publishedAt)}
       </time>
     </div>
