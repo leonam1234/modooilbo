@@ -11,7 +11,7 @@ try {
     .map((m) => m[1])
     .slice(0, 30);
   urls.unshift(`https://${HOST}/`);
-  const res = await fetch("https://api.indexnow.org/indexnow", {
+  const res = await fetch("https://searchadvisor.naver.com/indexnow" /* 네이버 직접 — api.indexnow.org는 빙 검증 지연으로 403 지속(2026-07-07 진단) */, {
     method: "POST",
     headers: { "content-type": "application/json; charset=utf-8" },
     body: JSON.stringify({ host: HOST, key: KEY, keyLocation: `https://${HOST}/${KEY}.txt`, urlList: urls }),
