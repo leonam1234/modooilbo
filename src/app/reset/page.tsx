@@ -4,6 +4,7 @@ import { ResetForm } from "./ResetForm";
 export const metadata: Metadata = {
   title: "비밀번호 재설정",
   description: "모두일보 계정 새 비밀번호 설정",
+  robots: { index: false, follow: true },
 };
 
 export default function ResetPage() {

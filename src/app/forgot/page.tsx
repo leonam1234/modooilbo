@@ -4,6 +4,7 @@ import { ForgotForm } from "./ForgotForm";
 export const metadata: Metadata = {
   title: "비밀번호 찾기",
   description: "모두일보 계정 비밀번호 재설정",
+  robots: { index: false, follow: true },
 };
 
 export default function ForgotPage() {

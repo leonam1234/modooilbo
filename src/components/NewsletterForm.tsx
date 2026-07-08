@@ -46,6 +46,7 @@ export function NewsletterForm() {
         required
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        aria-label="이메일 주소"
         placeholder="이메일 주소"
         className="h-12 flex-1 rounded-lg border border-[#d4af37]/40 bg-white/10 px-4 text-white outline-none placeholder:text-ink-400 focus:border-[#d4af37]"
       />
@@ -56,7 +57,7 @@ export function NewsletterForm() {
       >
         {state === "busy" ? "등록 중…" : "무료 구독"}
       </button>
-      {state === "error" && <p className="text-xs text-[#d4af37] sm:col-span-2">{msg}</p>}
+      {state === "error" && <p role="alert" className="text-xs text-[#d4af37] sm:col-span-2">{msg}</p>}
     </form>
   );
 }

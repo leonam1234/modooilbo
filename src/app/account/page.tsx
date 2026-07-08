@@ -5,6 +5,7 @@ import { AccountClient } from "./AccountClient";
 export const metadata: Metadata = {
   title: "마이페이지",
   description: "모두일보 계정 정보를 확인하고 관리합니다.",
+  robots: { index: false, follow: true },
 };
 
 export default function AccountPage() {

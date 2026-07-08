@@ -77,6 +77,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           autoComplete="off"
+          aria-label="검색어"
           placeholder="검색어를 입력하세요"
           className="h-10 flex-1 bg-transparent text-lg text-ink-900 outline-none placeholder:text-ink-400 dark:text-white"
         />

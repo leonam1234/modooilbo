@@ -4,6 +4,7 @@ import { VerifyEmailClient } from "./VerifyEmailClient";
 export const metadata: Metadata = {
   title: "이메일 인증",
   description: "모두일보 계정 이메일 등록 인증",
+  robots: { index: false, follow: true },
 };
 
 export default function VerifyEmailPage() {
