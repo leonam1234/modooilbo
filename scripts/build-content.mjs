@@ -18,10 +18,10 @@ const OUT_TS = join(ROOT, "src", "lib", "content.generated.ts");
 const STOCK_DIR = join(ROOT, "public", "stock");
 
 const VALID_CATEGORIES = [
-  "politics", "economy", "society", "world", "culture", "sports", "tech", "opinion",
+  "economy", "society", "world", "culture", "sports", "tech", "opinion",
 ];
 const STOCK_KEYWORD = {
-  politics: "parliament", economy: "finance", society: "city", world: "earth",
+  economy: "finance", society: "city", world: "earth",
   culture: "art", sports: "stadium", tech: "technology", opinion: "newspaper",
 };
 function lockFromId(id) {
