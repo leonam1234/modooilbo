@@ -1274,7 +1274,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T10:15:00Z",
     "imageUrl": "/stock/2026-07-07-baseball-stadium-heat-safety.jpg",
-    "imageCaption": "AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 경기장 점검 사진이 아니며, 프로야구장 폭염 안전 점검을 설명하기 위한 연출 이미지입니다.",
     "tags": [
       "프로야구",
       "폭염",
@@ -1305,7 +1305,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T10:00:00Z",
     "imageUrl": "/stock/2026-07-07-data-portability-edu-employ.jpg",
-    "imageCaption": "AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 개인정보 처리 화면이나 상담 현장 사진이 아니며, 교육·고용 분야 개인정보 전송요구권을 설명하기 위한 연출 이미지입니다.",
     "tags": [
       "개인정보보호",
       "전송요구권",
@@ -1336,7 +1336,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T09:50:00Z",
     "imageUrl": "/stock/2026-07-07-honam-semicon-gwangju-airport.jpg",
-    "imageCaption": "AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 호남 반도체 산단과 공항 부지 활용 논의를 설명하기 위한 연출 이미지입니다.",
     "tags": [
       "호남반도체",
       "광주군공항",
@@ -1367,7 +1367,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T10:05:00Z",
     "imageUrl": "/stock/2026-07-07-jjokbang-heatwave-cooling.jpg",
-    "imageCaption": "AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 지원 현장이나 거주자 사진이 아니며, 폭염기 냉방지원 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
       "폭염",
       "쪽방촌",
@@ -1398,7 +1398,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T09:55:00Z",
     "imageUrl": "/stock/2026-07-07-kfood-foodtech-plan.jpg",
-    "imageCaption": "AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 연구시설이나 기업 현장 사진이 아니며, 푸드테크 산업 육성 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
       "푸드테크",
       "K푸드",
@@ -1429,7 +1429,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T09:35:00Z",
     "imageUrl": "/stock/2026-07-07-ktx-srt-integrated-booking.jpg",
-    "imageCaption": "AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 철도 운영 화면이나 현장 사진이 아니며, 통합 예매 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
       "KTX",
       "SRT",
@@ -1460,7 +1460,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T09:30:00Z",
     "imageUrl": "/stock/2026-07-07-movie-discount-coupon.jpg",
-    "imageCaption": "AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 영화 할인권 사용 장면을 설명하기 위한 연출 이미지입니다.",
     "tags": [
       "영화할인권",
       "문화체육관광부",
@@ -1491,7 +1491,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T10:10:00Z",
     "imageUrl": "/stock/2026-07-07-road-day-kroad-digital.jpg",
-    "imageCaption": "AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 도로 관제실이나 기념식 사진이 아니며, K-Road 디지털 전환을 설명하기 위한 연출 이미지입니다.",
     "tags": [
       "도로의날",
       "KRoad",
@@ -1522,7 +1522,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T09:45:00Z",
     "imageUrl": "/stock/2026-07-07-senior-driver-pedal-support.jpg",
-    "imageCaption": "AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 운전자나 장착 현장 사진이 아니며, 페달 오조작 방지 장치 지원을 설명하기 위한 연출 이미지입니다.",
     "tags": [
       "고령운전자",
       "교통안전",
@@ -1553,7 +1553,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T09:40:00Z",
     "imageUrl": "/stock/2026-07-07-small-biz-h2-policy.jpg",
-    "imageCaption": "AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 사업장이나 정책 상담 현장 사진이 아니며, 소상공인 정책 변화를 설명하기 위한 연출 이미지입니다.",
     "tags": [
       "소상공인",
       "노란우산공제",
