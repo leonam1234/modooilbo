@@ -38,6 +38,16 @@ export function displayImageUrl(article: ArticleListItem): string {
   return url.startsWith("/stock/") ? webpSrc(`${url}?v=${STOCK_VERSION}`) : url;
 }
 
+/** 작은 카드 슬롯(compact/list/horizontal, ≤160px)용 축소 썸네일(640w webp).
+ *  webp 변환본이 있을 때만 -640을 쓰고(원본 webp와 항상 쌍으로 생성됨), 없으면 표시 URL로 폴백.
+ *  큰 카드(feature)·히어로·상세는 displayImageUrl(원본)을 쓸 것. */
+export function thumbImageUrl(article: ArticleListItem): string {
+  const raw = isPlaceholderImage(article.imageUrl) ? `/stock/${article.id}.jpg` : article.imageUrl!;
+  const m = raw.match(/^\/stock\/([^/?]+)\.jpg$/);
+  if (m && WEBP_SET.has(`${m[1]}.jpg`)) return `/stock/${m[1]}-640.webp?v=${STOCK_VERSION}`;
+  return displayImageUrl(article);
+}
+
 /** 소셜 스크레이퍼(카카오 등)용 — webp 미지원 대비 항상 jpg 유지. */
 export function ogImageUrl(article: ArticleListItem): string {
   const url = isPlaceholderImage(article.imageUrl) ? `/stock/${article.id}.jpg` : article.imageUrl!;

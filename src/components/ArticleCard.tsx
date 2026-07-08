@@ -4,7 +4,7 @@ import type { ArticleListItem } from "@/lib/types";
 import { CATEGORY_MAP } from "@/lib/categories";
 import { cn, formatKoreanDateTime, toKstIso } from "@/lib/utils";
 import { PlayIcon } from "./icons";
-import { displayImageUrl } from "@/lib/stock";
+import { displayImageUrl, thumbImageUrl } from "@/lib/stock";
 import { TypeBadge } from "./TypeBadge";
 
 type Variant = "feature" | "horizontal" | "compact" | "list" | "text" | "overlay";
@@ -48,17 +48,19 @@ function Thumb({
   priority,
   className,
   motion,
+  thumb,
 }: {
   article: ArticleListItem;
   sizes: string;
   priority?: boolean;
   className?: string;
   motion?: "zoom" | "pan";
+  thumb?: boolean; // 작은 슬롯이면 640w 축소본 사용(원본 1200px 대신)
 }) {
   return (
     <div className={cn("relative overflow-hidden rounded-md bg-ink-100 dark:bg-ink-800", className)}>
       <Image
-        src={displayImageUrl(article)}
+        src={thumb ? thumbImageUrl(article) : displayImageUrl(article)}
         alt={article.title}
         fill
         sizes={sizes}
@@ -97,7 +99,7 @@ export function ArticleCard({
     return (
       <article className={cn("group flex gap-4 transition-transform duration-300 hover:-translate-y-0.5", className)}>
         <Link prefetch={false} href={href} className="block w-28 shrink-0 sm:w-40">
-          <Thumb article={article} sizes="(max-width:640px) 112px, 160px" className="aspect-[4/3]" motion="pan" />
+          <Thumb article={article} sizes="(max-width:640px) 112px, 160px" className="aspect-[4/3]" motion="pan" thumb />
         </Link>
         <div className="min-w-0 flex-1">
           <h3
@@ -144,7 +146,7 @@ export function ArticleCard({
           <CardMeta article={article} />
         </div>
         <Link href={href} className="block w-[96px] shrink-0 sm:w-[120px]">
-          <Thumb article={article} sizes="120px" className="aspect-[3/2]" motion="pan" />
+          <Thumb article={article} sizes="120px" className="aspect-[3/2]" motion="pan" thumb />
         </Link>
       </article>
     );
@@ -154,7 +156,7 @@ export function ArticleCard({
     return (
       <article className={cn("group flex items-start gap-3 transition-transform duration-300 hover:-translate-y-0.5", className)}>
         <Link prefetch={false} href={href} className="block w-[72px] shrink-0">
-          <Thumb article={article} sizes="80px" className="aspect-square" motion="pan" />
+          <Thumb article={article} sizes="80px" className="aspect-square" motion="pan" thumb />
         </Link>
         <div className="min-w-0 flex-1">
           <h3

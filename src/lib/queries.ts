@@ -4,8 +4,12 @@ import { ALL_ARTICLES as ARTICLES } from "./news";
 const byNewest = (a: Article, b: Article) =>
   new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
 
+// 최신순 정렬 결과를 모듈 로드 시 1회만 계산해 캐시(빌드 타임).
+// 호출부는 결과를 변형하지 않고 filter/find/slice/index만 하므로 공유 참조 반환이 안전.
+// (이전엔 매 호출 [...ARTICLES].sort → getMostRead가 isHomeFresh를 2N회 부르며 O(N²·logN))
+let _sorted: Article[] | null = null;
 export function getAllArticles(): Article[] {
-  return [...ARTICLES].sort(byNewest);
+  return (_sorted ??= [...ARTICLES].sort(byNewest));
 }
 
 /** 홈 신선도(5일) — 속보 시효와 같은 방식: 최신 발행 시각 기준 상대 나이라 빌드 결정적.
