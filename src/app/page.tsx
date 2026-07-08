@@ -15,9 +15,11 @@ const organizationLd = {
   "@context": "https://schema.org",
   "@type": "NewsMediaOrganization",
   "@id": `${SITE_URL}/#organization`,
-  // 사이트 이름은 한글 "모두일보" 단일 후보만 제공 — 영어 alternateName 금지(검색결과 영문 표기 방지)
+  // 1순위 이름은 한글 "모두일보"(name). alternateName은 name이 거부될 때의 폴백 후보 —
+  // 한글을 맨 앞에 둬 한글 우선 선택 유도(SEO 자문 2026-07 반영).
   name: SITE.name,
-  url: SITE_URL,
+  alternateName: ["모두일보 뉴스", "Modoo Ilbo", "MODOO ILBO"],
+  url: `${SITE_URL}/`, // canonical(끝슬래시)과 동일 표기
   logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png`, width: 512, height: 512 },
   foundingDate: SITE.regDate.replace(/\./g, "-"),
   address: {
@@ -39,8 +41,10 @@ const websiteLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": `${SITE_URL}/#website`,
-  // 사이트 이름은 한글 "모두일보" 단일 후보만 제공 — 영어 alternateName 금지(검색결과 영문 표기 방지)
+  // 1순위 이름은 한글 "모두일보"(name). alternateName은 name이 거부될 때의 폴백 후보 —
+  // 한글을 맨 앞에 둬 한글 우선 선택 유도(SEO 자문 2026-07 반영).
   name: "모두일보",
+  alternateName: ["모두일보 뉴스", "Modoo Ilbo", "MODOO ILBO", "modooilbo.com"],
   url: `${SITE_URL}/`, // canonical(끝슬래시)과 동일 표기 — 구글 사이트 이름 인식 정합
   inLanguage: "ko-KR",
   publisher: { "@id": `${SITE_URL}/#organization` },

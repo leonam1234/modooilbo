@@ -1,0 +1,4 @@
+# www → apex 301 (정본 호스트 통일)
+# 주의: 이 규칙은 www.modooilbo.com이 Cloudflare Pages 프로젝트의 커스텀 도메인으로
+# 연결돼 있어야 동작한다(DNS 레코드 부재 시 요청이 여기까지 오지 않음).
+https://www.modooilbo.com/* https://modooilbo.com/:splat 301
