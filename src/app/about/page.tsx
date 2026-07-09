@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { ArrowRightIcon } from "@/components/icons";
+import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "회사소개",
@@ -233,17 +234,17 @@ export default function AboutPage() {
                 <div className="flex gap-3">
                   <dt className="w-14 shrink-0 font-semibold text-ink-500 dark:text-ink-400">주소</dt>
                   <dd className="text-ink-700 dark:text-ink-200">
-                    서울특별시 중구 세종대로 124 모두일보빌딩 (우 04520)
+                    {SITE.address} (우 {SITE.addressZip})
                   </dd>
                 </div>
                 <div className="flex gap-3">
                   <dt className="w-14 shrink-0 font-semibold text-ink-500 dark:text-ink-400">대표</dt>
-                  <dd className="text-ink-700 dark:text-ink-200">02-1234-5678</dd>
+                  <dd className="text-ink-700 dark:text-ink-200">{SITE.tel}</dd>
                 </div>
                 <div className="flex gap-3">
                   <dt className="w-14 shrink-0 font-semibold text-ink-500 dark:text-ink-400">교통</dt>
                   <dd className="text-ink-700 dark:text-ink-200">
-                    지하철 1·2호선 시청역 4번 출구에서 도보 3분
+                    하남테크노밸리 U1 센터 (교통 안내 준비 중)
                   </dd>
                 </div>
               </dl>
