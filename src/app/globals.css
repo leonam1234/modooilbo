@@ -330,8 +330,19 @@
    미색 종이 + 가로 섬유결(feTurbulence 가로 스트레치) — 신문 용지 결.
    초판(균일 노이즈 5.5%)은 단색으로 보여 교체(2026-07-05, 대표님 확인). */
 .paper-band {
+  /* 좌→우 무한 드리프트 속도. 타일폭 300px 기준: duration = 300 ÷ (cm/s × 37.8px).
+     2cm/s ≈ 3.97s · 3cm/s ≈ 2.65s · 1cm/s ≈ 7.94s. 속도 바꾸려면 이 값만 변경. */
+  --paper-drift-duration: 3.97s;
   background-color: #f6f3ec;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04 0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.16'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-position: 0 0;
+  animation: paper-drift var(--paper-drift-duration) linear infinite;
+}
+/* 신문지 질감 가로 무한 이동. stitchTiles='stitch'라 300px 이동 시 이음새 없이 반복.
+   background-position-x 증가 = 패턴이 우측으로 흐름(좌→우). 전역 reduced-motion 규칙이 정지 커버. */
+@keyframes paper-drift {
+  from { background-position: 0 0; }
+  to   { background-position: 300px 0; }
 }
 .dark .paper-band {
   background-color: #12151a;
