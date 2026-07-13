@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { CATEGORIES } from "@/lib/categories";
+import { BIZ_MENUS } from "@/lib/biz-menus";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./ThemeToggle";
 import { AuthMenu } from "./AuthMenu";
@@ -21,6 +22,9 @@ const COMPANY_LINKS = [
   { href: "/ethics", label: "윤리강령" },
   { href: "/contact", label: "고객센터" },
 ];
+
+// 하단 서브 줄(종합뉴스) — 기존 카테고리에서 "테크"는 제외(→ 산업·트렌드가 흡수).
+const SUB_CATEGORIES = CATEGORIES.filter((c) => c.slug !== "tech");
 
 function Logo({ className }: { className?: string }) {
   return (
@@ -121,19 +125,40 @@ export function Header() {
           </div>
         </div>
 
-        {/* 데스크톱 카테고리 내비 */}
-        <nav className="hidden border-t border-ink-100 dark:border-ink-800/60 md:block">
+        {/* 데스크톱 내비 A안 2행 — 상단: 사업 메뉴(메인·강조) / 하단: 종합뉴스(서브·옅은 배경) */}
+        {/* 상단 줄: 신규 사업 메뉴 (진하게) */}
+        <nav aria-label="사업 메뉴" className="hidden border-t border-ink-100 dark:border-ink-800/60 md:block">
           <div className="container-page flex items-center gap-1">
-            {CATEGORIES.map((c) => (
+            {BIZ_MENUS.map((m) => (
+              <Link prefetch={false}
+                key={m.slug}
+                href={`/${m.slug}`}
+                aria-current={isActive(m.slug) ? "page" : undefined}
+                className={cn(
+                  "relative px-3.5 py-3 text-[15px] font-bold transition-colors hover:text-signal-600",
+                  isActive(m.slug)
+                    ? "text-signal-600 after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:bg-signal-600"
+                    : "text-ink-900 dark:text-white",
+                )}
+              >
+                {m.name}
+              </Link>
+            ))}
+          </div>
+        </nav>
+        {/* 하단 줄: 종합뉴스 카테고리 (옅은 배경으로 분리, 색만 옅게) */}
+        <nav aria-label="종합뉴스" className="hidden border-t border-ink-100 bg-ink-50/70 dark:border-ink-800/60 dark:bg-ink-900/40 md:block">
+          <div className="container-page flex items-center gap-1">
+            {SUB_CATEGORIES.map((c) => (
               <Link prefetch={false}
                 key={c.slug}
                 href={`/${c.slug}`}
                 aria-current={isActive(c.slug) ? "page" : undefined}
                 className={cn(
-                  "relative px-3.5 py-3 text-[15px] font-semibold transition-colors hover:text-signal-600",
+                  "relative px-3.5 py-2.5 text-[15px] font-medium transition-colors hover:text-signal-600",
                   isActive(c.slug)
                     ? "text-signal-600 after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:bg-signal-600"
-                    : "text-ink-700 dark:text-ink-200",
+                    : "text-ink-500 dark:text-ink-400",
                 )}
               >
                 {c.name}
@@ -168,13 +193,28 @@ export function Header() {
               </button>
             </div>
             <div className="flex-1 overflow-y-auto px-4 py-5">
-              <p className="mb-2 text-xs font-bold uppercase tracking-wider text-ink-400">뉴스</p>
+              {/* 상단: 신규 사업 메뉴 (우선 노출·진하게) */}
               <ul className="grid grid-cols-2 gap-1">
-                {CATEGORIES.map((c) => (
+                {BIZ_MENUS.map((m) => (
+                  <li key={m.slug}>
+                    <Link prefetch={false}
+                      href={`/${m.slug}`}
+                      className="block rounded-md px-3 py-2.5 font-bold text-ink-900 hover:bg-ink-50 hover:text-signal-600 dark:text-white dark:hover:bg-ink-800"
+                    >
+                      {m.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              {/* 구분선: 배경 대신 라인으로 위/아래 경계 (모바일용 A안 변형) */}
+              <div className="my-4 border-t border-ink-100 dark:border-ink-800" />
+              {/* 하단: 종합뉴스 카테고리 (테크 제외·옅게) */}
+              <ul className="grid grid-cols-2 gap-1">
+                {SUB_CATEGORIES.map((c) => (
                   <li key={c.slug}>
                     <Link prefetch={false}
                       href={`/${c.slug}`}
-                      className="block rounded-md px-3 py-2.5 font-semibold text-ink-800 hover:bg-ink-50 hover:text-signal-600 dark:text-ink-100 dark:hover:bg-ink-800"
+                      className="block rounded-md px-3 py-2.5 font-medium text-ink-500 hover:bg-ink-50 hover:text-signal-600 dark:text-ink-400 dark:hover:bg-ink-800"
                     >
                       {c.name}
                     </Link>
