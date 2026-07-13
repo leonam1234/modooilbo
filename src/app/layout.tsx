@@ -21,6 +21,15 @@ export const metadata: Metadata = {
   authors: [{ name: "모두일보" }],
   creator: "모두일보",
   publisher: "모두일보",
+  // 파비콘 C안(「모두」) — 라이트 탭=검정, 다크 탭=흰색(Safari media 대응), .ico는 범용 폴백
+  icons: {
+    icon: [
+      { url: "/favicon.ico?v=b", sizes: "any" },
+      { url: "/icon.png?v=b", type: "image/png", sizes: "512x512", media: "(prefers-color-scheme: light)" },
+      { url: "/icon-dark.png?v=b", type: "image/png", sizes: "512x512", media: "(prefers-color-scheme: dark)" },
+    ],
+    apple: [{ url: "/apple-icon.png?v=b", sizes: "180x180" }],
+  },
   alternates: {
     types: {
       "application/rss+xml": "/rss.xml",

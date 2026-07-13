@@ -29,8 +29,9 @@ const SUB_CATEGORIES = CATEGORIES.filter((c) => c.slug !== "tech");
 function Logo({ className }: { className?: string }) {
   return (
     <Link prefetch={false} href="/" className={cn("flex items-center", className)} aria-label="모두일보 홈">
-      {/* 정식 로고(코덱스 BW 시안 02 워드마크) — 무채색이라 다크모드는 invert 반전 */}
-      <Image src="/logo.png?v=5" alt="모두일보 — 균형 있게 보는 오늘의 뉴스" width={943} height={245} priority className="h-10 w-auto dark:invert sm:h-12" />
+      {/* 정식 로고 B안(데이터심볼: 「보」 끝이 상승 막대그래프) — 라이트=검정/다크=흰색 2에셋 스위칭 */}
+      <Image src="/logo-b.png?v=1" alt="모두일보 — 균형 있게 보는 오늘의 뉴스" width={450} height={150} priority className="h-10 w-auto dark:hidden sm:h-12" />
+      <Image src="/logo-b-dark.png?v=1" alt="" aria-hidden width={450} height={150} priority className="hidden h-10 w-auto dark:block sm:h-12" />
     </Link>
   );
 }
