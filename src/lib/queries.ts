@@ -2,8 +2,9 @@ import type { Article, CategorySlug } from "./types";
 import { ALL_ARTICLES as ARTICLES } from "./news";
 import { isBizCategory } from "./categories";
 
-// 종합뉴스 홈 히어로/서브리드는 종합뉴스 축만 노출한다(사업 축=정부지원금 등은 자기 카테고리
-// 페이지·헤더 사업 메뉴로만 노출 — 파일럿 기사가 홈 대문을 점유하지 않도록 분리).
+// 종합뉴스 홈 히어로/서브리드/속보는 종합뉴스 축만 노출한다(사업 축=정부지원금 등이 대문
+// 톱기사·속보 티커를 점유해 종합뉴스 톤을 흐리지 않도록). 사업 축 기사는 홈의 별도 '기업 데이터'
+// 섹션군(BizSectionGroup)과 자기 카테고리 페이지·헤더 사업 메뉴로 노출된다.
 const isGeneralNews = (a: Article) => !isBizCategory(a.category);
 
 const byNewest = (a: Article, b: Article) =>

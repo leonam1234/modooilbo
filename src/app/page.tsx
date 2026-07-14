@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { HeroLead } from "@/components/HeroLead";
+import { BizSectionGroup } from "@/components/BizSectionGroup";
 import { SectionBlock } from "@/components/SectionBlock";
 import { RankingList } from "@/components/RankingList";
 import { getMostRead } from "@/lib/queries";
@@ -71,6 +72,10 @@ export default function Home() {
       <JsonLd data={websiteLd} />
       <h1 className="sr-only">모두일보 — 경제·사회·국제·문화·스포츠·테크·오피니언 최신 뉴스</h1>
       <HeroLead />
+
+      {/* 기업 데이터 뉴스(사업 축) — 종합뉴스 대문 직후, 종합뉴스 섹션들보다 위에 노출.
+          기사가 있는 사업 카테고리만 렌더(현재는 정부지원금). 없으면 통째로 숨김. */}
+      <BizSectionGroup />
 
       <div className="container-page grid gap-x-8 gap-y-12 py-8 md:grid-cols-[minmax(0,1fr)_280px] lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-x-10">
         <div className="space-y-12">
