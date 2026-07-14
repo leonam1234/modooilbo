@@ -71,38 +71,45 @@ export default function Home() {
       <JsonLd data={organizationLd} />
       <JsonLd data={websiteLd} />
       <h1 className="sr-only">모두일보 — 경제·사회·국제·문화·스포츠·테크·오피니언 최신 뉴스</h1>
-      <HeroLead />
 
-      <div className="container-page grid gap-x-8 gap-y-12 py-8 md:grid-cols-[minmax(0,1fr)_280px] lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-x-10">
-        <div className="space-y-12">
-          <Reveal><SectionBlock slug="economy" count={5} /></Reveal>
+      {/* 히어로 행 — [좌: 리드 + 보조4 콤팩트] | [우: '많이 본' 랭킹 + 후원 CTA].
+          모바일은 세로 스택(리드 → 보조4 → 많이 본 → 후원). '많이 본'을 히어로 우측에 고정해
+          다시 아래로 밀리지 않게 한다. */}
+      <section className="container-page py-6 sm:py-8">
+        <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_280px] lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-x-10">
+          <HeroLead />
+
+          <aside className="space-y-8">
+            <RankingList
+              count={10}
+              pool={getMostRead(60).map((a) => ({ id: a.id, slug: a.slug, title: a.title, category: a.category }))}
+            />
+
+            <div className="rounded-xl border border-ink-200 bg-ink-50 p-6 dark:border-ink-800 dark:bg-ink-900">
+              <h3 className="font-headline text-lg font-bold text-ink-900 dark:text-white">
+                독립 저널리즘을 후원하세요
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-500 dark:text-ink-300">
+                광고가 아닌 독자의 힘으로 만드는 뉴스. 모두일보의 후원회원이 되어주세요.
+              </p>
+              <Link
+                href="/subscribe"
+                className="mt-4 block rounded-md bg-signal-600 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-signal-700"
+              >
+                후원·구독하기
+              </Link>
+            </div>
+          </aside>
         </div>
+      </section>
 
-        <aside className="space-y-10">
-          <RankingList
-            count={10}
-            pool={getMostRead(60).map((a) => ({ id: a.id, slug: a.slug, title: a.title, category: a.category }))}
-          />
-
-          <div className="rounded-xl border border-ink-200 bg-ink-50 p-6 dark:border-ink-800 dark:bg-ink-900">
-            <h3 className="font-headline text-lg font-bold text-ink-900 dark:text-white">
-              독립 저널리즘을 후원하세요
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-ink-500 dark:text-ink-300">
-              광고가 아닌 독자의 힘으로 만드는 뉴스. 모두일보의 후원회원이 되어주세요.
-            </p>
-            <Link
-              href="/subscribe"
-              className="mt-4 block rounded-md bg-signal-600 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-signal-700"
-            >
-              후원·구독하기
-            </Link>
-          </div>
-        </aside>
+      {/* 경제 — 사이드바 없이 단독 섹션(많이 본은 히어로 우측으로 이동) */}
+      <div className="container-page py-6">
+        <Reveal><SectionBlock slug="economy" count={5} /></Reveal>
       </div>
 
-      {/* 기업 데이터 뉴스(사업 축) — '많이 본' 상단 행 아래, 종합뉴스 섹션들 위에 2열로 노출.
-          기사가 있는 사업 카테고리만 렌더(현재는 정부지원금). 없으면 통째로 숨김. */}
+      {/* 기업 데이터 뉴스(사업 축) — 경제 섹션 아래, 종합뉴스 섹션들 위에 2열로 노출.
+          사업 메뉴 6개 전부 노출: 기사 있는 카테고리(정부지원금)는 실제 카드, 나머지는 '준비 중' 카드. */}
       <BizSectionGroup />
 
       <div className="container-page grid gap-10 py-10 md:grid-cols-2">

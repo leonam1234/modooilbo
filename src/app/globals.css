@@ -4,18 +4,25 @@
 
 /* 헤드라인 시그니처 서체 — 마루 부리(네이버 무료 배포, 화면용 부리체).
    전 사용처가 bold 이상이라 Bold 단일 서브셋(한글 전역+라틴+기호, 275KB)만 자체 호스팅.
-   400~900 전 웨이트가 이 파일로 해석됨(별도 Regular 다운로드 없음 — 폰트 800KB→275KB). */
+   400~900 전 웨이트가 이 파일로 해석됨(별도 Regular 다운로드 없음 — 폰트 800KB→275KB).
+   ⚠️ unicode-range로 '라틴 대·소문자(A–Z, a–z)와 아라비아 숫자(0–9)'를 MaruBuri에서 제외한다.
+   서브셋 자체엔 라틴·숫자 글리프가 있지만, 그 코드포인트는 폰트스택상 다음 폰트(Pretendard)가
+   렌더하도록 비워 둔다 → 헤드라인의 영문·숫자는 Pretendard(+salt), 한글·문장부호·기호는 MaruBuri 명조 유지.
+   범위: U+0-2F, U+3A-40, U+5B-60, U+7B-10FFFF = 0–9·A–Z·a–z만 빠진 나머지 전부(한글 AC00–D7A3 포함). */
 @font-face {
   font-family: "MaruBuri";
   font-weight: 400 900;
   font-display: swap;
   src: url(/fonts/MaruBuri-Bold.subset.woff2) format("woff2");
+  unicode-range: U+0-2F, U+3A-40, U+5B-60, U+7B-10FFFF;
 }
 
 :root {
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
-  --font-serif: "MaruBuri", "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", Georgia, "Times New Roman", serif; /* 서브셋 밖 한자·희귀 글리프는 기기 명조로 */
+  /* MaruBuri는 위 unicode-range로 한글·기호만 담당 → 라틴·숫자는 곧바로 Pretendard로 폴백(영문=Pretendard+salt).
+     Pretendard를 명조 폴백(AppleMyungjo 등)보다 앞에 둬야 라틴이 기기 명조가 아닌 Pretendard로 렌더된다. */
+  --font-serif: "MaruBuri", "Pretendard Variable", Pretendard, "Noto Serif KR", "Nanum Myeongjo", "AppleMyungjo", Georgia, "Times New Roman", serif; /* 서브셋 밖 한자·희귀 글리프는 기기 명조로 */
 }
 
 @layer base {
@@ -30,6 +37,9 @@
   body {
     @apply bg-white text-ink-900 antialiased dark:bg-ink-950 dark:text-ink-100;
     font-family: var(--font-sans);
+    /* Pretendard 스타일 대체 글리프(salt) 상시 적용 — 라틴 G·I·a·l, 숫자 1·3·4·6·9만 대체되고
+       한글은 무영향(Pretendard salt에 한글 치환 없음). 영문·숫자 = Pretendard 대체 글리프로 통일. */
+    font-feature-settings: "salt" 1;
     word-break: keep-all;
     overflow-wrap: anywhere;
   }
@@ -51,6 +61,9 @@
   .font-headline {
     font-family: var(--font-serif);
     font-weight: 700; /* 마루부리는 Bold 단일 서브셋 — 헤드라인 기본 굵기 고정 */
+    /* 헤드라인 내 영문·숫자는 폴백으로 Pretendard가 렌더 → 여기서도 salt를 켜 대체 글리프 통일.
+       한글(MaruBuri 명조)은 salt 무영향이라 명조 렌더가 그대로 유지된다. */
+    font-feature-settings: "salt" 1;
     word-break: keep-all;
     letter-spacing: -0.015em; /* 부리체 헤드라인 자간 미세 축소 — 지면 밀도감 */
   }
