@@ -107,16 +107,16 @@ export default function Home() {
           사업 메뉴 6개 전부 노출: 기사 있는 카테고리(정부지원금)는 실제 카드, 나머지는 '준비 중' 카드. */}
       <BizSectionGroup />
 
-      {/* 종합뉴스 — 경제 포함 전 섹션을 한 2열 그리드로(경제 단독 대형 피처 제거).
-          경제|사회, 오피니언|국제, 문화|스포츠 짝 + 테크(7번째, 좌측 반폭). 테크는 산업·트렌드로 흡수되는 레거시라 맨 뒤. */}
+      {/* 종합뉴스 — 헤더 하단줄 순서와 동일: 경제·사회·국제·문화·스포츠·오피니언.
+          경제|사회, 국제|문화, 스포츠|오피니언 3쌍(홀수·단독 피처 없음).
+          테크는 헤더에서 빠졌고(산업·트렌드가 흡수) 홈 그리드에서도 제외 — /tech·푸터로만 유지(색인 보존). */}
       <div className="container-page grid gap-x-10 gap-y-12 py-10 md:grid-cols-2">
         <Reveal><SectionBlock slug="economy" count={4} /></Reveal>
         <Reveal><SectionBlock slug="society" count={4} /></Reveal>
-        <Reveal><SectionBlock slug="opinion" count={4} /></Reveal>
         <Reveal><SectionBlock slug="world" count={4} /></Reveal>
         <Reveal><SectionBlock slug="culture" count={4} /></Reveal>
         <Reveal><SectionBlock slug="sports" count={4} /></Reveal>
-        <Reveal><SectionBlock slug="tech" count={4} /></Reveal>
+        <Reveal><SectionBlock slug="opinion" count={4} /></Reveal>
       </div>
 
       <NewsletterCTA />
