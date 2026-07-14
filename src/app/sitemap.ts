@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { CATEGORIES } from "@/lib/categories";
+import { CATEGORIES, BIZ_CATEGORIES } from "@/lib/categories";
 import { ALL_ARTICLES } from "@/lib/news";
 
 // 정적 export 호환: 빌드 타임에 sitemap.xml 생성
@@ -70,7 +70,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
-  const categoryEntries: MetadataRoute.Sitemap = CATEGORIES.map((c) => ({
+  // 종합뉴스 + 사업 축(정부지원금 등, 기사가 붙어 승격된 것) 카테고리 목록 페이지
+  const categoryEntries: MetadataRoute.Sitemap = [...CATEGORIES, ...BIZ_CATEGORIES].map((c) => ({
     url: `${BASE}/${c.slug}/`,
     lastModified: latest(ALL_ARTICLES.filter((a) => a.category === c.slug)),
     changeFrequency: "hourly",

@@ -1,5 +1,10 @@
 import type { Article, CategorySlug } from "./types";
 import { ALL_ARTICLES as ARTICLES } from "./news";
+import { isBizCategory } from "./categories";
+
+// 종합뉴스 홈 히어로/서브리드는 종합뉴스 축만 노출한다(사업 축=정부지원금 등은 자기 카테고리
+// 페이지·헤더 사업 메뉴로만 노출 — 파일럿 기사가 홈 대문을 점유하지 않도록 분리).
+const isGeneralNews = (a: Article) => !isBizCategory(a.category);
 
 const byNewest = (a: Article, b: Article) =>
   new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
@@ -22,16 +27,20 @@ export function isHomeFresh(a: Pick<Article, "publishedAt">): boolean {
 }
 
 export function getLeadArticle(): Article {
-  const marked = ARTICLES.find((a) => a.isLead);
+  const marked = ARTICLES.find((a) => a.isLead && isGeneralNews(a));
   if (marked && isHomeFresh(marked)) return marked;
-  // 지정 리드가 낡았으면 최신 일반 기사가 대문을 차지
-  return getAllArticles().find((a) => a.type !== "opinion") ?? getAllArticles()[0];
+  // 지정 리드가 낡았으면 최신 일반(종합뉴스) 기사가 대문을 차지
+  return (
+    getAllArticles().find((a) => a.type !== "opinion" && isGeneralNews(a)) ??
+    getAllArticles().find((a) => a.type !== "opinion") ??
+    getAllArticles()[0]
+  );
 }
 
 export function getSubLeads(count = 4): Article[] {
   const lead = getLeadArticle();
   return getAllArticles()
-    .filter((a) => a.id !== lead.id && a.type !== "opinion")
+    .filter((a) => a.id !== lead.id && a.type !== "opinion" && isGeneralNews(a))
     .slice(0, count);
 }
 
@@ -46,8 +55,10 @@ export function isBreakingFresh(a: Pick<Article, "isBreaking" | "publishedAt">):
 }
 
 export function getBreaking(count = 6): Article[] {
-  const breaking = getAllArticles().filter(isBreakingFresh);
-  return (breaking.length ? breaking : getAllArticles()).slice(0, count);
+  // 속보 티커는 종합뉴스 전면 요소 — 사업 축(정부지원금 등)은 제외(폴백 최신글에도 섞이지 않게).
+  const general = getAllArticles().filter(isGeneralNews);
+  const breaking = general.filter(isBreakingFresh);
+  return (breaking.length ? breaking : general).slice(0, count);
 }
 
 export function getByCategory(slug: CategorySlug, count?: number): Article[] {
@@ -101,6 +112,7 @@ export function getThreeLineSummary(article: Article): string[] {
   for (const p of article.body) {
     if (lines.length >= 3) break;
     if (p.startsWith("![")) continue; // 인라인 이미지 문단 제외
+    if (p.startsWith("#")) continue; // 소제목(## / ###) 문단 제외
     const s = firstSentence(p);
     if (s && s !== article.summary.trim() && !lines.includes(s)) lines.push(s);
   }

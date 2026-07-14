@@ -10,7 +10,41 @@ export const CATEGORIES: Category[] = [
   { slug: "opinion", name: "오피니언", nameEn: "Opinion", description: "사설·칼럼·시론", seoTitle: "오피니언 — 사설·칼럼·시론·기고", seoDescription: "사설과 칼럼, 시론과 독자 기고 — 모두일보가 우리 시대의 쟁점을 다양한 시선으로 조명하고 건강한 공론의 장을 엽니다." },
 ];
 
-export const CATEGORY_MAP: Record<CategorySlug, Category> = CATEGORIES.reduce(
+/**
+ * 기업 데이터 뉴스 — '사업' 축 카테고리(위 종합뉴스 CATEGORIES와 분리된 신규 축).
+ * 헤더 상단 사업 메뉴(lib/biz-menus.ts)로 노출되며, 실제 기사가 붙어 정식 카테고리로
+ * 승격된 사업 메뉴만 여기에 등록한다(bids 등 '준비 중' 메뉴는 기사 카테고리가 아니므로 제외).
+ *
+ * ⚠️ 이 배열은 CATEGORIES와 분리 유지한다. 종합뉴스 내비·홈 섹션·[category] 라우트·사이트맵
+ *    카테고리 루프가 CATEGORIES만 순회하도록 두어 사업 축이 종합뉴스 면을 침범하지 않게 한다.
+ */
+export const BIZ_CATEGORIES: Category[] = [
+  {
+    slug: "grants",
+    name: "정부지원금",
+    nameEn: "Grants",
+    description: "정부·지자체 지원사업과 보조금 공고를 기업 관점에서 정리합니다",
+    seoTitle: "정부지원금 뉴스 — 정부·지자체 지원사업·보조금 공고 분석",
+    seoDescription:
+      "정부·지자체 지원사업과 보조금 공고를 대상·자격·마감 중심으로 정리합니다. 모두일보가 기업이 놓치기 쉬운 지원금 조건과 주의점을 짚어 드립니다.",
+  },
+];
+
+/** 사업 축 카테고리 슬러그 집합 — 종합뉴스 홈 히어로 등에서 사업 기사를 걸러내는 데 쓴다. */
+export const BIZ_CATEGORY_SLUGS = new Set<CategorySlug>(
+  BIZ_CATEGORIES.map((c) => c.slug),
+);
+
+/** 해당 슬러그가 사업 축(정부지원금 등) 카테고리인지 여부. */
+export function isBizCategory(slug: CategorySlug): boolean {
+  return BIZ_CATEGORY_SLUGS.has(slug);
+}
+
+// 이름·SEO 해석용 통합 맵 — 종합뉴스 + 사업 축 카테고리 정의를 모두 담는다.
+export const CATEGORY_MAP: Record<CategorySlug, Category> = [
+  ...CATEGORIES,
+  ...BIZ_CATEGORIES,
+].reduce(
   (acc, c) => {
     acc[c.slug] = c;
     return acc;
