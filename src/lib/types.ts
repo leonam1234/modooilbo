@@ -7,7 +7,12 @@ export type CategorySlug =
   | "opinion"
   | "tech"
   // 기업 데이터 뉴스 '사업' 축(종합뉴스와 분리) — 실제 기사가 붙어 승격된 것만 추가.
-  | "grants";
+  | "grants"
+  | "startup"
+  | "industry"
+  | "labor"
+  | "deals"
+  | "bids";
 
 export type ArticleType = "article" | "opinion" | "video";
 

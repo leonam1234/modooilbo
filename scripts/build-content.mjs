@@ -19,13 +19,14 @@ const STOCK_DIR = join(ROOT, "public", "stock");
 
 const VALID_CATEGORIES = [
   "economy", "society", "world", "culture", "sports", "tech", "opinion",
-  // 기업 데이터 뉴스 '사업' 축(정부지원금) — 종합뉴스와 분리된 신규 카테고리.
-  "grants",
+  // 기업 데이터 뉴스 '사업' 축 — 종합뉴스와 분리된 신규 카테고리(기사가 붙어 승격된 것).
+  "grants", "startup", "industry", "labor", "deals", "bids",
 ];
 const STOCK_KEYWORD = {
   economy: "finance", society: "city", world: "earth",
   culture: "art", sports: "stadium", tech: "technology", opinion: "newspaper",
   grants: "government",
+  startup: "startup", industry: "factory", labor: "office", deals: "contract", bids: "government",
 };
 function lockFromId(id) {
   let h = 0;
