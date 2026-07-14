@@ -103,28 +103,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 경제 — 사이드바 없이 단독 섹션(많이 본은 히어로 우측으로 이동) */}
-      <div className="container-page py-6">
-        <Reveal><SectionBlock slug="economy" count={5} /></Reveal>
-      </div>
-
-      {/* 기업 데이터 뉴스(사업 축) — 경제 섹션 아래, 종합뉴스 섹션들 위에 2열로 노출.
+      {/* 기업 데이터 뉴스(사업 축) — 히어로 직후, 종합뉴스 섹션들 위에 2열로 노출.
           사업 메뉴 6개 전부 노출: 기사 있는 카테고리(정부지원금)는 실제 카드, 나머지는 '준비 중' 카드. */}
       <BizSectionGroup />
 
-      <div className="container-page grid gap-10 py-10 md:grid-cols-2">
+      {/* 종합뉴스 — 경제 포함 전 섹션을 한 2열 그리드로(경제 단독 대형 피처 제거).
+          경제|사회, 오피니언|국제, 문화|스포츠 짝 + 테크(7번째, 좌측 반폭). 테크는 산업·트렌드로 흡수되는 레거시라 맨 뒤. */}
+      <div className="container-page grid gap-x-10 gap-y-12 py-10 md:grid-cols-2">
+        <Reveal><SectionBlock slug="economy" count={4} /></Reveal>
         <Reveal><SectionBlock slug="society" count={4} /></Reveal>
         <Reveal><SectionBlock slug="opinion" count={4} /></Reveal>
-      </div>
-
-      <div className="container-page grid gap-10 py-10 md:grid-cols-2">
         <Reveal><SectionBlock slug="world" count={4} /></Reveal>
-        <Reveal><SectionBlock slug="tech" count={4} /></Reveal>
-      </div>
-
-      <div className="container-page grid gap-10 pb-4 md:grid-cols-2">
         <Reveal><SectionBlock slug="culture" count={4} /></Reveal>
         <Reveal><SectionBlock slug="sports" count={4} /></Reveal>
+        <Reveal><SectionBlock slug="tech" count={4} /></Reveal>
       </div>
 
       <NewsletterCTA />
