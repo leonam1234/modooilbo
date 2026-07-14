@@ -73,10 +73,6 @@ export default function Home() {
       <h1 className="sr-only">모두일보 — 경제·사회·국제·문화·스포츠·테크·오피니언 최신 뉴스</h1>
       <HeroLead />
 
-      {/* 기업 데이터 뉴스(사업 축) — 종합뉴스 대문 직후, 종합뉴스 섹션들보다 위에 노출.
-          기사가 있는 사업 카테고리만 렌더(현재는 정부지원금). 없으면 통째로 숨김. */}
-      <BizSectionGroup />
-
       <div className="container-page grid gap-x-8 gap-y-12 py-8 md:grid-cols-[minmax(0,1fr)_280px] lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-x-10">
         <div className="space-y-12">
           <Reveal><SectionBlock slug="economy" count={5} /></Reveal>
@@ -104,6 +100,10 @@ export default function Home() {
           </div>
         </aside>
       </div>
+
+      {/* 기업 데이터 뉴스(사업 축) — '많이 본' 상단 행 아래, 종합뉴스 섹션들 위에 2열로 노출.
+          기사가 있는 사업 카테고리만 렌더(현재는 정부지원금). 없으면 통째로 숨김. */}
+      <BizSectionGroup />
 
       <div className="container-page grid gap-10 py-10 md:grid-cols-2">
         <Reveal><SectionBlock slug="society" count={4} /></Reveal>
