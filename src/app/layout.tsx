@@ -138,9 +138,10 @@ export default function RootLayout({
             data-cf-beacon={`{"token": "${process.env.NEXT_PUBLIC_CF_BEACON_TOKEN}"}`}
           />
         )}
-        {/* Google AdSense 자동광고는 head가 아니라 <AdSenseLoader/>가 LCP 이후 지연 주입한다
+        {/* Google AdSense 스크립트(adsbygoogle.js)는 head가 아니라 <AdSenseLoader/>가 LCP 이후 지연 주입한다
             (head의 async 스크립트도 파서가 읽는 즉시 요청 → LCP 이미지와 대역폭 경합).
-            preconnect도 그 시점에 함께 붙는다 — 사유는 AdSenseLoader.tsx 주석 참조. */}
+            preconnect도 그 시점에 함께 붙는다 — 사유는 AdSenseLoader.tsx 주석 참조.
+            자동광고는 대시보드에서 OFF. 광고는 <AdSlot/> 수동 슬롯(홈 1·기사 1)에만 나온다. */}
       </head>
       <body className="font-sans">
         <AutoRefresh />

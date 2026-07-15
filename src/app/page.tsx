@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { HeroLead } from "@/components/HeroLead";
+import { AdSlot } from "@/components/AdSlot";
 import { BizSectionGroup } from "@/components/BizSectionGroup";
 import { SectionBlock } from "@/components/SectionBlock";
 import { RankingList } from "@/components/RankingList";
@@ -106,6 +107,10 @@ export default function Home() {
       {/* 기업 데이터 뉴스(사업 축) — 히어로 직후, 종합뉴스 섹션들 위에 2열로 노출.
           사업 메뉴 6개 전부 노출: 기사 있는 카테고리(정부지원금)는 실제 카드, 나머지는 '준비 중' 카드. */}
       <BizSectionGroup />
+
+      {/* 광고(AdSense 수동 슬롯) — 기업데이터 축과 종합뉴스 축이 갈리는 자연스러운 구분점.
+          홈 전체에 이 1개만. 고정 크기라 자리가 미리 잡혀 있어 섹션이 밀리지 않는다(AdSlot.tsx). */}
+      <AdSlot placement="home" className="container-page pt-10" />
 
       {/* 종합뉴스 — 헤더 하단줄 순서와 동일: 경제·사회·국제·문화·스포츠·오피니언.
           경제|사회, 국제|문화, 스포츠|오피니언 3쌍(홀수·단독 피처 없음).

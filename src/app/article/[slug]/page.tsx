@@ -8,6 +8,7 @@ import { CATEGORY_MAP } from "@/lib/categories";
 import { formatKoreanDateTime, toKstIso } from "@/lib/utils";
 import { ArticleCard } from "@/components/ArticleCard";
 import { RankingList } from "@/components/RankingList";
+import { AdSlot } from "@/components/AdSlot";
 import { ArticleActions } from "@/components/ArticleActions";
 import { CommentSection } from "@/components/CommentSection";
 import { ListenButton } from "@/components/ListenButton";
@@ -260,7 +261,9 @@ export default async function ArticlePage({
 
           <ThreeLineSummary lines={getThreeLineSummary(article)} />
 
-          <ArticleBody body={article.body} />
+          {/* 광고(AdSense 수동 슬롯) — 본문 중간(일반 문단 3개 뒤, 뉴스 관행). 기사당 이 1개만.
+              삽입 위치 판단은 본문 구조를 아는 ArticleBody가 한다(짧은 기사는 자동 제외). */}
+          <ArticleBody body={article.body} midSlot={<AdSlot placement="article" className="!my-9" />} />
 
           <div className="mt-8 flex flex-wrap gap-2">
             {article.tags.map((t) => (

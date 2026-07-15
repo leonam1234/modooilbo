@@ -1,3 +1,4 @@
+import { Fragment, type ReactNode } from "react";
 import Image from "next/image";
 import { webpSrc } from "@/lib/stock";
 
@@ -41,72 +42,99 @@ export function splitSources(body: string[]): [string[], string | null, string[]
 /** 출처 목록에 섞여 들어온 내부 편집 메모 판별 (확인/검수/편집/데스크/내부 메모) */
 const INTERNAL_NOTE = /^(확인|검수|편집|데스크|데스킹|내부)\s*메모\s*[:：]/;
 
-export function ArticleBody({ body }: { body: string[] }) {
+/** 본문 블록 하나 — 소제목(##/###) · 유튜브 단독 문단 · 이미지 마크다운 · 일반 문단. */
+function BodyBlock({ p }: { p: string }) {
+  // "## 소제목" / "### 소제목" — 기사 중간 소제목
+  const heading = p.match(/^(#{2,3})\s+(.+)$/);
+  if (heading) {
+    return heading[1].length === 2 ? (
+      <h2 className="!mt-9 border-l-4 border-signal-600 pl-3 font-headline text-[21px] font-bold leading-snug text-ink-900 dark:text-white">
+        {heading[2]}
+      </h2>
+    ) : (
+      <h3 className="!mt-8 font-headline text-lg font-bold leading-snug text-ink-900 dark:text-white">
+        {heading[2]}
+      </h3>
+    );
+  }
+  // 유튜브 단독 문단 → 반응형 임베드(16:9, 지연 로드, 쿠키리스 도메인)
+  const yt = p.trim().match(YOUTUBE_RE);
+  if (yt) {
+    return (
+      <figure className="my-2">
+        <span className="relative block aspect-video w-full overflow-hidden rounded-lg bg-black">
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${yt[1]}`}
+            title="기사 영상"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className="absolute inset-0 h-full w-full border-0"
+          />
+        </span>
+      </figure>
+    );
+  }
+
+  const img = p.match(/^!\[([^\]]*)\]\((\/[^)]+)\)$/);
+  if (img) {
+    return (
+      <figure className="my-2">
+        <span className="relative block aspect-[16/9] w-full overflow-hidden rounded-lg bg-ink-100 dark:bg-ink-800">
+          <Image
+            src={webpSrc(img[2])}
+            alt={img[1] || ""}
+            fill
+            sizes="(max-width:1024px) 100vw, 66vw"
+            unoptimized
+            className="object-cover"
+          />
+        </span>
+        {img[1] && <figcaption className="mt-2 text-xs text-ink-500 dark:text-ink-400">{img[1]}</figcaption>}
+      </figure>
+    );
+  }
+  return <p>{p}</p>;
+}
+
+/** 본문 중간 삽입물(midSlot)을 넣는 위치 = '일반 문단' 이만큼 뒤(뉴스 관행). 소제목·이미지·영상은 세지 않는다. */
+const MID_AFTER_PARAGRAPHS = 3;
+/** 일반 문단이 이보다 적은 짧은 기사엔 넣지 않는다 — 3문단 뒤가 곧 기사 끝이라 흐름만 끊는다. */
+const MID_MIN_PARAGRAPHS = 6;
+
+function isPlainParagraph(p: string): boolean {
+  return !/^#{2,3}\s+/.test(p) && !/^!\[[^\]]*\]\((\/[^)]+)\)$/.test(p) && !YOUTUBE_RE.test(p.trim());
+}
+
+/**
+ * midSlot을 렌더할 '직후' 블록 인덱스(없으면 -1).
+ * ⚠️ 문단 자체는 절대 쪼개지 않는다 — 블록과 블록 '사이'에만 끼운다(본문 훼손 방지).
+ */
+function midSlotAfterIndex(main: string[]): number {
+  const paragraphIdx = main.map((p, i) => (isPlainParagraph(p) ? i : -1)).filter((i) => i >= 0);
+  if (paragraphIdx.length < MID_MIN_PARAGRAPHS) return -1;
+  return paragraphIdx[MID_AFTER_PARAGRAPHS - 1];
+}
+
+/**
+ * @param midSlot 본문 중간에 끼울 노드(광고 슬롯 등). 무엇을 끼울지는 호출자가 정하고,
+ *                어디에 끼울지는 여기(본문 구조를 아는 쪽)가 정한다.
+ */
+export function ArticleBody({ body, midSlot }: { body: string[]; midSlot?: ReactNode }) {
   const [main, sourceLabel, sources] = splitSources(body);
+  const midAfter = midSlot ? midSlotAfterIndex(main) : -1;
   return (
     <div
       id="article-body"
       className="mt-8 space-y-5 text-[17px] leading-[1.9] text-ink-800 dark:text-ink-200"
     >
-      {main.map((p, i) => {
-        // "## 소제목" / "### 소제목" — 기사 중간 소제목
-        const heading = p.match(/^(#{2,3})\s+(.+)$/);
-        if (heading) {
-          return heading[1].length === 2 ? (
-            <h2
-              key={i}
-              className="!mt-9 border-l-4 border-signal-600 pl-3 font-headline text-[21px] font-bold leading-snug text-ink-900 dark:text-white"
-            >
-              {heading[2]}
-            </h2>
-          ) : (
-            <h3
-              key={i}
-              className="!mt-8 font-headline text-lg font-bold leading-snug text-ink-900 dark:text-white"
-            >
-              {heading[2]}
-            </h3>
-          );
-        }
-        // 유튜브 단독 문단 → 반응형 임베드(16:9, 지연 로드, 쿠키리스 도메인)
-        const yt = p.trim().match(YOUTUBE_RE);
-        if (yt) {
-          return (
-            <figure key={i} className="my-2">
-              <span className="relative block aspect-video w-full overflow-hidden rounded-lg bg-black">
-                <iframe
-                  src={`https://www.youtube-nocookie.com/embed/${yt[1]}`}
-                  title="기사 영상"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className="absolute inset-0 h-full w-full border-0"
-                />
-              </span>
-            </figure>
-          );
-        }
-
-        const img = p.match(/^!\[([^\]]*)\]\((\/[^)]+)\)$/);
-        if (img) {
-          return (
-            <figure key={i} className="my-2">
-              <span className="relative block aspect-[16/9] w-full overflow-hidden rounded-lg bg-ink-100 dark:bg-ink-800">
-                <Image
-                  src={webpSrc(img[2])}
-                  alt={img[1] || ""}
-                  fill
-                  sizes="(max-width:1024px) 100vw, 66vw"
-                  unoptimized
-                  className="object-cover"
-                />
-              </span>
-              {img[1] && <figcaption className="mt-2 text-xs text-ink-500 dark:text-ink-400">{img[1]}</figcaption>}
-            </figure>
-          );
-        }
-        return <p key={i}>{p}</p>;
-      })}
+      {main.map((p, i) => (
+        // Fragment는 DOM 노드를 만들지 않으므로 space-y-5(직계 자식 간격)가 그대로 적용된다
+        <Fragment key={i}>
+          <BodyBlock p={p} />
+          {i === midAfter && midSlot}
+        </Fragment>
+      ))}
       {sourceLabel && sources.length > 0 && (
         <aside aria-label="출처" className="!mt-10 border-t border-ink-100 pt-4 dark:border-ink-800">
           <p className="text-[11px] font-semibold tracking-wide text-ink-500 dark:text-ink-400">
