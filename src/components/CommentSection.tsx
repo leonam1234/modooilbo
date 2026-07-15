@@ -294,7 +294,7 @@ export function CommentSection({ articleId }: { articleId: string }) {
                 setFailed(false);
                 load();
               }}
-              className="shrink-0 rounded-md border border-ink-300 px-3 py-1.5 text-xs font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200"
+              className="shrink-0 rounded-md border border-ink-300 px-3 py-1.5 text-xs font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-600 dark:text-ink-200"
             >
               다시 시도
             </button>
@@ -365,7 +365,7 @@ export function CommentSection({ articleId }: { articleId: string }) {
             type="button"
             onClick={loadMore}
             disabled={loadingMore}
-            className="rounded-md border border-ink-300 px-4 py-2 text-xs font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 disabled:opacity-50 dark:border-ink-600 dark:text-ink-200"
+            className="rounded-md border border-ink-300 px-4 py-2 text-xs font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 disabled:opacity-50 dark:border-ink-600 dark:text-ink-200"
           >
             {loadingMore ? "불러오는 중…" : "댓글 더 보기"}
           </button>

@@ -291,7 +291,7 @@ export function AccountClient() {
       />
 
       {/* 로그아웃 */}
-      <button type="button" onClick={logout} className="w-full rounded-md border border-ink-300 px-6 py-3 font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200">
+      <button type="button" onClick={logout} className="w-full rounded-md border border-ink-300 px-6 py-3 font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-600 dark:text-ink-200">
         로그아웃
       </button>
 

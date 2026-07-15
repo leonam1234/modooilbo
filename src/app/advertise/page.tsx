@@ -160,7 +160,7 @@ export default function AdvertisePage() {
       {/* 매체 소개 + 도달 지표 */}
       <section className="container-page py-10 sm:py-12">
         <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-wider text-signal-600">
+          <p className="text-sm font-semibold uppercase tracking-wider text-signal-600 dark:text-signal-400">
             Media Kit
           </p>
           <h2 className="mt-2 font-headline text-2xl font-extrabold text-ink-900 dark:text-white sm:text-3xl">
@@ -177,7 +177,7 @@ export default function AdvertisePage() {
           {METRICS.map((m) => (
             <div key={m.label} className={cardCls}>
               <dt className="text-sm font-medium text-ink-500 dark:text-ink-300">{m.label}</dt>
-              <dd className="mt-2 font-headline text-3xl font-extrabold text-signal-600">
+              <dd className="mt-2 font-headline text-3xl font-extrabold text-signal-600 dark:text-signal-400">
                 {m.value}
               </dd>
               <p className="mt-2 text-xs text-ink-500 dark:text-ink-400">{m.note}</p>
@@ -231,7 +231,7 @@ export default function AdvertisePage() {
                   </span>
                   <a
                     href="#inquiry"
-                    className="inline-flex items-center gap-1 text-sm font-semibold text-signal-600 hover:text-signal-700"
+                    className="inline-flex items-center gap-1 text-sm font-semibold text-signal-600 dark:text-signal-400 hover:text-signal-700"
                   >
                     상담 요청
                     <ArrowRightIcon className="h-4 w-4" />
@@ -283,7 +283,7 @@ export default function AdvertisePage() {
                 key={s.step}
                 className="rounded-xl border border-ink-200 bg-white p-5 dark:border-ink-800 dark:bg-ink-900"
               >
-                <span className="font-headline text-2xl font-extrabold text-signal-600">
+                <span className="font-headline text-2xl font-extrabold text-signal-600 dark:text-signal-400">
                   {s.step}
                 </span>
                 <h3 className="mt-2 font-semibold text-ink-900 dark:text-white">{s.title}</h3>
@@ -315,7 +315,7 @@ export default function AdvertisePage() {
               빠른 상담이 필요하신가요? 광고·제휴 문의{" "}
               <a
                 href="mailto:ad@modooilbo.com"
-                className="font-semibold text-signal-600 hover:text-signal-700"
+                className="font-semibold text-signal-600 dark:text-signal-400 hover:text-signal-700"
               >
                 ad@modooilbo.com
               </a>

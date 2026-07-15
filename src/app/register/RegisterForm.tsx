@@ -178,7 +178,7 @@ export function RegisterForm() {
           />
           <span>
             <span className="font-medium text-signal-600 dark:text-signal-400">(필수)</span>{" "}
-            <Link href="/terms" className="underline hover:text-signal-600">
+            <Link href="/terms" className="underline hover:text-signal-600 dark:hover:text-signal-400">
               이용약관
             </Link>
             에 동의합니다.
@@ -194,7 +194,7 @@ export function RegisterForm() {
           />
           <span>
             <span className="font-medium text-signal-600 dark:text-signal-400">(필수)</span>{" "}
-            <Link href="/privacy" className="underline hover:text-signal-600">
+            <Link href="/privacy" className="underline hover:text-signal-600 dark:hover:text-signal-400">
               개인정보처리방침
             </Link>
             에 동의합니다.

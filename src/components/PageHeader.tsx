@@ -26,14 +26,14 @@ export function PageHeader({
               align === "center" ? "justify-center" : ""
             }`}
           >
-            <Link href="/" className="hover:text-signal-600">
+            <Link href="/" className="hover:text-signal-600 dark:hover:text-signal-400">
               홈
             </Link>
             {breadcrumb.map((b, i) => (
               <span key={i} className="flex items-center gap-1.5">
                 <span aria-hidden>/</span>
                 {b.href ? (
-                  <Link href={b.href} className="hover:text-signal-600">
+                  <Link href={b.href} className="hover:text-signal-600 dark:hover:text-signal-400">
                     {b.label}
                   </Link>
                 ) : (

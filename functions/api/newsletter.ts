@@ -21,7 +21,7 @@
  * ⚠️ 배포 전 db/migrations/0002_counters.sql 원격 적용 필요(newsletter_pending, rate_limits).
  */
 import { json, sha256Hex, type AuthEnv } from "../_lib/auth";
-import { hitRateLimit } from "../_lib/rate-limit";
+import { clientIp, hitRateLimits, rateBucket } from "../_lib/rate-limit";
 import { escapeHtml, mailButton, mailShell, randHex, sendMail, type MailerEnv } from "../_lib/mailer";
 
 type Env = AuthEnv & MailerEnv & { MAILER_KEY?: string };
@@ -78,23 +78,22 @@ async function requestSubscribe(ctx: any, env: Env): Promise<Response> {
 
   // 남용 방지: IP당 15분 5회 + **이메일당 하루 3회**(남의 주소로 확인 메일을 반복 발송하는 괴롭힘 차단).
   // 저장소를 못 쓰면 거부한다 — 구 KV 구현은 바인딩이 없으면 제한이 통째로 사라졌다(fail-open).
-  const now = Date.now();
   const waitUntil = ctx.waitUntil?.bind(ctx);
+  let allowed: boolean;
   try {
-    const ipRl = await hitRateLimit(
+    allowed = await hitRateLimits(
       env,
-      `nl:ip:${await sha256Hex("modoo-nl-v1" + (ctx.request.headers.get("CF-Connecting-IP") || "0"))}`,
-      5,
-      900,
-      now,
+      [
+        { bucket: await rateBucket("newsletter", "ip", clientIp(ctx.request)), limit: 5, windowSecs: 900 },
+        { bucket: await rateBucket("newsletter", "acct", email), limit: 3, windowSecs: 86400 },
+      ],
+      Date.now(),
       waitUntil,
     );
-    if (!ipRl.allowed) return json({ error: "잠시 후 다시 시도해 주세요." }, 429);
-    const mailRl = await hitRateLimit(env, `nl:mail:${await sha256Hex(email)}`, 3, 86400, now, waitUntil);
-    if (!mailRl.allowed) return json({ error: "잠시 후 다시 시도해 주세요." }, 429);
   } catch {
     return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
   }
+  if (!allowed) return json({ error: "잠시 후 다시 시도해 주세요." }, 429);
 
   // 이미 확인된 구독자면 메일을 또 보내지 않는다. 응답은 아래와 동일해서
   // "이 주소가 구독 중인지"를 응답으로 캐낼 수 없다(구독자 목록 열거 방지).

@@ -60,7 +60,7 @@ export function SearchClient({ index }: { index: ArticleListItem[] }) {
       {q ? (
         <>
           <p className="mt-6 text-sm text-ink-500">
-            &lsquo;<span className="font-semibold text-signal-600">{q}</span>&rsquo; 검색결과{" "}
+            &lsquo;<span className="font-semibold text-signal-600 dark:text-signal-400">{q}</span>&rsquo; 검색결과{" "}
             <span className="font-semibold text-ink-800 dark:text-ink-100">{results.length}</span>건
           </p>
           {results.length ? (

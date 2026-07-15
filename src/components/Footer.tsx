@@ -47,7 +47,7 @@ export function Footer() {
                 M
               </span>
               <span className="font-headline text-2xl font-extrabold text-ink-900 dark:text-white">
-                모두<span className="text-signal-600">일보</span>
+                모두<span className="text-signal-600 dark:text-signal-400">일보</span>
               </span>
             </div>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-ink-500 dark:text-ink-400">
@@ -68,7 +68,7 @@ export function Footer() {
             <ul className="mt-6 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-ink-500 dark:text-ink-400">
               {CATEGORIES.map((c) => (
                 <li key={c.slug}>
-                  <Link prefetch={false} href={`/${c.slug}`} className="hover:text-signal-600">
+                  <Link prefetch={false} href={`/${c.slug}`} className="hover:text-signal-600 dark:hover:text-signal-400">
                     {c.name}
                   </Link>
                 </li>
@@ -83,7 +83,7 @@ export function Footer() {
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-signal-600"
+                      className="hover:text-signal-600 dark:hover:text-signal-400"
                     >
                       {new URL(url).hostname.replace(/^www\./, "")}
                     </a>
@@ -103,7 +103,7 @@ export function Footer() {
                     <li key={l.label}>
                       <Link prefetch={false}
                         href={l.href}
-                        className="text-sm text-ink-500 hover:text-signal-600 dark:text-ink-400"
+                        className="text-sm text-ink-500 hover:text-signal-600 dark:hover:text-signal-400 dark:text-ink-400"
                       >
                         {l.label}
                       </Link>

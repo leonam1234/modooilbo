@@ -64,7 +64,7 @@ export function ContactForm() {
         <button
           type="button"
           onClick={handleReset}
-          className="mt-6 rounded-md border border-ink-300 px-6 py-3 font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200"
+          className="mt-6 rounded-md border border-ink-300 px-6 py-3 font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-600 dark:text-ink-200"
         >
           새 문의 작성
         </button>

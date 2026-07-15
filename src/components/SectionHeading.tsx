@@ -33,7 +33,7 @@ export function SectionHeading({
       {href && (
         <Link
           href={href}
-          className="group inline-flex shrink-0 items-center gap-0.5 text-xs font-medium text-ink-500 dark:text-ink-400 hover:text-signal-600"
+          className="group inline-flex shrink-0 items-center gap-0.5 text-xs font-medium text-ink-500 dark:text-ink-400 hover:text-signal-600 dark:hover:text-signal-400"
         >
           더보기
           <ChevronRightIcon className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />

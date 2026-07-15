@@ -98,7 +98,7 @@ export function AdInquiryForm() {
             setAgree(false);
             setErrors({});
           }}
-          className="mt-6 rounded-md border border-ink-300 px-6 py-3 font-semibold text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200"
+          className="mt-6 rounded-md border border-ink-300 px-6 py-3 font-semibold text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-600 dark:text-ink-200"
         >
           새 문의 작성
         </button>
@@ -115,7 +115,7 @@ export function AdInquiryForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="ad-company" className={labelCls}>
-            회사명 <span className="text-signal-600">*</span>
+            회사명 <span className="text-signal-600 dark:text-signal-400">*</span>
           </label>
           <input
             id="ad-company"
@@ -131,7 +131,7 @@ export function AdInquiryForm() {
         </div>
         <div>
           <label htmlFor="ad-manager" className={labelCls}>
-            담당자 <span className="text-signal-600">*</span>
+            담당자 <span className="text-signal-600 dark:text-signal-400">*</span>
           </label>
           <input
             id="ad-manager"
@@ -147,7 +147,7 @@ export function AdInquiryForm() {
         </div>
         <div>
           <label htmlFor="ad-email" className={labelCls}>
-            이메일 <span className="text-signal-600">*</span>
+            이메일 <span className="text-signal-600 dark:text-signal-400">*</span>
           </label>
           <input
             id="ad-email"
@@ -163,7 +163,7 @@ export function AdInquiryForm() {
         </div>
         <div>
           <label htmlFor="ad-phone" className={labelCls}>
-            연락처 <span className="text-signal-600">*</span>
+            연락처 <span className="text-signal-600 dark:text-signal-400">*</span>
           </label>
           <input
             id="ad-phone"
@@ -179,7 +179,7 @@ export function AdInquiryForm() {
         </div>
         <div>
           <label htmlFor="ad-type" className={labelCls}>
-            문의 유형 <span className="text-signal-600">*</span>
+            문의 유형 <span className="text-signal-600 dark:text-signal-400">*</span>
           </label>
           <select
             id="ad-type"
@@ -223,7 +223,7 @@ export function AdInquiryForm() {
 
       <div className="mt-5">
         <label htmlFor="ad-message" className={labelCls}>
-          문의 내용 <span className="text-signal-600">*</span>
+          문의 내용 <span className="text-signal-600 dark:text-signal-400">*</span>
         </label>
         <textarea
           id="ad-message"
@@ -247,7 +247,7 @@ export function AdInquiryForm() {
           />
           <span>
             개인정보 수집·이용에 동의합니다. 제출하신 정보는 문의 응대 목적으로만 활용됩니다.{" "}
-            <span className="text-signal-600">*</span>
+            <span className="text-signal-600 dark:text-signal-400">*</span>
           </span>
         </label>
         {errors.agree && <p className={errorCls}>{errors.agree}</p>}

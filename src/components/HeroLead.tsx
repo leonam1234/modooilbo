@@ -43,7 +43,7 @@ export function HeroLead() {
         <div className="mt-4">
           <Link prefetch={false}
             href={`/${lead.category}`}
-            className="text-xs font-bold uppercase tracking-wider text-signal-600"
+            className="text-xs font-bold uppercase tracking-wider text-signal-600 dark:text-signal-400"
           >
             {CATEGORY_MAP[lead.category]?.name}
           </Link>

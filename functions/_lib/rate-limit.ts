@@ -19,8 +19,17 @@
  * 슬라이딩 로그보다 훨씬 싸다.
  */
 
+import { sha256Hex } from "./auth";
+
 export interface RateLimitEnv {
   DB: any;
+}
+
+/** 레이트리밋 축 하나(예: IP축 5회/15분). */
+export interface RateLimitRule {
+  bucket: string;
+  limit: number;
+  windowSecs: number;
 }
 
 export interface RateLimitResult {
@@ -68,6 +77,51 @@ export async function hitRateLimit(
   }
 
   return { allowed: count <= limit, count, resetAtMs: (windowStart + 1) * windowMs };
+}
+
+/**
+ * 여러 축(IP·계정·사용자 …)을 **모두** 1씩 올리고 전 축이 한도 이내인지 판정한다.
+ *
+ * ⚠️ 어느 축이 걸리든 **모든 축을 빠짐없이 증가시킨 뒤** 판정한다(중간에 빠져나가지 않는다).
+ *   축마다 "시도 횟수"의 의미를 일정하게 유지하기 위함이다.
+ *
+ * ⚠️ 트레이드오프(의도됨 — login.ts와 동일한 판단): 계정/이메일 축은 **남이 대신 태울 수 있다**.
+ *   공격자가 피해자 주소로 한도만큼 요청하면 그 주소는 창이 끝날 때까지 막힌다(자가 해소).
+ *   축이 IP뿐이면 분산 IP로 무력화되므로, 짧은 창(15분)을 조건으로 수용한다.
+ *
+ * @returns 전 축이 한도 이내면 true.
+ * @throws D1 접근 실패 시 예외 — 호출부는 반드시 잡아서 거부(fail-closed)할 것.
+ */
+export async function hitRateLimits(
+  env: RateLimitEnv,
+  rules: RateLimitRule[],
+  nowMs: number,
+  waitUntil?: (p: Promise<unknown>) => void,
+): Promise<boolean> {
+  let allowed = true;
+  for (const r of rules) {
+    const res = await hitRateLimit(env, r.bucket, r.limit, r.windowSecs, nowMs, waitUntil);
+    if (!res.allowed) allowed = false;
+  }
+  return allowed;
+}
+
+/**
+ * 버킷 키 생성 — 식별자(IP·이메일·userId) **원문은 D1에 남기지 않는다**.
+ * 용도별 솔트를 섞은 SHA-256만 저장하므로, rate_limits 테이블이 유출돼도
+ * 누가 어떤 주소로 시도했는지 역산할 수 없다(같은 값이라도 scope/axis가 다르면 다른 해시).
+ */
+export async function rateBucket(
+  scope: string,
+  axis: "ip" | "acct" | "user",
+  value: string,
+): Promise<string> {
+  return `${scope}:${axis}:${await sha256Hex(`modoo-rl-v1:${scope}:${axis}:${value}`)}`;
+}
+
+/** Cloudflare가 붙이는 실제 클라이언트 IP(위조 불가). 없으면 빈 문자열. */
+export function clientIp(request: Request): string {
+  return request.headers.get("CF-Connecting-IP") || "";
 }
 
 /** 성공 시 카운터 리셋(예: 로그인 성공 → 실패 누적 해제). 실패해도 치명적이지 않다. */

@@ -75,7 +75,7 @@ export default function SubscribePage() {
       {/* 가치 제안 */}
       <section className="container-page py-10 sm:py-12">
         <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-wide text-signal-600">왜 후원이 필요한가</p>
+          <p className="text-sm font-semibold uppercase tracking-wide text-signal-600 dark:text-signal-400">왜 후원이 필요한가</p>
           <h2 className="mt-2 font-headline text-2xl font-extrabold tracking-tight text-ink-900 dark:text-white sm:text-3xl">
             광고가 아니라, 독자가 만드는 뉴스
           </h2>
@@ -125,7 +125,7 @@ export default function SubscribePage() {
             </a>
             <a
               href={MAIL_NOTIFY}
-              className="inline-flex items-center justify-center gap-2 rounded-md border border-ink-300 px-6 py-3 text-center text-sm font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200"
+              className="inline-flex items-center justify-center gap-2 rounded-md border border-ink-300 px-6 py-3 text-center text-sm font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-600 dark:text-ink-200"
             >
               출시 소식 받기
             </a>

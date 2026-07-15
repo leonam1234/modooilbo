@@ -56,7 +56,7 @@ export function ProfileCard({
             ) : (
               <>
                 <span className="font-semibold text-ink-900 dark:text-white">{user.name}</span>
-                <button type="button" onClick={onEditStart} className="shrink-0 text-xs font-medium text-signal-600 hover:text-signal-700">
+                <button type="button" onClick={onEditStart} className="shrink-0 text-xs font-medium text-signal-600 dark:text-signal-400 hover:text-signal-700">
                   변경
                 </button>
               </>

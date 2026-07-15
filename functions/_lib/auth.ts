@@ -7,7 +7,14 @@
 
 export interface AuthEnv {
   DB: any;
-  REACTIONS?: any; // 로그인 시도 제한(rate limit)에 재사용
+  /**
+   * @deprecated 2026-07-15 — **코드에서 더 이상 읽지 않는다**(사용처 0건).
+   * 조회수·반응·레이트리밋·이메일 인증 토큰이 전부 D1로 이전됐다(KV엔 원자 증감이 없어
+   * get→+1→put이 경합에서 뚫렸고, 인증 토큰은 평문이 곧 키였다).
+   * 바인딩만 롤백 안전을 위해 한시적으로 유지 — 사유·제거 조건은 wrangler.jsonc 주석 참조.
+   * 새 코드에서 절대 쓰지 말 것(쓰는 순간 그 경합·fail-open 문제가 되살아난다).
+   */
+  REACTIONS?: any;
 }
 
 export const COOKIE_NAME = "modoo_session";

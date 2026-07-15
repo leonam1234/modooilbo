@@ -207,7 +207,7 @@ export function LoginForm() {
         <button
           type="button"
           onClick={() => handleSocial("구글")}
-          className="flex h-11 w-full items-center justify-center gap-2 rounded-md border border-ink-200 bg-white px-4 font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-700 dark:bg-ink-900 dark:text-ink-200"
+          className="flex h-11 w-full items-center justify-center gap-2 rounded-md border border-ink-200 bg-white px-4 font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-700 dark:bg-ink-900 dark:text-ink-200"
         >
           <GoogleIcon />
           구글로 시작하기

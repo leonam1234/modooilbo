@@ -112,8 +112,8 @@ export function LocationPicker({ className }: { className?: string }) {
         aria-label="내 위치로 날씨 지역 설정"
         className={cn(
           // 히트영역 확보(-m으로 시각 크기 유지) — 20px 터치 타깃 지적 대응
-          "-m-1.5 shrink-0 rounded-full p-2 transition-colors hover:text-signal-600 dark:hover:text-white",
-          locating && "animate-pulse text-signal-600 dark:text-white",
+          "-m-1.5 shrink-0 rounded-full p-2 transition-colors hover:text-signal-600 dark:hover:text-signal-400 dark:hover:text-white",
+          locating && "animate-pulse text-signal-600 dark:text-signal-400 dark:text-white",
         )}
       >
         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden>
@@ -141,7 +141,7 @@ export function LocationPicker({ className }: { className?: string }) {
       <Link
         href="/weather"
         title={wx ? "주간예보 보기" : "날씨 정보를 불러오지 못했습니다 — 주간예보 보기"}
-        className="flex shrink-0 items-center gap-1 whitespace-nowrap border-l border-ink-200 pl-2 text-ink-500 transition-colors hover:text-signal-600 dark:border-ink-700 dark:text-ink-300"
+        className="flex shrink-0 items-center gap-1 whitespace-nowrap border-l border-ink-200 pl-2 text-ink-500 transition-colors hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-700 dark:text-ink-300"
       >
         {wx ? (
           <>

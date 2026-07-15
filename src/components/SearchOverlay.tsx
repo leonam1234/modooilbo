@@ -199,7 +199,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
             <button
               type="button"
               onClick={goSearchAll}
-              className="w-full px-1 py-2.5 text-left text-sm font-semibold text-signal-600 hover:text-signal-700"
+              className="w-full px-1 py-2.5 text-left text-sm font-semibold text-signal-600 dark:text-signal-400 hover:text-signal-700"
             >
               &lsquo;{query.trim()}&rsquo; 전체 검색 →
             </button>

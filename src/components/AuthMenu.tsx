@@ -76,7 +76,7 @@ export function AuthMenu({ variant }: { variant: "links" | "pill" }) {
   return user ? (
     <Link
       href="/account"
-      className="ml-1 hidden items-center gap-1.5 rounded-full border border-ink-200 px-3.5 py-1.5 text-sm font-medium text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:border-ink-700 dark:text-ink-200 sm:inline-flex"
+      className="ml-1 hidden items-center gap-1.5 rounded-full border border-ink-200 px-3.5 py-1.5 text-sm font-medium text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-700 dark:text-ink-200 sm:inline-flex"
     >
       <UserIcon className="h-4 w-4" />
       {user.name}님
@@ -84,7 +84,7 @@ export function AuthMenu({ variant }: { variant: "links" | "pill" }) {
   ) : (
     <Link
       href="/login"
-      className="ml-1 hidden items-center gap-1.5 rounded-full border border-ink-200 px-3.5 py-1.5 text-sm font-medium text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:border-ink-700 dark:text-ink-200 sm:inline-flex"
+      className="ml-1 hidden items-center gap-1.5 rounded-full border border-ink-200 px-3.5 py-1.5 text-sm font-medium text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-700 dark:text-ink-200 sm:inline-flex"
     >
       <UserIcon className="h-4 w-4" />
       로그인

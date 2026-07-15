@@ -101,7 +101,7 @@ export function RankingList({ pool, count = 6 }: { pool: Item[]; count?: number 
   return (
     <section>
       <div className="mb-4 flex items-center gap-2.5 border-b-2 border-ink-900 pb-2.5 dark:border-ink-100">
-        <TrendingIcon className="h-5 w-5 shrink-0 text-signal-600" />
+        <TrendingIcon className="h-5 w-5 shrink-0 text-signal-600 dark:text-signal-400" />
         {/* iOS식 유리 세그먼트 탭 */}
         <div className="glass flex rounded-full p-0.5" role="tablist" aria-label="랭킹 종류" onKeyDown={onTabKey}>
           {TABS.map((t) => (
@@ -148,13 +148,13 @@ export function RankingList({ pool, count = 6 }: { pool: Item[]; count?: number 
                     "w-8 shrink-0 font-headline text-2xl font-black leading-none tracking-tight tabular-nums",
                     // 4위 이하는 의도적으로 옅게 두되 큰 글자(24px black) AA 3:1은 지킨다
                     // (라이트 ink-400=3.25:1 / 다크 ink-500=4.02:1 — 이전 ink-300/ink-600은 2.01·2.68로 미달)
-                    i < 3 ? "text-signal-600" : "text-ink-400 dark:text-ink-500",
+                    i < 3 ? "text-signal-600 dark:text-signal-400" : "text-ink-400 dark:text-ink-500",
                   )}
                 >
                   {i + 1}
                 </span>
                 <Link prefetch={false} href={`/article/${a.slug}`} className="group flex-1">
-                  <h3 className="clamp-2 min-h-[2.75em] text-sm font-semibold leading-snug text-ink-800 group-hover:text-signal-600 dark:text-ink-100">
+                  <h3 className="clamp-2 min-h-[2.75em] text-sm font-semibold leading-snug text-ink-800 group-hover:text-signal-600 dark:group-hover:text-signal-400 dark:text-ink-100">
                     {a.title}
                   </h3>
                   <span className="mt-1 block text-xs text-ink-500 dark:text-ink-400">

@@ -225,3 +225,21 @@ CREATE INDEX IF NOT EXISTS idx_comments_article_roots
 
 -- 답글 조회(parent_id IN (...))용. 기존 인덱스는 article_id 선두라 답글 묶음 조회를 못 태운다.
 CREATE INDEX IF NOT EXISTS idx_comments_parent ON comments(parent_id, created_at);
+
+-- ─────────────────────────────────────────────────────────────────────────────
+-- 이메일 인증 토큰 KV → D1 이전 (2026-07-15)
+--   증분 마이그레이션 정본: db/migrations/0003_auth_tokens.sql (원격 적용은 그 파일로).
+--   여기(schema.sql)에도 동일 정의를 두어 전체 스키마의 단일 사본을 유지한다.
+--   구 KV는 `emailreg:<평문토큰>` = {uid,email} — **평문 토큰이 곧 키**라 KV 열람만으로
+--   남의 인증 링크를 완성할 수 있었고, 소비(get→delete)가 비원자라 동시 재사용이 가능했다.
+--   → sessions·password_resets와 동일하게 SHA-256만 저장 + DELETE...RETURNING 원자 소비.
+-- ─────────────────────────────────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS email_verifications (
+  token_hash TEXT PRIMARY KEY,                  -- SHA-256(토큰) hex. 평문 토큰은 메일로만 나간다.
+  user_id TEXT NOT NULL REFERENCES users(id),   -- 인증 대상 계정
+  email TEXT NOT NULL COLLATE NOCASE,           -- 등록하려는 이메일(발송 시점 값 — 확인 시 재검증한다)
+  created_at TEXT NOT NULL DEFAULT (datetime('now','+9 hours')),
+  expires_at TEXT NOT NULL                      -- 발급 + 30분(KST 벽시계)
+);
+CREATE INDEX IF NOT EXISTS idx_email_verifications_user ON email_verifications(user_id, created_at);
+CREATE INDEX IF NOT EXISTS idx_email_verifications_expires ON email_verifications(expires_at);

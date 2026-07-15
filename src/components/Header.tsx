@@ -83,7 +83,7 @@ export function Header() {
         <div className="container-page flex h-9 items-center justify-between">
           <span className="tabular-nums">{today || " "}</span>
           <nav className="flex items-center gap-4">
-            <Link prefetch={false} href="/subscribe" className="font-semibold text-signal-600 hover:text-signal-700">
+            <Link prefetch={false} href="/subscribe" className="font-semibold text-signal-600 dark:text-signal-400 hover:text-signal-700">
               후원·구독
             </Link>
             <span aria-hidden className="text-ink-200 dark:text-ink-700">|</span>
@@ -134,9 +134,9 @@ export function Header() {
                 href={`/${m.slug}`}
                 aria-current={isActive(m.slug) ? "page" : undefined}
                 className={cn(
-                  "relative px-3.5 py-3 text-[15px] font-bold transition-colors hover:text-signal-600",
+                  "relative px-3.5 py-3 text-[15px] font-bold transition-colors hover:text-signal-600 dark:hover:text-signal-400",
                   isActive(m.slug)
-                    ? "text-signal-600 after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:bg-signal-600"
+                    ? "text-signal-600 dark:text-signal-400 after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:bg-signal-600"
                     : "text-ink-900 dark:text-white",
                 )}
               >
@@ -154,9 +154,9 @@ export function Header() {
                 href={`/${c.slug}`}
                 aria-current={isActive(c.slug) ? "page" : undefined}
                 className={cn(
-                  "relative px-3.5 py-2.5 text-[15px] font-medium transition-colors hover:text-signal-600",
+                  "relative px-3.5 py-2.5 text-[15px] font-medium transition-colors hover:text-signal-600 dark:hover:text-signal-400",
                   isActive(c.slug)
-                    ? "text-signal-600 after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:bg-signal-600"
+                    ? "text-signal-600 dark:text-signal-400 after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:bg-signal-600"
                     : "text-ink-500 dark:text-ink-400",
                 )}
               >
@@ -198,7 +198,7 @@ export function Header() {
                   <li key={m.slug}>
                     <Link prefetch={false}
                       href={`/${m.slug}`}
-                      className="block rounded-md px-3 py-2.5 font-bold text-ink-900 hover:bg-ink-50 hover:text-signal-600 dark:text-white dark:hover:bg-ink-800"
+                      className="block rounded-md px-3 py-2.5 font-bold text-ink-900 hover:bg-ink-50 hover:text-signal-600 dark:hover:text-signal-400 dark:text-white dark:hover:bg-ink-800"
                     >
                       {m.name}
                     </Link>
@@ -213,7 +213,7 @@ export function Header() {
                   <li key={c.slug}>
                     <Link prefetch={false}
                       href={`/${c.slug}`}
-                      className="block rounded-md px-3 py-2.5 font-medium text-ink-500 hover:bg-ink-50 hover:text-signal-600 dark:text-ink-400 dark:hover:bg-ink-800"
+                      className="block rounded-md px-3 py-2.5 font-medium text-ink-500 hover:bg-ink-50 hover:text-signal-600 dark:hover:text-signal-400 dark:text-ink-400 dark:hover:bg-ink-800"
                     >
                       {c.name}
                     </Link>
@@ -226,7 +226,7 @@ export function Header() {
                   <li key={l.href}>
                     <Link prefetch={false}
                       href={l.href}
-                      className="block rounded-md px-3 py-2.5 text-sm text-ink-700 hover:bg-ink-50 hover:text-signal-600 dark:text-ink-200 dark:hover:bg-ink-800"
+                      className="block rounded-md px-3 py-2.5 text-sm text-ink-700 hover:bg-ink-50 hover:text-signal-600 dark:hover:text-signal-400 dark:text-ink-200 dark:hover:bg-ink-800"
                     >
                       {l.label}
                     </Link>

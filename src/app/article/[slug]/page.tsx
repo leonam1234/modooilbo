@@ -165,9 +165,9 @@ export default async function ArticlePage({
       <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_280px] lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10">
         <article className="min-w-0">
           <nav className="mb-4 flex min-w-0 items-center gap-1.5 text-xs text-ink-500 dark:text-ink-400">
-            <Link href="/" className="hover:text-signal-600">홈</Link>
+            <Link href="/" className="hover:text-signal-600 dark:hover:text-signal-400">홈</Link>
             <span aria-hidden>/</span>
-            <Link href={`/${article.category}`} className="shrink-0 hover:text-signal-600">
+            <Link href={`/${article.category}`} className="shrink-0 hover:text-signal-600 dark:hover:text-signal-400">
               {cat?.name}
             </Link>
             <span aria-hidden>/</span>
@@ -178,7 +178,7 @@ export default async function ArticlePage({
 
           <Link
             href={`/${article.category}`}
-            className="text-sm font-bold text-signal-600 hover:text-signal-700"
+            className="text-sm font-bold text-signal-600 dark:text-signal-400 hover:text-signal-700"
           >
             {cat?.name}
           </Link>
@@ -280,12 +280,12 @@ export default async function ArticlePage({
               기사에서 잘못된 정보나 오탈자를 발견하셨나요?{" "}
               <a
                 href={`mailto:correction@modooilbo.com?subject=${encodeURIComponent(`[정정요청] ${article.title}`)}`}
-                className="underline underline-offset-2 hover:text-signal-600"
+                className="underline underline-offset-2 hover:text-signal-600 dark:hover:text-signal-400"
               >
                 정정 요청하기
               </a>
               <span aria-hidden> · </span>
-              <Link href="/ethics" className="underline underline-offset-2 hover:text-signal-600">
+              <Link href="/ethics" className="underline underline-offset-2 hover:text-signal-600 dark:hover:text-signal-400">
                 정정·반론 원칙
               </Link>
             </p>
@@ -310,7 +310,7 @@ export default async function ArticlePage({
             {getReporterByName(article.author.name) && (
               <Link
                 href={`/reporter/${getReporterByName(article.author.name)!.slug}`}
-                className="shrink-0 rounded-md border border-ink-300 px-3 py-2 text-xs font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200"
+                className="shrink-0 rounded-md border border-ink-300 px-3 py-2 text-xs font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-600 dark:text-ink-200"
               >
                 기자의 다른 기사
               </Link>

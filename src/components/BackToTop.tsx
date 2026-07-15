@@ -19,7 +19,7 @@ export function BackToTop() {
       type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label="맨 위로"
-      className="glass no-print fixed bottom-6 right-5 z-50 grid h-11 w-11 animate-[overlay-in_.2s_ease-out] place-items-center rounded-full text-ink-700 transition-colors hover:text-signal-600 dark:text-ink-100"
+      className="glass no-print fixed bottom-6 right-5 z-50 grid h-11 w-11 animate-[overlay-in_.2s_ease-out] place-items-center rounded-full text-ink-700 transition-colors hover:text-signal-600 dark:hover:text-signal-400 dark:text-ink-100"
     >
       <svg
         viewBox="0 0 24 24"

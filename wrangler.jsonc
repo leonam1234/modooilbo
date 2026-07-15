@@ -13,6 +13,14 @@
     //   id 확인: wrangler d1 execute modooilbo-members --remote \
     //     --command "SELECT id, name FROM users WHERE email = '<편집국 계정 이메일>';"
   },
+  // ⚠️ KV(REACTIONS) — 2026-07-15 기준 **functions/ 코드의 사용처 0건**(전수 확인).
+  //   조회수·반응·레이트리밋·이메일 인증 토큰이 전부 D1로 옮겨졌다(0002/0003 마이그레이션).
+  //   그럼에도 바인딩을 남겨 두는 이유:
+  //     1) 롤백 안전 — 이번 배포를 되돌리면 KV를 쓰는 구 코드가 다시 뜬다. 바인딩이 없으면
+  //        그 구 코드가 곧장 깨진다. 배포가 안정화된 뒤 제거하는 게 순서다.
+  //     2) 네임스페이스에 구 데이터(views:*, emailreg:*)가 남아 있다 — 조회수 이관
+  //        스크립트(scripts/migrate-views-kv-to-d1.mjs, 미실행)가 아직 대기 중이다.
+  //   → 배포 안정화 + 이관 종료 확인 후 이 블록과 _lib/auth.ts의 REACTIONS 필드를 함께 제거할 것.
   "kv_namespaces": [
     {
       "binding": "REACTIONS",

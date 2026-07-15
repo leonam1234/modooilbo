@@ -86,7 +86,7 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
             setAgree(false);
             setErrors({});
           }}
-          className="mt-6 rounded-md border border-ink-300 px-6 py-3 font-semibold text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200"
+          className="mt-6 rounded-md border border-ink-300 px-6 py-3 font-semibold text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-600 dark:text-ink-200"
         >
           새 지원서 작성
         </button>
@@ -103,7 +103,7 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="apply-name" className={labelCls}>
-            이름 <span className="text-signal-600">*</span>
+            이름 <span className="text-signal-600 dark:text-signal-400">*</span>
           </label>
           <input
             id="apply-name"
@@ -119,7 +119,7 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
         </div>
         <div>
           <label htmlFor="apply-phone" className={labelCls}>
-            연락처 <span className="text-signal-600">*</span>
+            연락처 <span className="text-signal-600 dark:text-signal-400">*</span>
           </label>
           <input
             id="apply-phone"
@@ -135,7 +135,7 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
         </div>
         <div>
           <label htmlFor="apply-email" className={labelCls}>
-            이메일 <span className="text-signal-600">*</span>
+            이메일 <span className="text-signal-600 dark:text-signal-400">*</span>
           </label>
           <input
             id="apply-email"
@@ -151,7 +151,7 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
         </div>
         <div>
           <label htmlFor="apply-field" className={labelCls}>
-            지원 분야 <span className="text-signal-600">*</span>
+            지원 분야 <span className="text-signal-600 dark:text-signal-400">*</span>
           </label>
           <select
             id="apply-field"
@@ -190,7 +190,7 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
 
       <div className="mt-5">
         <label htmlFor="apply-intro" className={labelCls}>
-          자기소개 <span className="text-signal-600">*</span>
+          자기소개 <span className="text-signal-600 dark:text-signal-400">*</span>
         </label>
         <textarea
           id="apply-intro"
@@ -230,7 +230,7 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
           />
           <span>
             개인정보 수집·이용에 동의합니다. 제출하신 정보는 채용 전형 목적으로만 활용되며,
-            전형 종료 후 관련 법령에 따라 파기됩니다. <span className="text-signal-600">*</span>
+            전형 종료 후 관련 법령에 따라 파기됩니다. <span className="text-signal-600 dark:text-signal-400">*</span>
           </span>
         </label>
         {errors.agree && <p className={errorCls}>{errors.agree}</p>}

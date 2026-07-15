@@ -114,9 +114,9 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
   }
 
   const iconBtn =
-    "inline-grid h-9 w-9 place-items-center rounded-full border border-ink-200 text-ink-600 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-700 dark:text-ink-300";
+    "inline-grid h-9 w-9 place-items-center rounded-full border border-ink-200 text-ink-600 transition-colors hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-700 dark:text-ink-300";
   const snsBtn =
-    "inline-grid h-9 w-9 place-items-center rounded-full border border-ink-200 text-sm font-bold text-ink-600 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-700 dark:text-ink-300";
+    "inline-grid h-9 w-9 place-items-center rounded-full border border-ink-200 text-sm font-bold text-ink-600 transition-colors hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-700 dark:text-ink-300";
 
   // 스크랩·복사 결과는 1.5초짜리 시각 툴팁으로만 표시돼 스크린리더 사용자에게는 아무 일도
   // 일어나지 않은 것과 같았다. 라이브 리전은 **메시지가 생기기 전부터 DOM에 있어야** 낭독되므로
@@ -136,7 +136,7 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
           type="button"
           onClick={() => setSize((s) => Math.max(0, s - 1))}
           aria-label="글자 작게"
-          className="px-3.5 py-2 text-sm text-ink-500 hover:text-signal-600"
+          className="px-3.5 py-2 text-sm text-ink-500 hover:text-signal-600 dark:hover:text-signal-400"
         >
           가−
         </button>
@@ -145,7 +145,7 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
           type="button"
           onClick={() => setSize((s) => Math.min(SIZES.length - 1, s + 1))}
           aria-label="글자 크게"
-          className="px-3.5 py-2 text-sm font-semibold text-ink-600 hover:text-signal-600 dark:text-ink-300"
+          className="px-3.5 py-2 text-sm font-semibold text-ink-600 hover:text-signal-600 dark:hover:text-signal-400 dark:text-ink-300"
         >
           가+
         </button>
@@ -156,7 +156,7 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
           onClick={toggleSave}
           aria-label="스크랩"
           aria-pressed={saved}
-          className={cn(iconBtn, saved && "border-signal-500 bg-signal-50 text-signal-600 dark:bg-signal-950")}
+          className={cn(iconBtn, saved && "border-signal-500 bg-signal-50 text-signal-600 dark:text-signal-400 dark:bg-signal-950")}
         >
           <BookmarkIcon className="h-4 w-4" />
         </button>
@@ -245,7 +245,7 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
           onClick={() => setMenuOpen((v) => !v)}
           aria-expanded={menuOpen}
           aria-haspopup="menu"
-          className="inline-flex h-9 items-center gap-1.5 rounded-full border border-ink-200 px-3.5 text-sm font-semibold text-ink-600 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-700 dark:text-ink-300"
+          className="inline-flex h-9 items-center gap-1.5 rounded-full border border-ink-200 px-3.5 text-sm font-semibold text-ink-600 transition-colors hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-700 dark:text-ink-300"
         >
           <ShareIcon className="h-4 w-4" />
           공유

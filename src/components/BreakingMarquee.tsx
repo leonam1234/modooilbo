@@ -24,7 +24,7 @@ export function BreakingMarquee({ items }: { items: { slug: string; title: strin
             <li key={`${a.slug}-${i}`} className="shrink-0">
               <Link
                 href={`/article/${a.slug}`}
-                className="text-sm text-ink-600 transition-colors hover:text-signal-600 dark:text-ink-300"
+                className="text-sm text-ink-600 transition-colors hover:text-signal-600 dark:hover:text-signal-400 dark:text-ink-300"
               >
                 {a.title}
               </Link>

@@ -62,7 +62,7 @@ export function VerifyEmailClient() {
       <Link
         prefetch={false}
         href="/account/"
-        className="mt-6 inline-block rounded-md border border-ink-300 px-6 py-3 font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200"
+        className="mt-6 inline-block rounded-md border border-ink-300 px-6 py-3 font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-600 dark:text-ink-200"
       >
         계정 페이지로 가기
       </Link>

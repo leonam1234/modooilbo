@@ -241,7 +241,7 @@ export default function CareersPage() {
       {/* 인트로 */}
       <section className="container-page py-10 sm:py-12">
         <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-wider text-signal-600">
+          <p className="text-sm font-semibold uppercase tracking-wider text-signal-600 dark:text-signal-400">
             Why Modoo Ilbo
           </p>
           <h2 className="mt-2 font-headline text-2xl font-extrabold text-ink-900 dark:text-white sm:text-3xl">
@@ -334,7 +334,7 @@ export default function CareersPage() {
             </div>
             <a
               href="#apply"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-signal-600 hover:text-signal-700"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-signal-600 dark:text-signal-400 hover:text-signal-700"
             >
               바로 지원하기
               <ArrowRightIcon className="h-4 w-4" />
@@ -395,7 +395,7 @@ export default function CareersPage() {
           {PROCESS.map((s, i) => (
             <li key={s.step} className="relative">
               <div className="h-full rounded-xl border border-ink-200 bg-white p-5 dark:border-ink-800 dark:bg-ink-900">
-                <span className="font-headline text-2xl font-extrabold text-signal-600">
+                <span className="font-headline text-2xl font-extrabold text-signal-600 dark:text-signal-400">
                   {s.step}
                 </span>
                 <h3 className="mt-2 font-semibold text-ink-900 dark:text-white">{s.title}</h3>

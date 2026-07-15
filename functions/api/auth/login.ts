@@ -19,8 +19,8 @@
  *
  * ⚠️ 배포 전 db/migrations/0002_counters.sql 원격 적용 필요(rate_limits 테이블).
  */
-import { json, verifyPassword, createSession, sessionCookie, sha256Hex, type AuthEnv } from "../../_lib/auth";
-import { hitRateLimit, resetRateLimit } from "../../_lib/rate-limit";
+import { json, verifyPassword, createSession, sessionCookie, type AuthEnv } from "../../_lib/auth";
+import { clientIp, hitRateLimits, rateBucket, resetRateLimit } from "../../_lib/rate-limit";
 
 const MAX_IP_TRIES = 8; // IP당 15분
 const MAX_ACCOUNT_TRIES = 10; // 이메일당 15분(분산 IP 대응). IP 한도보다 느슨하게 둬 정상 사용자 오탐 억제.
@@ -47,19 +47,24 @@ export async function onRequestPost(ctx: any): Promise<Response> {
 
   // 시도 제한 — IP축 + 계정축. 비밀번호 검증(PBKDF2 10만회) **전에** 차단해 CPU 소모도 막는다.
   // 시도 자체를 세고 성공 시 리셋하므로, 정상 사용자는 성공하는 한 절대 걸리지 않는다.
-  const now = Date.now();
-  const ipBucket = `login:ip:${await sha256Hex("modoo-login-v1" + (ctx.request.headers.get("CF-Connecting-IP") || ""))}`;
-  const acctBucket = `login:acct:${await sha256Hex("modoo-login-acct-v1" + email)}`;
-  const waitUntil = ctx.waitUntil?.bind(ctx);
-  let ipRl, acctRl;
+  const ipBucket = await rateBucket("login", "ip", clientIp(ctx.request));
+  const acctBucket = await rateBucket("login", "acct", email);
+  let allowed: boolean;
   try {
-    ipRl = await hitRateLimit(env, ipBucket, MAX_IP_TRIES, WINDOW_SECS, now, waitUntil);
-    acctRl = await hitRateLimit(env, acctBucket, MAX_ACCOUNT_TRIES, WINDOW_SECS, now, waitUntil);
+    allowed = await hitRateLimits(
+      env,
+      [
+        { bucket: ipBucket, limit: MAX_IP_TRIES, windowSecs: WINDOW_SECS },
+        { bucket: acctBucket, limit: MAX_ACCOUNT_TRIES, windowSecs: WINDOW_SECS },
+      ],
+      Date.now(),
+      ctx.waitUntil?.bind(ctx),
+    );
   } catch {
     // 저장소를 못 쓰면 제한을 못 건다 → 통과시키지 않는다(fail-closed).
     return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
   }
-  if (!ipRl.allowed || !acctRl.allowed) return json({ error: TOO_MANY }, 429);
+  if (!allowed) return json({ error: TOO_MANY }, 429);
 
   const user = await env.DB.prepare(
     "SELECT id, email, name, password_hash, password_salt FROM users WHERE email = ?1",

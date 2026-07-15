@@ -42,7 +42,7 @@ export function ProvidersCard({
               ) : (
                 <a
                   href={`/api/auth/${p}/start?link=1`}
-                  className="rounded-md border border-ink-300 px-3 py-1.5 text-xs font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200"
+                  className="rounded-md border border-ink-300 px-3 py-1.5 text-xs font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-600 dark:text-ink-200"
                 >
                   연결하기
                 </a>

@@ -27,7 +27,7 @@ function CardMeta({ article, light = false }: { article: ArticleListItem; light?
         light ? "text-white/80" : "text-ink-500 dark:text-ink-400",
       )}
     >
-      <span className={cn("font-semibold", light ? "text-white" : "text-signal-600")}>
+      <span className={cn("font-semibold", light ? "text-white" : "text-signal-600 dark:text-signal-400")}>
         {cat?.name}
       </span>
       <span aria-hidden>·</span>

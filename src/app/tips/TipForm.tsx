@@ -94,7 +94,7 @@ export function TipForm() {
           <button
             type="button"
             onClick={reset}
-            className="rounded-md border border-ink-300 px-6 py-3 font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200"
+            className="rounded-md border border-ink-300 px-6 py-3 font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-600 dark:text-ink-200"
           >
             새 제보 작성하기
           </button>
@@ -111,7 +111,7 @@ export function TipForm() {
     >
       <div>
         <label htmlFor="tip-title" className={label}>
-          제목 <span className="text-signal-600">*</span>
+          제목 <span className="text-signal-600 dark:text-signal-400">*</span>
         </label>
         <input
           id="tip-title"
@@ -126,7 +126,7 @@ export function TipForm() {
 
       <div>
         <label htmlFor="tip-category" className={label}>
-          분류 <span className="text-signal-600">*</span>
+          분류 <span className="text-signal-600 dark:text-signal-400">*</span>
         </label>
         <select
           id="tip-category"
@@ -148,7 +148,7 @@ export function TipForm() {
 
       <div>
         <label htmlFor="tip-content" className={label}>
-          내용 <span className="text-signal-600">*</span>
+          내용 <span className="text-signal-600 dark:text-signal-400">*</span>
         </label>
         <textarea
           id="tip-content"
@@ -221,7 +221,7 @@ export function TipForm() {
           />
           <span>
             제보 내용 검토·취재 목적의 <strong className="font-semibold text-ink-700 dark:text-ink-200">개인정보 수집 및 이용</strong>에
-            동의합니다. <span className="text-signal-600">*</span>
+            동의합니다. <span className="text-signal-600 dark:text-signal-400">*</span>
           </span>
         </label>
       </div>
