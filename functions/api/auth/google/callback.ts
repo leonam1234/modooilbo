@@ -1,10 +1,14 @@
 /**
  * GET /api/auth/google/callback — 구글 인가 코드 → 토큰 교환 → 사용자 조회 →
- * 간편 회원가입/로그인 (identities(google) 로그인 / 검증된 동일이메일 병합 / 신규 자동가입).
+ * 간편 회원가입/로그인 (identities(google) 로그인 / 신규 자동가입).
+ * 기존 계정과의 "동일 이메일 자동 병합"은 하지 않는다 — 계정 선점(pre-hijacking) 방지.
+ * 기존 계정에 구글을 붙이는 것은 로그인 상태에서 /account의 [연결하기](link=1)로만.
+ * (naver/callback.ts와 동일한 원칙)
  * 실패 시 /login/?error=google 로 리다이렉트.
  */
 import { createSession, sessionCookie, getUser, type AuthEnv } from "../../../_lib/auth";
 import { uniqueSignupName } from "../../../_lib/names";
+import { syntheticEmail } from "../../../_lib/reserved-email";
 
 function back(url: URL, ok: boolean, extraCookie?: string, dest?: string): Response {
   const secure = url.protocol === "https:" ? "; Secure" : "";
@@ -90,30 +94,33 @@ export async function onRequestGet(ctx: any): Promise<Response> {
     if (ident) {
       userId = (ident as any).user_id;
     } else {
-      let existing: any = null;
+      // 신규 가입(간편 회원가입) — 기존 계정에 자동으로 붙이지 않는다.
+      //
+      // ⚠️ 계정 선점(pre-hijacking) 방지: users.email은 소유가 증명된 값이 아니다.
+      //    signup은 인증 메일 없이 이메일을 받으므로, 공격자가 victim@example.com으로 먼저
+      //    가입해 두면 피해자의 구글 로그인이 공격자 계정에 병합돼 공격자가 자기 비밀번호로
+      //    피해자 신분에 계속 접근하게 된다. → 이메일이 같아도 절대 병합하지 않는다.
+      //    기존 계정에 붙이려면 로그인 상태에서 /account의 [연결하기](link=1) —
+      //    현재 세션 소유자 확인이 곧 소유 증명이다.
+      userId = crypto.randomUUID();
+      const finalName = await uniqueSignupName(env, name, "구글회원");
+      // 계정 키: 구글이 email_verified=true로 준 이메일만 사용(소유 증명됨).
+      // 그 이메일을 이미 다른 계정이 쓰고 있으면 병합 대신 합성 이메일(수신 불가)로 분리.
+      let accountEmail = email ?? syntheticEmail("google", sub);
       if (email) {
-        existing = await env.DB.prepare("SELECT id FROM users WHERE email = ?1").bind(email).first();
+        const taken = await env.DB.prepare("SELECT 1 FROM users WHERE email = ?1 LIMIT 1")
+          .bind(email)
+          .first();
+        if (taken) accountEmail = syntheticEmail("google", sub);
       }
-      if (existing) {
-        userId = existing.id;
-        await env.DB.prepare(
+      await env.DB.batch([
+        env.DB.prepare(
+          "INSERT INTO users (id, email, name, password_hash, password_salt, newsletter, terms_agreed_at) VALUES (?1, ?2, ?3, NULL, NULL, 0, datetime('now','+9 hours'))",
+        ).bind(userId, accountEmail, finalName),
+        env.DB.prepare(
           "INSERT INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'google', ?2)",
-        )
-          .bind(userId, sub)
-          .run();
-      } else {
-        userId = crypto.randomUUID();
-        const finalName = await uniqueSignupName(env, name, "구글회원");
-        const accountEmail = email ?? `google_${sub}@users.modooilbo.com`;
-        await env.DB.batch([
-          env.DB.prepare(
-            "INSERT INTO users (id, email, name, password_hash, password_salt, newsletter, terms_agreed_at) VALUES (?1, ?2, ?3, NULL, NULL, 0, datetime('now','+9 hours'))",
-          ).bind(userId, accountEmail, finalName),
-          env.DB.prepare(
-            "INSERT INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'google', ?2)",
-          ).bind(userId, sub),
-        ]);
-      }
+        ).bind(userId, sub),
+      ]);
     }
 
     const session = await createSession(env, userId);

@@ -9,7 +9,7 @@
  *                                              → 원천(paseco RAW_DB, read-only) → 점수화 → 후보 적재
  *                                                 (자동은 수집→후보까지만. 저장만 등급은 수집에서 정지)
  *
- * 모든 엔드포인트 관리자(ADMIN_EMAILS) 인증 필수. 쓰기(전이·수집)도 관리자만.
+ * 모든 엔드포인트 관리자(ADMIN_USER_IDS) 인증 필수. 쓰기(전이·수집)도 관리자만.
  * 원천 D1은 read-only(SELECT만) — paseco 쓰기 경로 불간섭.
  */
 import { json } from "../_lib/auth";

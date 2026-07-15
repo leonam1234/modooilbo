@@ -5,6 +5,7 @@
  * 남용 방지: 계정당 15분 3회 + IP당 15분 5회.
  */
 import { json, getUser, sha256Hex, type AuthEnv } from "../../_lib/auth";
+import { isReservedEmail } from "../../_lib/reserved-email";
 
 type MailEnv = AuthEnv & { EMAIL?: any; MAILER_URL?: string; MAILER_KEY?: string };
 
@@ -65,11 +66,11 @@ export async function onRequestPost(ctx: any): Promise<Response> {
     /* noop */
   }
   if (!EMAIL_RE.test(email) || email.length > 100) return json({ error: "이메일 주소를 확인해 주세요." }, 400);
-  if (email.endsWith("@users.modooilbo.com")) return json({ error: "사용할 수 없는 이메일입니다." }, 400);
+  if (isReservedEmail(email)) return json({ error: "사용할 수 없는 이메일입니다." }, 400);
 
   // 대상 확인: 이미 실제 이메일이 있는 계정은 이 API 대상이 아님(이메일 변경은 추후 별도)
   const me = (await env.DB.prepare("SELECT email, name FROM users WHERE id = ?1").bind(user.id).first()) as any;
-  if (!me?.email?.endsWith("@users.modooilbo.com")) {
+  if (!me?.email || !isReservedEmail(String(me.email))) {
     return json({ error: "이미 이메일이 등록된 계정입니다." }, 400);
   }
 

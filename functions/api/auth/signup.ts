@@ -5,6 +5,7 @@
  */
 import { json, hashPassword, createSession, sessionCookie, sha256Hex, type AuthEnv } from "../../_lib/auth";
 import { hasBanned } from "../../_lib/moderation";
+import { isReservedEmail } from "../../_lib/reserved-email";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const MAX_TRIES = 5;
@@ -29,6 +30,10 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   if (name.length < 1 || name.length > 20) return json({ error: "이름은 1~20자로 입력해 주세요." }, 400);
   if (hasBanned(name)) return json({ error: "닉네임에 부적절한 표현이 포함되어 있습니다." }, 400);
   if (!EMAIL_RE.test(email) || email.length > 100) return json({ error: "이메일 주소를 확인해 주세요." }, 400);
+  // 합성 계정 전용 예약 도메인은 가입 불가(소유 증명 불가 주소).
+  // 특히 deleted@users.modooilbo.com이 선점되면 탈퇴 처리가 영구 실패한다.
+  // 문구는 형식 오류와 동일 — 예약 도메인의 존재·의미를 노출하지 않기 위함(열거 방지).
+  if (isReservedEmail(email)) return json({ error: "이메일 주소를 확인해 주세요." }, 400);
   if (password.length < 8 || password.length > 72)
     return json({ error: "비밀번호는 8자 이상 72자 이하로 입력해 주세요." }, 400);
 

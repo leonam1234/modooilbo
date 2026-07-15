@@ -8,6 +8,7 @@ import { RankingList } from "@/components/RankingList";
 import { RecentArticles } from "@/components/RecentArticles";
 import { PageHeader } from "@/components/PageHeader";
 import JsonLd from "@/components/JsonLd";
+import { DEFAULT_OG_IMAGE } from "@/lib/site";
 
 const SITE_URL = "https://modooilbo.com";
 
@@ -37,11 +38,14 @@ export async function generateMetadata({
       description,
       type: "website",
       url: `/${c.slug}/`,
+      // openGraph는 얕은 병합 — 명시하지 않으면 루트 og.png가 상속되지 않고 사라진다(site.ts 주석 참조)
+      images: [DEFAULT_OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [DEFAULT_OG_IMAGE.url],
     },
   };
 }

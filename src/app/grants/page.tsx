@@ -6,6 +6,7 @@ import { RankingList } from "@/components/RankingList";
 import { RecentArticles } from "@/components/RecentArticles";
 import { PageHeader } from "@/components/PageHeader";
 import JsonLd from "@/components/JsonLd";
+import { DEFAULT_OG_IMAGE } from "@/lib/site";
 
 const SITE_URL = "https://modooilbo.com";
 
@@ -19,8 +20,8 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: "/grants/" },
-  openGraph: { title, description, type: "website", url: "/grants/" },
-  twitter: { card: "summary_large_image", title, description },
+  openGraph: { title, description, type: "website", url: "/grants/", images: [DEFAULT_OG_IMAGE] },
+  twitter: { card: "summary_large_image", title, description, images: [DEFAULT_OG_IMAGE.url] },
 };
 
 export default function GrantsPage() {

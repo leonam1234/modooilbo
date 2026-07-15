@@ -4,6 +4,7 @@
  * 토큰은 1회용(사용 즉시 삭제). 로그인 여부와 무관하게 토큰만으로 동작(메일 링크를 다른 브라우저에서 열어도 됨).
  */
 import { json, type AuthEnv } from "../../_lib/auth";
+import { isReservedEmail } from "../../_lib/reserved-email";
 
 export async function onRequestPost(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
@@ -33,11 +34,13 @@ export async function onRequestPost(ctx: any): Promise<Response> {
     return json({ error: "링크가 올바르지 않습니다." }, 400);
   }
   if (!uid || !email) return json({ error: "링크가 올바르지 않습니다." }, 400);
+  // 방어적 재확인: 예약 도메인은 users.email로 승격될 수 없다(토큰은 서버 생성이라 정상 경로에선 불가능).
+  if (isReservedEmail(email)) return json({ error: "링크가 올바르지 않습니다." }, 400);
 
   // 발송 시점 이후 상태 재확인 (TOCTOU): 대상 계정이 여전히 합성 이메일인지, 이메일이 선점되지 않았는지
   const me = (await env.DB.prepare("SELECT email FROM users WHERE id = ?1").bind(uid).first()) as any;
   if (!me) return json({ error: "계정을 찾을 수 없습니다." }, 404);
-  if (!String(me.email).endsWith("@users.modooilbo.com")) {
+  if (!isReservedEmail(String(me.email))) {
     return json({ error: "이미 이메일이 등록된 계정입니다." }, 400);
   }
   const dup = await env.DB.prepare("SELECT 1 FROM users WHERE email = ?1 AND id != ?2 LIMIT 1").bind(email, uid).first();

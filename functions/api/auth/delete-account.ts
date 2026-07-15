@@ -8,10 +8,12 @@
  *    (남의 답글이 달린 스레드가 끊기지 않도록 행은 보존, "삭제된 댓글" 자리 표시)
  */
 import { json, getUser, clearCookie, type AuthEnv } from "../../_lib/auth";
+import { RESERVED_EMAIL_DOMAIN } from "../../_lib/reserved-email";
 
 // 로그인 불가 시스템 계정: 비밀번호 없음 + identities 없음. 탈퇴자 댓글의 FK 소유자.
+// 이메일은 예약 도메인(수신 불가) — 외부 가입으로 선점되지 않도록 signup이 차단한다.
 const DELETED_USER_ID = "system-deleted-user";
-const DELETED_USER_EMAIL = "deleted@users.modooilbo.com";
+const DELETED_USER_EMAIL = `deleted@${RESERVED_EMAIL_DOMAIN}`;
 
 export async function onRequestPost(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
@@ -32,6 +34,19 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   )
     .bind(DELETED_USER_ID, DELETED_USER_EMAIL)
     .run();
+
+  // INSERT OR IGNORE는 "이미 있음"과 "UNIQUE(email) 충돌로 못 만듦"을 구분하지 않고 둘 다 조용히 넘어간다.
+  // 후자(예약 이메일이 다른 계정에 선점된 상태)면 아래 comments UPDATE가 FK 위반으로 터져
+  // 탈퇴가 500으로 실패한다. 실패를 삼키지 말고 여기서 명시적으로 끊는다.
+  const tombstone = await env.DB.prepare("SELECT id FROM users WHERE id = ?1")
+    .bind(DELETED_USER_ID)
+    .first();
+  if (!tombstone) {
+    return json(
+      { error: "탈퇴 처리에 필요한 시스템 계정을 준비하지 못했습니다. 고객센터(help@modooilbo.com)로 알려 주세요." },
+      500,
+    );
+  }
 
   await env.DB.batch([
     env.DB.prepare("DELETE FROM sessions WHERE user_id = ?1").bind(user.id),

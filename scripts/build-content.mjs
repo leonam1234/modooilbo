@@ -28,6 +28,21 @@ const STOCK_KEYWORD = {
   grants: "government",
   startup: "startup", industry: "factory", labor: "office", deals: "contract", bids: "government",
 };
+
+// frontmatter `status`에 이 말이 들어 있으면 발행 금지(데스크 보류 표시) → 빌드 중단.
+// 조용히 건너뛰면 보류 원고가 사라진 건지 발행된 건지 아무도 모른다 → 명시적 실패로 알린다.
+// 주의: 발행 완료 라벨 '인증전보관'에는 '보류'가 없다(보관 ≠ 보류) — 정상 기사는 걸리지 않는다.
+const BLOCKED_STATUS = ["발행보류", "보류"];
+
+/** 수집한 오류를 한 번에 보여주고 빌드를 실패시킨다(첫 오류에서 끊지 않아 한 번에 다 고칠 수 있음). */
+function failBuild(errors) {
+  console.error(`\n✖ 콘텐츠 빌드 실패 — 기사 ${errors.length}건에 문제가 있습니다:\n`);
+  for (const e of errors) console.error(`  • ${e}`);
+  console.error(
+    "\n기사를 조용히 버리지 않고 중단했습니다. 위 파일의 머리표(frontmatter)를 고친 뒤 다시 빌드하세요.\n",
+  );
+  process.exit(1);
+}
 function lockFromId(id) {
   let h = 0;
   for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) >>> 0;
@@ -113,21 +128,40 @@ async function run() {
   const fallback = existingStockByCategory();
   const articles = [];
   const slugs = new Set();
+  // 검증 오류는 모아서 마지막에 한 번에 실패시킨다(경고 후 건너뛰기 금지 — 기사가 조용히 사라진다).
+  const errors = [];
 
   for (const file of files.sort()) {
     const slug = file.replace(/\.md$/, "");
     if (slugs.has(slug)) {
-      console.warn(`  ⚠ 중복 슬러그 건너뜀: ${slug}`);
+      errors.push(`${file}: 슬러그 중복("${slug}") — 같은 이름의 기사가 이미 있습니다.`);
       continue;
     }
     const { fm, paragraphs } = parse(readFileSync(join(CONTENT_DIR, file), "utf8"));
-    const category = (fm.category || "").trim();
-    if (!VALID_CATEGORIES.includes(category)) {
-      console.warn(`  ⚠ ${file}: category가 잘못됨("${category}") → 건너뜀. (가능: ${VALID_CATEGORIES.join(", ")})`);
+
+    // 데스크 보류 표시 원고는 발행하지 않는다 — 조용히 넘기지 말고 빌드를 끊는다.
+    const status = (fm.status || "").trim();
+    const blocked = BLOCKED_STATUS.find((w) => status.includes(w));
+    if (blocked) {
+      errors.push(
+        `${file}: status가 "${status}" — 발행 보류 원고입니다. ` +
+          `발행하려면 status를 발행 완료 상태(예: 인증전보관)로 바꾸거나 필드를 지우고, ` +
+          `보류를 유지하려면 파일명 앞에 "_"를 붙여 빌드에서 제외하세요.`,
+      );
       continue;
     }
-    if (!fm.title || !paragraphs.length) {
-      console.warn(`  ⚠ ${file}: title 또는 본문 없음 → 건너뜀`);
+
+    const category = (fm.category || "").trim();
+    if (!VALID_CATEGORIES.includes(category)) {
+      errors.push(`${file}: category가 잘못됨("${category}"). 가능: ${VALID_CATEGORIES.join(", ")}`);
+      continue;
+    }
+    if (!fm.title) {
+      errors.push(`${file}: title 없음(머리표에 title: 필요).`);
+      continue;
+    }
+    if (!paragraphs.length) {
+      errors.push(`${file}: 본문 없음(머리표 아래에 본문 문단 필요).`);
       continue;
     }
     slugs.add(slug);
@@ -186,6 +220,9 @@ async function run() {
     });
     console.log(`  ✓ ${slug} [${category}] "${fm.title.trim()}"`);
   }
+
+  // 잘못된 기사가 하나라도 있으면 생성물을 쓰지 않고 중단 — 반쪽짜리 사이트가 배포되는 것 방지.
+  if (errors.length) failBuild(errors);
 
   writeFileSync(OUT_TS, header() + `export const CONTENT_ARTICLES: Article[] = ${JSON.stringify(articles, null, 2)};\n`);
   console.log(`완료: 콘텐츠 기사 ${articles.length}건 → src/lib/content.generated.ts`);

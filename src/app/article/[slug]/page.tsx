@@ -25,6 +25,12 @@ import JsonLd from "@/components/JsonLd";
 
 const SITE_URL = "https://modooilbo.com";
 
+// 기사 대표 이미지(AI 생성 스톡)는 전부 16:9 1200×675 원본이다.
+// og:image·구조화데이터에 실제와 다른 치수를 신고하면 스크레이퍼가 잘못 자르고
+// 구조화데이터 검증에서도 어긋나므로, 여기 한 곳에서 실제 치수를 관리한다.
+const ARTICLE_IMAGE_WIDTH = 1200;
+const ARTICLE_IMAGE_HEIGHT = 675;
+
 function absoluteImageUrl(pathOrUrl: string): string {
   if (/^https?:\/\//i.test(pathOrUrl)) return pathOrUrl;
   return `${SITE_URL}${pathOrUrl.startsWith("/") ? pathOrUrl : `/${pathOrUrl}`}`;
@@ -58,8 +64,11 @@ export async function generateMetadata({
       locale: "ko_KR",
       siteName: "모두일보",
       url: `/article/${a.slug}/`,
-      images: [{ url: imageUrl, width: 1200, height: 630, alt: a.title }],
-      publishedTime: a.publishedAt,
+      images: [{ url: imageUrl, width: ARTICLE_IMAGE_WIDTH, height: ARTICLE_IMAGE_HEIGHT, alt: a.title }],
+      // KST 벽시계-as-Z 저장값을 그대로 내보내면 9시간 미래가 된다(JSON-LD와도 모순).
+      // 같은 페이지의 datePublished와 동일하게 +09:00 오프셋으로 표기.
+      publishedTime: toKstIso(a.publishedAt),
+      modifiedTime: toKstIso(a.updatedAt ?? a.publishedAt),
       authors: [a.author.name],
       section: cat?.name,
       tags: a.tags,
@@ -100,7 +109,7 @@ export default async function ArticlePage({
     mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
     headline: article.title.slice(0, 110),
     description: article.summary,
-    image: [{ "@type": "ImageObject", url: imageUrl, width: 1600, height: 900 }],
+    image: [{ "@type": "ImageObject", url: imageUrl, width: ARTICLE_IMAGE_WIDTH, height: ARTICLE_IMAGE_HEIGHT }],
     thumbnailUrl: imageUrl,
     datePublished: toKstIso(article.publishedAt),
     dateModified: toKstIso(article.updatedAt ?? article.publishedAt),

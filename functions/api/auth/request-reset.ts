@@ -7,6 +7,7 @@
  * 남용 방지: 이메일당 15분 3회 + IP당 15분 5회(KV).
  */
 import { json, sha256Hex, type AuthEnv } from "../../_lib/auth";
+import { isReservedEmail } from "../../_lib/reserved-email";
 
 type MailEnv = AuthEnv & { EMAIL?: any; MAILER_URL?: string; MAILER_KEY?: string };
 
@@ -77,7 +78,7 @@ export async function onRequestPost(ctx: any): Promise<Response> {
 
   // 합성 이메일(소셜 전용)은 수신 불가 — 존재 노출 없이 조용히 ok
   const ok = json({ ok: true });
-  if (email.endsWith("@users.modooilbo.com")) return ok;
+  if (isReservedEmail(email)) return ok;
 
   // 남용 방지: IP당 15분 5회 + 이메일당 15분 3회 (초과해도 표면상 동일 응답)
   if (env.REACTIONS) {

@@ -7,16 +7,41 @@ import { Footer } from "@/components/Footer";
 import { AutoRefresh } from "@/components/AutoRefresh";
 import { WeatherBackground } from "@/components/WeatherBackground";
 import { BackToTop } from "@/components/BackToTop";
+import { DEFAULT_OG_IMAGE } from "@/lib/site";
+
+// 매체 정체성 = 두 축(기업 데이터 뉴스 + 종합뉴스). 전 페이지 기본 설명·소셜 카드가 이 값을 공유한다.
+// (동결된 '테크'는 홍보 문구에서 제외 — /tech 라우트·기존 기사는 색인 보존을 위해 유지되나 대표 소개엔 넣지 않는다)
+const SITE_DESCRIPTION =
+  "모두일보는 정부지원금·공공입찰·창업상권·산업트렌드·채용노무·계약거래 등 기업에 필요한 공공데이터 뉴스와 경제·사회·국제·문화·스포츠·오피니언 종합뉴스를 함께 전합니다. 모두를 위한 신뢰의 뉴스.";
+const SITE_TITLE = "모두일보 — 모두를 위한 신뢰의 뉴스";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://modooilbo.com"),
   title: {
-    default: "모두일보 — 모두를 위한 신뢰의 뉴스",
+    default: SITE_TITLE,
     template: "%s | 모두일보",
   },
-  description:
-    "모두일보(Modoo Ilbo)는 경제·사회·국제·문화·스포츠·테크·오피니언 전 분야의 신뢰할 수 있는 뉴스와 깊이 있는 분석을 전합니다. 모두를 위한 신뢰의 뉴스.",
-  keywords: ["모두일보", "Modoo Ilbo", "뉴스", "신문", "언론", "속보", "오피니언"],
+  description: SITE_DESCRIPTION,
+  keywords: [
+    "모두일보",
+    "Modoo Ilbo",
+    "기업 데이터 뉴스",
+    "공공데이터",
+    "정부지원금",
+    "공공입찰",
+    "창업",
+    "상권",
+    "산업 트렌드",
+    "채용",
+    "노무",
+    "계약",
+    "거래",
+    "뉴스",
+    "신문",
+    "언론",
+    "속보",
+    "오피니언",
+  ],
   applicationName: "모두일보",
   authors: [{ name: "모두일보" }],
   creator: "모두일보",
@@ -53,28 +78,19 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "모두일보 — 모두를 위한 신뢰의 뉴스",
-    description:
-      "모두일보(Modoo Ilbo)는 경제·사회·국제·문화·스포츠·테크·오피니언 전 분야의 신뢰할 수 있는 뉴스와 깊이 있는 분석을 전합니다. 모두를 위한 신뢰의 뉴스.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     type: "website",
     locale: "ko_KR",
     url: "/",
     siteName: "모두일보",
-    images: [
-      {
-        url: "/og.png?v=2",
-        width: 1200,
-        height: 630,
-        alt: "모두일보 — 모두를 위한 신뢰의 뉴스",
-      },
-    ],
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "모두일보 — 모두를 위한 신뢰의 뉴스",
-    description:
-      "모두일보(Modoo Ilbo)는 경제·사회·국제·문화·스포츠·테크·오피니언 전 분야의 신뢰할 수 있는 뉴스와 깊이 있는 분석을 전합니다. 모두를 위한 신뢰의 뉴스.",
-    images: ["/og.png?v=2"],
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE.url],
   },
 };
 

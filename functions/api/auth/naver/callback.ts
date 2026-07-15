@@ -7,6 +7,7 @@
  */
 import { createSession, sessionCookie, getUser, type AuthEnv } from "../../../_lib/auth";
 import { uniqueSignupName } from "../../../_lib/names";
+import { syntheticEmail } from "../../../_lib/reserved-email";
 
 function back(url: URL, ok: boolean, extraCookie?: string, dest?: string): Response {
   const secure = url.protocol === "https:" ? "; Secure" : "";
@@ -93,10 +94,11 @@ export async function onRequestGet(ctx: any): Promise<Response> {
     if (ident) {
       userId = (ident as any).user_id;
     } else {
-      // 신규 가입(간편 회원가입) — 미검증 이메일 취급이라 병합 없이 합성 이메일로 새 계정
+      // 신규 가입(간편 회원가입) — 미검증 이메일 취급이라 병합 없이 합성 이메일로 새 계정.
+      // (google/kakao도 동일하게 자동 병합을 하지 않는다 — 계정 선점 방지)
       userId = crypto.randomUUID();
       const finalName = await uniqueSignupName(env, name, "네이버회원"); // 기본닉 전원 동일 문제 해소
-      const accountEmail = `naver_${naverId}@users.modooilbo.com`;
+      const accountEmail = syntheticEmail("naver", naverId);
       await env.DB.batch([
         env.DB.prepare(
           "INSERT INTO users (id, email, name, password_hash, password_salt, newsletter, terms_agreed_at) VALUES (?1, ?2, ?3, NULL, NULL, 0, datetime('now','+9 hours'))",

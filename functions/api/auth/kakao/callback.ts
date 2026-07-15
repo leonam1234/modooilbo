@@ -2,12 +2,15 @@
  * GET /api/auth/kakao/callback — 카카오 인가 코드 수신 → 토큰 교환 → 사용자 조회 →
  * 간편 회원가입/로그인:
  *   - identities(kakao, 카카오ID) 있으면 → 로그인
- *   - 카카오가 검증된 이메일을 주고 같은 이메일 계정이 있으면 → 그 계정에 kakao 연결(병합)
- *   - 없으면 → 자동 가입(비밀번호 없음). 이메일 미제공 시 합성 이메일(kakao_<id>@users.modooilbo.com)
+ *   - 없으면 → 자동 가입(비밀번호 없음). 이메일 미제공·충돌 시 합성 이메일(kakao_<id>@users.modooilbo.com)
+ * 기존 계정과의 "동일 이메일 자동 병합"은 하지 않는다 — 계정 선점(pre-hijacking) 방지.
+ * 기존 계정에 카카오를 붙이는 것은 로그인 상태에서 /account의 [연결하기](link=1)로만.
+ * (naver/callback.ts와 동일한 원칙)
  * 실패 시 /login/?error=kakao 로 리다이렉트.
  */
 import { createSession, sessionCookie, getUser, type AuthEnv } from "../../../_lib/auth";
 import { uniqueSignupName } from "../../../_lib/names";
+import { syntheticEmail } from "../../../_lib/reserved-email";
 
 function back(url: URL, ok: boolean, extraCookie?: string, dest?: string): Response {
   const headers: Record<string, string> = {
@@ -102,32 +105,33 @@ export async function onRequestGet(ctx: any): Promise<Response> {
     if (ident) {
       userId = (ident as any).user_id;
     } else {
-      // 4) 검증된 이메일이 기존 계정과 같으면 → 그 계정에 연결(병합)
-      let existing: any = null;
+      // 4) 신규 가입(간편 회원가입) — 기존 계정에 자동으로 붙이지 않는다.
+      //
+      // ⚠️ 계정 선점(pre-hijacking) 방지: users.email은 소유가 증명된 값이 아니다.
+      //    signup은 인증 메일 없이 이메일을 받으므로, 공격자가 victim@example.com으로 먼저
+      //    가입해 두면 피해자의 카카오 로그인이 공격자 계정에 병합돼 공격자가 자기 비밀번호로
+      //    피해자 신분에 계속 접근하게 된다. → 이메일이 같아도 절대 병합하지 않는다.
+      //    기존 계정에 붙이려면 로그인 상태에서 /account의 [연결하기](link=1) —
+      //    현재 세션 소유자 확인이 곧 소유 증명이다.
+      userId = crypto.randomUUID();
+      const finalName = await uniqueSignupName(env, nickname, "카카오회원");
+      // 계정 키: 카카오가 is_email_verified=true로 준 이메일만 사용(소유 증명됨).
+      // 그 이메일을 이미 다른 계정이 쓰고 있으면 병합 대신 합성 이메일(수신 불가)로 분리.
+      let accountEmail = email ?? syntheticEmail("kakao", kakaoId);
       if (email) {
-        existing = await env.DB.prepare("SELECT id FROM users WHERE email = ?1").bind(email).first();
+        const taken = await env.DB.prepare("SELECT 1 FROM users WHERE email = ?1 LIMIT 1")
+          .bind(email)
+          .first();
+        if (taken) accountEmail = syntheticEmail("kakao", kakaoId);
       }
-      if (existing) {
-        userId = existing.id;
-        await env.DB.prepare(
+      await env.DB.batch([
+        env.DB.prepare(
+          "INSERT INTO users (id, email, name, password_hash, password_salt, newsletter, terms_agreed_at) VALUES (?1, ?2, ?3, NULL, NULL, 0, datetime('now','+9 hours'))",
+        ).bind(userId, accountEmail, finalName),
+        env.DB.prepare(
           "INSERT INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'kakao', ?2)",
-        )
-          .bind(userId, kakaoId)
-          .run();
-      } else {
-        // 5) 신규 가입(간편 회원가입) — 이메일 없으면 합성(비라우팅 도메인, 유일성 보장)
-        userId = crypto.randomUUID();
-        const finalName = await uniqueSignupName(env, nickname, "카카오회원");
-        const accountEmail = email ?? `kakao_${kakaoId}@users.modooilbo.com`;
-        await env.DB.batch([
-          env.DB.prepare(
-            "INSERT INTO users (id, email, name, password_hash, password_salt, newsletter, terms_agreed_at) VALUES (?1, ?2, ?3, NULL, NULL, 0, datetime('now','+9 hours'))",
-          ).bind(userId, accountEmail, finalName),
-          env.DB.prepare(
-            "INSERT INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'kakao', ?2)",
-          ).bind(userId, kakaoId),
-        ]);
-      }
+        ).bind(userId, kakaoId),
+      ]);
     }
 
     const session = await createSession(env, userId);

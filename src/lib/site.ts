@@ -1,3 +1,18 @@
+/**
+ * 소셜 공유 카드 기본 이미지(루트 og.png — 실제 1200×630).
+ *
+ * ⚠️ Next.js metadata의 openGraph/twitter는 **얕은 병합**이다. 페이지에서 openGraph를 선언하면
+ * 루트 layout.tsx의 images가 상속되지 않고 통째로 덮여 사라진다(= og:image 없는 맨 카드).
+ * 따라서 openGraph를 선언하는 페이지는 images를 직접 명시해야 한다.
+ * 카테고리 대표 이미지가 생기면 페이지별로 이 값을 대체하면 된다.
+ */
+export const DEFAULT_OG_IMAGE = {
+  url: "/og.png?v=2",
+  width: 1200,
+  height: 630,
+  alt: "모두일보 — 모두를 위한 신뢰의 뉴스",
+};
+
 export const SITE = {
   name: "모두일보",
   legalName: "주식회사 브릿지타임즈", // 운영법인(팀 확정값 — Footer/약관과 일치)
