@@ -5,7 +5,7 @@ import { CATEGORY_MAP } from "@/lib/categories";
 import { cn, formatKoreanDateTime, toKstIso } from "@/lib/utils";
 import { PlayIcon } from "./icons";
 import { displayImageUrl, thumbImageUrl } from "@/lib/stock";
-import { TypeBadge } from "./TypeBadge";
+import { TypeBadge, typeBadgeLabel } from "./TypeBadge";
 
 type Variant = "feature" | "horizontal" | "compact" | "list" | "text" | "overlay";
 
@@ -61,7 +61,9 @@ function Thumb({
     <div className={cn("relative overflow-hidden rounded-md bg-ink-100 dark:bg-ink-800", className)}>
       <Image
         src={thumb ? thumbImageUrl(article) : displayImageUrl(article)}
-        alt={article.title}
+        // 장식용 썸네일 — 같은 카드 안 제목 링크가 이미 같은 내용을 전한다.
+        // alt에 제목을 넣으면 스크린리더가 "이미지: 제목 / 링크: 제목"으로 두 번 낭독한다.
+        alt=""
         fill
         sizes={sizes}
         priority={priority}
@@ -85,6 +87,16 @@ function Thumb({
   );
 }
 
+/**
+ * 썸네일(TypeBadge 포함)이 aria-hidden 링크 안으로 들어가면서 '속보/영상/칼럼' 배지가
+ * 보조기술에서 사라지므로, 같은 문구를 제목 링크 앞에 sr-only로 실어 보존한다.
+ * → 스크린리더는 링크 이름을 "속보 <제목>"으로 읽어 시각 표시와 동일한 정보를 얻는다.
+ */
+function BadgeSr({ article }: { article: ArticleListItem }) {
+  const label = typeBadgeLabel(article);
+  return label ? <span className="sr-only">{label} </span> : null;
+}
+
 export function ArticleCard({
   article,
   variant = "feature",
@@ -98,7 +110,9 @@ export function ArticleCard({
   if (variant === "horizontal") {
     return (
       <article className={cn("group flex gap-4 transition-transform duration-300 hover:-translate-y-0.5", className)}>
-        <Link prefetch={false} href={href} className="block w-28 shrink-0 sm:w-40">
+        {/* 썸네일 링크는 바로 옆 제목 링크와 같은 목적지 → 보조기술·키보드에는 중복이라 숨긴다
+            (alt=""로 이름이 비는 링크가 되지 않게 aria-hidden·tabIndex=-1을 함께 건다) */}
+        <Link prefetch={false} href={href} aria-hidden tabIndex={-1} className="block w-28 shrink-0 sm:w-40">
           <Thumb article={article} sizes="(max-width:640px) 112px, 160px" className="aspect-[4/3]" motion="pan" thumb />
         </Link>
         <div className="min-w-0 flex-1">
@@ -109,6 +123,7 @@ export function ArticleCard({
             )}
           >
             <Link prefetch={false} href={href} className="clamp-2 hover:text-signal-700 dark:hover:text-signal-400">
+              <BadgeSr article={article} />
               {article.title}
             </Link>
           </h3>
@@ -135,6 +150,7 @@ export function ArticleCard({
             )}
           >
             <Link href={href} className="clamp-2 hover:text-signal-700 dark:hover:text-signal-400">
+              <BadgeSr article={article} />
               {article.title}
             </Link>
           </h3>
@@ -145,7 +161,8 @@ export function ArticleCard({
           )}
           <CardMeta article={article} />
         </div>
-        <Link href={href} className="block w-[96px] shrink-0 sm:w-[120px]">
+        {/* 제목 링크와 중복 — 보조기술·키보드에서 제외 */}
+        <Link href={href} aria-hidden tabIndex={-1} className="block w-[96px] shrink-0 sm:w-[120px]">
           <Thumb article={article} sizes="120px" className="aspect-[3/2]" motion="pan" thumb />
         </Link>
       </article>
@@ -155,7 +172,8 @@ export function ArticleCard({
   if (variant === "compact") {
     return (
       <article className={cn("group flex items-start gap-3 transition-transform duration-300 hover:-translate-y-0.5", className)}>
-        <Link prefetch={false} href={href} className="block w-[72px] shrink-0">
+        {/* 제목 링크와 중복 — 보조기술·키보드에서 제외 */}
+        <Link prefetch={false} href={href} aria-hidden tabIndex={-1} className="block w-[72px] shrink-0">
           <Thumb article={article} sizes="80px" className="aspect-square" motion="pan" thumb />
         </Link>
         <div className="min-w-0 flex-1">
@@ -166,6 +184,7 @@ export function ArticleCard({
             )}
           >
             <Link prefetch={false} href={href} className="clamp-2 hover:text-signal-700 dark:hover:text-signal-400">
+              <BadgeSr article={article} />
               {article.title}
             </Link>
           </h3>
@@ -190,7 +209,7 @@ export function ArticleCard({
           </Link>
         </h3>
         {showSummary && (
-          <p className="clamp-2 mt-1 pl-3 text-xs text-ink-400">{article.summary}</p>
+          <p className="clamp-2 mt-1 pl-3 text-xs text-ink-500 dark:text-ink-400">{article.summary}</p>
         )}
       </article>
     );
@@ -203,7 +222,7 @@ export function ArticleCard({
           <div className="relative aspect-[4/3] w-full bg-ink-200 dark:bg-ink-800">
             <Image
               src={displayImageUrl(article)}
-              alt={article.title}
+              alt="" // 장식용 — 아래 오버레이 제목이 같은 링크 안에서 내용을 전한다(중복 낭독 방지)
               fill
               sizes="(max-width:768px) 50vw, 25vw"
               priority={priority}
@@ -239,7 +258,8 @@ export function ArticleCard({
   // variant === "feature" (default)
   return (
     <article className={cn("group flex flex-col transition-transform duration-300 hover:-translate-y-1", className)}>
-      <Link prefetch={false} href={href} className="block">
+      {/* 제목 링크와 중복 — 보조기술·키보드에서 제외 */}
+      <Link prefetch={false} href={href} aria-hidden tabIndex={-1} className="block">
         <Thumb
           article={article}
           sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
@@ -256,6 +276,7 @@ export function ArticleCard({
           )}
         >
           <Link prefetch={false} href={href} className="clamp-2 clamp-2-fill hover:text-signal-700 dark:hover:text-signal-400">
+            <BadgeSr article={article} />
             {article.title}
           </Link>
         </h3>

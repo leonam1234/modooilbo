@@ -46,7 +46,7 @@ export function RecentArticles({ excludeId, count = 5 }: { excludeId?: string; c
               <h3 className="clamp-2 text-sm font-medium leading-snug text-ink-700 group-hover:text-signal-600 dark:text-ink-200">
                 {a.title}
               </h3>
-              <span className="mt-0.5 block text-xs text-ink-400">{CATEGORY_MAP[a.category as keyof typeof CATEGORY_MAP]?.name}</span>
+              <span className="mt-0.5 block text-xs text-ink-500 dark:text-ink-400">{CATEGORY_MAP[a.category as keyof typeof CATEGORY_MAP]?.name}</span>
             </Link>
           </li>
         ))}

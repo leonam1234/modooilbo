@@ -42,7 +42,7 @@ export function MyCommentsCard({
   return (
     <Card title="내가 쓴 댓글">
       {byMonth === null ? (
-        <p className="text-sm text-ink-400">불러오는 중…</p>
+        <p className="text-sm text-ink-500 dark:text-ink-400">불러오는 중…</p>
       ) : months.length === 0 ? (
         <p className="text-sm leading-relaxed text-ink-500 dark:text-ink-300">
           최근 6개월 안에 쓴 댓글이 없습니다. 기사 하단에서 의견을 남겨 보세요.
@@ -73,7 +73,7 @@ export function MyCommentsCard({
               return (
                 <li key={`${c.article_id}-${c.created_at}-${i}`} className="py-3">
                   <p className="line-clamp-2 text-sm text-ink-800 dark:text-ink-100">{c.body}</p>
-                  <p className="mt-1 flex items-center gap-2 text-xs text-ink-400">
+                  <p className="mt-1 flex items-center gap-2 text-xs text-ink-500 dark:text-ink-400">
                     <span className="shrink-0">{c.created_at.slice(0, 10).replaceAll("-", ".")}.</span>
                     {a && (
                       <Link prefetch={false} href={`/article/${a.slug}`} className="min-w-0 truncate hover:underline">
@@ -85,7 +85,7 @@ export function MyCommentsCard({
               );
             })}
           </ul>
-          <p className="mt-3 text-xs text-ink-400">댓글은 최근 {KEEP_MONTHS}개월까지 여기에 보관·표시됩니다.</p>
+          <p className="mt-3 text-xs text-ink-500 dark:text-ink-400">댓글은 최근 {KEEP_MONTHS}개월까지 여기에 보관·표시됩니다.</p>
         </>
       )}
     </Card>

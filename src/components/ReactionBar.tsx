@@ -121,7 +121,7 @@ export function ReactionBar({ articleId }: { articleId: string }) {
           );
         })}
       </div>
-      <p className="mt-3 text-center text-[11px] text-ink-400">로그인 없이 참여 · 하나만 선택(다시 누르면 취소) · 하루 1회</p>
+      <p className="mt-3 text-center text-[11px] text-ink-500 dark:text-ink-400">로그인 없이 참여 · 하나만 선택(다시 누르면 취소) · 하루 1회</p>
     </section>
   );
 }

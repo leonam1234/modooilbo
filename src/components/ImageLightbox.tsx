@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { useFocusTrap } from "./useFocusTrap";
 
 /**
  * 기사 이미지 클릭 확대(라이트박스).
@@ -12,6 +13,9 @@ export function ImageLightbox() {
   const [img, setImg] = useState<{ src: string; alt: string } | null>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const close = useCallback(() => setImg(null), []);
+  // role="dialog" aria-modal 계약 이행 — 진입 포커스·Tab 트랩·ESC·트리거 복원·배경 inert
+  // (복원 대상 = 확대를 누른 본문 이미지 위치. 이게 없으면 닫는 순간 포커스가 문서 맨 위로 튄다)
+  const dialogRef = useFocusTrap<HTMLDivElement>(!!img, close, closeRef);
 
   useEffect(() => {
     const roots = ["article-hero", "article-body"]
@@ -34,24 +38,20 @@ export function ImageLightbox() {
       });
   }, []);
 
+  // 스크롤 잠금만 담당(포커스·ESC는 useFocusTrap이 처리)
   useEffect(() => {
     if (!img) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-    };
-    document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
-    closeRef.current?.focus();
     return () => {
-      document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
-  }, [img, close]);
+  }, [img]);
 
   if (!img) return null;
   // 본문 컨테이너(z-10) 스태킹 컨텍스트에 갇히지 않도록 body로 포털 — sticky 헤더(z-40) 위에 확실히 덮는다.
   return createPortal(
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
       aria-label="이미지 크게 보기"

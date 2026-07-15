@@ -79,7 +79,7 @@ export function TrendingTags() {
           </span>
           <svg
             viewBox="0 0 24 24"
-            className={`ml-auto h-4 w-4 shrink-0 text-ink-400 transition-transform ${open ? "rotate-180" : ""}`}
+            className={`ml-auto h-4 w-4 shrink-0 text-ink-500 dark:text-ink-400 transition-transform ${open ? "rotate-180" : ""}`}
             fill="none"
             aria-hidden
           >
@@ -98,7 +98,7 @@ export function TrendingTags() {
                 style={{ animationDelay: `${(i % 5) * 0.35}s` }}
                 className="tw-chip shrink-0 text-sm font-bold text-ink-700 transition-colors hover:text-signal-700 dark:text-ink-200"
               >
-                <span className="text-xs font-semibold text-ink-300 dark:text-ink-500">{i + 1}</span>
+                <span className="text-xs font-semibold text-ink-500 dark:text-ink-400">{i + 1}</span>
                 <span className="ml-0.5">#{t}</span>
               </Link>
             ))}
@@ -106,7 +106,7 @@ export function TrendingTags() {
         </div>
 
         {/* 기준 시각 — 맨 우측(PC 전용, 모바일은 펼침 패널 안에) */}
-        <span className="hidden shrink-0 text-[11px] text-ink-400 sm:block">{data.label}</span>
+        <span className="hidden shrink-0 text-[11px] text-ink-500 dark:text-ink-400 sm:block">{data.label}</span>
       </div>
 
       {/* 모바일 전체 순위 패널 (+투명 백드롭: 바깥 탭 닫기, 클릭 관통 차단) */}
@@ -128,7 +128,7 @@ export function TrendingTags() {
               <span className="text-xs font-bold text-ink-800 dark:text-ink-100">
                 실시간 인기 TOP {data.tags.length}
               </span>
-              <span className="text-[11px] text-ink-400">{data.label}</span>
+              <span className="text-[11px] text-ink-500 dark:text-ink-400">{data.label}</span>
             </div>
             <ol className="grid grid-cols-2 gap-x-4">
               {data.tags.map((t, i) => (

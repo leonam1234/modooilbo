@@ -134,7 +134,7 @@ export function LocationPicker({ className }: { className?: string }) {
             </option>
           ))}
         </select>
-        <svg viewBox="0 0 24 24" className="pointer-events-none absolute right-0 h-3 w-3 text-ink-400" fill="none" aria-hidden>
+        <svg viewBox="0 0 24 24" className="pointer-events-none absolute right-0 h-3 w-3 text-ink-500 dark:text-ink-400" fill="none" aria-hidden>
           <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" />
         </svg>
       </span>
@@ -152,7 +152,7 @@ export function LocationPicker({ className }: { className?: string }) {
           </>
         ) : (
           // 로드 전/실패 — 가짜 '맑음' 아이콘 대신 중립 표기
-          <span aria-label="날씨 정보 없음" className="font-medium text-ink-400">
+          <span aria-label="날씨 정보 없음" className="font-medium text-ink-500 dark:text-ink-400">
             —°
           </span>
         )}

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 import { CommentItem, type CommentData } from "@/components/CommentItem";
 
 type Data = { count: number; comments: CommentData[]; me: { name: string } | null };
@@ -30,17 +31,17 @@ function WriteBox({
         placeholder={placeholder}
         autoFocus={autoFocus}
         rows={3}
-        className="w-full resize-none bg-transparent text-[15px] leading-relaxed text-ink-900 outline-none placeholder:text-ink-400 dark:text-white"
+        className="w-full resize-none bg-transparent text-[15px] leading-relaxed text-ink-900 outline-none placeholder:text-ink-500 dark:placeholder:text-ink-400 dark:text-white"
       />
       <div className="mt-2 flex items-center justify-end gap-3 border-t border-ink-100 pt-2.5 dark:border-ink-800">
-        <span className="mr-auto text-[11px] text-ink-300 dark:text-ink-600">
+        <span className="mr-auto text-[11px] text-ink-500 dark:text-ink-400">
           욕설·비속어가 포함된 댓글은 예고 없이 삭제될 수 있습니다.
         </span>
-        <span className="text-xs tabular-nums text-ink-400">
+        <span className="text-xs tabular-nums text-ink-500 dark:text-ink-400">
           {text.length}/{MAX_BODY}
         </span>
         {onCancel && (
-          <button type="button" onClick={onCancel} className="text-xs text-ink-400 transition-colors hover:text-ink-700 dark:hover:text-ink-200">
+          <button type="button" onClick={onCancel} className="text-xs text-ink-500 dark:text-ink-400 transition-colors hover:text-ink-700 dark:hover:text-ink-200">
             취소
           </button>
         )}
@@ -67,6 +68,8 @@ export function CommentSection({ articleId }: { articleId: string }) {
   const [replyTo, setReplyTo] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
+  // 실패·오류 안내만 assertive(즉시 낭독), '신고가 접수되었습니다' 같은 성공 안내는 polite
+  const noticeIsError = !!notice && !notice.includes("접수되었습니다");
 
   const load = useCallback(() => {
     fetch(`/api/comments?article=${encodeURIComponent(articleId)}`)
@@ -216,7 +219,7 @@ export function CommentSection({ articleId }: { articleId: string }) {
     <section className="mt-10 border-t border-ink-200 pt-8 dark:border-ink-800" aria-label="댓글">
       <div className="flex items-center justify-between">
         <h2 className="font-headline text-xl font-bold text-ink-900 dark:text-white">
-          댓글 <span className="tabular-nums text-ink-400">{count}</span>
+          댓글 <span className="tabular-nums text-ink-500 dark:text-ink-400">{count}</span>
         </h2>
         {count > 1 && (
           <div className="flex items-center gap-3 text-xs">
@@ -233,7 +236,7 @@ export function CommentSection({ articleId }: { articleId: string }) {
                 className={
                   sort === key
                     ? "font-semibold text-ink-900 dark:text-white"
-                    : "text-ink-400 transition-colors hover:text-ink-700 dark:hover:text-ink-200"
+                    : "text-ink-500 dark:text-ink-400 transition-colors hover:text-ink-700 dark:hover:text-ink-200"
                 }
               >
                 {label}
@@ -277,7 +280,16 @@ export function CommentSection({ articleId }: { articleId: string }) {
             </Link>
           </div>
         )}
-        {notice && <p className="mt-2 text-xs text-signal-600 dark:text-signal-400">{notice}</p>}
+        {/* 등록 실패·신고 결과 등 상태 피드백 — 화면에만 뜨고 스크린리더엔 조용했다.
+            리전은 상시 존재해야 낭독되므로 빈 채로 두고 텍스트만 갈아 끼운다.
+            '접수되었습니다'류 성공 안내는 polite, 실패는 즉시 알려야 하므로 assertive. */}
+        <p
+          role={noticeIsError ? "alert" : "status"}
+          aria-live={noticeIsError ? "assertive" : "polite"}
+          className={cn("mt-2 text-xs text-signal-600 dark:text-signal-400", !notice && "sr-only")}
+        >
+          {notice}
+        </p>
       </div>
 
       {data !== null && roots.length > 0 && (
@@ -310,7 +322,7 @@ export function CommentSection({ articleId }: { articleId: string }) {
       )}
 
       {data !== null && roots.length === 0 && !failed && (
-        <p className="py-6 text-center text-sm text-ink-400">아직 댓글이 없습니다. 첫 댓글을 남겨 보세요.</p>
+        <p className="py-6 text-center text-sm text-ink-500 dark:text-ink-400">아직 댓글이 없습니다. 첫 댓글을 남겨 보세요.</p>
       )}
     </section>
   );

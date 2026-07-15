@@ -28,12 +28,6 @@ export function formatKoreanDateTime(iso: string): string {
   return `${y}.${m}.${day} ${hh}:${mm}`;
 }
 
-/** ISO 문자열 → "M월 D일" */
-export function formatKoreanDate(iso: string): string {
-  const d = new Date(iso);
-  return `${d.getUTCMonth() + 1}월 ${d.getUTCDate()}일`;
-}
-
 /** 큰 숫자 → "1.2만" / "3,456" 형식 */
 export function formatCount(n: number): string {
   if (n >= 10000) return `${(n / 10000).toFixed(1).replace(/\.0$/, "")}만`;

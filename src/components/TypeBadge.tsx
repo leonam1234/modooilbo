@@ -8,6 +8,18 @@ import { cn } from "@/lib/utils";
  * 표면 밝기에 따라 칩이 뒤집힌다: 밝은 표면=검은 칩 / 어두운 표면=흰 칩.
  * onDark=true(항상 어두운 overlay 타일)에서는 흰 칩 고정.
  */
+/**
+ * 배지 문구만 계산(렌더와 분리) — 카드 썸네일이 보조기술에서 숨겨질 때
+ * 제목 링크 쪽에 같은 문구를 sr-only로 실어 '속보·칼럼' 정보가 사라지지 않게 하기 위함.
+ * 속보 배지는 시효(48h) 안에서만 — 오래된 기사에 '속보'가 남지 않게.
+ */
+export function typeBadgeLabel(article: ArticleListItem): string | null {
+  if (isBreakingFresh(article)) return "속보";
+  if (article.type === "video") return "영상";
+  if (article.type === "opinion" || article.category === "opinion") return "칼럼";
+  return null;
+}
+
 export function TypeBadge({
   article,
   className,
@@ -17,18 +29,8 @@ export function TypeBadge({
   className?: string;
   onDark?: boolean;
 }) {
-  let label: string | null = null;
-  let kind: "solid" | "breaking" = "solid";
-
-  // 속보 배지는 시효(48h) 안에서만 — 오래된 기사에 '속보'가 남지 않게
-  if (isBreakingFresh(article)) {
-    label = "속보";
-    kind = "breaking";
-  } else if (article.type === "video") {
-    label = "영상";
-  } else if (article.type === "opinion" || article.category === "opinion") {
-    label = "칼럼";
-  }
+  const label = typeBadgeLabel(article);
+  const kind: "solid" | "breaking" = label === "속보" ? "breaking" : "solid";
 
   if (!label) return null;
 

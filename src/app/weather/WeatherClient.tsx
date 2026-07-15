@@ -120,7 +120,7 @@ export function WeatherClient() {
     else alert("위치 정보를 가져오지 못했습니다. 브라우저 위치 권한을 확인해 주세요.");
   }
 
-  if (cityName === null) return <p className="py-16 text-center text-ink-400">불러오는 중…</p>;
+  if (cityName === null) return <p className="py-16 text-center text-ink-500 dark:text-ink-400">불러오는 중…</p>;
 
   return (
     <div className="space-y-8">
@@ -153,7 +153,7 @@ export function WeatherClient() {
               {locating ? "위치 확인 중…" : "내 위치"}
             </button>
           </label>
-          <span className="text-xs text-ink-400">자료: Open-Meteo</span>
+          <span className="text-xs text-ink-500 dark:text-ink-400">자료: Open-Meteo</span>
         </div>
 
         {/* 배경 연출(비·눈·별) 켜기/끄기 — 시각 노이즈·배터리가 신경 쓰이는 독자용 */}
@@ -187,7 +187,7 @@ export function WeatherClient() {
             </button>
           </div>
         ) : current === null ? (
-          <p className="mt-6 text-sm text-ink-400">불러오는 중…</p>
+          <p className="mt-6 text-sm text-ink-500 dark:text-ink-400">불러오는 중…</p>
         ) : (
           <div className="mt-5 flex flex-wrap items-center gap-x-8 gap-y-4">
             <div className="flex items-center gap-4">
@@ -203,9 +203,9 @@ export function WeatherClient() {
               </div>
             </div>
             <dl className="grid grid-cols-3 gap-x-8 gap-y-1 text-sm">
-              <dt className="text-ink-400">체감</dt>
-              <dt className="text-ink-400">습도</dt>
-              <dt className="text-ink-400">바람</dt>
+              <dt className="text-ink-500 dark:text-ink-400">체감</dt>
+              <dt className="text-ink-500 dark:text-ink-400">습도</dt>
+              <dt className="text-ink-500 dark:text-ink-400">바람</dt>
               <dd className="font-semibold tabular-nums text-ink-800 dark:text-ink-100">
                 {current.feels !== null ? `${current.feels}°` : "—"}
               </dd>
@@ -235,12 +235,12 @@ export function WeatherClient() {
                 }`}
               >
                 <p className="text-xs font-semibold text-ink-500 dark:text-ink-300">{dayLabel(d.date, i)}</p>
-                <p className="mt-0.5 text-[11px] tabular-nums text-ink-400">{d.date.slice(5).replace("-", ".")}</p>
+                <p className="mt-0.5 text-[11px] tabular-nums text-ink-500 dark:text-ink-400">{d.date.slice(5).replace("-", ".")}</p>
                 <WxIcon
                   cond={codeToCondition(d.code)}
                   className={`mx-auto mt-3 h-8 w-8 ${WX_COLOR[codeToCondition(d.code)]}`}
                 />
-                <p className="mt-1 text-[11px] text-ink-400">{codeToLabel(d.code)}</p>
+                <p className="mt-1 text-[11px] text-ink-500 dark:text-ink-400">{codeToLabel(d.code)}</p>
                 <p className="mt-2 text-sm font-bold tabular-nums text-orange-600 dark:text-orange-400">
                   {d.max}° <span className="font-normal text-blue-500 dark:text-blue-400">/ {d.min}°</span>
                 </p>

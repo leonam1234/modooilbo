@@ -130,7 +130,7 @@ export default function SubscribePage() {
               출시 소식 받기
             </a>
           </div>
-          <p className="mt-4 text-xs text-ink-400">
+          <p className="mt-4 text-xs text-ink-500 dark:text-ink-400">
             문의는 help@modooilbo.com 으로도 보내실 수 있습니다.
           </p>
         </div>
@@ -169,7 +169,8 @@ export default function SubscribePage() {
             >
               기업 파트너 문의하기
             </a>
-            <p className="mt-3 text-xs text-ink-500">
+            {/* 어두운 파트너 카드 위 — ink-500은 3.77:1로 AA 미달, ink-400=5.69:1 */}
+            <p className="mt-3 text-xs text-ink-400">
               문의 후 상담 → 계약 → 세금계산서 발행 순으로 진행됩니다.
             </p>
           </div>
@@ -186,7 +187,7 @@ export default function SubscribePage() {
             <details key={faq.q} className="group p-5 [&_summary]:list-none">
               <summary className="flex cursor-pointer items-center justify-between gap-4 font-semibold text-ink-900 dark:text-white">
                 <span>{faq.q}</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden className="h-5 w-5 shrink-0 text-ink-400 transition-transform group-open:rotate-180">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden className="h-5 w-5 shrink-0 text-ink-500 dark:text-ink-400 transition-transform group-open:rotate-180">
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </summary>

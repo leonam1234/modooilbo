@@ -24,9 +24,9 @@ const BUDGET_RANGES = [
 
 const labelCls = "mb-1.5 block text-sm font-medium text-ink-700 dark:text-ink-200";
 const fieldCls =
-  "h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
+  "h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-500 dark:placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
 const textareaCls =
-  "min-h-32 w-full rounded-md border border-ink-200 bg-white px-4 py-3 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
+  "min-h-32 w-full rounded-md border border-ink-200 bg-white px-4 py-3 text-ink-900 outline-none transition-colors placeholder:text-ink-500 dark:placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
 const errorCls = "mt-1.5 text-xs text-signal-600 dark:text-signal-400";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -261,7 +261,7 @@ export function AdInquiryForm() {
         >
           문의 보내기
         </button>
-        <p className="text-xs text-ink-400">
+        <p className="text-xs text-ink-500 dark:text-ink-400">
           문의는 이메일 help@modooilbo.com 으로 보내주세요.
         </p>
       </div>

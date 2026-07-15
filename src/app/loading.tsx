@@ -6,7 +6,7 @@ export default function Loading() {
           className="h-8 w-8 animate-spin rounded-full border-2 border-ink-200 border-t-signal-600 dark:border-ink-700 dark:border-t-signal-500"
           aria-hidden
         />
-        <p className="text-sm text-ink-400">불러오는 중…</p>
+        <p className="text-sm text-ink-500 dark:text-ink-400">불러오는 중…</p>
       </div>
     </div>
   );

@@ -49,7 +49,7 @@ export function ProfileCard({
                 <button type="button" onClick={onSave} disabled={busy} className="shrink-0 rounded-md bg-signal-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-signal-700 disabled:opacity-50">
                   저장
                 </button>
-                <button type="button" onClick={onCancel} className="shrink-0 text-xs text-ink-400 hover:text-ink-700">
+                <button type="button" onClick={onCancel} className="shrink-0 text-xs text-ink-500 dark:text-ink-400 hover:text-ink-700">
                   취소
                 </button>
               </>
@@ -66,7 +66,7 @@ export function ProfileCard({
         <div className="flex items-center justify-between gap-4">
           <dt className="shrink-0 font-medium text-ink-500 dark:text-ink-400">이메일</dt>
           {isSyntheticEmail(user.email) ? (
-            <dd className="text-ink-400 dark:text-ink-500">등록된 이메일 없음 · 간편가입 계정</dd>
+            <dd className="text-ink-500 dark:text-ink-400">등록된 이메일 없음 · 간편가입 계정</dd>
           ) : (
             <dd className="break-all font-semibold text-ink-900 dark:text-white">{user.email}</dd>
           )}

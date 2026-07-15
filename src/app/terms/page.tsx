@@ -18,7 +18,7 @@ export default function TermsPage() {
 
       <div className="container-page py-10 sm:py-12">
         <article className="mx-auto max-w-3xl">
-          <p className="mb-10 text-sm text-ink-400">시행일: 2026년 1월 1일</p>
+          <p className="mb-10 text-sm text-ink-500 dark:text-ink-400">시행일: 2026년 1월 1일</p>
 
           <section className="mb-10">
             <h2 className="font-headline text-xl font-bold text-ink-900 dark:text-white sm:text-2xl">

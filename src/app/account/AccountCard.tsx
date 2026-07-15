@@ -26,7 +26,7 @@ export const PROVIDER_LABEL: Record<string, string> = {
 };
 
 export const inputCls =
-  "h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
+  "h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-500 dark:placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
 
 export function Card({ title, children }: { title: string; children: React.ReactNode }) {
   return (

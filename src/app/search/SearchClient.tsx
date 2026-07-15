@@ -40,13 +40,13 @@ export function SearchClient({ index }: { index: ArticleListItem[] }) {
         onSubmit={submit}
         className="flex items-center gap-2 rounded-lg border border-ink-200 bg-white px-4 focus-within:border-signal-500 dark:border-ink-700 dark:bg-ink-900"
       >
-        <SearchIcon className="h-5 w-5 shrink-0 text-ink-400" />
+        <SearchIcon className="h-5 w-5 shrink-0 text-ink-500 dark:text-ink-400" />
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="검색어를 입력하세요"
           aria-label="검색어"
-          className="h-12 flex-1 bg-transparent text-ink-900 outline-none placeholder:text-ink-400 dark:text-white"
+          className="h-12 flex-1 bg-transparent text-ink-900 outline-none placeholder:text-ink-500 dark:placeholder:text-ink-400 dark:text-white"
         />
         <button
           type="submit"
@@ -70,13 +70,13 @@ export function SearchClient({ index }: { index: ArticleListItem[] }) {
               ))}
             </div>
           ) : (
-            <p className="mt-16 text-center text-ink-400">
+            <p className="mt-16 text-center text-ink-500 dark:text-ink-400">
               검색 결과가 없습니다. 다른 검색어를 입력해 보세요.
             </p>
           )}
         </>
       ) : (
-        <p className="mt-16 text-center text-ink-400">검색어를 입력하면 결과가 표시됩니다.</p>
+        <p className="mt-16 text-center text-ink-500 dark:text-ink-400">검색어를 입력하면 결과가 표시됩니다.</p>
       )}
     </div>
   );

@@ -3,10 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import { CATEGORIES } from "@/lib/categories";
-import { BIZ_MENUS } from "@/lib/biz-menus";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { CATEGORIES, BIZ_CATEGORIES } from "@/lib/categories";
 import { cn } from "@/lib/utils";
+import { useFocusTrap } from "./useFocusTrap";
 import { ThemeToggle } from "./ThemeToggle";
 import { AuthMenu } from "./AuthMenu";
 import { LocationPicker } from "./LocationPicker";
@@ -29,9 +29,17 @@ const SUB_CATEGORIES = CATEGORIES.filter((c) => c.slug !== "tech");
 function Logo({ className }: { className?: string }) {
   return (
     <Link prefetch={false} href="/" className={cn("flex items-center", className)} aria-label="모두일보 홈">
-      {/* 정식 로고 B안(데이터심볼: 「보」 끝이 상승 막대그래프) — 라이트=검정/다크=흰색 2에셋 스위칭 */}
-      <Image src="/logo-b.png?v=1" alt="모두일보 — 균형 있게 보는 오늘의 뉴스" width={450} height={150} priority className="h-10 w-auto dark:hidden sm:h-12" />
-      <Image src="/logo-b-dark.png?v=1" alt="" aria-hidden width={450} height={150} priority className="hidden h-10 w-auto dark:block sm:h-12" />
+      {/* 정식 로고 B안(데이터심볼: 「보」 끝이 상승 막대그래프) — 라이트=검정/다크=흰색 2에셋 스위칭.
+          ⚠️ priority·loading="eager" 금지 → 반드시 lazy. 이유:
+           1) 테마가 class 기반이라 media 조건부 preload가 불가능해 두 장이 **모두** preload됐다.
+              어느 테마든 하나는 display:none이라 한 장은 100% 낭비였고, 그 두 장이 LCP(히어로
+              이미지) preload보다 앞줄을 차지했다.
+           2) next/image는 priority뿐 아니라 loading="eager"에도 preload를 건다
+              (get-img-props: isLazy = !priority && loading !== 'eager'). 즉 lazy만이 preload를 뺀다.
+           3) lazy면 display:none인 쪽은 아예 내려받지 않고, 보이는 쪽은 최초 뷰포트 안이라
+              레이아웃 직후 바로 로드된다(5KB 안팎이라 체감 지연 없음). */}
+      <Image src="/logo-b.png?v=1" alt="모두일보 — 균형 있게 보는 오늘의 뉴스" width={450} height={150} loading="lazy" className="h-10 w-auto dark:hidden sm:h-12" />
+      <Image src="/logo-b-dark.png?v=1" alt="" aria-hidden width={450} height={150} loading="lazy" className="hidden h-10 w-auto dark:block sm:h-12" />
     </Link>
   );
 }
@@ -43,6 +51,10 @@ export function Header() {
   const [today, setToday] = useState("");
   const drawerCloseRef = useRef<HTMLButtonElement>(null);
 
+  // 드로어: role="dialog" aria-modal 선언에 맞는 실제 계약(진입 포커스·Tab 트랩·ESC·복원·배경 inert)
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
+  const drawerRef = useFocusTrap<HTMLDivElement>(menuOpen, closeMenu, drawerCloseRef);
+
   useEffect(() => {
     const d = new Date();
     const w = ["일", "월", "화", "수", "목", "금", "토"][d.getDay()];
@@ -51,26 +63,12 @@ export function Header() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    if (menuOpen) drawerCloseRef.current?.focus();
     return () => {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
 
-  // ESC로 드로어/검색 닫기 (키보드 접근성)
-  useEffect(() => {
-    if (!menuOpen && !searchOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setMenuOpen(false);
-        setSearchOpen(false);
-      }
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [menuOpen, searchOpen]);
-
-  // 라우트 변경 시 메뉴/검색 닫기
+  // 라우트 변경 시 메뉴/검색 닫기 (ESC는 각 오버레이가 자체 처리)
   useEffect(() => {
     setMenuOpen(false);
     setSearchOpen(false);
@@ -130,7 +128,7 @@ export function Header() {
         {/* 상단 줄: 신규 사업 메뉴 (진하게) */}
         <nav aria-label="사업 메뉴" className="hidden border-t border-ink-100 dark:border-ink-800/60 md:block">
           <div className="container-page flex items-center gap-1">
-            {BIZ_MENUS.map((m) => (
+            {BIZ_CATEGORIES.map((m) => (
               <Link prefetch={false}
                 key={m.slug}
                 href={`/${m.slug}`}
@@ -174,10 +172,10 @@ export function Header() {
 
       {/* 모바일 전체 메뉴 드로어 */}
       {menuOpen && (
-        <div className="fixed inset-0 z-50 md:hidden" role="dialog" aria-modal="true" aria-label="전체 메뉴">
+        <div ref={drawerRef} className="fixed inset-0 z-50 md:hidden" role="dialog" aria-modal="true" aria-label="전체 메뉴">
           <div
             className="absolute inset-0 animate-[overlay-in_.2s_ease-out] bg-black/40 backdrop-blur-[2px]"
-            onClick={() => setMenuOpen(false)}
+            onClick={closeMenu}
             aria-hidden
           />
           <div className="glass absolute inset-y-0 left-0 flex w-[86%] max-w-sm animate-[drawer-in_.3s_cubic-bezier(0.32,0.72,0.33,1)] flex-col">
@@ -186,7 +184,7 @@ export function Header() {
               <button
                 ref={drawerCloseRef}
                 type="button"
-                onClick={() => setMenuOpen(false)}
+                onClick={closeMenu}
                 aria-label="메뉴 닫기"
                 className="inline-grid h-10 w-10 place-items-center rounded-md text-ink-600 hover:bg-ink-100 dark:text-ink-300 dark:hover:bg-ink-800"
               >
@@ -196,7 +194,7 @@ export function Header() {
             <div className="flex-1 overflow-y-auto px-4 py-5">
               {/* 상단: 신규 사업 메뉴 (우선 노출·진하게) */}
               <ul className="grid grid-cols-2 gap-1">
-                {BIZ_MENUS.map((m) => (
+                {BIZ_CATEGORIES.map((m) => (
                   <li key={m.slug}>
                     <Link prefetch={false}
                       href={`/${m.slug}`}
@@ -222,7 +220,7 @@ export function Header() {
                   </li>
                 ))}
               </ul>
-              <p className="mb-2 mt-6 text-xs font-bold uppercase tracking-wider text-ink-400">서비스</p>
+              <p className="mb-2 mt-6 text-xs font-bold uppercase tracking-wider text-ink-500 dark:text-ink-400">서비스</p>
               <ul className="space-y-0.5">
                 {COMPANY_LINKS.map((l) => (
                   <li key={l.href}>

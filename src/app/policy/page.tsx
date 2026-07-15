@@ -23,7 +23,7 @@ export default function PolicyPage() {
       />
       <div className="container-page py-10 sm:py-12">
         <article className="mx-auto max-w-3xl">
-          <p className="mb-10 text-sm text-ink-400">시행일: 2026년 7월 7일</p>
+          <p className="mb-10 text-sm text-ink-500 dark:text-ink-400">시행일: 2026년 7월 7일</p>
 
           <section className="mb-10">
             <h2 className={H}>1. 허위·조작정보 대응 원칙</h2>

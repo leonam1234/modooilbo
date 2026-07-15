@@ -36,7 +36,7 @@ export function VerifyEmailClient() {
     };
   }, []);
 
-  if (state.phase === "loading") return <p className="text-center text-sm text-ink-400">인증 확인 중…</p>;
+  if (state.phase === "loading") return <p className="text-center text-sm text-ink-500 dark:text-ink-400">인증 확인 중…</p>;
 
   if (state.phase === "done")
     return (

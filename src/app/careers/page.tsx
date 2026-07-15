@@ -412,7 +412,7 @@ export default function CareersPage() {
             </li>
           ))}
         </ol>
-        <p className="mt-6 inline-flex items-center gap-1.5 text-sm text-ink-400">
+        <p className="mt-6 inline-flex items-center gap-1.5 text-sm text-ink-500 dark:text-ink-400">
           <ClockIcon className="h-4 w-4" />
           전형 일정은 지원자 사정에 맞춰 조정될 수 있습니다.
         </p>

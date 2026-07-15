@@ -44,7 +44,7 @@ export function CommentItem({
   return (
     <div className={isReply ? "" : "py-4"}>
       {c.deleted || c.hidden ? (
-        <p className="text-sm italic text-ink-400">
+        <p className="text-sm italic text-ink-500 dark:text-ink-400">
           {c.deleted ? "삭제된 댓글입니다." : "신고 누적으로 가려진 댓글입니다."}
         </p>
       ) : (
@@ -56,7 +56,7 @@ export function CommentItem({
               </span>
             )}
             <span className="text-sm font-semibold text-ink-900 dark:text-white">{c.author}</span>
-            <span className="text-xs text-ink-400">{timeAgo(c.created_at)}</span>
+            <span className="text-xs text-ink-500 dark:text-ink-400">{timeAgo(c.created_at)}</span>
           </p>
           <p className="mt-1.5 whitespace-pre-wrap break-words text-[15px] leading-relaxed text-ink-800 dark:text-ink-100">
             {c.body}
@@ -77,7 +77,7 @@ export function CommentItem({
               <button
                 type="button"
                 onClick={onToggleReply}
-                className="text-xs text-ink-400 transition-colors hover:text-ink-700 dark:hover:text-ink-200"
+                className="text-xs text-ink-500 dark:text-ink-400 transition-colors hover:text-ink-700 dark:hover:text-ink-200"
               >
                 답글
               </button>
@@ -86,7 +86,7 @@ export function CommentItem({
               <button
                 type="button"
                 onClick={onRemove}
-                className="text-xs text-ink-400 transition-colors hover:text-ink-700 dark:hover:text-ink-200"
+                className="text-xs text-ink-500 dark:text-ink-400 transition-colors hover:text-ink-700 dark:hover:text-ink-200"
               >
                 삭제
               </button>
@@ -96,7 +96,7 @@ export function CommentItem({
                 type="button"
                 onClick={onReport}
                 disabled={reported}
-                className="text-xs text-ink-400 transition-colors hover:text-ink-700 disabled:cursor-default disabled:opacity-60 dark:hover:text-ink-200"
+                className="text-xs text-ink-500 dark:text-ink-400 transition-colors hover:text-ink-700 disabled:cursor-default disabled:opacity-60 dark:hover:text-ink-200"
               >
                 {reported ? "신고됨" : "신고"}
               </button>

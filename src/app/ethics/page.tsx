@@ -34,7 +34,7 @@ export default function EthicsPage() {
               aria-label="목차"
               className="lg:sticky lg:top-24 rounded-xl border border-ink-200 bg-ink-50 p-5 dark:border-ink-800 dark:bg-ink-900/40"
             >
-              <p className="text-xs font-semibold uppercase tracking-widest text-ink-400">목차</p>
+              <p className="text-xs font-semibold uppercase tracking-widest text-ink-500 dark:text-ink-400">목차</p>
               <ul className="mt-3 space-y-2 text-sm">
                 {TOC.map((t) => (
                   <li key={t.id}>
@@ -52,7 +52,7 @@ export default function EthicsPage() {
 
           {/* 본문 */}
           <article className="max-w-3xl">
-            <p className="text-sm text-ink-400">최종 개정 2026년 5월 1일 · 모두일보 편집위원회</p>
+            <p className="text-sm text-ink-500 dark:text-ink-400">최종 개정 2026년 5월 1일 · 모두일보 편집위원회</p>
 
             {/* 편집강령 전문 */}
             <section id="preamble" className="scroll-mt-24">
@@ -315,7 +315,7 @@ export default function EthicsPage() {
               </div>
             </section>
 
-            <p className="mt-12 border-t border-ink-200 pt-6 text-sm text-ink-400 dark:border-ink-800">
+            <p className="mt-12 border-t border-ink-200 pt-6 text-sm text-ink-500 dark:text-ink-400 dark:border-ink-800">
               본 윤리강령은 사회 변화와 독자 의견을 반영하여 편집위원회의 의결을 거쳐 개정될 수
               있습니다.
             </p>

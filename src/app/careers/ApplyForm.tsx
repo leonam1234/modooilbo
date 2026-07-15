@@ -13,9 +13,9 @@ const FIELD_OPTIONS = [
 
 const labelCls = "mb-1.5 block text-sm font-medium text-ink-700 dark:text-ink-200";
 const fieldCls =
-  "h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
+  "h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-500 dark:placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
 const textareaCls =
-  "min-h-32 w-full rounded-md border border-ink-200 bg-white px-4 py-3 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
+  "min-h-32 w-full rounded-md border border-ink-200 bg-white px-4 py-3 text-ink-900 outline-none transition-colors placeholder:text-ink-500 dark:placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
 const errorCls = "mt-1.5 text-xs text-signal-600 dark:text-signal-400";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -214,7 +214,7 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
           onChange={(e) => setFileName(e.target.files?.[0]?.name ?? "")}
           className="block w-full cursor-pointer rounded-md border border-ink-200 bg-white text-sm text-ink-600 outline-none transition-colors file:mr-4 file:cursor-pointer file:border-0 file:bg-ink-100 file:px-4 file:py-2.5 file:text-sm file:font-semibold file:text-ink-700 hover:file:bg-ink-200 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-ink-300 dark:file:bg-ink-800 dark:file:text-ink-200"
         />
-        <p className="mt-1.5 text-xs text-ink-400">
+        <p className="mt-1.5 text-xs text-ink-500 dark:text-ink-400">
           {fileName ? `선택된 파일: ${fileName}` : "PDF · DOCX · HWP, 최대 10MB (데모)"}
         </p>
       </div>
@@ -244,7 +244,7 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
         >
           지원서 제출하기
         </button>
-        <p className="text-xs text-ink-400">
+        <p className="text-xs text-ink-500 dark:text-ink-400">
           정식 오픈 준비 중입니다.
         </p>
       </div>

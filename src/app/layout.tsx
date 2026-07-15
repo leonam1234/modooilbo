@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { AutoRefresh } from "@/components/AutoRefresh";
 import { WeatherBackground } from "@/components/WeatherBackground";
 import { BackToTop } from "@/components/BackToTop";
+import { AdSenseLoader } from "@/components/AdSenseLoader";
 import { DEFAULT_OG_IMAGE } from "@/lib/site";
 
 // 매체 정체성 = 두 축(기업 데이터 뉴스 + 종합뉴스). 전 페이지 기본 설명·소셜 카드가 이 값을 공유한다.
@@ -137,13 +138,9 @@ export default function RootLayout({
             data-cf-beacon={`{"token": "${process.env.NEXT_PUBLIC_CF_BEACON_TOKEN}"}`}
           />
         )}
-        {/* Google AdSense — 자동광고 로더 (client=ca-pub-1741876528103024) */}
-        <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1741876528103024"
-          crossOrigin="anonymous"
-        />
+        {/* Google AdSense 자동광고는 head가 아니라 <AdSenseLoader/>가 LCP 이후 지연 주입한다
+            (head의 async 스크립트도 파서가 읽는 즉시 요청 → LCP 이미지와 대역폭 경합).
+            preconnect도 그 시점에 함께 붙는다 — 사유는 AdSenseLoader.tsx 주석 참조. */}
       </head>
       <body className="font-sans">
         <AutoRefresh />
@@ -165,6 +162,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <BackToTop />
+        <AdSenseLoader />
       </body>
     </html>
   );

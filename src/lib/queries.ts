@@ -67,18 +67,24 @@ export function getByCategory(slug: CategorySlug, count?: number): Article[] {
   return count ? list.slice(0, count) : list;
 }
 
+/**
+ * '많이 본' 정적 fallback — 신선한 글 먼저(조회수순), 모자라면 오래된 글(조회수순)로 채움.
+ *
+ * ⚠️ 실조회수 신호는 KV에만 있고(/api/most-read), 빌드 데이터의 readCount는 전 기사 0이다.
+ *    즉 여기서 조회수 비교는 항상 동률 → 2차 기준이 없으면 정렬이 원본 배열 순서(=슬러그
+ *    알파벳순 ≈ 오래된 글 먼저)로 새어 "많이 본"이라며 가장 오래된 글을 노출하게 된다.
+ *    그래서 동률일 때 **최신 발행순**을 명시적 2차 기준으로 둔다.
+ *    이는 /api/most-read 의 정렬(조회수 desc → 동률은 발행 desc)과 의미가 일치한다 —
+ *    두 경로 모두 "조회 신호가 없으면 최신순"이라는 같은 약속을 지킨다.
+ */
 export function getMostRead(count = 5): Article[] {
-  // 신선한 글 먼저(조회수순), 모자라면 오래된 글(조회수순)로 채움
-  const byRead = (a: Article, b: Article) => b.readCount - a.readCount;
-  const fresh = ARTICLES.filter(isHomeFresh).sort(byRead);
-  const stale = ARTICLES.filter((a) => !isHomeFresh(a)).sort(byRead);
+  const byReadThenNewest = (a: Article, b: Article) => b.readCount - a.readCount || byNewest(a, b);
+  // getAllArticles()는 공유 캐시 참조라 정렬 전 filter로 새 배열을 만든 뒤에만 sort한다.
+  const fresh = getAllArticles().filter(isHomeFresh).sort(byReadThenNewest);
+  const stale = getAllArticles()
+    .filter((a) => !isHomeFresh(a))
+    .sort(byReadThenNewest);
   return [...fresh, ...stale].slice(0, count);
-}
-
-export function getOpinion(count = 4): Article[] {
-  return getAllArticles()
-    .filter((a) => a.type === "opinion" || a.category === "opinion")
-    .slice(0, count);
 }
 
 export function getArticleBySlug(slug: string): Article | undefined {

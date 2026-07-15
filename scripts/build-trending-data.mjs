@@ -29,9 +29,10 @@ function parseHardcoded(file) {
     const slug = chunk.match(/\bslug:\s*"([^"]+)"/);
     const pub = chunk.match(/\bpublishedAt:\s*"([^"]+)"/);
     const tagsM = chunk.match(/\btags:\s*\[([^\]]*)\]/);
-    if (!slug || !tagsM) continue;
+    // 태그가 없어도 기사 자체는 랭킹 풀(/api/most-read)에 반드시 포함시킨다 — slug만 필수.
+    if (!slug) continue;
     const idM = chunk.match(/\bid:\s*"([^"]+)"/);
-    const tags = [...tagsM[1].matchAll(/"([^"]+)"/g)].map((m) => m[1]);
+    const tags = tagsM ? [...tagsM[1].matchAll(/"([^"]+)"/g)].map((m) => m[1]) : [];
     out.push({ id: idM ? idM[1] : slug[1], slug: slug[1], publishedAt: pub ? pub[1] : "", tags });
   }
   return out;
@@ -56,13 +57,17 @@ function parseGenerated() {
   return arr.map((a) => ({ id: a.id || a.slug, slug: a.slug, publishedAt: a.publishedAt || "", tags: Array.isArray(a.tags) ? a.tags : [] }));
 }
 
+// ⚠️ 태그 유무로 거르지 않는다. 이 배열은 (a) 태그 색인과 (b) 랭킹 풀(data.articles)의
+//    공통 원천인데, 예전엔 `a.tags.length` 필터가 태그 없는 기사를 통째로 버려서
+//    /api/most-read 가 그 기사를 영영 보지 못했다(조회수가 아무리 높아도 랭킹 제외).
+//    태그 색인 루프는 태그가 없으면 자연히 아무것도 더하지 않으므로 필터 없이도 안전하다.
 const articles = [
   ...parseHardcoded("articles.ts"),
   ...parseHardcoded("articles2.ts"),
   ...parseGenerated(),
-].filter((a) => a.slug && a.tags.length);
+].filter((a) => a.slug);
 
-// 태그 색인: count + 최신 발행시각
+// 태그 색인: count + 최신 발행시각 (태그 없는 기사는 여기 기여분이 0)
 const index = new Map();
 for (const a of articles) {
   for (const raw of a.tags) {

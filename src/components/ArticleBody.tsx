@@ -101,7 +101,7 @@ export function ArticleBody({ body }: { body: string[] }) {
                   className="object-cover"
                 />
               </span>
-              {img[1] && <figcaption className="mt-2 text-xs text-ink-400">{img[1]}</figcaption>}
+              {img[1] && <figcaption className="mt-2 text-xs text-ink-500 dark:text-ink-400">{img[1]}</figcaption>}
             </figure>
           );
         }
@@ -109,12 +109,12 @@ export function ArticleBody({ body }: { body: string[] }) {
       })}
       {sourceLabel && sources.length > 0 && (
         <aside aria-label="출처" className="!mt-10 border-t border-ink-100 pt-4 dark:border-ink-800">
-          <p className="text-[11px] font-semibold tracking-wide text-ink-400 dark:text-ink-500">
+          <p className="text-[11px] font-semibold tracking-wide text-ink-500 dark:text-ink-400">
             {sourceLabel}
           </p>
           <ul className="mt-1.5 space-y-1">
             {sources.map((s, i) => (
-              <li key={i} className="break-all text-xs leading-relaxed text-ink-400 dark:text-ink-500">
+              <li key={i} className="break-all text-xs leading-relaxed text-ink-500 dark:text-ink-400">
                 {s}
               </li>
             ))}

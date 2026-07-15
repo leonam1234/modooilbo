@@ -20,5 +20,5 @@ export function ViewCount({ articleId }: { articleId: string }) {
   }, [articleId]);
 
   if (count === null) return null;
-  return <span className="ml-2 text-ink-400">조회 {formatCount(count)}</span>;
+  return <span className="ml-2 text-ink-500 dark:text-ink-400">조회 {formatCount(count)}</span>;
 }

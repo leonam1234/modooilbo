@@ -25,7 +25,7 @@ export function SectionHeading({
           {title}
         </span>
         {en && (
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-ink-300">
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-ink-500 dark:text-ink-300">
             {en}
           </span>
         )}

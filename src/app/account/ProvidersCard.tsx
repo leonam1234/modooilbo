@@ -34,9 +34,9 @@ export function ProvidersCard({
                 {PROVIDER_LABEL[p]}
               </span>
               {connected ? (
-                <span className="text-xs font-medium text-ink-400">연결됨</span>
+                <span className="text-xs font-medium text-ink-500 dark:text-ink-400">연결됨</span>
               ) : p === "email" ? (
-                <span className="text-xs text-ink-400">
+                <span className="text-xs text-ink-500 dark:text-ink-400">
                   {hasRealEmail ? "아래 비밀번호 설정 시 사용 가능" : "위 계정 정보에서 이메일 등록 시 사용 가능"}
                 </span>
               ) : (
@@ -51,7 +51,7 @@ export function ProvidersCard({
           );
         })}
       </div>
-      <p className="mt-3 text-xs leading-relaxed text-ink-400">
+      <p className="mt-3 text-xs leading-relaxed text-ink-500 dark:text-ink-400">
         연결해 두면 어떤 방법으로 로그인해도 같은 계정으로 들어옵니다.
       </p>
     </Card>

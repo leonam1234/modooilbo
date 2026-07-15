@@ -205,7 +205,7 @@ export function AccountClient() {
     setBusy(false);
   }
 
-  if (user === undefined) return <p className="py-16 text-center text-ink-400">불러오는 중…</p>;
+  if (user === undefined) return <p className="py-16 text-center text-ink-500 dark:text-ink-400">불러오는 중…</p>;
 
   if (user === null) {
     return (
@@ -298,7 +298,7 @@ export function AccountClient() {
       {/* 탈퇴 */}
       <div className="pt-2 text-center">
         {!showDelete ? (
-          <button type="button" onClick={() => setShowDelete(true)} className="text-xs text-ink-400 underline hover:text-ink-600">
+          <button type="button" onClick={() => setShowDelete(true)} className="text-xs text-ink-500 dark:text-ink-400 underline hover:text-ink-600">
             회원 탈퇴
           </button>
         ) : (

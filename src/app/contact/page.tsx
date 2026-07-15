@@ -98,7 +98,7 @@ export default function ContactPage() {
               <dl className="mt-4 space-y-2 text-sm">
                 <div className="flex items-center gap-2">
                   <dt className="sr-only">이메일</dt>
-                  <MailIcon className="h-4 w-4 shrink-0 text-ink-400" />
+                  <MailIcon className="h-4 w-4 shrink-0 text-ink-500 dark:text-ink-400" />
                   <dd>
                     <a
                       href={`mailto:${d.email}`}
@@ -110,7 +110,7 @@ export default function ContactPage() {
                 </div>
                 <div className="flex items-center gap-2 text-ink-600 dark:text-ink-300">
                   <dt className="sr-only">전화</dt>
-                  <span aria-hidden className="w-4 shrink-0 text-center text-ink-400">
+                  <span aria-hidden className="w-4 shrink-0 text-center text-ink-500 dark:text-ink-400">
                     ☎
                   </span>
                   <dd>{d.phone}</dd>
@@ -119,7 +119,7 @@ export default function ContactPage() {
             </div>
           ))}
         </div>
-        <p className="mt-6 text-sm text-ink-400">
+        <p className="mt-6 text-sm text-ink-500 dark:text-ink-400">
           운영시간 평일 09:00~18:00 (점심 12:00~13:00 · 주말 및 공휴일 휴무)
         </p>
       </section>
@@ -146,7 +146,7 @@ export default function ContactPage() {
                   </span>
                   <span
                     aria-hidden
-                    className="shrink-0 text-ink-400 transition-transform group-open:rotate-45"
+                    className="shrink-0 text-ink-500 dark:text-ink-400 transition-transform group-open:rotate-45"
                   >
                     +
                   </span>

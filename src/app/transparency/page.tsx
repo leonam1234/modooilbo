@@ -36,7 +36,7 @@ export default function TransparencyPage() {
               aria-label="목차"
               className="lg:sticky lg:top-24 rounded-xl border border-ink-200 bg-ink-50 p-5 dark:border-ink-800 dark:bg-ink-900/40"
             >
-              <p className="text-xs font-semibold uppercase tracking-widest text-ink-400">목차</p>
+              <p className="text-xs font-semibold uppercase tracking-widest text-ink-500 dark:text-ink-400">목차</p>
               <ul className="mt-3 space-y-2 text-sm">
                 {TOC.map((t) => (
                   <li key={t.id}>
@@ -221,7 +221,7 @@ export default function TransparencyPage() {
               </p>
             </section>
 
-            <p className="mt-12 border-t border-ink-200 pt-6 text-sm text-ink-400 dark:border-ink-800">
+            <p className="mt-12 border-t border-ink-200 pt-6 text-sm text-ink-500 dark:text-ink-400 dark:border-ink-800">
               최종 갱신 2026년 7월 1일 · 문의 {SITE.email}
             </p>
           </article>

@@ -180,11 +180,11 @@ export default function AdvertisePage() {
               <dd className="mt-2 font-headline text-3xl font-extrabold text-signal-600">
                 {m.value}
               </dd>
-              <p className="mt-2 text-xs text-ink-400">{m.note}</p>
+              <p className="mt-2 text-xs text-ink-500 dark:text-ink-400">{m.note}</p>
             </div>
           ))}
         </dl>
-        <p className="mt-4 text-xs text-ink-400">
+        <p className="mt-4 text-xs text-ink-500 dark:text-ink-400">
           ※ 상기 수치는 예시이며, 실제 집행 시점의 매체 자료를 별도로
           제공해 드립니다.
         </p>

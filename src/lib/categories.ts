@@ -12,10 +12,14 @@ export const CATEGORIES: Category[] = [
 
 /**
  * 기업 데이터 뉴스 — '사업' 축 카테고리(위 종합뉴스 CATEGORIES와 분리된 신규 축).
- * 헤더 상단 사업 메뉴(lib/biz-menus.ts)로 노출되며, 실제 기사가 붙어 정식 카테고리로
- * 승격된 사업 메뉴만 여기에 등록한다(bids 등 '준비 중' 메뉴는 기사 카테고리가 아니므로 제외).
  *
- * ⚠️ 이 배열은 CATEGORIES와 분리 유지한다. 종합뉴스 내비·홈 섹션·[category] 라우트·사이트맵
+ * ⭐ **사업 6개의 단일 정의(정본)** — 헤더 상단 사업 메뉴·홈 '기업 데이터' 섹션군·각 카테고리
+ *    라우트·사이트맵이 전부 이 배열 하나만 본다. 배열 **순서 = 헤더 노출 순서**다.
+ *    (예전엔 lib/biz-menus.ts의 BIZ_MENUS가 같은 6개를 이름·설명까지 따로 들고 있어
+ *     이미 문구가 어긋나 있었다 — 헤더는 "…정보를 모읍니다", 카테고리 페이지는
+ *     "…기업 관점에서 정리합니다". 그래서 정의를 여기로 통합하고 biz-menus.ts는 제거했다.)
+ *
+ * ⚠️ 이 배열은 CATEGORIES와는 분리 유지한다. 종합뉴스 내비·홈 섹션·[category] 라우트의
  *    카테고리 루프가 CATEGORIES만 순회하도록 두어 사업 축이 종합뉴스 면을 침범하지 않게 한다.
  */
 export const BIZ_CATEGORIES: Category[] = [
@@ -27,6 +31,15 @@ export const BIZ_CATEGORIES: Category[] = [
     seoTitle: "정부지원금 뉴스 — 정부·지자체 지원사업·보조금 공고 분석",
     seoDescription:
       "정부·지자체 지원사업과 보조금 공고를 대상·자격·마감 중심으로 정리합니다. 모두일보가 기업이 놓치기 쉬운 지원금 조건과 주의점을 짚어 드립니다.",
+  },
+  {
+    slug: "bids",
+    name: "공공입찰",
+    nameEn: "Bids",
+    description: "공공조달·입찰 공고와 낙찰 동향을 기업 관점에서 정리합니다",
+    seoTitle: "공공입찰 뉴스 — 공공조달·입찰 공고·낙찰 동향 분석",
+    seoDescription:
+      "공공조달·입찰 공고를 참가자격·금액·마감 중심으로 정리합니다. 모두일보가 입찰 전에 확인해야 할 자격과 절차를 짚어 드립니다.",
   },
   {
     slug: "startup",
@@ -64,15 +77,6 @@ export const BIZ_CATEGORIES: Category[] = [
     seoDescription:
       "기업 간 계약·거래와 B2B 실무를 대상·조건·주의점 중심으로 정리합니다. 모두일보가 계약 전에 확인해야 할 지점을 짚어 드립니다.",
   },
-  {
-    slug: "bids",
-    name: "공공입찰",
-    nameEn: "Bids",
-    description: "공공조달·입찰 공고와 낙찰 동향을 기업 관점에서 정리합니다",
-    seoTitle: "공공입찰 뉴스 — 공공조달·입찰 공고·낙찰 동향 분석",
-    seoDescription:
-      "공공조달·입찰 공고를 참가자격·금액·마감 중심으로 정리합니다. 모두일보가 입찰 전에 확인해야 할 자격과 절차를 짚어 드립니다.",
-  },
 ];
 
 /** 사업 축 카테고리 슬러그 집합 — 종합뉴스 홈 히어로 등에서 사업 기사를 걸러내는 데 쓴다. */
@@ -101,6 +105,3 @@ export function getCategory(slug: string): Category | undefined {
   return CATEGORY_MAP[slug as CategorySlug];
 }
 
-export function categoryName(slug: CategorySlug): string {
-  return CATEGORY_MAP[slug]?.name ?? slug;
-}

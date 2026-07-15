@@ -118,8 +118,19 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
   const snsBtn =
     "inline-grid h-9 w-9 place-items-center rounded-full border border-ink-200 text-sm font-bold text-ink-600 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-700 dark:text-ink-300";
 
+  // 스크랩·복사 결과는 1.5초짜리 시각 툴팁으로만 표시돼 스크린리더 사용자에게는 아무 일도
+  // 일어나지 않은 것과 같았다. 라이브 리전은 **메시지가 생기기 전부터 DOM에 있어야** 낭독되므로
+  // (조건부로 함께 마운트되면 놓치는 리더가 있다) 빈 상태로 상주시키고 텍스트만 갈아 끼운다.
+  const liveMsg = needLogin
+    ? "스크랩하려면 로그인이 필요합니다"
+    : (saveMsg ?? (copied ? "링크가 복사되었습니다" : ""));
+  const liveAssertive = needLogin || (saveMsg?.includes("오류") ?? false);
+
   return (
     <div className="no-print flex flex-wrap items-center gap-2">
+      <span role="status" aria-live={liveAssertive ? "assertive" : "polite"} className="sr-only">
+        {liveMsg}
+      </span>
       <div className="flex items-center rounded-full border border-ink-200 dark:border-ink-700">
         <button
           type="button"
@@ -149,8 +160,12 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
         >
           <BookmarkIcon className="h-4 w-4" />
         </button>
+        {/* 시각 툴팁은 aria-hidden — 낭독은 아래 상시 라이브 리전이 전담한다(중복 낭독 방지) */}
         {saveMsg && (
-          <span className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-ink-900 px-2 py-1 text-xs text-white">
+          <span
+            aria-hidden
+            className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-ink-900 px-2 py-1 text-xs text-white"
+          >
             {saveMsg}
           </span>
         )}
@@ -172,7 +187,10 @@ export function ArticleActions({ title, articleId }: { title: string; articleId:
           <ShareIcon className="h-4 w-4" />
         </button>
         {copied && (
-          <span className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-ink-900 px-2 py-1 text-xs text-white">
+          <span
+            aria-hidden
+            className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-ink-900 px-2 py-1 text-xs text-white"
+          >
             복사됨
           </span>
         )}

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 const inputCls =
-  "h-12 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
+  "h-12 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-500 dark:placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
 
 export function ForgotForm() {
   const [email, setEmail] = useState("");
@@ -40,7 +40,7 @@ export function ForgotForm() {
           <br />
           메일함(스팸함 포함)을 확인해 주세요. 링크는 <b>1시간</b> 동안 유효합니다.
         </p>
-        <p className="mt-4 text-xs leading-relaxed text-ink-400">
+        <p className="mt-4 text-xs leading-relaxed text-ink-500 dark:text-ink-400">
           메일이 오지 않는다면 — 카카오·구글·네이버로 가입한 계정일 수 있어요. 그 경우{" "}
           <Link href="/login" className="underline">
             간편 로그인

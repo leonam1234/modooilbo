@@ -22,7 +22,7 @@ export function PageHeader({
         {breadcrumb && breadcrumb.length > 0 && (
           <nav
             aria-label="breadcrumb"
-            className={`mb-3 flex items-center gap-1.5 text-xs text-ink-400 ${
+            className={`mb-3 flex items-center gap-1.5 text-xs text-ink-500 dark:text-ink-400 ${
               align === "center" ? "justify-center" : ""
             }`}
           >

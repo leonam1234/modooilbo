@@ -226,7 +226,7 @@ export default function AboutPage() {
             <div className="mt-6 rounded-xl border border-ink-200 bg-white p-6 dark:border-ink-800 dark:bg-ink-900">
               <div
                 aria-hidden
-                className="flex aspect-[4/3] items-center justify-center rounded-lg border border-dashed border-ink-300 bg-ink-50 text-sm text-ink-400 dark:border-ink-700 dark:bg-ink-950"
+                className="flex aspect-[4/3] items-center justify-center rounded-lg border border-dashed border-ink-300 bg-ink-50 text-sm text-ink-500 dark:text-ink-400 dark:border-ink-700 dark:bg-ink-950"
               >
                 지도 영역 (준비 중)
               </div>

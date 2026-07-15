@@ -19,7 +19,8 @@ export function NewsletterCTA() {
             에디터가 엄선한 핵심 뉴스와 깊이 있는 분석을 뉴스레터로 받아보세요.
           </p>
           <NewsletterForm />
-          <p className="mt-3 text-xs text-ink-500">
+          {/* 어두운 골드 카드(bg-ink-900) 위 — ink-500은 3.77:1로 AA 미달, ink-400=5.69:1 */}
+          <p className="mt-3 text-xs text-ink-400">
             매주 월요일 발송 · 무료 · 메일 하단에서 언제든 수신거부할 수 있습니다.
           </p>
         </div>

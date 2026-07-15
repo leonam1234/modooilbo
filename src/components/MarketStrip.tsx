@@ -50,7 +50,7 @@ export function MarketStrip() {
                       ? "text-red-600 dark:text-red-400"
                       : down
                         ? "text-blue-600 dark:text-blue-400"
-                        : "font-normal text-ink-400"
+                        : "font-normal text-ink-500 dark:text-ink-400"
                   }`}
                 >
                   {up ? "▲" : down ? "▼" : "—"} {diff === 0 || pct === null ? "" : `${Math.abs(pct).toFixed(2)}%`}
@@ -59,7 +59,7 @@ export function MarketStrip() {
             </div>
           );
         })}
-        <span className="ml-auto shrink-0 text-[11px] text-ink-400">{data.updated} 기준 · 지연시세</span>
+        <span className="ml-auto shrink-0 text-[11px] text-ink-500 dark:text-ink-400">{data.updated} 기준 · 지연시세</span>
       </div>
     </section>
   );

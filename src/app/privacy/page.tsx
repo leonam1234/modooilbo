@@ -19,7 +19,7 @@ export default function PrivacyPage() {
 
       <div className="container-page py-10 sm:py-12">
         <article className="mx-auto max-w-3xl">
-          <p className="mb-6 text-sm text-ink-400">시행일: 2026년 1월 1일</p>
+          <p className="mb-6 text-sm text-ink-500 dark:text-ink-400">시행일: 2026년 1월 1일</p>
           <p className="mb-10 leading-relaxed text-ink-600 dark:text-ink-300">
             모두일보(이하 &ldquo;회사&rdquo;)은 「개인정보 보호법」 등 관련 법령에 따라 이용자의
             개인정보를 보호하고 이와 관련한 고충을 신속하게 처리할 수 있도록 다음과 같은

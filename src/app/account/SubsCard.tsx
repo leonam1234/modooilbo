@@ -25,7 +25,7 @@ export function SubsCard({
   return (
     <Card title="구독한 기자">
       {subs === null ? (
-        <p className="text-sm text-ink-400">불러오는 중…</p>
+        <p className="text-sm text-ink-500 dark:text-ink-400">불러오는 중…</p>
       ) : subs.length === 0 ? (
         <p className="text-sm leading-relaxed text-ink-500 dark:text-ink-300">
           아직 구독한 기자가 없습니다. 기자 프로필에서 [+ 구독]을 눌러 보세요.
@@ -40,7 +40,7 @@ export function SubsCard({
               <li key={s.reporter_slug} className="flex items-center justify-between gap-3 py-3">
                 <div className="min-w-0">
                   <Link href={`/reporter/${r.slug}`} className="text-sm font-semibold text-ink-900 hover:underline dark:text-white">
-                    {r.name} <span className="font-normal text-ink-400">{r.role}</span>
+                    {r.name} <span className="font-normal text-ink-500 dark:text-ink-400">{r.role}</span>
                   </Link>
                   {latest && (
                     <Link href={`/article/${latest.slug}`} className="mt-0.5 block truncate text-xs text-ink-500 hover:underline dark:text-ink-400">
@@ -51,7 +51,7 @@ export function SubsCard({
                 <button
                   type="button"
                   onClick={() => onRemove(s.reporter_slug)}
-                  className="shrink-0 text-xs text-ink-400 transition-colors hover:text-ink-700 dark:hover:text-ink-200"
+                  className="shrink-0 text-xs text-ink-500 dark:text-ink-400 transition-colors hover:text-ink-700 dark:hover:text-ink-200"
                 >
                   구독 해제
                 </button>

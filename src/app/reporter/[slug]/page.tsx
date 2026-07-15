@@ -75,7 +75,7 @@ export default async function ReporterPage({ params }: { params: Promise<{ slug:
           <p className="mt-1.5 text-sm leading-relaxed text-ink-500 dark:text-ink-300">{reporter.beat}</p>
           <div className="mt-2 flex items-center gap-3">
             <SubscribeButton slug={reporter.slug} />
-            <p className="text-xs tabular-nums text-ink-400">기사 {articles.length}건</p>
+            <p className="text-xs tabular-nums text-ink-500 dark:text-ink-400">기사 {articles.length}건</p>
           </div>
         </div>
       </header>
@@ -85,12 +85,12 @@ export default async function ReporterPage({ params }: { params: Promise<{ slug:
         {articles.map((a) => (
           <Link key={a.id} href={`/article/${a.slug}`} className="group flex items-center gap-4 py-5">
             <div className="min-w-0 flex-1">
-              <p className="text-xs font-medium text-ink-400">{CATEGORY_MAP[a.category]?.name ?? a.category}</p>
+              <p className="text-xs font-medium text-ink-500 dark:text-ink-400">{CATEGORY_MAP[a.category]?.name ?? a.category}</p>
               <h2 className="mt-1 line-clamp-2 font-headline text-base font-bold leading-snug text-ink-900 group-hover:underline dark:text-white sm:text-lg">
                 {a.title}
               </h2>
               <p className="mt-1 hidden text-sm text-ink-500 line-clamp-1 dark:text-ink-400 sm:block">{a.summary}</p>
-              <p className="mt-1.5 text-xs text-ink-400">{formatKoreanDateTime(a.publishedAt)}</p>
+              <p className="mt-1.5 text-xs text-ink-500 dark:text-ink-400">{formatKoreanDateTime(a.publishedAt)}</p>
             </div>
             <div className="relative h-[4.5rem] w-28 shrink-0 overflow-hidden rounded-md bg-ink-100 dark:bg-ink-800">
               <Image
@@ -104,7 +104,7 @@ export default async function ReporterPage({ params }: { params: Promise<{ slug:
           </Link>
         ))}
         {articles.length === 0 && (
-          <p className="py-10 text-center text-sm text-ink-400">아직 등록된 기사가 없습니다.</p>
+          <p className="py-10 text-center text-sm text-ink-500 dark:text-ink-400">아직 등록된 기사가 없습니다.</p>
         )}
       </section>
     </div>

@@ -121,7 +121,7 @@ export function LoginForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="name@example.com"
-          className="h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white"
+          className="h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-500 dark:placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white"
         />
       </div>
 
@@ -141,7 +141,7 @@ export function LoginForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="비밀번호를 입력하세요"
-          className="h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white"
+          className="h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-500 dark:placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white"
         />
       </div>
 
@@ -183,7 +183,7 @@ export function LoginForm() {
 
       <div className="flex items-center gap-3 py-1" aria-hidden>
         <span className="h-px flex-1 bg-ink-200 dark:bg-ink-800" />
-        <span className="text-xs text-ink-400">또는</span>
+        <span className="text-xs text-ink-500 dark:text-ink-400">또는</span>
         <span className="h-px flex-1 bg-ink-200 dark:bg-ink-800" />
       </div>
 
@@ -214,7 +214,7 @@ export function LoginForm() {
         </button>
       </div>
 
-      <p className="text-center text-[11px] leading-relaxed text-ink-400">
+      <p className="text-center text-[11px] leading-relaxed text-ink-500 dark:text-ink-400">
         간편 로그인으로 처음 가입하는 경우{" "}
         <Link href="/terms" className="underline">이용약관</Link>과{" "}
         <Link href="/privacy" className="underline">개인정보처리방침</Link>에 동의한 것으로 간주됩니다.

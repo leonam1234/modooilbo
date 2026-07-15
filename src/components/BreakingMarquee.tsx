@@ -37,7 +37,7 @@ export function BreakingMarquee({ items }: { items: { slug: string; title: strin
         onClick={() => setPaused((p) => !p)}
         aria-pressed={paused}
         aria-label={paused ? "속보 흐름 재생" : "속보 흐름 일시정지"}
-        className="-my-2 grid h-9 w-9 shrink-0 place-items-center rounded-full text-ink-400 transition-colors hover:text-ink-700 dark:hover:text-ink-200"
+        className="-my-2 grid h-9 w-9 shrink-0 place-items-center rounded-full text-ink-500 dark:text-ink-400 transition-colors hover:text-ink-700 dark:hover:text-ink-200"
       >
         {paused ? (
           <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden>

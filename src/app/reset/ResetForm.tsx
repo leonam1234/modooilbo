@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 const inputCls =
-  "h-12 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
+  "h-12 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-500 dark:placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
 
 export function ResetForm() {
   const [token, setToken] = useState<string | null>(null);
@@ -48,7 +48,7 @@ export function ResetForm() {
     setBusy(false);
   }
 
-  if (token === null) return <p className="py-6 text-center text-sm text-ink-400">확인 중…</p>;
+  if (token === null) return <p className="py-6 text-center text-sm text-ink-500 dark:text-ink-400">확인 중…</p>;
 
   if (!token) {
     return (

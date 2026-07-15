@@ -48,7 +48,7 @@ export function NewsletterForm() {
         onChange={(e) => setEmail(e.target.value)}
         aria-label="이메일 주소"
         placeholder="이메일 주소"
-        className="h-12 flex-1 rounded-lg border border-[#d4af37]/40 bg-white/10 px-4 text-white outline-none placeholder:text-ink-400 focus:border-[#d4af37]"
+        className="h-12 flex-1 rounded-lg border border-[#d4af37]/40 bg-white/10 px-4 text-white outline-none placeholder:text-ink-500 dark:placeholder:text-ink-400 focus:border-[#d4af37]"
       />
       <button
         type="submit"

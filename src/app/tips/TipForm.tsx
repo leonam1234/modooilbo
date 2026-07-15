@@ -15,7 +15,7 @@ const CATEGORIES = [
 
 const label = "mb-1.5 block text-sm font-medium text-ink-700 dark:text-ink-200";
 const field =
-  "w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
+  "w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-500 dark:placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
 
 /** 가상 접수번호 생성 (제출 시점에만 호출 — SSR 안전) */
 function makeReceiptNo(): string {
@@ -87,7 +87,7 @@ export function TipForm() {
             {submitted}
           </p>
         </div>
-        <p className="mt-4 text-xs text-ink-400">
+        <p className="mt-4 text-xs text-ink-500 dark:text-ink-400">
           접수번호를 보관하시면 이후 진행 상황을 문의하실 때 사용할 수 있습니다.
         </p>
         <div className="mt-6">
@@ -133,7 +133,7 @@ export function TipForm() {
           required
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className={cn(field, "h-11", category === "" && "text-ink-400")}
+          className={cn(field, "h-11", category === "" && "text-ink-500 dark:text-ink-400")}
         >
           <option value="" disabled>
             분류를 선택하세요
@@ -162,7 +162,7 @@ export function TipForm() {
 
       <div>
         <label htmlFor="tip-file" className={label}>
-          증거 자료 첨부 <span className="font-normal text-ink-400">(선택)</span>
+          증거 자료 첨부 <span className="font-normal text-ink-500 dark:text-ink-400">(선택)</span>
         </label>
         <input
           id="tip-file"
@@ -170,7 +170,7 @@ export function TipForm() {
           onChange={(e) => setFileName(e.target.files?.[0]?.name ?? "")}
           className="block w-full text-sm text-ink-500 file:mr-4 file:rounded-md file:border-0 file:bg-signal-50 file:px-4 file:py-2.5 file:text-sm file:font-semibold file:text-signal-600 hover:file:bg-signal-100 dark:text-ink-300 dark:file:bg-signal-950/40 dark:file:text-signal-400"
         />
-        <p className="mt-1.5 text-xs text-ink-400">
+        <p className="mt-1.5 text-xs text-ink-500 dark:text-ink-400">
           {fileName
             ? `선택된 파일: ${fileName} · 데모 환경이므로 실제로 업로드되지 않습니다.`
             : "문서·사진·녹취 등을 첨부할 수 있습니다. 데모 환경이므로 실제로 업로드되지 않습니다."}
@@ -179,7 +179,7 @@ export function TipForm() {
 
       <div>
         <label htmlFor="tip-contact" className={label}>
-          연락처 <span className="font-normal text-ink-400">(선택)</span>
+          연락처 <span className="font-normal text-ink-500 dark:text-ink-400">(선택)</span>
         </label>
         <input
           id="tip-contact"
@@ -234,7 +234,7 @@ export function TipForm() {
         제보 접수하기
       </button>
 
-      <p className="text-xs text-ink-400">
+      <p className="text-xs text-ink-500 dark:text-ink-400">
         정식 오픈 준비 중입니다.
       </p>
     </form>

@@ -90,7 +90,7 @@ export function RegisterForm() {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="모두일보에서 표시될 이름"
-          className="h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white"
+          className="h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-500 dark:placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white"
         />
       </div>
 
@@ -110,7 +110,7 @@ export function RegisterForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="name@example.com"
-          className="h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white"
+          className="h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-500 dark:placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white"
         />
       </div>
 
@@ -130,7 +130,7 @@ export function RegisterForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="8자 이상 입력하세요"
-          className="h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white"
+          className="h-11 w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-500 dark:placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white"
         />
       </div>
 
@@ -151,7 +151,7 @@ export function RegisterForm() {
           onChange={(e) => setConfirm(e.target.value)}
           placeholder="비밀번호를 다시 입력하세요"
           aria-invalid={passwordMismatch}
-          className={`h-11 w-full rounded-md border bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-400 focus:border-signal-500 dark:bg-ink-900 dark:text-white ${
+          className={`h-11 w-full rounded-md border bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-500 dark:placeholder:text-ink-400 focus:border-signal-500 dark:bg-ink-900 dark:text-white ${
             passwordMismatch
               ? "border-signal-500 dark:border-signal-500"
               : "border-ink-200 dark:border-ink-700"
@@ -209,7 +209,7 @@ export function RegisterForm() {
             className="mt-0.5 h-4 w-4 rounded border-ink-300 text-signal-600 focus:ring-signal-500 dark:border-ink-600 dark:bg-ink-900"
           />
           <span>
-            <span className="text-ink-400">(선택)</span> 뉴스레터 및 마케팅 정보 수신에
+            <span className="text-ink-500 dark:text-ink-400">(선택)</span> 뉴스레터 및 마케팅 정보 수신에
             동의합니다.
           </span>
         </label>

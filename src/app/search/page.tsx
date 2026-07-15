@@ -20,7 +20,7 @@ export default function SearchPage() {
     <>
       <PageHeader title="검색" breadcrumb={[{ label: "검색" }]} />
       <div className="container-page py-10">
-        <Suspense fallback={<p className="text-ink-400">검색 준비 중…</p>}>
+        <Suspense fallback={<p className="text-ink-500 dark:text-ink-400">검색 준비 중…</p>}>
           <SearchClient index={index} />
         </Suspense>
       </div>
