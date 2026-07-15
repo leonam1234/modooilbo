@@ -243,3 +243,42 @@ CREATE TABLE IF NOT EXISTS email_verifications (
 );
 CREATE INDEX IF NOT EXISTS idx_email_verifications_user ON email_verifications(user_id, created_at);
 CREATE INDEX IF NOT EXISTS idx_email_verifications_expires ON email_verifications(expires_at);
+
+-- ─────────────────────────────────────────────────────────────────────────────
+-- 가입 이메일 인증 도입 + 이메일 검증 상태 (2026-07-15)
+--   증분 마이그레이션 정본: db/migrations/0004_verified_signup.sql (원격 적용은 그 파일로).
+--   여기(schema.sql)에도 동일 정의를 두어 전체 스키마의 단일 사본을 유지한다.
+--
+--   [왜] users에는 이메일 검증 여부를 나타내는 값이 **아예 없었다** → users.email은 그냥 타이핑된
+--   문자열이었고(구 signup은 인증 메일 없이 즉시 계정 생성), 이것이 계정 선점의 뿌리였다.
+--   또 중복 이메일에 409를 돌려줘 가입 여부가 그대로 새 나갔다(계정 열거).
+--   → 확인 전 상태를 users가 아니라 pending_signups에 두고(=미검증 로컬 계정이 존재할 수 없음),
+--     검증 사실은 user_email_verified에 (계정, 주소) 쌍으로 기록한다.
+--   ⚠️ ALTER TABLE ADD COLUMN은 재실행이 불가능해 쓰지 않았다(0002·0003과 같은 원칙).
+-- ─────────────────────────────────────────────────────────────────────────────
+-- 검증 판정은 항상 `v.email = u.email` — 계정 단위 boolean이 아니라 (계정, 주소) 쌍이다.
+-- users.email이 바뀌면(verify-email.ts) 옛 검증이 새 주소로 승계되지 않고 자동으로 미검증이 된다.
+-- 이 속성이 깨지면 소셜 자동 병합이 곧바로 계정 선점 통로가 된다(functions/_lib/email-verified.ts).
+CREATE TABLE IF NOT EXISTS user_email_verified (
+  user_id TEXT PRIMARY KEY REFERENCES users(id),  -- 계정당 1행. 행이 없으면 미검증(안전한 기본값).
+  email TEXT NOT NULL COLLATE NOCASE,             -- **검증된 주소**. users.email과 다르면 미검증 판정.
+  method TEXT NOT NULL,                           -- signup | email-register | password-reset | oauth:google | oauth:kakao
+  verified_at TEXT NOT NULL DEFAULT (datetime('now','+9 hours'))
+);
+CREATE INDEX IF NOT EXISTS idx_user_email_verified_email ON user_email_verified(email);
+
+-- 확인 메일을 누르기 전의 가입 요청. 링크를 눌러야(verify-signup) users 행이 생긴다.
+-- 토큰은 원문을 저장하지 않고 SHA-256만(sessions·password_resets와 동일 규약),
+-- 소비는 `DELETE ... RETURNING` 단일 문(1회용·동시 재사용 불가).
+CREATE TABLE IF NOT EXISTS pending_signups (
+  token_hash TEXT PRIMARY KEY,                  -- SHA-256(토큰) hex. 평문 토큰은 메일로만 나간다.
+  email TEXT NOT NULL COLLATE NOCASE,
+  name TEXT NOT NULL,                           -- 희망 닉네임(확인 시점에 중복이면 접미사로 회피)
+  password_hash TEXT NOT NULL,                  -- PBKDF2-SHA256 10만회 + 솔트(users와 동일 규약)
+  password_salt TEXT NOT NULL,
+  newsletter INTEGER NOT NULL DEFAULT 0,
+  created_at TEXT NOT NULL DEFAULT (datetime('now','+9 hours')),  -- = 약관 동의 시각
+  expires_at TEXT NOT NULL                      -- 발급 + 24시간(KST 벽시계)
+);
+CREATE INDEX IF NOT EXISTS idx_pending_signups_email ON pending_signups(email, created_at);
+CREATE INDEX IF NOT EXISTS idx_pending_signups_expires ON pending_signups(expires_at);

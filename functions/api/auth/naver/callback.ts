@@ -94,8 +94,18 @@ export async function onRequestGet(ctx: any): Promise<Response> {
     if (ident) {
       userId = (ident as any).user_id;
     } else {
-      // 신규 가입(간편 회원가입) — 미검증 이메일 취급이라 병합 없이 합성 이메일로 새 계정.
-      // (google/kakao도 동일하게 자동 병합을 하지 않는다 — 계정 선점 방지)
+      // 신규 가입(간편 회원가입) — 병합 없이 항상 합성 이메일로 새 계정.
+      //
+      // ⚠️ 2026-07-15 — google·kakao는 "제공자 검증 + 우리 검증" 양방향 조건부로 자동 병합을
+      //    복원했지만 **네이버는 현행(병합 안 함)을 유지**한다. 이유는 UX 판단이 아니라
+      //    **근거 부재**다: 네이버 회원 프로필 API에는 이메일 검증 여부를 알려주는 필드가 없다
+      //    (google=email_verified, kakao=is_email_verified에 해당하는 값이 없다).
+      //    검증 여부를 모르는 주소로 병합하면 "제공자측 증명" 자리가 비어 버리고, 그러면
+      //    이메일 문자열이 같다는 이유만으로 남의 계정에 들어가는 것 = 계정 선점이 된다.
+      //    그래서 이 콜백은 제공자 이메일을 **아예 쓰지 않는다**(계정 키로도 쓰지 않는다).
+      //    네이버 사용자가 기존 계정에 네이버를 붙이려면 로그인 상태에서 /account의
+      //    [연결하기](link=1) — 현재 세션 소유자 확인이 곧 소유 증명이다.
+      //    (네이버가 검증 플래그를 제공하게 되면 google/kakao와 같은 조건으로 복원 가능.)
       userId = crypto.randomUUID();
       const finalName = await uniqueSignupName(env, name, "네이버회원"); // 기본닉 전원 동일 문제 해소
       const accountEmail = syntheticEmail("naver", naverId);

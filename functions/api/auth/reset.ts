@@ -2,8 +2,20 @@
  * POST /api/auth/reset {token, password} — 재설정 토큰으로 새 비밀번호 설정.
  * 성공 시: 비밀번호 교체 + 모든 기존 세션 무효화(전 기기 로그아웃) + 새 세션 발급(자동 로그인).
  * 소셜 전용 계정이었다면 이메일 로그인도 함께 열린다(identities email 추가).
+ *
+ * ⚠️ 2026-07-15 — 성공 시 **이메일 검증 상태도 기록**한다. 재설정 링크는 users.email로만 발송되므로
+ *   그 링크를 들고 왔다는 것 자체가 **그 수신함을 통제한다는 증명**이다(가입 확인 메일과 동등한 근거).
+ *   이 한 줄이 하는 일:
+ *     · 인증 도입 **이전에 만들어진 미검증 계정**(테스트 4건 포함)의 정상 승격 경로가 된다
+ *       — 사용자가 비밀번호를 한 번 재설정하면 그 계정은 검증됨이 되고 소셜 자동 병합이 열린다.
+ *     · 구 signup으로 남이 선점해 둔 계정도, 주소의 진짜 주인이 재설정하는 순간 주인에게 넘어온다
+ *       (비밀번호 교체 + 전 세션 무효화 → 선점자는 쫓겨난다). 즉 이 기록은 안전한 쪽으로만 작동한다.
+ *
+ * ⚠️ 배포 전 db/migrations/0004_verified_signup.sql 원격 적용 필요(user_email_verified 테이블).
  */
 import { json, sha256Hex, hashPassword, createSession, sessionCookie, type AuthEnv } from "../../_lib/auth";
+import { isReservedEmail } from "../../_lib/reserved-email";
+import { markEmailVerifiedStmt } from "../../_lib/email-verified";
 
 export async function onRequestPost(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
@@ -46,14 +58,20 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   }
 
   const { hash, salt } = await hashPassword(password);
-  try {
-    await env.DB.batch([
+  const stmts = [
     env.DB.prepare("UPDATE users SET password_hash = ?2, password_salt = ?3 WHERE id = ?1").bind(row.user_id, hash, salt),
     env.DB.prepare("DELETE FROM sessions WHERE user_id = ?1").bind(row.user_id), // 전 기기 로그아웃
     env.DB.prepare(
       "INSERT OR IGNORE INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'email', ?2)",
     ).bind(row.user_id, row.email),
-    ]);
+  ];
+  // 방어적 확인: 합성 주소(수신 불가)는 메일이 배달되지 않으므로 소유 증명이 될 수 없다.
+  // request-reset이 애초에 토큰을 안 만들어 주지만, 검증 기록은 병합의 근거라 여기서도 못 박는다.
+  if (!isReservedEmail(String(row.email))) {
+    stmts.push(markEmailVerifiedStmt(env, row.user_id, String(row.email), "password-reset"));
+  }
+  try {
+    await env.DB.batch(stmts);
   } catch {
     // 일시 오류로 비밀번호가 안 바뀌었는데 링크만 소진되는 것 방지 — 토큰 원복 후 재시도 유도
     await env.DB.prepare("UPDATE password_resets SET used = 0 WHERE token_hash = ?1").bind(th).run();

@@ -6,6 +6,14 @@
  *  - 내가 누른 공감·신고·스크랩 → 삭제
  *  - 내가 쓴 댓글 → 시스템 계정(탈퇴회원)으로 넘기고 소프트 삭제
  *    (남의 답글이 달린 스레드가 끊기지 않도록 행은 보존, "삭제된 댓글" 자리 표시)
+ *
+ * ⚠️ users를 참조하는 테이블이 새로 생기면 **여기에도 반드시 추가**할 것. 빠뜨리면 그 행이 남아
+ *   users DELETE가 FOREIGN KEY 위반으로 터지고 탈퇴가 500으로 실패한다(조용히 넘어가지 않는다).
+ *   2026-07-15 정합성 점검에서 실제로 두 건이 누락돼 있던 것을 고쳤다:
+ *     · email_verifications (0003에서 신설) — 이메일 인증 메일을 요청해 두고 확인 전에 탈퇴하면
+ *       살아있는 토큰 행이 남아 **탈퇴가 실패**했다(4차 도입 시 이 파일 갱신 누락).
+ *     · user_email_verified (0004에서 신설)
+ *   (pending_signups는 계정 확정 **전** 상태라 user_id가 없다 → FK 없음. 여기서 지울 것도 없다.)
  */
 import { json, getUser, clearCookie, type AuthEnv } from "../../_lib/auth";
 import { RESERVED_EMAIL_DOMAIN } from "../../_lib/reserved-email";
@@ -52,6 +60,8 @@ export async function onRequestPost(ctx: any): Promise<Response> {
     env.DB.prepare("DELETE FROM sessions WHERE user_id = ?1").bind(user.id),
     env.DB.prepare("DELETE FROM identities WHERE user_id = ?1").bind(user.id),
     env.DB.prepare("DELETE FROM password_resets WHERE user_id = ?1").bind(user.id),
+    env.DB.prepare("DELETE FROM email_verifications WHERE user_id = ?1").bind(user.id),
+    env.DB.prepare("DELETE FROM user_email_verified WHERE user_id = ?1").bind(user.id),
     env.DB.prepare("DELETE FROM comment_likes WHERE user_id = ?1").bind(user.id),
     env.DB.prepare("DELETE FROM comment_reports WHERE user_id = ?1").bind(user.id),
     env.DB.prepare("DELETE FROM bookmarks WHERE user_id = ?1").bind(user.id),

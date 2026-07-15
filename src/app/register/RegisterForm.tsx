@@ -39,7 +39,11 @@ export function RegisterForm() {
         body: JSON.stringify({ name, email, password, newsletter: agreeMarketing, terms: agreeTerms && agreePrivacy }),
       });
       const d = await r.json();
-      if (r.ok && d?.user) {
+      // ⚠️ 2026-07-15 — 가입이 **이메일 인증 기반**으로 바뀌었다. 이 응답은 계정 생성도,
+      //   로그인도 아니고 "확인 메일을 보냈다"는 뜻뿐이다(세션 쿠키도 없다).
+      //   응답은 신규 주소든 이미 가입된 주소든 완전히 동일하다(계정 열거 차단) → 프론트도
+      //   그 둘을 구분해선 안 된다. 계정은 메일의 링크(/verify-signup)를 눌러야 만들어진다.
+      if (r.ok && d?.ok) {
         setSubmitted(true);
       } else {
         setError(d?.error || "가입에 실패했습니다. 잠시 후 다시 시도해 주세요.");
@@ -51,6 +55,10 @@ export function RegisterForm() {
   }
 
   if (submitted) {
+    // ⚠️ 문구 주의: 아직 계정은 없다. "가입 완료"·"로그인됨"이라고 쓰면 거짓 안내가 된다
+    //   (2026-07-15 뉴스레터 '구독 완료' 거짓 안내와 같은 실수).
+    //   또 "이미 가입된 주소입니다" 같은 분기 문구를 여기 넣어서도 안 된다 — 서버가 두 경우를
+    //   구분하지 않는 이유(계정 열거 차단)가 통째로 무너진다.
     return (
       <div className="space-y-5 text-center">
         <div
@@ -58,13 +66,20 @@ export function RegisterForm() {
           className="rounded-md border border-signal-200 bg-signal-50 px-4 py-5 text-sm text-signal-700 dark:border-signal-900 dark:bg-signal-950/40 dark:text-signal-300"
         >
           <p className="font-headline text-lg font-bold text-ink-900 dark:text-white">
-            가입이 완료되었습니다
+            확인 메일을 보냈습니다
           </p>
-          <p className="mt-2">{name ? `${name}님, ` : ""}환영합니다. 바로 로그인되었습니다.</p>
+          <p className="mt-2">
+            <b className="break-all text-ink-900 dark:text-white">{email}</b>
+            <br />
+            메일의 <b>[가입 확인하기]</b> 버튼을 눌러야 가입이 완료됩니다. 링크는 24시간 동안 유효합니다.
+          </p>
+          <p className="mt-3 text-ink-500 dark:text-ink-400">
+            메일이 보이지 않으면 스팸함도 확인해 주세요.
+          </p>
         </div>
         <Link
           href="/"
-          className="inline-block w-full rounded-md bg-signal-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-signal-700"
+          className="inline-block w-full rounded-md border border-ink-300 px-6 py-3 font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:border-ink-600 dark:text-ink-200 dark:hover:text-signal-400"
         >
           홈으로 가기
         </Link>

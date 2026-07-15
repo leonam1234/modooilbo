@@ -1,14 +1,25 @@
 /**
  * GET /api/auth/google/callback — 구글 인가 코드 → 토큰 교환 → 사용자 조회 →
- * 간편 회원가입/로그인 (identities(google) 로그인 / 신규 자동가입).
- * 기존 계정과의 "동일 이메일 자동 병합"은 하지 않는다 — 계정 선점(pre-hijacking) 방지.
- * 기존 계정에 구글을 붙이는 것은 로그인 상태에서 /account의 [연결하기](link=1)로만.
- * (naver/callback.ts와 동일한 원칙)
+ * 간편 회원가입/로그인 (identities(google) 로그인 / 신규 자동가입 / **검증된 이메일 자동 병합**).
  * 실패 시 /login/?error=google 로 리다이렉트.
+ *
+ * ⚠️ 2026-07-15 — "동일 이메일 자동 병합"을 **양방향 검증 조건부로 복원**했다.
+ *   경위: 1차 감사에서 병합을 통째로 제거했다. 구 signup이 인증 메일 없이 계정을 만들어 줘
+ *     users.email이 소유 증명이 아니었기 때문이다 — 공격자가 victim@example.com으로 선가입해 두면
+ *     피해자의 구글 로그인이 공격자 계정에 병합됐다(계정 선점). 그 대신 "이메일+비번 가입자가
+ *     같은 주소로 구글 로그인하면 계정이 하나 더 생기는" UX 손해를 떠안았다.
+ *   지금: signup이 이메일 인증 기반으로 바뀌어(pending_signups → verify-signup) **미검증 로컬
+ *     계정이 존재할 수 없다**. 그래서 아래 조건을 만족할 때만 병합한다:
+ *       ① 구글이 email_verified=true로 단언한 주소이고(제공자측 증명)
+ *       ② 그 주소를 **검증한** 기존 계정이 있을 때(우리측 증명 — user_email_verified)
+ *     둘 다여야 한다. 하나라도 미검증이면 병합하지 않고 합성 이메일로 분리한다(1차 동작 유지).
+ *   ⚠️ 이 조건을 느슨하게 만들면(예: users.email 일치만으로 병합) 1차에서 막은 선점이 그대로
+ *     되살아난다. 규칙 본체는 _lib/social-signin.ts에 **단일 정의**로 두었다(kakao와 공용) —
+ *     여기서 다시 구현하지 말 것. 이 파일의 책임은 "구글이 검증했다고 단언한 이메일만
+ *     넘긴다"까지다.
  */
 import { createSession, sessionCookie, getUser, type AuthEnv } from "../../../_lib/auth";
-import { uniqueSignupName } from "../../../_lib/names";
-import { syntheticEmail } from "../../../_lib/reserved-email";
+import { resolveSocialUser } from "../../../_lib/social-signin";
 
 function back(url: URL, ok: boolean, extraCookie?: string, dest?: string): Response {
   const secure = url.protocol === "https:" ? "; Secure" : "";
@@ -90,38 +101,9 @@ export async function onRequestGet(ctx: any): Promise<Response> {
       return back(url, true, undefined, `${url.origin}/account/?linked=google`);
     }
 
-    let userId: string;
-    if (ident) {
-      userId = (ident as any).user_id;
-    } else {
-      // 신규 가입(간편 회원가입) — 기존 계정에 자동으로 붙이지 않는다.
-      //
-      // ⚠️ 계정 선점(pre-hijacking) 방지: users.email은 소유가 증명된 값이 아니다.
-      //    signup은 인증 메일 없이 이메일을 받으므로, 공격자가 victim@example.com으로 먼저
-      //    가입해 두면 피해자의 구글 로그인이 공격자 계정에 병합돼 공격자가 자기 비밀번호로
-      //    피해자 신분에 계속 접근하게 된다. → 이메일이 같아도 절대 병합하지 않는다.
-      //    기존 계정에 붙이려면 로그인 상태에서 /account의 [연결하기](link=1) —
-      //    현재 세션 소유자 확인이 곧 소유 증명이다.
-      userId = crypto.randomUUID();
-      const finalName = await uniqueSignupName(env, name, "구글회원");
-      // 계정 키: 구글이 email_verified=true로 준 이메일만 사용(소유 증명됨).
-      // 그 이메일을 이미 다른 계정이 쓰고 있으면 병합 대신 합성 이메일(수신 불가)로 분리.
-      let accountEmail = email ?? syntheticEmail("google", sub);
-      if (email) {
-        const taken = await env.DB.prepare("SELECT 1 FROM users WHERE email = ?1 LIMIT 1")
-          .bind(email)
-          .first();
-        if (taken) accountEmail = syntheticEmail("google", sub);
-      }
-      await env.DB.batch([
-        env.DB.prepare(
-          "INSERT INTO users (id, email, name, password_hash, password_salt, newsletter, terms_agreed_at) VALUES (?1, ?2, ?3, NULL, NULL, 0, datetime('now','+9 hours'))",
-        ).bind(userId, accountEmail, finalName),
-        env.DB.prepare(
-          "INSERT INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'google', ?2)",
-        ).bind(userId, sub),
-      ]);
-    }
+    // 계정 결정(로그인/병합/신규)은 kakao와 공용 규칙 하나로 — _lib/social-signin.ts.
+    // ⚠️ email은 위에서 email_verified===true일 때만 채웠다. 그 조건을 빼면 병합 조건 ①이 무너진다.
+    const { userId } = await resolveSocialUser(env, "google", sub, email, name, "구글회원");
 
     const session = await createSession(env, userId);
     return back(url, true, sessionCookie(session, ctx.request.url));

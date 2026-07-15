@@ -13,6 +13,7 @@
  */
 import { json, sha256Hex, type AuthEnv } from "../../_lib/auth";
 import { isReservedEmail } from "../../_lib/reserved-email";
+import { markEmailVerifiedStmt } from "../../_lib/email-verified";
 
 const GONE = "링크가 만료되었거나 이미 사용되었습니다. 계정 페이지에서 다시 요청해 주세요.";
 
@@ -85,6 +86,10 @@ export async function onRequestPost(ctx: any): Promise<Response> {
       env.DB.prepare(
         "INSERT INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'email', ?2)",
       ).bind(uid, email),
+      // ★ 검증 사실 기록 — users.email 교체와 **같은 트랜잭션**이어야 한다.
+      //   이 토큰은 그 주소로만 갔으므로 도달 = 소유 증명이다. 기록이 빠지면 이 계정은
+      //   실주소를 가졌는데도 미검증으로 남아 소셜 자동 병합 대상에서 빠진다(계정 중복 재발).
+      markEmailVerifiedStmt(env, uid, email, "email-register"),
     ]);
   } catch {
     // UNIQUE(users.email NOCASE / identities provider+id) 경쟁 패배 또는 일시 오류 — 500 대신 안내.
