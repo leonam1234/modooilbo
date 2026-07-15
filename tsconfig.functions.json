@@ -1,0 +1,17 @@
+// Pages Functions(functions/) 전용 타입체크 설정.
+//
+// ⚠️ 왜 따로 있나: 루트 tsconfig.json은 `"exclude": ["node_modules", "functions"]`이라
+//   `npm run lint`(= tsc --noEmit)가 functions/를 **아예 안 본다**. next build도 functions/를
+//   빌드하지 않는다(정적 export + Pages가 런타임에 따로 로드) → 서버 코드의 타입 에러가
+//   아무 게이트에도 안 걸리고 그대로 배포된다.
+//   functions/를 건드렸으면 반드시 `npm run lint:functions`도 돌릴 것.
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // 루트 설정의 증분 빌드정보 파일과 충돌하지 않게(그리고 잔여 파일을 남기지 않게) 끈다.
+    "incremental": false,
+    "noEmit": true
+  },
+  "include": ["functions/**/*.ts"],
+  "exclude": ["node_modules"]
+}

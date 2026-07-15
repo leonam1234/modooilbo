@@ -5,7 +5,14 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { CommentItem, type CommentData } from "@/components/CommentItem";
 
-type Data = { count: number; comments: CommentData[]; me: { name: string } | null };
+type Data = {
+  count: number;
+  comments: CommentData[];
+  me: { name: string } | null;
+  /** 서버가 원댓글을 페이지네이션한다(댓글 폭증 시 응답·D1 부하 방지). 더 남았으면 '더 보기'. */
+  hasMore?: boolean;
+  nextCursor?: string | null;
+};
 
 const MAX_BODY = 500;
 
@@ -67,6 +74,7 @@ export function CommentSection({ articleId }: { articleId: string }) {
   const [sort, setSort] = useState<"latest" | "likes">("latest");
   const [replyTo, setReplyTo] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
   // 실패·오류 안내만 assertive(즉시 낭독), '신고가 접수되었습니다' 같은 성공 안내는 polite
   const noticeIsError = !!notice && !notice.includes("접수되었습니다");
@@ -81,6 +89,36 @@ export function CommentSection({ articleId }: { articleId: string }) {
       .catch(() => setFailed(true));
   }, [articleId]);
   useEffect(load, [load]);
+
+  /** 다음 페이지를 이어 붙인다(교체 아님). id로 중복을 걸러 재요청·경합에도 안전. */
+  const loadMore = useCallback(async () => {
+    if (loadingMore || !data?.nextCursor) return;
+    setLoadingMore(true);
+    try {
+      const r = await fetch(
+        `/api/comments?article=${encodeURIComponent(articleId)}&cursor=${encodeURIComponent(data.nextCursor)}`,
+      );
+      if (r.ok) {
+        const d: Data = await r.json();
+        setData((prev) => {
+          if (!prev) return d;
+          const seen = new Set(prev.comments.map((c) => c.id));
+          return {
+            ...prev,
+            count: d.count,
+            comments: [...prev.comments, ...d.comments.filter((c) => !seen.has(c.id))],
+            hasMore: d.hasMore,
+            nextCursor: d.nextCursor,
+          };
+        });
+      } else {
+        setNotice("댓글을 더 불러오지 못했습니다.");
+      }
+    } catch {
+      setNotice("네트워크 오류입니다.");
+    }
+    setLoadingMore(false);
+  }, [articleId, data?.nextCursor, loadingMore]);
 
   const { roots, repliesOf, bestIds } = useMemo(() => {
     const list: CommentData[] = data?.comments ?? [];
@@ -318,6 +356,19 @@ export function CommentSection({ articleId }: { articleId: string }) {
               </div>
             );
           })}
+        </div>
+      )}
+
+      {data?.hasMore && (
+        <div className="mt-4 text-center">
+          <button
+            type="button"
+            onClick={loadMore}
+            disabled={loadingMore}
+            className="rounded-md border border-ink-300 px-4 py-2 text-xs font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 disabled:opacity-50 dark:border-ink-600 dark:text-ink-200"
+          >
+            {loadingMore ? "불러오는 중…" : "댓글 더 보기"}
+          </button>
         </div>
       )}
 

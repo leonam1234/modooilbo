@@ -40,18 +40,13 @@ export interface AdminUser {
   name: string;
 }
 
-/** 로그인 + 관리자 id면 사용자 반환, 아니면 null. */
-export async function getAdmin(env: AdminEnv, request: Request): Promise<AdminUser | null> {
-  const user = await getUser(env, request);
-  if (!user) return null;
-  const allow = adminIdSet(env);
-  if (allow.size === 0) return null; // 미설정 = 관리자 없음(안전 기본값)
-  return allow.has(user.id.toLowerCase()) ? user : null;
-}
-
 /**
  * 관리자 게이트 헬퍼: 관리자면 user 반환, 아니면 즉시 Response(401/403).
  * 사용: `const g = await requireAdmin(env, req); if (g instanceof Response) return g;`
+ *
+ * 게이트는 **이것 하나만** 둔다. 예전엔 같은 판정을 하되 실패 시 null을 주는 getAdmin()이
+ * 나란히 있었는데, 호출자가 반환값을 흘려보내면 그대로 인증 우회가 되는 형태였다(사용처 0).
+ * 실패가 곧 Response인 이 형태만 남겨 "검사했지만 안 막는" 코드를 쓰기 어렵게 한다.
  */
 export async function requireAdmin(env: AdminEnv, request: Request): Promise<AdminUser | Response> {
   const user = await getUser(env, request);

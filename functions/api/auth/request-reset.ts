@@ -8,58 +8,22 @@
  */
 import { json, sha256Hex, type AuthEnv } from "../../_lib/auth";
 import { isReservedEmail } from "../../_lib/reserved-email";
+import { escapeHtml, mailButton, mailShell, randHex, sendMail, type MailerEnv } from "../../_lib/mailer";
 
-type MailEnv = AuthEnv & { EMAIL?: any; MAILER_URL?: string; MAILER_KEY?: string };
-
-function randHex(bytes: number): string {
-  const a = new Uint8Array(bytes);
-  crypto.getRandomValues(a);
-  return [...a].map((b) => b.toString(16).padStart(2, "0")).join("");
-}
-
-/** 메일 HTML에 들어가는 사용자 입력(name) 이스케이프 — HTML 주입 방지 */
-function escapeHtml(s: string): string {
-  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}
+type MailEnv = AuthEnv & MailerEnv;
 
 async function sendResetMail(env: MailEnv, to: string, name: string, link: string): Promise<boolean> {
   const safeName = escapeHtml(name); // HTML 본문 전용(텍스트 본문은 원문 유지)
-  const subject = "[모두일보] 비밀번호 재설정 안내";
-  const text = `${name}님, 모두일보 비밀번호 재설정 요청을 받았습니다.\n\n아래 링크에서 새 비밀번호를 설정해 주세요. 링크는 1시간 동안만 유효합니다.\n\n${link}\n\n본인이 요청하지 않았다면 이 메일을 무시하셔도 됩니다. 계정은 안전합니다.\n\n모두일보 드림 · help@modooilbo.com`;
-  const html = `<div style="font-family:'Apple SD Gothic Neo',AppleGothic,sans-serif;max-width:520px;margin:0 auto;padding:24px;color:#191919">
-  <h2 style="font-weight:800;margin:0 0 16px">모두<span style="color:#6b6b73">일보</span></h2>
-  <p style="line-height:1.7"><b>${safeName}</b>님, 비밀번호 재설정 요청을 받았습니다.<br/>아래 버튼을 눌러 새 비밀번호를 설정해 주세요. <b>1시간 동안만</b> 유효합니다.</p>
-  <p style="margin:24px 0"><a href="${link}" style="display:inline-block;background:#191919;color:#fff;text-decoration:none;font-weight:700;padding:12px 24px;border-radius:8px">비밀번호 재설정</a></p>
-  <p style="font-size:13px;color:#777;line-height:1.7">버튼이 안 되면 링크를 복사해 주소창에 붙여넣으세요:<br/><a href="${link}" style="color:#555">${link}</a></p>
-  <hr style="border:none;border-top:1px solid #e5e5e5;margin:24px 0"/>
-  <p style="font-size:12px;color:#999;line-height:1.7">본인이 요청하지 않았다면 이 메일을 무시하셔도 됩니다. 계정은 안전합니다.<br/>모두일보 · help@modooilbo.com</p>
-</div>`;
-
-  const from = { email: "no-reply@modooilbo.com", name: "모두일보" };
-  try {
-    if (env.EMAIL?.send) {
-      await env.EMAIL.send({ to, from, subject, text, html, replyTo: { email: "help@modooilbo.com" } });
-      return true;
-    }
-    if (env.MAILER_URL && env.MAILER_KEY) {
-      const res = await fetch(env.MAILER_URL, {
-        method: "POST",
-        headers: { "x-mailer-key": env.MAILER_KEY, "content-type": "application/json" },
-        body: JSON.stringify({
-          to,
-          from,
-          replyTo: { email: "help@modooilbo.com" },
-          subject,
-          text,
-          html,
-        }),
-      });
-      return res.ok;
-    }
-  } catch {
-    /* 발송 실패는 아래 false */
-  }
-  return false;
+  return sendMail(env, {
+    to,
+    subject: "[모두일보] 비밀번호 재설정 안내",
+    text: `${name}님, 모두일보 비밀번호 재설정 요청을 받았습니다.\n\n아래 링크에서 새 비밀번호를 설정해 주세요. 링크는 1시간 동안만 유효합니다.\n\n${link}\n\n본인이 요청하지 않았다면 이 메일을 무시하셔도 됩니다. 계정은 안전합니다.\n\n모두일보 드림 · help@modooilbo.com`,
+    html: mailShell(
+      `<p style="line-height:1.7"><b>${safeName}</b>님, 비밀번호 재설정 요청을 받았습니다.<br/>아래 버튼을 눌러 새 비밀번호를 설정해 주세요. <b>1시간 동안만</b> 유효합니다.</p>
+  ${mailButton(link, "비밀번호 재설정")}`,
+      `본인이 요청하지 않았다면 이 메일을 무시하셔도 됩니다. 계정은 안전합니다.<br/>모두일보 · help@modooilbo.com`,
+    ),
+  });
 }
 
 export async function onRequestPost(ctx: any): Promise<Response> {

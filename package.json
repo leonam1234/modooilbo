@@ -9,6 +9,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "tsc --noEmit",
+    "lint:functions": "tsc -p tsconfig.functions.json",
+    "lint:all": "npm run lint && npm run lint:functions",
     "preview:static": "node scripts/static-server.mjs",
     "deploy:preview": "node scripts/deploy.mjs preview",
     "deploy:prod": "node scripts/deploy.mjs prod",

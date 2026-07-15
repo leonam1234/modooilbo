@@ -2,7 +2,12 @@
 
 import { useState } from "react";
 
-/** 뉴스레터 구독 폼 — 골드 CTA 안에서 사용. 실제로 D1에 저장된다. */
+/**
+ * 뉴스레터 구독 폼 — 골드 CTA 안에서 사용.
+ * ⚠️ double opt-in(2026-07-15): 이 폼 제출은 **확인 메일 발송**까지다. 메일의 확인 링크를
+ * 눌러야 실제 구독(newsletter_subs)이 된다 → 남의 주소를 무단 등록할 수 없다.
+ * 그래서 완료 문구도 '구독 완료'가 아니라 '확인 메일을 보냈습니다'여야 한다.
+ */
 export function NewsletterForm() {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "busy" | "done" | "error">("idle");
@@ -34,7 +39,7 @@ export function NewsletterForm() {
   if (state === "done") {
     return (
       <p className="mx-auto mt-6 max-w-md rounded-lg border border-[#d4af37]/40 bg-white/10 px-4 py-3.5 font-medium text-[#d4af37]">
-        구독 완료! 매주 월요일 아침, 지난주 가장 많이 읽힌 뉴스를 보내드립니다.
+        확인 메일을 보냈습니다. 메일의 링크를 눌러 구독을 완료해 주세요.
       </p>
     );
   }
