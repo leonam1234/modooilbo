@@ -47,6 +47,10 @@ export const metadata: Metadata = {
   authors: [{ name: "모두일보" }],
   creator: "모두일보",
   publisher: "모두일보",
+  // <meta name="title"> — 네이버 등 한국 포털이 읽는 전통 메타태그(중앙일보 등 주요 언론사 관례).
+  // ⚠️ Next 메타데이터 병합은 최상위 필드 얕은 병합 — 하위 페이지가 other를 자체 정의하면
+  //    이 값이 통째로 덮이니 그 페이지(article/[slug])의 other에도 같은 title을 넣어야 한다.
+  other: { title: "모두일보" },
   // 파비콘 C안(「모두」) — 라이트 탭=검정, 다크 탭=흰색(Safari media 대응), .ico는 범용 폴백
   icons: {
     icon: [

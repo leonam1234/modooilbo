@@ -80,7 +80,9 @@ export async function generateMetadata({
       description: a.summary,
       images: [imageUrl],
     },
-    other: { news_keywords: a.tags.join(", ") },
+    // title: other를 여기서 정의하면 루트 layout의 other가 통째로 덮이므로(얕은 병합)
+    // <meta name="title" content="모두일보">(포털용)를 같이 유지해야 한다.
+    other: { title: "모두일보", news_keywords: a.tags.join(", ") },
   };
 }
 
