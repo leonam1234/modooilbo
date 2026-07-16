@@ -9,7 +9,8 @@ import { getMostRead } from "@/lib/queries";
 import { NewsletterCTA } from "@/components/NewsletterCTA";
 import { Reveal } from "@/components/Reveal";
 import JsonLd from "@/components/JsonLd";
-import { SITE } from "@/lib/site";
+import { PortalMeta } from "@/components/PortalMeta";
+import { SITE, SITE_DESCRIPTION, DEFAULT_OG_IMAGE } from "@/lib/site";
 
 const SITE_URL = "https://modooilbo.com";
 
@@ -71,6 +72,12 @@ export default function Home() {
     <>
       <JsonLd data={organizationLd} />
       <JsonLd data={websiteLd} />
+      {/* 포털용 itemprop 계열(연합뉴스 관례) — 홈은 사이트명·사이트 설명·기본 og 이미지 */}
+      <PortalMeta
+        name={SITE.name}
+        description={SITE_DESCRIPTION}
+        image={`${SITE_URL}${DEFAULT_OG_IMAGE.url}`}
+      />
       <h1 className="sr-only">모두일보 — 경제·사회·국제·문화·스포츠·테크·오피니언 최신 뉴스</h1>
 
       {/* 히어로 행 — [좌: 리드 + 보조4 콤팩트] | [우: '많이 본' 랭킹 + 후원 CTA].

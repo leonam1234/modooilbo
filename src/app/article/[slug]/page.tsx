@@ -23,6 +23,7 @@ import { ArticleBody, articleSpeechText } from "@/components/ArticleBody";
 import { ogImageUrl, displayImageUrl } from "@/lib/stock";
 import { getReporterByName } from "@/lib/reporters";
 import JsonLd from "@/components/JsonLd";
+import { PortalMeta } from "@/components/PortalMeta";
 
 const SITE_URL = "https://modooilbo.com";
 
@@ -80,9 +81,10 @@ export async function generateMetadata({
       description: a.summary,
       images: [imageUrl],
     },
-    // title: other를 여기서 정의하면 루트 layout의 other가 통째로 덮이므로(얕은 병합)
-    // <meta name="title" content="모두일보">(포털용)를 같이 유지해야 한다.
-    other: { title: "모두일보", news_keywords: a.tags.join(", ") },
+    // title: <meta name="title">(포털용) — 기사 페이지는 사이트명이 아니라 <title>과 동일한
+    // "기사제목 | 모두일보"(연합뉴스 관례). other를 여기서 정의하면 루트 layout의 other가
+    // 통째로 덮이므로(얕은 병합) title을 빼먹으면 안 된다.
+    other: { title: `${a.title} | 모두일보`, news_keywords: a.tags.join(", ") },
   };
 }
 
@@ -165,6 +167,15 @@ export default async function ArticlePage({
     <div className="container-page py-8">
       <JsonLd data={newsArticleLd} />
       <JsonLd data={breadcrumbLd} />
+      {/* 포털용 itemprop 계열(연합뉴스 관례) — 기사는 <title>과 동일한 제목·요약·대표(og) 이미지 */}
+      <PortalMeta
+        name={`${article.title} | 모두일보`}
+        description={article.summary}
+        image={absoluteImageUrl(ogImageUrl(article))}
+      />
+      {/* article:publisher(연합뉴스 관례 — 발행 주체 URL). property= 메타는 Metadata API other로
+          못 넣지만(name=으로 렌더됨) React 19가 body 렌더 <meta>를 head로 승격한다(itemProp 제외). */}
+      <meta property="article:publisher" content={`${SITE_URL}/`} />
       <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_280px] lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10">
         <article className="min-w-0">
           <nav className="mb-4 flex min-w-0 items-center gap-1.5 text-xs text-ink-500 dark:text-ink-400">

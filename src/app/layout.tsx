@@ -8,13 +8,7 @@ import { AutoRefresh } from "@/components/AutoRefresh";
 import { WeatherBackground } from "@/components/WeatherBackground";
 import { BackToTop } from "@/components/BackToTop";
 import { AdSenseLoader } from "@/components/AdSenseLoader";
-import { DEFAULT_OG_IMAGE } from "@/lib/site";
-
-// 매체 정체성 = 두 축(기업 데이터 뉴스 + 종합뉴스). 전 페이지 기본 설명·소셜 카드가 이 값을 공유한다.
-// (동결된 '테크'는 홍보 문구에서 제외 — /tech 라우트·기존 기사는 색인 보존을 위해 유지되나 대표 소개엔 넣지 않는다)
-const SITE_DESCRIPTION =
-  "모두일보는 정부지원금·공공입찰·창업상권·산업트렌드·채용노무·계약거래 등 기업에 필요한 공공데이터 뉴스와 경제·사회·국제·문화·스포츠·오피니언 종합뉴스를 함께 전합니다. 모두를 위한 신뢰의 뉴스.";
-const SITE_TITLE = "모두일보 — 모두를 위한 신뢰의 뉴스";
+import { DEFAULT_OG_IMAGE, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://modooilbo.com"),
