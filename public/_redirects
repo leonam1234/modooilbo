@@ -1,4 +1,16 @@
-# www → apex 301 (정본 호스트 통일)
-# 주의: 이 규칙은 www.modooilbo.com이 Cloudflare Pages 프로젝트의 커스텀 도메인으로
-# 연결돼 있어야 동작한다(DNS 레코드 부재 시 요청이 여기까지 오지 않음).
-https://www.modooilbo.com/* https://modooilbo.com/:splat 301
+# Cloudflare Pages 리다이렉트 규칙.
+#
+# ⚠️ 도메인(호스트명) 단위 리다이렉트는 여기서 처리할 수 없다.
+#    Pages _redirects는 소스가 반드시 "/"로 시작하는 경로여야 하고,
+#    공식 문서상 "Domain-level redirects"는 미지원(❌)으로 명시돼 있다.
+#    → https://developers.cloudflare.com/pages/configuration/redirects/
+#
+#    과거 이 파일에 아래 규칙이 있었으나 소스에 호스트명이 있어 무효 처리되어
+#    한 번도 동작한 적이 없다(2026-07-20 라이브 실측으로 확인):
+#      https://www.modooilbo.com/* https://modooilbo.com/:splat 301
+#
+# ✅ www → apex 301은 Cloudflare 존의 Redirect Rule(Rules → Redirect Rules)에서 처리한다.
+#    조건: http.host eq "www.modooilbo.com"
+#    대상: concat("https://modooilbo.com", http.request.uri.path) / 301 / 쿼리스트링 보존
+#
+# 경로 단위 리다이렉트가 필요해지면 아래에 "/old/path /new/path 301" 형식으로 추가할 것.
