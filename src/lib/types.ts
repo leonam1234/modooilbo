@@ -39,7 +39,15 @@ export interface Article {
   category: CategorySlug;
   author: Author;
   publishedAt: string; // ISO 8601
-  updatedAt?: string; // ISO 8601 — 최종 수정 시각(있을 때만 "입력·수정" 병기)
+  // ISO 8601 — 최종 수정 시각(있을 때만 "입력·수정" 병기).
+  // ⚠️ 정정(訂正)이 아니다. 오타 수정·속보 갱신·후속 반영 등 모든 수정이 여기 들어간다.
+  // 공식 정정 보도는 아래 correction 필드로만 표시한다(언론중재법상 정정 사실과 내용을 밝혀야 함).
+  updatedAt?: string;
+  // 명시적 정정 기록 — 이 필드가 있는 기사만 /corrections(정정·반론 보도 모음)에 실린다.
+  correction?: {
+    at: string; // ISO 8601 — 정정 반영 시각
+    note: string; // 무엇이 틀렸고 무엇을 바로잡았는지(정정 사실과 그 내용)
+  };
   imageUrl: string;
   imageCaption?: string;
   youtubeId?: string; // 영상 기사 = 유튜브 쇼츠 임베드

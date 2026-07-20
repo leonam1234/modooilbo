@@ -13,10 +13,13 @@ export const metadata: Metadata = {
 };
 
 export default function CorrectionsPage() {
+  // ⚠️ 판정 기준은 correction(명시적 정정 기록)이다. updatedAt(단순 수정)으로 거르면
+  // 오타 수정·속보 갱신까지 공식 정정 보도로 둔갑한다.
   const corrections = getAllArticles()
-    .filter((a) => a.updatedAt)
+    .filter((a) => a.correction)
     .sort(
-      (a, b) => new Date(b.updatedAt!).getTime() - new Date(a.updatedAt!).getTime(),
+      (a, b) =>
+        new Date(b.correction!.at).getTime() - new Date(a.correction!.at).getTime(),
     ); // 고정 ISO 문자열 파싱 — 결정적
 
   return (
@@ -34,9 +37,15 @@ export default function CorrectionsPage() {
               <div key={a.id}>
                 <p className="mb-2 text-xs font-semibold text-signal-600 dark:text-signal-400">
                   정정 반영{" "}
-                  <time dateTime={a.updatedAt}>{formatKoreanDateTime(a.updatedAt!)}</time>
+                  <time dateTime={a.correction!.at}>
+                    {formatKoreanDateTime(a.correction!.at)}
+                  </time>
                 </p>
                 <ArticleCard article={a} variant="horizontal" />
+                {/* 정정 사실과 그 내용 — 날짜만 남기면 정정 보도의 요건을 못 채운다. */}
+                <p className="mt-3 rounded-lg border-l-2 border-signal-500 bg-ink-50 px-4 py-3 text-sm leading-relaxed text-ink-700 dark:bg-ink-900/40 dark:text-ink-200">
+                  {a.correction!.note}
+                </p>
               </div>
             ))}
           </div>

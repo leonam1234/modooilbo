@@ -194,11 +194,38 @@ async function run() {
     const [name, role] = (fm.author || "모두일보 / 기자").split("/").map((s) => s.trim());
     const tags = (fm.tags || "").split(",").map((s) => s.trim()).filter(Boolean);
     // 수정 시각(선택). 발행 시각보다 앞서면 무시.
+    // ⚠️ updatedAt은 '수정'일 뿐 정정(訂正)이 아니다 — 공식 정정 보도는 아래 correction으로만 표시한다.
     const updatedRaw = (fm.updated || fm.updatedAt || "").trim();
     // 유튜브 쇼츠 — URL이든 ID든 11자 영상 ID 추출 (youtube: 필드)
     const ytRaw = (fm.youtube || fm.youtubeId || "").trim();
     const youtubeId = ytRaw ? (ytRaw.match(/(?:v=|be\/|shorts\/|embed\/)?([A-Za-z0-9_-]{11})(?:[?&#].*)?$/) || [])[1] : undefined;
     const updatedAt = updatedRaw ? normDate(updatedRaw) : undefined;
+
+    // 정정 기록(선택) — 머리표:
+    //   correction: <무엇이 틀렸고 무엇을 바로잡았는지>   ← 정정 내용(필수)
+    //   correctionAt: 2026-07-20 11:31                  ← 정정 반영 시각(생략 시 updatedAt)
+    // 정정 내용 없이 시각만 남기면 언론중재법상 "정정 사실과 그 내용"을 못 밝히므로 빌드를 끊는다.
+    const correctionNote = (fm.correction || fm.correctionNote || "").trim();
+    const correctionAtRaw = (fm.correctionAt || "").trim();
+    let correction;
+    if (correctionNote) {
+      const at = correctionAtRaw || updatedRaw;
+      if (!at) {
+        errors.push(
+          `${file}: correction은 있는데 시각이 없습니다. correctionAt(또는 updatedAt)에 정정 반영 시각을 적어 주세요.`,
+        );
+        continue;
+      }
+      correction = { at: normDate(at), note: correctionNote };
+    } else if (correctionAtRaw) {
+      errors.push(
+        `${file}: correctionAt만 있고 정정 내용(correction)이 없습니다. ` +
+          `정정 보도는 무엇이 틀렸고 무엇을 바로잡았는지 함께 밝혀야 합니다. ` +
+          `단순 수정이면 correctionAt을 지우고 updatedAt만 쓰세요.`,
+      );
+      continue;
+    }
+
     articles.push({
       id: slug,
       slug,
@@ -209,6 +236,7 @@ async function run() {
       author: { name: name || "모두일보", role: role || "기자" },
       publishedAt,
       ...(updatedAt && updatedAt > publishedAt ? { updatedAt } : {}),
+      ...(correction ? { correction } : {}),
       imageUrl,
       imageCaption: (fm.imageCaption || "").trim() || undefined,
       tags,
