@@ -58,6 +58,9 @@ export async function generateMetadata({
   return {
     title: a.title,
     description: a.summary,
+    // <meta name="author">는 각 기사의 실제 기자명(루트 layout의 전역 "모두일보"를 덮어씀).
+    // 발행처(publisher)는 계속 "모두일보" — JSON-LD NewsArticle.publisher/@id organization로 게재.
+    authors: [{ name: a.author.name }],
     alternates: { canonical: `/article/${a.slug}/` },
     openGraph: {
       title: a.title,

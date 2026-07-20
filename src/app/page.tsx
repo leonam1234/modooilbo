@@ -14,71 +14,94 @@ import { SITE, SITE_DESCRIPTION, DEFAULT_OG_IMAGE } from "@/lib/site";
 
 const SITE_URL = "https://modooilbo.com";
 
-const organizationLd = {
-  "@context": "https://schema.org",
-  "@type": "NewsMediaOrganization",
-  "@id": `${SITE_URL}/#organization`,
-  // 1순위 이름은 한글 "모두일보"(name). alternateName은 name이 거부될 때의 폴백 후보 —
-  // 한글을 맨 앞에 둬 한글 우선 선택 유도(SEO 자문 2026-07 반영).
-  name: SITE.name,
-  alternateName: ["모두일보 뉴스", "Modoo Ilbo", "MODOO ILBO"],
-  url: `${SITE_URL}/`, // canonical(끝슬래시)과 동일 표기
-  logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png`, width: 512, height: 512 },
-  foundingDate: SITE.regDate.replace(/\./g, "-"),
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: SITE.address,
-    postalCode: SITE.addressZip,
-    addressCountry: "KR",
-  },
-  contactPoint: {
-    "@type": "ContactPoint",
-    contactType: "customer service",
-    email: SITE.email,
-    telephone: SITE.tel,
-  },
-  ...(SITE.sameAs.length > 0 ? { sameAs: [...SITE.sameAs] } : {}),
-};
+// 홈 이름값 단일화: 사이트 이름은 어디서나 "모두일보"만. 슬로건은 소셜 설명에서만 사용.
+const HOME_DESCRIPTION =
+  "모두일보는 기업에 필요한 공공데이터 뉴스와 경제·사회·국제·문화·스포츠·테크·오피니언 종합뉴스를 전하는 독립 디지털 언론입니다.";
+const HOME_SOCIAL_DESCRIPTION = "모두를 위한 신뢰의 뉴스, 모두일보";
 
-const websiteLd = {
+// WebSite + NewsMediaOrganization을 하나의 @graph로 정리(@id 상호참조 유지).
+// - name/브랜드명 = "모두일보" 단일화. alternateName(영문·변형명)은 두지 않는다 — 구글이 사이트
+//   이름을 "모두일보"로 단일 인식하게 하기 위함(SEO 이름 인식 정합).
+// - 법인명은 브랜드명과 별도로 legalName("주식회사 브릿지타임즈")에만 둔다.
+// - url·@id의 도메인(modooilbo.com)은 유지.
+const siteGraphLd = {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": `${SITE_URL}/#website`,
-  // 1순위 이름은 한글 "모두일보"(name). alternateName은 name이 거부될 때의 폴백 후보 —
-  // 한글을 맨 앞에 둬 한글 우선 선택 유도(SEO 자문 2026-07 반영).
-  name: "모두일보",
-  alternateName: ["모두일보 뉴스", "Modoo Ilbo", "MODOO ILBO", "modooilbo.com"],
-  url: `${SITE_URL}/`, // canonical(끝슬래시)과 동일 표기 — 구글 사이트 이름 인식 정합
-  inLanguage: "ko-KR",
-  publisher: { "@id": `${SITE_URL}/#organization` },
-  potentialAction: {
-    "@type": "SearchAction",
-    target: `${SITE_URL}/search/?q={search_term_string}`,
-    "query-input": "required name=search_term_string",
-  },
+  "@graph": [
+    {
+      "@type": "NewsMediaOrganization",
+      "@id": `${SITE_URL}/#organization`,
+      name: SITE.name, // 브랜드명 = 모두일보
+      legalName: SITE.legalName, // 운영 법인명(브랜드명과 별도)
+      url: `${SITE_URL}/`, // canonical(끝슬래시)과 동일 표기
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png`, width: 512, height: 512 },
+      foundingDate: SITE.regDate.replace(/\./g, "-"),
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: SITE.address,
+        postalCode: SITE.addressZip,
+        addressCountry: "KR",
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer service",
+        email: SITE.email,
+        telephone: SITE.tel,
+      },
+      ...(SITE.sameAs.length > 0 ? { sameAs: [...SITE.sameAs] } : {}),
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: "모두일보",
+      url: `${SITE_URL}/`, // canonical(끝슬래시)과 동일 표기 — 구글 사이트 이름 인식 정합
+      inLanguage: "ko-KR",
+      publisher: { "@id": `${SITE_URL}/#organization` },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: `${SITE_URL}/search/?q={search_term_string}`,
+        "query-input": "required name=search_term_string",
+      },
+    },
+  ],
 };
 
 export const metadata: Metadata = {
+  description: HOME_DESCRIPTION,
   alternates: {
     canonical: "/",
     types: {
       "application/rss+xml": "/rss.xml",
     },
   },
+  // 이름값(og:title/twitter:title)은 "모두일보". 슬로건은 소셜 설명에만.
+  openGraph: {
+    title: "모두일보",
+    description: HOME_SOCIAL_DESCRIPTION,
+    type: "website",
+    locale: "ko_KR",
+    url: "/",
+    siteName: "모두일보",
+    images: [DEFAULT_OG_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "모두일보",
+    description: HOME_SOCIAL_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE.url],
+  },
 };
 
 export default function Home() {
   return (
     <>
-      <JsonLd data={organizationLd} />
-      <JsonLd data={websiteLd} />
+      <JsonLd data={siteGraphLd} />
       {/* 포털용 itemprop 계열(연합뉴스 관례) — 홈은 사이트명·사이트 설명·기본 og 이미지 */}
       <PortalMeta
         name={SITE.name}
         description={SITE_DESCRIPTION}
         image={`${SITE_URL}${DEFAULT_OG_IMAGE.url}`}
       />
-      <h1 className="sr-only">모두일보 — 경제·사회·국제·문화·스포츠·테크·오피니언 최신 뉴스</h1>
+      <h1 className="sr-only">모두일보</h1>
 
       {/* 히어로 행 — [좌: 리드 + 보조4 콤팩트] | [우: '많이 본' 랭킹 + 후원 CTA].
           모바일은 세로 스택(리드 → 보조4 → 많이 본 → 후원). '많이 본'을 히어로 우측에 고정해

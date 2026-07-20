@@ -28,7 +28,7 @@ const SUB_CATEGORIES = CATEGORIES.filter((c) => c.slug !== "tech");
 
 function Logo({ className }: { className?: string }) {
   return (
-    <Link prefetch={false} href="/" className={cn("flex items-center", className)} aria-label="모두일보 홈">
+    <Link prefetch={false} href="/" className={cn("flex items-center", className)} aria-label="모두일보">
       {/* 정식 로고 B안(데이터심볼: 「보」 끝이 상승 막대그래프) — 라이트=검정/다크=흰색 2에셋 스위칭.
           ⚠️ priority·loading="eager" 금지 → 반드시 lazy. 이유:
            1) 테마가 class 기반이라 media 조건부 preload가 불가능해 두 장이 **모두** preload됐다.
@@ -38,7 +38,7 @@ function Logo({ className }: { className?: string }) {
               (get-img-props: isLazy = !priority && loading !== 'eager'). 즉 lazy만이 preload를 뺀다.
            3) lazy면 display:none인 쪽은 아예 내려받지 않고, 보이는 쪽은 최초 뷰포트 안이라
               레이아웃 직후 바로 로드된다(5KB 안팎이라 체감 지연 없음). */}
-      <Image src="/logo-b.png?v=1" alt="모두일보 — 균형 있게 보는 오늘의 뉴스" width={450} height={150} loading="lazy" className="h-10 w-auto dark:hidden sm:h-12" />
+      <Image src="/logo-b.png?v=1" alt="모두일보" width={450} height={150} loading="lazy" className="h-10 w-auto dark:hidden sm:h-12" />
       <Image src="/logo-b-dark.png?v=1" alt="" aria-hidden width={450} height={150} loading="lazy" className="hidden h-10 w-auto dark:block sm:h-12" />
     </Link>
   );

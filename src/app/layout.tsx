@@ -8,35 +8,19 @@ import { AutoRefresh } from "@/components/AutoRefresh";
 import { WeatherBackground } from "@/components/WeatherBackground";
 import { BackToTop } from "@/components/BackToTop";
 import { AdSenseLoader } from "@/components/AdSenseLoader";
-import { DEFAULT_OG_IMAGE, SITE_TITLE, SITE_DESCRIPTION } from "@/lib/site";
+import { DEFAULT_OG_IMAGE, SITE_DESCRIPTION } from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://modooilbo.com"),
+  // 사이트 이름값은 어디서나 "모두일보" 단일화(슬로건·영문명·카테고리 나열 금지 — SEO 이름 인식 정합).
+  // 슬로건은 description 계열에서만 유지. 하위 페이지는 template "%s | 모두일보"가 적용된다.
   title: {
-    default: SITE_TITLE,
+    default: "모두일보",
     template: "%s | 모두일보",
   },
   description: SITE_DESCRIPTION,
-  keywords: [
-    "모두일보",
-    "Modoo Ilbo",
-    "기업 데이터 뉴스",
-    "공공데이터",
-    "정부지원금",
-    "공공입찰",
-    "창업",
-    "상권",
-    "산업 트렌드",
-    "채용",
-    "노무",
-    "계약",
-    "거래",
-    "뉴스",
-    "신문",
-    "언론",
-    "속보",
-    "오피니언",
-  ],
+  // keywords 메타는 전역 제거 — 구글이 무시하고 키워드스터핑 신호만 된다.
+  // (기사 실제 주제는 JSON-LD NewsArticle.keywords·article:tag로만 게재)
   applicationName: "모두일보",
   authors: [{ name: "모두일보" }],
   creator: "모두일보",
@@ -77,7 +61,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: SITE_TITLE,
+    title: "모두일보",
     description: SITE_DESCRIPTION,
     type: "website",
     locale: "ko_KR",
@@ -87,7 +71,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: SITE_TITLE,
+    title: "모두일보",
     description: SITE_DESCRIPTION,
     images: [DEFAULT_OG_IMAGE.url],
   },

@@ -37,7 +37,11 @@ export function categoryMetadata(slug: CategorySlug): Metadata {
       description,
       type: "website",
       url: `/${c.slug}/`,
-      // openGraph는 얕은 병합 — 명시하지 않으면 루트 og.png가 상속되지 않고 사라진다(site.ts 주석 참조)
+      // openGraph는 얕은 병합 — 페이지가 openGraph를 새로 선언하면 루트 layout의 siteName·locale·
+      // 이미지가 상속되지 않고 통째로 사라진다. 이름값 정합(og:site_name="모두일보")을 위해 여기서
+      // 공통값을 함께 병합한다(site.ts 주석 참조).
+      siteName: "모두일보",
+      locale: "ko_KR",
       images: [DEFAULT_OG_IMAGE],
     },
     twitter: {
