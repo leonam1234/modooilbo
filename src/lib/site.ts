@@ -40,6 +40,10 @@ export const SITE = {
    *     "https://www.wikidata.org/wiki/Qxxxxxxx" (위키데이터 등재 후)
    * 비어 있으면 홈 JSON-LD의 sameAs 필드가 아예 출력되지 않고, Footer SNS도 렌더하지 않음(데드링크 방지).
    * 운영 절차: wiki/operations/01-trust-eeat.md ⑦ 참조.
+   *
+   * ⚠️ 핸들(@모두일보)이 아닌 채널ID URL을 쓴다 — 유튜브 canonical이자 핸들 변경에도 불변.
    */
-  sameAs: [] as string[],
+  sameAs: [
+    "https://www.youtube.com/channel/UCsvBsEH1FasPFncxakOuARg", // 모두일보 MODOO ILBO(2026-07-20 개설·역링크 확인)
+  ] as string[],
 } as const;
