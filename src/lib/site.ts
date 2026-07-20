@@ -7,7 +7,7 @@
  * 카테고리 대표 이미지가 생기면 페이지별로 이 값을 대체하면 된다.
  */
 export const DEFAULT_OG_IMAGE = {
-  url: "/og.png?v=2",
+  url: "/og.png?v=3",
   width: 1200,
   height: 630,
   alt: "모두일보 — 모두를 위한 신뢰의 뉴스",
