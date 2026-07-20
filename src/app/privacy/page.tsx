@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
+import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "개인정보처리방침",
@@ -153,7 +154,7 @@ export default function PrivacyPage() {
                   <dt className="w-24 shrink-0 font-medium text-ink-700 dark:text-ink-200">
                     책임자
                   </dt>
-                  <dd>정한별 / 편집국 디지털전략실장</dd>
+                  <dd>{SITE.privacyOfficer}</dd>
                 </div>
                 <div className="flex gap-3">
                   <dt className="w-24 shrink-0 font-medium text-ink-700 dark:text-ink-200">
@@ -165,7 +166,7 @@ export default function PrivacyPage() {
                   <dt className="w-24 shrink-0 font-medium text-ink-700 dark:text-ink-200">
                     전화
                   </dt>
-                  <dd>02-1234-5678 (평일 09:00 ~ 18:00)</dd>
+                  <dd>{SITE.tel} (평일 09:00 ~ 18:00)</dd>
                 </div>
               </dl>
             </div>

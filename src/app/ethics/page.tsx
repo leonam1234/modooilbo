@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
+import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "윤리강령",
@@ -197,7 +198,7 @@ export default function EthicsPage() {
                   </div>
                   <div className="flex gap-3">
                     <dt className="w-24 shrink-0 font-semibold text-ink-500 dark:text-ink-400">성명</dt>
-                    <dd className="text-ink-700 dark:text-ink-200">유승현</dd>
+                    <dd className="text-ink-700 dark:text-ink-200">{SITE.ombudsman}</dd>
                   </div>
                   <div className="flex gap-3">
                     <dt className="w-24 shrink-0 font-semibold text-ink-500 dark:text-ink-400">이메일</dt>
@@ -290,13 +291,13 @@ export default function EthicsPage() {
                     <dt className="w-24 shrink-0 font-semibold text-ink-500 dark:text-ink-400">
                       성명
                     </dt>
-                    <dd className="text-ink-700 dark:text-ink-200">김영환</dd>
+                    <dd className="text-ink-700 dark:text-ink-200">{SITE.youthOfficer}</dd>
                   </div>
                   <div className="flex gap-3">
                     <dt className="w-24 shrink-0 font-semibold text-ink-500 dark:text-ink-400">
                       전화
                     </dt>
-                    <dd className="text-ink-700 dark:text-ink-200">02-1234-5690</dd>
+                    <dd className="text-ink-700 dark:text-ink-200">{SITE.tel}</dd>
                   </div>
                   <div className="flex gap-3">
                     <dt className="w-24 shrink-0 font-semibold text-ink-500 dark:text-ink-400">

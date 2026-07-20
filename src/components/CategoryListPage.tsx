@@ -8,9 +8,7 @@ import { RankingList } from "@/components/RankingList";
 import { RecentArticles } from "@/components/RecentArticles";
 import { PageHeader } from "@/components/PageHeader";
 import JsonLd from "@/components/JsonLd";
-import { DEFAULT_OG_IMAGE } from "@/lib/site";
-
-const SITE_URL = "https://modooilbo.com";
+import { DEFAULT_OG_IMAGE, SITE } from "@/lib/site";
 
 /**
  * 카테고리 목록 페이지의 **단일 구현** — 종합뉴스 [category] 라우트와 사업 6개 전용 라우트가
@@ -62,18 +60,18 @@ export function CategoryListPage({ slug }: { slug: CategorySlug }) {
   const collectionLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "@id": `${SITE_URL}/${cat.slug}/`,
-    url: `${SITE_URL}/${cat.slug}/`,
+    "@id": `${SITE.url}/${cat.slug}/`,
+    url: `${SITE.url}/${cat.slug}/`,
     name: cat.name,
     description: cat.description,
     inLanguage: "ko-KR",
-    isPartOf: { "@id": `${SITE_URL}/#website` },
+    isPartOf: { "@id": `${SITE.url}/#website` },
     mainEntity: {
       "@type": "ItemList",
       itemListElement: articles.map((a, i) => ({
         "@type": "ListItem",
         position: i + 1,
-        url: `${SITE_URL}/article/${a.slug}/`,
+        url: `${SITE.url}/article/${a.slug}/`,
         name: a.title,
       })),
     },

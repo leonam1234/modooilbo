@@ -22,21 +22,15 @@ import { ReadingProgress } from "@/components/ReadingProgress";
 import { ArticleBody, articleSpeechText } from "@/components/ArticleBody";
 import { ogImageUrl, displayImageUrl } from "@/lib/stock";
 import { getReporterByName } from "@/lib/reporters";
+import { SITE, absoluteUrl } from "@/lib/site";
 import JsonLd from "@/components/JsonLd";
 import { PortalMeta } from "@/components/PortalMeta";
-
-const SITE_URL = "https://modooilbo.com";
 
 // 기사 대표 이미지(AI 생성 스톡)는 전부 16:9 1200×675 원본이다.
 // og:image·구조화데이터에 실제와 다른 치수를 신고하면 스크레이퍼가 잘못 자르고
 // 구조화데이터 검증에서도 어긋나므로, 여기 한 곳에서 실제 치수를 관리한다.
 const ARTICLE_IMAGE_WIDTH = 1200;
 const ARTICLE_IMAGE_HEIGHT = 675;
-
-function absoluteImageUrl(pathOrUrl: string): string {
-  if (/^https?:\/\//i.test(pathOrUrl)) return pathOrUrl;
-  return `${SITE_URL}${pathOrUrl.startsWith("/") ? pathOrUrl : `/${pathOrUrl}`}`;
-}
 
 // 정적 export: 전체 기사 슬러그만 생성, 그 외 경로는 404
 export const dynamicParams = false;
@@ -53,7 +47,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const a = getArticleBySlug(slug);
   if (!a) return { title: "기사를 찾을 수 없습니다" };
-  const imageUrl = absoluteImageUrl(ogImageUrl(a)); // og는 webp 미지원 스크레이퍼 대비 jpg 고정
+  const imageUrl = absoluteUrl(ogImageUrl(a)); // og는 webp 미지원 스크레이퍼 대비 jpg 고정
   const cat = CATEGORY_MAP[a.category];
   return {
     title: a.title,
@@ -105,8 +99,8 @@ export default async function ArticlePage({
   const related = getRelated(article, 4);
   const { prev, next } = getPrevNext(article);
   const readMinutes = Math.max(1, Math.round(article.body.join(" ").length / 600));
-  const articleUrl = `${SITE_URL}/article/${article.slug}/`;
-  const imageUrl = absoluteImageUrl(displayImageUrl(article));
+  const articleUrl = `${SITE.url}/article/${article.slug}/`;
+  const imageUrl = absoluteUrl(displayImageUrl(article));
 
   const isOpinion = article.type === "opinion" || article.category === "opinion";
   const wordCount = article.body.join(" ").trim().split(/\s+/).filter(Boolean).length;
@@ -126,15 +120,15 @@ export default async function ArticlePage({
     inLanguage: "ko-KR",
     isAccessibleForFree: true,
     author: reporter
-      ? [{ "@type": "Person", name: article.author.name, url: `${SITE_URL}/reporter/${reporter.slug}/` }]
-      : [{ "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: article.author.name }],
+      ? [{ "@type": "Person", name: article.author.name, url: `${SITE.url}/reporter/${reporter.slug}/` }]
+      : [{ "@type": "Organization", "@id": `${SITE.url}/#organization`, name: article.author.name }],
     publisher: {
       "@type": "Organization",
-      "@id": `${SITE_URL}/#organization`,
+      "@id": `${SITE.url}/#organization`,
       name: "모두일보",
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/logo.png`,
+        url: `${SITE.url}/logo.png`,
         width: 512,
         height: 512,
       },
@@ -146,14 +140,14 @@ export default async function ArticlePage({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "홈", item: `${SITE_URL}/` },
+      { "@type": "ListItem", position: 1, name: "홈", item: `${SITE.url}/` },
       ...(cat
         ? [
             {
               "@type": "ListItem",
               position: 2,
               name: cat.name,
-              item: `${SITE_URL}/${article.category}/`,
+              item: `${SITE.url}/${article.category}/`,
             },
           ]
         : []),
@@ -174,11 +168,11 @@ export default async function ArticlePage({
       <PortalMeta
         name={`${article.title} | 모두일보`}
         description={article.summary}
-        image={absoluteImageUrl(ogImageUrl(article))}
+        image={absoluteUrl(ogImageUrl(article))}
       />
       {/* article:publisher(연합뉴스 관례 — 발행 주체 URL). property= 메타는 Metadata API other로
           못 넣지만(name=으로 렌더됨) React 19가 body 렌더 <meta>를 head로 승격한다(itemProp 제외). */}
-      <meta property="article:publisher" content={`${SITE_URL}/`} />
+      <meta property="article:publisher" content={`${SITE.url}/`} />
       <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_280px] lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10">
         <article className="min-w-0">
           <nav className="mb-4 flex min-w-0 items-center gap-1.5 text-xs text-ink-500 dark:text-ink-400">
@@ -326,9 +320,9 @@ export default async function ArticlePage({
                 modooilbo.com
               </p>
             </div>
-            {getReporterByName(article.author.name) && (
+            {reporter && (
               <Link
-                href={`/reporter/${getReporterByName(article.author.name)!.slug}`}
+                href={`/reporter/${reporter.slug}`}
                 className="shrink-0 rounded-md border border-ink-300 px-3 py-2 text-xs font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-600 dark:text-ink-200"
               >
                 기자의 다른 기사

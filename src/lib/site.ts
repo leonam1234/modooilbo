@@ -23,6 +23,11 @@ export const SITE_DESCRIPTION =
 export const SITE = {
   name: "모두일보",
   legalName: "주식회사 브릿지타임즈", // 운영법인(팀 확정값 — Footer/약관과 일치)
+  /**
+   * 사이트 오리진(정본). canonical·og:url·sitemap·RSS 등 절대 URL이 전부 이 값을 공유한다.
+   * ⚠️ 끝에 슬래시를 두지 않는다(`${SITE.url}/path/` 형태로 조합).
+   */
+  url: "https://modooilbo.com",
   email: "help@modooilbo.com",
   tel: "010-9848-5765", // 등록증 발행소 전화번호
   address: "경기도 하남시 하남대로 947 (풍산동, 하남테크노밸리 U1 CENTER) D동 2층 252호",
@@ -31,6 +36,7 @@ export const SITE = {
   editor: "남동균", // 편집인(실무 편집책임). ⚠️등록증상 편집인은 김성우 — 경기도 편집인 변경등록 예정
   youthOfficer: "김영환", // 청소년보호책임자
   ombudsman: "유수화", // 고충처리인(언론중재법)
+  privacyOfficer: "김영환", // 개인정보보호책임자(개인정보 보호법 제31조)
   regNumber: "경기 아54891", // 인터넷신문 등록번호(경기도지사, 2026.7.6 등록)
   regDate: "2026.07.06",
   copyrightYear: 2026,
@@ -47,3 +53,12 @@ export const SITE = {
     "https://www.youtube.com/channel/UCsvBsEH1FasPFncxakOuARg", // 모두일보 MODOO ILBO(2026-07-20 개설·역링크 확인)
   ] as string[],
 } as const;
+
+/**
+ * 상대 경로 → 사이트 오리진 기준 절대 URL. 이미 절대 URL(http/https)이면 그대로 반환한다.
+ * og:image·RSS enclosure 등 외부 스크레이퍼가 읽는 값은 상대 경로가 통하지 않으므로 반드시 경유시킨다.
+ */
+export function absoluteUrl(pathOrUrl: string): string {
+  if (/^https?:\/\//i.test(pathOrUrl)) return pathOrUrl;
+  return `${SITE.url}${pathOrUrl.startsWith("/") ? pathOrUrl : `/${pathOrUrl}`}`;
+}

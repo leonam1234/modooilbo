@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllArticles } from "@/lib/queries";
-import { formatKoreanDateTime } from "@/lib/utils";
+import { formatKoreanDateTime, toKstIso } from "@/lib/utils";
 import { ArticleCard } from "@/components/ArticleCard";
 import { PageHeader } from "@/components/PageHeader";
 
@@ -37,7 +37,7 @@ export default function CorrectionsPage() {
               <div key={a.id}>
                 <p className="mb-2 text-xs font-semibold text-signal-600 dark:text-signal-400">
                   정정 반영{" "}
-                  <time dateTime={a.correction!.at}>
+                  <time dateTime={toKstIso(a.correction!.at)}>
                     {formatKoreanDateTime(a.correction!.at)}
                   </time>
                 </p>

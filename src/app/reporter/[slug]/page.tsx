@@ -5,14 +5,13 @@ import { notFound } from "next/navigation";
 import { ALL_ARTICLES } from "@/lib/news";
 import { REPORTERS, REPORTER_INDEXABLE, getReporterBySlug } from "@/lib/reporters";
 import { CATEGORY_MAP } from "@/lib/categories";
+import { SITE } from "@/lib/site";
 import { formatKoreanDateTime } from "@/lib/utils";
 import { displayImageUrl } from "@/lib/stock";
 import { SubscribeButton } from "@/components/SubscribeButton";
 import JsonLd from "@/components/JsonLd";
 
-const SITE_URL = "https://modooilbo.com";
-
-// 정적 export: 로스터 7명만 생성
+// 정적 export: 로스터에 있는 기자만 생성
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -45,7 +44,7 @@ export default async function ReporterPage({ params }: { params: Promise<{ slug:
     b.publishedAt.localeCompare(a.publishedAt),
   );
 
-  const profileUrl = `${SITE_URL}/reporter/${reporter.slug}/`;
+  const profileUrl = `${SITE.url}/reporter/${reporter.slug}/`;
   const profileLd = {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
@@ -56,7 +55,7 @@ export default async function ReporterPage({ params }: { params: Promise<{ slug:
       jobTitle: reporter.role,
       description: reporter.beat,
       url: profileUrl,
-      worksFor: { "@type": "NewsMediaOrganization", "@id": `${SITE_URL}/#organization`, name: "모두일보" },
+      worksFor: { "@type": "NewsMediaOrganization", "@id": `${SITE.url}/#organization`, name: "모두일보" },
     },
   };
 

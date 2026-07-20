@@ -178,7 +178,7 @@ function scoreCompleteness(row: ProgramRow): number {
 
 // ── 항목 7: 영상화 (max 5) ─────────────────────────────────────────────────
 // 쇼츠로 만들기 좋은 신호(큰 금액 + 임박 + 넓은 대상). 100점 총점에 포함되는 5점.
-function scoreVideo(row: ProgramRow, deadlinePts: number, amountPts: number, targetPts: number): number {
+function scoreVideo(deadlinePts: number, amountPts: number, targetPts: number): number {
   let v = 0;
   if (amountPts >= 12) v += 2; // 1억+ 금액
   else if (amountPts >= 6) v += 1;
@@ -189,7 +189,7 @@ function scoreVideo(row: ProgramRow, deadlinePts: number, amountPts: number, tar
 }
 
 /** 쇼츠 대기열 전용 0~100 신호(기사 총점과 별개). 임계 이상만 쇼츠 제작 후보. */
-function computeVideoScore(row: ProgramRow, b: ScoreBreakdown): number {
+function computeVideoScore(b: ScoreBreakdown): number {
   // 금액(40) + 마감임박(30) + 대상범위(30) 가중 — 영상은 "임팩트 숫자·마감·해당범위"가 핵심.
   const amount = (b.amount / 15) * 40;
   const deadline = (b.deadline / 20) * 30;
@@ -209,7 +209,7 @@ export function scoreProgram(row: ProgramRow, nowMs: number = Date.now()): Score
   const novelty = scoreNovelty(row, nowMs);
   const actionClarity = scoreActionClarity(row);
   const completeness = scoreCompleteness(row);
-  const video = scoreVideo(row, dl.pts, amount, targetScope);
+  const video = scoreVideo(dl.pts, amount, targetScope);
 
   const breakdown: ScoreBreakdown = {
     deadline: dl.pts,
@@ -233,7 +233,7 @@ export function scoreProgram(row: ProgramRow, nowMs: number = Date.now()): Score
     score,
     grade: gradeOf(score),
     breakdown,
-    videoScore: computeVideoScore(row, breakdown),
+    videoScore: computeVideoScore(breakdown),
     daysLeft: dl.daysLeft,
   };
 }

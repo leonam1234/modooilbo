@@ -8,10 +8,10 @@ import { AutoRefresh } from "@/components/AutoRefresh";
 import { WeatherBackground } from "@/components/WeatherBackground";
 import { BackToTop } from "@/components/BackToTop";
 import { AdSenseLoader } from "@/components/AdSenseLoader";
-import { DEFAULT_OG_IMAGE, SITE_DESCRIPTION } from "@/lib/site";
+import { DEFAULT_OG_IMAGE, SITE, SITE_DESCRIPTION } from "@/lib/site";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://modooilbo.com"),
+  metadataBase: new URL(SITE.url),
   // 사이트 이름값은 어디서나 "모두일보" 단일화(슬로건·영문명·카테고리 나열 금지 — SEO 이름 인식 정합).
   // 슬로건은 description 계열에서만 유지. 하위 페이지는 template "%s | 모두일보"가 적용된다.
   title: {

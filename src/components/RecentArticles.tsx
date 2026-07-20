@@ -14,13 +14,18 @@ export function RecentArticles({ excludeId, count = 5 }: { excludeId?: string; c
   const [items, setItems] = useState<IndexItem[]>([]);
 
   useEffect(() => {
-    let ids: string[] = [];
+    // localStorage는 신뢰할 수 없는 입력이다. `5`·`"abc"`·`{}` 같은 "유효한 JSON 비배열"이
+    // 들어 있으면 파싱은 통과하므로, 파싱 성공/실패가 아니라 **모양**을 직접 좁혀야 한다.
+    // (예전엔 any로 받아 string[]로 통과시킨 뒤 아래 filter에서 TypeError로 터졌다)
+    let parsed: unknown = null;
     try {
-      ids = JSON.parse(localStorage.getItem("modoo_recent") || "[]");
+      parsed = JSON.parse(localStorage.getItem("modoo_recent") || "[]");
     } catch {
-      /* ignore */
+      /* 손상된 값 → 빈 목록으로 처리 */
     }
-    ids = ids.filter((id) => id !== excludeId);
+    const ids = (Array.isArray(parsed) ? parsed : [])
+      .filter((id): id is string => typeof id === "string")
+      .filter((id) => id !== excludeId);
     if (ids.length === 0) return;
     fetch("/articles-index.json")
       .then((r) => (r.ok ? r.json() : null))

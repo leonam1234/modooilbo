@@ -12,8 +12,6 @@ import JsonLd from "@/components/JsonLd";
 import { PortalMeta } from "@/components/PortalMeta";
 import { SITE, SITE_DESCRIPTION, DEFAULT_OG_IMAGE } from "@/lib/site";
 
-const SITE_URL = "https://modooilbo.com";
-
 // 홈 이름값 단일화: 사이트 이름은 어디서나 "모두일보"만. 슬로건은 소셜 설명에서만 사용.
 const HOME_DESCRIPTION =
   "모두일보는 기업에 필요한 공공데이터 뉴스와 경제·사회·국제·문화·스포츠·테크·오피니언 종합뉴스를 전하는 독립 디지털 언론입니다.";
@@ -29,11 +27,11 @@ const siteGraphLd = {
   "@graph": [
     {
       "@type": "NewsMediaOrganization",
-      "@id": `${SITE_URL}/#organization`,
+      "@id": `${SITE.url}/#organization`,
       name: SITE.name, // 브랜드명 = 모두일보
       legalName: SITE.legalName, // 운영 법인명(브랜드명과 별도)
-      url: `${SITE_URL}/`, // canonical(끝슬래시)과 동일 표기
-      logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png`, width: 512, height: 512 },
+      url: `${SITE.url}/`, // canonical(끝슬래시)과 동일 표기
+      logo: { "@type": "ImageObject", url: `${SITE.url}/logo.png`, width: 512, height: 512 },
       foundingDate: SITE.regDate.replace(/\./g, "-"),
       address: {
         "@type": "PostalAddress",
@@ -51,14 +49,14 @@ const siteGraphLd = {
     },
     {
       "@type": "WebSite",
-      "@id": `${SITE_URL}/#website`,
+      "@id": `${SITE.url}/#website`,
       name: "모두일보",
-      url: `${SITE_URL}/`, // canonical(끝슬래시)과 동일 표기 — 구글 사이트 이름 인식 정합
+      url: `${SITE.url}/`, // canonical(끝슬래시)과 동일 표기 — 구글 사이트 이름 인식 정합
       inLanguage: "ko-KR",
-      publisher: { "@id": `${SITE_URL}/#organization` },
+      publisher: { "@id": `${SITE.url}/#organization` },
       potentialAction: {
         "@type": "SearchAction",
-        target: `${SITE_URL}/search/?q={search_term_string}`,
+        target: `${SITE.url}/search/?q={search_term_string}`,
         "query-input": "required name=search_term_string",
       },
     },
@@ -99,7 +97,7 @@ export default function Home() {
       <PortalMeta
         name={SITE.name}
         description={SITE_DESCRIPTION}
-        image={`${SITE_URL}${DEFAULT_OG_IMAGE.url}`}
+        image={`${SITE.url}${DEFAULT_OG_IMAGE.url}`}
       />
       <h1 className="sr-only">모두일보</h1>
 

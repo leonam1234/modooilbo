@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { MailIcon } from "@/components/icons";
+import { SITE } from "@/lib/site";
 import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = {
@@ -10,36 +11,38 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contact/" },
 };
 
+// 부서별 직통번호는 아직 없다 — 전 부서가 등록증상 대표전화(SITE.tel) 하나를 공유한다.
+// 부서 구분은 이메일로만 이뤄지며, 직통번호가 개설되면 그때 개별 값으로 대체한다.
 const DEPARTMENTS: { name: string; desc: string; email: string; phone: string }[] = [
   {
     name: "편집국",
     desc: "보도 내용 및 기사 관련 문의",
     email: "newsroom@modooilbo.com",
-    phone: "02-1234-5601",
+    phone: SITE.tel,
   },
   {
     name: "광고·제휴",
     desc: "광고 집행, 콘텐츠 제휴 제안",
     email: "ad@modooilbo.com",
-    phone: "02-1234-5620",
+    phone: SITE.tel,
   },
   {
     name: "구독·후원",
     desc: "유료 구독, 멤버십, 결제 문의",
     email: "members@modooilbo.com",
-    phone: "02-1234-5630",
+    phone: SITE.tel,
   },
   {
     name: "제보",
     desc: "단독·탐사 보도를 위한 취재 제보",
     email: "tip@modooilbo.com",
-    phone: "02-1234-5640",
+    phone: SITE.tel,
   },
   {
     name: "일반문의",
     desc: "그 밖의 모든 문의 및 의견",
     email: "help@modooilbo.com",
-    phone: "02-1234-5678",
+    phone: SITE.tel,
   },
 ];
 

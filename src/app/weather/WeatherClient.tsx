@@ -14,6 +14,7 @@ import {
   setFxDisabled,
 } from "@/lib/weather";
 import { WxIcon } from "@/components/LocationPicker";
+import { DOW, kstDayOfWeek } from "@/lib/utils";
 
 type Current = {
   temp: number | null;
@@ -24,13 +25,12 @@ type Current = {
 };
 type Day = { date: string; code: number; max: number; min: number; rain: number | null };
 
-const DOW = ["일", "월", "화", "수", "목", "금", "토"];
-
+// dateStr은 open-meteo를 timezone=Asia/Seoul로 호출해 받은 KST 달력 날짜다.
+// 로컬 getDay()로 읽으면 UTC·미주 브라우저에서 요일 라벨이 하루 밀린다 → KST 고정 판정.
 function dayLabel(dateStr: string, idx: number): string {
   if (idx === 0) return "오늘";
   if (idx === 1) return "내일";
-  const d = new Date(`${dateStr}T00:00:00+09:00`);
-  return `${DOW[d.getDay()]}요일`;
+  return `${DOW[kstDayOfWeek(dateStr)]}요일`;
 }
 
 /** 날씨 상세 — 현재 + 주간(7일) 예보. open-meteo 무료·무키, 브라우저 직접 호출. */

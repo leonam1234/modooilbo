@@ -5,13 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { CATEGORIES, BIZ_CATEGORIES } from "@/lib/categories";
-import { cn } from "@/lib/utils";
+import { DOW, cn, kstToday } from "@/lib/utils";
 import { useFocusTrap } from "./useFocusTrap";
 import { ThemeToggle } from "./ThemeToggle";
 import { AuthMenu } from "./AuthMenu";
 import { LocationPicker } from "./LocationPicker";
 import { SearchOverlay } from "./SearchOverlay";
-import { SearchIcon, MenuIcon, CloseIcon, UserIcon } from "./icons";
+import { SearchIcon, MenuIcon, CloseIcon } from "./icons";
 
 const COMPANY_LINKS = [
   { href: "/about", label: "회사소개" },
@@ -55,10 +55,11 @@ export function Header() {
   const closeMenu = useCallback(() => setMenuOpen(false), []);
   const drawerRef = useFocusTrap<HTMLDivElement>(menuOpen, closeMenu, drawerCloseRef);
 
+  // 발행일자는 한국 신문 지면의 날짜다 — 독자 브라우저 시간대가 아니라 KST 기준으로 고정한다.
+  // (마운트 이후에만 계산: 렌더 중 현재시각 사용은 결정성 규약 위반)
   useEffect(() => {
-    const d = new Date();
-    const w = ["일", "월", "화", "수", "목", "금", "토"][d.getDay()];
-    setToday(`${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")} (${w})`);
+    const { year, month, day, dow } = kstToday();
+    setToday(`${year}.${String(month).padStart(2, "0")}.${String(day).padStart(2, "0")} (${DOW[dow]})`);
   }, []);
 
   useEffect(() => {

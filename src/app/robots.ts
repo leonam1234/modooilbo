@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { SITE } from "@/lib/site";
 
 // 정적 export 호환: 빌드 타임에 robots.txt 생성
 export const dynamic = "force-static";
@@ -21,8 +22,8 @@ export default function robots(): MetadataRoute.Robots {
       ...AI_CRAWLERS.map((userAgent) => ({ userAgent, allow: "/" })),
     ],
     sitemap: [
-      "https://modooilbo.com/sitemap.xml",
-      "https://modooilbo.com/news-sitemap.xml",
+      `${SITE.url}/sitemap.xml`,
+      `${SITE.url}/news-sitemap.xml`,
     ],
   };
 }

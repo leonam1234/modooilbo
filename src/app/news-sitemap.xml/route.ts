@@ -1,19 +1,10 @@
 import { ALL_ARTICLES } from "@/lib/news";
 import { toKstIso } from "@/lib/utils";
+import { SITE } from "@/lib/site";
+import { esc } from "@/lib/xml";
 
 // 정적 export: 빌드 시 out/news-sitemap.xml 로 프리렌더(동적 아님)
 export const dynamic = "force-static";
-
-const SITE = "https://modooilbo.com";
-
-function esc(s: string): string {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&apos;");
-}
 
 export function GET() {
   const sorted = [...ALL_ARTICLES].sort(
@@ -27,7 +18,7 @@ export function GET() {
 
   const urls = picked
     .map((a) => {
-      const loc = `${SITE}/article/${a.slug}/`;
+      const loc = `${SITE.url}/article/${a.slug}/`;
       return `  <url>
     <loc>${loc}</loc>
     <news:news>

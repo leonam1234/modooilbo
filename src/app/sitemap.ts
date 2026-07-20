@@ -1,11 +1,10 @@
 import type { MetadataRoute } from "next";
 import { CATEGORIES, BIZ_CATEGORIES } from "@/lib/categories";
 import { ALL_ARTICLES } from "@/lib/news";
+import { SITE } from "@/lib/site";
 
 // 정적 export 호환: 빌드 타임에 sitemap.xml 생성
 export const dynamic = "force-static";
-
-const BASE = "https://modooilbo.com";
 
 // publishedAt은 KST 벽시계-as-Z 규약 — 9시간 빼서 실제 UTC로 보정(기사 엔트리와 동일 규약)
 const latest = (list: typeof ALL_ARTICLES): Date | undefined =>
@@ -63,7 +62,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries: MetadataRoute.Sitemap = staticPaths.map((p) => {
     const policy = STATIC_PATH_POLICY[p] ?? { changeFrequency: "monthly", priority: 0.3 };
     return {
-      url: `${BASE}${p}/`,
+      url: `${SITE.url}${p}/`,
       ...(p === "" ? { lastModified: latest(ALL_ARTICLES) } : {}),
       changeFrequency: policy.changeFrequency,
       priority: policy.priority,
@@ -72,14 +71,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // 종합뉴스 + 사업 축(정부지원금 등, 기사가 붙어 승격된 것) 카테고리 목록 페이지
   const categoryEntries: MetadataRoute.Sitemap = [...CATEGORIES, ...BIZ_CATEGORIES].map((c) => ({
-    url: `${BASE}/${c.slug}/`,
+    url: `${SITE.url}/${c.slug}/`,
     lastModified: latest(ALL_ARTICLES.filter((a) => a.category === c.slug)),
     changeFrequency: "hourly",
     priority: 0.8,
   }));
 
   const articleEntries: MetadataRoute.Sitemap = ALL_ARTICLES.map((a) => ({
-    url: `${BASE}/article/${a.slug}/`,
+    url: `${SITE.url}/article/${a.slug}/`,
     // publishedAt은 KST 벽시계-as-Z 규약 — 9시간 빼서 실제 UTC 시각으로 보정
     lastModified: new Date(new Date(a.updatedAt ?? a.publishedAt).getTime() - 9 * 3600 * 1000),
     changeFrequency: "weekly",
