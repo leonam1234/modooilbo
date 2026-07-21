@@ -5,6 +5,7 @@
  */
 import type { AuthEnv } from "./auth";
 import { hasBanned } from "./moderation";
+import { isReservedName } from "./reserved-names";
 
 function rand4(): string {
   const a = new Uint8Array(2);
@@ -19,10 +20,22 @@ async function nameTaken(env: AuthEnv, name: string): Promise<boolean> {
   return !!r;
 }
 
-/** 프로필 이름을 소셜 가입용으로 확정: 금칙어면 fallback, 중복이면 접미사. 최대 20자 보장. */
+/**
+ * 프로필 이름을 소셜 가입용으로 확정: 금칙어·사칭어면 fallback, 중복이면 접미사. 최대 20자 보장.
+ *
+ * ⚠️ `raw`는 **외부 제공자가 준 값**이라 신뢰할 수 없다. 공격자가 네이버·카카오 프로필 이름을
+ *   "김영환"으로 바꾸고 간편가입하면 소속 기자 사칭 계정이 만들어진다 — 이메일 가입 경로만
+ *   막아 봐야 소셜 경로가 열려 있으면 소용없다(2026-07-21 보안 감사).
+ *   여기서는 **거부하지 않고 fallback으로 대체**한다. 소셜 로그인은 사용자가 이름을 고치는
+ *   화면이 없어 400을 주면 로그인 자체가 막히기 때문(금칙어 처리와 같은 규약). 가입 후
+ *   /account에서 직접 바꿀 수 있고, 그 경로(update-name)는 예약어를 정상적으로 거부한다.
+ *
+ * ⚠️ `fallback`은 **호출부가 주는 시스템 값**이라 검사하지 않는다("네이버회원"·"모두일보회원" 등).
+ *   → 호출부는 반드시 사칭 소지 없는 값을 넘길 것.
+ */
 export async function uniqueSignupName(env: AuthEnv, raw: string, fallback: string): Promise<string> {
   let base = raw.trim().slice(0, 20) || fallback;
-  if (hasBanned(base)) base = fallback;
+  if (hasBanned(base) || isReservedName(base)) base = fallback;
   if (!(await nameTaken(env, base))) return base;
   const stem = base.slice(0, 15); // "_xxxx" 5자 여유
   for (let i = 0; i < 5; i++) {

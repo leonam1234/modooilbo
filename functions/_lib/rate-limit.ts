@@ -124,7 +124,19 @@ export function clientIp(request: Request): string {
   return request.headers.get("CF-Connecting-IP") || "";
 }
 
-/** 성공 시 카운터 리셋(예: 로그인 성공 → 실패 누적 해제). 실패해도 치명적이지 않다. */
+/**
+ * 성공 시 카운터 리셋(예: 로그인 성공 → 그 계정의 실패 누적 해제). 실패해도 치명적이지 않다.
+ *
+ * 🔴 **IP축은 리셋 대상이 아니다 — 성공 로그인으로 상쇄되면 스터핑 방어가 무너진다.**
+ *   이 DELETE엔 window_start 조건이 없어 **해당 버킷의 현재 창 카운터가 통째로 사라진다**.
+ *   IP축까지 넘기면 공격자가 자기 계정에 1회 정상 로그인하는 것만으로 그 IP의 누적 실패를
+ *   전부 지울 수 있다 → 남의 계정에 7회씩 시도하고 자기 계정으로 리셋하는 사이클을 무한 반복
+ *   (계정축은 계정마다 1씩만 올라 한도에 안 걸린다). 실제로 login.ts가 2026-07-21까지
+ *   `[ipBucket, acctBucket]`을 넘겨 IP 제한이 무력화돼 있었다.
+ *
+ *   👉 여기에 넘겨도 되는 건 **"본인이 소유를 증명한 축"뿐**이다(계정·사용자축).
+ *      IP처럼 **여러 주체가 공유하고 공격자가 임의로 고를 수 있는 축**은 넘기지 말 것.
+ */
 export async function resetRateLimit(env: RateLimitEnv, buckets: string[]): Promise<void> {
   if (!buckets.length) return;
   try {

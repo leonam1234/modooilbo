@@ -3,7 +3,9 @@
  * 세션·로그인수단·계정을 삭제하고 쿠키를 제거한다.
  *
  * 참여 데이터 처리(FK 제약 대응 — 없으면 users DELETE가 FOREIGN KEY로 실패):
- *  - 내가 누른 공감·신고·스크랩 → 삭제
+ *  - 내가 누른 공감·스크랩 → 삭제
+ *  - 내가 한 **신고** → 시스템 계정(탈퇴회원)으로 이관(2026-07-21~). 삭제하면 신고 남용 추적
+ *    근거가 사라져 탈퇴가 증거 인멸이 된다. 신고자 개인은 툼스톤에 흡수돼 식별되지 않는다.
  *  - 내가 쓴 댓글 → 시스템 계정(탈퇴회원)으로 넘기고 소프트 삭제
  *    (남의 답글이 달린 스레드가 끊기지 않도록 행은 보존, "삭제된 댓글" 자리 표시)
  *
@@ -63,6 +65,17 @@ export async function onRequestPost(ctx: any): Promise<Response> {
     env.DB.prepare("DELETE FROM email_verifications WHERE user_id = ?1").bind(user.id),
     env.DB.prepare("DELETE FROM user_email_verified WHERE user_id = ?1").bind(user.id),
     env.DB.prepare("DELETE FROM comment_likes WHERE user_id = ?1").bind(user.id),
+    // 신고 이력은 **삭제하지 않고 툼스톤 계정으로 이관**한다(2026-07-21 보안 감사).
+    // 지워 버리면 신고 남용(계정 여러 개로 댓글 은폐)을 사후에 추적할 근거가 통째로 사라진다 —
+    // 탈퇴가 곧 증거 인멸 수단이 됐다. 댓글을 툼스톤으로 넘기는 아래 :comments UPDATE와 같은 규약.
+    // ⚠️ PK가 (comment_id, user_id)라 **툼스톤이 같은 댓글을 이미 신고**한 상태면(다른 탈퇴자가
+    //   먼저 이관됐거나 하는 경우) UPDATE는 PK 충돌로 터진다 → 탈퇴가 500으로 실패한다.
+    //   그래서 UPDATE가 아니라 "INSERT OR IGNORE(충돌 시 조용히 버림) → 원본 DELETE" 2단계다.
+    //   충돌해 버려지는 행은 이미 같은 (댓글, 툼스톤) 이력이 있는 경우뿐이라 손실이 아니다.
+    env.DB.prepare(
+      `INSERT OR IGNORE INTO comment_reports (comment_id, user_id, created_at)
+       SELECT comment_id, ?2, created_at FROM comment_reports WHERE user_id = ?1`,
+    ).bind(user.id, DELETED_USER_ID),
     env.DB.prepare("DELETE FROM comment_reports WHERE user_id = ?1").bind(user.id),
     env.DB.prepare("DELETE FROM bookmarks WHERE user_id = ?1").bind(user.id),
     env.DB.prepare("DELETE FROM reporter_subs WHERE user_id = ?1").bind(user.id),

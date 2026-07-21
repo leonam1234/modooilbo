@@ -43,12 +43,14 @@ CREATE TABLE IF NOT EXISTS comments (
   parent_id TEXT REFERENCES comments(id),       -- NULL=원댓글, 값=답글(1단만)
   body TEXT NOT NULL,
   is_deleted INTEGER NOT NULL DEFAULT 0,
-  is_hidden INTEGER NOT NULL DEFAULT 0,          -- 신고 누적(3회) 자동 가림
+  is_hidden INTEGER NOT NULL DEFAULT 0,          -- 신고 누적(5회) 자동 가림. 임계값 정본은 api/comments/report.ts
   created_at TEXT NOT NULL DEFAULT (datetime('now','+9 hours'))
 );
 CREATE INDEX IF NOT EXISTS idx_comments_article ON comments(article_id, created_at);
 CREATE INDEX IF NOT EXISTS idx_comments_user ON comments(user_id, created_at);
--- 댓글 신고 (2026-07-03): 회원당 1회, 3회 누적 시 comments.is_hidden=1
+-- 댓글 신고 (2026-07-03): 회원당 1회, 5회 누적 시 comments.is_hidden=1 (2026-07-21 3→5 상향)
+-- ⚠️ 탈퇴해도 행을 지우지 않고 user_id를 'system-deleted-user'로 이관한다(신고 남용 추적 근거 보존).
+--    PK가 (comment_id, user_id)라 이관 시 충돌 가능 → delete-account.ts는 INSERT OR IGNORE + DELETE 2단계.
 CREATE TABLE IF NOT EXISTS comment_reports (
   comment_id TEXT NOT NULL REFERENCES comments(id),
   user_id TEXT NOT NULL REFERENCES users(id),
