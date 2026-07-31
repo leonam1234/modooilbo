@@ -61,3 +61,17 @@ export interface Article {
 
 /** 본문(body)을 제외한 목록/카드/검색용 경량 타입 */
 export type ArticleListItem = Omit<Article, "body">;
+
+/**
+ * 카드 한 장을 그리는 데 실제로 필요한 최소 필드.
+ * ArticleListItem은 이 타입에 그대로 대입되며, /articles-index.json 항목도 마찬가지다.
+ * → 검색처럼 인덱스 JSON만 받아온 화면도 전체 Article 없이 카드를 그릴 수 있다.
+ */
+export type ArticleCardItem = Pick<
+  Article,
+  "id" | "slug" | "title" | "summary" | "category" | "author" | "publishedAt" | "imageUrl"
+> &
+  Partial<Pick<Article, "type" | "isBreaking" | "tags">>;
+
+/** /articles-index.json 한 항목 — 카드 렌더 + 제목·태그 검색에 필요한 만큼만 담는다(본문 제외). */
+export type ArticleIndexItem = ArticleCardItem & { tags: string[] };

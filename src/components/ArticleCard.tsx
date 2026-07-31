@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { ArticleListItem } from "@/lib/types";
+import type { ArticleCardItem } from "@/lib/types";
 import { CATEGORY_MAP } from "@/lib/categories";
 import { cn, formatKoreanDateTime, toKstIso } from "@/lib/utils";
 import { PlayIcon } from "./icons";
@@ -10,7 +10,7 @@ import { TypeBadge, typeBadgeLabel } from "./TypeBadge";
 type Variant = "feature" | "horizontal" | "compact" | "list" | "text" | "overlay";
 
 interface ArticleCardProps {
-  article: ArticleListItem;
+  article: ArticleCardItem;
   variant?: Variant;
   priority?: boolean;
   showSummary?: boolean;
@@ -18,7 +18,7 @@ interface ArticleCardProps {
   headingClassName?: string;
 }
 
-function CardMeta({ article, light = false }: { article: ArticleListItem; light?: boolean }) {
+function CardMeta({ article, light = false }: { article: ArticleCardItem; light?: boolean }) {
   const cat = CATEGORY_MAP[article.category];
   return (
     <div
@@ -50,7 +50,7 @@ function Thumb({
   motion,
   thumb,
 }: {
-  article: ArticleListItem;
+  article: ArticleCardItem;
   sizes: string;
   priority?: boolean;
   className?: string;
@@ -92,7 +92,7 @@ function Thumb({
  * 보조기술에서 사라지므로, 같은 문구를 제목 링크 앞에 sr-only로 실어 보존한다.
  * → 스크린리더는 링크 이름을 "속보 <제목>"으로 읽어 시각 표시와 동일한 정보를 얻는다.
  */
-function BadgeSr({ article }: { article: ArticleListItem }) {
+function BadgeSr({ article }: { article: ArticleCardItem }) {
   const label = typeBadgeLabel(article);
   return label ? <span className="sr-only">{label} </span> : null;
 }

@@ -45,15 +45,11 @@ export function getSubLeads(count = 4): Article[] {
     .slice(0, count);
 }
 
-/** 속보 시효(48시간) — 벽시계(Date.now) 대신 '가장 최신 발행 시각' 기준이라 빌드 결정적.
- *  발행이 이어지는 한 이틀 지난 기사는 속보 취급이 자동 해제된다. */
-const BREAKING_TTL_MS = 48 * 60 * 60 * 1000;
-export function isBreakingFresh(a: Pick<Article, "isBreaking" | "publishedAt">): boolean {
-  if (!a.isBreaking) return false;
-  const newest = getAllArticles()[0];
-  if (!newest) return false;
-  return new Date(newest.publishedAt).getTime() - new Date(a.publishedAt).getTime() <= BREAKING_TTL_MS;
-}
+/** 속보 시효 판정은 `lib/breaking`으로 옮겼다 — 전체 기사 배열이 아니라 최신 발행시각 상수만 쓴다.
+ *  (속보 배지를 그리는 TypeBadge가 이 모듈을 임포트하면 클라이언트 번들에 코퍼스가 딸려온다)
+ *  기존 임포트 경로 호환을 위해 여기서 다시 내보낸다. */
+import { isBreakingFresh } from "./breaking";
+export { isBreakingFresh, BREAKING_TTL_MS } from "./breaking";
 
 export function getBreaking(count = 6): Article[] {
   // 속보 티커는 종합뉴스 전면 요소 — 사업 축(정부지원금 등)은 제외(폴백 최신글에도 섞이지 않게).

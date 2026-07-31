@@ -15,6 +15,7 @@ import { fileURLToPath } from "node:url";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const CONTENT_DIR = join(ROOT, "content", "articles");
 const OUT_TS = join(ROOT, "src", "lib", "content.generated.ts");
+const OUT_NEWEST = join(ROOT, "src", "lib", "newest.generated.ts");
 const STOCK_DIR = join(ROOT, "public", "stock");
 
 const VALID_CATEGORIES = [
@@ -254,6 +255,31 @@ async function run() {
 
   writeFileSync(OUT_TS, header() + `export const CONTENT_ARTICLES: Article[] = ${JSON.stringify(articles, null, 2)};\n`);
   console.log(`완료: 콘텐츠 기사 ${articles.length}건 → src/lib/content.generated.ts`);
+
+  writeFileSync(OUT_NEWEST, newestModule(articles));
+  console.log(`완료: 최신 발행시각 → src/lib/newest.generated.ts`);
+}
+
+/**
+ * 속보 시효 판정에 필요한 값은 "가장 최신 발행 시각" 하나뿐인데,
+ * 이걸 getAllArticles()로 구하면 속보 배지를 그리는 컴포넌트가 전체 기사 배열(수 MB)에
+ * 의존하게 된다 → 클라이언트 경계를 넘는 순간 코퍼스 전체가 번들된다(과거 /search 3.5MB 원인).
+ * 그래서 이 값만 따로 떼어 초경량 모듈로 굽는다. 소비처: src/lib/breaking.ts
+ */
+function newestModule(articles) {
+  const times = articles.map((a) => a.publishedAt);
+  // 하드코딩 배치(articles.ts·articles2.ts)도 후보에 포함 — 콘텐츠가 비어 있어도 값이 남게.
+  for (const f of ["articles.ts", "articles2.ts"]) {
+    const p = join(ROOT, "src", "lib", f);
+    if (!existsSync(p)) continue;
+    for (const m of readFileSync(p, "utf8").matchAll(/\bpublishedAt:\s*"([^"]+)"/g)) times.push(m[1]);
+  }
+  const newest = times.sort().at(-1) ?? new Date(0).toISOString();
+  return (
+    `// 자동 생성 파일 — 직접 수정 금지. \`npm run content\`로 생성.\n` +
+    `// 전체 기사 중 가장 늦은 발행 시각(속보 시효 기준점).\n` +
+    `export const NEWEST_PUBLISHED_AT = ${JSON.stringify(newest)};\n`
+  );
 }
 
 function header() {

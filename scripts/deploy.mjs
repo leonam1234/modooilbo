@@ -16,7 +16,7 @@
  * 다른 프로젝트로 복제 시: 아래 상수 3개(PROJECT/PROD_BRANCH/OUT_DIR)만 바꾸면 됩니다.
  */
 import { execFileSync } from "node:child_process";
-import { appendFileSync, mkdirSync } from "node:fs";
+import { appendFileSync, mkdirSync, readdirSync } from "node:fs";
 import { hostname } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -40,6 +40,14 @@ function git(...a) {
 }
 function sanitizeBranch(b) {
   return b.replace(/[^a-zA-Z0-9._-]/g, "-").slice(0, 28) || "preview";
+}
+/** 디렉터리 안 파일 개수(재귀) — Cloudflare Pages 배포 상한 점검용. */
+function countFiles(dir) {
+  let n = 0;
+  for (const e of readdirSync(dir, { withFileTypes: true })) {
+    n += e.isDirectory() ? countFiles(join(dir, e.name)) : 1;
+  }
+  return n;
 }
 
 if (env !== "preview" && env !== "prod") {
@@ -99,6 +107,26 @@ console.log(`\n▶ 인기태그 데이터 생성 (build-trending-data) ...`);
 execFileSync("node", [join(REPO, "scripts", "build-trending-data.mjs")], { cwd: REPO, stdio: "inherit" });
 console.log(`\n▶ next build ...`);
 execFileSync(join(BIN, "next"), ["build"], { cwd: REPO, stdio: "inherit" });
+
+// 2-b) 파일 수 한도 점검 ──────────────────────────────────────
+// Cloudflare Pages는 배포 1건당 파일 20,000개가 상한이다. 기사 1편이 약 4개
+// (HTML 1 + jpg 1 + webp 2)를 더하므로 발행이 쌓이면 어느 날 갑자기 배포가 실패한다.
+// 실패한 뒤 원인을 찾는 대신, 여유가 줄면 미리 경고하고 위험 수위에서 끊는다.
+{
+  const FILE_LIMIT = 20000;
+  const WARN_AT = 0.8; // 80% 넘으면 경고, 95% 넘으면 중단
+  const count = countFiles(join(REPO, OUT_DIR));
+  const pct = count / FILE_LIMIT;
+  const perArticle = 4;
+  const room = Math.max(0, Math.floor((FILE_LIMIT - count) / perArticle));
+  const line = `  파일 수    : ${count.toLocaleString()} / ${FILE_LIMIT.toLocaleString()} (${(pct * 100).toFixed(1)}%) · 기사 약 ${room.toLocaleString()}편 여유`;
+  if (pct >= 0.95) {
+    console.error(`\n✖ Cloudflare Pages 파일 수 한도에 근접했습니다.\n${line}`);
+    console.error("  이미지를 R2로 옮기거나 오래된 자산을 정리한 뒤 다시 배포하세요.\n");
+    process.exit(1);
+  }
+  console.log(pct >= WARN_AT ? `\n⚠ 파일 수 한도 임박\n${line}\n` : `\n${line}`);
+}
 
 // 3) 배포 (출력 캡처 → URL 파싱) ──────────────────────────────
 console.log(`\n▶ wrangler pages deploy ...`);

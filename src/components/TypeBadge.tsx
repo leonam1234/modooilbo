@@ -1,5 +1,7 @@
-import type { ArticleListItem } from "@/lib/types";
-import { isBreakingFresh } from "@/lib/queries";
+import type { ArticleCardItem } from "@/lib/types";
+// ⚠️ `@/lib/queries`가 아니라 `@/lib/breaking`에서 가져온다 — queries는 전체 기사 배열을 임포트하므로
+//    클라이언트 컴포넌트가 이 배지를 그리는 라우트마다 코퍼스가 통째로 번들된다(과거 /search 3.5MB 원인).
+import { isBreakingFresh } from "@/lib/breaking";
 import { cn } from "@/lib/utils";
 
 /**
@@ -13,7 +15,7 @@ import { cn } from "@/lib/utils";
  * 제목 링크 쪽에 같은 문구를 sr-only로 실어 '속보·칼럼' 정보가 사라지지 않게 하기 위함.
  * 속보 배지는 시효(48h) 안에서만 — 오래된 기사에 '속보'가 남지 않게.
  */
-export function typeBadgeLabel(article: ArticleListItem): string | null {
+export function typeBadgeLabel(article: ArticleCardItem): string | null {
   if (isBreakingFresh(article)) return "속보";
   if (article.type === "video") return "영상";
   if (article.type === "opinion" || article.category === "opinion") return "칼럼";
@@ -25,7 +27,7 @@ export function TypeBadge({
   className,
   onDark = false,
 }: {
-  article: ArticleListItem;
+  article: ArticleCardItem;
   className?: string;
   onDark?: boolean;
 }) {
