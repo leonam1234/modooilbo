@@ -1,6 +1,6 @@
 import { Fragment, type ReactNode } from "react";
 import Image from "next/image";
-import { webpSrc } from "@/lib/stock";
+import { stockUrl, webpSrc } from "@/lib/stock";
 
 /**
  * 기사 본문 렌더러 — 문단 배열을 소제목(##/###)·이미지 마크다운·일반 문단으로 그린다.
@@ -257,7 +257,7 @@ function BodyBlock({ p }: { p: string }) {
       <figure className="my-2">
         <span className="relative block aspect-[16/9] w-full overflow-hidden rounded-lg bg-ink-100 dark:bg-ink-800">
           <Image
-            src={webpSrc(img[2])}
+            src={stockUrl(webpSrc(img[2]))}
             alt={img[1] || ""}
             fill
             sizes="(max-width:1024px) 100vw, 66vw"

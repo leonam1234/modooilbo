@@ -17,8 +17,14 @@ export const dynamic = "force-static";
  * 크기를 못 구하면 **enclosure를 아예 생략한다** — 규격 위반 태그를 내보내는 것보다 없는 편이 낫다.
  */
 function enclosureBytes(publicPath: string): number | null {
+  // 스톡 이미지는 R2 도메인(img.modooilbo.com)에서 서빙하지만 원본 파일은 public/stock에 그대로
+  // 남아 있다 → 절대 URL로 와도 호스트를 걷어내고 로컬 경로로 되돌려 크기를 잰다.
+  // (못 걷어내면 statSync가 실패해 enclosure가 통째로 빠진다)
+  const noHost = publicPath.replace(/^https?:\/\/[^/]+/i, (m) =>
+    m.includes("img.modooilbo.com") ? "/stock" : "",
+  );
   // "/stock/foo.jpg?v=123" → "stock/foo.jpg"
-  const rel = publicPath.split("?")[0].replace(/^\//, "");
+  const rel = noHost.split("?")[0].replace(/^\//, "");
   if (!rel) return null;
   try {
     const s = statSync(join(process.cwd(), "public", rel));

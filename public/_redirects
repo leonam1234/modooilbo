@@ -14,3 +14,7 @@
 #    대상: concat("https://modooilbo.com", http.request.uri.path) / 301 / 쿼리스트링 보존
 #
 # 경로 단위 리다이렉트가 필요해지면 아래에 "/old/path /new/path 301" 형식으로 추가할 것.
+
+# 스톡 이미지는 R2(img.modooilbo.com)에서 서빙한다 — Pages 배포 파일 수 한도(20,000) 회피.
+# 이미 색인·공유된 예전 og:image URL(https://modooilbo.com/stock/...)이 404가 되지 않게 넘겨준다.
+/stock/* https://img.modooilbo.com/:splat 301

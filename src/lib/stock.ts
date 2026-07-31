@@ -4,6 +4,25 @@ import webpManifest from "./webp-manifest.generated.json";
 // prebuild(scripts/convert-webp.mjs)가 생성 — webp가 실존하는 스톡 jpg 목록
 const WEBP_SET = new Set<string>(webpManifest as string[]);
 
+/**
+ * 스톡 이미지 서빙 위치 — R2 버킷 `modooilbo-stock`의 커스텀 도메인.
+ *
+ * 왜 분리했나: Cloudflare Pages는 배포 1건당 파일 20,000개가 상한인데 기사 1편이
+ * 4개(HTML·jpg·webp·-640.webp)를 더한다. 이미지를 Pages 밖(R2)에서 서빙하면
+ * 배포 파일 수가 기사당 1개(HTML)로 줄어 한도 문제가 사라진다.
+ *
+ * 버킷 키는 파일명 그대로(평면 구조)라 `/stock/foo.jpg` → `<base>/foo.jpg`로 매핑한다.
+ * 롤백: NEXT_PUBLIC_STOCK_BASE=""로 빌드하면 예전처럼 같은 오리진의 /stock/을 쓴다
+ * (원본 파일은 public/stock에 그대로 두고 배포 산출물에서만 제외하므로 즉시 복구된다).
+ */
+const STOCK_BASE = (process.env.NEXT_PUBLIC_STOCK_BASE ?? "https://img.modooilbo.com").replace(/\/+$/, "");
+
+/** `/stock/foo.jpg?v=1` → `https://img.modooilbo.com/foo.jpg?v=1` (base가 비면 원본 경로 유지) */
+export function stockUrl(path: string): string {
+  if (!STOCK_BASE || !path.startsWith("/stock/")) return path;
+  return STOCK_BASE + path.slice("/stock".length);
+}
+
 /** /stock/x.jpg → 같은 이름의 .webp (변환본이 있을 때만). 그 외 URL은 그대로. */
 export function webpSrc(url: string): string {
   const m = url.match(/^\/stock\/([^/?]+\.jpg)(\?.*)?$/);
@@ -35,7 +54,7 @@ export function isPlaceholderImage(url?: string): boolean {
 export function displayImageUrl(article: ArticleCardItem): string {
   const url = isPlaceholderImage(article.imageUrl) ? `/stock/${article.id}.jpg` : article.imageUrl!;
   // 셀프호스팅 스톡은 파일명이 같고 내용만 바뀌므로 버전 쿼리로 캐시를 강제 갱신
-  return url.startsWith("/stock/") ? webpSrc(`${url}?v=${STOCK_VERSION}`) : url;
+  return url.startsWith("/stock/") ? stockUrl(webpSrc(`${url}?v=${STOCK_VERSION}`)) : url;
 }
 
 /** 작은 카드 슬롯(compact/list/horizontal, ≤160px)용 축소 썸네일(640w webp).
@@ -44,12 +63,12 @@ export function displayImageUrl(article: ArticleCardItem): string {
 export function thumbImageUrl(article: ArticleCardItem): string {
   const raw = isPlaceholderImage(article.imageUrl) ? `/stock/${article.id}.jpg` : article.imageUrl!;
   const m = raw.match(/^\/stock\/([^/?]+)\.jpg$/);
-  if (m && WEBP_SET.has(`${m[1]}.jpg`)) return `/stock/${m[1]}-640.webp?v=${STOCK_VERSION}`;
+  if (m && WEBP_SET.has(`${m[1]}.jpg`)) return stockUrl(`/stock/${m[1]}-640.webp?v=${STOCK_VERSION}`);
   return displayImageUrl(article);
 }
 
 /** 소셜 스크레이퍼(카카오 등)용 — webp 미지원 대비 항상 jpg 유지. */
 export function ogImageUrl(article: ArticleCardItem): string {
   const url = isPlaceholderImage(article.imageUrl) ? `/stock/${article.id}.jpg` : article.imageUrl!;
-  return url.startsWith("/stock/") ? `${url}?v=${STOCK_VERSION}` : url;
+  return url.startsWith("/stock/") ? stockUrl(`${url}?v=${STOCK_VERSION}`) : url;
 }

@@ -107,6 +107,8 @@ console.log(`\n▶ 인기태그 데이터 생성 (build-trending-data) ...`);
 execFileSync("node", [join(REPO, "scripts", "build-trending-data.mjs")], { cwd: REPO, stdio: "inherit" });
 console.log(`\n▶ next build ...`);
 execFileSync(join(BIN, "next"), ["build"], { cwd: REPO, stdio: "inherit" });
+console.log(`\n▶ 스톡 이미지 제외 (R2에서 서빙) ...`);
+execFileSync("node", [join(REPO, "scripts", "prune-stock.mjs")], { cwd: REPO, stdio: "inherit" });
 
 // 2-b) 파일 수 한도 점검 ──────────────────────────────────────
 // Cloudflare Pages는 배포 1건당 파일 20,000개가 상한이다. 기사 1편이 약 4개
