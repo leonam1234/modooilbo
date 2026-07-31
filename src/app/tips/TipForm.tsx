@@ -17,12 +17,18 @@ const label = "mb-1.5 block text-sm font-medium text-ink-700 dark:text-ink-200";
 const field =
   "w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-500 dark:placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
 
-/** 가상 접수번호 생성 (제출 시점에만 호출 — SSR 안전) */
+/**
+ * 가상 접수번호 생성 (제출 시점에만 호출 — SSR 안전)
+ *
+ * 날짜는 반드시 KST로 찍는다. 이 컴포넌트는 클라이언트에서 도는데, 로컬 게터를 쓰면
+ * 독자 브라우저 시간대를 그대로 따라가 해외 제보의 접수번호가 하루 어긋난다
+ * (예: LA에서 한국시간 7월 31일 오전에 제보 → MI-20260730-xxxx).
+ * 사이트의 다른 시각 표기와 같은 관용구: 에포크에 +9h 한 뒤 UTC 게터로 읽는다.
+ */
 function makeReceiptNo(): string {
-  const now = new Date();
-  const ymd = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, "0")}${String(
-    now.getDate(),
-  ).padStart(2, "0")}`;
+  const kst = new Date(Date.now() + 9 * 60 * 60 * 1000);
+  const p = (n: number) => String(n).padStart(2, "0");
+  const ymd = `${kst.getUTCFullYear()}${p(kst.getUTCMonth() + 1)}${p(kst.getUTCDate())}`;
   const rand = Math.floor(1000 + Math.random() * 9000);
   return `MI-${ymd}-${rand}`;
 }
