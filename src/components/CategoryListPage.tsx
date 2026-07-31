@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import type { CategorySlug } from "@/lib/types";
 import { getCategory } from "@/lib/categories";
 import { getByCategory, getMostRead } from "@/lib/queries";
+import { PAGE_SIZE, pageHref, paginate } from "@/lib/paginate";
+import { Pagination } from "@/components/Pagination";
+import { cn } from "@/lib/utils";
 import { ArticleCard } from "@/components/ArticleCard";
 import { MarketStrip } from "@/components/MarketStrip";
 import { RankingList } from "@/components/RankingList";
@@ -21,20 +24,24 @@ import { DEFAULT_OG_IMAGE, SITE } from "@/lib/site";
  */
 
 /** 카테고리 목록 페이지 metadata 생성 — og:image 누락(얕은 병합) 방지 포함. */
-export function categoryMetadata(slug: CategorySlug): Metadata {
+export function categoryMetadata(slug: CategorySlug, page = 1): Metadata {
   const c = getCategory(slug);
   if (!c) return { title: "페이지를 찾을 수 없습니다" };
-  const title = c.seoTitle ?? c.name;
-  const description = c.seoDescription ?? c.description;
+  const base = c.seoTitle ?? c.name;
+  // 2페이지부터는 제목·설명에 페이지 번호를 넣는다 — 같은 title이 여러 URL에 붙으면
+  // 검색엔진이 중복 페이지로 보고 색인에서 접는다.
+  const title = page > 1 ? `${base} (${page}페이지)` : base;
+  const description = page > 1 ? `${c.seoDescription ?? c.description} ${page}페이지.` : (c.seoDescription ?? c.description);
+  const path = pageHref(`/${c.slug}/`, page);
   return {
     title,
     description,
-    alternates: { canonical: `/${c.slug}/` },
+    alternates: { canonical: path },
     openGraph: {
       title,
       description,
       type: "website",
-      url: `/${c.slug}/`,
+      url: path,
       // openGraph는 얕은 병합 — 페이지가 openGraph를 새로 선언하면 루트 layout의 siteName·locale·
       // 이미지가 상속되지 않고 통째로 사라진다. 이름값 정합(og:site_name="모두일보")을 위해 여기서
       // 공통값을 함께 병합한다(site.ts 주석 참조).
@@ -51,26 +58,31 @@ export function categoryMetadata(slug: CategorySlug): Metadata {
   };
 }
 
-export function CategoryListPage({ slug }: { slug: CategorySlug }) {
+export function CategoryListPage({ slug, page = 1 }: { slug: CategorySlug; page?: number }) {
   const cat = getCategory(slug)!;
-  const articles = getByCategory(cat.slug);
-  const lead = articles[0];
-  const rest = articles.slice(1);
+  const all = getByCategory(cat.slug);
+  // 목록은 반드시 잘라서 그린다 — 상한이 없으면 기사 링크(1개당 HTML 약 3KB)가 쌓여
+  // 기사 1만 편 시점에 카테고리 페이지가 수 MB가 된다.
+  const paged = paginate(all, page);
+  const basePath = `/${cat.slug}/`;
+  // 리드 카드는 1페이지에서만 크게 뽑는다(2페이지부터는 균일한 그리드).
+  const lead = paged.page === 1 ? paged.items[0] : undefined;
+  const rest = paged.page === 1 ? paged.items.slice(1) : paged.items;
 
   const collectionLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "@id": `${SITE.url}/${cat.slug}/`,
-    url: `${SITE.url}/${cat.slug}/`,
+    "@id": `${SITE.url}${pageHref(basePath, paged.page)}`,
+    url: `${SITE.url}${pageHref(basePath, paged.page)}`,
     name: cat.name,
     description: cat.description,
     inLanguage: "ko-KR",
     isPartOf: { "@id": `${SITE.url}/#website` },
     mainEntity: {
       "@type": "ItemList",
-      itemListElement: articles.map((a, i) => ({
+      itemListElement: paged.items.map((a, i) => ({
         "@type": "ListItem",
-        position: i + 1,
+        position: (paged.page - 1) * PAGE_SIZE + i + 1,
         url: `${SITE.url}/article/${a.slug}/`,
         name: a.title,
       })),
@@ -90,21 +102,24 @@ export function CategoryListPage({ slug }: { slug: CategorySlug }) {
 
       <div className="container-page grid gap-x-10 gap-y-10 py-10 lg:grid-cols-[minmax(0,1fr)_300px]">
         <div>
-          {lead ? (
+          {paged.items.length ? (
             <>
-              <ArticleCard
-                article={lead}
-                variant="horizontal"
-                priority
-                className="border-b border-ink-100 pb-8 dark:border-ink-800 [&_h3]:text-xl sm:[&_h3]:text-2xl"
-              />
+              {lead && (
+                <ArticleCard
+                  article={lead}
+                  variant="horizontal"
+                  priority
+                  className="border-b border-ink-100 pb-8 dark:border-ink-800 [&_h3]:text-xl sm:[&_h3]:text-2xl"
+                />
+              )}
               {rest.length > 0 && (
-                <div className="mt-8 grid gap-x-6 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
+                <div className={cn("grid gap-x-6 gap-y-9 sm:grid-cols-2 lg:grid-cols-3", lead && "mt-8")}>
                   {rest.map((a) => (
-                    <ArticleCard key={a.id} article={a} variant="feature" />
+                    <ArticleCard key={a.id} article={a} variant="feature" priority={!lead} />
                   ))}
                 </div>
               )}
+              <Pagination paged={paged} basePath={basePath} />
             </>
           ) : (
             <p className="py-20 text-center text-ink-500 dark:text-ink-400">아직 등록된 기사가 없습니다.</p>
