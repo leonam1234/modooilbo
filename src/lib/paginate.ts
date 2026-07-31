@@ -11,6 +11,9 @@
  * 1페이지를 /page/1/ 로도 접근 가능하게 만들면 같은 내용이 두 URL을 갖게 되므로 만들지 않는다.
  */
 
+import { getByCategory } from "./queries";
+import type { CategorySlug } from "./types";
+
 /** 목록 한 페이지에 싣는 기사 수. 하루 발행량(24편)보다 조금 크게 잡아 첫 페이지가 하루치를 덮게 한다. */
 export const PAGE_SIZE = 30;
 
@@ -48,4 +51,13 @@ export function extraPageNumbers(total: number, size = PAGE_SIZE): number[] {
 export function pageHref(basePath: string, page: number): string {
   const base = basePath.endsWith("/") ? basePath : `${basePath}/`;
   return page <= 1 ? base : `${base}page/${page}/`;
+}
+
+/**
+ * 카테고리 목록의 2페이지 이상 번호를 generateStaticParams 형태로 반환.
+ * 사업 축 6개 라우트가 같은 로직을 복사하지 않도록 여기로 모았다.
+ * (queries는 news → content.generated 방향이라 여기로 되돌아오지 않는다 — 순환 없음)
+ */
+export function categoryPageParams(slug: CategorySlug): { page: string }[] {
+  return extraPageNumbers(getByCategory(slug).length).map((p) => ({ page: String(p) }));
 }
