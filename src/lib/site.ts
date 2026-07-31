@@ -29,7 +29,7 @@ export const SITE = {
    */
   url: "https://modooilbo.com",
   email: "help@modooilbo.com",
-  tel: "010-9848-5765", // 등록증 발행소 전화번호
+  tel: "070-4010-6010", // 대표전화 — (주)브리찌 유선
   address: "경기도 하남시 하남대로 947 (풍산동, 하남테크노밸리 U1 CENTER) D동 2층 252호",
   addressZip: "12982",
   publisher: "김성우", // 대표이사·발행인(등록증)
