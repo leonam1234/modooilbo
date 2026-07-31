@@ -107,6 +107,9 @@ console.log(`\n▶ 인기태그 데이터 생성 (build-trending-data) ...`);
 execFileSync("node", [join(REPO, "scripts", "build-trending-data.mjs")], { cwd: REPO, stdio: "inherit" });
 console.log(`\n▶ next build ...`);
 execFileSync(join(BIN, "next"), ["build"], { cwd: REPO, stdio: "inherit" });
+console.log(`\n▶ 신규 스톡 이미지 R2 업로드 ...`);
+// prune 이전에 실행한다 — out/에서 지우기 전에 R2에 올려둬야 신규 기사 이미지가 404가 나지 않는다.
+execFileSync("node", [join(REPO, "scripts", "sync-stock-r2.mjs")], { cwd: REPO, stdio: "inherit" });
 console.log(`\n▶ 스톡 이미지 제외 (R2에서 서빙) ...`);
 execFileSync("node", [join(REPO, "scripts", "prune-stock.mjs")], { cwd: REPO, stdio: "inherit" });
 
