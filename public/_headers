@@ -23,6 +23,30 @@
   Cache-Control: public, max-age=3600
 
 # 전역 보안 헤더
+# ─── 전역 보안 헤더 ───────────────────────────────────────────
+#
+# CSP는 우선 **Report-Only**로 둔다. 실제 차단은 하지 않고 위반만 브라우저 콘솔에
+# 남기므로 사이트 동작에 영향이 0이다. 광고(AdSense)가 런타임에 도메인을 늘려가는
+# 구조라, 처음부터 강제하면 광고나 분석이 조용히 깨질 수 있다.
+#
+# 허용 목록은 추측이 아니라 2026-08-03 라이브 기사 페이지에서 실제로 로드된
+# 9개 호스트를 측정해 만들었다:
+#   script  pagead2.googlesyndication / ep2.adtrafficquality / static.cloudflareinsights
+#   iframe  googleads.g.doubleclick / www.google / ep2.adtrafficquality
+#   fetch   api.open-meteo (날씨) / ep1.adtrafficquality
+#   style·font  cdn.jsdelivr (Pretendard)
+#   img     img.modooilbo (R2)
+#
+# 'unsafe-inline'을 script-src에 둔 이유: Next.js가 하이드레이션용 인라인 스크립트를
+# 42개 심는다. nonce로 바꾸려면 정적 export를 포기해야 하므로 현 구조에선 불가능하다.
+# 그래도 default-src 'self' + object-src 'none' + base-uri 'self' + form-action 'self'가
+# 남아 있어, 외부 스크립트 주입·폼 탈취·base 태그 하이재킹은 막힌다.
+#
+# frame-ancestors는 X-Frame-Options의 현대 대체재다. 구형 헤더는 브라우저별 해석이
+# 갈리므로 둘 다 둔다.
+#
+# 운영 절차: 며칠 콘솔 위반을 관찰해 목록을 확정한 뒤
+# Content-Security-Policy-Report-Only → Content-Security-Policy 로 헤더명만 바꾼다.
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
@@ -30,6 +54,7 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(self)
   X-DNS-Prefetch-Control: on
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Content-Security-Policy-Report-Only: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://*.adtrafficquality.google https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net data:; img-src 'self' data: blob: https://img.modooilbo.com https://*.google.com https://*.googlesyndication.com https://*.doubleclick.net https://*.adtrafficquality.google; connect-src 'self' https://api.open-meteo.com https://*.adtrafficquality.google https://*.googlesyndication.com https://cloudflareinsights.com; frame-src https://googleads.g.doubleclick.net https://*.adtrafficquality.google https://www.google.com https://www.youtube-nocookie.com https://www.youtube.com
 
 # 자체 호스팅 폰트 — 불변 캐시 1년
 /fonts/*
