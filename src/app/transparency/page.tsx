@@ -71,6 +71,14 @@ export default function TransparencyPage() {
                     </dt>
                     <dd className="text-ink-700 dark:text-ink-200">{SITE.legalName}</dd>
                   </div>
+                  {/* 사업자등록번호 — 신문 등록번호(경기 아54891)와는 다른 값이다.
+                      광고·후원 거래처가 세금계산서를 받으려면 필요한 정보이므로 함께 공개한다. */}
+                  <div className="flex gap-3">
+                    <dt className="w-24 shrink-0 font-semibold text-ink-500 dark:text-ink-400">
+                      사업자등록번호
+                    </dt>
+                    <dd className="text-ink-700 dark:text-ink-200">{SITE.bizNumber}</dd>
+                  </div>
                   <div className="flex gap-3">
                     <dt className="w-24 shrink-0 font-semibold text-ink-500 dark:text-ink-400">
                       대표이사·발행인

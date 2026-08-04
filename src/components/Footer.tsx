@@ -126,6 +126,8 @@ export function Footer() {
           </p>
           <p className="mt-1 flex flex-wrap gap-x-3 gap-y-1">
             <span>{SITE.address}</span>
+            {/* 신문 등록번호와 사업자등록번호는 서로 다른 값이라 라벨을 명시해 구분한다. */}
+            <span>{`사업자등록번호 ${SITE.bizNumber}`}</span>
             <span>{`등록번호 ${SITE.regNumber}`}</span>
             <span>{`등록일 ${SITE.regDate}`}</span>
             <span>{`대표전화 ${SITE.tel}`}</span>
