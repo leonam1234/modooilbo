@@ -30,7 +30,12 @@ yarn-error.log*
 next-env.d.ts
 
 # Cloudflare wrangler 로컬 상태
-/.wrangler/
+# ⚠️ 앞 슬래시를 붙이지 말 것. `/.wrangler/`는 저장소 루트에만 걸려서, wrangler를
+#    다른 디렉터리에서 실행했을 때 생기는 하위 경로(예: public/stock/.wrangler/)를
+#    놓친다. 실제로 그 구멍으로 cf.json(개발 머신 위치정보)이 커밋된 적 있다.
+#    이 캐시 트리에는 로컬 D1 상태(state/v3/d1/*.sqlite — 회원 이메일·비밀번호 해시)도
+#    들어가므로, 루트 앵커를 다시 붙이면 그때는 훨씬 큰 사고가 된다.
+.wrangler/
 
 # 배포 로그 (로컬 원장 — 커밋 안 함, iCloud로 환경 간 공유. DEPLOYMENT.md 참고)
 /deployments/deploy-log.jsonl

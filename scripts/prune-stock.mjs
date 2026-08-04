@@ -26,8 +26,14 @@ if (!existsSync(OUT_STOCK)) {
   process.exit(0);
 }
 
-const outFiles = readdirSync(OUT_STOCK).filter((f) => statSync(join(OUT_STOCK, f)).isFile());
+const outEntries = readdirSync(OUT_STOCK);
+const outFiles = outEntries.filter((f) => statSync(join(OUT_STOCK, f)).isFile());
 const publicFiles = existsSync(PUBLIC_STOCK) ? readdirSync(PUBLIC_STOCK) : [];
+
+// 스톡은 평면 구조라 out/stock 하위 디렉터리는 전부 잘못 딸려온 것이다.
+// (isFile() 필터만 있던 시절 public/stock/.wrangler/ 가 매 배포마다 그대로 실려나갔다 —
+//  Pages가 서빙하진 않았지만 배포 파일 수를 먹고, 저장소에도 같이 커밋돼 있었다.)
+const outDirs = outEntries.filter((f) => !outFiles.includes(f));
 
 // out에만 있고 public에 없는 파일은 원본이 사라진다는 뜻 → 지우지 않고 알린다.
 const orphans = outFiles.filter((f) => !publicFiles.includes(f));
@@ -37,6 +43,7 @@ if (orphans.length) {
 
 if (dryRun) {
   console.log(`[prune-stock] DRY-RUN — ${outFiles.length - orphans.length}개 제거 예정 (out/stock)`);
+  if (outDirs.length) console.log(`[prune-stock] DRY-RUN — 하위 디렉터리 ${outDirs.length}개도 제거 예정: ${outDirs.join(", ")}`);
   process.exit(0);
 }
 
@@ -45,6 +52,10 @@ for (const f of outFiles) {
   if (orphans.includes(f)) continue;
   rmSync(join(OUT_STOCK, f));
   removed++;
+}
+for (const d of outDirs) {
+  rmSync(join(OUT_STOCK, d), { recursive: true, force: true });
+  console.log(`[prune-stock] 배포 산출물에서 비이미지 디렉터리 제거: stock/${d}`);
 }
 if (!readdirSync(OUT_STOCK).length) rmSync(OUT_STOCK, { recursive: true });
 console.log(`[prune-stock] 배포 산출물에서 스톡 이미지 ${removed}개 제거 — R2(img.modooilbo.com)에서 서빙`);
