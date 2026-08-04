@@ -40,7 +40,11 @@ if (!emails.length) { log("SKIP 수신자 0명"); process.exit(0); }
 
 // 2) 지난주 많이 본 TOP 5
 const most = await (await fetch("https://modooilbo.com/api/most-read")).json();
-const index = await (await fetch("https://modooilbo.com/articles-index.json")).json();
+// 버전 쿼리 없이 맨 URL을 부르므로(빌드 상수를 모름) 반드시 no-store —
+// _headers 가 이 파일에 max-age=86400을 걸어 두어, 캐시를 쓰면 하루 묵은 목차로 발송될 수 있다.
+const index = await (
+  await fetch("https://modooilbo.com/articles-index.json", { cache: "no-store" })
+).json();
 const byId = new Map(index.map((a) => [a.id, a]));
 const top = (most.items ?? []).map((x) => byId.get(x.id)).filter(Boolean).slice(0, 5);
 if (top.length < 3) { log("SKIP 기사 부족"); process.exit(0); }

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { ArticleIndexItem } from "@/lib/types";
+import { ARTICLES_INDEX_URL } from "@/lib/articles-index";
 import { CATEGORY_MAP } from "@/lib/categories";
 import { ArticleCard } from "@/components/ArticleCard";
 import { SearchIcon } from "@/components/icons";
@@ -28,7 +29,7 @@ export function SearchClient() {
   useEffect(() => {
     if (!q || _index) return;
     let alive = true;
-    fetch("/articles-index.json")
+    fetch(ARTICLES_INDEX_URL)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((list: ArticleIndexItem[]) => {
         _index = list;

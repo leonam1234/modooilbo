@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { ARTICLES_INDEX_URL } from "@/lib/articles-index";
 import { SearchIcon, CloseIcon } from "./icons";
 
 // 검색 자동완성용 기사 인덱스 — 최초 오픈 시 1회만 로드해 모듈에 캐시
@@ -49,7 +50,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
     if (_searchIndex) {
       setIndexReady(true);
     } else {
-      fetch("/articles-index.json")
+      fetch(ARTICLES_INDEX_URL)
         .then((r) => (r.ok ? r.json() : null))
         .then((list: IndexItem[] | null) => {
           if (list) {

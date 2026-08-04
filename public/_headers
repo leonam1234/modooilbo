@@ -1,15 +1,34 @@
 # Cloudflare Pages 응답 헤더 규칙
+#
+# 여기 규칙은 **Pages가 서빙하는 경로**에만 걸린다. 삭제 이력:
+#   /stock/*     — 스톡 이미지는 R2(img.modooilbo.com)로 이관됐고 배포 산출물에서
+#                  prune된다(scripts/prune-stock.mjs). modooilbo.com/stock/* 은 301만
+#                  남아 이 규칙이 적용될 응답이 없었다. R2 쪽 캐시는 업로드 시
+#                  --cache-control 로 지정한다(scripts/sync-stock-r2.mjs).
+#   /_next/image*— next.config.ts 의 images.unoptimized=true 라 정적 export에는
+#                  이미지 최적화 엔드포인트 자체가 생성되지 않는다.
+# 되살릴 일이 생기면(R2 롤백·Cloudflare Images 로더 도입) 위 전제부터 확인할 것.
 
 # 정적 자산 — 1년 불변 캐시
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
 
-/_next/image*
-  Cache-Control: public, max-age=86400
-
-# 스톡/브랜드 정적 자산 — 1년 불변 (스톡은 78d57da의 ?v 쿼리로 버전 무효화)
-/stock/*
-  Cache-Control: public, max-age=31536000, immutable
+# 기사 목차(JSON) — 검색·자동완성·최근 본 기사·스크랩 목록의 데이터 소스.
+#
+# gzip 160KB가 넘는데 Pages 기본값(max-age=0, must-revalidate)으로 나가고 있어서
+# 검색을 열 때마다 재검증이 붙었다. route.ts 가 cache-control을 지정하지만 정적
+# export에서는 Response 헤더가 파일로 구워지지 않아 그 값은 사문이다 — 캐시는
+# 반드시 여기서 정해야 한다.
+#
+# 이름이 고정된 파일이라 캐시를 길게 걸면 새 기사가 검색에 안 잡히는 게 정상인데,
+# 소비처가 CONTENT_VERSION(목차 지문)을 `?v=`로 달아 부르므로(src/lib/articles-index.ts)
+# 목차가 바뀌면 URL 자체가 바뀐다 → 장기 캐시가 안전하다.
+#
+# immutable 대신 1일 + SWR을 쓰는 이유: 쿼리 없는 맨 URL(스크립트·구독자 도구·
+# 이 변경 이전에 캐시된 브라우저)이 1년치 옛 목차에 갇히는 사고를 막는다.
+# 버전 쿼리가 붙은 요청은 어차피 목차가 바뀔 때마다 새 URL이라 손해가 없다.
+/articles-index.json
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
 
 /og.png
   Cache-Control: public, max-age=31536000, immutable

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { CATEGORY_MAP } from "@/lib/categories";
+import { ARTICLES_INDEX_URL } from "@/lib/articles-index";
 
 type IndexItem = { id: string; slug: string; title: string; category: string };
 
@@ -27,7 +28,7 @@ export function RecentArticles({ excludeId, count = 5 }: { excludeId?: string; c
       .filter((id): id is string => typeof id === "string")
       .filter((id) => id !== excludeId);
     if (ids.length === 0) return;
-    fetch("/articles-index.json")
+    fetch(ARTICLES_INDEX_URL)
       .then((r) => (r.ok ? r.json() : null))
       .then((list: IndexItem[] | null) => {
         if (!list) return;

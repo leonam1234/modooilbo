@@ -27,6 +27,9 @@ export async function GET(): Promise<Response> {
     ...(a.type ? { type: a.type } : {}),
     ...(a.isBreaking ? { isBreaking: true } : {}),
   }));
+  // ⚠️ 정적 export는 이 Response의 헤더를 파일로 굽지 않는다 — 실제 서빙 캐시는
+  //    public/_headers 의 /articles-index.json 규칙이 정한다(여기 값은 dev 전용).
+  //    소비처는 반드시 ARTICLES_INDEX_URL(버전 쿼리 포함)로 부를 것: src/lib/articles-index.ts
   return Response.json(items, {
     headers: { "cache-control": "public, max-age=600" },
   });

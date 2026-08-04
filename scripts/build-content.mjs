@@ -9,6 +9,7 @@
  * 사용: node scripts/build-content.mjs   (npm run content / 빌드·배포 시 자동 실행)
  */
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync, statSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -260,25 +261,48 @@ async function run() {
   console.log(`완료: 최신 발행시각 → src/lib/newest.generated.ts`);
 }
 
+/** 코퍼스를 구성하는 소스 = 콘텐츠 md에서 구운 기사 + 하드코딩 배치 2종. */
+const LEGACY_BATCHES = ["articles.ts", "articles2.ts"];
+
 /**
  * 속보 시효 판정에 필요한 값은 "가장 최신 발행 시각" 하나뿐인데,
  * 이걸 getAllArticles()로 구하면 속보 배지를 그리는 컴포넌트가 전체 기사 배열(수 MB)에
  * 의존하게 된다 → 클라이언트 경계를 넘는 순간 코퍼스 전체가 번들된다(과거 /search 3.5MB 원인).
  * 그래서 이 값만 따로 떼어 초경량 모듈로 굽는다. 소비처: src/lib/breaking.ts
+ *
+ * 같은 이유로 CONTENT_VERSION(코퍼스 지문)도 여기에 함께 굽는다. /articles-index.json을
+ * 부르는 화면들이 이 상수만 임포트하면 되고, 코퍼스에는 손대지 않는다.
  */
 function newestModule(articles) {
   const times = articles.map((a) => a.publishedAt);
+  const fingerprint = createHash("sha256");
+  // 인덱스에 실리는 필드만 지문에 넣는다 — 본문만 고친 정정 보도로는 캐시를 깨지 않게.
+  // (필드 목록은 src/app/articles-index.json/route.ts 와 맞춰 유지할 것)
+  for (const a of articles) {
+    fingerprint.update(
+      [a.id, a.slug, a.title, a.summary, a.category, a.publishedAt, (a.tags ?? []).join(""), a.author, a.imageUrl, a.type, a.isBreaking].join(" "),
+    );
+  }
   // 하드코딩 배치(articles.ts·articles2.ts)도 후보에 포함 — 콘텐츠가 비어 있어도 값이 남게.
-  for (const f of ["articles.ts", "articles2.ts"]) {
+  // 이 두 파일도 ALL_ARTICLES에 합류하므로 지문에 포함해야 한다(파일 전문을 그대로 해싱).
+  for (const f of LEGACY_BATCHES) {
     const p = join(ROOT, "src", "lib", f);
     if (!existsSync(p)) continue;
-    for (const m of readFileSync(p, "utf8").matchAll(/\bpublishedAt:\s*"([^"]+)"/g)) times.push(m[1]);
+    const src = readFileSync(p, "utf8");
+    fingerprint.update(src);
+    for (const m of src.matchAll(/\bpublishedAt:\s*"([^"]+)"/g)) times.push(m[1]);
   }
   const newest = times.sort().at(-1) ?? new Date(0).toISOString();
+  const version = fingerprint.digest("hex").slice(0, 12);
   return (
     `// 자동 생성 파일 — 직접 수정 금지. \`npm run content\`로 생성.\n` +
     `// 전체 기사 중 가장 늦은 발행 시각(속보 시효 기준점).\n` +
-    `export const NEWEST_PUBLISHED_AT = ${JSON.stringify(newest)};\n`
+    `export const NEWEST_PUBLISHED_AT = ${JSON.stringify(newest)};\n\n` +
+    `// 코퍼스 지문 — /articles-index.json 의 캐시 무효화 키.\n` +
+    `// 인덱스는 이름이 고정된 대용량 파일(gzip 160KB+)이라, 버전 쿼리 없이는\n` +
+    `// public/_headers 에서 장기 캐시를 걸 수 없다(새 기사가 안 보임).\n` +
+    `// 목차가 바뀔 때만 값이 바뀌므로 \`?v=\` 를 붙이면 장기 캐시가 안전해진다.\n` +
+    `export const CONTENT_VERSION = ${JSON.stringify(version)};\n`
   );
 }
 

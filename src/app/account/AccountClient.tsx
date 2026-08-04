@@ -10,6 +10,7 @@ import { MyCommentsCard } from "./MyCommentsCard";
 import { SubsCard } from "./SubsCard";
 import { ProvidersCard } from "./ProvidersCard";
 import { PasswordCard } from "./PasswordCard";
+import { ARTICLES_INDEX_URL } from "@/lib/articles-index";
 
 /** 마이페이지 — 계정 정보·로그인 수단·비밀번호·탈퇴. 공유 상태는 여기서 소유하고 카드에 props로 전달. */
 export function AccountClient() {
@@ -81,7 +82,7 @@ export function AccountClient() {
             .then((r) => (r.ok ? r.json() : null))
             .then((c) => setMyComments(c?.items ?? []))
             .catch(() => setMyComments([]));
-          fetch("/articles-index.json")
+          fetch(ARTICLES_INDEX_URL)
             .then((r) => (r.ok ? r.json() : null))
             .then((list: IndexItem[] | null) => {
               if (list) setArtIndex(new Map(list.map((a) => [a.id, a])));
