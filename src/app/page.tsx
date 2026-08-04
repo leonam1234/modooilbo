@@ -20,7 +20,7 @@ const HOME_SOCIAL_DESCRIPTION = "모두를 위한 신뢰의 뉴스, 모두일보
 // WebSite + NewsMediaOrganization을 하나의 @graph로 정리(@id 상호참조 유지).
 // - name/브랜드명 = "모두일보" 단일화. alternateName(영문·변형명)은 두지 않는다 — 구글이 사이트
 //   이름을 "모두일보"로 단일 인식하게 하기 위함(SEO 이름 인식 정합).
-// - 법인명은 브랜드명과 별도로 legalName("주식회사 브릿지타임즈")에만 둔다.
+// - 법인명은 브랜드명과 별도로 legalName("주식회사 모두일보")에만 둔다.
 // - url·@id의 도메인(modooilbo.com)은 유지.
 const siteGraphLd = {
   "@context": "https://schema.org",

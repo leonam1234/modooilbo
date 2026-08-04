@@ -22,7 +22,12 @@ export const SITE_DESCRIPTION =
 
 export const SITE = {
   name: "모두일보",
-  legalName: "주식회사 브릿지타임즈", // 운영법인(팀 확정값 — Footer/약관과 일치)
+  // 운영법인 — 2026-08-03 발급 사업자등록증(경기광주세무서) 기준.
+  // 이전 값 '주식회사 브릿지타임즈'에서 변경. Footer·투명성 페이지·홈 JSON-LD가 이 값을 공유한다.
+  legalName: "주식회사 모두일보",
+  bizNumber: "267-88-03893", // 사업자등록번호(법인사업자)
+  corpNumber: "135711-0026366", // 법인등록번호
+  bizOpenDate: "2026.06.16", // 개업연월일
   /**
    * 사이트 오리진(정본). canonical·og:url·sitemap·RSS 등 절대 URL이 전부 이 값을 공유한다.
    * ⚠️ 끝에 슬래시를 두지 않는다(`${SITE.url}/path/` 형태로 조합).
