@@ -1,0 +1,167 @@
+#!/usr/bin/env node
+/**
+ * 나라장터 입찰공고를 공고번호로 조회해 발행 직전 게이트 값을 뽑는다.
+ *
+ * 왜 필요한가: bids 기사는 매일 2편씩 나가는데, 검수 항목이 전부 동적 값이다.
+ * 공고 차수가 올라갔는지, 정정·취소 공고가 붙었는지, 마감·개찰 시각이 바뀌었는지,
+ * 첨부가 교체됐는지 — 하나라도 놓치면 그대로 오보가 된다.
+ *
+ * 지금까지는 g2b.go.kr 화면을 직접 열어 확인했다. 그런데 그 페이지는 SPA라
+ * curl 로 치면 sso.g2b.go.kr OIDC 로 302 되고, 그리드가 비어 보이는 렌더 아티팩트까지
+ * 있어서 "값이 없다"와 "화면이 안 그려졌다"를 구분하기 어려웠다.
+ * 실제로 08-06 구미 기사에서는 입찰참가자격등록 마감(bidQlfctRgstDt)을 찾으려고
+ * SPA 내부 API 응답을 가로채야 했고, 첨부 PDF에는 그 시각이 아예 없었다.
+ * 이 API는 같은 값을 필드로 그냥 준다.
+ *
+ * 핵심: inqryDiv=2 + bidNtceNo 로 조회하면 **그 공고의 전 차수**가 한 번에 온다.
+ *       (-000 등록공고, -001 변경공고, -002 취소공고 …)
+ *       최고차수와 정정·취소 표지를 한 번의 호출로 판정할 수 있다.
+ *
+ *   node scripts/check-bid.mjs R26BK01658065 R26BK01668574
+ *   node scripts/check-bid.mjs --json R26BK01658065
+ *
+ * ⚠️ 공개 조회 전용이다. 로그인·입찰참여·서류제출은 이 스크립트로 하지 않는다.
+ */
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+const BASE = "https://apis.data.go.kr/1230000/ad/BidPublicInfoService";
+
+// 업무구분별 오퍼레이션. 공고번호만으로는 어느 구분인지 모르므로 순서대로 훑는다.
+// (용역이 가장 흔해서 앞에 둔다 — 대부분 첫 호출에서 끝난다)
+const OPS = [
+  ["용역", "getBidPblancListInfoServc"],
+  ["물품", "getBidPblancListInfoThng"],
+  ["공사", "getBidPblancListInfoCnstwk"],
+  ["외자", "getBidPblancListInfoFrgcpt"],
+];
+
+const asJson = process.argv.includes("--json");
+const notices = process.argv.slice(2).filter((a) => !a.startsWith("--"));
+
+if (!notices.length) {
+  console.error("사용법: node scripts/check-bid.mjs <공고번호> [공고번호…] [--json]");
+  process.exit(2);
+}
+
+const key = readKey();
+if (!key) {
+  console.error("✖ DATA_GO_KR_KEY 없음 — .dev.vars 에 넣을 것(값은 커밋되지 않는다)");
+  process.exit(2);
+}
+
+const out = [];
+for (const no of notices) out.push(await lookup(no));
+
+if (asJson) {
+  console.log(JSON.stringify(out, null, 2));
+} else {
+  for (const r of out) printReport(r);
+}
+// 조회 자체가 실패한 건이 있으면 비정상 종료 — 검수 파이프라인이 조용히 넘어가지 않게.
+process.exit(out.some((r) => r.error) ? 1 : 0);
+
+// ── helpers ───────────────────────────────────────────────
+
+/** .dev.vars 우선, 없으면 환경변수. 값은 절대 출력하지 않는다. */
+function readKey() {
+  if (process.env.DATA_GO_KR_KEY) return process.env.DATA_GO_KR_KEY.trim();
+  try {
+    return readFileSync(join(ROOT, ".dev.vars"), "utf8").match(/^DATA_GO_KR_KEY=(\S+)/m)?.[1] ?? null;
+  } catch {
+    return null;
+  }
+}
+
+async function lookup(bidNtceNo) {
+  for (const [bsns, op] of OPS) {
+    // ⚠️ 키를 encodeURIComponent 로 다시 감싸지 말 것. 포털이 주는 인증키는 이미
+    //    URL 인코딩된 형태라 한 번 더 감싸면 이중 인코딩으로 인증이 깨진다.
+    const url =
+      `${BASE}/${op}?serviceKey=${key}&type=json&numOfRows=50&pageNo=1` +
+      `&inqryDiv=2&bidNtceNo=${encodeURIComponent(bidNtceNo)}`;
+    let body;
+    try {
+      const res = await fetch(url, { signal: AbortSignal.timeout(20000) });
+      const text = await res.text();
+      try {
+        body = JSON.parse(text);
+      } catch {
+        // 한도 초과·키 오류는 XML 로 온다. 키가 URL 에 있으므로 마스킹해서 전달한다.
+        return { bidNtceNo, error: `비JSON 응답: ${mask(text).replace(/\s+/g, " ").slice(0, 160)}` };
+      }
+    } catch (e) {
+      return { bidNtceNo, error: `요청 실패: ${e.name}` };
+    }
+
+    const code = body?.response?.header?.resultCode;
+    if (code && code !== "00") {
+      return { bidNtceNo, error: `resultCode=${code} ${body?.response?.header?.resultMsg ?? ""}` };
+    }
+    const raw = body?.response?.body?.items;
+    const items = Array.isArray(raw) ? raw : raw ? [raw] : [];
+    // 다른 업무구분 조회는 공고번호를 무시하고 최근 목록을 돌려주는 경우가 있다.
+    // 번호가 실제로 일치하는 건만 취한다 — 이걸 안 걸러 세 공고가 같은 결과로 보인 적 있다.
+    const hit = items.filter((x) => x.bidNtceNo === bidNtceNo);
+    if (hit.length) return summarize(bidNtceNo, bsns, hit);
+  }
+  return { bidNtceNo, error: "네 업무구분 어디에서도 조회되지 않음(번호 오기 또는 비공개 공고)" };
+}
+
+function summarize(bidNtceNo, bsns, rows) {
+  rows.sort((a, b) => String(a.bidNtceOrd).localeCompare(String(b.bidNtceOrd)));
+  const latest = rows[rows.length - 1];
+  return {
+    bidNtceNo,
+    업무구분: bsns,
+    공고명: latest.bidNtceNm,
+    발주기관: latest.ntceInsttNm,
+    최고차수: latest.bidNtceOrd,
+    차수이력: rows.map((x) => ({ 차수: x.bidNtceOrd, 종류: x.ntceKindNm, 게시: x.bidNtceDt })),
+    // 아래 셋이 발행을 막는 신호다.
+    취소됨: rows.some((x) => String(x.ntceKindNm).includes("취소")),
+    변경있음: rows.some((x) => String(x.ntceKindNm).includes("변경")),
+    재공고: latest.reNtceYn === "Y",
+    긴급: latest.bidNtceNm?.includes("긴급") || latest.intrbidYn === "Y",
+    기초금액: latest.asignBdgtAmt || null,
+    입찰참가자격등록마감: latest.bidQlfctRgstDt || null, // 화면에만 있고 첨부 공고문엔 없는 값
+    입찰개시: latest.bidBeginDt || null,
+    입찰마감: latest.bidClseDt || null,
+    개찰: latest.opengDt || null,
+    낙찰방법: latest.sucsfbidMthdNm || null,
+    계약방법: latest.cntrctCnclsMthdNm || null,
+    공동수급: latest.cmmnSpldmdMethdNm || null,
+    첨부: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      .map((i) => latest[`ntceSpecFileNm${i}`])
+      .filter((v) => v && String(v).trim()),
+    공고URL: latest.bidNtceDtlUrl || latest.bidNtceUrl || null,
+  };
+}
+
+function printReport(r) {
+  console.log(`\n══ ${r.bidNtceNo} ${r.error ? "" : `(${r.업무구분})`}`);
+  if (r.error) return console.log(`   ✖ ${r.error}`);
+  console.log(`   ${r.공고명}`);
+  console.log(`   발주  ${r.발주기관}`);
+  const flags = [
+    r.취소됨 ? "🚩 취소공고 있음" : null,
+    r.변경있음 ? "🚩 변경공고 있음" : null,
+    r.재공고 ? "재공고" : null,
+    r.긴급 ? "긴급" : null,
+  ].filter(Boolean);
+  console.log(`   최고차수 ${r.최고차수}${flags.length ? "  ·  " + flags.join(" · ") : ""}`);
+  if (r.차수이력.length > 1) {
+    console.log(`   차수이력 ${r.차수이력.map((h) => `-${h.차수}(${h.종류})`).join(" → ")}`);
+  }
+  console.log(`   자격등록마감 ${r.입찰참가자격등록마감 ?? "-"}`);
+  console.log(`   입찰 ${r.입찰개시 ?? "-"} ~ ${r.입찰마감 ?? "-"}   개찰 ${r.개찰 ?? "-"}`);
+  console.log(`   기초금액 ${r.기초금액 ? Number(r.기초금액).toLocaleString() + "원" : "-"}   ${r.계약방법 ?? ""} ${r.공동수급 ?? ""}`);
+  console.log(`   첨부 ${r.첨부.length}건${r.첨부.length ? ": " + r.첨부.map((f) => f.slice(0, 30)).join(" / ") : ""}`);
+}
+
+/** 오류 메시지에 인증키가 섞여 나가지 않게 한다. */
+function mask(s) {
+  return String(s).replace(/serviceKey=[^&"<\s]*/gi, "serviceKey=***");
+}
