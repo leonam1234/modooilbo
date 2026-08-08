@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { SocialSigninButtons } from "@/components/SocialSigninButtons";
 
 export function RegisterForm() {
   const [name, setName] = useState("");
@@ -88,6 +89,17 @@ export function RegisterForm() {
   }
 
   return (
+    <div className="space-y-5">
+      {/* 원클릭 가입을 맨 위에 — 이메일 폼(6개 필드 + 확인메일 왕복)은 보조 경로다.
+          이 버튼이 /login 에만 있던 동안 '회원가입' 화면은 최고 마찰 경로만 제공했다. */}
+      <SocialSigninButtons action="가입하기" />
+
+      <div className="flex items-center gap-3 py-1" aria-hidden>
+        <span className="h-px flex-1 bg-ink-200 dark:bg-ink-800" />
+        <span className="text-xs text-ink-500 dark:text-ink-400">또는 이메일로 가입</span>
+        <span className="h-px flex-1 bg-ink-200 dark:bg-ink-800" />
+      </div>
+
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
       <div>
         <label
@@ -257,5 +269,11 @@ export function RegisterForm() {
         </Link>
       </p>
     </form>
+
+      <p className="text-center text-[11px] leading-relaxed text-ink-500 dark:text-ink-400">
+        간편 가입 시 <Link href="/terms" className="underline">이용약관</Link>과{" "}
+        <Link href="/privacy" className="underline">개인정보처리방침</Link>에 동의한 것으로 간주됩니다.
+      </p>
+    </div>
   );
 }

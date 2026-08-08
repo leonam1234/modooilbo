@@ -73,21 +73,25 @@ export function AuthMenu({ variant }: { variant: "links" | "pill" }) {
     );
   }
 
+  // ⚠️ 이 pill 에 `hidden sm:inline-flex` 를 다시 붙이지 말 것. 예전엔 640px 미만에서
+  //    숨겼는데, 유틸바(회원가입 링크 포함)도 md 미만에서 숨어서 **모바일 화면 어디에도
+  //    가입 진입점이 없었다** — 회원가입 0명의 구조적 원인이었다(2026-08-08 감사).
+  //    비로그인 pill 은 로그인이 아니라 /register 로 보낸다. 가입이 먼저다.
   return user ? (
     <Link
       href="/account"
-      className="ml-1 hidden items-center gap-1.5 rounded-full border border-ink-200 px-3.5 py-1.5 text-sm font-medium text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-700 dark:text-ink-200 sm:inline-flex"
+      className="ml-1 inline-flex items-center gap-1.5 rounded-full border border-ink-200 px-3.5 py-1.5 text-sm font-medium text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-700 dark:text-ink-200"
     >
       <UserIcon className="h-4 w-4" />
       {user.name}님
     </Link>
   ) : (
     <Link
-      href="/login"
-      className="ml-1 hidden items-center gap-1.5 rounded-full border border-ink-200 px-3.5 py-1.5 text-sm font-medium text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-700 dark:text-ink-200 sm:inline-flex"
+      href="/register"
+      className="ml-1 inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-signal-600 px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-signal-700"
     >
       <UserIcon className="h-4 w-4" />
-      로그인
+      회원가입
     </Link>
   );
 }

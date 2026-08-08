@@ -309,13 +309,23 @@ export function CommentSection({ articleId }: { articleId: string }) {
           <WriteBox placeholder={`${data.me.name}님, 이 기사에 대한 생각을 남겨 주세요.`} busy={busy} onSubmit={(t) => submit(t, null)} />
         ) : (
           <div className="flex flex-col items-center gap-3 rounded-xl border border-ink-200 bg-ink-50 px-4 py-6 text-center dark:border-ink-800 dark:bg-ink-900 sm:flex-row sm:justify-between sm:text-left">
-            <p className="text-sm text-ink-500 dark:text-ink-300">댓글을 쓰려면 로그인이 필요합니다.</p>
-            <Link
-              href="/login"
-              className="shrink-0 rounded-md bg-ink-900 px-4 py-2 text-xs font-semibold text-white transition-opacity hover:opacity-80 dark:bg-white dark:text-ink-900"
-            >
-              로그인하기
-            </Link>
+            <p className="text-sm text-ink-500 dark:text-ink-300">댓글을 쓰려면 로그인 또는 회원가입이 필요합니다.</p>
+            {/* 댓글은 가입 동기가 가장 높은 순간이다 — 계정 없는 신규 방문자에게 로그인만
+                내밀면 막다른 길이라 회원가입을 나란히 둔다. h-11 = 44px 터치 타깃. */}
+            <div className="flex shrink-0 items-center gap-2">
+              <Link
+                href="/login"
+                className="inline-flex h-11 items-center rounded-md border border-ink-200 px-4 text-sm font-semibold text-ink-700 dark:border-ink-700 dark:text-ink-100"
+              >
+                로그인
+              </Link>
+              <Link
+                href="/register"
+                className="inline-flex h-11 items-center rounded-md bg-signal-600 px-4 text-sm font-semibold text-white transition-colors hover:bg-signal-700"
+              >
+                회원가입
+              </Link>
+            </div>
           </div>
         )}
         {/* 등록 실패·신고 결과 등 상태 피드백 — 화면에만 뜨고 스크린리더엔 조용했다.

@@ -84,7 +84,9 @@ export function Header() {
         <div className="container-page flex h-9 items-center justify-between">
           <span className="tabular-nums">{today || " "}</span>
           <nav className="flex items-center gap-4">
-            <Link prefetch={false} href="/subscribe" className="font-semibold text-signal-600 dark:text-signal-400 hover:text-signal-700">
+            {/* 강조(signal)는 회원가입 pill(AuthMenu) 몫이다. 후원·구독은 가입 퍼널을
+                가리지 않게 일반 링크로 둔다 — 목적지가 아직 '멤버십 준비중' 페이지다. */}
+            <Link prefetch={false} href="/subscribe" className="hover:text-ink-900 dark:hover:text-white">
               후원·구독
             </Link>
             <span aria-hidden className="text-ink-200 dark:text-ink-700">|</span>
@@ -242,11 +244,13 @@ export function Header() {
               >
                 로그인
               </Link>
+              {/* 드로어 primary 는 회원가입. 예전엔 후원·구독이었는데 목적지가
+                  '멤버십 준비중' 페이지라 모바일의 유일한 강조 CTA 가 막다른 길이었다. */}
               <Link prefetch={false}
-                href="/subscribe"
+                href="/register"
                 className="flex-1 rounded-md bg-signal-600 py-2.5 text-center text-sm font-semibold text-white hover:bg-signal-700"
               >
-                후원·구독
+                회원가입
               </Link>
             </div>
           </div>

@@ -2,49 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import type { SVGProps } from "react";
-
-/** 카카오 말풍선 로고 (단색) */
-function KakaoIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden width={18} height={18} {...props}>
-      <path d="M12 3C6.9 3 2.75 6.27 2.75 10.3c0 2.6 1.74 4.88 4.36 6.17-.19.68-.69 2.5-.79 2.89-.12.48.18.47.37.34.15-.1 2.4-1.63 3.37-2.29.64.09 1.3.14 1.94.14 5.1 0 9.25-3.27 9.25-7.25S17.1 3 12 3Z" />
-    </svg>
-  );
-}
-
-/** 네이버 N 로고 */
-function NaverIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden width={16} height={16} {...props}>
-      <path d="M16.27 3v9.66L7.86 3H3v18h4.73v-9.66L16.14 21H21V3z" />
-    </svg>
-  );
-}
-
-/** 구글 G 로고 (멀티컬러) */
-function GoogleIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden width={18} height={18} {...props}>
-      <path
-        fill="#4285F4"
-        d="M22.5 12.27c0-.79-.07-1.54-.2-2.27H12v4.51h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.21-4.74 3.21-8.33Z"
-      />
-      <path
-        fill="#34A853"
-        d="M12 23c2.97 0 5.46-.98 7.29-2.4l-3.57-2.77c-.99.66-2.26 1.06-3.72 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23Z"
-      />
-      <path
-        fill="#FBBC05"
-        d="M5.84 14.36a6.6 6.6 0 0 1 0-4.72V6.8H2.18a11 11 0 0 0 0 9.4l3.66-2.84Z"
-      />
-      <path
-        fill="#EA4335"
-        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1A11 11 0 0 0 2.18 6.8l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38Z"
-      />
-    </svg>
-  );
-}
+import { SocialSigninButtons } from "@/components/SocialSigninButtons";
 
 export function LoginForm() {
   const [email, setEmail] = useState("");
@@ -86,22 +44,6 @@ export function LoginForm() {
     if (err === "google") setNotice("구글 로그인에 실패했습니다. 잠시 후 다시 시도해 주세요.");
     if (err === "naver") setNotice("네이버 로그인에 실패했습니다. 잠시 후 다시 시도해 주세요.");
   }, []);
-
-  function handleSocial(provider: string) {
-    if (provider === "카카오") {
-      window.location.href = "/api/auth/kakao/start";
-      return;
-    }
-    if (provider === "구글") {
-      window.location.href = "/api/auth/google/start";
-      return;
-    }
-    if (provider === "네이버") {
-      window.location.href = "/api/auth/naver/start";
-      return;
-    }
-    setNotice(`${provider} 간편 로그인은 준비 중입니다. 이메일로 가입해 주시면 나중에 같은 계정에 연결됩니다.`);
-  }
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
@@ -187,32 +129,7 @@ export function LoginForm() {
         <span className="h-px flex-1 bg-ink-200 dark:bg-ink-800" />
       </div>
 
-      <div className="space-y-3">
-        <button
-          type="button"
-          onClick={() => handleSocial("카카오")}
-          className="flex h-11 w-full items-center justify-center gap-2 rounded-md bg-[#FEE500] px-4 font-semibold text-black transition-opacity hover:opacity-90"
-        >
-          <KakaoIcon />
-          카카오로 시작하기
-        </button>
-        <button
-          type="button"
-          onClick={() => handleSocial("네이버")}
-          className="flex h-11 w-full items-center justify-center gap-2 rounded-md bg-[#03C75A] px-4 font-semibold text-white transition-opacity hover:opacity-90"
-        >
-          <NaverIcon />
-          네이버로 시작하기
-        </button>
-        <button
-          type="button"
-          onClick={() => handleSocial("구글")}
-          className="flex h-11 w-full items-center justify-center gap-2 rounded-md border border-ink-200 bg-white px-4 font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-700 dark:bg-ink-900 dark:text-ink-200"
-        >
-          <GoogleIcon />
-          구글로 시작하기
-        </button>
-      </div>
+      <SocialSigninButtons action="시작하기" />
 
       <p className="text-center text-[11px] leading-relaxed text-ink-500 dark:text-ink-400">
         간편 로그인으로 처음 가입하는 경우{" "}
