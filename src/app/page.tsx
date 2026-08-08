@@ -14,7 +14,7 @@ import { SITE, SITE_DESCRIPTION, DEFAULT_OG_IMAGE } from "@/lib/site";
 
 // 홈 이름값 단일화: 사이트 이름은 어디서나 "모두일보"만. 슬로건은 소셜 설명에서만 사용.
 const HOME_DESCRIPTION =
-  "모두일보는 기업에 필요한 공공데이터 뉴스와 경제·사회·국제·문화·스포츠·테크·오피니언 종합뉴스를 전하는 독립 디지털 언론입니다.";
+  "모두일보는 기업에 필요한 공공데이터 뉴스와 경제·사회·국제·문화·스포츠·오피니언 종합뉴스를 전하는 독립 디지털 언론입니다.";
 const HOME_SOCIAL_DESCRIPTION = "모두를 위한 신뢰의 뉴스, 모두일보";
 
 // WebSite + NewsMediaOrganization을 하나의 @graph로 정리(@id 상호참조 유지).

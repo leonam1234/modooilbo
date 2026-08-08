@@ -64,6 +64,10 @@
 # frame-ancestors는 X-Frame-Options의 현대 대체재다. 구형 헤더는 브라우저별 해석이
 # 갈리므로 둘 다 둔다.
 #
+# 2026-08 보강: 관찰 목록(8/3 실측 9개 호스트)에 없었지만 AdSense가 상용으로 쓰는
+# 경로 2곳을 선제 허용 — frame-src tpc.googlesyndication.com(SafeFrame 광고 프레임),
+# img-src *.gstatic.com(구글 정적 자산). 강제 전환 시 광고가 조용히 깨지는 1순위 후보였다.
+#
 # 운영 절차: 며칠 콘솔 위반을 관찰해 목록을 확정한 뒤
 # Content-Security-Policy-Report-Only → Content-Security-Policy 로 헤더명만 바꾼다.
 /*
@@ -73,7 +77,7 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(self)
   X-DNS-Prefetch-Control: on
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Content-Security-Policy-Report-Only: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://*.adtrafficquality.google https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net data:; img-src 'self' data: blob: https://img.modooilbo.com https://*.google.com https://*.googlesyndication.com https://*.doubleclick.net https://*.adtrafficquality.google; connect-src 'self' https://api.open-meteo.com https://*.adtrafficquality.google https://*.googlesyndication.com https://cloudflareinsights.com; frame-src https://googleads.g.doubleclick.net https://*.adtrafficquality.google https://www.google.com https://www.youtube-nocookie.com https://www.youtube.com
+  Content-Security-Policy-Report-Only: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://*.adtrafficquality.google https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net data:; img-src 'self' data: blob: https://img.modooilbo.com https://*.google.com https://*.gstatic.com https://*.googlesyndication.com https://*.doubleclick.net https://*.adtrafficquality.google; connect-src 'self' https://api.open-meteo.com https://*.adtrafficquality.google https://*.googlesyndication.com https://cloudflareinsights.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://*.adtrafficquality.google https://www.google.com https://www.youtube-nocookie.com https://www.youtube.com
 
 # 자체 호스팅 폰트 — 불변 캐시 1년
 /fonts/*

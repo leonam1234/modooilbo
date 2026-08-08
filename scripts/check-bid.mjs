@@ -22,21 +22,10 @@
  *
  * ⚠️ 공개 조회 전용이다. 로그인·입찰참여·서류제출은 이 스크립트로 하지 않는다.
  */
-import { readFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
-
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const BASE = "https://apis.data.go.kr/1230000/ad/BidPublicInfoService";
-
-// 업무구분별 오퍼레이션. 공고번호만으로는 어느 구분인지 모르므로 순서대로 훑는다.
-// (용역이 가장 흔해서 앞에 둔다 — 대부분 첫 호출에서 끝난다)
-const OPS = [
-  ["용역", "getBidPblancListInfoServc"],
-  ["물품", "getBidPblancListInfoThng"],
-  ["공사", "getBidPblancListInfoCnstwk"],
-  ["외자", "getBidPblancListInfoFrgcpt"],
-];
+// 키 읽기·인코딩 정규화·오류 봉투 처리는 공통 모듈에 있다(함정 목록도 그쪽 헤더 참조).
+// 과거 이 파일의 자체 readKey는 Decoding(88자) 키를 정규화하지 않아 이 스크립트만
+// 인증 실패하는 함정이 있었다 — 반드시 nara.mjs 경유로 유지할 것.
+import { SERVICES, BSNS, readKey, call } from "./nara.mjs";
 
 const asJson = process.argv.includes("--json");
 const notices = process.argv.slice(2).filter((a) => !a.startsWith("--"));
@@ -65,46 +54,14 @@ process.exit(out.some((r) => r.error) ? 1 : 0);
 
 // ── helpers ───────────────────────────────────────────────
 
-/** .dev.vars 우선, 없으면 환경변수. 값은 절대 출력하지 않는다. */
-function readKey() {
-  if (process.env.DATA_GO_KR_KEY) return process.env.DATA_GO_KR_KEY.trim();
-  try {
-    return readFileSync(join(ROOT, ".dev.vars"), "utf8").match(/^DATA_GO_KR_KEY=(\S+)/m)?.[1] ?? null;
-  } catch {
-    return null;
-  }
-}
-
 async function lookup(bidNtceNo) {
-  for (const [bsns, op] of OPS) {
-    // ⚠️ 키를 encodeURIComponent 로 다시 감싸지 말 것. 포털이 주는 인증키는 이미
-    //    URL 인코딩된 형태라 한 번 더 감싸면 이중 인코딩으로 인증이 깨진다.
-    const url =
-      `${BASE}/${op}?serviceKey=${key}&type=json&numOfRows=50&pageNo=1` +
-      `&inqryDiv=2&bidNtceNo=${encodeURIComponent(bidNtceNo)}`;
-    let body;
-    try {
-      const res = await fetch(url, { signal: AbortSignal.timeout(20000) });
-      const text = await res.text();
-      try {
-        body = JSON.parse(text);
-      } catch {
-        // 한도 초과·키 오류는 XML 로 온다. 키가 URL 에 있으므로 마스킹해서 전달한다.
-        return { bidNtceNo, error: `비JSON 응답: ${mask(text).replace(/\s+/g, " ").slice(0, 160)}` };
-      }
-    } catch (e) {
-      return { bidNtceNo, error: `요청 실패: ${e.name}` };
-    }
-
-    const code = body?.response?.header?.resultCode;
-    if (code && code !== "00") {
-      return { bidNtceNo, error: `resultCode=${code} ${body?.response?.header?.resultMsg ?? ""}` };
-    }
-    const raw = body?.response?.body?.items;
-    const items = Array.isArray(raw) ? raw : raw ? [raw] : [];
+  // 업무구분(용역/물품/공사/외자)을 공고번호만으론 모르므로 흔한 순서로 훑는다 — nara.BSNS.
+  for (const [bsns, suffix] of BSNS) {
+    const r = await call(SERVICES.bid, `getBidPblancListInfo${suffix}`, { inqryDiv: "2", bidNtceNo }, key);
+    if (r.error) return { bidNtceNo, error: r.error };
     // 다른 업무구분 조회는 공고번호를 무시하고 최근 목록을 돌려주는 경우가 있다.
     // 번호가 실제로 일치하는 건만 취한다 — 이걸 안 걸러 세 공고가 같은 결과로 보인 적 있다.
-    const hit = items.filter((x) => x.bidNtceNo === bidNtceNo);
+    const hit = r.items.filter((x) => x.bidNtceNo === bidNtceNo);
     if (hit.length) return summarize(bidNtceNo, bsns, hit);
   }
   return { bidNtceNo, error: "네 업무구분 어디에서도 조회되지 않음(번호 오기 또는 비공개 공고)" };
@@ -159,9 +116,4 @@ function printReport(r) {
   console.log(`   입찰 ${r.입찰개시 ?? "-"} ~ ${r.입찰마감 ?? "-"}   개찰 ${r.개찰 ?? "-"}`);
   console.log(`   기초금액 ${r.기초금액 ? Number(r.기초금액).toLocaleString() + "원" : "-"}   ${r.계약방법 ?? ""} ${r.공동수급 ?? ""}`);
   console.log(`   첨부 ${r.첨부.length}건${r.첨부.length ? ": " + r.첨부.map((f) => f.slice(0, 30)).join(" / ") : ""}`);
-}
-
-/** 오류 메시지에 인증키가 섞여 나가지 않게 한다. */
-function mask(s) {
-  return String(s).replace(/serviceKey=[^&"<\s]*/gi, "serviceKey=***");
 }
