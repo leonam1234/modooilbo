@@ -1,30 +1,45 @@
 # 모두일보
 
-> 한국어 종합 일간지. 경제·사회·국제·문화·스포츠·테크·오피니언 전 분야의 뉴스와 심층 분석을 신뢰 기반으로 제공합니다. 사이트: https://modooilbo.com
+> 한국어 독립 디지털 언론. 두 축으로 구성됩니다 — ① 기업에 필요한 공공데이터 뉴스(정부지원금·공공입찰·창업상권·산업트렌드·채용노무·계약거래), ② 경제·사회·국제·문화·스포츠·오피니언 종합뉴스. 모든 기업 데이터 기사는 나라장터·기업마당 등 공공 원자료를 대조(검증 게이트)한 뒤 발행합니다. 사이트: https://modooilbo.com
 
-## 주요 섹션
+## 기업 데이터 뉴스 (사업 축)
+
+- [정부지원금](https://modooilbo.com/grants): 정부·지자체 지원사업과 보조금 공고를 기업 관점에서 정리
+- [공공입찰](https://modooilbo.com/bids): 공공조달·입찰 공고와 낙찰 동향
+- [창업·상권](https://modooilbo.com/startup): 창업 지원과 상권·소상공인 흐름
+- [산업·트렌드](https://modooilbo.com/industry): 산업 동향과 시장 트렌드
+- [채용·노무](https://modooilbo.com/labor): 채용·인사·노무 실무 정보
+- [계약·거래](https://modooilbo.com/deals): 기업 간 계약·거래와 B2B 소식
+
+## 종합뉴스
 
 - [경제](https://modooilbo.com/economy): 시장·산업·부동산·금융 심층 분석
 - [사회](https://modooilbo.com/society): 우리 사회의 오늘을 기록
 - [국제](https://modooilbo.com/world): 세계를 읽는 또 하나의 창
 - [문화](https://modooilbo.com/culture): 예술·공연·라이프스타일
 - [스포츠](https://modooilbo.com/sports): 현장의 함성, 승부의 기록
-- [테크](https://modooilbo.com/tech): AI·IT·과학의 최전선
 - [오피니언](https://modooilbo.com/opinion): 사설·칼럼·시론
+
+## 바로가기
+
 - [기사 검색](https://modooilbo.com/search): 전체 기사 검색
 - [회사 소개](https://modooilbo.com/about): 모두일보 소개
 - [윤리강령](https://modooilbo.com/ethics): 편집·취재 윤리 원칙
+- [투명성 보고](https://modooilbo.com/transparency): 소유구조·재정 원칙·인터넷신문 등록증
+- [정정보도 모음](https://modooilbo.com/corrections): 정정·반론 보도 아카이브
 - [채용](https://modooilbo.com/careers): 인재 채용 안내
 - [제보·문의](https://modooilbo.com/contact): 제보 및 연락처
 
 ## 콘텐츠 성격
 
 - 신뢰 기반 뉴스·분석 매체로, 모든 기사는 저자, 발행일, 발행처(모두일보)를 명시합니다.
+- 기업 데이터 기사(정부지원금·공공입찰·채용노무)는 공공 오픈API 원자료와 대조 검증 후 발행하며, 본문에 출처를 링크로 공개합니다.
 - 기사 본문은 서버 렌더링되어 전문 추출과 인용이 용이합니다.
 
 ## 정책
 
 - [이용약관](https://modooilbo.com/terms)
+- [운영정책](https://modooilbo.com/policy)
 - [개인정보 처리방침](https://modooilbo.com/privacy)
 - [윤리강령](https://modooilbo.com/ethics)
 

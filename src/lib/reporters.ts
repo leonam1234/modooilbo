@@ -30,7 +30,8 @@ export function getReporterByName(name: string): Reporter | undefined {
 /**
  * 기자 프로필(/reporter/*) 색인 스위치.
  * 현재 로스터는 데모 단계라 noindex,follow — 실명 기자 체제(실인물·약력 검증) 전환 시 true로 변경하고
- * sitemap.ts에 reporter 엔트리를 추가한 뒤 Rich Results Test로 Person/ProfilePage를 검증한다.
+ * src/lib/sitemap-parts.ts(구 sitemap.ts는 사이트맵 인덱스화로 삭제됨)에 reporter 엔트리를 추가한 뒤
+ * Rich Results Test로 Person/ProfilePage를 검증한다.
  * 절차 상세: wiki/operations/01-trust-eeat.md ⑦.
  */
 export const REPORTER_INDEXABLE = false;

@@ -9,7 +9,12 @@
 4. **폭 래퍼**: 페이지 콘텐츠는 `container-page` 안에.
 5. **헤드라인 폰트**: 제목엔 `font-headline`(세리프).
 6. **정적 export 제약**: 동적 SSR/route handler/서버액션/미들웨어 런타임 금지. 새 동적 라우트엔 `generateStaticParams` + `dynamicParams=false` 필수. 메타 라우트엔 `dynamic="force-static"`.
-7. **데이터 단일 출처**: 기사 소비는 항상 `queries.ts`(→ `ALL_ARTICLES`). 컴포넌트에서 `articles.ts`/`articles2.ts` 직접 임포트 금지.
+7. **데이터 단일 출처**: 기사 소비는 항상 `queries.ts`(→ `ALL_ARTICLES`). 컴포넌트에서 `articles.ts`/`articles2.ts`/`content.generated.ts` 직접 임포트 금지.
+8. **날짜 규약(KST-as-Z)**: `publishedAt`은 KST 벽시계에 `Z`를 붙여 저장(진짜 UTC 아님). 기계 노출(JSON-LD·`<time>`·news-sitemap)은 `toKstIso()` 경유. sitemap(−9h 보정)·RSS(+0900)는 자체 방식 유지 — 중복 적용 금지.
+9. **두 축 분리**: 사업 축(BIZ_CATEGORIES) 기사는 홈 대문 톱·서브리드·속보 티커를 점유하지 않는다(`queries.ts`의 isGeneralNews 방어 유지).
+10. **정정 분리**: 공식 정정은 `correction{at,note}` 필드로만(/corrections 등재 기준). `updatedAt`은 단순 수정용 — 혼용 금지, 빌드가 짝을 강제.
+11. **클라이언트 번들 방어**: 클라이언트 컴포넌트에서 `@/lib/news`(→content.generated 3.6MB+) 임포트 금지 — 경량 모듈(`newest.generated`, `articles-index`) 경유(과거 /search 3.5MB 사고).
+12. **브랜드 자산**: `scripts/make-assets.mjs` 재실행 금지(옛 영문 'M' 템플릿 — 헤더 경고 참조). 사이트 이름값은 한글 "모두일보" 단일(alternateName 미사용 정책).
 
 ## 🎨 스타일 규약
 - Tailwind 유틸 우선. 토큰은 `signal-*`/`ink-*`만(임의 HEX 지양, 소셜 브랜드색 예외).

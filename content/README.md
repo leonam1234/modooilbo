@@ -44,13 +44,21 @@ summary: 한 줄 요약(목록·검색·OG에 노출). 비우면 본문 첫 문�
 | `breaking` | 선택 | `true`면 속보(빨간 배지) |
 | `type` | 선택 | `opinion`/`video` (기본 `article`) |
 
-### 카테고리 7종 (반드시 이 영문 슬러그로)
+### 카테고리 (반드시 이 영문 슬러그로 — 두 축 12종 + 동결 1종)
+**종합뉴스** (일일 편성 6종 — `tech`는 동결: 슬러그는 유효하나 신규 편성하지 않음)
 | 슬러그 | 지면 | | 슬러그 | 지면 |
 |---|---|---|---|---|
 | `economy` | 경제 | | `sports` | 스포츠 |
-| `society` | 사회 | | `tech` | 테크 |
-| `world` | 국제 | | `opinion` | 오피니언 |
+| `society` | 사회 | | `opinion` | 오피니언 |
+| `world` | 국제 | | `tech` | 테크(동결) |
 | `culture` | 문화 | | | |
+
+**기업 데이터 뉴스(사업 축)** — 발행 전 공공 원자료 검증 게이트 필수(`scripts/check-*.mjs`, [wiki/09-publishing](../wiki/09-publishing.md))
+| 슬러그 | 지면 | 게이트 | | 슬러그 | 지면 | 게이트 |
+|---|---|---|---|---|---|---|
+| `grants` | 정부지원금 | check-grant | | `industry` | 산업·트렌드 | — |
+| `bids` | 공공입찰 | check-bid(+contract/order-plan) | | `labor` | 채용·노무 | check-hire |
+| `startup` | 창업·상권 | — | | `deals` | 계약·거래 | — |
 
 ## 3. 게시 흐름 (파일 쓴 뒤)
 ```bash
@@ -59,7 +67,8 @@ git add . && git commit -m "기사: <제목>"   # 2) 기록
 npm run deploy:prod # 3) 라이브 게시 (modooilbo.com)
 ```
 > 운영 규칙: **"먼저 커밋해줘. 그다음 배포해줘."** 배포는 승인 후. (배포 = 현재 커밋을 올림)
-> 검수 단계를 두려면: 초안은 `editorial/출고대기/`에 쓰고, 승인된 것만 `content/articles/`로 옮겨 발행.
+> 검수 실태(2026-08): 코덱스 1차 검수(PASS/조건부/HOLD) → 발행 직전 동적 게이트 전수 재확인 → 커밋. HOLD 원고는 **파일을 커밋하지 않는** 방식으로 보류한다. `editorial/출고대기/`는 현재 페르소나 문서 보관소이며 스테이징 폴더로 쓰이지 않는다.
+> publishedAt은 출고 직전 재배치가 관행이며 허용 범위 근거 문서(`최종마감.md`)는 **리포 밖**에 있다(총괄 보관). 상세: [wiki/09-publishing](../wiki/09-publishing.md)
 
 ## 4. 규칙 (지킬 것)
 - 파일명(슬러그)은 **고유**하게. 날짜 접두사 권장.

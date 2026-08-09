@@ -46,7 +46,13 @@ type ArticleListItem = Omit<Article, "body">;  // 목록/카드/검색용 경량
 
 `CATEGORIES`(배열), `CATEGORY_MAP`(slug→Category), `getCategory(slug)`, `categoryName(slug)`.
 
-## 3. 더미 데이터 (총 62건)
+## 3. 데이터 소스 (2026-08 현행)
+- **정본은 `content/articles/*.md`(660편+)** → `npm run content`(scripts/build-content.mjs) → `src/lib/content.generated.ts`(자동 생성·직접 수정 금지) → `news.ts`가 합류.
+- 카테고리는 **두 축 12종+동결 1종**: 종합 `CATEGORIES` 7(테크는 동결 — 편성 제외·색인 보존) + 사업 `BIZ_CATEGORIES` 6(grants/bids/startup/industry/labor/deals, categories.ts가 정본).
+- `publishedAt`은 **KST 벽시계-as-Z** 규약(진짜 UTC 아님) — 기계 노출은 `toKstIso()` 경유. `correction{at,note}` 필드가 있는 기사만 /corrections 등재(빌드가 짝 강제).
+- 발행·검수·HOLD 절차: [09-publishing](09-publishing.md) · [content/README](../content/README.md)
+
+## 3-b. (역사) 초기 더미 데이터 62건
 - `articles.ts` → `ARTICLES` (a01–a30): **isLead 1건**(리드), isBreaking 약 5건, 타입 혼합(article/opinion/photo/video).
 - `articles2.ts` → `ARTICLES_2` (a31–a62): isLead 없음, isBreaking 약 5건.
 - `news.ts` → **`ALL_ARTICLES = [...ARTICLES, ...ARTICLES_2]`** ← 모든 소비처는 이걸 본다.
