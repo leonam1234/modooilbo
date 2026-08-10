@@ -100,7 +100,29 @@ export function RegisterForm() {
         <span className="h-px flex-1 bg-ink-200 dark:bg-ink-800" />
       </div>
 
-    <form onSubmit={handleSubmit} noValidate className="space-y-5">
+      {/* ⚠️ 2026-08-10 — 이메일 가입은 **현재 100% 실패한다**. 접어서 내보낸다.
+          원인: 메일러 워커가 쓰는 Cloudflare send_email 바인딩은 수신처 제한을 걸지
+          않으면 "Email Routing에 검증 등록된 목적지"로만 보낼 수 있다(공식 문서:
+          "The binding can send to any verified destination address in your account").
+          신규 가입자의 주소는 당연히 미검증 → 발송 실패 → signup.ts 가 502를 반환하고
+          사용자는 "메일 발송에 실패했습니다"만 보게 된다. 가입자 0명의 구조적 원인.
+          해소 조건: Cloudflare Email Sending(Workers Paid) 또는 외부 발송 서비스 도입.
+          그때 이 <details> 래퍼와 안내 문단만 걷어내면 폼은 그대로 살아난다. */}
+      <details className="rounded-lg border border-ink-200 bg-ink-50/60 p-4 dark:border-ink-800 dark:bg-ink-900/60">
+        <summary className="cursor-pointer text-sm font-medium text-ink-700 dark:text-ink-200">
+          이메일로 가입하기 (일시 중단)
+        </summary>
+        <p className="mt-3 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+          확인 메일 발송 설비를 점검하고 있어 이메일 가입을 잠시 멈췄습니다. 위의 카카오·네이버·구글
+          버튼으로 가입하시면 확인 메일 없이 바로 이용하실 수 있습니다. 문의는{" "}
+          <a href="mailto:help@modooilbo.com" className="underline">
+            help@modooilbo.com
+          </a>
+          으로 주세요.
+        </p>
+      </details>
+
+      <form onSubmit={handleSubmit} noValidate hidden className="space-y-5">
       <div>
         <label
           htmlFor="reg-name"

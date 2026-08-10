@@ -49,6 +49,14 @@ function GoogleIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+function AppleIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden width={17} height={17} {...props}>
+      <path d="M16.37 12.78c.02 2.5 2.19 3.33 2.21 3.34-.02.06-.35 1.2-1.15 2.37-.69 1.02-1.41 2.03-2.55 2.05-1.11.02-1.47-.66-2.75-.66-1.28 0-1.68.64-2.73.68-1.09.04-1.93-1.1-2.63-2.11-1.43-2.07-2.53-5.86-1.06-8.42.73-1.27 2.04-2.08 3.46-2.1 1.08-.02 2.09.72 2.75.72.66 0 1.89-.89 3.19-.76.54.02 2.06.22 3.04 1.65-.08.05-1.81 1.06-1.78 3.24ZM14.3 5.6c.58-.71.98-1.7.87-2.68-.84.03-1.86.56-2.47 1.27-.54.62-1.01 1.62-.89 2.58.94.07 1.9-.48 2.49-1.17Z" />
+    </svg>
+  );
+}
+
 const PROVIDERS = [
   { key: "kakao", label: "카카오", icon: KakaoIcon, cls: "bg-[#FEE500] text-black hover:opacity-90" },
   { key: "naver", label: "네이버", icon: NaverIcon, cls: "bg-[#03C75A] text-white hover:opacity-90" },
@@ -59,6 +67,15 @@ const PROVIDERS = [
     cls: "border border-ink-200 bg-white text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-700 dark:bg-ink-900 dark:text-ink-200",
   },
 ] as const;
+
+/**
+ * 애플 로그인 — 준비 중(2026-08-10).
+ * 회사 Apple Developer Program 계정은 이미 있고 자격증명 수령 대기 중이다.
+ * 붙일 때 필요한 것: Service ID, Key(.p8), Team ID, 그리고 ES256 서명 JWT를
+ * client_secret으로 만드는 로직(정적 시크릿이 아니라 최대 6개월 만료 → 갱신 필요).
+ * functions/api/auth/apple/{start,callback}.ts 를 만들고 여기 disabled 를 걷어내면 된다.
+ */
+const APPLE_READY = false;
 
 /** action: 버튼 문구의 동사 — 로그인 화면은 "시작하기", 가입 화면은 "가입하기" */
 export function SocialSigninButtons({ action = "시작하기" }: { action?: string }) {
@@ -77,6 +94,30 @@ export function SocialSigninButtons({ action = "시작하기" }: { action?: stri
           {p.label}로 {action}
         </button>
       ))}
+
+      {APPLE_READY ? (
+        <button
+          type="button"
+          onClick={() => {
+            window.location.href = "/api/auth/apple/start";
+          }}
+          className="flex h-11 w-full items-center justify-center gap-2 rounded-md bg-black px-4 font-semibold text-white transition-opacity hover:opacity-90"
+        >
+          <AppleIcon />
+          Apple로 {action}
+        </button>
+      ) : (
+        <div
+          className="flex h-11 w-full cursor-not-allowed items-center justify-center gap-2 rounded-md border border-ink-200 bg-ink-50 px-4 font-semibold text-ink-400 dark:border-ink-800 dark:bg-ink-900/60 dark:text-ink-500"
+          aria-disabled
+        >
+          <AppleIcon />
+          Apple로 {action}
+          <span className="ml-1 rounded-full border border-ink-300 px-2 py-0.5 text-[11px] font-medium dark:border-ink-700">
+            준비 중
+          </span>
+        </div>
+      )}
     </div>
   );
 }
