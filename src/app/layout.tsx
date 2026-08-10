@@ -126,6 +126,16 @@ export default function RootLayout({
             data-cf-beacon={`{"token": "${process.env.NEXT_PUBLIC_CF_BEACON_TOKEN}"}`}
           />
         )}
+        {/* 히트맵·세션 리플레이: Microsoft Clarity (프로젝트 y04b5tql2m).
+            스니펫이 만드는 태그는 async라 파싱을 막지 않는다. 프로젝트 ID는 페이지 소스에
+            그대로 노출되는 공개 식별자이므로 환경변수로 감출 이유가 없다.
+            ⚠️ Clarity는 클릭·스크롤·입력 상호작용을 기록한다. 개인정보처리방침(/privacy)의
+               수집 항목에 반드시 반영해 둘 것. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "y04b5tql2m");`,
+          }}
+        />
         {/* Google AdSense 스크립트(adsbygoogle.js)는 head가 아니라 <AdSenseLoader/>가 LCP 이후 지연 주입한다
             (head의 async 스크립트도 파서가 읽는 즉시 요청 → LCP 이미지와 대역폭 경합).
             preconnect도 그 시점에 함께 붙는다 — 사유는 AdSenseLoader.tsx 주석 참조.
