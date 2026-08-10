@@ -40,7 +40,21 @@ export function LoginForm() {
 
   useEffect(() => {
     const err = new URLSearchParams(window.location.search).get("error");
-    if (err === "kakao") setNotice("카카오 로그인에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+    // ⚠️ 카카오만 안내를 다르게 준다(2026-08-10). 사파리에서 iCloud 비공개 릴레이가 켜져
+    //    있으면 애플이 요청마다 출구 IP를 바꾸는데, 카카오는 인가 시작 IP와 복귀 IP가
+    //    다르면 "네트워크 정보가 변경되었거나 올바르지 않은 접근입니다"로 차단한다.
+    //    릴레이는 사파리 트래픽만 통과시켜서 크롬·엣지에서는 멀쩡하다 — 그래서 원인을
+    //    짐작하기 어렵다. 한국은 사파리 기본 사용자가 많아 실제로 자주 걸린다.
+    //    "잠시 후 다시 시도"만 띄우면 몇 번을 다시 눌러도 똑같이 실패한다.
+    if (err === "kakao") {
+      const safari =
+        /Safari/.test(navigator.userAgent) && !/Chrome|Chromium|Edg|OPR/.test(navigator.userAgent);
+      setNotice(
+        safari
+          ? "카카오 로그인에 실패했습니다. 사파리에서 iCloud 비공개 릴레이를 사용 중이면 카카오가 접속을 차단합니다. 설정 → Apple 계정 → iCloud → 비공개 릴레이를 끄고 다시 시도하시거나, 네이버·구글로 가입해 주세요."
+          : "카카오 로그인에 실패했습니다. VPN이나 iCloud 비공개 릴레이를 쓰고 계시면 꺼주시고, 그래도 안 되면 네이버·구글로 가입해 주세요.",
+      );
+    }
     if (err === "google") setNotice("구글 로그인에 실패했습니다. 잠시 후 다시 시도해 주세요.");
     if (err === "naver") setNotice("네이버 로그인에 실패했습니다. 잠시 후 다시 시도해 주세요.");
   }, []);

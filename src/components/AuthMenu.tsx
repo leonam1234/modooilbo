@@ -80,10 +80,14 @@ export function AuthMenu({ variant }: { variant: "links" | "pill" }) {
   return user ? (
     <Link
       href="/account"
-      className="ml-1 inline-flex items-center gap-1.5 rounded-full border border-ink-200 px-3.5 py-1.5 text-sm font-medium text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-700 dark:text-ink-200"
+      className="ml-1 inline-flex max-w-[9.5rem] items-center gap-1.5 whitespace-nowrap rounded-full border border-ink-200 px-3.5 py-2 text-sm font-medium text-ink-700 hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-700 dark:text-ink-200 sm:max-w-[14rem]"
     >
-      <UserIcon className="h-4 w-4" />
-      {user.name}님
+      <UserIcon className="h-4 w-4 shrink-0" />
+      {/* ⚠️ 닉네임은 소셜 제공자가 주는 값이라 길이·이모지를 통제할 수 없다.
+          whitespace-nowrap(비로그인 버튼엔 있었는데 여기만 빠져 있었다) + max-w + truncate
+          세 개가 같이 있어야 헤더에서 두 줄로 접히지 않는다. py 도 비로그인 pill(py-2)과
+          맞춰 두 상태의 헤더 높이가 흔들리지 않게 한다. */}
+      <span className="truncate">{user.name}님</span>
     </Link>
   ) : (
     <Link
