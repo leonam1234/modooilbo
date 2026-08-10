@@ -20,7 +20,11 @@ export default function PrivacyPage() {
 
       <div className="container-page py-10 sm:py-12">
         <article className="mx-auto max-w-3xl">
-          <p className="mb-6 text-sm text-ink-500 dark:text-ink-400">시행일: 2026년 1월 1일</p>
+          {/* 제11조(고지의 의무)가 "시행일의 7일 전부터 고지"를 정하고 있으므로, 개정일과
+              시행일을 7일 간격으로 함께 표기한다. 방침을 고칠 때 이 규칙을 깨지 말 것. */}
+          <p className="mb-6 text-sm text-ink-500 dark:text-ink-400">
+            시행일: 2026년 8월 17일 · 개정일: 2026년 8월 10일 (직전 시행일: 2026년 1월 1일)
+          </p>
           <p className="mb-10 leading-relaxed text-ink-600 dark:text-ink-300">
             모두일보(이하 &ldquo;회사&rdquo;)은 「개인정보 보호법」 등 관련 법령에 따라 이용자의
             개인정보를 보호하고 이와 관련한 고충을 신속하게 처리할 수 있도록 다음과 같은
@@ -39,7 +43,7 @@ export default function PrivacyPage() {
               <li>선택항목: 뉴스레터 수신 여부, 관심 분야</li>
               <li>
                 자동수집 항목: 접속 IP 주소, 쿠키, 서비스 이용 기록, 접속 로그, 기기 정보(브라우저
-                종류, OS)
+                종류, OS), 화면 상호작용 기록(클릭·스크롤·마우스 이동 등 사용성 분석 목적)
               </li>
             </ul>
           </section>
@@ -101,14 +105,51 @@ export default function PrivacyPage() {
               있으며, 위탁 시 관련 법령에 따라 수탁자가 개인정보를 안전하게 처리하도록 관리·감독합니다.
             </p>
             <ul className="mt-3 list-disc space-y-2 pl-5 leading-relaxed text-ink-600 dark:text-ink-300">
-              <li>클라우드 인프라 운영: 클라우드 인프라 사업자 (데이터 보관 및 서버 운영)</li>
-              <li>이메일·뉴스레터 발송: 이메일·뉴스레터 발송 대행사 (발송 업무)</li>
+              <li>
+                Cloudflare, Inc. — 웹사이트 호스팅, 데이터 보관, 이메일 수·발신 처리 및 트래픽 통계
+              </li>
+              <li>
+                Microsoft Corporation — 웹사이트 이용 분석 및 사용성 개선(Microsoft Clarity)
+              </li>
+              <li>Google LLC — 광고 게재 및 성과 측정(Google AdSense)</li>
+            </ul>
+            <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
+              위탁 업무의 내용이나 수탁자가 변경될 경우 이 방침을 통하여 공개합니다.
+            </p>
+          </section>
+
+          <section className="mb-10">
+            <h2 className="font-headline text-xl font-bold text-ink-900 dark:text-white sm:text-2xl">
+              6. 개인정보의 국외 이전
+            </h2>
+            <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
+              회사는 서비스 제공을 위하여 아래와 같이 개인정보를 국외로 이전합니다. 이용자는 국외
+              이전을 거부할 수 있으며, 거부하실 경우 브라우저의 쿠키 차단 기능을 이용하시거나
+              개인정보보호책임자에게 요청하실 수 있습니다. 다만 거부 시 일부 기능 이용에 제한이
+              있을 수 있습니다.
+            </p>
+            <ul className="mt-3 list-disc space-y-2 pl-5 leading-relaxed text-ink-600 dark:text-ink-300">
+              <li>
+                Cloudflare, Inc. (미국) — 이전 항목: 접속 IP 주소, 쿠키, 접속 로그, 기기 정보,
+                회원 정보 · 이전 시점: 서비스 이용 시 네트워크를 통해 수시 이전 ·
+                이용 목적: 호스팅 및 데이터 보관 · 보유 기간: 위탁 계약 종료 시까지
+              </li>
+              <li>
+                Microsoft Corporation (미국) — 이전 항목: 접속 IP 주소, 쿠키, 기기 정보, 화면
+                상호작용 기록 · 이전 시점: 서비스 이용 시 네트워크를 통해 수시 이전 ·
+                이용 목적: 이용 분석 및 사용성 개선 · 보유 기간: 수집일로부터 최대 13개월
+              </li>
+              <li>
+                Google LLC (미국) — 이전 항목: 접속 IP 주소, 쿠키, 기기 정보 · 이전 시점: 서비스
+                이용 시 네트워크를 통해 수시 이전 · 이용 목적: 광고 게재 및 성과 측정 ·
+                보유 기간: 위탁 계약 종료 시까지
+              </li>
             </ul>
           </section>
 
           <section className="mb-10">
             <h2 className="font-headline text-xl font-bold text-ink-900 dark:text-white sm:text-2xl">
-              6. 이용자 및 법정대리인의 권리와 행사 방법
+              7. 이용자 및 법정대리인의 권리와 행사 방법
             </h2>
             <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
               이용자는 언제든지 자신의 개인정보를 조회하거나 수정할 수 있으며, 개인정보의 처리 정지
@@ -119,7 +160,7 @@ export default function PrivacyPage() {
 
           <section className="mb-10">
             <h2 className="font-headline text-xl font-bold text-ink-900 dark:text-white sm:text-2xl">
-              7. 쿠키(Cookie)의 운용
+              8. 쿠키(Cookie)의 운용
             </h2>
             <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
               회사는 이용자에게 맞춤형 서비스를 제공하기 위하여 쿠키를 사용합니다. 쿠키는 이용자의
@@ -131,7 +172,7 @@ export default function PrivacyPage() {
 
           <section className="mb-10">
             <h2 className="font-headline text-xl font-bold text-ink-900 dark:text-white sm:text-2xl">
-              8. 개인정보의 안전성 확보 조치
+              9. 개인정보의 안전성 확보 조치
             </h2>
             <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
               회사는 개인정보의 안전성 확보를 위하여 비밀번호의 암호화, 해킹 등에 대비한 접근통제
@@ -142,7 +183,7 @@ export default function PrivacyPage() {
 
           <section className="mb-10">
             <h2 className="font-headline text-xl font-bold text-ink-900 dark:text-white sm:text-2xl">
-              9. 개인정보보호책임자
+              10. 개인정보보호책임자
             </h2>
             <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
               회사는 개인정보 처리에 관한 업무를 총괄하여 책임지고, 개인정보 처리와 관련한 이용자의
@@ -178,7 +219,7 @@ export default function PrivacyPage() {
 
           <section className="mb-10">
             <h2 className="font-headline text-xl font-bold text-ink-900 dark:text-white sm:text-2xl">
-              10. 고지의 의무
+              11. 고지의 의무
             </h2>
             <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
               본 개인정보처리방침의 내용 추가, 삭제 및 수정이 있을 경우 시행일의 7일 전부터
