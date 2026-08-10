@@ -38,8 +38,21 @@ function Logo({ className }: { className?: string }) {
               (get-img-props: isLazy = !priority && loading !== 'eager'). 즉 lazy만이 preload를 뺀다.
            3) lazy면 display:none인 쪽은 아예 내려받지 않고, 보이는 쪽은 최초 뷰포트 안이라
               레이아웃 직후 바로 로드된다(5KB 안팎이라 체감 지연 없음). */}
-      <Image src="/logo-b.png?v=2" alt="모두일보" width={450} height={150} loading="lazy" className="h-10 w-auto dark:hidden sm:h-12" />
-      <Image src="/logo-b-dark.png?v=2" alt="" aria-hidden width={450} height={150} loading="lazy" className="hidden h-10 w-auto dark:block sm:h-12" />
+      {/* 모바일(<640px)은 축약형을 쓴다 — 전체형은 캔버스 450x150 안에서 "modoo ilbo"
+          영문이 작고, h-10(40px)으로 줄면 글자 높이가 6px 남짓이라 읽히지 않고 얼룩이
+          된다. 「보」에서 막대그래프로 넘어가는 29px 빈 구간도 그 크기에서는 의미 없는
+          가로선으로 보인다. 축약형은 영문을 빼고 그 공백을 10px로 좁힌 것이다.
+          라이트/다크 × 모바일/데스크톱 = 4장이지만 각 조건에서 실제로 내려받는 건 1장이다. */}
+      {/* 뷰포트 분기를 컨테이너로 빼고 테마 분기만 이미지에 남긴다.
+          `dark:sm:block` 처럼 변형을 겹치면 생성 선택자가 헷갈리기 쉬워 이렇게 나눈다. */}
+      <span className="inline-flex sm:hidden">
+        <Image src="/logo-b-m.png?v=1" alt="모두일보" width={401} height={66} loading="lazy" className="h-8 w-auto dark:hidden" />
+        <Image src="/logo-b-dark-m.png?v=1" alt="" aria-hidden width={401} height={66} loading="lazy" className="hidden h-8 w-auto dark:block" />
+      </span>
+      <span className="hidden sm:inline-flex">
+        <Image src="/logo-b.png?v=2" alt="모두일보" width={450} height={150} loading="lazy" className="h-12 w-auto dark:hidden" />
+        <Image src="/logo-b-dark.png?v=2" alt="" aria-hidden width={450} height={150} loading="lazy" className="hidden h-12 w-auto dark:block" />
+      </span>
     </Link>
   );
 }
