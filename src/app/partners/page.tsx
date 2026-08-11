@@ -11,6 +11,24 @@ export const metadata: Metadata = {
   alternates: { canonical: "/partners/" },
 };
 
+/**
+ * 마침표·쉼표 뒤에서 줄을 바꾼다(2026-08-11 요청).
+ * 카드 폭이 좁아 문장이 아무 데서나 접히면 읽기 어렵다 — 구분점에서만 끊는다.
+ * 마지막 조각 뒤에는 <br> 를 넣지 않는다(카드 아래 여백이 벌어진다).
+ */
+function splitSentences(text: string) {
+  const parts = text
+    .split(/(?<=[.,])\s+/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+  return parts.map((s, i) => (
+    <span key={i}>
+      {s}
+      {i < parts.length - 1 && <br />}
+    </span>
+  ));
+}
+
 export default function PartnersPage() {
   const related = PARTNERS.filter((p) => p.relation);
 
@@ -41,15 +59,18 @@ export default function PartnersPage() {
             <h2 className="font-headline text-xl font-bold text-ink-900 dark:text-white sm:text-2xl">
               계약사
             </h2>
-            <ul className="mt-5 grid gap-4 sm:grid-cols-2">
+            {/* 카드 높이를 items-stretch 로 행마다 맞추고, 내부는 flex-col 로 쌓아
+                링크·계약시작을 mt-auto 로 바닥에 붙인다. 회사마다 소개 길이가 달라
+                그냥 두면 카드가 들쭉날쭉해진다(2026-08-11 지적). */}
+            <ul className="mt-5 grid items-stretch gap-4 sm:grid-cols-2">
               {PARTNERS.map((p) => (
                 <li
                   key={p.slug}
-                  className="flex flex-col rounded-xl border border-ink-200 bg-white p-5 dark:border-ink-800 dark:bg-ink-900"
+                  className="flex h-full flex-col rounded-xl border border-ink-200 bg-white p-5 text-center dark:border-ink-800 dark:bg-ink-900"
                 >
                   {/* 로고 영역 — 로고가 없는 회사는 회사명을 크게 보여준다.
                       비율이 제각각이라 320x160 투명 PNG로 정규화해 두고 박스에 맞춘다. */}
-                  <div className="flex h-16 items-center justify-center">
+                  <div className="flex h-20 items-center justify-center">
                     {p.logo ? (
                       <Image
                         src={`/partners/${p.slug}.png`}
@@ -66,34 +87,39 @@ export default function PartnersPage() {
                     )}
                   </div>
 
-                  <div className="mt-4 border-t border-ink-100 pt-4 dark:border-ink-800">
+                  <div className="mt-4 flex flex-1 flex-col border-t border-ink-100 pt-4 dark:border-ink-800">
                     <p className="font-semibold text-ink-900 dark:text-white">{p.name}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
-                      {p.desc}
+                    <p className="mt-1.5 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+                      {splitSentences(p.desc)}
                     </p>
 
                     {p.relation && (
-                      <p className="mt-3 rounded-md bg-signal-50 px-3 py-2 text-xs leading-relaxed text-signal-700 dark:bg-signal-950/40 dark:text-signal-300">
-                        이해관계 고지 — {p.relation}
+                      <p className="mt-3 rounded-md bg-signal-50 px-3 py-2.5 text-xs leading-relaxed text-signal-700 dark:bg-signal-950/40 dark:text-signal-300">
+                        이해관계 고지
+                        <br />
+                        {splitSentences(p.relation)}
                       </p>
                     )}
 
-                    {p.url ? (
-                      <a
-                        href={p.url}
-                        target="_blank"
-                        rel="noopener noreferrer nofollow sponsored"
-                        className="mt-3 inline-block text-sm font-medium text-ink-500 underline underline-offset-4 hover:text-signal-600 dark:text-ink-400 dark:hover:text-signal-400"
-                      >
-                        {p.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
-                      </a>
-                    ) : (
-                      <p className="mt-3 text-sm text-ink-400 dark:text-ink-500">홈페이지 준비 중</p>
-                    )}
+                    {/* mt-auto — 소개 길이와 무관하게 링크를 카드 바닥에 정렬한다. */}
+                    <div className="mt-auto pt-3">
+                      {p.url ? (
+                        <a
+                          href={p.url}
+                          target="_blank"
+                          rel="noopener noreferrer nofollow sponsored"
+                          className="text-sm font-medium text-ink-500 underline underline-offset-4 hover:text-signal-600 dark:text-ink-400 dark:hover:text-signal-400"
+                        >
+                          {p.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                        </a>
+                      ) : (
+                        <p className="text-sm text-ink-400 dark:text-ink-500">홈페이지 준비 중</p>
+                      )}
 
-                    {p.since && (
-                      <p className="mt-2 text-xs text-ink-400 dark:text-ink-500">계약 시작 {p.since}</p>
-                    )}
+                      {p.since && (
+                        <p className="mt-2 text-xs text-ink-400 dark:text-ink-500">계약 시작 {p.since}</p>
+                      )}
+                    </div>
                   </div>
                 </li>
               ))}
