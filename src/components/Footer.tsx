@@ -11,6 +11,7 @@ const FOOTER_COLS: { title: string; links: { href: string; label: string }[] }[]
       { href: "/ethics", label: "윤리강령·편집위원회" },
       { href: "/committee", label: "이용자위원회" },
       { href: "/transparency", label: "투명성 보고" },
+      { href: "/partners", label: "광고·후원 계약사" },
       { href: "/transparency#registration", label: "인터넷신문 등록증" },
       { href: "/advertise", label: "광고·제휴 문의" },
     ],
