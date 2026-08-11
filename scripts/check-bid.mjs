@@ -82,7 +82,16 @@ function summarize(bidNtceNo, bsns, rows) {
     변경있음: rows.some((x) => String(x.ntceKindNm).includes("변경")),
     재공고: latest.reNtceYn === "Y",
     긴급: latest.bidNtceNm?.includes("긴급") || latest.intrbidYn === "Y",
-    기초금액: latest.asignBdgtAmt || null,
+    // ⚠️ 금액 필드는 라벨을 섞지 마라(2026-08-11 정정). 종전에 asignBdgtAmt 를
+    //    "기초금액"으로 찍는 바람에 정상 원고 2건이 값 불일치로 오인될 뻔했다.
+    //      presmptPrce  추정가격   — 부가세 제외
+    //      asignBdgtAmt 배정예산   — 통상 부가세 포함
+    //      bssamt       기초금액   — 용역 공고에서는 비어 있는 경우가 많다
+    //    공고문이 말하는 "기초금액"은 대개 추정가격+부가세라서 배정예산과 같거나 가깝다.
+    //    원고와 대조할 때는 세 값을 다 보고 어느 것을 인용했는지 판단해야 한다.
+    추정가격: latest.presmptPrce || null,
+    배정예산: latest.asignBdgtAmt || null,
+    기초금액: latest.bssamt || null,
     입찰참가자격등록마감: latest.bidQlfctRgstDt || null, // 화면에만 있고 첨부 공고문엔 없는 값
     입찰개시: latest.bidBeginDt || null,
     입찰마감: latest.bidClseDt || null,
@@ -114,6 +123,8 @@ function printReport(r) {
   }
   console.log(`   자격등록마감 ${r.입찰참가자격등록마감 ?? "-"}`);
   console.log(`   입찰 ${r.입찰개시 ?? "-"} ~ ${r.입찰마감 ?? "-"}   개찰 ${r.개찰 ?? "-"}`);
-  console.log(`   기초금액 ${r.기초금액 ? Number(r.기초금액).toLocaleString() + "원" : "-"}   ${r.계약방법 ?? ""} ${r.공동수급 ?? ""}`);
+  const won = (v) => (v ? Number(v).toLocaleString() + "원" : "-");
+  console.log(`   추정가격(VAT제외) ${won(r.추정가격)}   배정예산 ${won(r.배정예산)}   기초금액 ${won(r.기초금액)}`);
+  console.log(`   ${r.계약방법 ?? ""} ${r.공동수급 ?? ""}`);
   console.log(`   첨부 ${r.첨부.length}건${r.첨부.length ? ": " + r.첨부.map((f) => f.slice(0, 30)).join(" / ") : ""}`);
 }
