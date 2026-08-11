@@ -38,7 +38,8 @@ export const PARTNERS: Partner[] = [
     name: "비씨모빌리티(주)",
     url: "https://bcmobility.kr/",
     logo: true,
-    desc: "이륜차·모빌리티 사업",
+    // 2026-08-11 bcmobility.kr 본문에서 확인한 사업 내용
+    desc: "배달 라이더 대상 오토바이 장기 리스·단기 렌탈, 사업자·단체 차량 운영",
     relation: "모두일보 발행인이 관여하는 회사입니다.",
   },
   {
@@ -46,8 +47,13 @@ export const PARTNERS: Partner[] = [
     name: "(주)브리찌",
     url: "https://bridzzi.com/",
     logo: true,
-    desc: "광고·마케팅 대행 및 인사관리 서비스(인사책) 운영",
-    relation: "모두일보 발행인이 관여하는 회사입니다.",
+    // 2026-08-11 bridzzi.com 본문에서 확인. 자사를 'INTEGRATED PERFORMANCE AGENCY'로 소개하며
+    // AI 프로덕션·채널 운영·콘텐츠 제작·확산 마케팅·퍼포먼스 광고 5개 영역을 제시한다.
+    desc: "광고·마케팅 대행 — AI 영상 제작, SNS 채널 운영, 콘텐츠 제작, 인플루언서 마케팅, 퍼포먼스 광고",
+    // ⚠️ 브리찌는 자사 홈페이지 Work 목록에 모두일보를 자사 운영 사례로 게시하고 있다
+    //    (2026-08-11 확인). 광고주이면서 제작 파트너인 관계라 더 분명히 밝힌다.
+    relation:
+      "모두일보 발행인이 관여하는 회사이며, 브리찌는 자사 홈페이지에 모두일보를 운영 사례로 게시하고 있습니다.",
   },
   {
     slug: "jcrew",
