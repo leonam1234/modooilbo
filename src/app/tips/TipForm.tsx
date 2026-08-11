@@ -18,20 +18,11 @@ const field =
   "w-full rounded-md border border-ink-200 bg-white px-4 text-ink-900 outline-none transition-colors placeholder:text-ink-500 dark:placeholder:text-ink-400 focus:border-signal-500 dark:border-ink-700 dark:bg-ink-900 dark:text-white";
 
 /**
- * 가상 접수번호 생성 (제출 시점에만 호출 — SSR 안전)
- *
- * 날짜는 반드시 KST로 찍는다. 이 컴포넌트는 클라이언트에서 도는데, 로컬 게터를 쓰면
- * 독자 브라우저 시간대를 그대로 따라가 해외 제보의 접수번호가 하루 어긋난다
- * (예: LA에서 한국시간 7월 31일 오전에 제보 → MI-20260730-xxxx).
- * 사이트의 다른 시각 표기와 같은 관용구: 에포크에 +9h 한 뒤 UTC 게터로 읽는다.
+ * ⚠️ 접수번호는 **서버가 발급한다**(2026-08-11). 종전에는 이 파일에서 만들었는데,
+ *    그 번호에 대응하는 DB 행이 없어서 "접수번호를 보관하시면 진행 상황을 문의하실 수
+ *    있습니다"가 지켜질 수 없는 안내였다. 이제 /api/inquiry 가 D1 inquiries 에 저장한
+ *    뒤 그 행의 receipt_no 를 돌려준다.
  */
-function makeReceiptNo(): string {
-  const kst = new Date(Date.now() + 9 * 60 * 60 * 1000);
-  const p = (n: number) => String(n).padStart(2, "0");
-  const ymd = `${kst.getUTCFullYear()}${p(kst.getUTCMonth() + 1)}${p(kst.getUTCDate())}`;
-  const rand = Math.floor(1000 + Math.random() * 9000);
-  return `MI-${ymd}-${rand}`;
-}
 
 export function TipForm() {
   const [title, setTitle] = useState("");
@@ -42,12 +33,41 @@ export function TipForm() {
   const [agree, setAgree] = useState(false);
   const [fileName, setFileName] = useState("");
   const [submitted, setSubmitted] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!title.trim() || !category || !content.trim() || !agree) return;
-    setSubmitted(makeReceiptNo());
-    if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
+    setBusy(true);
+    setError("");
+    try {
+      const res = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          kind: "tip",
+          category,
+          title,
+          body: content,
+          // 익명 제보를 선택하면 연락처를 서버로 보내지 않는다 — 안 받는 것이 가장 확실한 보호다.
+          phone: anonymous ? "" : contact,
+          attachmentName: fileName,
+          agree,
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { receiptNo?: string; error?: string };
+      if (!res.ok || !data.receiptNo) {
+        setError(data.error || "접수에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+        return;
+      }
+      setSubmitted(data.receiptNo);
+      if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch {
+      setError("네트워크 오류입니다. 잠시 후 다시 시도해 주세요.");
+    } finally {
+      setBusy(false);
+    }
   }
 
   function reset() {
@@ -177,9 +197,11 @@ export function TipForm() {
           className="block w-full text-sm text-ink-500 file:mr-4 file:rounded-md file:border-0 file:bg-signal-50 file:px-4 file:py-2.5 file:text-sm file:font-semibold file:text-signal-600 hover:file:bg-signal-100 dark:text-ink-300 dark:file:bg-signal-950/40 dark:file:text-signal-400"
         />
         <p className="mt-1.5 text-xs text-ink-500 dark:text-ink-400">
+          {/* 파일 자체는 받지 않는다 — 업로드 저장소·바이러스 검사 없이 첨부를 수신하면 안 된다.
+              파일명만 접수에 남겨, 데스크가 회신할 때 무엇을 받아야 하는지 알 수 있게 한다. */}
           {fileName
-            ? `선택된 파일: ${fileName} · 데모 환경이므로 실제로 업로드되지 않습니다.`
-            : "문서·사진·녹취 등을 첨부할 수 있습니다. 데모 환경이므로 실제로 업로드되지 않습니다."}
+            ? `선택된 파일: ${fileName} · 파일명만 접수됩니다. 파일 자체는 데스크 회신 후 보내주세요.`
+            : "첨부할 자료가 있으면 파일을 선택해 파일명만 알려주세요. 파일 자체는 전송되지 않으며, 데스크 회신 후 받습니다."}
         </p>
       </div>
 
@@ -232,16 +254,22 @@ export function TipForm() {
         </label>
       </div>
 
+      {error && (
+        <p role="alert" className="rounded-md bg-red-50 px-4 py-3 text-sm text-red-700 dark:bg-red-950/40 dark:text-red-300">
+          {error}
+        </p>
+      )}
+
       <button
         type="submit"
-        disabled={!title.trim() || !category || !content.trim() || !agree}
+        disabled={busy || !title.trim() || !category || !content.trim() || !agree}
         className="w-full rounded-md bg-signal-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-signal-700 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
       >
-        제보 접수하기
+        {busy ? "접수 중…" : "제보 접수하기"}
       </button>
 
       <p className="text-xs text-ink-500 dark:text-ink-400">
-        정식 오픈 준비 중입니다.
+        접수 내용은 담당 데스크만 열람합니다. 긴급한 제보는 tip@modooilbo.com 으로도 보내실 수 있습니다.
       </p>
     </form>
   );

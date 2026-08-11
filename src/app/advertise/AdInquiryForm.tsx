@@ -42,8 +42,11 @@ export function AdInquiryForm() {
   const [agree, setAgree] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [receiptNo, setReceiptNo] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [sendError, setSendError] = useState("");
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const next: Record<string, string> = {};
     if (!company.trim()) next.company = "회사명을 입력해 주세요.";
@@ -56,6 +59,36 @@ export function AdInquiryForm() {
     if (!agree) next.agree = "개인정보 수집·이용에 동의해 주세요.";
     setErrors(next);
     if (Object.keys(next).length > 0) return;
+
+    setBusy(true);
+    setSendError("");
+    try {
+      const res = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          kind: "advertise",
+          category: inquiryType,
+          title: `${company} — ${inquiryType}`,
+          body: budget ? `${message}\n\n[예산] ${budget}` : message,
+          name: `${company} / ${manager}`,
+          email,
+          phone,
+          agree,
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { receiptNo?: string; error?: string };
+      if (!res.ok || !data.receiptNo) {
+        setSendError(data.error || "접수에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+        return;
+      }
+      setReceiptNo(data.receiptNo);
+    } catch {
+      setSendError("네트워크 오류입니다. 잠시 후 다시 시도해 주세요.");
+      return;
+    } finally {
+      setBusy(false);
+    }
     setSubmitted(true);
   }
 
@@ -84,6 +117,12 @@ export function AdInquiryForm() {
           {company ? `${company} 담당자님, ` : ""}문의해 주셔서 감사합니다. 영업일 기준 2일
           이내에 담당 매니저가 기재해 주신 연락처로 회신드리겠습니다.
         </p>
+        {receiptNo && (
+          <div className="mt-5 inline-block rounded-lg border border-ink-200 bg-white px-5 py-3 dark:border-ink-700 dark:bg-ink-900">
+            <p className="text-xs text-ink-500 dark:text-ink-400">접수번호</p>
+            <p className="font-mono text-lg font-bold text-ink-900 dark:text-white">{receiptNo}</p>
+          </div>
+        )}
         <button
           type="button"
           onClick={() => {
@@ -253,16 +292,22 @@ export function AdInquiryForm() {
         {errors.agree && <p className={errorCls}>{errors.agree}</p>}
       </div>
 
+      {sendError && (
+        <p role="alert" className="mt-4 rounded-md bg-red-50 px-4 py-3 text-sm text-red-700 dark:bg-red-950/40 dark:text-red-300">
+          {sendError}
+        </p>
+      )}
+
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
         <button
           type="submit"
-          disabled={!agree}
-          className="rounded-md bg-signal-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-signal-700 disabled:opacity-50"
+          disabled={busy || !agree}
+          className="rounded-md bg-signal-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-signal-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          문의 보내기
+          {busy ? "보내는 중…" : "문의 보내기"}
         </button>
         <p className="text-xs text-ink-500 dark:text-ink-400">
-          문의는 이메일 help@modooilbo.com 으로 보내주세요.
+          이메일 ad@modooilbo.com 으로도 보내실 수 있습니다.
         </p>
       </div>
     </form>

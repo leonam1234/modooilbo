@@ -31,8 +31,11 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
   const [agree, setAgree] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [receiptNo, setReceiptNo] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [sendError, setSendError] = useState("");
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const next: Record<string, string> = {};
     if (!name.trim()) next.name = "이름을 입력해 주세요.";
@@ -44,7 +47,38 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
     if (!agree) next.agree = "개인정보 수집·이용에 동의해 주세요.";
     setErrors(next);
     if (Object.keys(next).length > 0) return;
-    setSubmitted(true);
+
+    setBusy(true);
+    setSendError("");
+    try {
+      const res = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          kind: "careers",
+          category: field,
+          title: `${field} 지원 — ${name}`,
+          body: portfolio ? `${intro}\n\n[포트폴리오] ${portfolio}` : intro,
+          name,
+          email,
+          phone,
+          attachmentName: fileName,
+          agree,
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { receiptNo?: string; error?: string };
+      if (!res.ok || !data.receiptNo) {
+        setSendError(data.error || "접수에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+        return;
+      }
+      setReceiptNo(data.receiptNo);
+      setSubmitted(true);
+    } catch {
+      setSendError("네트워크 오류입니다. 잠시 후 다시 시도해 주세요.");
+      return;
+    } finally {
+      setBusy(false);
+    }
   }
 
   if (submitted) {
@@ -72,6 +106,12 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
           {name ? `${name} 님, ` : ""}소중한 지원에 감사드립니다. 서류 검토 후 기재해 주신
           연락처로 결과를 안내해 드리겠습니다.
         </p>
+        {receiptNo && (
+          <div className="mt-5 inline-block rounded-lg border border-ink-200 bg-white px-5 py-3 dark:border-ink-700 dark:bg-ink-900">
+            <p className="text-xs text-ink-500 dark:text-ink-400">접수번호</p>
+            <p className="font-mono text-lg font-bold text-ink-900 dark:text-white">{receiptNo}</p>
+          </div>
+        )}
         <button
           type="button"
           onClick={() => {
@@ -236,16 +276,22 @@ export function ApplyForm({ defaultField }: { defaultField?: string }) {
         {errors.agree && <p className={errorCls}>{errors.agree}</p>}
       </div>
 
+      {sendError && (
+        <p role="alert" className="mt-4 rounded-md bg-red-50 px-4 py-3 text-sm text-red-700 dark:bg-red-950/40 dark:text-red-300">
+          {sendError}
+        </p>
+      )}
+
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
         <button
           type="submit"
-          disabled={!agree}
-          className="rounded-md bg-signal-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-signal-700 disabled:opacity-50"
+          disabled={busy || !agree}
+          className="rounded-md bg-signal-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-signal-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          지원서 제출하기
+          {busy ? "제출 중…" : "지원서 제출하기"}
         </button>
         <p className="text-xs text-ink-500 dark:text-ink-400">
-          정식 오픈 준비 중입니다.
+          이력서 파일은 접수 후 안내드리는 주소로 보내주세요.
         </p>
       </div>
     </form>

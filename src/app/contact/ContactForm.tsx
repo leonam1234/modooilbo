@@ -14,16 +14,28 @@ const TYPES: { value: Inquiry; label: string }[] = [
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const errorCls = "mt-1.5 text-xs text-signal-600 dark:text-signal-400";
 
+/** 접수 메일·DB에 사람이 읽을 수 있는 유형명으로 남기기 위한 표. TYPES 와 같은 값을 쓴다. */
+const INQUIRY_LABEL: Record<Inquiry, string> = {
+  subscription: "구독",
+  ad: "광고",
+  tip: "제보",
+  etc: "기타",
+};
+
 export function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [type, setType] = useState<Inquiry>("subscription");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [agree, setAgree] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [receiptNo, setReceiptNo] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [sendError, setSendError] = useState("");
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const next: Record<string, string> = {};
     if (!name.trim()) next.name = "이름을 입력해 주세요.";
@@ -31,9 +43,40 @@ export function ContactForm() {
     else if (!EMAIL_RE.test(email.trim())) next.email = "올바른 이메일 형식이 아닙니다.";
     if (!subject.trim()) next.subject = "제목을 입력해 주세요.";
     if (!message.trim()) next.message = "문의 내용을 입력해 주세요.";
+    // ⚠️ 2026-08-11 신설. 종전에는 이 폼이 아무 데도 전송하지 않아 동의 절차가 없었는데,
+    //    이제 이름·이메일을 D1 에 저장하므로 수집 동의를 받아야 한다(개인정보 보호법).
+    if (!agree) next.agree = "개인정보 수집·이용에 동의해 주세요.";
     setErrors(next);
     if (Object.keys(next).length > 0) return;
-    setSubmitted(true);
+
+    setBusy(true);
+    setSendError("");
+    try {
+      const res = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          kind: "contact",
+          category: INQUIRY_LABEL[type] ?? type,
+          title: subject,
+          body: message,
+          name,
+          email,
+          agree,
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { receiptNo?: string; error?: string };
+      if (!res.ok || !data.receiptNo) {
+        setSendError(data.error || "접수에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+        return;
+      }
+      setReceiptNo(data.receiptNo);
+      setSubmitted(true);
+    } catch {
+      setSendError("네트워크 오류입니다. 잠시 후 다시 시도해 주세요.");
+    } finally {
+      setBusy(false);
+    }
   }
 
   function handleReset() {
@@ -42,8 +85,11 @@ export function ContactForm() {
     setType("subscription");
     setSubject("");
     setMessage("");
+    setAgree(false);
     setErrors({});
     setSubmitted(false);
+    setReceiptNo("");
+    setSendError("");
   }
 
   if (submitted) {
@@ -61,6 +107,12 @@ export function ContactForm() {
           {name ? `${name}님, ` : ""}소중한 의견 감사합니다. ‘{typeLabel}’ 문의는 담당 부서에서
           확인 후 입력하신 이메일로 답변드리겠습니다.
         </p>
+        {receiptNo && (
+          <div className="mt-5 inline-block rounded-lg border border-ink-200 bg-white px-5 py-3 dark:border-ink-700 dark:bg-ink-900">
+            <p className="text-xs text-ink-500 dark:text-ink-400">접수번호</p>
+            <p className="font-mono text-lg font-bold text-ink-900 dark:text-white">{receiptNo}</p>
+          </div>
+        )}
         <button
           type="button"
           onClick={handleReset}
@@ -183,15 +235,38 @@ export function ContactForm() {
         {errors.message && <p className={errorCls}>{errors.message}</p>}
       </div>
 
+      <div className="mt-6">
+        <label className="flex items-start gap-2.5 text-sm text-ink-700 dark:text-ink-200">
+          <input
+            type="checkbox"
+            checked={agree}
+            onChange={(e) => setAgree(e.target.checked)}
+            className="mt-0.5 h-4 w-4 shrink-0 accent-signal-600"
+          />
+          <span>
+            문의 처리를 위해 이름·이메일·문의 내용을 수집·이용하는 데 동의합니다. 보유 기간은 처리 완료 후 3년입니다(
+            <a href="/privacy/" className="underline">개인정보처리방침</a>).
+          </span>
+        </label>
+        {errors.agree && <p className={errorCls}>{errors.agree}</p>}
+      </div>
+
+      {sendError && (
+        <p role="alert" className="mt-4 rounded-md bg-red-50 px-4 py-3 text-sm text-red-700 dark:bg-red-950/40 dark:text-red-300">
+          {sendError}
+        </p>
+      )}
+
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs text-ink-500 dark:text-ink-400">
-          문의는 이메일 help@modooilbo.com 으로 보내주세요.
+          이메일 help@modooilbo.com 으로도 보내실 수 있습니다.
         </p>
         <button
           type="submit"
-          className="rounded-md bg-signal-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-signal-700 disabled:opacity-50"
+          disabled={busy}
+          className="rounded-md bg-signal-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-signal-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          문의 보내기
+          {busy ? "보내는 중…" : "문의 보내기"}
         </button>
       </div>
     </form>
