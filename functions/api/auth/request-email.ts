@@ -67,9 +67,10 @@ export async function onRequestPost(ctx: any): Promise<Response> {
     return json({ error: "이미 이메일이 등록된 계정입니다." }, 400);
   }
 
-  const dup = await env.DB.prepare("SELECT 1 FROM users WHERE email = ?1 LIMIT 1").bind(email).first();
-  if (dup) return json({ error: "이미 다른 계정에서 사용 중인 이메일입니다." }, 409);
-
+  // ⚠️ 순서 주의(2026-08-11 정정). 중복 이메일 검사를 레이트리밋보다 **먼저** 하면
+  //    임의 주소를 무제한으로 넣어 보며 409/그 외 응답 차이로 "그 주소로 가입한 계정이
+  //    있는지"를 알아낼 수 있다(계정 열거 오라클). 회원 명단이 통째로 새는 통로다.
+  //    레이트리밋을 먼저 태워서 탐색 자체의 횟수를 묶는다.
   // 남용 방지: 계정당 15분 3회 + IP당 15분 5회 (원자 카운터 · 저장소 불가 시 거부)
   let allowed: boolean;
   try {
@@ -87,6 +88,10 @@ export async function onRequestPost(ctx: any): Promise<Response> {
     return json({ error: TEMP_ERROR }, 503);
   }
   if (!allowed) return json({ error: "인증 메일 요청이 너무 많습니다. 15분 후 다시 시도해 주세요." }, 429);
+
+  // 중복 검사는 레이트리밋 **뒤에** 둔다 — 위 주석 참조(계정 열거 오라클 차단).
+  const dup = await env.DB.prepare("SELECT 1 FROM users WHERE email = ?1 LIMIT 1").bind(email).first();
+  if (dup) return json({ error: "이미 다른 계정에서 사용 중인 이메일입니다." }, 409);
 
   // 토큰: 원문은 메일 링크로만 나가고, D1엔 SHA-256만 남긴다(password_resets와 동일 규약).
   const token = randHex(32);

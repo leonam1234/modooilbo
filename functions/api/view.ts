@@ -15,30 +15,12 @@
  * 구 KV 데이터(views:*)는 이관하지 않았다 — 최대 조회수가 4라 이관 가치가 없다.
  * (그래도 필요하면 scripts/migrate-views-kv-to-d1.mjs — 기본 dry-run, 아직 미실행.)
  */
-import trending from "../../src/lib/trending-data.generated.json";
+import { cleanArticleId } from "../_lib/article-ids";
 
 const SALT = "modooilbo-view-v1";
 
-/**
- * 실재하는 기사 id 화이트리스트(2026-07-21 보안 감사).
- *
- * 구 동작: `clean()`의 형식 검사만 통과하면(영숫자·하이픈 81자 이내) 어떤 문자열이든
- *   article_views·view_dedup에 행을 만들었다. 무인증·무제한 POST라 임의 문자열을 흘려보내는
- *   것만으로 **D1 행을 영구히 무한 증식**시킬 수 있었다(view_dedup은 2일 청소가 있지만
- *   article_views는 지우는 코드가 없다 = 영구). 저장 한도·요금·백업 크기에 직접 영향.
- * → 실재하는 기사 id가 아니면 **D1에 닿기 전에** 거절한다.
- *
- * 데이터 출처는 most-read.ts와 동일한 생성 파일이다(prebuild가 하드코딩 기사 + content.generated를
- * 합쳐 만든다 = 사이트가 렌더하는 기사 전량). 여기 id 체계는 ViewBeacon이 보내는 `article.id`와
- * 같고, most-read가 `article_views.article_id`와 대조하는 값과도 같다.
- * ⚠️ 이 파일은 함수 번들에 **빌드 시점 값으로 박힌다** → 기사를 추가하면 재배포해야 집계된다
- *   (기사 추가는 어차피 정적 재빌드·재배포를 동반하므로 새로운 제약은 아니다).
- */
-const VALID_IDS: Set<string> = new Set(
-  ((trending as { articles?: { id?: string }[] }).articles ?? [])
-    .map((a) => a.id)
-    .filter((id): id is string => typeof id === "string" && id.length > 0),
-);
+// 기사 id 화이트리스트는 _lib/article-ids.ts 로 옮겼다(2026-08-11).
+// 종전에는 이 파일에만 있어서 reactions.ts 에 같은 방어가 빠지는 드리프트가 났다.
 
 function json(o: unknown, s = 200): Response {
   return new Response(JSON.stringify(o), {
@@ -57,15 +39,13 @@ function kstDate(ms: number): string {
   const d = new Date(ms + 9 * 3600 * 1000);
   return `${d.getUTCFullYear()}${pad(d.getUTCMonth() + 1)}${pad(d.getUTCDate())}`;
 }
-function clean(a: unknown): string | null {
-  return typeof a === "string" && /^[a-z0-9][a-z0-9-]{0,80}$/i.test(a) ? a : null;
-}
-
 // GET ?article=<id> → 누적 조회수(기사 상세 표기용)
 export async function onRequestGet(ctx: any): Promise<Response> {
   const db = ctx.env.DB;
   if (!db) return json({ ok: false });
-  const article = clean(new URL(ctx.request.url).searchParams.get("article"));
+  // 읽기 전용이라 D1 행이 늘지는 않지만, 쓰기 경로와 같은 관문을 통과시켜
+  // "형식은 맞는데 없는 기사"에 대한 응답을 두 경로가 다르게 내지 않도록 맞춘다.
+  const article = cleanArticleId(new URL(ctx.request.url).searchParams.get("article"));
   if (!article) return json({ ok: false });
   try {
     const row = (await db.prepare("SELECT views FROM article_views WHERE article_id = ?1")
@@ -87,12 +67,12 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   } catch {
     return json({ ok: false });
   }
-  const article = clean(b?.article);
-  if (!article) return json({ ok: false });
-  // 실재하지 않는 기사 id는 D1에 닿기 전에 거절한다(무한 행 증식 차단 — 위 VALID_IDS 참조).
-  // 400인 이유: 형식은 맞지만 대상이 없는 요청이라 클라이언트 오류다. ViewBeacon은 렌더된
-  // 기사의 id만 보내므로 정상 사용자는 여기에 걸릴 수 없다.
-  if (!VALID_IDS.has(article)) return json({ ok: false, error: "unknown article" }, 400);
+  // 형식 검사 + 실재 기사 화이트리스트를 한 번에 통과시킨다(_lib/article-ids.ts).
+  // 실재하지 않는 id를 D1에 닿기 전에 거절해 영구 행 무한 증식을 막는다.
+  // 400인 이유: 형식은 맞지만 대상이 없는 요청이라 클라이언트 오류다. ViewBeacon 은
+  // 렌더된 기사의 id만 보내므로 정상 사용자는 여기에 걸릴 수 없다.
+  const article = cleanArticleId(b?.article);
+  if (!article) return json({ ok: false, error: "unknown article" }, 400);
 
   const ip = await sha256(SALT + (ctx.request.headers.get("CF-Connecting-IP") || ""));
   const day = kstDate(Date.now());

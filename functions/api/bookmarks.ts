@@ -4,9 +4,11 @@
  * GET  /api/bookmarks?article=X  → { saved: boolean } (비로그인 false)
  * POST /api/bookmarks {article}  → 토글 → { saved }
  */
+import { cleanArticleId } from "../_lib/article-ids";
 import { json, getUser, type AuthEnv } from "../_lib/auth";
 
-const ARTICLE_RE = /^[a-z0-9][a-z0-9-]{0,80}$/i; // 기사 id 형식 — reactions.ts와 동일 규칙
+// 기사 id 검증은 공용 관문을 쓴다(_lib/article-ids.ts). 형식만 보면 실재하지 않는
+// id로도 bookmarks 에 영구 행을 만들 수 있어 화이트리스트까지 통과시킨다.
 
 export async function onRequestGet(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
@@ -15,7 +17,7 @@ export async function onRequestGet(ctx: any): Promise<Response> {
   const article = new URL(ctx.request.url).searchParams.get("article");
 
   if (article) {
-    if (!ARTICLE_RE.test(article)) return json({ error: "잘못된 요청입니다." }, 400);
+    if (!cleanArticleId(article)) return json({ error: "잘못된 요청입니다." }, 400);
     if (!me) return json({ saved: false });
     const row = await env.DB.prepare(
       "SELECT 1 AS x FROM bookmarks WHERE user_id = ?1 AND article_id = ?2",
@@ -48,7 +50,7 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   } catch {
     /* noop */
   }
-  if (!ARTICLE_RE.test(article)) return json({ error: "잘못된 요청입니다." }, 400);
+  if (!cleanArticleId(article)) return json({ error: "잘못된 요청입니다." }, 400);
 
   const del = await env.DB.prepare(
     "DELETE FROM bookmarks WHERE user_id = ?1 AND article_id = ?2",

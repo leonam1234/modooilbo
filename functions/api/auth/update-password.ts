@@ -14,6 +14,7 @@ import {
   sessionCookie,
   type AuthEnv,
 } from "../../_lib/auth";
+import { hitRateLimits, rateBucket } from "../../_lib/rate-limit";
 
 export async function onRequestPost(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
@@ -30,6 +31,22 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   const next = String(b?.next ?? "");
   if (next.length < 8 || next.length > 72)
     return json({ error: "새 비밀번호는 8자 이상 72자 이하로 입력해 주세요." }, 400);
+
+  // ⚠️ 2026-08-11 신설. 종전에는 여기 상한이 없어서 세션 쿠키를 탈취한 공격자가
+  //    현재 비밀번호를 무제한 대입할 수 있었다. 게다가 시도마다 PBKDF2 검증이 돌아
+  //    한 계정을 겨냥한 요청만으로 CPU를 계속 태울 수 있었다(비용 증폭).
+  //    사용자 축으로 건다 — IP는 바꿔 가며 시도할 수 있어도 대상 계정은 고정이다.
+  try {
+    const ok = await hitRateLimits(
+      env as any,
+      [{ bucket: await rateBucket("update-password", "user", String(user.id)), limit: 10, windowSecs: 3600 }],
+      Date.now(),
+      ctx.waitUntil?.bind(ctx),
+    );
+    if (!ok) return json({ error: "시도가 너무 많습니다. 잠시 후 다시 시도해 주세요." }, 429);
+  } catch {
+    return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
+  }
 
   const row = await env.DB.prepare("SELECT password_hash, password_salt FROM users WHERE id = ?1")
     .bind(user.id)

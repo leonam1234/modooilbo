@@ -27,6 +27,9 @@
  *   ⚠️ 배포 전 db/migrations/0002_counters.sql 원격 적용 필요.
  */
 
+import { cleanArticleId } from "../_lib/article-ids";
+import { clientIp, hitRateLimits, rateBucket } from "../_lib/rate-limit";
+
 const TYPES = ["info", "interesting", "empathy", "insight", "followup"] as const;
 type ReactionType = (typeof TYPES)[number];
 const SALT = "modooilbo-react-v1"; // IP 해시용 정적 솔트(역추적 방지)
@@ -52,10 +55,14 @@ function kstDate(ms: number): string {
   return `${d.getUTCFullYear()}${pad(d.getUTCMonth() + 1)}${pad(d.getUTCDate())}`;
 }
 
-function cleanArticle(a: unknown): string | null {
-  if (typeof a !== "string") return null;
-  return /^[a-z0-9][a-z0-9-]{0,80}$/i.test(a) ? a : null;
-}
+/**
+ * ⚠️ 2026-08-11 — 종전에는 형식 검사(영숫자·하이픈 81자)만 했다. 무인증 POST 라
+ *    임의 문자열을 흘려보내는 것만으로 reaction_counts·reaction_choices 에 영구 행을
+ *    무한 증식시킬 수 있었다. view.ts 는 2026-07-21 감사에서 화이트리스트를 받았는데
+ *    같은 취약점이 여기만 남아 있었다(드리프트).
+ *    이제 공용 관문 _lib/article-ids.ts 를 쓴다 — 규칙을 복제하지 마라.
+ */
+const cleanArticle = cleanArticleId;
 
 /** 전체 타입을 0으로 채운 뒤 D1 값으로 덮는다(응답 형식은 종전과 동일). */
 async function readCounts(db: any, article: string): Promise<Record<string, number>> {
@@ -111,6 +118,22 @@ export async function onRequestPost(context: any): Promise<Response> {
   const article = cleanArticle(body?.article);
   const type = body?.type as ReactionType;
   if (!article || !TYPES.includes(type)) return json({ error: "bad request" }, 400);
+
+  // 화이트리스트가 "없는 기사로 행을 늘리는" 길은 막지만, 실재 기사에 대고
+  // 토글을 무한 반복하는 것은 막지 못한다(행은 안 늘어도 D1 쓰기가 계속 발생).
+  // 무인증 엔드포인트라 IP 축으로 상한을 둔다. 정상 사용자는 기사 하나에 한 번
+  // 누르므로 시간당 60회면 넉넉하다.
+  try {
+    const ok = await hitRateLimits(
+      context.env,
+      [{ bucket: await rateBucket("reactions", "ip", clientIp(context.request)), limit: 60, windowSecs: 3600 }],
+      Date.now(),
+      context.waitUntil?.bind(context),
+    );
+    if (!ok) return json({ error: "too many requests" }, 429);
+  } catch {
+    return json({ error: "unavailable" }, 503);
+  }
 
   const ipHash = await ipHashOf(context.request);
   const day = kstDate(Date.now());

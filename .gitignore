@@ -40,10 +40,16 @@ next-env.d.ts
 # 배포 로그 (로컬 원장 — 커밋 안 함, iCloud로 환경 간 공유. DEPLOYMENT.md 참고)
 /deployments/deploy-log.jsonl
 
-# Cloudflare 분석 조회 토큰(읽기전용) — wrangler 배포 토큰과 분리 보관
-/.cf-analytics.env
-/.dev.vars
-/naver-keys.txt
+# 비밀값 파일 — ⚠️ 앞에 `/`(루트 앵커)를 붙이지 말 것.
+# 앵커가 있으면 저장소 루트의 그 파일만 막는다. mailer-worker/.dev.vars 처럼
+# 하위 디렉터리에 같은 이름이 생기면 그대로 커밋돼 버린다(2026-08-11 감사 지적).
+# 이름만 적으면 어느 깊이에 있든 전부 무시한다.
+.cf-analytics.env
+.dev.vars
+naver-keys.txt
+.env
+.env.*
+!.env.example
 
 # Claude Code 세션 워크트리(로컬 격리 작업 공간 — 커밋 금지)
 .claude/worktrees/
