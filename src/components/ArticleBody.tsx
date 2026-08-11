@@ -55,6 +55,15 @@ export type SourceLink = { org: string; url: string };
 // 서술어가 앞설 때가 많아 첫 어절이 아니라 "가장 왼쪽에 등장하는" 표제어를 채택한다(선두 귀속 기관).
 // 같은 위치면 더 긴 표제어 우선. 변형(문체부·서울시·상생결제·법령명 등)은 대표 표기로 통일한다.
 const ORG_DICT: [string, string][] = [
+  // 앱 배포처·제품 홈페이지 — 출처가 정부기관이 아닌 광고성 콘텐츠용(2026-08-11).
+  // 사전 스캔은 '레이블에서 가장 왼쪽에 등장하는 표제어'를 채택한다:
+  //   "구글플레이 인사책 앱"    → 구글플레이(i=0)   vs 인사책(i=6) → 구글플레이
+  //   "애플 앱스토어 인사책 앱"  → 애플 앱스토어(i=0) vs 인사책(i=8) → 애플 앱스토어
+  //   "인사책 공식 홈페이지"     → 인사책(i=0)
+  // 같은 기관은 1회만 나가므로 "인사책 요금 안내" 등 나머지 항목은 자동으로 접힌다.
+  ["애플 앱스토어", "애플 앱스토어"],
+  ["구글플레이", "구글플레이"],
+  ["인사책", "인사책"],
   ["대한민국 정책브리핑", "정책브리핑"],
   ["경남지방중소벤처기업청", "경남지방중소벤처기업청"],
   ["중소기업 수출규제대응지원센터", "중소기업 수출규제대응지원센터"],
@@ -201,10 +210,29 @@ function orgFromLabel(label: string): string | null {
 }
 
 /** 출처 항목 배열 → {기관명, 원문 URL} 배열(URL 없는 항목·기관 미상 항목 제외, 기관 중복 제거). */
+/**
+ * 출처 문단을 개별 항목으로 쪼갠다.
+ *
+ * ⚠️ 콘텐츠 빌드가 "- " 목록을 **한 문단으로 합쳐** 넘긴다. 그래서 종전에는
+ *    문단당 첫 URL 하나만 링크되고 나머지 출처가 통째로 사라졌다
+ *    (출처 2건짜리 기사도 화면에는 1개만 — 2026-08-11 확인, 기존 기사 전반의 문제).
+ *    URL 앞에 붙은 " - "(또는 줄바꿈)를 항목 경계로 보고 되살린다.
+ */
+function splitSourceItems(items: string[]): string[] {
+  const out: string[] = [];
+  for (const raw of items) {
+    for (const part of raw.split(/\n|\s+-\s+(?=\S)/)) {
+      const t = part.trim().replace(/^[-•]\s*/, "");
+      if (t) out.push(t);
+    }
+  }
+  return out;
+}
+
 export function sourceLinks(items: string[]): SourceLink[] {
   const seen = new Set<string>();
   const out: SourceLink[] = [];
-  for (const s of items) {
+  for (const s of splitSourceItems(items)) {
     const m = s.match(/https?:\/\/\S+/);
     if (!m) continue; // "최종 확인시각 …", 첨부 파일명 등 URL 없는 줄은 화면 제외
     const url = m[0].replace(/["'.,]+$/, "");
@@ -295,7 +323,20 @@ function midSlotAfterIndex(main: string[]): number {
  * @param midSlot 본문 중간에 끼울 노드(광고 슬롯 등). 무엇을 끼울지는 호출자가 정하고,
  *                어디에 끼울지는 여기(본문 구조를 아는 쪽)가 정한다.
  */
-export function ArticleBody({ body, midSlot }: { body: string[]; midSlot?: ReactNode }) {
+export function ArticleBody({
+  body,
+  midSlot,
+  sponsored = false,
+}: {
+  body: string[];
+  midSlot?: ReactNode;
+  /**
+   * 광고성 콘텐츠 여부. true 면 출처 링크에 rel="nofollow sponsored" 를 더한다.
+   * ⚠️ 일반 기사의 출처(정부기관·공시 등)까지 sponsored 로 표시하면 안 된다 —
+   *    사실과 다른 신고이고 해당 기관 링크의 신뢰도를 깎는다.
+   */
+  sponsored?: boolean;
+}) {
   const [main, sourceLabel, sources] = splitSources(body);
   // 일반 신문식 한 줄 출처: 기관명만 하이퍼링크. 링크가 하나도 없으면 출처 블록을 그리지 않는다.
   const links = sourceLabel ? sourceLinks(sources) : [];
@@ -326,7 +367,7 @@ export function ArticleBody({ body, midSlot }: { body: string[]; midSlot?: React
                 <a
                   href={l.url}
                   target="_blank"
-                  rel="noopener"
+                  rel={sponsored ? "noopener noreferrer nofollow sponsored" : "noopener"}
                   className="underline decoration-ink-300 underline-offset-2 hover:text-ink-700 dark:decoration-ink-600 dark:hover:text-ink-200"
                 >
                   {l.org}

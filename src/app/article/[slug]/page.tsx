@@ -288,7 +288,7 @@ export default async function ArticlePage({
 
           {/* 광고(AdSense 수동 슬롯) — 본문 중간(일반 문단 3개 뒤, 뉴스 관행). 기사당 이 1개만.
               삽입 위치 판단은 본문 구조를 아는 ArticleBody가 한다(짧은 기사는 자동 제외). */}
-          <ArticleBody body={article.body} midSlot={<AdSlot placement="article" className="!my-9" />} />
+          <ArticleBody body={article.body} sponsored={!!article.sponsor} midSlot={<AdSlot placement="article" className="!my-9" />} />
 
           {/* 본문 끝 고지 — 위 배지를 못 본 독자(본문부터 읽기 시작)를 위한 두 번째 표시.
               태그·댓글보다 앞에 둔다. 다 읽자마자 무엇을 읽었는지 알아야 한다. */}
