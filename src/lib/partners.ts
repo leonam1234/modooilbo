@@ -59,18 +59,18 @@ export const PARTNERS: Partner[] = [
     slug: "jcrew",
     name: "제이크루",
     logo: true,
-    desc: "이륜차 관련 사업",
+    desc: "이륜차 부품 도·소매업",
   },
   {
     slug: "forusbike",
     name: "포어스바이크",
     logo: true,
-    desc: "이륜차 관련 사업",
+    desc: "이륜차 리스·렌탈업",
   },
   {
     slug: "hanmobility",
     name: "한국모터사이클리스",
     logo: false,
-    desc: "이륜차 관련 사업",
+    desc: "이륜차 리스·렌탈업",
   },
 ];
