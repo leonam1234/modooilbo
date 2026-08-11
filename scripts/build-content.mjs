@@ -36,6 +36,20 @@ const STOCK_KEYWORD = {
 // 주의: 발행 완료 라벨 '인증전보관'에는 '보류'가 없다(보관 ≠ 보류) — 정상 기사는 걸리지 않는다.
 const BLOCKED_STATUS = ["발행보류", "보류"];
 
+/**
+ * 광고주 slug 화이트리스트 — src/lib/partners.ts 를 읽어 만든다.
+ * 오타(bcmobilty 등)를 빌드에서 잡지 못하면 "광고인데 광고 표시가 안 붙은 기사"가
+ * 그대로 나간다. 그건 표시 누락이라 광고자율규약 위반이다 → 반드시 실패시킨다.
+ */
+const PARTNER_SLUGS = (() => {
+  try {
+    const src = readFileSync(join(ROOT, "src", "lib", "partners.ts"), "utf8");
+    return new Set([...src.matchAll(/slug:\s*"([^"]+)"/g)].map((m) => m[1]));
+  } catch {
+    return new Set();
+  }
+})();
+
 /** 수집한 오류를 한 번에 보여주고 빌드를 실패시킨다(첫 오류에서 끊지 않아 한 번에 다 고칠 수 있음). */
 function failBuild(errors) {
   console.error(`\n✖ 콘텐츠 빌드 실패 — 기사 ${errors.length}건에 문제가 있습니다:\n`);
@@ -228,6 +242,17 @@ async function run() {
       continue;
     }
 
+    // 광고성 콘텐츠 — frontmatter `sponsor:`(광고주 slug). 없으면 일반 기사다.
+    const sponsor = (fm.sponsor || "").trim();
+    if (sponsor && PARTNER_SLUGS.size && !PARTNER_SLUGS.has(sponsor)) {
+      errors.push(
+        `${file}: sponsor "${sponsor}" 가 src/lib/partners.ts 에 없습니다. ` +
+          `오타면 고치고, 신규 광고주면 partners.ts 에 먼저 추가하세요 ` +
+          `(광고주를 못 찾으면 광고 표시가 붙지 않은 채 발행됩니다).`,
+      );
+      continue;
+    }
+
     articles.push({
       id: slug,
       slug,
@@ -239,6 +264,7 @@ async function run() {
       publishedAt,
       ...(updatedAt && updatedAt > publishedAt ? { updatedAt } : {}),
       ...(correction ? { correction } : {}),
+      ...(sponsor ? { sponsor } : {}),
       imageUrl,
       imageCaption: (fm.imageCaption || "").trim() || undefined,
       tags,

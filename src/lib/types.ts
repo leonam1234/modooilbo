@@ -48,6 +48,17 @@ export interface Article {
     at: string; // ISO 8601 — 정정 반영 시각
     note: string; // 무엇이 틀렸고 무엇을 바로잡았는지(정정 사실과 그 내용)
   };
+  /**
+   * 광고성 콘텐츠일 때 광고주 slug(src/lib/partners.ts 의 Partner.slug).
+   *
+   * ⚠️ 이 값이 있으면 기사가 아니라 **광고**다. 「인터넷신문위원회 광고자율규약」과
+   *    「표시·광고의 공정화에 관한 법률」상 광고임을 독자가 오인하지 않게 표시해야 한다.
+   *    ArticleBody·ArticleCard·목록·JSON-LD가 전부 이 필드를 보고 분기한다.
+   *    표시를 뺄 수 있는 예외는 없다 — 뺄 거면 광고를 받지 말아야 한다.
+   *
+   * 광고계약서 제6조 ③(광고성 콘텐츠에 "광고" 표기)의 이행 수단이다.
+   */
+  sponsor?: string;
   imageUrl: string;
   imageCaption?: string;
   youtubeId?: string; // 영상 기사 = 유튜브 쇼츠 임베드
@@ -71,7 +82,7 @@ export type ArticleCardItem = Pick<
   Article,
   "id" | "slug" | "title" | "summary" | "category" | "author" | "publishedAt" | "imageUrl"
 > &
-  Partial<Pick<Article, "type" | "isBreaking" | "tags">>;
+  Partial<Pick<Article, "type" | "isBreaking" | "tags" | "sponsor">>;
 
 /** /articles-index.json 한 항목 — 카드 렌더 + 제목·태그 검색에 필요한 만큼만 담는다(본문 제외). */
 export type ArticleIndexItem = ArticleCardItem & { tags: string[] };

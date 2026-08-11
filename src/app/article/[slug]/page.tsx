@@ -20,6 +20,8 @@ import { ViewCount } from "@/components/ViewCount";
 import { ImageLightbox } from "@/components/ImageLightbox";
 import { ReadingProgress } from "@/components/ReadingProgress";
 import { ArticleBody, articleSpeechText } from "@/components/ArticleBody";
+import { SponsorBadge, SponsorFooter } from "@/components/SponsorNotice";
+import { PARTNERS } from "@/lib/partners";
 import { ogImageUrl, displayImageUrl } from "@/lib/stock";
 import { getReporterByName } from "@/lib/reporters";
 import { SITE, absoluteUrl } from "@/lib/site";
@@ -107,7 +109,18 @@ export default async function ArticlePage({
 
   const newsArticleLd = {
     "@context": "https://schema.org",
-    "@type": isOpinion ? "OpinionNewsArticle" : "NewsArticle",
+    // ⚠️ 광고성 콘텐츠는 NewsArticle 로 표시하지 않는다. 광고를 기사로 신고하면
+    //    검색엔진에 잘못된 정보를 주는 것이고, 발각 시 사이트 전체 신뢰도에 영향을 준다.
+    //    schema.org 의 Advertisement 로 표시하고 sponsor 를 명시한다.
+    "@type": article.sponsor ? "Advertisement" : isOpinion ? "OpinionNewsArticle" : "NewsArticle",
+    ...(article.sponsor
+      ? {
+          sponsor: {
+            "@type": "Organization",
+            name: PARTNERS.find((p) => p.slug === article.sponsor)?.name ?? article.sponsor,
+          },
+        }
+      : {}),
     mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
     headline: article.title.slice(0, 110),
     description: article.summary,
@@ -187,6 +200,8 @@ export default async function ArticlePage({
             </span>
           </nav>
 
+          {/* 광고성 콘텐츠는 제목보다 먼저 알린다 — 읽기 시작한 뒤 알면 늦다. */}
+          {article.sponsor && <SponsorBadge sponsor={article.sponsor} />}
           <Link
             href={`/${article.category}`}
             className="text-sm font-bold text-signal-600 dark:text-signal-400 hover:text-signal-700"
@@ -274,6 +289,10 @@ export default async function ArticlePage({
           {/* 광고(AdSense 수동 슬롯) — 본문 중간(일반 문단 3개 뒤, 뉴스 관행). 기사당 이 1개만.
               삽입 위치 판단은 본문 구조를 아는 ArticleBody가 한다(짧은 기사는 자동 제외). */}
           <ArticleBody body={article.body} midSlot={<AdSlot placement="article" className="!my-9" />} />
+
+          {/* 본문 끝 고지 — 위 배지를 못 본 독자(본문부터 읽기 시작)를 위한 두 번째 표시.
+              태그·댓글보다 앞에 둔다. 다 읽자마자 무엇을 읽었는지 알아야 한다. */}
+          {article.sponsor && <SponsorFooter sponsor={article.sponsor} />}
 
           <div className="mt-8 flex flex-wrap gap-2">
             {article.tags.map((t) => (

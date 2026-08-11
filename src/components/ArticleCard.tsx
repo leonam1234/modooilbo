@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ArticleCardItem } from "@/lib/types";
+import { SponsorTag } from "@/components/SponsorNotice";
 import { CATEGORY_MAP } from "@/lib/categories";
 import { cn, formatKoreanDateTime, toKstIso } from "@/lib/utils";
 import { PlayIcon } from "./icons";
@@ -94,7 +95,14 @@ function Thumb({
  */
 function BadgeSr({ article }: { article: ArticleCardItem }) {
   const label = typeBadgeLabel(article);
-  return label ? <span className="sr-only">{label} </span> : null;
+  return (
+    <>
+      {/* 광고성 콘텐츠는 목록에서도 표시한다 — 클릭한 뒤 알면 늦다.
+          카드 변형 4종이 모두 이 컴포넌트를 쓰므로 여기 한 곳이면 전부 반영된다. */}
+      {article.sponsor && <SponsorTag className="mr-1.5 align-middle" />}
+      {label ? <span className="sr-only">{label} </span> : null}
+    </>
+  );
 }
 
 export function ArticleCard({
