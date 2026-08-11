@@ -76,7 +76,9 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
     if (email) {
       rules.push({ bucket: await rateBucket("inquiry", "acct", email), limit: 10, windowSecs: 86400 });
     }
-    allowed = await hitRateLimits(env, rules);
+    // ⚠️ nowMs 는 필수 인자다(빠뜨리면 D1 쿼리가 던져 503 으로 떨어진다).
+    //    waitUntil 을 넘겨야 만료 버킷 청소가 응답을 붙잡지 않는다 — 뉴스레터와 같은 규약.
+    allowed = await hitRateLimits(env, rules, Date.now(), ctx.waitUntil?.bind(ctx));
   } catch {
     return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
   }
