@@ -185,9 +185,76 @@ const SOURCE_DESCRIPTOR = new Set([
   "목록", "페이지", "화면", "누리집",
 ]);
 // 한글 기관형 접미사 — 사전에 없는(향후) 레이블도 org-first면 폴백으로 안전하게 뽑기 위함.
-const INST_SUFFIX = /(부|처|청|원|회|공사|공단|센터|위원회|은행|거래소|재단|협회|조합|시|도|군|구|국|단)$/;
+// 관(미술관·박물관·문화회관)·당(국악당)·소(연구소)·교(학교)·실(대통령실)이 빠져 있어
+// "세종문화회관" 같은 정상 기관명이 통째로 드롭됐다(2026-08-13 확인).
+const INST_SUFFIX =
+  /(부|처|청|원|회|공사|공단|센터|위원회|은행|거래소|재단|협회|조합|시|도|군|구|국|단|관|당|소|교|실|사)$/;
 
-/** 출처 레이블에서 기관 명칭 1개를 뽑는다. 못 뽑으면 null(그 항목은 화면에서 제외). */
+/**
+ * 호스트 → 기관명. 레이블이 "근거자료"·"공식 PDF"처럼 기관을 담고 있지 않을 때 URL 로 기관을 특정한다.
+ *
+ * ⚠️ 이 폴백이 없으면 출처 항목이 화면에서 통째로 사라진다. 2026-08-13 기준 796편 중 109편이
+ *    출처를 하나도 못 띄우고 있었다(법령·DART·KBO·MLB·정책브리핑 등 실명 기관인데도).
+ *    출처 표기는 등록 언론사가 뺄 수 없는 항목이므로, 기관을 못 찾으면 드롭이 아니라
+ *    호스트명이라도 노출하는 쪽이 맞다(orgFromUrl 의 마지막 단계).
+ *
+ * 매칭은 호스트 접미사 기준이며, 더 긴 항목이 이긴다(job.alio.go.kr 가 alio.go.kr 보다 우선).
+ */
+const HOST_ORG: Array<[string, string]> = [
+  ["law.go.kr", "국가법령정보센터"],
+  ["dart.fss.or.kr", "금융감독원 전자공시시스템"],
+  ["fss.or.kr", "금융감독원"],
+  ["krx.co.kr", "한국거래소"],
+  ["korea.kr", "정책브리핑"],
+  ["moel.go.kr", "고용노동부"],
+  ["molit.go.kr", "국토교통부"],
+  ["mafra.go.kr", "농림축산식품부"],
+  ["moef.go.kr", "기획재정부"],
+  ["msit.go.kr", "과학기술정보통신부"],
+  ["mohw.go.kr", "보건복지부"],
+  ["mfds.go.kr", "식품의약품안전처"],
+  ["mss.go.kr", "중소벤처기업부"],
+  ["motir.go.kr", "산업통상부"],
+  ["nts.go.kr", "국세청"],
+  ["kdca.go.kr", "질병관리청"],
+  ["customs.go.kr", "관세청"],
+  ["forest.go.kr", "산림청"],
+  ["nfa.go.kr", "소방청"],
+  ["kostat.go.kr", "국가데이터처"],
+  ["bok.or.kr", "한국은행"],
+  ["data.go.kr", "공공데이터포털"],
+  ["g2b.go.kr", "나라장터"],
+  ["bizinfo.go.kr", "기업마당"],
+  ["k-startup.go.kr", "K-Startup"],
+  ["job.alio.go.kr", "JOB-ALIO"],
+  ["alio.go.kr", "알리오"],
+  ["ips.go.kr", "국민비서"],
+  ["kisa.or.kr", "한국인터넷진흥원"],
+  ["hub.kaia.re.kr", "국토교통 기업지원허브"],
+  ["museum.go.kr", "국립중앙박물관"],
+  ["mmca.go.kr", "국립현대미술관"],
+  ["gugak.go.kr", "국립국악원"],
+  ["sejongpac.or.kr", "세종문화회관"],
+  ["sac.or.kr", "예술의전당"],
+  ["tickets.interpark.com", "놀티켓"],
+  ["koreabaseball.com", "KBO"],
+  ["statsapi.mlb.com", "MLB"],
+  ["mlb.com", "MLB"],
+  ["klpga.co.kr", "KLPGA"],
+  ["dhlottery.co.kr", "동행복권"],
+  ["forum.netmarble.com", "넷마블"],
+  ["ent.sbs.co.kr", "SBS"],
+  ["bls.gov", "미국 노동통계국"],
+  ["nasa.gov", "NASA"],
+  ["who.int", "세계보건기구"],
+  ["unicef.org", "유니세프"],
+  ["unesco.org", "유네스코"],
+  ["eur-lex.europa.eu", "EUR-Lex"],
+  ["ec.europa.eu", "유럽연합 집행위원회"],
+  ["europa.eu", "유럽연합"],
+];
+
+/** 출처 레이블에서 기관 명칭 1개를 뽑는다. 못 뽑으면 null(URL 폴백으로 넘어간다). */
 function orgFromLabel(label: string): string | null {
   // 1) 사전 스캔 — 가장 왼쪽(선두 귀속) 표제어 채택, 같은 위치면 더 긴 표제어
   let best: { i: number; len: number; canon: string } | null = null;
@@ -207,6 +274,22 @@ function orgFromLabel(label: string): string | null {
     if (/[가-힣]/.test(tok) && INST_SUFFIX.test(tok)) return tok;
   }
   return null;
+}
+
+/** 레이블에서 기관을 못 뽑았을 때 URL 로 특정한다. 마지막에는 호스트명이라도 돌려준다(드롭 금지). */
+function orgFromUrl(url: string): string | null {
+  let host: string;
+  try {
+    host = new URL(url).hostname.replace(/^www\./, "").toLowerCase();
+  } catch {
+    return null;
+  }
+  let best: [string, string] | null = null;
+  for (const entry of HOST_ORG) {
+    if (host !== entry[0] && !host.endsWith("." + entry[0])) continue;
+    if (best === null || entry[0].length > best[0].length) best = entry;
+  }
+  return best ? best[1] : host || null;
 }
 
 /** 출처 항목 배열 → {기관명, 원문 URL} 배열(URL 없는 항목·기관 미상 항목 제외, 기관 중복 제거). */
@@ -237,7 +320,7 @@ export function sourceLinks(items: string[]): SourceLink[] {
     if (!m) continue; // "최종 확인시각 …", 첨부 파일명 등 URL 없는 줄은 화면 제외
     const url = m[0].replace(/["'.,]+$/, "");
     const label = s.slice(0, m.index).replace(/[:：]\s*$/, "").trim();
-    const org = orgFromLabel(label);
+    const org = orgFromLabel(label) ?? orgFromUrl(url);
     if (!org || seen.has(org)) continue;
     seen.add(org);
     out.push({ org, url });
