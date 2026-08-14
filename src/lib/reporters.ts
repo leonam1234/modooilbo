@@ -29,9 +29,14 @@ export function getReporterByName(name: string): Reporter | undefined {
 
 /**
  * 기자 프로필(/reporter/*) 색인 스위치.
- * 현재 로스터는 데모 단계라 noindex,follow — 실명 기자 체제(실인물·약력 검증) 전환 시 true로 변경하고
- * src/lib/sitemap-parts.ts(구 sitemap.ts는 사이트맵 인덱스화로 삭제됨)에 reporter 엔트리를 추가한 뒤
- * Rich Results Test로 Person/ProfilePage를 검증한다.
- * 절차 상세: wiki/operations/01-trust-eeat.md ⑦.
+ *
+ * 2026-08-14 true 전환 — 위 로스터가 실명 기자 체제로 확정됐다(대표 확인).
+ * 종전 false는 "데모 단계 로스터"를 전제로 한 값이었는데, 그 사이 실명 체제가 됐는데도
+ * 스위치가 남아 있어 **기사 JSON-LD의 author가 noindex 페이지를 가리키는** 상태였다.
+ * 검색엔진 입장에선 저자 신호가 비어 있는 것과 같아 E-E-A-T에 그대로 손해였다.
+ *
+ * 전환과 함께: sitemap-parts.ts가 reporter 엔트리를 싣는다(이 상수로 함께 게이트 —
+ * 되돌릴 때 noindex 페이지가 사이트맵에 남는 드리프트를 원천 차단).
+ * 남은 절차: Rich Results Test로 Person/ProfilePage 검증(절차 wiki/operations/01-trust-eeat.md ⑦).
  */
-export const REPORTER_INDEXABLE = false;
+export const REPORTER_INDEXABLE = true;

@@ -36,7 +36,7 @@ export function reporterMetadata(slug: string, page = 1): Metadata {
     title: page > 1 ? `${base} (${page}페이지)` : base,
     description: `모두일보 ${r.name} ${r.role} — ${r.beat}`,
     alternates: { canonical: path },
-    // 실명 기자 체제 전환 전까지 noindex — lib/reporters.ts의 REPORTER_INDEXABLE로 일괄 해제
+    // 색인 여부는 lib/reporters.ts의 REPORTER_INDEXABLE 하나로 일괄 제어(사이트맵 등재와 같은 스위치)
     ...(REPORTER_INDEXABLE ? {} : { robots: { index: false, follow: true } }),
   };
 }

@@ -2,6 +2,7 @@ import { CATEGORIES, BIZ_CATEGORIES } from "./categories";
 import { ALL_ARTICLES } from "./news";
 import { extraPageNumbers, pageHref } from "./paginate";
 import { getByCategory } from "./queries";
+import { REPORTERS, REPORTER_INDEXABLE } from "./reporters";
 import { SITE } from "./site";
 
 /**
@@ -92,7 +93,26 @@ export function pageEntries(): Entry[] {
     }));
   });
 
-  return [...statics, ...categories];
+  // 기자 프로필(2026-08-14 실명 체제 전환과 함께 등재).
+  // 기사 JSON-LD의 author가 이 URL을 가리키므로, 저자 신호가 실제로 닿으려면 색인 대상이어야 한다.
+  // ⚠️ REPORTER_INDEXABLE 로 함께 게이트한다 — 스위치를 되돌렸을 때 noindex 페이지가
+  //    사이트맵에 남아 있으면 검색엔진에 모순된 신호를 준다(그 드리프트를 구조적으로 차단).
+  const reporters: Entry[] = REPORTER_INDEXABLE
+    ? REPORTERS.flatMap((r) => {
+        const list = ALL_ARTICLES.filter((a) => a.author.name === r.name);
+        const lastmod = latest(list);
+        const base = `/reporter/${r.slug}/`;
+        // 카테고리와 같은 규약 — 1페이지 + 실존하는 2페이지 이상 전부(뒷페이지 크롤 경로 유지).
+        return [1, ...extraPageNumbers(list.length)].map((p) => ({
+          loc: `${SITE.url}${pageHref(base, p)}`,
+          lastmod,
+          changefreq: p === 1 ? "daily" : "weekly",
+          priority: p === 1 ? 0.6 : 0.3,
+        }));
+      })
+    : [];
+
+  return [...statics, ...categories, ...reporters];
 }
 
 export function articleEntries(year: string): Entry[] {
