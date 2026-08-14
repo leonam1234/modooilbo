@@ -10,8 +10,10 @@ export default function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
     <script
       type="application/ld+json"
-      // schema.org 데이터는 빌드타임 상수에서 생성됨
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      // JSON.stringify는 `<`를 이스케이프하지 않는다 — 기사 제목 등에 `</script>`가
+      // 섞이면 스크립트 블록을 탈출한다(외부 원문을 옮겨 적는 파이프라인이라 방심 금물).
+      // < 치환은 JSON 파서에겐 동일한 문자라 구조화 데이터 의미는 그대로다.
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
     />
   );
 }

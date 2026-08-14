@@ -4,7 +4,7 @@ slug: us-july-ppi-flat-goods-down-services-up-2026
 category: world
 author: 김성우 / 국제부 기자
 publishedAt: 2026-08-14 06:25
-tags: [미국, 생산자물가, PPI, 물가, 상품, 서비스, 식품, 에너지, 노동통계국]
+tags: 미국, 생산자물가, PPI, 물가, 상품, 서비스, 식품, 에너지, 노동통계국
 summary: 미국의 7월 최종수요 생산자물가지수가 전월과 사실상 같은 수준을 보인 가운데 상품은 내리고 서비스는 올랐다.
 image: /stock/2026-08-14-us-july-ppi-flat-goods-down-services-up-2026.jpg
 imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.

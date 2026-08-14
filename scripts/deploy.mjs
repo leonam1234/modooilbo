@@ -84,7 +84,8 @@ if (dryRun) {
     console.log("\n⚠ 미커밋 변경이 있습니다 — 실제 실행 시엔 여기서 중단됩니다 (dry-run이라 계속 표시).");
   }
   console.log(`\n[DRY-RUN] 빌드/배포/로그 기록 안 함. 실행될 명령:`);
-  console.log(`  next build`);
+  console.log(`  tsc -p tsconfig.functions.json   (서버 코드 타입 게이트)`);
+  console.log(`  npm run build                    (prebuild 체인 + next build)`);
   console.log(`  wrangler ${deployArgs.join(" ")}\n`);
   process.exit(0);
 }
@@ -98,15 +99,27 @@ if (porcelain) {
   process.exit(1);
 }
 
+// prod는 master에서만 — 피처 브랜치 HEAD가 그대로 프로덕션에 올라가는 사고 방지.
+// (cfBranch만 master로 강제해서는 Cloudflare 라벨만 바뀔 뿐 내용물은 현재 브랜치다.)
+// 의도적으로 다른 브랜치를 올려야 하면 --force-branch 를 명시한다.
+if (isProd && gitBranch !== PROD_BRANCH && !args.includes("--force-branch")) {
+  console.error(`\n✖ prod 배포는 ${PROD_BRANCH} 브랜치에서만 합니다 (현재: ${gitBranch}).`);
+  console.error(`  정말 이 브랜치를 올려야 하면: node scripts/deploy.mjs prod --force-branch\n`);
+  process.exit(1);
+}
+
+// 1-b) 서버 코드 타입 게이트 ──────────────────────────────────
+// functions/는 next build가 타입체크하지 않는다(정적 export + Pages 런타임 로드).
+// esbuild가 타입을 벗겨 배포는 조용히 성공하므로, 여기가 유일한 방어선이다.
+console.log(`\n▶ functions 타입체크 (tsc -p tsconfig.functions.json) ...`);
+execFileSync(join(BIN, "tsc"), ["-p", "tsconfig.functions.json"], { cwd: REPO, stdio: "inherit" });
+
 // 2) 빌드 ─────────────────────────────────────────────────────
-console.log(`\n▶ WebP 변환 (public/stock) ...`);
-execFileSync("node", [join(REPO, "scripts", "convert-webp.mjs")], { cwd: REPO, stdio: "inherit" });
-console.log(`\n▶ 콘텐츠 생성 (content/articles/*.md → data) ...`);
-execFileSync("node", [join(REPO, "scripts", "build-content.mjs")], { cwd: REPO, stdio: "inherit" });
-console.log(`\n▶ 인기태그 데이터 생성 (build-trending-data) ...`);
-execFileSync("node", [join(REPO, "scripts", "build-trending-data.mjs")], { cwd: REPO, stdio: "inherit" });
-console.log(`\n▶ next build ...`);
-execFileSync(join(BIN, "next"), ["build"], { cwd: REPO, stdio: "inherit" });
+// prebuild 체인(convert-webp → build-content → build-trending-data)은 package.json의
+// prebuild 스크립트가 정본이다. 여기 3단계를 따로 복사해 두면 한쪽에만 단계를 추가했을 때
+// `npm run build` 경로와 배포 경로가 조용히 어긋난다 → npm run build 하나로 위임한다.
+console.log(`\n▶ npm run build (prebuild 체인 + next build) ...`);
+execFileSync("npm", ["run", "build"], { cwd: REPO, stdio: "inherit" });
 // R2 롤백 경로: NEXT_PUBLIC_STOCK_BASE="" 로 빌드하면 이미지 URL이 로컬 /stock/ 을 가리킨다.
 // 이때 sync/prune을 그대로 돌리면 out/stock 이 지워져 전량 404가 된다(문서화된 롤백이
 // 실제로는 동작하지 않던 결함). 롤백 빌드에서는 두 단계를 건너뛰어 로컬 서빙을 살린다.

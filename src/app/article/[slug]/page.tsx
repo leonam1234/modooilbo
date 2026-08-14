@@ -111,8 +111,10 @@ export default async function ArticlePage({
     "@context": "https://schema.org",
     // ⚠️ 광고성 콘텐츠는 NewsArticle 로 표시하지 않는다. 광고를 기사로 신고하면
     //    검색엔진에 잘못된 정보를 주는 것이고, 발각 시 사이트 전체 신뢰도에 영향을 준다.
-    //    schema.org 의 Advertisement 로 표시하고 sponsor 를 명시한다.
-    "@type": article.sponsor ? "Advertisement" : isOpinion ? "OpinionNewsArticle" : "NewsArticle",
+    //    AdvertiserContentArticle(Article 하위 타입, 구글 공식 인정)로 표시하고 sponsor 를
+    //    명시한다. 종전의 "Advertisement"는 schema.org에 없는 타입이라 구글이 블록 전체를
+    //    무시했다(2026-08-14 점검에서 발견).
+    "@type": article.sponsor ? "AdvertiserContentArticle" : isOpinion ? "OpinionNewsArticle" : "NewsArticle",
     ...(article.sponsor
       ? {
           sponsor: {

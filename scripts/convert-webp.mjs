@@ -57,7 +57,13 @@ for (const f of jpgs) {
   }
 }
 
-// 매니페스트 = 실제로 webp가 존재하는 jpg 목록 (표시 스왑의 근거)
-const have = jpgs.filter((f) => existsSync(join(STOCK, f.replace(/\.jpg$/, ".webp"))));
+// 매니페스트 = webp **쌍(원본 + -640 썸네일)이 모두** 존재하는 jpg 목록.
+// stock.ts의 thumbImageUrl이 매니페스트만 보고 -640.webp를 참조하므로, 원본만 성공하고
+// 썸네일 변환이 실패한 이미지를 매니페스트에 넣으면 작은 카드가 404를 받는다.
+const have = jpgs.filter(
+  (f) =>
+    existsSync(join(STOCK, f.replace(/\.jpg$/, ".webp"))) &&
+    existsSync(join(STOCK, f.replace(/\.jpg$/, "-640.webp"))),
+);
 writeFileSync(MANIFEST, JSON.stringify(have.sort(), null, 0) + "\n");
 console.log(`[webp] 변환 ${made} · 최신 ${skipped} · 실패 ${failed} · 매니페스트 ${have.length}/${jpgs.length}`);

@@ -49,10 +49,14 @@ const byId = new Map(index.map((a) => [a.id, a]));
 const top = (most.items ?? []).map((x) => byId.get(x.id)).filter(Boolean).slice(0, 5);
 if (top.length < 3) { log("SKIP 기사 부족"); process.exit(0); }
 
+// 기사 제목은 외부 원문에서 옮겨 적는 값이라 신뢰 입력이 아니다 — 메일 HTML에 넣기 전에
+// 반드시 이스케이프한다(functions/_lib/mailer.ts escapeHtml과 같은 규약).
+const escHtml = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
 const listHtml = top
   .map(
     (a, i) =>
-      `<tr><td style="padding:10px 0;border-bottom:1px solid #eee"><span style="font-weight:800;color:#999">${i + 1}</span>&nbsp;&nbsp;<a href="https://modooilbo.com/article/${a.slug}/" style="color:#191919;text-decoration:none;font-weight:600">${a.title}</a></td></tr>`,
+      `<tr><td style="padding:10px 0;border-bottom:1px solid #eee"><span style="font-weight:800;color:#999">${i + 1}</span>&nbsp;&nbsp;<a href="https://modooilbo.com/article/${a.slug}/" style="color:#191919;text-decoration:none;font-weight:600">${escHtml(a.title)}</a></td></tr>`,
   )
   .join("");
 
@@ -77,7 +81,7 @@ for (const to of emails) {
         to,
         from: { email: "no-reply@modooilbo.com", name: "모두일보" },
         replyTo: { email: "help@modooilbo.com" },
-        subject: `[모두일보] 이번 주 가장 많이 읽힌 뉴스 — ${top[0].title.slice(0, 30)}…`,
+        subject: `[모두일보] 이번 주 가장 많이 읽힌 뉴스 — ${String(top[0].title).replace(/[\x00-\x1f\x7f]/g, " ").slice(0, 30)}…`,
         text: top.map((a, i) => `${i + 1}. ${a.title}\nhttps://modooilbo.com/article/${a.slug}/`).join("\n\n") + `\n\n수신거부: ${unsub}`,
         html,
       }),

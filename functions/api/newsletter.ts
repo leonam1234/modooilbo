@@ -64,6 +64,16 @@ function confirmForm(action: string, heading: string, lead: string, button: stri
 
 const homeLink = `<p style="margin-top:24px"><a href="https://modooilbo.com" style="color:#555">모두일보 홈으로</a></p>`;
 
+/** D1 일시 장애용 HTML 안내 — 링크(확인/수신거부) 경로는 JSON이 아니라 페이지를 봐야 한다. */
+function errorPage(): Response {
+  return page(
+    "일시적인 오류",
+    `<h2 style="font-weight:800">일시적인 오류가 발생했습니다</h2>
+     <p style="line-height:1.7;color:#555">잠시 후 다시 시도해 주세요.</p>${homeLink}`,
+    503,
+  );
+}
+
 // ── 구독 신청(확인 메일 발송) ────────────────────────────────────────────────
 async function requestSubscribe(ctx: any, env: Env): Promise<Response> {
   let email = "";
@@ -95,80 +105,91 @@ async function requestSubscribe(ctx: any, env: Env): Promise<Response> {
   }
   if (!allowed) return json({ error: "잠시 후 다시 시도해 주세요." }, 429);
 
-  // 이미 확인된 구독자면 메일을 또 보내지 않는다. 응답은 아래와 동일해서
-  // "이 주소가 구독 중인지"를 응답으로 캐낼 수 없다(구독자 목록 열거 방지).
-  const already = await env.DB.prepare("SELECT 1 FROM newsletter_subs WHERE email = ?1 LIMIT 1")
-    .bind(email)
-    .first();
-  if (already) return json({ ok: true, pending: true });
+  // D1 일시 장애가 Cloudflare 원시 500으로 새 나가지 않게 — 503은 저장소 장애 시에만,
+  // 이메일 값과 무관하게 나므로 구독자 열거 방지(아래 동일 응답 규약)를 깨지 않는다.
+  try {
+    // 이미 확인된 구독자면 메일을 또 보내지 않는다. 응답은 아래와 동일해서
+    // "이 주소가 구독 중인지"를 응답으로 캐낼 수 없다(구독자 목록 열거 방지).
+    const already = await env.DB.prepare("SELECT 1 FROM newsletter_subs WHERE email = ?1 LIMIT 1")
+      .bind(email)
+      .first();
+    if (already) return json({ ok: true, pending: true });
 
-  const token = randHex(32);
-  await env.DB.prepare(
-    `INSERT INTO newsletter_pending (token_hash, email, expires_at)
-     VALUES (?1, ?2, datetime('now','+9 hours', ?3))`,
-  )
-    .bind(await sha256Hex(token), email, `+${CONFIRM_TTL_HOURS} hours`)
-    .run();
+    const token = randHex(32);
+    await env.DB.prepare(
+      `INSERT INTO newsletter_pending (token_hash, email, expires_at)
+       VALUES (?1, ?2, datetime('now','+9 hours', ?3))`,
+    )
+      .bind(await sha256Hex(token), email, `+${CONFIRM_TTL_HOURS} hours`)
+      .run();
 
-  const link = `${new URL(ctx.request.url).origin}/api/newsletter?confirm=${token}`;
-  const sent = await sendMail(env, {
-    to: email,
-    subject: "[모두일보] 뉴스레터 구독 확인",
-    text: `모두일보 뉴스레터 구독 요청을 받았습니다.\n\n아래 링크에서 구독을 확인해 주세요. 확인 전까지는 메일을 보내지 않습니다. 링크는 ${CONFIRM_TTL_HOURS}시간 동안만 유효합니다.\n\n${link}\n\n본인이 요청하지 않았다면 이 메일을 무시하셔도 됩니다. 아무 일도 일어나지 않습니다.\n\n모두일보 드림 · help@modooilbo.com`,
-    html: mailShell(
-      `<p style="line-height:1.7">모두일보 뉴스레터 구독 요청을 받았습니다.<br/>아래 버튼을 눌러 구독을 확인해 주세요. <b>확인 전까지는 메일을 보내지 않습니다.</b> 링크는 <b>${CONFIRM_TTL_HOURS}시간</b> 동안만 유효합니다.</p>
-       ${mailButton(link, "구독 확인하기")}`,
-      `본인이 요청하지 않았다면 이 메일을 무시하셔도 됩니다. 아무 일도 일어나지 않습니다.<br/>모두일보 · help@modooilbo.com`,
-    ),
-  });
-  if (!sent) return json({ error: "확인 메일 발송에 실패했습니다. 잠시 후 다시 시도해 주세요." }, 502);
+    const link = `${new URL(ctx.request.url).origin}/api/newsletter?confirm=${token}`;
+    const sent = await sendMail(env, {
+      to: email,
+      subject: "[모두일보] 뉴스레터 구독 확인",
+      text: `모두일보 뉴스레터 구독 요청을 받았습니다.\n\n아래 링크에서 구독을 확인해 주세요. 확인 전까지는 메일을 보내지 않습니다. 링크는 ${CONFIRM_TTL_HOURS}시간 동안만 유효합니다.\n\n${link}\n\n본인이 요청하지 않았다면 이 메일을 무시하셔도 됩니다. 아무 일도 일어나지 않습니다.\n\n모두일보 드림 · help@modooilbo.com`,
+      html: mailShell(
+        `<p style="line-height:1.7">모두일보 뉴스레터 구독 요청을 받았습니다.<br/>아래 버튼을 눌러 구독을 확인해 주세요. <b>확인 전까지는 메일을 보내지 않습니다.</b> 링크는 <b>${CONFIRM_TTL_HOURS}시간</b> 동안만 유효합니다.</p>
+         ${mailButton(link, "구독 확인하기")}`,
+        `본인이 요청하지 않았다면 이 메일을 무시하셔도 됩니다. 아무 일도 일어나지 않습니다.<br/>모두일보 · help@modooilbo.com`,
+      ),
+    });
+    if (!sent) return json({ error: "확인 메일 발송에 실패했습니다. 잠시 후 다시 시도해 주세요." }, 502);
 
-  // 만료된 대기 토큰 청소(D1엔 TTL이 없다).
-  waitUntil?.(
-    env.DB.prepare("DELETE FROM newsletter_pending WHERE expires_at < datetime('now','+9 hours')")
-      .run()
-      .catch(() => {}),
-  );
-  return json({ ok: true, pending: true });
+    // 만료된 대기 토큰 청소(D1엔 TTL이 없다).
+    waitUntil?.(
+      env.DB.prepare("DELETE FROM newsletter_pending WHERE expires_at < datetime('now','+9 hours')")
+        .run()
+        .catch(() => {}),
+    );
+    return json({ ok: true, pending: true });
+  } catch {
+    return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
+  }
 }
 
 // ── 구독 확인 ────────────────────────────────────────────────────────────────
 async function confirmSubscribe(env: Env, token: string, exec: boolean): Promise<Response> {
   if (!TOKEN_RE.test(token) || !env.DB) return page("잘못된 링크", `<h2>링크가 올바르지 않습니다</h2>${homeLink}`, 400);
 
-  const row = (await env.DB.prepare(
-    "SELECT email FROM newsletter_pending WHERE token_hash = ?1 AND expires_at > datetime('now','+9 hours')",
-  )
-    .bind(await sha256Hex(token))
-    .first()) as { email?: string } | null;
-  if (!row?.email) {
+  // D1 일시 장애가 Cloudflare 원시 500으로 새 나가지 않게 — 메일 링크 경로라 JSON 대신 안내 페이지.
+  try {
+    const row = (await env.DB.prepare(
+      "SELECT email FROM newsletter_pending WHERE token_hash = ?1 AND expires_at > datetime('now','+9 hours')",
+    )
+      .bind(await sha256Hex(token))
+      .first()) as { email?: string } | null;
+    if (!row?.email) {
+      return page(
+        "링크 만료",
+        `<h2 style="font-weight:800">링크가 만료되었거나 이미 사용되었습니다</h2>
+         <p style="line-height:1.7;color:#555">뉴스레터 구독을 원하시면 홈에서 다시 신청해 주세요.</p>${homeLink}`,
+        410,
+      );
+    }
+
+    // GET = 확인 페이지만(상태 변경 금지 — 스캐너가 긁어도 아무 일도 일어나지 않는다).
+    if (!exec) {
+      return confirmForm(
+        `/api/newsletter?confirm=${token}`,
+        "뉴스레터 구독을 확인해 주세요",
+        `<b>${escapeHtml(row.email)}</b> 주소로 모두일보 뉴스레터를 받아보시려면 아래 버튼을 눌러 주세요.`,
+        "구독 확인",
+      );
+    }
+
+    await env.DB.batch([
+      env.DB.prepare("INSERT OR IGNORE INTO newsletter_subs (email) VALUES (?1)").bind(row.email),
+      env.DB.prepare("DELETE FROM newsletter_pending WHERE token_hash = ?1").bind(await sha256Hex(token)),
+    ]);
     return page(
-      "링크 만료",
-      `<h2 style="font-weight:800">링크가 만료되었거나 이미 사용되었습니다</h2>
-       <p style="line-height:1.7;color:#555">뉴스레터 구독을 원하시면 홈에서 다시 신청해 주세요.</p>${homeLink}`,
-      410,
+      "구독 완료",
+      `<h2 style="font-weight:800">뉴스레터 구독이 완료되었습니다</h2>
+       <p style="line-height:1.7;color:#555">매주 월요일 아침, 지난주 가장 많이 읽힌 뉴스를 보내드립니다.<br/>언제든 메일 하단의 수신거부로 해지할 수 있습니다.</p>${homeLink}`,
     );
+  } catch {
+    return errorPage();
   }
-
-  // GET = 확인 페이지만(상태 변경 금지 — 스캐너가 긁어도 아무 일도 일어나지 않는다).
-  if (!exec) {
-    return confirmForm(
-      `/api/newsletter?confirm=${token}`,
-      "뉴스레터 구독을 확인해 주세요",
-      `<b>${escapeHtml(row.email)}</b> 주소로 모두일보 뉴스레터를 받아보시려면 아래 버튼을 눌러 주세요.`,
-      "구독 확인",
-    );
-  }
-
-  await env.DB.batch([
-    env.DB.prepare("INSERT OR IGNORE INTO newsletter_subs (email) VALUES (?1)").bind(row.email),
-    env.DB.prepare("DELETE FROM newsletter_pending WHERE token_hash = ?1").bind(await sha256Hex(token)),
-  ]);
-  return page(
-    "구독 완료",
-    `<h2 style="font-weight:800">뉴스레터 구독이 완료되었습니다</h2>
-     <p style="line-height:1.7;color:#555">매주 월요일 아침, 지난주 가장 많이 읽힌 뉴스를 보내드립니다.<br/>언제든 메일 하단의 수신거부로 해지할 수 있습니다.</p>${homeLink}`,
-  );
 }
 
 // ── 수신거부 ─────────────────────────────────────────────────────────────────
@@ -189,16 +210,21 @@ async function unsubscribe(env: Env, email: string, t: string, exec: boolean): P
     );
   }
 
-  await env.DB.batch([
-    env.DB.prepare("DELETE FROM newsletter_subs WHERE email = ?1").bind(email),
-    env.DB.prepare("DELETE FROM newsletter_pending WHERE email = ?1").bind(email),
-    env.DB.prepare("UPDATE users SET newsletter = 0 WHERE email = ?1").bind(email),
-  ]);
-  return page(
-    "수신거부 완료",
-    `<h2 style="font-weight:800">뉴스레터 수신거부가 완료되었습니다</h2>
-     <p style="line-height:1.7;color:#555">그동안 함께해 주셔서 감사합니다.</p>${homeLink}`,
-  );
+  // D1 일시 장애가 Cloudflare 원시 500으로 새 나가지 않게 — 메일 링크 경로라 JSON 대신 안내 페이지.
+  try {
+    await env.DB.batch([
+      env.DB.prepare("DELETE FROM newsletter_subs WHERE email = ?1").bind(email),
+      env.DB.prepare("DELETE FROM newsletter_pending WHERE email = ?1").bind(email),
+      env.DB.prepare("UPDATE users SET newsletter = 0 WHERE email = ?1").bind(email),
+    ]);
+    return page(
+      "수신거부 완료",
+      `<h2 style="font-weight:800">뉴스레터 수신거부가 완료되었습니다</h2>
+       <p style="line-height:1.7;color:#555">그동안 함께해 주셔서 감사합니다.</p>${homeLink}`,
+    );
+  } catch {
+    return errorPage();
+  }
 }
 
 export async function onRequestGet(ctx: any): Promise<Response> {

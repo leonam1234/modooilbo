@@ -14,7 +14,7 @@
  * 메일만 실패한 건은 inquiries.mail_sent=0 으로 남아 나중에 찾을 수 있다.
  */
 import { json } from "../_lib/auth";
-import { clientIp, hitRateLimits, rateBucket, type RateLimitEnv } from "../_lib/rate-limit";
+import { clientIp, hitRateLimits, rateBucket, type RateLimitEnv, type RateLimitRule } from "../_lib/rate-limit";
 import { escapeHtml, mailShell, sendMail, type MailerEnv } from "../_lib/mailer";
 
 type Env = MailerEnv & RateLimitEnv & { DB?: D1Database };
@@ -29,7 +29,13 @@ type Kind = keyof typeof KINDS;
 
 /** 길이 상한 — 본문만 넉넉히 두고 나머지는 짧게. 초과분은 자른다(거절하지 않는다). */
 const CAP = { title: 200, body: 8000, name: 80, email: 200, phone: 40, category: 80, attachment_name: 260 };
-const cut = (v: unknown, n: number) => String(v ?? "").trim().slice(0, n);
+// 본문 전용 — 개행은 살리고 그 외 제어문자만 제거.
+const cut = (v: unknown, n: number) =>
+  String(v ?? "").replace(/[\x00-\x09\x0b\x0c\x0e-\x1f\x7f]/g, " ").trim().slice(0, n);
+// 한 줄 필드 전용 — 개행·제어문자를 전부 제거한다. 특히 title은 메일 **제목**으로
+// 흘러가므로 CRLF가 남으면 메일 헤더 인젝션 여지가 된다(2026-08-14 점검).
+const cutLine = (v: unknown, n: number) =>
+  String(v ?? "").replace(/[\x00-\x1f\x7f]/g, " ").replace(/\s+/g, " ").trim().slice(0, n);
 
 /**
  * 접수번호 MI-YYYYMMDD-NNNN.
@@ -41,7 +47,7 @@ function makeReceiptNo(): string {
   const kst = new Date(Date.now() + 9 * 60 * 60 * 1000);
   const p = (n: number) => String(n).padStart(2, "0");
   const ymd = `${kst.getUTCFullYear()}${p(kst.getUTCMonth() + 1)}${p(kst.getUTCDate())}`;
-  const rand = String(Math.floor(Math.random() * 10000)).padStart(4, "0");
+  const rand = String(crypto.getRandomValues(new Uint32Array(1))[0] % 10000).padStart(4, "0");
   return `MI-${ymd}-${rand}`;
 }
 
@@ -56,7 +62,7 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
     return json({ error: "요청을 처리하지 못했습니다." }, 400);
   }
 
-  const kind = cut(b.kind, 20) as Kind;
+  const kind = cutLine(b.kind, 20) as Kind;
   if (!(kind in KINDS)) return json({ error: "요청을 처리하지 못했습니다." }, 400);
 
   const body = cut(b.body, CAP.body);
@@ -65,12 +71,12 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
   if (!agree) return json({ error: "개인정보 수집·이용에 동의해 주세요." }, 400);
 
   const ip = clientIp(ctx.request);
-  const email = cut(b.email, CAP.email).toLowerCase();
+  const email = cutLine(b.email, CAP.email).toLowerCase();
 
   // 레이트리밋: IP 축은 항상, 이메일 축은 값이 있을 때만. 뉴스레터와 같은 규약을 쓴다.
   let allowed = true;
   try {
-    const rules = [
+    const rules: RateLimitRule[] = [
       { bucket: await rateBucket("inquiry", "ip", ip), limit: KINDS[kind].limitIp, windowSecs: 3600 },
     ];
     if (email) {
@@ -87,30 +93,41 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
   const rec = {
     receipt_no: makeReceiptNo(),
     kind,
-    category: cut(b.category, CAP.category) || null,
-    title: cut(b.title, CAP.title) || null,
+    category: cutLine(b.category, CAP.category) || null,
+    title: cutLine(b.title, CAP.title) || null,
     body,
-    name: cut(b.name, CAP.name) || null,
+    name: cutLine(b.name, CAP.name) || null,
     email: email || null,
-    phone: cut(b.phone, CAP.phone) || null,
-    attachment_name: cut(b.attachmentName, CAP.attachment_name) || null,
+    phone: cutLine(b.phone, CAP.phone) || null,
+    attachment_name: cutLine(b.attachmentName, CAP.attachment_name) || null,
     client_ip: ip || null,
-    user_agent: cut(ctx.request.headers.get("user-agent"), 300) || null,
+    user_agent: cutLine(ctx.request.headers.get("user-agent"), 300) || null,
   };
 
   // ── 저장이 먼저다. 여기서 실패하면 접수 실패로 알린다.
-  try {
-    await env.DB.prepare(
-      `INSERT INTO inquiries
-         (receipt_no, kind, category, title, body, name, email, phone, attachment_name, client_ip, user_agent)
-       VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)`,
-    )
-      .bind(
-        rec.receipt_no, rec.kind, rec.category, rec.title, rec.body,
-        rec.name, rec.email, rec.phone, rec.attachment_name, rec.client_ip, rec.user_agent,
+  // 접수번호 난수가 일 4자리뿐이라 PK 충돌이 확률적으로 난다(하루 ~100건이면 40%,
+  // 생일 역설). 충돌은 번호를 다시 뽑아 재시도한다 — 사용자에게 503을 돌려줄 일이 아니다.
+  let saved = false;
+  for (let attempt = 0; attempt < 3 && !saved; attempt++) {
+    if (attempt > 0) rec.receipt_no = makeReceiptNo();
+    try {
+      await env.DB.prepare(
+        `INSERT INTO inquiries
+           (receipt_no, kind, category, title, body, name, email, phone, attachment_name, client_ip, user_agent)
+         VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)`,
       )
-      .run();
-  } catch {
+        .bind(
+          rec.receipt_no, rec.kind, rec.category, rec.title, rec.body,
+          rec.name, rec.email, rec.phone, rec.attachment_name, rec.client_ip, rec.user_agent,
+        )
+        .run();
+      saved = true;
+    } catch (e) {
+      // PK 충돌만 재시도, 그 외(D1 장애 등)는 즉시 실패로 알린다.
+      if (!String((e as Error)?.message ?? e).includes("UNIQUE constraint")) break;
+    }
+  }
+  if (!saved) {
     return json({ error: "접수에 실패했습니다. 잠시 후 다시 시도해 주세요." }, 503);
   }
 

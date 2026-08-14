@@ -79,49 +79,55 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   const password = String(b?.password ?? "");
   if (!email || !password) return json({ error: GENERIC }, 400);
 
-  // 시도 제한 — IP축 + 계정축. 비밀번호 검증(PBKDF2 10만회) **전에** 차단해 CPU 소모도 막는다.
-  // 시도 자체를 세고 성공 시 리셋하므로, 정상 사용자는 성공하는 한 절대 걸리지 않는다.
-  const ipBucket = await rateBucket("login", "ip", clientIp(ctx.request));
-  const acctBucket = await rateBucket("login", "acct", email);
-  let allowed: boolean;
+  // D1 일시 장애가 Cloudflare 원시 500으로 새 나가지 않게 — 503은 저장소 장애 시에만,
+  // 계정 존재 여부와 무관하게 나므로 열거 방지(GENERIC 통일 문구)를 깨지 않는다.
   try {
-    allowed = await hitRateLimits(
-      env,
-      [
-        { bucket: ipBucket, limit: MAX_IP_TRIES, windowSecs: WINDOW_SECS },
-        { bucket: acctBucket, limit: MAX_ACCOUNT_TRIES, windowSecs: WINDOW_SECS },
-      ],
-      Date.now(),
-      ctx.waitUntil?.bind(ctx),
+    // 시도 제한 — IP축 + 계정축. 비밀번호 검증(PBKDF2 10만회) **전에** 차단해 CPU 소모도 막는다.
+    // 시도 자체를 세고 성공 시 리셋하므로, 정상 사용자는 성공하는 한 절대 걸리지 않는다.
+    const ipBucket = await rateBucket("login", "ip", clientIp(ctx.request));
+    const acctBucket = await rateBucket("login", "acct", email);
+    let allowed: boolean;
+    try {
+      allowed = await hitRateLimits(
+        env,
+        [
+          { bucket: ipBucket, limit: MAX_IP_TRIES, windowSecs: WINDOW_SECS },
+          { bucket: acctBucket, limit: MAX_ACCOUNT_TRIES, windowSecs: WINDOW_SECS },
+        ],
+        Date.now(),
+        ctx.waitUntil?.bind(ctx),
+      );
+    } catch {
+      // 저장소를 못 쓰면 제한을 못 건다 → 통과시키지 않는다(fail-closed).
+      return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
+    }
+    if (!allowed) return json({ error: TOO_MANY }, 429);
+
+    const user = await env.DB.prepare(
+      "SELECT id, email, name, password_hash, password_salt FROM users WHERE email = ?1",
+    )
+      .bind(email)
+      .first();
+
+    let ok = false;
+    if (user && user.password_hash && user.password_salt) {
+      ok = await verifyPassword(password, user.password_salt, user.password_hash);
+    } else {
+      // 타이밍 사이드채널 제거: 계정이 없거나 비밀번호 미설정(소셜 전용)이어도 더미 검증 수행
+      await verifyPassword(password, DUMMY_SALT, DUMMY_HASH);
+    }
+
+    if (!ok) return json({ error: GENERIC }, 401);
+
+    // ⚠️ **계정축만** 리셋한다. IP축은 절대 리셋하지 않는다 — 아래 주석(2026-07-21) 참조.
+    await resetRateLimit(env, [acctBucket]);
+    const token = await createSession(env, user.id);
+    return json(
+      { user: { name: user.name, email: user.email } },
+      200,
+      { "set-cookie": sessionCookie(token, ctx.request.url) },
     );
   } catch {
-    // 저장소를 못 쓰면 제한을 못 건다 → 통과시키지 않는다(fail-closed).
     return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
   }
-  if (!allowed) return json({ error: TOO_MANY }, 429);
-
-  const user = await env.DB.prepare(
-    "SELECT id, email, name, password_hash, password_salt FROM users WHERE email = ?1",
-  )
-    .bind(email)
-    .first();
-
-  let ok = false;
-  if (user && user.password_hash && user.password_salt) {
-    ok = await verifyPassword(password, user.password_salt, user.password_hash);
-  } else {
-    // 타이밍 사이드채널 제거: 계정이 없거나 비밀번호 미설정(소셜 전용)이어도 더미 검증 수행
-    await verifyPassword(password, DUMMY_SALT, DUMMY_HASH);
-  }
-
-  if (!ok) return json({ error: GENERIC }, 401);
-
-  // ⚠️ **계정축만** 리셋한다. IP축은 절대 리셋하지 않는다 — 아래 주석(2026-07-21) 참조.
-  await resetRateLimit(env, [acctBucket]);
-  const token = await createSession(env, user.id);
-  return json(
-    { user: { name: user.name, email: user.email } },
-    200,
-    { "set-cookie": sessionCookie(token, ctx.request.url) },
-  );
 }

@@ -13,56 +13,66 @@ import { json, getUser, type AuthEnv } from "../_lib/auth";
 export async function onRequestGet(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
   if (!env.DB) return json({ error: "unavailable" }, 503);
-  const me = await getUser(env, ctx.request);
-  const article = new URL(ctx.request.url).searchParams.get("article");
+  // D1 일시 장애가 Cloudflare 원시 500으로 새 나가지 않게 — comments/index.ts와 같은 규약.
+  try {
+    const me = await getUser(env, ctx.request);
+    const article = new URL(ctx.request.url).searchParams.get("article");
 
-  if (article) {
-    if (!cleanArticleId(article)) return json({ error: "잘못된 요청입니다." }, 400);
-    if (!me) return json({ saved: false });
-    const row = await env.DB.prepare(
-      "SELECT 1 AS x FROM bookmarks WHERE user_id = ?1 AND article_id = ?2",
-    )
-      .bind(me.id, article)
-      .first();
-    return json({ saved: !!row });
+    if (article) {
+      if (!cleanArticleId(article)) return json({ error: "잘못된 요청입니다." }, 400);
+      if (!me) return json({ saved: false });
+      const row = await env.DB.prepare(
+        "SELECT 1 AS x FROM bookmarks WHERE user_id = ?1 AND article_id = ?2",
+      )
+        .bind(me.id, article)
+        .first();
+      return json({ saved: !!row });
+    }
+
+    if (!me) return json({ error: "로그인이 필요합니다." }, 401);
+    const rows = (
+      await env.DB.prepare(
+        "SELECT article_id, created_at FROM bookmarks WHERE user_id = ?1 ORDER BY created_at DESC LIMIT 100",
+      )
+        .bind(me.id)
+        .all()
+    ).results;
+    return json({ items: rows });
+  } catch {
+    return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
   }
-
-  if (!me) return json({ error: "로그인이 필요합니다." }, 401);
-  const rows = (
-    await env.DB.prepare(
-      "SELECT article_id, created_at FROM bookmarks WHERE user_id = ?1 ORDER BY created_at DESC LIMIT 100",
-    )
-      .bind(me.id)
-      .all()
-  ).results;
-  return json({ items: rows });
 }
 
 export async function onRequestPost(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
   if (!env.DB) return json({ error: "unavailable" }, 503);
-  const me = await getUser(env, ctx.request);
-  if (!me) return json({ error: "로그인이 필요합니다." }, 401);
-
-  let article = "";
+  // D1 일시 장애가 Cloudflare 원시 500으로 새 나가지 않게(GET과 같은 규약).
   try {
-    article = String((await ctx.request.json())?.article || "");
+    const me = await getUser(env, ctx.request);
+    if (!me) return json({ error: "로그인이 필요합니다." }, 401);
+
+    let article = "";
+    try {
+      article = String((await ctx.request.json())?.article || "");
+    } catch {
+      /* noop */
+    }
+    if (!cleanArticleId(article)) return json({ error: "잘못된 요청입니다." }, 400);
+
+    const del = await env.DB.prepare(
+      "DELETE FROM bookmarks WHERE user_id = ?1 AND article_id = ?2",
+    )
+      .bind(me.id, article)
+      .run();
+    if (del.meta && del.meta.changes > 0) return json({ saved: false });
+
+    await env.DB.prepare(
+      "INSERT OR IGNORE INTO bookmarks (user_id, article_id) VALUES (?1, ?2)",
+    )
+      .bind(me.id, article)
+      .run();
+    return json({ saved: true });
   } catch {
-    /* noop */
+    return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
   }
-  if (!cleanArticleId(article)) return json({ error: "잘못된 요청입니다." }, 400);
-
-  const del = await env.DB.prepare(
-    "DELETE FROM bookmarks WHERE user_id = ?1 AND article_id = ?2",
-  )
-    .bind(me.id, article)
-    .run();
-  if (del.meta && del.meta.changes > 0) return json({ saved: false });
-
-  await env.DB.prepare(
-    "INSERT OR IGNORE INTO bookmarks (user_id, article_id) VALUES (?1, ?2)",
-  )
-    .bind(me.id, article)
-    .run();
-  return json({ saved: true });
 }

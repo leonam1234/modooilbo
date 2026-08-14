@@ -33,71 +33,76 @@ const REPORT_WINDOW_SECS = 86400;
 export async function onRequestPost(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
   if (!env.DB) return json({ error: "unavailable" }, 503);
-  const me = await getUser(env, ctx.request);
-  if (!me) return json({ error: "로그인이 필요합니다." }, 401);
-
-  let id = "";
+  // D1 일시 장애가 Cloudflare 원시 500으로 새 나가지 않게 — comments/index.ts와 같은 규약.
   try {
-    id = String((await ctx.request.json())?.id || "");
-  } catch {
-    /* noop */
-  }
-  if (!id) return json({ error: "잘못된 요청입니다." }, 400);
+    const me = await getUser(env, ctx.request);
+    if (!me) return json({ error: "로그인이 필요합니다." }, 401);
 
-  const c = (await env.DB.prepare(
-    "SELECT user_id, is_deleted, is_hidden FROM comments WHERE id = ?1",
-  )
-    .bind(id)
-    .first()) as any;
-  if (!c || c.is_deleted) return json({ error: "존재하지 않는 댓글입니다." }, 404);
-  if (c.user_id === me.id) return json({ error: "본인 댓글은 신고할 수 없습니다." }, 400);
+    let id = "";
+    try {
+      id = String((await ctx.request.json())?.id || "");
+    } catch {
+      /* noop */
+    }
+    if (!id) return json({ error: "잘못된 요청입니다." }, 400);
 
-  // 이미 신고한 댓글이면 **제한 슬롯을 태우지 않고** 그대로 성공 처리한다.
-  // 신고는 원래 멱등(INSERT OR IGNORE)이라 재요청은 상태를 바꾸지 않는데, 슬롯만 깎으면
-  // 새로고침 후 다시 누른 정상 이용자가 애꿎게 하루 한도를 잃는다(응답은 구 동작과 동일).
-  const already = await env.DB.prepare(
-    "SELECT 1 AS x FROM comment_reports WHERE comment_id = ?1 AND user_id = ?2",
-  )
-    .bind(id, me.id)
-    .first();
-  if (already) return json({ ok: true, hidden: !!c.is_hidden });
+    const c = (await env.DB.prepare(
+      "SELECT user_id, is_deleted, is_hidden FROM comments WHERE id = ?1",
+    )
+      .bind(id)
+      .first()) as any;
+    if (!c || c.is_deleted) return json({ error: "존재하지 않는 댓글입니다." }, 404);
+    if (c.user_id === me.id) return json({ error: "본인 댓글은 신고할 수 없습니다." }, 400);
 
-  // 남용 제한: 회원당 24시간 10건. 형식·권한 검증을 통과한 **새 신고**만 슬롯을 소모한다.
-  // 저장소에 접근할 수 없으면 **거부**한다(fail-closed) — comments/index.ts와 동일 패턴.
-  // 여기서 통과시키면 제한이 없는 것과 같아진다(구 KV 구현의 fail-open 버그가 그 정체였다).
-  let rl;
-  try {
-    rl = await hitRateLimit(
-      env,
-      `report:${me.id}`,
-      REPORT_LIMIT,
-      REPORT_WINDOW_SECS,
-      Date.now(),
-      ctx.waitUntil?.bind(ctx),
-    );
+    // 이미 신고한 댓글이면 **제한 슬롯을 태우지 않고** 그대로 성공 처리한다.
+    // 신고는 원래 멱등(INSERT OR IGNORE)이라 재요청은 상태를 바꾸지 않는데, 슬롯만 깎으면
+    // 새로고침 후 다시 누른 정상 이용자가 애꿎게 하루 한도를 잃는다(응답은 구 동작과 동일).
+    const already = await env.DB.prepare(
+      "SELECT 1 AS x FROM comment_reports WHERE comment_id = ?1 AND user_id = ?2",
+    )
+      .bind(id, me.id)
+      .first();
+    if (already) return json({ ok: true, hidden: !!c.is_hidden });
+
+    // 남용 제한: 회원당 24시간 10건. 형식·권한 검증을 통과한 **새 신고**만 슬롯을 소모한다.
+    // 저장소에 접근할 수 없으면 **거부**한다(fail-closed) — comments/index.ts와 동일 패턴.
+    // 여기서 통과시키면 제한이 없는 것과 같아진다(구 KV 구현의 fail-open 버그가 그 정체였다).
+    let rl;
+    try {
+      rl = await hitRateLimit(
+        env,
+        `report:${me.id}`,
+        REPORT_LIMIT,
+        REPORT_WINDOW_SECS,
+        Date.now(),
+        ctx.waitUntil?.bind(ctx),
+      );
+    } catch {
+      return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
+    }
+    if (!rl.allowed) {
+      return json({ error: "신고가 너무 많습니다. 잠시 후 다시 시도해 주세요." }, 429);
+    }
+
+    await env.DB.prepare(
+      "INSERT OR IGNORE INTO comment_reports (comment_id, user_id) VALUES (?1, ?2)",
+    )
+      .bind(id, me.id)
+      .run();
+
+    const n = (await env.DB.prepare(
+      "SELECT COUNT(*) AS n FROM comment_reports WHERE comment_id = ?1",
+    )
+      .bind(id)
+      .first()) as any;
+
+    let hidden = !!c.is_hidden;
+    if (!hidden && (n?.n ?? 0) >= HIDE_THRESHOLD) {
+      await env.DB.prepare("UPDATE comments SET is_hidden = 1 WHERE id = ?1").bind(id).run();
+      hidden = true;
+    }
+    return json({ ok: true, hidden });
   } catch {
     return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
   }
-  if (!rl.allowed) {
-    return json({ error: "신고가 너무 많습니다. 잠시 후 다시 시도해 주세요." }, 429);
-  }
-
-  await env.DB.prepare(
-    "INSERT OR IGNORE INTO comment_reports (comment_id, user_id) VALUES (?1, ?2)",
-  )
-    .bind(id, me.id)
-    .run();
-
-  const n = (await env.DB.prepare(
-    "SELECT COUNT(*) AS n FROM comment_reports WHERE comment_id = ?1",
-  )
-    .bind(id)
-    .first()) as any;
-
-  let hidden = !!c.is_hidden;
-  if (!hidden && (n?.n ?? 0) >= HIDE_THRESHOLD) {
-    await env.DB.prepare("UPDATE comments SET is_hidden = 1 WHERE id = ?1").bind(id).run();
-    hidden = true;
-  }
-  return json({ ok: true, hidden });
 }

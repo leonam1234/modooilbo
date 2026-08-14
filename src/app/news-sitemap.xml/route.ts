@@ -22,8 +22,9 @@ export function GET() {
   //    통째로 들어와 색인 목적에도 부족함이 없다.
   const newest = sorted.length ? new Date(sorted[0].publishedAt).getTime() : 0;
   const WINDOW = 24 * 60 * 60 * 1000;
-  const recent = sorted.filter((a) => newest - new Date(a.publishedAt).getTime() <= WINDOW);
-  const picked = recent.length >= 10 ? recent : sorted.slice(0, Math.min(10, sorted.length));
+  // ⚠️ 창 안에 기사가 적다고 오래된 기사로 채우지 않는다(종전 slice(0,10) 폴백 제거 —
+  //    발행이 이틀 멈추면 "최근 2일" 규격을 깨는 사이트맵이 서빙됐다). 빈 urlset도 유효하다.
+  const picked = sorted.filter((a) => newest - new Date(a.publishedAt).getTime() <= WINDOW);
 
   const urls = picked
     .map((a) => {

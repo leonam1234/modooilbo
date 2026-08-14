@@ -10,7 +10,10 @@
   "compilerOptions": {
     // 루트 설정의 증분 빌드정보 파일과 충돌하지 않게(그리고 잔여 파일을 남기지 않게) 끈다.
     "incremental": false,
-    "noEmit": true
+    "noEmit": true,
+    // Workers 런타임 전역 타입(D1Database·PagesFunction 등) — 없으면 inquiry.ts처럼
+    // 이 타입을 쓰는 파일이 전부 컴파일 에러라 lint:functions 게이트가 상시 빨간불이 된다.
+    "types": ["@cloudflare/workers-types"]
   },
   "include": ["functions/**/*.ts"],
   "exclude": ["node_modules"]

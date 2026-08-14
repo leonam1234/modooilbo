@@ -58,61 +58,67 @@ export async function onRequestPost(ctx: any): Promise<Response> {
     return json({ error: "이메일 주소를 확인해 주세요." }, 400);
   }
 
-  // 합성 이메일(소셜 전용)은 수신 불가 — 존재 노출 없이 조용히 ok
-  const ok = json({ ok: true });
-  if (isReservedEmail(email)) return ok;
-
-  // 남용 방지: IP당 15분 5회 + 이메일당 15분 3회 (초과해도 표면상 동일 응답 = ok).
-  // 계정 조회보다 **먼저** — 차단 응답이 계정 존재 여부와 무관해야 한다(열거 방지).
-  let allowed: boolean;
+  // D1 일시 장애가 Cloudflare 원시 500으로 새 나가지 않게 — 503은 저장소 장애 시에만,
+  // 이메일 값과 무관하게 나므로 "항상 ok" 열거 방지를 깨지 않는다(위 레이트리밋 503과 같은 규약).
   try {
-    allowed = await hitRateLimits(
-      env,
-      [
-        { bucket: await rateBucket("reset", "ip", clientIp(ctx.request)), limit: MAX_IP_TRIES, windowSecs: WINDOW_SECS },
-        { bucket: await rateBucket("reset", "acct", email), limit: MAX_EMAIL_TRIES, windowSecs: WINDOW_SECS },
-      ],
-      Date.now(),
-      ctx.waitUntil?.bind(ctx),
-    );
-  } catch {
-    // 저장소를 못 쓰면 제한을 못 건다 → 메일을 보내지 않는다(fail-closed).
-    // 503은 이메일 값과 무관하게 나므로 존재 여부를 노출하지 않는다.
-    return json({ error: "unavailable" }, 503);
-  }
-  if (!allowed) return ok;
+    // 합성 이메일(소셜 전용)은 수신 불가 — 존재 노출 없이 조용히 ok
+    const ok = json({ ok: true });
+    if (isReservedEmail(email)) return ok;
 
-  const user = (await env.DB.prepare("SELECT id, name FROM users WHERE email = ?1").bind(email).first()) as any;
-  if (!user) return ok;
+    // 남용 방지: IP당 15분 5회 + 이메일당 15분 3회 (초과해도 표면상 동일 응답 = ok).
+    // 계정 조회보다 **먼저** — 차단 응답이 계정 존재 여부와 무관해야 한다(열거 방지).
+    let allowed: boolean;
+    try {
+      allowed = await hitRateLimits(
+        env,
+        [
+          { bucket: await rateBucket("reset", "ip", clientIp(ctx.request)), limit: MAX_IP_TRIES, windowSecs: WINDOW_SECS },
+          { bucket: await rateBucket("reset", "acct", email), limit: MAX_EMAIL_TRIES, windowSecs: WINDOW_SECS },
+        ],
+        Date.now(),
+        ctx.waitUntil?.bind(ctx),
+      );
+    } catch {
+      // 저장소를 못 쓰면 제한을 못 건다 → 메일을 보내지 않는다(fail-closed).
+      // 503은 이메일 값과 무관하게 나므로 존재 여부를 노출하지 않는다.
+      return json({ error: "unavailable" }, 503);
+    }
+    if (!allowed) return ok;
 
-  const token = randHex(32);
-  await env.DB.prepare(
-    "INSERT INTO password_resets (token_hash, user_id, expires_at) VALUES (?1, ?2, datetime('now','+9 hours','+1 hour'))",
-  )
-    .bind(await sha256Hex(token), user.id)
-    .run();
+    const user = (await env.DB.prepare("SELECT id, name FROM users WHERE email = ?1").bind(email).first()) as any;
+    if (!user) return ok;
 
-  // 정리: 이 계정의 **사용됨·만료됨·상한 초과(오래된)** 토큰을 한 문장으로 purge.
-  // D1엔 KV 같은 TTL이 없어 두면 무한히 쌓인다. 살아있는 최신 MAX_LIVE_TOKENS개만 남긴다
-  // → 한 계정이 유효 링크를 무제한 축적하지 못한다(방금 발급한 토큰은 최신이라 항상 살아남는다).
-  // 실패해도 발송은 계속한다(청소는 요청 성패와 무관).
-  try {
+    const token = randHex(32);
     await env.DB.prepare(
-      `DELETE FROM password_resets
-        WHERE user_id = ?1
-          AND token_hash NOT IN (
-            SELECT token_hash FROM password_resets
-             WHERE user_id = ?1 AND used = 0 AND expires_at > datetime('now','+9 hours')
-             ORDER BY created_at DESC, rowid DESC
-             LIMIT ?2)`,
+      "INSERT INTO password_resets (token_hash, user_id, expires_at) VALUES (?1, ?2, datetime('now','+9 hours','+1 hour'))",
     )
-      .bind(user.id, MAX_LIVE_TOKENS)
+      .bind(await sha256Hex(token), user.id)
       .run();
-  } catch {
-    /* noop */
-  }
 
-  const link = `${new URL(ctx.request.url).origin}/reset/?token=${token}`;
-  await sendResetMail(env, email, user.name, link);
-  return ok;
+    // 정리: 이 계정의 **사용됨·만료됨·상한 초과(오래된)** 토큰을 한 문장으로 purge.
+    // D1엔 KV 같은 TTL이 없어 두면 무한히 쌓인다. 살아있는 최신 MAX_LIVE_TOKENS개만 남긴다
+    // → 한 계정이 유효 링크를 무제한 축적하지 못한다(방금 발급한 토큰은 최신이라 항상 살아남는다).
+    // 실패해도 발송은 계속한다(청소는 요청 성패와 무관).
+    try {
+      await env.DB.prepare(
+        `DELETE FROM password_resets
+          WHERE user_id = ?1
+            AND token_hash NOT IN (
+              SELECT token_hash FROM password_resets
+               WHERE user_id = ?1 AND used = 0 AND expires_at > datetime('now','+9 hours')
+               ORDER BY created_at DESC, rowid DESC
+               LIMIT ?2)`,
+      )
+        .bind(user.id, MAX_LIVE_TOKENS)
+        .run();
+    } catch {
+      /* noop */
+    }
+
+    const link = `${new URL(ctx.request.url).origin}/reset/?token=${token}`;
+    await sendResetMail(env, email, user.name, link);
+    return ok;
+  } catch {
+    return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
+  }
 }

@@ -44642,7 +44642,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "imageUrl": "/stock/2026-08-14-ntok-curious-instruments-aug15-16-2026.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
-      "[국립극장",
+      "국립극장",
       "꾸러기음악회",
       "신기한악기의세계",
       "어린이공연",
@@ -44650,7 +44650,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "하늘극장",
       "악기체험",
       "관객합주",
-      "서울]"
+      "서울"
     ],
     "isBreaking": false,
     "readCount": 0,
@@ -44771,7 +44771,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "imageUrl": "/stock/2026-08-14-sac-red-riding-hood-opera-aug14-16-2026.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
-      "[예술의전당",
+      "예술의전당",
       "어린이오페라",
       "빨간모자와늑대",
       "가족공연",
@@ -44779,7 +44779,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "여름공연",
       "어린이축제",
       "공연정보",
-      "서울]"
+      "서울"
     ],
     "isBreaking": false,
     "readCount": 0,
@@ -44953,7 +44953,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "imageUrl": "/stock/2026-08-14-unesco-esd-session-proposals-aug31-2026.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
-      "[유네스코",
+      "유네스코",
       "지속가능발전교육",
       "ESD",
       "국제회의",
@@ -44961,7 +44961,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "교육",
       "기후행동",
       "세션제안",
-      "공모]"
+      "공모"
     ],
     "isBreaking": false,
     "readCount": 0,
@@ -45038,7 +45038,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "imageUrl": "/stock/2026-08-14-us-july-ppi-flat-goods-down-services-up-2026.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
-      "[미국",
+      "미국",
       "생산자물가",
       "PPI",
       "물가",
@@ -45046,7 +45046,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "서비스",
       "식품",
       "에너지",
-      "노동통계국]"
+      "노동통계국"
     ],
     "isBreaking": false,
     "readCount": 0,

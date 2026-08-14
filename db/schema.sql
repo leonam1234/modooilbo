@@ -284,3 +284,30 @@ CREATE TABLE IF NOT EXISTS pending_signups (
 );
 CREATE INDEX IF NOT EXISTS idx_pending_signups_email ON pending_signups(email, created_at);
 CREATE INDEX IF NOT EXISTS idx_pending_signups_expires ON pending_signups(expires_at);
+
+-- ─────────────────────────────────────────────────────────────────────────────
+-- 제보·문의·채용·광고 접수 (2026-08-11)
+--   증분 마이그레이션 정본: db/migrations/0005_inquiries.sql (원격 적용은 그 파일로).
+--   여기(schema.sql)에도 동일 정의를 두어 전체 스키마의 단일 사본을 유지한다.
+--   (2026-08-14 점검에서 0005만 이 파일에 누락돼 있던 것을 발견해 보충 — 규약 위반이었다.)
+--   접수번호는 서버가 발급(MI-YYYYMMDD-NNNN), 알림 메일 실패해도 접수는 유효(mail_sent=0).
+-- ─────────────────────────────────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS inquiries (
+  receipt_no  TEXT PRIMARY KEY,          -- MI-YYYYMMDD-NNNN. 서버가 발급한다(클라이언트 생성 금지)
+  kind        TEXT NOT NULL,             -- tip | contact | careers | advertise
+  category    TEXT,                      -- 폼별 분류값(제보 유형, 문의 유형, 지원 직군 등)
+  title       TEXT,
+  body        TEXT NOT NULL,
+  name        TEXT,
+  email       TEXT,
+  phone       TEXT,
+  attachment_name TEXT,                  -- 파일명만 기록한다. 실제 업로드는 받지 않는다
+  client_ip   TEXT,
+  user_agent  TEXT,
+  mail_sent   INTEGER NOT NULL DEFAULT 0,-- 알림 메일 발송 성공 여부(0/1). 실패해도 접수는 유효
+  created_at  TEXT NOT NULL DEFAULT (datetime('now','+9 hours'))
+);
+-- 접수함을 최신순으로 훑는 경로
+CREATE INDEX IF NOT EXISTS idx_inquiries_created ON inquiries(created_at DESC);
+-- 유형별로 걸러 보는 경로(제보만, 광고문의만 등)
+CREATE INDEX IF NOT EXISTS idx_inquiries_kind_created ON inquiries(kind, created_at DESC);

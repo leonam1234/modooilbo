@@ -185,6 +185,12 @@ async function run() {
     // 발행 시각(KST). 미래글(예약)은 발행시각 전 빌드에선 게시하지 않는다.
     // (정적 사이트라 그 시각 이후 빌드/배포 때 자동으로 나타남)
     const publishedAt = normDate(fm.publishedAt || fm.date);
+    // 비정형 날짜("2026-8-14" 등)는 normDate가 그대로 통과시켜 Invalid Date가 된다 —
+    // 예약 판정(NaN 비교=false)을 조용히 지나 즉시 발행되고 정렬·표시가 깨지므로 여기서 끊는다.
+    if (Number.isNaN(new Date(publishedAt).getTime())) {
+      errors.push(`${file}: publishedAt 형식 오류("${(fm.publishedAt || fm.date || "").trim()}") — "YYYY-MM-DD HH:MM"(KST)로 적어 주세요.`);
+      continue;
+    }
     if (new Date(publishedAt).getTime() > Date.now() + 9 * 60 * 60 * 1000) {
       console.log(`  ⏳ 예약: ${slug} (${(fm.publishedAt || fm.date || "").trim()} KST) — 발행시각 전이라 건너뜀`);
       continue;
@@ -208,7 +214,9 @@ async function run() {
     }
 
     const [name, role] = (fm.author || "모두일보 / 기자").split("/").map((s) => s.trim());
-    const tags = (fm.tags || "").split(",").map((s) => s.trim()).filter(Boolean);
+    // tags는 콤마 구분 문자열이 규약이지만, YAML 배열 표기(`[a, b]`)로 쓴 기사가 실제로
+    // 들어와 첫/끝 태그에 대괄호가 섞인 채 발행됐다(2026-08-14 점검). 감싼 대괄호는 벗긴다.
+    const tags = (fm.tags || "").replace(/^\[|\]$/g, "").split(",").map((s) => s.trim()).filter(Boolean);
     // 수정 시각(선택). 발행 시각보다 앞서면 무시.
     // ⚠️ updatedAt은 '수정'일 뿐 정정(訂正)이 아니다 — 공식 정정 보도는 아래 correction으로만 표시한다.
     const updatedRaw = (fm.updated || fm.updatedAt || "").trim();
@@ -216,6 +224,10 @@ async function run() {
     const ytRaw = (fm.youtube || fm.youtubeId || "").trim();
     const youtubeId = ytRaw ? (ytRaw.match(/(?:v=|be\/|shorts\/|embed\/)?([A-Za-z0-9_-]{11})(?:[?&#].*)?$/) || [])[1] : undefined;
     const updatedAt = updatedRaw ? normDate(updatedRaw) : undefined;
+    if (updatedAt && Number.isNaN(new Date(updatedAt).getTime())) {
+      errors.push(`${file}: updatedAt 형식 오류("${updatedRaw}") — "YYYY-MM-DD HH:MM"(KST)로 적어 주세요.`);
+      continue;
+    }
 
     // 정정 기록(선택) — 머리표:
     //   correction: <무엇이 틀렸고 무엇을 바로잡았는지>   ← 정정 내용(필수)
@@ -304,9 +316,11 @@ function newestModule(articles) {
   const fingerprint = createHash("sha256");
   // 인덱스에 실리는 필드만 지문에 넣는다 — 본문만 고친 정정 보도로는 캐시를 깨지 않게.
   // (필드 목록은 src/app/articles-index.json/route.ts 와 맞춰 유지할 것)
+  // ⚠️ author는 {name, role} 객체라 문자열로 풀어 넣는다 — 그대로 join하면 항상
+  //    "[object Object]"가 되어 바이라인만 고친 수정이 지문을 못 바꿨다(2026-08-14 점검).
   for (const a of articles) {
     fingerprint.update(
-      [a.id, a.slug, a.title, a.summary, a.category, a.publishedAt, (a.tags ?? []).join(""), a.author, a.imageUrl, a.type, a.isBreaking].join(" "),
+      [a.id, a.slug, a.title, a.summary, a.category, a.publishedAt, (a.tags ?? []).join(""), `${a.author.name}/${a.author.role}`, a.imageUrl, a.type, a.isBreaking].join(" "),
     );
   }
   // 하드코딩 배치(articles.ts·articles2.ts)도 후보에 포함 — 콘텐츠가 비어 있어도 값이 남게.

@@ -44,66 +44,71 @@ function menuForSource(source?: string | null): string {
 export async function onRequestGet(ctx: any): Promise<Response> {
   const env = ctx.env as Env;
   if (!env.DB) return json({ error: "unavailable" }, 503);
-  const gate = await requireAdmin(env, ctx.request);
-  if (gate instanceof Response) return gate;
+  // D1 일시 장애가 Cloudflare 원시 500으로 새 나가지 않게 — comments/index.ts와 같은 규약.
+  try {
+    const gate = await requireAdmin(env, ctx.request);
+    if (gate instanceof Response) return gate;
 
-  const url = new URL(ctx.request.url);
-  const candId = url.searchParams.get("cand_id");
+    const url = new URL(ctx.request.url);
+    const candId = url.searchParams.get("cand_id");
 
-  // 단건 + 이력
-  if (candId) {
-    const cand = await env.DB.prepare(
-      "SELECT * FROM article_candidates WHERE cand_id = ?1",
-    )
-      .bind(candId)
-      .first();
-    if (!cand) return json({ error: "후보를 찾을 수 없습니다." }, 404);
-    const events = (
-      await env.DB.prepare(
-        "SELECT from_status, to_status, actor, note, at FROM candidate_events WHERE cand_id = ?1 ORDER BY id ASC",
+    // 단건 + 이력
+    if (candId) {
+      const cand = await env.DB.prepare(
+        "SELECT * FROM article_candidates WHERE cand_id = ?1",
       )
         .bind(candId)
+        .first();
+      if (!cand) return json({ error: "후보를 찾을 수 없습니다." }, 404);
+      const events = (
+        await env.DB.prepare(
+          "SELECT from_status, to_status, actor, note, at FROM candidate_events WHERE cand_id = ?1 ORDER BY id ASC",
+        )
+          .bind(candId)
+          .all()
+      ).results;
+      return json({ candidate: shapeRow(cand), events });
+    }
+
+    // 목록
+    const status = url.searchParams.get("status");
+    const menu = url.searchParams.get("menu");
+    const limit = clampLimit(url.searchParams.get("limit"));
+
+    const where: string[] = [];
+    const binds: any[] = [];
+    if (status && isValidStatus(status)) {
+      binds.push(status);
+      where.push(`status = ?${binds.length}`);
+    }
+    if (menu) {
+      binds.push(menu);
+      where.push(`menu = ?${binds.length}`);
+    }
+    const whereSql = where.length ? `WHERE ${where.join(" AND ")}` : "";
+    binds.push(limit);
+    const rows = (
+      await env.DB.prepare(
+        `SELECT * FROM article_candidates ${whereSql} ORDER BY score DESC, updated_at DESC LIMIT ?${binds.length}`,
+      )
+        .bind(...binds)
         .all()
     ).results;
-    return json({ candidate: shapeRow(cand), events });
+
+    // 상태 집계(대기열 대시보드용)
+    const countRows = (
+      await env.DB.prepare(
+        "SELECT status, COUNT(*) AS n FROM article_candidates GROUP BY status",
+      ).all()
+    ).results as { status: string; n: number }[];
+    const counts: Record<string, number> = {};
+    for (const s of STATUSES) counts[s] = 0;
+    for (const r of countRows) counts[r.status] = r.n;
+
+    return json({ candidates: rows.map(shapeRow), counts, limit });
+  } catch {
+    return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
   }
-
-  // 목록
-  const status = url.searchParams.get("status");
-  const menu = url.searchParams.get("menu");
-  const limit = clampLimit(url.searchParams.get("limit"));
-
-  const where: string[] = [];
-  const binds: any[] = [];
-  if (status && isValidStatus(status)) {
-    binds.push(status);
-    where.push(`status = ?${binds.length}`);
-  }
-  if (menu) {
-    binds.push(menu);
-    where.push(`menu = ?${binds.length}`);
-  }
-  const whereSql = where.length ? `WHERE ${where.join(" AND ")}` : "";
-  binds.push(limit);
-  const rows = (
-    await env.DB.prepare(
-      `SELECT * FROM article_candidates ${whereSql} ORDER BY score DESC, updated_at DESC LIMIT ?${binds.length}`,
-    )
-      .bind(...binds)
-      .all()
-  ).results;
-
-  // 상태 집계(대기열 대시보드용)
-  const countRows = (
-    await env.DB.prepare(
-      "SELECT status, COUNT(*) AS n FROM article_candidates GROUP BY status",
-    ).all()
-  ).results as { status: string; n: number }[];
-  const counts: Record<string, number> = {};
-  for (const s of STATUSES) counts[s] = 0;
-  for (const r of countRows) counts[r.status] = r.n;
-
-  return json({ candidates: rows.map(shapeRow), counts, limit });
 }
 
 function shapeRow(r: any) {
@@ -120,33 +125,38 @@ function shapeRow(r: any) {
 export async function onRequestPost(ctx: any): Promise<Response> {
   const env = ctx.env as Env;
   if (!env.DB) return json({ error: "unavailable" }, 503);
-  const gate = await requireAdmin(env, ctx.request);
-  if (gate instanceof Response) return gate;
-  const admin = gate; // { id, email, name }
-
-  let payload: any = {};
+  // D1(원천 RAW_DB 포함) 일시 장애가 Cloudflare 원시 500으로 새 나가지 않게(GET과 같은 규약).
   try {
-    payload = await ctx.request.json();
+    const gate = await requireAdmin(env, ctx.request);
+    if (gate instanceof Response) return gate;
+    const admin = gate; // { id, email, name }
+
+    let payload: any = {};
+    try {
+      payload = await ctx.request.json();
+    } catch {
+      return json({ error: "잘못된 요청입니다." }, 400);
+    }
+
+    if (payload?.action === "ingest") {
+      return await ingest(env, admin.email, payload);
+    }
+
+    // 상태 전이
+    const candId = String(payload?.cand_id || "");
+    const to = String(payload?.to || "");
+    if (!candId || !isValidStatus(to)) {
+      return json({ error: "cand_id와 유효한 to(상태)가 필요합니다." }, 400);
+    }
+    const result = await applyTransition(env, candId, to as CandidateStatus, admin.email, {
+      note: payload?.note ? String(payload.note) : undefined,
+      publishedSlug: payload?.publishedSlug ? String(payload.publishedSlug) : undefined,
+    });
+    if (!result.ok) return json({ error: result.error }, 409);
+    return json({ ok: true, cand_id: candId, from: result.from, to: result.to });
   } catch {
-    return json({ error: "잘못된 요청입니다." }, 400);
+    return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
   }
-
-  if (payload?.action === "ingest") {
-    return ingest(env, admin.email, payload);
-  }
-
-  // 상태 전이
-  const candId = String(payload?.cand_id || "");
-  const to = String(payload?.to || "");
-  if (!candId || !isValidStatus(to)) {
-    return json({ error: "cand_id와 유효한 to(상태)가 필요합니다." }, 400);
-  }
-  const result = await applyTransition(env, candId, to as CandidateStatus, admin.email, {
-    note: payload?.note ? String(payload.note) : undefined,
-    publishedSlug: payload?.publishedSlug ? String(payload.publishedSlug) : undefined,
-  });
-  if (!result.ok) return json({ error: result.error }, 409);
-  return json({ ok: true, cand_id: candId, from: result.from, to: result.to });
 }
 
 /**

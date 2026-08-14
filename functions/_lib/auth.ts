@@ -68,11 +68,14 @@ export async function verifyPassword(password: string, salt: string, expectedHex
 export async function createSession(env: AuthEnv, userId: string): Promise<string> {
   const token = randHex(32);
   const tokenHash = await sha256Hex(token);
-  await env.DB.prepare(
-    "INSERT INTO sessions (token_hash, user_id, expires_at) VALUES (?1, ?2, datetime('now','+9 hours', ?3))",
-  )
-    .bind(tokenHash, userId, `+${SESSION_DAYS} days`)
-    .run();
+  // 만료 세션 청소를 발급 시점에 함께 한다(batch라 왕복 1회). 다른 토큰 테이블은 전부
+  // 발급 시 purge 규약이 있는데 sessions만 없어 만료 행이 무한 누적되고 있었다(2026-08-14).
+  await env.DB.batch([
+    env.DB.prepare("DELETE FROM sessions WHERE expires_at <= datetime('now','+9 hours')"),
+    env.DB.prepare(
+      "INSERT INTO sessions (token_hash, user_id, expires_at) VALUES (?1, ?2, datetime('now','+9 hours', ?3))",
+    ).bind(tokenHash, userId, `+${SESSION_DAYS} days`),
+  ]);
   return token;
 }
 

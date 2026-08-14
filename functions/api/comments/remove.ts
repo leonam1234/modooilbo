@@ -7,22 +7,27 @@ import { json, getUser, type AuthEnv } from "../../_lib/auth";
 export async function onRequestPost(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
   if (!env.DB) return json({ error: "unavailable" }, 503);
-  const me = await getUser(env, ctx.request);
-  if (!me) return json({ error: "로그인이 필요합니다." }, 401);
-
-  let id = "";
+  // D1 일시 장애가 Cloudflare 원시 500으로 새 나가지 않게 — comments/index.ts와 같은 규약.
   try {
-    id = String((await ctx.request.json())?.id || "");
-  } catch {
-    /* noop */
-  }
-  if (!id) return json({ error: "잘못된 요청입니다." }, 400);
+    const me = await getUser(env, ctx.request);
+    if (!me) return json({ error: "로그인이 필요합니다." }, 401);
 
-  const r = await env.DB.prepare(
-    "UPDATE comments SET is_deleted = 1, body = '' WHERE id = ?1 AND user_id = ?2 AND is_deleted = 0",
-  )
-    .bind(id, me.id)
-    .run();
-  if (!r.meta || r.meta.changes === 0) return json({ error: "삭제할 수 없는 댓글입니다." }, 404);
-  return json({ ok: true });
+    let id = "";
+    try {
+      id = String((await ctx.request.json())?.id || "");
+    } catch {
+      /* noop */
+    }
+    if (!id) return json({ error: "잘못된 요청입니다." }, 400);
+
+    const r = await env.DB.prepare(
+      "UPDATE comments SET is_deleted = 1, body = '' WHERE id = ?1 AND user_id = ?2 AND is_deleted = 0",
+    )
+      .bind(id, me.id)
+      .run();
+    if (!r.meta || r.meta.changes === 0) return json({ error: "삭제할 수 없는 댓글입니다." }, 404);
+    return json({ ok: true });
+  } catch {
+    return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
+  }
 }

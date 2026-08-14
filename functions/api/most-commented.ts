@@ -3,6 +3,7 @@
  * 삭제·가림 제외 댓글 수 내림차순. KST 10분 버킷 캐시.
  * → { items: [{id, count}] }
  */
+import { json } from "../_lib/auth";
 
 function pad(n: number): string {
   return String(n).padStart(2, "0");
@@ -23,13 +24,19 @@ export async function onRequestGet(ctx: any): Promise<Response> {
   const cached = await cache.match(cacheKey);
   if (cached) return cached;
 
-  const rows = (
-    await env.DB.prepare(
-      `SELECT article_id AS id, COUNT(*) AS count FROM comments
-       WHERE is_deleted = 0 AND is_hidden = 0
-       GROUP BY article_id ORDER BY count DESC, MAX(created_at) DESC LIMIT 8`,
-    ).all()
-  ).results;
+  // D1 일시 장애가 Cloudflare 원시 500으로 새 나가지 않게 — 댓글 API들과 같은 규약.
+  let rows;
+  try {
+    rows = (
+      await env.DB.prepare(
+        `SELECT article_id AS id, COUNT(*) AS count FROM comments
+         WHERE is_deleted = 0 AND is_hidden = 0
+         GROUP BY article_id ORDER BY count DESC, MAX(created_at) DESC LIMIT 8`,
+      ).all()
+    ).results;
+  } catch {
+    return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
+  }
 
   const res = new Response(JSON.stringify({ items: rows }), {
     headers: {

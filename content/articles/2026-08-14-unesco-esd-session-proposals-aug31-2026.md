@@ -4,7 +4,7 @@ slug: unesco-esd-session-proposals-aug31-2026
 category: world
 author: 김성우 / 국제부 기자
 publishedAt: 2026-08-14 06:26
-tags: [유네스코, 지속가능발전교육, ESD, 국제회의, 나이로비, 교육, 기후행동, 세션제안, 공모]
+tags: 유네스코, 지속가능발전교육, ESD, 국제회의, 나이로비, 교육, 기후행동, 세션제안, 공모
 summary: 유네스코가 2027년 지속가능발전교육 세계회의의 주제 세션 공동 기획 제안을 8월 31일까지 받는다.
 image: /stock/2026-08-14-unesco-esd-session-proposals-aug31-2026.jpg
 imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.

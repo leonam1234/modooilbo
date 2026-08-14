@@ -18,10 +18,13 @@
  */
 import { json, getUser, type AuthEnv } from "../../_lib/auth";
 import { hitRateLimit } from "../../_lib/rate-limit";
+import { cleanArticleId } from "../../_lib/article-ids";
 // 댓글 본문은 금칙어 자동 차단 없이 등록(대표님 방침 2026-07-04) — 안내문 + 사후 삭제로 운영. 닉네임 필터는 moderation.ts 유지.
 
 const MAX_BODY = 500;
-const ARTICLE_RE = /^[a-z0-9][a-z0-9-]{0,80}$/i; // 기사 id 형식 — reactions.ts와 동일 규칙
+// 기사 id는 형식 검사가 아니라 실재 화이트리스트(cleanArticleId)를 통과시킨다 —
+// view·reactions·bookmarks와 같은 규약. 형식 검사만으로는 로그인 회원이 실재하지 않는
+// 기사 id로 댓글 행을 영구 축적할 수 있었다(2026-08-14 점검, article-ids.ts 머리말 참조).
 
 // 도배 제한: 같은 회원 15초에 1건. 고정 창이라 창 경계에서 최대 2건까지 붙을 수 있으나
 // (분당 4건 수준) 정상 사용자에겐 걸리지 않고 도배는 확실히 막힌다.
@@ -237,77 +240,87 @@ export async function onRequestGet(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
   if (!env.DB) return json({ error: "unavailable" }, 503);
   const url = new URL(ctx.request.url);
-  const article = url.searchParams.get("article") || "";
-  if (!ARTICLE_RE.test(article)) return json({ error: "article이 필요합니다." }, 400);
+  const article = cleanArticleId(url.searchParams.get("article"));
+  if (!article) return json({ error: "article이 필요합니다." }, 400);
 
-  const me = await getUser(env, ctx.request);
-  const { page, hasMore, nextCursor } = await fetchRoots(
-    env,
-    article,
-    parseLimit(url.searchParams.get("limit")),
-    url.searchParams.get("cursor"),
-  );
-  const data = await buildPage(env, article, me, page, hasMore, nextCursor);
-  return json({ ...data, me: me ? { name: me.name } : null });
+  // D1 일시 장애가 Cloudflare 원시 500으로 새 나가지 않게 — 한국어 JSON으로 일관되게 알린다.
+  try {
+    const me = await getUser(env, ctx.request);
+    const { page, hasMore, nextCursor } = await fetchRoots(
+      env,
+      article,
+      parseLimit(url.searchParams.get("limit")),
+      url.searchParams.get("cursor"),
+    );
+    const data = await buildPage(env, article, me, page, hasMore, nextCursor);
+    return json({ ...data, me: me ? { name: me.name } : null });
+  } catch {
+    return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
+  }
 }
 
 export async function onRequestPost(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
   if (!env.DB) return json({ error: "unavailable" }, 503);
-  const me = await getUser(env, ctx.request);
-  if (!me) return json({ error: "로그인이 필요합니다." }, 401);
-
-  let payload: any = {};
+  // D1 일시 장애가 Cloudflare 원시 500으로 새 나가지 않게(GET과 같은 규약).
   try {
-    payload = await ctx.request.json();
-  } catch {
-    return json({ error: "잘못된 요청입니다." }, 400);
-  }
-  const article = String(payload?.article || "");
-  const body = String(payload?.body || "").trim();
-  const parent = payload?.parent ? String(payload.parent) : null;
-  if (!ARTICLE_RE.test(article)) return json({ error: "잘못된 요청입니다." }, 400);
-  if (!body) return json({ error: "내용을 입력해 주세요." }, 400);
-  if (body.length > MAX_BODY) return json({ error: `댓글은 ${MAX_BODY}자까지 쓸 수 있습니다.` }, 400);
-  if (parent) {
-    const p = (await env.DB.prepare(
-      "SELECT article_id, parent_id, is_deleted FROM comments WHERE id = ?1",
-    )
-      .bind(parent)
-      .first()) as any;
-    if (!p || p.article_id !== article || p.parent_id || p.is_deleted) {
-      return json({ error: "답글을 달 수 없는 댓글입니다." }, 400);
+    const me = await getUser(env, ctx.request);
+    if (!me) return json({ error: "로그인이 필요합니다." }, 401);
+
+    let payload: any = {};
+    try {
+      payload = await ctx.request.json();
+    } catch {
+      return json({ error: "잘못된 요청입니다." }, 400);
     }
-  }
+    const article = cleanArticleId(payload?.article);
+    const body = String(payload?.body || "").trim();
+    const parent = payload?.parent ? String(payload.parent) : null;
+    if (!article) return json({ error: "잘못된 요청입니다." }, 400);
+    if (!body) return json({ error: "내용을 입력해 주세요." }, 400);
+    if (body.length > MAX_BODY) return json({ error: `댓글은 ${MAX_BODY}자까지 쓸 수 있습니다.` }, 400);
+    if (parent) {
+      const p = (await env.DB.prepare(
+        "SELECT article_id, parent_id, is_deleted FROM comments WHERE id = ?1",
+      )
+        .bind(parent)
+        .first()) as any;
+      if (!p || p.article_id !== article || p.parent_id || p.is_deleted) {
+        return json({ error: "답글을 달 수 없는 댓글입니다." }, 400);
+      }
+    }
 
-  // 도배 방지: 같은 회원 15초 1건 (검증 전 실패 요청이 슬롯을 태우지 않게 맨 뒤에서 체크)
-  // 저장소에 접근할 수 없으면 **거부**한다 — 구 KV 구현은 여기서 조용히 통과시켰다(fail-open).
-  let rl;
-  try {
-    rl = await hitRateLimit(env, `comment:${me.id}`, RL_LIMIT, RL_WINDOW_SECS, Date.now(), ctx.waitUntil?.bind(ctx));
+    // 도배 방지: 같은 회원 15초 1건 (검증 전 실패 요청이 슬롯을 태우지 않게 맨 뒤에서 체크)
+    // 저장소에 접근할 수 없으면 **거부**한다 — 구 KV 구현은 여기서 조용히 통과시켰다(fail-open).
+    let rl;
+    try {
+      rl = await hitRateLimit(env, `comment:${me.id}`, RL_LIMIT, RL_WINDOW_SECS, Date.now(), ctx.waitUntil?.bind(ctx));
+    } catch {
+      return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
+    }
+    if (!rl.allowed) {
+      return json({ error: "너무 빠르게 연속 작성할 수 없습니다. 잠시 후 다시 시도해 주세요." }, 429);
+    }
+
+    const id = crypto.randomUUID();
+    await env.DB.prepare(
+      "INSERT INTO comments (id, article_id, user_id, parent_id, body) VALUES (?1, ?2, ?3, ?4, ?5)",
+    )
+      .bind(id, article, me.id, parent, body)
+      .run();
+
+    // 방금 쓴 글이 응답에 반드시 들어가게 한다. 새 원댓글은 최신순 첫 페이지에 항상 잡히지만,
+    // 오래된 원댓글에 단 답글은 그 원댓글이 첫 페이지 밖일 수 있다 → 그 스레드만 따로 끌어와 앞에 붙인다.
+    const { page, hasMore, nextCursor } = await fetchRoots(env, article, DEFAULT_LIMIT, null);
+    const rootId = parent ?? id;
+    let roots = page;
+    if (!page.some((r) => r.id === rootId)) {
+      const root = await fetchRootById(env, article, rootId);
+      if (root) roots = [root, ...page];
+    }
+    const data = await buildPage(env, article, me, roots, hasMore, nextCursor);
+    return json({ ...data, me: { name: me.name }, created: id }, 201);
   } catch {
     return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
   }
-  if (!rl.allowed) {
-    return json({ error: "너무 빠르게 연속 작성할 수 없습니다. 잠시 후 다시 시도해 주세요." }, 429);
-  }
-
-  const id = crypto.randomUUID();
-  await env.DB.prepare(
-    "INSERT INTO comments (id, article_id, user_id, parent_id, body) VALUES (?1, ?2, ?3, ?4, ?5)",
-  )
-    .bind(id, article, me.id, parent, body)
-    .run();
-
-  // 방금 쓴 글이 응답에 반드시 들어가게 한다. 새 원댓글은 최신순 첫 페이지에 항상 잡히지만,
-  // 오래된 원댓글에 단 답글은 그 원댓글이 첫 페이지 밖일 수 있다 → 그 스레드만 따로 끌어와 앞에 붙인다.
-  const { page, hasMore, nextCursor } = await fetchRoots(env, article, DEFAULT_LIMIT, null);
-  const rootId = parent ?? id;
-  let roots = page;
-  if (!page.some((r) => r.id === rootId)) {
-    const root = await fetchRootById(env, article, rootId);
-    if (root) roots = [root, ...page];
-  }
-  const data = await buildPage(env, article, me, roots, hasMore, nextCursor);
-  return json({ ...data, me: { name: me.name }, created: id }, 201);
 }
