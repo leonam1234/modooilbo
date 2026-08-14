@@ -47,14 +47,19 @@
 | **Google News** | Publisher Center 등록 + News sitemap 제출 | `news-sitemap.xml` 이미 생성됨(`src/app/news-sitemap.xml/route.ts`) → 바로 활용 |
 | **네이버 RSS** | RSS 제출 | `rss.xml` 존재(dc:creator/enclosure 보강됨) |
 
-### 현재 상태
-- `google`/`naver-site-verification` 토큰은 `src/app/layout.tsx`에 이미 존재.
-- news-sitemap·RSS 준비 완료. **남은 건 운영측 등록 절차**(코드 아님).
+### 현재 상태 (2026-08-14 갱신)
+- `google`/`naver-site-verification` 토큰은 `src/app/layout.tsx`에 이미 존재(라이브 실측 확인).
+- news-sitemap·RSS 준비 완료. IndexNow는 prod 배포마다 자동 통지(`scripts/ping-indexnow.mjs`).
+- **네이버·다음 등록 완료**(대표 진행). 남은 것은 Google Publisher Center 등록.
+- ⚠️ Google News는 2019-12부터 **신청·승인제가 아니라 자동 색인**이다. Publisher Center는
+  노출 자격을 얻는 창구가 아니라 발행처명·로고 등 표시 방식을 관리하는 곳 → 우선순위는 네이버/다음보다 낮다.
+  지금 더 중요한 것은 **서치콘솔·서치어드바이저의 색인 리포트 확인**(색인 자체가 안 되는지,
+  색인은 되는데 순위가 안 나오는지에 따라 처방이 완전히 갈린다).
 
 ### 완료 기준 ✅
-- [ ] 네이버 서치어드바이저 sitemap·RSS 제출, CP 신청
-- [ ] Google News Publisher Center 등록·news-sitemap 제출
-- [ ] 다음 검색·뉴스 제휴 신청
+- [x] 네이버 서치어드바이저 sitemap·RSS 제출 (2026-08-14) — CP 심사는 발행이력 누적 후 재신청 대상
+- [ ] Google News Publisher Center 등록 (https://publishercenter.google.com · 로고 1000×1000 정사각형 + 가로형 필요)
+- [x] 다음 검색등록 신청 (2026-08-14)
 
 ### 위험
 - 제휴 심사는 **실제 발행 이력·등록증**을 요구 → A(CMS)·C(법적등록) 선행 필요.

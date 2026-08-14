@@ -24,13 +24,15 @@
 5. **쿼리**: `getByAuthor(slug, n?)`를 `lib/queries.ts`에 추가(단일 출처 원칙).
 
 ### 완료 기준 ✅
-- [ ] `/reporter/<slug>/` 정적 생성·자기경로 canonical (sitemap 등재는 REPORTER_INDEXABLE=true 전환 시 — ⑦ 참조)
-- [ ] ProfilePage+Person JSON-LD, 기사 author.url이 프로필로 연결
-- [ ] 바이라인 클릭→프로필, 프로필→기자 기사 목록
-- [ ] Rich Results Test 통과
+- [x] `/reporter/<slug>/` 정적 생성·자기경로 canonical + **sitemap 등재**(2026-08-14, 33 URL — 6명 × 1페이지 + 실존 뒷페이지)
+- [x] ProfilePage+Person JSON-LD, 기사 author.url이 프로필로 연결 (라이브 실측 확인)
+- [x] 바이라인 클릭→프로필, 프로필→기자 기사 목록
+- [ ] Rich Results Test 통과 — 색인 개방 후 남은 유일한 검증 단계
 
 ### 위험
-- 저자 페이지가 thin(기사 1~2건)이면 색인가치 낮음 — 최소 본문/약력 확보. 가짜 기자(더미)는 색인 전 실인물로 교체.
+- 저자 페이지가 thin(기사 1~2건)이면 색인가치 낮음 — 최소 본문/약력 확보.
+  (2026-08-14 현재 6명 전원 63~254건 보유 → thin 문제 없음. 다만 프로필 본문이 `beat` 한 줄뿐이라
+  약력 보강 여지는 남아 있다. 사실 창작 금지 원칙상 실제 경력만 기재할 것 — `src/lib/reporters.ts` 머리말.)
 
 ---
 
@@ -96,4 +98,6 @@
 - [ ] **실SNS 공식 계정 개설** — 유튜브/X/인스타그램/페이스북/네이버 등. 각 프로필에 modooilbo.com 역링크 기재. 개설 즉시 `src/lib/site.ts`의 `SITE.sameAs`에 전체 URL 추가(추가 전까지 홈 JSON-LD sameAs 필드·Footer SNS는 자동 비노출 — 데드링크 금지 원칙).
 - [ ] **위키데이터 항목 생성** — 법인 설립·정기간행물 등록(현재 자리표시 "서울 아00000" → 실번호) 후 wikidata.org에 신문사 항목 등재(P31=신문, P856=공식 웹사이트). 생성된 Q-ID URL(`https://www.wikidata.org/wiki/Q...`)도 `SITE.sameAs`에 추가.
 - [ ] **구글 지식패널 소유권 신청** — 지식패널 생성 확인 후 'Claim this knowledge panel' 절차로 인증. 공식 SNS 계정 로그인 기반 인증이므로 1번 항목 선행 필수.
-- [ ] **기자 프로필 색인 해제 절차** — 현재 저자가 가상 인물이라 `src/lib/authors.ts`의 `REPORTER_INDEXABLE=false`로 `/reporter/*`는 noindex,follow + sitemap 미등재. 실명 기자 체제(실인물·약력·연락처 검증) 전환 완료 시: ① `REPORTER_INDEXABLE`를 true로 변경(robots noindex 해제), ② `src/app/sitemap.ts`에 reporter 엔트리 추가(getAuthors() 기반, monthly/0.4), ③ Rich Results Test로 Person/ProfilePage 검증.
+- [x] **기자 프로필 색인 개방 완료 (2026-08-14)** — 실명 기자 체제 확정(대표 확인)에 따라 `src/lib/reporters.ts`의 `REPORTER_INDEXABLE`을 true로 전환하고, `src/lib/sitemap-parts.ts`가 reporter 엔트리를 싣도록 했다(1페이지 daily/0.6 · 뒷페이지 weekly/0.3, 같은 상수로 게이트해 되돌릴 때 모순 신호 방지).
+  ⚠️ 이 항목이 **오래 방치돼 실제 손해를 낸 사례**다: 실명 체제로 바뀐 뒤에도 스위치가 데모 단계 값(false)으로 남아, 기사 JSON-LD의 `author.url`이 noindex 페이지를 가리켰다 — 검색엔진에는 저자 신호가 비어 있는 것과 같다. 남은 단계는 Rich Results Test 검증뿐.
+  (경로 표기 정정: 이 항목이 가리키던 `src/lib/authors.ts`·`src/app/sitemap.ts`는 각각 `src/lib/reporters.ts`·`src/lib/sitemap-parts.ts`로 이미 개편돼 있었다.)
