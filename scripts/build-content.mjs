@@ -146,6 +146,10 @@ async function run() {
   const slugs = new Set();
   // 검증 오류는 모아서 마지막에 한 번에 실패시킨다(경고 후 건너뛰기 금지 — 기사가 조용히 사라진다).
   const errors = [];
+  // 예약(미래 발행시각)으로 건너뛴 기사 — 종료 시 요약으로 다시 알린다.
+  // ⚠️ 종전엔 스킵이 로그 한 줄로만 흘러가, 24편 패키지에서 4편이 통째로 빠진 것을
+  //    건수를 세보기 전엔 아무도 몰랐다(2026-08-15). 발행 사고의 직접 원인이다.
+  const scheduled = [];
 
   for (const file of files.sort()) {
     const slug = file.replace(/\.md$/, "");
@@ -193,6 +197,7 @@ async function run() {
     }
     if (new Date(publishedAt).getTime() > Date.now() + 9 * 60 * 60 * 1000) {
       console.log(`  ⏳ 예약: ${slug} (${(fm.publishedAt || fm.date || "").trim()} KST) — 발행시각 전이라 건너뜀`);
+      scheduled.push(`${slug} (${(fm.publishedAt || fm.date || "").trim()} KST)`);
       continue;
     }
 
@@ -294,6 +299,16 @@ async function run() {
 
   writeFileSync(OUT_TS, header() + `export const CONTENT_ARTICLES: Article[] = ${JSON.stringify(articles, null, 2)};\n`);
   console.log(`완료: 콘텐츠 기사 ${articles.length}건 → src/lib/content.generated.ts`);
+
+  // 예약 스킵은 정상 기능이지만 **조용히** 지나가면 안 된다. 발행 담당이 "24편 올렸다"고
+  // 믿는 사이 실제로는 20편만 나가는 사고가 실제로 났다 → 끝에서 눈에 띄게 다시 알린다.
+  if (scheduled.length) {
+    console.warn(`\n⚠️  예약으로 건너뛴 기사 ${scheduled.length}건 — 이번 빌드에 포함되지 않았습니다:`);
+    for (const s of scheduled) console.warn(`    ⏳ ${s}`);
+    console.warn(
+      `    발행시각이 현재보다 미래면 건너뜁니다. 지금 바로 내보내려면 publishedAt을 현재 시각 이하로 낮추세요.\n`,
+    );
+  }
 
   writeFileSync(OUT_NEWEST, newestModule(articles));
   console.log(`완료: 최신 발행시각 → src/lib/newest.generated.ts`);
