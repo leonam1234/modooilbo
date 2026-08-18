@@ -95,6 +95,7 @@ export function TrendingTags() {
                 prefetch={false}
                 key={t}
                 href={`/search?q=${encodeURIComponent(t)}`}
+                rel="nofollow"
                 style={{ animationDelay: `${(i % 5) * 0.35}s` }}
                 className="tw-chip shrink-0 text-sm font-bold text-ink-700 transition-colors hover:text-signal-700 dark:text-ink-200"
               >
@@ -136,6 +137,7 @@ export function TrendingTags() {
                   <Link
                     prefetch={false}
                     href={`/search?q=${encodeURIComponent(t)}`}
+                rel="nofollow"
                     onClick={() => setOpen(false)}
                     style={{ animationDelay: `${(i % 5) * 0.35}s` }}
                     className="tw-chip flex items-baseline gap-2 py-1.5"

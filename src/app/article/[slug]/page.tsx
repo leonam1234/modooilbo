@@ -301,6 +301,10 @@ export default async function ArticlePage({
               <Link
                 key={t}
                 href={`/search?q=${encodeURIComponent(t)}`}
+                // 검색 결과 페이지로 크롤러를 보내지 않는다 — 태그 링크가 기사당 10개씩 쌓여
+                // 산출물에 고유 검색 URL이 6,350개 생기고, 구글이 실제로 1,479개를 크롤해
+                // 크롤 예산을 태웠다(2026-08-18 GSC 확인). robots.txt 차단과 이중 방어.
+                rel="nofollow"
                 className="rounded-full bg-ink-100 px-3 py-1 text-sm text-ink-600 transition-colors hover:bg-signal-50 hover:text-signal-700 dark:bg-ink-800 dark:text-ink-300"
               >
                 #{t}
