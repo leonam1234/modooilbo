@@ -4,6 +4,7 @@ slug: daegu-future-industry-commercialization-50m-2026
 category: grants
 author: 박유주 / 산업부 기자
 publishedAt: 2026-08-01 21:27
+eventEndsAt: 2026-08-14 23:59
 tags: 대구미래신산업, 공동개발, 기술사업화, 맞춤형상용화, 협업개발코디네이션, 기술이전, 기업대응자금, 경북대학교, 시제품, 시험인증, 간접지원, 8월14일
 summary: 대구 사업장과 경북대 연구진 연계 조건을 갖춘 미래신산업 기업은 유형별 3000만원 또는 5000만원 내외의 간접지원을 8월 14일 18시까지 신청할 수 있으며, 선정 뒤 핵심 실적과 5년 성과관리 의무가 따른다.
 image: /stock/2026-08-01-daegu-future-industry-commercialization-50m-2026.jpg

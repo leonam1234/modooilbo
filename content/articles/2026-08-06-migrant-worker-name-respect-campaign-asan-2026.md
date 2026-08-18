@@ -4,6 +4,7 @@ slug: migrant-worker-name-respect-campaign-asan-2026
 category: labor
 author: 유승현 / 사회부 기자
 publishedAt: 2026-08-06 08:20
+eventEndsAt: 2026-08-05 23:59
 tags: 고용노동부, 이주노동자, 노동존중, 직장문화, 외국인근로자, 충청남도, 아산시, 균등처우, 안전모, 노동권익
 summary: 고용노동부와 노동권익재단, 충청남도가 8월 5일 이주노동자를 동등한 동료로 존중하자는 캠페인을 열었다. 별도 지원금이나 신청사업이 아니라 사업장이 바로 적용할 수 있는 호칭·근로조건 점검 활동이다.
 image: /stock/2026-08-06-migrant-worker-name-respect-campaign-asan-2026.jpg

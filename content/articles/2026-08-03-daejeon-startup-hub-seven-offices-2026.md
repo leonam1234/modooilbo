@@ -4,6 +4,7 @@ slug: daejeon-startup-hub-seven-offices-2026
 category: startup
 author: 유승현 / 사회부 기자
 publishedAt: 2026-08-03 08:52
+eventEndsAt: 2026-08-11 23:59
 tags: 대전창업허브, 대전창조경제혁신센터, 창업공간, 예비창업자, 창업7년미만, 소셜벤처, 입주기업, 무료임대료, 스타트업보육, 8월11일마감
 summary: 대전창조경제혁신센터가 창업 7년 미만 기업과 예비창업자를 대상으로 대전창업허브 5인실 7개를 8월 11일 오후 4시까지 모집한다. 임대료는 무료지만 전기료 등 변동관리비는 부담해야 한다.
 image: /stock/2026-08-03-daejeon-startup-hub-seven-offices-2026.jpg

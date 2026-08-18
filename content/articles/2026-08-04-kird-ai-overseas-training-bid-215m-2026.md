@@ -4,6 +4,7 @@ slug: kird-ai-overseas-training-bid-215m-2026
 category: bids
 author: 김영환 / 경제부 기자
 publishedAt: 2026-08-04 10:31
+eventEndsAt: 2026-08-14 23:59
 tags: 국가과학기술인력개발원,KIRD,AI역량강화,해외연수,나라장터,용역입찰,협상계약,여행업,제안서
 summary: 국가과학기술인력개발원이 과학기술인 AI 역량강화 해외연수 기획·운영 용역을 발주했다. 사업예산은 2억1572만9000원이며 제안서와 전자입찰서는 8월 14일 오전 10시까지 받는다.
 image: /stock/2026-08-04-kird-ai-overseas-training-bid-215m-2026.jpg

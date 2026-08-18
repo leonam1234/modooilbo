@@ -3,6 +3,7 @@ title: 자립준비청년 120명 재무상담 모집 안내…공식 마감은 7
 category: society
 author: 유승현 / 사회부 기자
 publishedAt: 2026-07-17 10:46
+eventEndsAt: 2026-07-28 23:59
 tags: 자립준비청년, 재무상담, 금융교육, 자립정착금, 자립수당, 보건복지부, 금융감독원
 summary: 자립준비청년 120명을 선착순 모집해 8월부터 10월까지 전문 재무설계사의 1대1 비대면 상담을 기본 2회 제공하며, 공식 일정은 7월 28일까지다. 7월 17일 08시 43분 KST 신청 링크는 열려 있었지만 잔여석은 표시되지 않았다.
 image: /stock/2026-07-17-youth-self-reliance-financial-counseling.jpg

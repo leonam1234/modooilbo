@@ -4,6 +4,7 @@ slug: kocca-rnd-performance-study-bid-210m-2026
 category: bids
 author: 김영환 / 경제부 기자
 publishedAt: 2026-08-03 09:02
+eventEndsAt: 2026-08-13 23:59
 tags: 나라장터,한국콘텐츠진흥원,문화체육관광,R&D,성과조사,사업평가,용역입찰,협상계약,중소기업
 summary: 한국콘텐츠진흥원이 문화체육관광 연구개발사업 성과조사·분석과 사업평가 대응 용역을 2억1000만원 규모로 발주했다. 가격입찰과 제안서는 8월 13일 오전 11시까지 제출해야 한다.
 image: /stock/2026-08-03-kocca-rnd-performance-study-bid-210m-2026.jpg

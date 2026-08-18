@@ -4,6 +4,7 @@ slug: wald-ensemble-neoclassic-2026
 category: culture
 author: 남동균 / 문화부 기자
 publishedAt: 2026-08-06 08:40
+eventEndsAt: 2026-08-06 23:59
 tags: 발트앙상블, 예술의전당, 콘서트홀, 스트라빈스키, 하이든, 배지혜, 클래식, 실내악, 공연, 예매
 summary: 발트앙상블이 8월 6일 오후 7시 30분 예술의전당 콘서트홀에서 ‘Neoclassic!’을 연다. 스트라빈스키 두 작품 사이에 하이든 첼로 협주곡 1번을 배치한다.
 image: /stock/2026-08-06-wald-ensemble-neoclassic-2026.jpg

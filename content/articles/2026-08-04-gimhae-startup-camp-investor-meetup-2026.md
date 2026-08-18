@@ -4,6 +4,7 @@ slug: gimhae-startup-camp-investor-meetup-2026
 category: startup
 author: 유승현 / 사회부 기자
 publishedAt: 2026-08-04 10:27
+eventEndsAt: 2026-08-04 23:59
 tags: 김해스타트업, 김해창업캠프, 예비창업자, 투자상담, 오픈이노베이션, IR자료, 김해의생명산업진흥원, 창업네트워크, 모집마감확인, 업력기준확인
 summary: 김해의생명산업진흥원이 투자사·대기업 1대1 만남을 포함한 창업캠프 참여기업을 모집한다. 공식 PDF의 마감은 8월 4일·9일로 엇갈리고, 업력은 K-Startup 상단의 7년 미만과 상세·PDF의 7년 이내가 충돌해 신청 전 확인이 필요하다.
 image: /stock/2026-08-04-gimhae-startup-camp-investor-meetup-2026.jpg

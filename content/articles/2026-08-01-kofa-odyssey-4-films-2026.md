@@ -4,6 +4,7 @@ slug: kofa-odyssey-4-films-2026
 category: culture
 author: 남동균 / 문화부 기자
 publishedAt: 2026-08-01 21:35
+eventEndsAt: 2026-08-06 23:59
 tags: 한국영상자료원, 시네마테크KOFA, 오디세이, 트로이, 노스토스, 오형제여어디있는가, 콜드마운틴, 4K리마스터, 영화상영, 서울문화
 summary: 한국영상자료원은 8월 6일부터 14일까지 시네마테크KOFA에서 오디세이에서 영감을 받은 영화 4편을 상영하며, 트로이의 새 4K 리마스터는 국내에서 처음 공개한다.
 image: /stock/2026-08-01-kofa-odyssey-4-films-2026.jpg

@@ -15,6 +15,7 @@ import { ListenButton } from "@/components/ListenButton";
 import { RecentArticles } from "@/components/RecentArticles";
 import { ReactionBar } from "@/components/ReactionBar";
 import { ThreeLineSummary } from "@/components/ThreeLineSummary";
+import { EventEndedNotice } from "@/components/EventEndedNotice";
 import { ViewBeacon } from "@/components/ViewBeacon";
 import { ViewCount } from "@/components/ViewCount";
 import { ImageLightbox } from "@/components/ImageLightbox";
@@ -285,6 +286,9 @@ export default async function ArticlePage({
               <ListenButton text={articleSpeechText(article)} />
             </div>
           )}
+
+          {/* 종료된 행사·접수면 본문 앞에 안내를 띄운다(본문은 원문 그대로 보존). */}
+          <EventEndedNotice endsAt={article.eventEndsAt} />
 
           <ThreeLineSummary lines={getThreeLineSummary(article)} />
 

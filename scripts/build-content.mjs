@@ -229,6 +229,14 @@ async function run() {
     const ytRaw = (fm.youtube || fm.youtubeId || "").trim();
     const youtubeId = ytRaw ? (ytRaw.match(/(?:v=|be\/|shorts\/|embed\/)?([A-Za-z0-9_-]{11})(?:[?&#].*)?$/) || [])[1] : undefined;
     const updatedAt = updatedRaw ? normDate(updatedRaw) : undefined;
+    // 행사·접수 종료 시각(선택) — 지나면 기사 상단에 종료 안내가 붙는다.
+    // 자동 추정하지 않는다(제목 날짜 파싱은 오탐이 난다). 원고가 명시할 때만 쓴다.
+    const eventEndsRaw = (fm.eventEndsAt || fm.eventEnds || "").trim();
+    const eventEndsAt = eventEndsRaw ? normDate(eventEndsRaw) : undefined;
+    if (eventEndsAt && Number.isNaN(new Date(eventEndsAt).getTime())) {
+      errors.push(`${file}: eventEndsAt 형식 오류("${eventEndsRaw}") — "YYYY-MM-DD HH:MM"(KST)로 적어 주세요.`);
+      continue;
+    }
     if (updatedAt && Number.isNaN(new Date(updatedAt).getTime())) {
       errors.push(`${file}: updatedAt 형식 오류("${updatedRaw}") — "YYYY-MM-DD HH:MM"(KST)로 적어 주세요.`);
       continue;
@@ -280,6 +288,7 @@ async function run() {
       author: { name: name || "모두일보", role: role || "기자" },
       publishedAt,
       ...(updatedAt && updatedAt > publishedAt ? { updatedAt } : {}),
+      ...(eventEndsAt ? { eventEndsAt } : {}),
       ...(correction ? { correction } : {}),
       ...(sponsor ? { sponsor } : {}),
       imageUrl,

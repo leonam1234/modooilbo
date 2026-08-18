@@ -4,6 +4,7 @@ slug: work-study-second-application-university-check-editorial
 category: opinion
 author: 유수화 / 논설
 publishedAt: 2026-08-12 06:35
+eventEndsAt: 2026-08-12 23:59
 tags: 국가근로장학금, 한국장학재단, 2학기장학금, 대학생생활비, 근로장학생, 가구원동의, 대학별운영, 신청기간, 학자금지원, 근로기관배정
 summary: 국가근로장학금 2학기 2차 신청은 8월 12일 9시 시작 예정이지만 대학별 운영 여부와 선발·배정 일정은 별도로 확인해야 한다.
 image: /stock/2026-08-12-work-study-second-application-university-check-editorial.jpg

@@ -4,6 +4,7 @@ slug: jangseong-police-elevator-construction-bid-368m-2026
 category: bids
 author: 김영환 / 경제부 기자
 publishedAt: 2026-08-10 07:24
+eventEndsAt: 2026-08-14 23:59
 tags: 나라장터, 전남경찰청, 장성경찰서, 장애인승강기, 건축공사, 소액수의견적, 지역제한, 건축공사업, 전자견적, 공공공사
 summary: 전남경찰청이 부가세 포함 기초금액 3억6846만7000원의 장성경찰서 장애인승강기 공사를 발주해 장성군 등록업체의 전자견적을 8월 14일 10시까지 받는다.
 image: /stock/2026-08-10-jangseong-police-elevator-construction-bid-368m-2026.jpg

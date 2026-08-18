@@ -4,6 +4,7 @@ slug: sme-rnd-top-50-deadline-aug14-2026
 category: grants
 author: 김영환 / 경제부 기자
 publishedAt: 2026-08-09 21:25
+eventEndsAt: 2026-08-14 23:59
 tags: 중소기업 R&D, 우수성과 50선, 중소벤처기업부, 중소기업 지원, SMTECH, 사업화 지원, 프로젝트 보증, 후속 R&D, 신청 마감, 기업 공모
 summary: 중기부가 중소기업 R&D 우수성과 50선 신청을 8월 14일 24시까지 받는다. 선정 혜택은 연계 추천과 우대 중심으로 지원금 확정을 뜻하지 않는다.
 image: /stock/2026-08-09-sme-rnd-top-50-deadline-aug14-2026.jpg

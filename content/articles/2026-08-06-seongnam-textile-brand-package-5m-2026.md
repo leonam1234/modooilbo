@@ -4,6 +4,7 @@ slug: seongnam-textile-brand-package-5m-2026
 category: grants
 author: 김영환 / 경제부 기자
 publishedAt: 2026-08-06 07:05
+eventEndsAt: 2026-08-14 23:59
 tags: 성남,섬유제조,소공인,공동브랜드,사업화지원,마케팅,시제품,인증,지식재산권,소상공인24
 summary: 성남산업진흥원이 상시근로자 10인 미만인 성남 섬유제조 소공인을 대상으로 공동브랜드 사업화 비용을 기업당 최대 500만원까지 지원한다. 20개사 안팎을 모집하며 소상공인24 접수는 8월 14일 오후 4시에 마감한다.
 image: /stock/2026-08-06-seongnam-textile-brand-package-5m-2026.jpg

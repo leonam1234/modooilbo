@@ -4,6 +4,7 @@ slug: k-convergence-global-testing-support-7m5-2026
 category: grants
 author: 박유주 / 산업부 기자
 publishedAt: 2026-08-04 10:30
+eventEndsAt: 2026-08-14 23:59
 tags: K-Convergence,글로벌실증,시험인프라,산업융합,중소기업,중견기업,한국생산기술연구원,기술사업화,해외진출
 summary: K-Convergence 글로벌 지원센터가 해외 진출을 준비하는 산업융합 제품·서비스 기업 2곳 안팎을 모집한다. 지원 규모는 기업당 750만원 안팎이며 접수는 8월 14일까지다.
 image: /stock/2026-08-04-k-convergence-global-testing-support-7m5-2026.jpg

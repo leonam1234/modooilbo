@@ -3,6 +3,7 @@ title: 자부담 0원 에너지 AI 10곳…제조업만, 7월 20일 13시 마감
 category: grants
 author: 박유주 / 산업부 기자
 publishedAt: 2026-07-15 09:54
+eventEndsAt: 2026-07-20 23:59
 tags: 한국남동발전, 에너지AI, 제조업, 중소기업지원, 스마트전력, AI전환
 summary: 한국남동발전은 제조업 중소기업 10곳을 대상으로 기업당 1,500만원 규모의 에너지 AI 솔루션을 전액 지원하는 연장공고를 냈다. 지역 제한은 없고, 신청 마감은 7월 20일 13시다.
 image: /stock/2026-07-15-energy-ai-adoption-support.jpg

@@ -4,6 +4,7 @@ slug: eco-design-prototype-support-20m-2026
 category: grants
 author: 박유주 / 산업부 기자
 publishedAt: 2026-08-02 21:48
+eventEndsAt: 2026-08-05 23:59
 tags: 친환경제품, 에코디자인, 시제품, 설계지원, 한국생산기술연구원, 수출기업, 기업매칭, 8월5일, 중소기업, 중견기업
 summary: 수출 중이거나 수출을 준비하는 중소·중견기업은 친환경제품 설계와 시제품 제작비를 제품별 최대 2000만원까지 신청할 수 있으며, 선정 기업은 총지원금의 20% 이상을 현금으로 부담해야 한다.
 image: /stock/2026-08-02-eco-design-prototype-support-20m-2026.jpg

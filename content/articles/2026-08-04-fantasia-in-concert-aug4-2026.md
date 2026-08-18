@@ -4,6 +4,7 @@ slug: fantasia-in-concert-aug4-2026
 category: culture
 author: 남동균 / 문화부 기자
 publishedAt: 2026-08-04 10:24
+eventEndsAt: 2026-08-04 23:59
 tags: 예술의전당, 판타지아인콘서트, 클래식, 오케스트라, 디토오케스트라, 김성진, 콘서트홀, 가족공연, 공연정보
 summary: ‘디즈니 판타지아 인 콘서트’가 8월 4일 오후 7시 30분 예술의전당 콘서트홀에서 70인조 이상 오케스트라의 라이브 연주로 열렸다.
 image: /stock/2026-08-04-fantasia-in-concert-aug4-2026.jpg

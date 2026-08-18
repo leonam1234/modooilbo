@@ -3,6 +3,7 @@ title: 서울 AI 허브·다우데이타, AI 스타트업 최대 3개사 모집�
 category: startup
 author: 유승현 / 사회부 기자
 publishedAt: 2026-07-24 08:42
+eventEndsAt: 2026-07-31 23:59
 tags: 서울AI허브, 다우데이타, 오픈이노베이션, AI스타트업, 키움페이, 기술실증, PoC, 사업화지원금, AI상품추천, 인챗결제, 데이터수집엔진, 서울스타트업
 summary: 서울 AI 허브가 입주·멤버십 기업을 대상으로 다우데이타와 기술검증을 진행할 인공지능 스타트업을 최대 3개사 모집한다. 선정기업별 사업화 지원금은 최대 1천만원이며 신청은 7월 31일 정오까지다.
 image: /stock/2026-07-24-seoul-ai-hub-daou-3-companies.jpg

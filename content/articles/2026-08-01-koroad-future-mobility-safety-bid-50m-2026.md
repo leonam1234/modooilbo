@@ -4,6 +4,7 @@ slug: koroad-future-mobility-safety-bid-50m-2026
 category: bids
 author: 김영환 / 경제부 기자
 publishedAt: 2026-08-01 21:36
+eventEndsAt: 2026-08-12 23:59
 tags: 나라장터, 한국도로교통공단, 미래모빌리티, 공유모빌리티, 교통안전, 학술연구용역, 제한경쟁, 협상계약, 소기업, 입찰
 summary: 한국도로교통공단이 5000만원 규모의 미래 모빌리티 안전대책 연구 용역을 발주했다. 학술연구용역 등록 등 자격을 갖춘 사업자는 8월 12일 10시까지 제안서와 가격입찰서를 내야 한다.
 image: /stock/2026-08-01-koroad-future-mobility-safety-bid-50m-2026.jpg

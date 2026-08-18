@@ -4,6 +4,7 @@ slug: sema-airborne-exhibition-aug9-2026
 category: culture
 author: 남동균 / 문화부 기자
 publishedAt: 2026-08-03 09:10
+eventEndsAt: 2026-08-09 23:59
 tags: 최은빈, Airborne, 서울시립미술관, 신진미술인, 설치미술, 사운드아트, 무료전시, 영등포전시, 전시일정, 문화생활
 summary: 서울시립미술관 신진미술인 지원 프로그램의 최은빈 개인전 《Airborne》이 영등포 Hall 1에서 8월 9일까지 열린다. 관람료는 무료이고 폐막일 운영시간은 오전 10시부터 오후 5시까지이며 도슨트는 없다.
 image: /stock/2026-08-03-sema-airborne-exhibition-aug9-2026.jpg

@@ -4,6 +4,7 @@ slug: jeonnam-gwangju-food-popup-22m-2026
 category: grants
 author: 김영환 / 경제부 기자
 publishedAt: 2026-08-01 21:33
+eventEndsAt: 2026-08-10 23:59
 tags: 전남광주농수산식품, 팝업스토어, 해외유통, 수출지원, 운영비지원, 마켓테스트, 판매장운영, 전라남도중소기업일자리경제진흥원, 임차비, 홍보비, 사후지급, 8월10일
 summary: 모집규모는 미국·중국·일본·동남아 중 팝업스토어 1개소이며, 신청 대상은 해외 현지 유통경험과 판매장 운영 능력을 보유한 민간 업체다. 지원한도는 2200만원 이내이고 8월 10일 18시 마감한다.
 image: /stock/2026-08-01-jeonnam-gwangju-food-popup-22m-2026.jpg

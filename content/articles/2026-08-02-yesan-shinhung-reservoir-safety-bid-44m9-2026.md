@@ -4,6 +4,7 @@ slug: yesan-shinhung-reservoir-safety-bid-44m9-2026
 category: bids
 author: 김영환 / 경제부 기자
 publishedAt: 2026-08-02 21:50
+eventEndsAt: 2026-08-06 23:59
 tags: 나라장터, 예산군, 신흥소류지, 정밀안전진단, 수리시설, 안전진단전문기관, 수의견적, 아산기업, 예산기업, 8월6일
 summary: 충남 예산군이 4494만6000원 규모의 신흥소류지 정밀안전진단 용역 견적을 받는다. 아산·예산 소재의 종합 또는 수리분야 안전진단전문기관 중 수리분야 정밀안전진단교육 이수 후 해당 분야 점검·진단을 실제 2년 이상 수행한 책임기술자를 보유·선임할 수 있는 업체가 8월 6일 16시까지 참여할 수 있다.
 image: /stock/2026-08-02-yesan-shinhung-reservoir-safety-bid-44m9-2026.jpg

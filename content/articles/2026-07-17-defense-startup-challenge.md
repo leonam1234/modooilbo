@@ -3,6 +3,7 @@ title: 방산 스타트업 챌린지 50개사 안팎 모집…PoC 최대 1억원
 category: startup
 author: 유승현 / 사회부 기자
 publishedAt: 2026-07-17 13:37
+eventEndsAt: 2026-08-04 23:59
 tags: 방산스타트업챌린지, 모두의챌린지방산, 방산스타트업, 민관협력오픈이노베이션, PoC, 시제품, KStartup, 창업기업확인서
 summary: 창업 7년 이내 또는 신산업 분야 10년 이내 중소기업 가운데 43개 협업과제 수행기업 50개사 안팎을 모집한다. PoC·시제품 제작 등에 과제별 최대 1억원을 지원하며, 대표자가 8월 4일 16시까지 직접 신청해야 한다.
 image: /stock/2026-07-17-defense-startup-challenge.jpg

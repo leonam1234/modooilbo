@@ -4,6 +4,7 @@ slug: suwon-nammun-market-open-store-academy-2026
 category: startup
 author: 유승현 / 사회부 기자
 publishedAt: 2026-08-01 21:44
+eventEndsAt: 2026-08-07 23:59
 tags: 수원남문시장, 열어가게, 창업아카데미, 시장창업, 상권분석, 예비창업자, 수원도시재단, 영동시장, 전문가멘토링
 summary: 수원남문시장 안에서 신규 또는 추가 창업을 준비하는 사람을 위한 열어가게 과정이 8월 7일까지 신청을 받는다.
 image: /stock/2026-08-01-suwon-nammun-market-open-store-academy-2026.jpg

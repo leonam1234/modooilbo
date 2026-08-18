@@ -4,6 +4,7 @@ slug: defense-startup-15-companies-150m-aug12-2026
 category: startup
 author: 유승현 / 사회부 기자
 publishedAt: 2026-08-05 15:04
+eventEndsAt: 2026-08-12 23:59
 tags: 중소벤처기업부, 창업진흥원, 방산창업, 창업중심대학, 경상국립대학교, 사업화자금, 신산업창업, KStartup, 자기부담사업비, 8월12일마감, 창업기업
 summary: 중소벤처기업부가 방산 분야 창업기업 15곳 안팎을 모집한다. 사업화자금은 평균 7700만원, 최대 1억5000만원이며 전국의 업력 7년 이내 기업과 신산업 분야 업력 10년 이내 기업이 8월 12일 오후 4시까지 신청할 수 있다.
 image: /stock/2026-08-05-defense-startup-15-companies-150m-aug12-2026.jpg

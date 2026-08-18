@@ -4,6 +4,7 @@ slug: chungbuk-ai-buyer-discovery-50-firms-2026
 category: grants
 author: 박유주 / 산업부 기자
 publishedAt: 2026-08-05 14:39
+eventEndsAt: 2026-08-14 23:59
 tags: 충북,수출지원,바이어발굴,무역데이터,인공지능,중소기업,수출기업,충북지방중소벤처기업청,해외판로
 summary: 충북지방중소벤처기업청이 충북 소재 수출 희망 중소기업 50개사 안팎을 모집한다. 선정기업에는 AI 무역데이터 플랫폼 교육과 3개월 유효 계정, 맞춤형 바이어 컨설팅이 제공되며 접수는 8월 14일까지다.
 image: /stock/2026-08-05-chungbuk-ai-buyer-discovery-50-firms-2026.jpg

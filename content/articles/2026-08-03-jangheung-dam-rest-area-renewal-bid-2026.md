@@ -4,6 +4,7 @@ slug: jangheung-dam-rest-area-renewal-bid-2026
 category: bids
 author: 김영환 / 경제부 기자
 publishedAt: 2026-08-03 08:58
+eventEndsAt: 2026-08-11 23:59
 tags: 나라장터,장흥군,장흥댐,휴게소,리뉴얼,건축공사,지역제한,적격심사,전자입찰
 summary: 장흥군이 장흥댐 휴게소의 특산품 판매시설과 무인카페 등을 개선하는 공사를 발주했다. 기초금액은 11억2322만7090원이며 전자입찰은 8월 11일 오전 10시에 마감한다.
 image: /stock/2026-08-03-jangheung-dam-rest-area-renewal-bid-2026.jpg

@@ -4,6 +4,7 @@ slug: food-machinery-public-evaluation-framework-2026
 category: industry
 author: 박유주 / 산업부 기자
 publishedAt: 2026-08-18 08:32
+eventEndsAt: 2026-08-13 23:59
 tags: 식품가공기계, 성능평가, 위생안전, 표준시험, 스마트HACCP, 농업기계, 식품산업, 공공평가, 농촌진흥청, 기계검정, 제조기업
 summary: 농촌진흥청 사전 보도자료는 8월 13일 오후 2시 관계기관 협의회를 열어 식품가공기계의 성능·위생·안전 평가기술과 표준시험방법을 논의할 예정이라고 안내했다. 이 자료만으로 실제 개최나 논의 결과는 확인되지 않으며 새 인증이나 의무 검정이 시행된 것도 아니다.
 image: /stock/2026-08-18-food-machinery-public-evaluation-framework-2026.jpg

@@ -4,6 +4,7 @@ slug: ktl-radiation-test-smu-bid-98m-2026
 category: bids
 author: 김영환 / 경제부 기자
 publishedAt: 2026-08-04 10:33
+eventEndsAt: 2026-08-14 23:59
 tags: 한국산업기술시험원,KTL,내방사선시험,SMU시스템,전압전류계,나라장터,물품입찰,규격가격동시입찰,소기업
 summary: 한국산업기술시험원이 내방사선 시험용 SMU 시스템 1식 구매 입찰을 진행한다. 배정예산은 9814만2000원이며 규격제안서와 가격입찰서는 8월 14일 오전 10시까지 받는다.
 image: /stock/2026-08-04-ktl-radiation-test-smu-bid-98m-2026.jpg

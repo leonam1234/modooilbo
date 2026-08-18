@@ -4,6 +4,7 @@ slug: g-bio-funding-lab-10-startups-aug14-2026
 category: startup
 author: 유승현 / 사회부 기자
 publishedAt: 2026-08-02 17:07
+eventEndsAt: 2026-08-14 23:59
 tags: 경기바이오, GBioFundingLab, 바이오스타트업, 투자유치, IR고도화, 데모데이, TIPS, 경기도경제과학진흥원, 창업7년이내, 8월14일마감
 summary: 경기도경제과학진흥원이 경기도에 사업 거점을 등록했거나 등록할 예정인 7년 이내 바이오 기술창업자 10개사를 뽑아 기업진단, IR 고도화, 데모데이와 투자연계를 지원한다.
 image: /stock/2026-08-02-g-bio-funding-lab-10-startups-aug14-2026.jpg

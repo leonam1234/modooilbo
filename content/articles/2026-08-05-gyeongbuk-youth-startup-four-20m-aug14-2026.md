@@ -4,6 +4,7 @@ slug: gyeongbuk-youth-startup-four-20m-aug14-2026
 category: startup
 author: 유승현 / 사회부 기자
 publishedAt: 2026-08-05 14:59
+eventEndsAt: 2026-08-14 23:59
 tags: 경상북도경제진흥원, 청년창업, 지역정착, 김천시, 예천군, 울진군, 예비창업자, 사업화자금, 정착활동비, 경북전입, 8월14일마감
 summary: 경상북도경제진흥원이 김천·예천·울진에서 창업할 청년 4명을 추가 모집한다. 1인당 지원 한도는 2000만원이고 이메일 신청은 8월 14일 오후 6시 도착분까지다. 단독 신청은 공고 전일 기준 경북 밖 주소가 원칙이다.
 image: /stock/2026-08-05-gyeongbuk-youth-startup-four-20m-aug14-2026.jpg
