@@ -34,7 +34,7 @@ export const SITE = {
    */
   url: "https://modooilbo.com",
   email: "help@modooilbo.com",
-  tel: "070-7323-1233", // 대표전화 (2026-08-10 변경 — 모두일보 전용 회선)
+  tel: "070-4323-2774", // 대표전화 (2026-08-18 변경 — 구 070-7323-1233 폐지)
   address: "경기도 하남시 하남대로 947 (풍산동, 하남테크노밸리 U1 CENTER) D동 2층 252호",
   addressZip: "12982",
   publisher: "김성우", // 대표이사·발행인(등록증)
