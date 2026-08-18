@@ -4,6 +4,7 @@ slug: knso-falla-three-cornered-hat-2026
 category: culture
 author: 남동균 / 문화부 기자
 publishedAt: 2026-08-07 10:52
+eventEndsAt: 2026-08-07 23:59
 tags: 국립심포니오케스트라, 삼각모자, 파야, 샤브리에, 랄로, 안토니오멘데스, 레티시아모레노, 예술의전당, 클래식, 공연
 summary: 국립심포니오케스트라가 8월 7일 오후 7시 30분 예술의전당 콘서트홀에서 파야의 '삼각모자' 모음곡을 공연한다. 안토니오 멘데스가 지휘하고 레티시아 모레노가 랄로의 '스페인 교향곡'을 협연한다.
 image: /stock/2026-08-07-knso-falla-three-cornered-hat-2026.jpg

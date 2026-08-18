@@ -4,6 +4,7 @@ slug: geneva-youth-day-dialogue-kst-2026
 category: world
 author: 김성우 / 국제부 기자
 publishedAt: 2026-08-11 06:15
+eventEndsAt: 2026-08-12 23:59
 tags: 국제청년의날, 유엔제네바, 청년참여, 세대간대화, 국제기구, 제네바시간, 한국시간, 행사등록
 summary: 유엔 제네바 공식 일정에 따르면 국제 청년의 날 행사는 한국시간 8월 12일 밤 10시부터 11시 30분까지 열린다.
 image: /stock/2026-08-11-geneva-youth-day-dialogue-kst-2026.jpg

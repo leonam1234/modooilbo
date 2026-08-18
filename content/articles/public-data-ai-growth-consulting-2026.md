@@ -3,6 +3,7 @@ title: 현금지원은 아니다…공공데이터·AI 기업 30개사 규모, 1
 category: grants
 author: 박유주 / 산업부 기자
 publishedAt: 2026-07-19 15:24
+eventEndsAt: 2026-08-14 23:59
 tags: 공공데이터AI성장지원, 공공데이터활용기업, AI활용기업, NIA, 예비창업자, AI컨설팅, AIReady, AI서비스고도화, 해외진출
 summary: 행정안전부와 한국지능정보사회진흥원(NIA)이 공공데이터와 AI를 활용한 서비스 기업 또는 예비창업자 30개 안팎을 모집한다. 신청은 2026년 8월 14일 18시까지 이메일로 받으며, 현금 지원이 아니라 창업지원·AI-Ready 구축·AI 서비스 고도화·투자유치 및 해외진출 등 4개 대분류 12개 프로그램 중 기업 상황에 맞춘 컨설팅 지원이다.
 image: /stock/public-data-ai-growth-consulting-2026-main.jpg

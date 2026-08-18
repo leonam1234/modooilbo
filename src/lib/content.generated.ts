@@ -2494,6 +2494,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "경제부 기자"
     },
     "publishedAt": "2026-07-14T10:45:00Z",
+    "eventEndsAt": "2026-07-21T23:59:00Z",
     "imageUrl": "/stock/2026-07-14-kaist-ai-cloud-license.jpg",
     "imageCaption": "국내 GPU 클라우드 운영을 일반화한 무표식 데이터센터 기술팀 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
     "tags": [
@@ -2816,6 +2817,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "경제부 기자"
     },
     "publishedAt": "2026-07-14T11:15:00Z",
+    "eventEndsAt": "2026-07-28T23:59:00Z",
     "imageUrl": "/stock/2026-07-14-seoul-global-marketer-training.jpg",
     "imageCaption": "기업 실무자 교육 프로그램 운영을 일반화한 무표식 강의 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
     "tags": [
@@ -3347,6 +3349,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "경제부 기자"
     },
     "publishedAt": "2026-07-15T10:02:00Z",
+    "eventEndsAt": "2026-07-24T23:59:00Z",
     "imageUrl": "/stock/2026-07-15-daegu-heat-pipeline-survey-bid.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 열수송관 공사 현장 사진이 아니며, 공공측량 용역을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -3415,6 +3418,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "경제부 기자"
     },
     "publishedAt": "2026-07-15T09:58:00Z",
+    "eventEndsAt": "2026-07-24T23:59:00Z",
     "imageUrl": "/stock/2026-07-15-daegu-school-hvac-bid.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 학교 현장 사진이 아니며, 냉난방기 구매·설치 사업을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -3474,6 +3478,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "사회부 기자"
     },
     "publishedAt": "2026-07-15T10:22:00Z",
+    "eventEndsAt": "2026-07-20T23:59:00Z",
     "imageUrl": "/stock/2026-07-15-e9-employment-permit-3rd-round.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, E-9 고용허가 신청 서류를 점검하는 상황을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -3578,6 +3583,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "경제부 기자"
     },
     "publishedAt": "2026-07-15T09:50:00Z",
+    "eventEndsAt": "2026-07-22T23:59:00Z",
     "imageUrl": "/stock/2026-07-15-export-voucher-3rd-round.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -6641,6 +6647,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "경제부 기자"
     },
     "publishedAt": "2026-07-17T09:58:00Z",
+    "eventEndsAt": "2026-07-23T23:59:00Z",
     "imageUrl": "/stock/2026-07-17-jeungpyeong-school-fire-safety-bid.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다. 실제 학교·발주기관 자료나 현장 사진이 아닙니다.",
     "tags": [
@@ -7256,6 +7263,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "경제부 기자"
     },
     "publishedAt": "2026-07-17T09:54:00Z",
+    "eventEndsAt": "2026-07-24T23:59:00Z",
     "imageUrl": "/stock/2026-07-17-seoul-heat-pipe-waste-disposal-bid.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다. 실제 나라장터 화면이나 발주기관 자료가 아닙니다.",
     "tags": [
@@ -9437,6 +9445,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "사회부 기자"
     },
     "publishedAt": "2026-07-19T18:32:00Z",
+    "eventEndsAt": "2026-07-29T23:59:00Z",
     "imageUrl": "/stock/2026-07-19-daejeon-tipstown-tips-link.jpg",
     "imageCaption": "창업 특강과 참가자 연결을 상징하는 빈 워크숍 좌석, 무표식 연단과 연결 조각을 중심에 배치한 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -9873,6 +9882,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "경제부 기자"
     },
     "publishedAt": "2026-07-19T18:20:00Z",
+    "eventEndsAt": "2026-07-23T23:59:00Z",
     "imageUrl": "/stock/2026-07-19-jeju-seongeup-tree-maintenance-bid.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -10688,6 +10698,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "사회부 기자"
     },
     "publishedAt": "2026-07-20T09:00:00Z",
+    "eventEndsAt": "2026-07-20T23:59:00Z",
     "imageUrl": "/stock/2026-07-20-129-counseling-user-survey.jpg",
     "imageCaption": "AI 생성 이미지. 실제 보건복지상담센터나 설문 화면이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다. 무표기 헤드셋과 빈 설문 카드, 일반 스마트폰을 배치해 상담 이용자 의견 수렴을 상징적으로 표현했습니다.",
     "tags": [
@@ -11912,6 +11923,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "사회부 기자"
     },
     "publishedAt": "2026-07-20T08:20:00Z",
+    "eventEndsAt": "2026-07-20T23:59:00Z",
     "imageUrl": "/stock/2026-07-20-suwon-startup-mentoring-30.jpg",
     "imageCaption": "창업자가 전문가와 빈 사업계획 자료, 무표식 제품 모형을 놓고 경영 과제를 점검하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -12752,6 +12764,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "사회부 기자"
     },
     "publishedAt": "2026-07-21T08:16:00Z",
+    "eventEndsAt": "2026-07-20T23:59:00Z",
     "imageUrl": "/stock/2026-07-21-family-relations-education-week.jpg",
     "imageCaption": "AI 생성 이미지. 실제 가족센터나 교육 현장 사진이 아니며, 식별되지 않는 성인 참여자와 무표기 교재를 배치해 가족관계교육 장면을 연출했습니다.",
     "tags": [
@@ -12894,6 +12907,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "경제부 기자"
     },
     "publishedAt": "2026-07-21T07:28:00Z",
+    "eventEndsAt": "2026-07-31T23:59:00Z",
     "imageUrl": "/stock/2026-07-21-green-supply-chain-research-bid.jpg",
     "imageCaption": "AI 생성 이미지. 실제 발주기관 자료나 공식 연구 현장 사진이 아니며, 무표기 물류 표본을 검토하는 공급망 연구 상황을 설명하기 위해 연출했습니다.",
     "tags": [
@@ -13355,6 +13369,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "경제부 기자"
     },
     "publishedAt": "2026-07-21T07:32:00Z",
+    "eventEndsAt": "2026-07-28T23:59:00Z",
     "imageUrl": "/stock/2026-07-21-marine-weather-equipment-bid.jpg",
     "imageCaption": "AI 생성 이미지. 실제 발주기관 장비나 공식 시험 현장 사진이 아니며, 무표기 기상관측 센서 부품을 점검하는 상황을 설명하기 위해 연출했습니다.",
     "tags": [
@@ -14722,6 +14737,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "경제부 기자"
     },
     "publishedAt": "2026-07-22T09:02:00Z",
+    "eventEndsAt": "2026-07-29T23:59:00Z",
     "imageUrl": "/stock/2026-07-22-kasi-lsst-kmtnet-server-bid.jpg",
     "imageCaption": "천문 자료처리용 전산실을 연상시키는 공간에서 비식별 기술자가 무표식 랙 서버를 설치·점검하는 장면. AI 생성 이미지. 실제 한국천문연구원 시설이나 LSST·KMTNet 장비 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -14878,6 +14894,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "경제부 기자"
     },
     "publishedAt": "2026-07-22T09:00:00Z",
+    "eventEndsAt": "2026-08-03T23:59:00Z",
     "imageUrl": "/stock/2026-07-22-ktl-security-consulting-bid.jpg",
     "imageCaption": "보안관제실을 연상시키는 공간에서 비식별 정보보안 작업자들이 무표식 화면과 서버 장비를 점검하는 장면. AI 생성 이미지. 실제 한국산업기술시험원 시설·인력·시스템 화면이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -17290,6 +17307,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "경제부 기자"
     },
     "publishedAt": "2026-07-23T09:02:00Z",
+    "eventEndsAt": "2026-08-12T23:59:00Z",
     "imageUrl": "/stock/2026-07-23-yeongju-caravan-bid.jpg",
     "imageCaption": "국내 제작공장을 연상시키는 작업장에서 얼굴이 식별되지 않는 작업자들이 글자와 상표가 없는 흰색 캠핑 트레일러의 외장을 점검하는 장면. AI 생성 이미지. 실제 영주시 발주품·제작업체·영주호 오토캠핑장 현장이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -19918,6 +19936,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "사회부 기자"
     },
     "publishedAt": "2026-07-25T09:34:00Z",
+    "eventEndsAt": "2026-08-03T23:59:00Z",
     "imageUrl": "/stock/2026-07-25-military-exam-center-closure-july.jpg",
     "imageCaption": "AI 생성 이미지. 실제 병무청·병역판정검사장·검사 장비나 특정 방문자를 촬영한 것이 아니며, 전국 검사장 일시 휴무와 시설 점검을 설명하기 위한 비현장 연출 이미지입니다.",
     "tags": [
@@ -19977,6 +19996,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "문화부 기자"
     },
     "publishedAt": "2026-07-25T09:06:00Z",
+    "eventEndsAt": "2026-08-09T23:59:00Z",
     "imageUrl": "/stock/2026-07-25-minecraft-dungeons-game-trial.jpg",
     "imageCaption": "실제 게임 화면이나 기기를 복제하지 않은 밝은 거실의 일반화된 콘솔 게임 환경에서 비식별 이용자의 뒷모습과 무표식 컨트롤러 후면, 추상적인 기하학 조명이 보이는 장면. AI로 생성한 이미지이며 실제 Minecraft Dungeons 화면·캐릭터·한국닌텐도 행사·제품 또는 공식 자료 사진이 아니고 문자·숫자·로고·기관 UI·식별 가능한 얼굴을 포함하지 않았습니다.",
     "tags": [
@@ -20266,6 +20286,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "사회부 기자"
     },
     "publishedAt": "2026-07-25T09:40:00Z",
+    "eventEndsAt": "2026-07-28T23:59:00Z",
     "imageUrl": "/stock/2026-07-25-seoul-venture-nara-august-recommendation.jpg",
     "imageCaption": "무표기 제품 시제품과 포장 샘플을 공공조달 준비 관점에서 점검하는 장면을 구현한 AI 생성 이미지. 실제 벤처나라 등록 제품이나 기관 심사 현장 사진이 아니다.",
     "tags": [
@@ -20343,6 +20364,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "사회부 기자"
     },
     "publishedAt": "2026-07-25T09:26:00Z",
+    "eventEndsAt": "2026-07-31T23:59:00Z",
     "imageUrl": "/stock/2026-07-25-suseo-gtxa-nailcare-operator-recruit.jpg",
     "imageCaption": "철도역 안의 접근 가능한 네일케어 작업공간에서 비식별 작업자가 도구를 정리하는 장면을 일반화해 재구성한 AI 생성 이미지입니다. 실제 수서역 GTX-A, 섬섬옥수 매장, 참여기업, 장애인 근로자, 공단 자료 또는 현장 사진이 아닙니다.",
     "tags": [
@@ -23550,6 +23572,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "문화부 기자"
     },
     "publishedAt": "2026-07-27T09:17:00Z",
+    "eventEndsAt": "2026-07-27T23:59:00Z",
     "imageUrl": "/stock/2026-07-27-piccolo-flute-recital-jul27.jpg",
     "imageCaption": "피콜로와 플루트 리사이틀을 설명하기 위해 빈 실내악 무대의 무표식 악기와 악보대를 구성한 일반화된 공연 준비 장면. AI 생성 이미지이며 실제 연주자, 세종문화회관 공연, 공식 자료나 현장 사진이 아닙니다.",
     "tags": [
@@ -27203,6 +27226,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "산업부 기자"
     },
     "publishedAt": "2026-07-30T09:20:00Z",
+    "eventEndsAt": "2026-07-30T23:59:00Z",
     "imageUrl": "/stock/2026-07-30-daegu-dental-ai-prototype-support-2026.jpg",
     "imageCaption": "치과용 디지털 의료제품 시제품을 개발하는 연구환경을 표현한 AI 생성 이미지. 실제 지원기업, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
     "tags": [
@@ -27663,6 +27687,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "경제부 기자"
     },
     "publishedAt": "2026-07-30T09:21:00Z",
+    "eventEndsAt": "2026-07-30T23:59:00Z",
     "imageUrl": "/stock/2026-07-30-jeonbuk-innovation-growth-rnd-second-2026.jpg",
     "imageCaption": "전북 지역 중소기업 연구진이 상용화 기술개발 계획을 검토하는 장면을 표현한 AI 생성 이미지. 실제 참여기업, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
     "tags": [
@@ -28272,6 +28297,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "경제부 기자"
     },
     "publishedAt": "2026-07-30T09:22:00Z",
+    "eventEndsAt": "2026-08-11T23:59:00Z",
     "imageUrl": "/stock/2026-07-30-semas-restart-support-performance-analysis-bid-2026.jpg",
     "imageCaption": "조사·분석 업체가 소상공인 설문 결과와 연구계획을 검토하는 장면을 표현한 AI 생성 이미지. 실제 수요기관, 입찰업체, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
     "tags": [
@@ -30168,6 +30194,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "사회부 기자"
     },
     "publishedAt": "2026-08-01T21:23:00Z",
+    "eventEndsAt": "2026-08-07T23:59:00Z",
     "imageUrl": "/stock/2026-08-01-bukgu-youth-startup-contest-13m6-2026.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -32205,6 +32232,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "문화부 기자"
     },
     "publishedAt": "2026-08-02T17:18:00Z",
+    "eventEndsAt": "2026-08-02T23:59:00Z",
     "imageUrl": "/stock/2026-08-02-sokcho-summer-festival-final-day-2026.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -33295,6 +33323,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "사회부 기자"
     },
     "publishedAt": "2026-08-03T09:07:00Z",
+    "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/2026-08-03-molit-startup-ir-twelve-per-track-2026.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -35597,6 +35626,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "문화부 기자"
     },
     "publishedAt": "2026-08-05T16:09:00Z",
+    "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/2026-08-05-seoul-ballet-death-and-maiden-aug14-2026.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -37049,6 +37079,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "경제부 기자"
     },
     "publishedAt": "2026-08-07T09:12:00Z",
+    "eventEndsAt": "2026-08-12T23:59:00Z",
     "imageUrl": "/stock/2026-08-07-gyeongsang-ir-level-up-rebid-56m-2026.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -37223,6 +37254,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "문화부 기자"
     },
     "publishedAt": "2026-08-07T10:52:00Z",
+    "eventEndsAt": "2026-08-07T23:59:00Z",
     "imageUrl": "/stock/2026-08-07-knso-falla-three-cornered-hat-2026.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -37540,6 +37572,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "경제부 기자"
     },
     "publishedAt": "2026-08-07T09:17:00Z",
+    "eventEndsAt": "2026-08-07T23:59:00Z",
     "imageUrl": "/stock/2026-08-07-seongnam-school-lab-waste-bid-41m-2026.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -39532,6 +39565,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "문화부 기자"
     },
     "publishedAt": "2026-08-09T20:49:00Z",
+    "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/2026-08-09-swan-lake-95-6-percent-aug14-2026.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 공연 현장이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -40852,6 +40886,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "국제부 기자"
     },
     "publishedAt": "2026-08-11T06:15:00Z",
+    "eventEndsAt": "2026-08-12T23:59:00Z",
     "imageUrl": "/stock/2026-08-11-geneva-youth-day-dialogue-kst-2026.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -43322,6 +43357,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "문화부 기자"
     },
     "publishedAt": "2026-08-13T06:35:00Z",
+    "eventEndsAt": "2026-08-15T23:59:00Z",
     "imageUrl": "/stock/2026-08-13-gugak-saturday-masterpieces-aug15-2026.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -44862,6 +44898,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "문화부 기자"
     },
     "publishedAt": "2026-08-14T06:35:00Z",
+    "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/2026-08-14-sac-red-riding-hood-opera-aug14-16-2026.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
     "tags": [
@@ -49902,6 +49939,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "role": "산업부 기자"
     },
     "publishedAt": "2026-07-19T15:24:00Z",
+    "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/public-data-ai-growth-consulting-2026-main.jpg",
     "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 공공데이터와 AI 활용기업 맞춤형 성장 지원을 설명하기 위한 연출 이미지입니다.",
     "tags": [

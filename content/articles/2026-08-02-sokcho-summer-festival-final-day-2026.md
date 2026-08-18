@@ -4,6 +4,7 @@ slug: sokcho-summer-festival-final-day-2026
 category: culture
 author: 남동균 / 문화부 기자
 publishedAt: 2026-08-02 17:18
+eventEndsAt: 2026-08-02 23:59
 tags: 속초, 속초썸머페스티벌, 속초해수욕장, 여름축제, 워터런, 비치사운드, DJ공연, 강원여행, 지역축제, 주말나들이
 summary: 속초해수욕장 일원에서 열린 2026 속초 썸머페스티벌이 8월 2일 마지막 일정을 진행하며, 오후 4시부터 아케이드·워터런·시민공연과 야간 음악 무대가 이어질 예정이다.
 image: /stock/2026-08-02-sokcho-summer-festival-final-day-2026.jpg

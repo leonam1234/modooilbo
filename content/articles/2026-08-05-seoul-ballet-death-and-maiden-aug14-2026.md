@@ -4,6 +4,7 @@ slug: seoul-ballet-death-and-maiden-aug14-2026
 category: culture
 author: 남동균 / 문화부 기자
 publishedAt: 2026-08-05 16:09
+eventEndsAt: 2026-08-14 23:59
 tags: 서울시발레단, 죽음과소녀, 컨템퍼러리발레, 국립극장, 해오름극장, 크리스티안슈푹, 알렉산더에크만, 슈베르트, 공연정보, 발레
 summary: 서울시발레단 더블 빌 ‘죽음과 소녀’가 8월 14일부터 16일까지 국립극장 해오름극장에서 세 차례 열린다. 관람시간은 중간휴식 20분을 포함해 80분이다.
 image: /stock/2026-08-05-seoul-ballet-death-and-maiden-aug14-2026.jpg

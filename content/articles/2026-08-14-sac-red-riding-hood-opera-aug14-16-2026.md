@@ -4,6 +4,7 @@ slug: sac-red-riding-hood-opera-aug14-16-2026
 category: culture
 author: 남동균 / 문화부 기자
 publishedAt: 2026-08-14 06:35
+eventEndsAt: 2026-08-14 23:59
 tags: 예술의전당, 어린이오페라, 빨간모자와늑대, 가족공연, 자유소극장, 여름공연, 어린이축제, 공연정보, 서울
 summary: 예술의전당 어린이 가족 페스티벌의 오페라 빨간모자와 늑대가 8월 14일부터 16일까지 자유소극장에서 열린다.
 image: /stock/2026-08-14-sac-red-riding-hood-opera-aug14-16-2026.jpg

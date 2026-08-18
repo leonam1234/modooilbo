@@ -4,6 +4,7 @@ slug: seongnam-school-lab-waste-bid-41m-2026
 category: bids
 author: 김영환 / 경제부 기자
 publishedAt: 2026-08-07 09:17
+eventEndsAt: 2026-08-07 23:59
 tags: 성남교육지원청,과학실험,폐수,폐시약,수은함유폐기물,지정폐기물,위탁처리,나라장터,소액수의견적,교육행정
 summary: 성남교육지원청이 관내 초중고 120개교의 과학실험 폐수와 폐시약, 수은 함유 폐기물 위탁처리에 4,138만원 규모 전자견적을 받는다. 제출은 8월 7일 오전 10시부터 12일 오전 10시까지다.
 image: /stock/2026-08-07-seongnam-school-lab-waste-bid-41m-2026.jpg

@@ -3,6 +3,7 @@ title: ‘Minecraft Dungeons’ 게임 트라이얼 7월 27일 12:00 시작 예�
 category: culture
 author: 남동균 / 문화부 기자
 publishedAt: 2026-07-25 09:06
+eventEndsAt: 2026-08-09 23:59
 tags: 한국닌텐도, NintendoSwitchOnline, 게임트라이얼, MinecraftDungeons, 마인크래프트던전스, 닌텐도스위치, 닌텐도스위치2, 콘솔게임, 게임할인, 다운로드게임, 협동게임, 게임이용정보
 summary: 한국닌텐도는 Nintendo Switch 2와 Nintendo Switch에서 Nintendo Switch Online 이용자가 Minecraft Dungeons 전체 게임을 7월 27일 12:00부터 8월 2일 17:59까지 이용할 수 있는 게임 트라이얼을 열 예정이다. 성인 닌텐도 어카운트와 서비스 이용 자격이 필요하지만 개인 플랜 7일 무료 체험 이용자도 참가할 수 있다. 이는 Nintendo Switch 2 Edition 신작 발표가 아니며 다운로드판 할인은 8월 9일 23:59까지 진행될 예정이다.
 image: /stock/2026-07-25-minecraft-dungeons-game-trial.jpg

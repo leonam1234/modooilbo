@@ -3,6 +3,7 @@ title: 증평공고 급식소 소방공사 4,601만원…괴산·증평 업체�
 category: bids
 author: 김영환 / 경제부 기자
 publishedAt: 2026-07-17 09:58
+eventEndsAt: 2026-07-23 23:59
 tags: 나라장터, 증평공업고등학교, 급식소현대화, 소방공사, 소액수의견적, 전문소방시설공사업, 증평군, 괴산군
 summary: 전문소방시설공사업 면허와 괴산·증평 본점 요건을 한 업체가 모두 갖춰야 하는 4,601만원 규모 전자견적이다. 공동수급은 불가하고 7월 23일 10시 마감한다.
 image: /stock/2026-07-17-jeungpyeong-school-fire-safety-bid.jpg

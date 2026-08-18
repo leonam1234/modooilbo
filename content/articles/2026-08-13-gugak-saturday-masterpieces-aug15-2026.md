@@ -4,6 +4,7 @@ slug: gugak-saturday-masterpieces-aug15-2026
 category: culture
 author: 남동균 / 문화부 기자
 publishedAt: 2026-08-13 06:35
+eventEndsAt: 2026-08-15 23:59
 tags: 국립국악원, 토요명품, 국악공연, 우면당, 광복절공연, 주말공연, 서울공연, 전통예술
 summary: 국립국악원 토요명품 8월 15일 공연은 오후 3시 우면당에서 80분간 열리며 온라인 예매·취소·변경은 전날 오후 6시까지 가능하다.
 image: /stock/2026-08-13-gugak-saturday-masterpieces-aug15-2026.jpg

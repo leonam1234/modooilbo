@@ -4,6 +4,7 @@ slug: swan-lake-95-6-percent-aug14-2026
 category: culture
 author: 남동균 / 문화부 기자
 publishedAt: 2026-08-09 20:49
+eventEndsAt: 2026-08-14 23:59
 tags: 백조의호수, 예술의전당, 유니버설발레단, 전민철, 홍향기, 국립심포니오케스트라, 발레, 오페라극장, 차이콥스키, 공연예매, 클래식공연
 summary: 지난해 회당 평균 객석 점유율 95.6%를 기록한 백조의 호수가 8월 14일부터 23일까지 예술의전당 오페라극장에서 11회 공연된다.
 image: /stock/2026-08-09-swan-lake-95-6-percent-aug14-2026.jpg

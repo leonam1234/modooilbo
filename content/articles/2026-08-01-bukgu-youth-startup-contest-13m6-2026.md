@@ -4,6 +4,7 @@ slug: bukgu-youth-startup-contest-13m6-2026
 category: startup
 author: 유승현 / 사회부 기자
 publishedAt: 2026-08-01 21:23
+eventEndsAt: 2026-08-07 23:59
 tags: 북구청장배, 청년창업, 창업아이디어경진대회, 예비창업자, 초기창업자, 총상금1360만원, 사업화자금, 전남광주통합특별시, 청년창업공간
 summary: 전남광주통합특별시에 생활권을 둔 15~39세 청년이 2~5명 팀으로 참가하는 창업 아이디어 경진대회가 8월 7일 오후 6시까지 신청을 받으며 14개 수상팀의 총상금은 1360만원이다.
 image: /stock/2026-08-01-bukgu-youth-startup-contest-13m6-2026.jpg

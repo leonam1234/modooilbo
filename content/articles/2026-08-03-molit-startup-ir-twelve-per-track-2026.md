@@ -4,6 +4,7 @@ slug: molit-startup-ir-twelve-per-track-2026
 category: startup
 author: 유승현 / 사회부 기자
 publishedAt: 2026-08-03 09:07
+eventEndsAt: 2026-08-14 23:59
 tags: 국토교통과학기술진흥원, 국토교통스타트업, 투자유치설명회, 스타트업IR, 투자상담, 벤처기업, 예비창업자, 국토교통기업지원허브, 기업티저, 8월14일마감
 summary: 국토교통과학기술진흥원이 국토교통 분야 예비창업자와 중소·벤처기업을 성장단계와 업력에 따라 분야별 12개사 안팎 선발해 1대1 상담과 투자유치설명회 참여를 지원하며 신청은 8월 14일 오후 6시까지다.
 image: /stock/2026-08-03-molit-startup-ir-twelve-per-track-2026.jpg

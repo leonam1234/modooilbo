@@ -4,6 +4,7 @@ slug: gyeongsang-ir-level-up-rebid-56m-2026
 category: bids
 author: 김영환 / 경제부 기자
 publishedAt: 2026-08-07 09:12
+eventEndsAt: 2026-08-12 23:59
 tags: 경상국립대학교,산학협력단,IR레벨업,창업기업,투자유치,피치덱,창업중심대학,나라장터,협상계약,재공고
 summary: 경상국립대학교 산학협력단이 5,600만원 규모 IR 레벨업 프로그램 운영 용역을 재공고했다. 가격입찰서와 제안서는 8월 12일 오전 10시부터 18일 오전 10시까지 나라장터로 제출한다.
 image: /stock/2026-08-07-gyeongsang-ir-level-up-rebid-56m-2026.jpg
