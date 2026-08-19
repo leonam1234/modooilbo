@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PlainEmail } from "@/components/PlainEmail";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { SITE } from "@/lib/site";
@@ -166,7 +167,7 @@ export default function EthicsPage() {
                   href="mailto:correction@modooilbo.com"
                   className="font-medium text-signal-600 hover:text-signal-700 dark:text-signal-400"
                 >
-                  correction@modooilbo.com
+                  <PlainEmail address="correction@modooilbo.com" />
                 </a>{" "}
                 로 접수한다. 접수된 사안은 편집위원회가 검토하며, 분쟁이 원만히 해결되지 않을 경우
                 언론중재위원회의 조정 절차를 따른다.
@@ -207,7 +208,7 @@ export default function EthicsPage() {
                         href="mailto:ombudsman@modooilbo.com"
                         className="font-medium text-signal-600 hover:text-signal-700 dark:text-signal-400"
                       >
-                        ombudsman@modooilbo.com
+                        <PlainEmail address="ombudsman@modooilbo.com" />
                       </a>
                     </dd>
                   </div>
@@ -308,7 +309,7 @@ export default function EthicsPage() {
                         href="mailto:youth@modooilbo.com"
                         className="font-medium text-signal-600 hover:text-signal-700 dark:text-signal-400"
                       >
-                        youth@modooilbo.com
+                        <PlainEmail address="youth@modooilbo.com" />
                       </a>
                     </dd>
                   </div>

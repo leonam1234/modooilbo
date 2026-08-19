@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PlainEmail } from "./PlainEmail";
 import { CATEGORIES } from "@/lib/categories";
 import { SITE } from "@/lib/site";
 
@@ -134,7 +135,7 @@ export function Footer() {
             <span>{`등록번호 ${SITE.regNumber}`}</span>
             <span>{`등록일 ${SITE.regDate}`}</span>
             <span>{`대표전화 ${SITE.tel}`}</span>
-            <span>{`이메일 ${SITE.email}`}</span>
+            <span>이메일 <PlainEmail address={SITE.email} /></span>
           </p>
           <p className="mt-4 text-ink-500 dark:text-ink-400">
             {`© ${SITE.copyrightYear} 모두일보. All rights reserved.`}
