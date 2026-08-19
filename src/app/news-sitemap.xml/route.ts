@@ -7,7 +7,9 @@ import { esc } from "@/lib/xml";
 export const dynamic = "force-static";
 
 export function GET() {
-  const sorted = [...ALL_ARTICLES].sort(
+  // 광고(sponsor 있음)는 뉴스가 아니다 — 구글 뉴스 사이트맵에 실으면 정책 위반이고,
+  // 매체 신뢰 문제로 돌아온다. 일반 sitemap.xml 색인은 그대로 둔다.
+  const sorted = [...ALL_ARTICLES].filter((a) => !a.sponsor).sort(
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   );
   // 결정적 선택: 데이터 최신 기사 기준 창(Date.now 미사용 — 빌드 재현성 유지).

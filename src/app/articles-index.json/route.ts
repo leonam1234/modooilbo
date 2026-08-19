@@ -26,6 +26,9 @@ export async function GET(): Promise<Response> {
     imageUrl: a.imageUrl,
     ...(a.type ? { type: a.type } : {}),
     ...(a.isBreaking ? { isBreaking: true } : {}),
+    // 광고 식별값 — 검색·자동완성·최근 본 기사 카드가 이 JSON만 받아 그리므로,
+    // 여기서 빠지면 그 화면들만 광고 표시 없이 렌더된다(2026-08-19 게이트에서 적발).
+    ...(a.sponsor ? { sponsor: a.sponsor } : {}),
   }));
   // ⚠️ 정적 export는 이 Response의 헤더를 파일로 굽지 않는다 — 실제 서빙 캐시는
   //    public/_headers 의 /articles-index.json 규칙이 정한다(여기 값은 dev 전용).

@@ -321,9 +321,16 @@ export function sourceLinks(items: string[]): SourceLink[] {
     const url = m[0].replace(/["'.,]+$/, "");
     const label = s.slice(0, m.index).replace(/[:：]\s*$/, "").trim();
     const org = orgFromLabel(label) ?? orgFromUrl(url);
-    if (!org || seen.has(org)) continue;
-    seen.add(org);
-    out.push({ org, url });
+    if (!org) continue;
+    // 같은 기관 1회 규칙의 보정 — 접기 키를 기관명이 아니라 기관명+레이블로 잡는다.
+    // 레이블이 같은 반복(예: BLS API 시리즈 7개)은 종전대로 1개로 접히고,
+    // 레이블이 다른 항목(예: 광고 기사의 홈·서비스 안내·문의 3개)은 각각 살아남는다.
+    // 기관명만으로 접으면 계약상 노출해야 할 링크가 사라진다(2026-08-19 브리찌 게이트에서 적발).
+    const key = `${org}\u0000${label}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const shown = label && label.length <= 24 ? label : org;
+    out.push({ org: shown, url });
   }
   return out;
 }

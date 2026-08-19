@@ -45,7 +45,8 @@ function rfc822Kst(iso: string): string {
 }
 
 export function GET() {
-  const sorted = [...ALL_ARTICLES].sort(
+  // 광고(sponsor)는 뉴스 피드에 싣지 않는다 — news-sitemap과 같은 이유(2026-08-19).
+  const sorted = [...ALL_ARTICLES].filter((a) => !a.sponsor).sort(
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   );
   const items = sorted
