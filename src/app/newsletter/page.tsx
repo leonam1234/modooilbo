@@ -7,7 +7,7 @@ import { NewsletterToggle } from "./NewsletterToggle";
 export const metadata: Metadata = {
   title: "뉴스레터",
   description:
-    "모두일보 에디터가 엄선한 뉴스를 메일함으로. 매일 아침의 핵심 브리핑부터 경제·테크·문화 심층 레터까지, 원하는 주제만 골라 구독하세요.",
+    "모두일보 에디터가 엄선한 뉴스를 메일함으로. 매주 월요일 통합 레터를 발송하며, 핵심 브리핑부터 경제·테크·문화 심층 레터까지, 원하는 주제만 골라 구독하세요.",
   alternates: { canonical: "/newsletter/" },
 };
 
@@ -69,7 +69,7 @@ export default function NewsletterPage() {
     <>
       <PageHeader
         title="뉴스레터"
-        subtitle="에디터가 엄선한 뉴스를 매일 아침 메일함으로 받아보세요."
+        subtitle="지금은 매주 월요일 통합 레터를 보내드립니다. 아래 주제별 레터는 오픈 준비 중입니다."
         breadcrumb={[{ label: "뉴스레터" }]}
       />
 

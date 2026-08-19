@@ -180,6 +180,14 @@ const BENEFITS = [
   },
 ];
 
+// 공고 마감 여부는 빌드 시점 KST 로 판정한다. 정적 export 라 실시간은 아니지만,
+// 매일 콘텐츠 배포가 도니 하루 안에 따라온다. 마감 공고를 "현재 모집"으로 두는 것보다
+// 하루 늦은 마감 표시가 낫다(2026-08-19 외부 점검: 마감 5건이 모집 중으로 노출).
+function isClosed(deadline: string): boolean {
+  const kstNow = new Date(Date.now() + 9 * 3600_000).toISOString().slice(0, 10);
+  return deadline.replaceAll(".", "-") < kstNow;
+}
+
 const POSITIONS = [
   {
     role: "경제부 기자",
@@ -329,7 +337,9 @@ export default function CareersPage() {
                 채용 공고
               </h2>
               <p className="mt-2 text-ink-500 dark:text-ink-300">
-                현재 {POSITIONS.length}개 포지션에서 새로운 동료를 모집합니다.
+                {POSITIONS.some((p) => !isClosed(p.deadline))
+                  ? `현재 ${POSITIONS.filter((p) => !isClosed(p.deadline)).length}개 포지션에서 새로운 동료를 모집합니다.`
+                  : "지금 진행 중인 공고는 없습니다. 아래 상시 지원으로 언제든 문을 두드려 주세요."}
               </p>
             </div>
             <a
@@ -367,8 +377,13 @@ export default function CareersPage() {
                 <div className="mt-5 flex items-center justify-between border-t border-ink-100 pt-4 dark:border-ink-800">
                   <span className="inline-flex items-center gap-1.5 text-sm text-ink-500 dark:text-ink-400">
                     <CalendarIcon className="h-4 w-4" />
-                    마감 {p.deadline}
+                    {isClosed(p.deadline) ? `마감됨 ${p.deadline}` : `마감 ${p.deadline}`}
                   </span>
+                  {isClosed(p.deadline) ? (
+                    <span className="inline-flex items-center rounded-md bg-ink-100 px-4 py-2 text-sm font-semibold text-ink-500 dark:bg-ink-800 dark:text-ink-400">
+                      모집 종료
+                    </span>
+                  ) : (
                   <a
                     href="#apply"
                     className="inline-flex items-center gap-1 rounded-md bg-signal-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-signal-700"
@@ -376,6 +391,7 @@ export default function CareersPage() {
                     지원하기
                     <ArrowRightIcon className="h-4 w-4" />
                   </a>
+                  )}
                 </div>
               </div>
             ))}

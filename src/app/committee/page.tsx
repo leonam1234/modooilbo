@@ -228,7 +228,7 @@ export default function CommitteePage() {
               <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
                 「신문 등의 진흥에 관한 법률」 제6조 제2항은 인터넷신문사업자가 독자권익위원회를 &lsquo;둘 수
                 있다&rsquo;고 정합니다. 의무가 아니라 임의 사항입니다. 모두일보는 매일 24편을 발행하는
-                매체로서 스스로를 검증할 외부 장치가 필요하다고 판단해 자발적으로 이를 둡니다.
+                매체로서 스스로를 검증할 외부 장치가 필요하다고 판단해 자발적으로 이를 두기로 하고, 외부 위원 위촉을 진행하고 있습니다.
               </p>
               <div className="mt-4 rounded-xl border border-ink-200 bg-ink-50 p-6 dark:border-ink-800 dark:bg-ink-900/40">
                 <p className="text-sm font-semibold text-ink-900 dark:text-white">고충처리인과 무엇이 다른가</p>

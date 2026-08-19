@@ -20,7 +20,7 @@ import { ViewBeacon } from "@/components/ViewBeacon";
 import { ViewCount } from "@/components/ViewCount";
 import { ImageLightbox } from "@/components/ImageLightbox";
 import { ReadingProgress } from "@/components/ReadingProgress";
-import { ArticleBody, articleSpeechText } from "@/components/ArticleBody";
+import { ArticleBody, articleSpeechText, splitSources, sourceLinks } from "@/components/ArticleBody";
 import { SponsorBadge, SponsorFooter } from "@/components/SponsorNotice";
 import { PARTNERS } from "@/lib/partners";
 import { ogImageUrl, displayImageUrl } from "@/lib/stock";
@@ -108,6 +108,12 @@ export default async function ArticlePage({
   const isOpinion = article.type === "opinion" || article.category === "opinion";
   const wordCount = article.body.join(" ").trim().split(/\s+/).filter(Boolean).length;
 
+  const articleCitations = sourceLinks(splitSources(article.body)[2]).map((l) => ({
+    "@type": "CreativeWork",
+    name: l.org,
+    url: l.url,
+  }));
+
   const newsArticleLd = {
     "@context": "https://schema.org",
     // ⚠️ 광고성 콘텐츠는 NewsArticle 로 표시하지 않는다. 광고를 기사로 신고하면
@@ -136,7 +142,7 @@ export default async function ArticlePage({
     inLanguage: "ko-KR",
     isAccessibleForFree: true,
     author: reporter
-      ? [{ "@type": "Person", name: article.author.name, url: `${SITE.url}/reporter/${reporter.slug}/` }]
+      ? [{ "@type": "Person", name: article.author.name, jobTitle: article.author.role, url: `${SITE.url}/reporter/${reporter.slug}/` }]
       : [{ "@type": "Organization", "@id": `${SITE.url}/#organization`, name: article.author.name }],
     publisher: {
       "@type": "Organization",
@@ -150,6 +156,9 @@ export default async function ArticlePage({
       },
     },
     articleSection: cat?.name,
+    // 출처 계보(P2-02) — 본문 하단 사람용 출처 블록과 같은 파서 출력을 기계용으로 병기한다.
+    // 파서가 기관을 못 뽑으면 빈 배열이 되므로 조건부로만 싣는다.
+    ...(articleCitations.length ? { citation: articleCitations } : {}),
   };
 
   const breadcrumbLd = {

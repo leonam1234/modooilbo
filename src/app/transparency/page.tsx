@@ -230,7 +230,7 @@ export default function TransparencyPage() {
             </section>
 
             <p className="mt-12 border-t border-ink-200 pt-6 text-sm text-ink-500 dark:text-ink-400 dark:border-ink-800">
-              최종 갱신 2026년 7월 1일 · 문의 {SITE.email}
+              최종 갱신 2026년 8월 19일 · 문의 {SITE.email}
             </p>
           </article>
         </div>

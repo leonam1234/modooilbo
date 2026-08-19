@@ -13,7 +13,7 @@ export function NewsletterCTA() {
         <div className="mx-auto max-w-2xl text-center">
           <MailIcon className="mx-auto h-8 w-8 text-[#d4af37]" />
           <h2 className="mt-3 font-headline text-2xl font-extrabold text-white sm:text-3xl">
-            매일 아침, 오늘의 신호
+            매주 월요일, 한 주의 신호
           </h2>
           <p className="mt-2 text-ink-300">
             에디터가 엄선한 핵심 뉴스와 깊이 있는 분석을 뉴스레터로 받아보세요.
