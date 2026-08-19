@@ -6,7 +6,7 @@ publishedAt: 2026-07-17 11:06
 tags: KBO, KT위즈, LG트윈스, 최원준, 로건, 박영현, 잠실야구장
 summary: KT가 2회초 최원준의 3점 홈런을 앞세워 LG의 8회말 추격을 1점 차로 막았다. 선발 로건은 5이닝 1실점, 마무리 박영현은 1과 3분의 1이닝 무실점을 기록했다.
 image: /stock/2026-07-17-kt-lg-choi-wonjun-homerun.jpg
-imageCaption: AI 생성 이미지로 실제 공식 자료나 경기 사진이 아님. 프로야구 1점 차 승부의 결정적 타격 장면을 일반화한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 ---
 

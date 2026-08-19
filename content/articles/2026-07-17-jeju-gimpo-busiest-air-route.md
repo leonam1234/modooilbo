@@ -6,7 +6,7 @@ publishedAt: 2026-07-17 10:54
 tags: 제주김포, 항공수요, IATA, WATS, 국내선, 항공산업, 여행
 summary: 2025년 제주-김포 공항 쌍 이용객은 1,330만 명으로 세계 최다였으며, 이는 여객량 순위일 뿐 운임·수익성·정시성을 뜻하지 않는다.
 image: /stock/2026-07-17-jeju-gimpo-busiest-air-route.jpg
-imageCaption: 제주-김포 사이의 고밀도 국내 항공 이동을 일반화해 연출한 공항 운항 모형. AI 생성 이미지로 실제 IATA 통계 자료나 김포·제주공항 현장 사진이 아님.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 ---
 

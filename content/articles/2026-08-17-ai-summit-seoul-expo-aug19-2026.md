@@ -7,7 +7,7 @@ publishedAt: 2026-08-17 09:02
 tags: AISummitSeoul, AI엑스포, 인공지능, 산업AI, 생성형AI, 피지컬AI, AI에이전트, 코엑스, AI컨퍼런스, 전시회
 summary: AI Summit Seoul & EXPO가 8월 19일 코엑스에서 개막한다. 컨퍼런스는 20일까지 그랜드볼룸에서, 엑스포는 21일까지 B홀에서 열려 등록 채널과 종료일을 구분해야 한다.
 image: /stock/2026-08-17-ai-summit-seoul-expo-aug19-2026.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 ---
 
 AI Summit Seoul & EXPO가 8월 19일부터 서울 코엑스에서 열린다. 컨퍼런스는 19일과 20일 이틀간 그랜드볼룸에서 진행되고, 전시는 21일까지 B홀에서 이어진다. 참가자는 같은 행사명 아래 운영되는 두 프로그램의 장소와 종료일, 등록 페이지를 구분해야 한다.

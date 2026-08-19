@@ -6,7 +6,7 @@ publishedAt: 2026-07-08 09:15
 tags: 물놀이, 수난사고, 여름안전, 생활안전
 summary: 7월 수난사고 위험이 커지는 시기인 만큼 물놀이 전 확인해야 할 안전 기준을 정리했다.
 image: /stock/2026-07-08-summer-water-safety.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 source: https://www.korea.kr/news/policyNewsView.do?newsId=148965596
 ---

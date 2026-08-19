@@ -6,7 +6,7 @@ publishedAt: 2026-07-08 09:00
 tags: 과태료, 모바일고지, 생활정보, 교통안전
 summary: 하반기 달라지는 제도 중 과태료 고지 모바일 확인 흐름을 생활정보 관점에서 정리했다.
 image: /stock/2026-07-08-mobile-fine-notice.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 source: https://www.korea.kr/news/policyNewsView.do?newsId=148967730&pWise=main&pWiseMain=A5
 ---

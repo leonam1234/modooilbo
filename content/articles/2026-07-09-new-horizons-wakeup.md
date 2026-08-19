@@ -6,7 +6,7 @@ publishedAt: 2026-07-09 12:30
 tags: 뉴호라이즌스, NASA, 우주탐사, 카이퍼벨트
 summary: NASA가 밝힌 뉴호라이즌스 탐사선의 동면 종료와 관측 재개 의미를 정리했다.
 image: /stock/2026-07-09-new-horizons-wakeup.jpg
-imageCaption: AI 생성 이미지. 실제 NASA 자료나 관제 화면이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 source: https://science.nasa.gov/missions/new-horizons/nasas-new-horizons-spacecraft-wakes-from-hibernation-in-good-health/
 ---

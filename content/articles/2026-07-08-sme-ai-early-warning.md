@@ -6,7 +6,7 @@ publishedAt: 2026-07-08 11:15
 tags: 중소기업, AI조기경보, 재도약지원, 기업경영
 summary: 중소기업 재도약 지원 대책 중 AI 기반 조기경보시스템 추진 내용을 정리했다.
 image: /stock/2026-07-08-sme-ai-early-warning.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 source: https://mofe.go.kr/nw/nes/detailNesDtaView.do?menuNo=4010100&searchBbsId1=MOSFBBS_000000000028&searchNttId1=MOSF_000000000078503
 ---

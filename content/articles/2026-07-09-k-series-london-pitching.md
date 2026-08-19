@@ -6,7 +6,7 @@ publishedAt: 2026-07-09 11:40
 tags: K시리즈, 방송영상콘텐츠, 런던, 콘텐츠진흥원
 summary: 2026 시리즈 온 보드 2차 참가기업 추가모집 공고를 해외 피칭 준비 관점에서 정리했다.
 image: /stock/2026-07-09-k-series-london-pitching.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 source: https://www.culture.go.kr/portal/cltBnf/cltSup/view.do?menuNo=200104&pageIndex=3&rcrtSn=224335&sSort=2&viewTp=2
 ---

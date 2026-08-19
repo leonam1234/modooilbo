@@ -7,7 +7,7 @@ publishedAt: 2026-08-01 21:38
 tags: Lies of P, Complete Edition, P의거짓, 닌텐도스위치2, 한국닌텐도, 네오위즈, Overture, 콘솔게임, 액션RPG, 게임출시
 summary: 한국닌텐도 공식 스토어에 등록된 Lies of P: Complete Edition 스위치2판은 8월 6일 발매되며, 본편과 Overture 확장팩을 포함한 36.8GB 상품의 표시 가격은 6만9800원이다.
 image: /stock/2026-08-01-lies-of-p-switch2-aug6-2026.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 ---
 
 한국닌텐도 공식 스토어가 Nintendo Switch 2용 Lies of P: Complete Edition의 발매일을 2026년 8월 6일로 표시했다. 본편과 확장팩 Lies of P: Overture를 한 상품에 담았고, 표시 가격은 6만9800원이다.

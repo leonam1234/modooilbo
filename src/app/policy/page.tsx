@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/PageHeader";
 export const metadata: Metadata = {
   title: "운영정책",
   description:
-    "모두일보 자율 운영정책 — 허위·조작정보 대응, 신고·이의신청 절차, 댓글 운영 기준, AI 콘텐츠 정책을 안내합니다.",
+    "모두일보 자율 운영정책 — 허위·조작정보 대응, 신고·이의신청 절차, 댓글 운영 기준을 안내합니다.",
   alternates: { canonical: "/policy/" },
 };
 
@@ -36,16 +36,7 @@ export default function PolicyPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className={H}>2. AI 활용 고지</h2>
-            <p className={P}>
-              모두일보의 기사와 이미지는 AI 도구를 활용해 제작되며, 편집국 검수를 거쳐 게시됩니다.
-              생성 이미지는 본문에 &ldquo;AI 생성 이미지&rdquo;로 표기합니다. 실존 인물·기관을
-              허위로 묘사하는 조작 콘텐츠는 제작하지 않습니다.
-            </p>
-          </section>
-
-          <section className="mb-10">
-            <h2 className={H}>3. 신고 및 처리 절차</h2>
+            <h2 className={H}>2. 신고 및 처리 절차</h2>
             <ul className="mt-3 list-disc space-y-2 pl-5">
               <li className={LI}>누구나 기사·댓글에 대해 신고할 수 있습니다.</li>
               <li className={LI}>
@@ -58,7 +49,7 @@ export default function PolicyPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className={H}>4. 이의신청</h2>
+            <h2 className={H}>3. 이의신청</h2>
             <p className={P}>
               신고 처리 결과 또는 게시물 조치에 동의하지 않는 신고자·게재자는{" "}
               <a href="mailto:help@modooilbo.com" className="underline">help@modooilbo.com</a>으로
@@ -68,7 +59,7 @@ export default function PolicyPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className={H}>5. 댓글 운영 기준</h2>
+            <h2 className={H}>4. 댓글 운영 기준</h2>
             <ul className="mt-3 list-disc space-y-2 pl-5">
               <li className={LI}>욕설·혐오·차별 표현은 자동 필터(클린봇)로 등록이 제한됩니다.</li>
               <li className={LI}>불법정보, 허위·조작정보, 타인의 권리를 침해하는 게시물은 삭제 또는 가림 처리됩니다.</li>
@@ -77,7 +68,7 @@ export default function PolicyPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className={H}>6. 팩트체크 협력</h2>
+            <h2 className={H}>5. 팩트체크 협력</h2>
             <p className={P}>
               모두일보는 공식 출처 확인을 원칙으로 하며, 사실확인이 필요한 사안은 관계 기관·팩트체크
               단체의 공개 자료를 참조합니다. 외부의 사실확인 요청에 성실히 협조합니다.
@@ -85,7 +76,7 @@ export default function PolicyPage() {
           </section>
 
           <section className="mb-10">
-            <h2 className={H}>7. 투명성 보고</h2>
+            <h2 className={H}>6. 투명성 보고</h2>
             <p className={P}>
               신고 접수·처리 현황은 반기별로{" "}
               <Link href="/transparency" className="underline">투명성 보고</Link> 페이지를 통해

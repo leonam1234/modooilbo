@@ -6,7 +6,7 @@ publishedAt: 2026-07-31 10:52
 tags: 유로존, 유럽연합, EU, Eurostat, 국내총생산, GDP, 2분기성장률, 유럽경제, 대외수요, 경제지표
 summary: Eurostat의 잠정 속보치에 따르면 2026년 2분기 유로존 GDP는 전 분기보다 0.4%, EU 전체는 0.5% 늘었다. 이번 수치는 일부 자료를 바탕으로 한 첫 추정치이며 다음 보완치는 8월 14일 공개된다.
 image: /stock/2026-07-31-eurostat-euro-area-q2-gdp-0-4-eu-0-5-2026.jpg
-imageCaption: AI로 생성한 주제 설명용 이미지입니다. Eurostat의 공식 통계표나 실제 현장을 재현한 사진이 아닙니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 ---
 ## 한 문장 결론

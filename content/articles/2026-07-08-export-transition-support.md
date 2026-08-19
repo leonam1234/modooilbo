@@ -6,7 +6,7 @@ publishedAt: 2026-07-08 10:15
 tags: 수출기업화, KOTRA, 중소기업, 해외진출
 summary: KOTRA 내수기업 수출기업화 사업의 신청 기간과 지원 성격을 정리했다.
 image: /stock/2026-07-08-export-transition-support.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 source: https://www.kotra.or.kr/subList/20000020753/subhome/bizAply/selectBizMntInfoDetail.do?cpbizYn=N&dtlBizMntNo=25TF030
 ---

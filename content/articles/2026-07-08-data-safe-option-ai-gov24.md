@@ -6,7 +6,7 @@ publishedAt: 2026-07-08 09:30
 tags: 데이터안심옵션, AI정부24, 통신비, 디지털정부
 summary: 데이터 안심옵션과 AI 정부24 등 하반기 디지털 생활 변화의 핵심을 정리했다.
 image: /stock/2026-07-08-data-safe-option-ai-gov24.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 source: https://www.korea.kr/news/policyNewsView.do?newsId=148967677
 ---

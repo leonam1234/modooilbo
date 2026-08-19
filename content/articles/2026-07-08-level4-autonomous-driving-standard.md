@@ -6,7 +6,7 @@ publishedAt: 2026-07-08 09:45
 tags: 자율주행, 레벨4, 미래차, 교통기술
 summary: 레벨4 자율주행 안전운행 기준을 생활 기술 관점에서 풀어 썼다.
 image: /stock/2026-07-08-level4-autonomous-driving-standard.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 source: https://www.ddaily.co.kr/page/view/2026070713581909575
 ---

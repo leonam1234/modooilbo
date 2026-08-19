@@ -7,7 +7,7 @@ publishedAt: 2026-08-03 09:11
 tags: SNT에너지, 에어쿨러, 공급계약, BlackAndVeatch, DelfinFLNG1, 미국프로젝트, 플랜트기자재, 수출계약, 계약기간, 전자공시
 summary: SNT에너지가 Black & Veatch와 270억2062만5000원 규모의 에어쿨러 공급계약을 맺었다. 미국 Delfin FLNG1 프로젝트 납품 건으로 계약기간은 2028년 9월 28일까지다.
 image: /stock/2026-08-03-snt-energy-air-cooler-27b-contract-2026.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 ---
 
 SNT에너지가 Black & Veatch와 에어쿨러 공급계약을 체결했다. 금융감독원 전자공시시스템에 7월 31일 제출한 공시에 따르면 미국으로 납품되는 Delfin FLNG1 프로젝트 관련 계약이다.

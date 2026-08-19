@@ -6,7 +6,7 @@ publishedAt: 2026-07-17 10:50
 tags: GSTP, 상파울루라운드, 관세, 무역협정, UNCTAD, 수출기업, 국제경제
 summary: 한국이 서명한 GSTP 상파울루 라운드 의정서는 아직 발효되지 않았으며, 발효에는 추가 비준 1건이 필요하다. 현재 한국의 관세 인하도 시행되지 않았다.
 image: /stock/2026-07-17-gstp-sao-paulo-round-ratification.jpg
-imageCaption: 개발도상국 간 관세 인하 협상을 일반화해 연출한 물류 모형. AI 생성 이미지로 실제 UNCTAD 자료나 특정 항만·통관 현장 사진이 아님.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 ---
 

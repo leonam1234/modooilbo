@@ -6,7 +6,7 @@ publishedAt: 2026-07-18 10:06
 tags: 대전스타트업, 경북스타트업, 첨단제조, 제조창업, 제품화자금, 창업기업, 스케일업, 창업진흥원, KStartup
 summary: K-Startup 요약 화면에는 지역이 전국으로 표시되지만 실제 신청 대상은 공고일 기준 본점이 대전 또는 경북에 있는 첨단제조 창업기업이다. 총 40개사 안팎을 뽑아 평균 4,750만원, 최대 7,000만원의 제품화 자금과 지역별 스케일업 프로그램을 지원한다.
 image: /stock/2026-07-18-regional-advanced-manufacturing-startup-scaleup.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 ---
 ## 한 문장 결론

@@ -7,7 +7,7 @@ publishedAt: 2026-08-09 20:45
 tags: SBS가요대전, 가요대전Summer, K팝, 킨텍스, 라인업, 스트레이키즈, 라이즈, 베이비몬스터, 성찬, 시온, 이안, 음악축제
 summary: 2026 SBS 가요대전 Summer가 8월 9일 일산 킨텍스에서 27팀의 공식 라인업과 성찬·시온·이안 3MC로 열리는 것으로 공지됐다.
 image: /stock/2026-08-09-sbs-gayo-summer-27-teams-kintex-2026.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 공연 현장이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 ---
 
 2026 SBS 가요대전 Summer의 행사일은 8월 9일, 장소는 일산 킨텍스로 공지됐다. SBS가 세 차례에 걸쳐 발표한 최종 출연 예정 명단은 27팀이며 진행자는 라이즈 성찬, NCT WISH 시온, Hearts2Hearts 이안이다.

@@ -6,7 +6,7 @@ publishedAt: 2026-07-09 12:00
 tags: 게임, 글로벌게임허브센터, 콘텐츠진흥원, 판교
 summary: 글로벌게임허브센터 신규 입주기업 추가모집 공고를 게임기업 지원 관점에서 정리했다.
 image: /stock/2026-07-09-global-game-hub-center.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 source: https://www.culture.go.kr/portal/cltBnf/cltSup/view.do?indRow=344&menuNo=200104&rcrtSn=219314&sWord=&selectType=&viewTp=3&weekju=&yearmonth=
 ---

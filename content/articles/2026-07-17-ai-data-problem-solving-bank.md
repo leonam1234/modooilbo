@@ -7,7 +7,7 @@ eventEndsAt: 2026-07-21 23:59
 tags: AI데이터문제해결은행, 중소기업, 소상공인, 예비창업자, DX, AX, PoC, 한국데이터산업진흥원
 summary: 한국데이터산업진흥원이 DX 적용지원 100개사와 AX 집중지원 7개사를 7월 21일 18시까지 모집한다. DX 경험형은 260개사 이상을 상시 지원할 예정이며, 전문가의 AI PoC 설계·수행은 AX 집중지원 7개사에 한정된다.
 image: /stock/2026-07-17-ai-data-problem-solving-bank.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 ---
 

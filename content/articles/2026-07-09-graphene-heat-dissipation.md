@@ -6,7 +6,7 @@ publishedAt: 2026-07-09 12:20
 tags: 그래핀, 방열, 소재산업, 산업통상부
 summary: 산업부가 밝힌 그래핀 산업화 네트워크 착수와 상용화 로드맵의 의미를 정리했다.
 image: /stock/2026-07-09-graphene-heat-dissipation.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 source: https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/172005/view
 ---

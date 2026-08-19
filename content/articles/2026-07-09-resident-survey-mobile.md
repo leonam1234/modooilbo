@@ -6,7 +6,7 @@ publishedAt: 2026-07-09 11:10
 tags: 주민등록, 사실조사, 정부24, 아파트아이
 summary: 행안부와 아파트아이 협약으로 비대면 주민등록 사실조사 안내가 확대되는 흐름을 정리했다.
 image: /stock/2026-07-09-resident-survey-mobile.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 source: https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&nttId=127625
 ---

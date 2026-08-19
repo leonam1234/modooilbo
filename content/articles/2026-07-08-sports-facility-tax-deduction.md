@@ -6,7 +6,7 @@ publishedAt: 2026-07-08 10:30
 tags: 체육시설, 소득공제, 헬스장, 수영장, 생활체육
 summary: 문화비 소득공제 체육시설 확대 이후 등록 사업자 결제 데이터 변화를 정리했다.
 image: /stock/2026-07-08-sports-facility-tax-deduction.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 source: https://www.mcst.go.kr/site/s_notice/press/pressView.jsp?pSeq=22571
 ---

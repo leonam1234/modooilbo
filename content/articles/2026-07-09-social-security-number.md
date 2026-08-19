@@ -6,7 +6,7 @@ publishedAt: 2026-07-09 11:20
 tags: 사회보장, 복지서비스, 전산관리번호, 보건복지부
 summary: 7월 9일부터 시행되는 사회보장 전산관리번호 개편의 핵심과 주의점을 정리했다.
 image: /stock/2026-07-09-social-security-number.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 source: https://www.mohw.go.kr/board.es?act=view&bid=0027&cg_code=&list_no=1491193&mid=a10503010100&tag=
 ---

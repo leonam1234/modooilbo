@@ -7,7 +7,7 @@ publishedAt: 2026-08-11 07:40
 tags: HD현대중공업, 엔진발전기, 공급계약, 조건부계약, 선수금, 미국, CorbanEnergyGroup, DART, 수주공시, 환율
 summary: HD현대중공업이 Corban Energy Group과 미국향 엔진발전기 9560억원 공급계약을 맺었지만, 계약 효력은 상대방의 선수금 지급을 조건으로 한다.
 image: /stock/2026-08-11-hd-hyundai-heavy-engine-generator-contract-956b-2026.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 ---
 
 HD현대중공업이 Corban Energy Group과 9560억원 규모의 엔진발전기 공급계약을 체결했다. 공급 지역은 미국이며 계약기간은 2026년 8월 7일부터 2030년 7월 30일까지다. 다만 상대방의 선수금 지급을 전제로 한 조건부계약이라는 점을 함께 봐야 한다.

@@ -6,7 +6,7 @@ publishedAt: 2026-07-08 11:00
 tags: 배드민턴, 시니어리그, 생활체육, 스포츠클럽
 summary: 배드민턴 시니어리그 운영 현황과 생활체육 확산 의미를 정리했다.
 image: /stock/2026-07-08-senior-badminton-league.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 source: https://www.mcst.go.kr/site/s_notice/press/pressView.jsp?pSeq=22569
 ---

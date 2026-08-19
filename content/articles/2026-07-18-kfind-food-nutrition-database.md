@@ -6,7 +6,7 @@ publishedAt: 2026-07-18 10:14
 tags: K-FIND, 식품영양성분DB, 식약처, OpenAPI, 공공데이터, 푸드테크, 디지털헬스케어, 식품데이터, 영양정보
 summary: 식약처 K-FIND에는 식품 32만7,145개와 영양 데이터 349만9,386건이 수록돼 있다. 식품·헬스케어 기업은 무료 데이터라는 사실보다 제품 식별, 기준량, 갱신 관리, 규제 검증을 먼저 설계해야 한다.
 image: /stock/2026-07-18-kfind-food-nutrition-database.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 ---
 ## 한 문장 결론

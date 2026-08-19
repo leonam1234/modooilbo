@@ -6,7 +6,7 @@ publishedAt: 2026-07-08 10:00
 tags: AI반도체, 국산반도체, 기술지원센터, 디지털산업
 summary: 국산 AI 반도체 도입과 활용을 돕는 기술지원센터 개소 흐름을 정리했다.
 image: /stock/2026-07-08-k-ai-chip-support-center.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 source: https://www.etnews.com/20260707000106
 ---

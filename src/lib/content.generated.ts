@@ -20,7 +20,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-06-30T18:00:00Z",
     "imageUrl": "/stock/2026-06-30-agent-publishing-test.jpg",
-    "imageCaption": "실제 현장이 아닌 기사 이해를 돕기 위한 AI 생성 이미지.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "모두일보",
       "발행시스템",
@@ -55,7 +55,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-01T10:30:00Z",
     "imageUrl": "/stock/2026-07-01-ev-charging-fee-reform.jpg",
-    "imageCaption": "전기차 공공 충전요금 개편을 설명하기 위한 AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "전기차 충전요금",
       "전기차 공공충전요금",
@@ -98,7 +98,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-01T14:00:00Z",
     "imageUrl": "/stock/2026-07-01-ftc-google-appmarket-review.jpg",
-    "imageCaption": "앱마켓 경쟁 이슈를 설명하기 위한 AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "공정위 구글",
       "구글 앱마켓",
@@ -135,7 +135,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-01T08:00:00Z",
     "imageUrl": "/stock/2026-07-01-mexico-ecuador-worldcup.jpg",
-    "imageCaption": "월드컵 경기 흐름과 전술 관전포인트를 설명하기 위한 AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "멕시코 에콰도르",
       "월드컵 2026",
@@ -171,7 +171,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-01T11:00:00Z",
     "imageUrl": "/stock/2026-07-01-wetax-local-tax-delay.jpg",
-    "imageCaption": "지방세 서비스 지연과 납부기한 연장을 설명하기 위한 AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "위택스 장애",
       "지방세 납부기한",
@@ -211,7 +211,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-01T09:30:00Z",
     "imageUrl": "/stock/2026-07-01-youth-future-savings.jpg",
-    "imageCaption": "청년미래적금 신청 절차와 납입 구조를 설명하기 위한 AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "청년미래적금",
       "청년미래적금 신청",
@@ -249,7 +249,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-02T21:30:00Z",
     "imageUrl": "/stock/2026-07-02-usa-bosnia-worldcup.jpg",
-    "imageCaption": "실제 경기 장면이 아닌 기사 이해를 돕기 위한 AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "미국축구",
       "보스니아헤르체고비나",
@@ -287,7 +287,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-03T18:40:00Z",
     "imageUrl": "/stock/2026-07-03-blood-game-x-premiere.jpg",
-    "imageCaption": "서바이벌 예능의 팀전 구도를 상징적으로 구성한 AI 생성 이미지로, 실제 웨이브 공식 자료나 방송 장면이 아닙니다",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "피의게임X",
       "웨이브",
@@ -325,7 +325,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-03T18:50:00Z",
     "imageUrl": "/stock/2026-07-03-rhythm-heaven-miracle-stars.jpg",
-    "imageCaption": "리듬 게임 발매 소식을 설명하기 위한 AI 생성 이미지로, 닌텐도 공식 이미지·실제 게임 화면·공식 캐릭터가 아닙니다",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "리듬천국",
       "미라클스타즈",
@@ -362,7 +362,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-03T19:00:00Z",
     "imageUrl": "/stock/2026-07-03-robocup-2026-incheon-schedule.jpg",
-    "imageCaption": "로봇 축구 경기 구조를 이해하기 위한 AI 생성 이미지로, 로보컵 2026 실제 경기 사진이나 공식 자료가 아닙니다",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "로보컵2026",
       "인천",
@@ -397,7 +397,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-04T14:35:00Z",
     "imageUrl": "/stock/2026-07-04-fao-food-price-index.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 FAO 공식 그래프나 현장 사진이 아니며, 세계 식량가격지수의 품목 구성을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "FAO 식량가격지수",
       "세계식량가격",
@@ -428,7 +428,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-04T14:25:00Z",
     "imageUrl": "/stock/2026-07-04-first-half-fdi.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 정부 통계표나 투자 자료 화면이 아니며, 외국인직접투자 흐름을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "외국인직접투자",
       "FDI",
@@ -459,7 +459,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-04T14:55:00Z",
     "imageUrl": "/stock/2026-07-04-k-football-innovation-committee.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 케이-축구 혁신위원회 현장 사진이나 기관 자료가 아니며, 축구 제도 개선 논의를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "케이축구 혁신위원회",
       "한국 축구",
@@ -490,7 +490,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-04T14:45:00Z",
     "imageUrl": "/stock/2026-07-04-myk-festa-visitors.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 마이케이 페스타 공식 사진이나 현장 사진이 아니며, K-컬처 행사장을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "마이케이 페스타",
       "K컬처",
@@ -522,7 +522,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-04T14:30:00Z",
     "imageUrl": "/stock/2026-07-04-national-medical-graduate-school.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 설립준비위원회 현장이나 의료 현장 사진이 아니며, 공공의료 인재 양성 제도를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립의전원",
       "공공의료",
@@ -555,7 +555,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-04T15:05:00Z",
     "imageUrl": "/stock/2026-07-04-nato-g7-style-diplomacy.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 NATO 정상회의 공식 사진이나 대통령실 자료가 아니며, 외교 해설 맥락을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나토 정상회의",
       "G7형 외교",
@@ -587,7 +587,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-04T15:00:00Z",
     "imageUrl": "/stock/2026-07-04-privacy-protection-basic-plan.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 개인정보 처리 화면이나 정부 공식 자료가 아니며, AI 시대 개인정보 보호 기본계획을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "제3차 개인정보 보호 기본계획",
       "개인정보보호위원회",
@@ -619,7 +619,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-04T14:40:00Z",
     "imageUrl": "/stock/2026-07-04-traveling-craft-exhibition.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 전시 작품이나 전시장 현장 사진이 아니며, 공예 전시 순회 사업의 취지를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "찾아가는 공예 명작전",
       "공예 전시",
@@ -651,7 +651,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-04T14:50:00Z",
     "imageUrl": "/stock/2026-07-04-worldcup-round-of-16-schedule.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 FIFA 공식 사진, 경기장 현장 사진, 팀 자료가 아니며, 7월 4일 16강 일정과 행사 분위기를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "월드컵 2026",
       "16강 일정",
@@ -683,7 +683,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-05T00:10:00Z",
     "imageUrl": "/stock/2026-07-05-busan-finance-support-center.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 부산 센터 현장이나 상담자 개인정보가 아니며, 서민금융 복합지원 구조를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "부산",
       "서민금융",
@@ -718,7 +718,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-05T00:05:00Z",
     "imageUrl": "/stock/2026-07-05-culture-education-childcare-policy.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공연장·전시관 공식 사진이 아니며, 문화정책 변화를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "2026하반기제도",
       "문화정책",
@@ -754,7 +754,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-05T00:01:00Z",
     "imageUrl": "/stock/2026-07-05-exports-100bn-first-record.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 항만·수출 현장 사진이나 정부 공식 자료가 아니며, 6월 수출 흐름을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "수출",
       "무역수지",
@@ -787,7 +787,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-05T00:09:00Z",
     "imageUrl": "/stock/2026-07-05-fuel-support-payment-deadline-result.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 행정 창구나 개인정보 문서가 아니며, 고유가 피해지원금 마감 결과를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "고유가피해지원금",
       "신청마감",
@@ -821,7 +821,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-05T00:03:00Z",
     "imageUrl": "/stock/2026-07-05-newlywed-hope-town-marriage-proof.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 상담 현장이나 입주자 개인정보가 아니며, 신혼희망타운 신청 절차를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "신혼희망타운",
       "예비신혼부부",
@@ -857,7 +857,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-05T00:04:00Z",
     "imageUrl": "/stock/2026-07-05-second-half-life-policy-changes.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 영화관·정부서비스 화면이 아니며, 하반기 생활정책 변화를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "하반기정책",
       "생활정책",
@@ -892,7 +892,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-05T00:07:00Z",
     "imageUrl": "/stock/2026-07-05-seongnam-seocho-highway-bidder.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 성남-서초 도로 현장이나 공식 노선도가 아니며, 수도권 교통계획을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "성남서초고속도로",
       "민자사업",
@@ -929,7 +929,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-05T00:02:00Z",
     "imageUrl": "/stock/2026-07-05-southwest-896tn-investment-plan.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 기업 공장이나 투자 발표 현장 사진이 아니며, 서남권 첨단산업 투자계획을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "서남권",
       "반도체",
@@ -964,7 +964,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-05T00:08:00Z",
     "imageUrl": "/stock/2026-07-05-typhoon-bavi-guam-saipan-travel.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공항 상황이나 태풍 피해 사진이 아니며, 해외여행 안전공지 확인을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "태풍바비",
       "괌여행",
@@ -999,7 +999,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-05T00:06:00Z",
     "imageUrl": "/stock/2026-07-05-yeongnam-312tn-advanced-industry.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 AI 데이터센터나 공식 산업단지 사진이 아니며, 영남권 첨단산업 투자계획을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "영남권",
       "첨단산업",
@@ -1034,7 +1034,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-06T14:30:00Z",
     "imageUrl": "/stock/2026-07-06-beach-fireworks-rules.jpg",
-    "imageCaption": "해수욕장 불꽃놀이의 제한적 허용과 안전 수칙을 상징적으로 표현한 AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "해수욕장",
       "불꽃놀이",
@@ -1070,7 +1070,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-06T14:35:00Z",
     "imageUrl": "/stock/2026-07-06-energy-cashback.jpg",
-    "imageCaption": "전기요금 절약과 에너지캐시백 조건 확인을 상징적으로 표현한 AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "에너지캐시백",
       "전기요금",
@@ -1105,7 +1105,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-06T14:15:00Z",
     "imageUrl": "/stock/2026-07-06-healing-agriculture-exam.jpg",
-    "imageCaption": "치유농업사 자격시험 준비와 농업 기반 치유 활동을 상징적으로 표현한 AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "치유농업사",
       "국가전문자격",
@@ -1139,7 +1139,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-06T14:10:00Z",
     "imageUrl": "/stock/2026-07-06-military-service-changes.jpg",
-    "imageCaption": "병역제도 변화 확인과 개인별 조건 점검을 상징적으로 표현한 AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "병역제도",
       "병무청",
@@ -1173,7 +1173,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-06T14:25:00Z",
     "imageUrl": "/stock/2026-07-06-mosquito-repellent-factcheck.jpg",
-    "imageCaption": "모기 관련 생활제품의 안전 확인과 사실 확인을 상징적으로 표현한 AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "모기약",
       "의약외품",
@@ -1208,7 +1208,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-06T14:50:00Z",
     "imageUrl": "/stock/2026-07-06-robot-smart-factory.jpg",
-    "imageCaption": "스마트 제조 현장의 로봇 자동화와 비전AI 검사를 상징적으로 표현한 AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "AI로봇",
       "스마트제조",
@@ -1243,7 +1243,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-06T14:05:00Z",
     "imageUrl": "/stock/2026-07-06-weather-week-ahead.jpg",
-    "imageCaption": "일주일 뒤 날씨 확인과 일정 준비를 상징적으로 표현한 AI 생성 이미지",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "중기예보",
       "기상청",
@@ -1274,7 +1274,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T10:15:00Z",
     "imageUrl": "/stock/2026-07-07-baseball-stadium-heat-safety.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 경기장 점검 사진이 아니며, 프로야구장 폭염 안전 점검을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "프로야구",
       "폭염",
@@ -1305,7 +1305,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T10:00:00Z",
     "imageUrl": "/stock/2026-07-07-data-portability-edu-employ.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 개인정보 처리 화면이나 상담 현장 사진이 아니며, 교육·고용 분야 개인정보 전송요구권을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "개인정보보호",
       "전송요구권",
@@ -1336,7 +1336,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T09:50:00Z",
     "imageUrl": "/stock/2026-07-07-honam-semicon-gwangju-airport.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 호남 반도체 산단과 공항 부지 활용 논의를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "호남반도체",
       "광주군공항",
@@ -1367,7 +1367,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T10:05:00Z",
     "imageUrl": "/stock/2026-07-07-jjokbang-heatwave-cooling.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 지원 현장이나 거주자 사진이 아니며, 폭염기 냉방지원 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "폭염",
       "쪽방촌",
@@ -1398,7 +1398,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T09:55:00Z",
     "imageUrl": "/stock/2026-07-07-kfood-foodtech-plan.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 연구시설이나 기업 현장 사진이 아니며, 푸드테크 산업 육성 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "푸드테크",
       "K푸드",
@@ -1429,7 +1429,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T09:35:00Z",
     "imageUrl": "/stock/2026-07-07-ktx-srt-integrated-booking.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 철도 운영 화면이나 현장 사진이 아니며, 통합 예매 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KTX",
       "SRT",
@@ -1460,7 +1460,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T09:30:00Z",
     "imageUrl": "/stock/2026-07-07-movie-discount-coupon.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 영화 할인권 사용 장면을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "영화할인권",
       "문화체육관광부",
@@ -1491,7 +1491,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T10:10:00Z",
     "imageUrl": "/stock/2026-07-07-road-day-kroad-digital.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 도로 관제실이나 기념식 사진이 아니며, K-Road 디지털 전환을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "도로의날",
       "KRoad",
@@ -1522,7 +1522,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T09:45:00Z",
     "imageUrl": "/stock/2026-07-07-senior-driver-pedal-support.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 운전자나 장착 현장 사진이 아니며, 페달 오조작 방지 장치 지원을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "고령운전자",
       "교통안전",
@@ -1553,7 +1553,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-07T09:40:00Z",
     "imageUrl": "/stock/2026-07-07-small-biz-h2-policy.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 사업장이나 정책 상담 현장 사진이 아니며, 소상공인 정책 변화를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "소상공인",
       "노란우산공제",
@@ -1585,7 +1585,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-08T09:30:00Z",
     "imageUrl": "/stock/2026-07-08-data-safe-option-ai-gov24.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "데이터안심옵션",
       "AI정부24",
@@ -1616,7 +1616,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-08T10:15:00Z",
     "imageUrl": "/stock/2026-07-08-export-transition-support.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "수출기업화",
       "KOTRA",
@@ -1647,7 +1647,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-08T10:00:00Z",
     "imageUrl": "/stock/2026-07-08-k-ai-chip-support-center.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "AI반도체",
       "국산반도체",
@@ -1678,7 +1678,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-08T10:45:00Z",
     "imageUrl": "/stock/2026-07-08-kpop-industry-sustainability.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "K팝",
       "케이뮤직",
@@ -1709,7 +1709,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-08T09:45:00Z",
     "imageUrl": "/stock/2026-07-08-level4-autonomous-driving-standard.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "자율주행",
       "레벨4",
@@ -1740,7 +1740,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-08T09:00:00Z",
     "imageUrl": "/stock/2026-07-08-mobile-fine-notice.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "과태료",
       "모바일고지",
@@ -1771,7 +1771,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-08T11:00:00Z",
     "imageUrl": "/stock/2026-07-08-senior-badminton-league.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "배드민턴",
       "시니어리그",
@@ -1802,7 +1802,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-08T11:15:00Z",
     "imageUrl": "/stock/2026-07-08-sme-ai-early-warning.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "중소기업",
       "AI조기경보",
@@ -1833,7 +1833,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-08T10:30:00Z",
     "imageUrl": "/stock/2026-07-08-sports-facility-tax-deduction.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "체육시설",
       "소득공제",
@@ -1865,7 +1865,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-08T09:15:00Z",
     "imageUrl": "/stock/2026-07-08-summer-water-safety.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "물놀이",
       "수난사고",
@@ -1897,7 +1897,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-09T12:10:00Z",
     "imageUrl": "/stock/2026-07-09-ai-security-redteaming.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "AI보안",
       "레드티밍",
@@ -1929,7 +1929,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-09T12:00:00Z",
     "imageUrl": "/stock/2026-07-09-global-game-hub-center.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "게임",
       "글로벌게임허브센터",
@@ -1961,7 +1961,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-09T12:20:00Z",
     "imageUrl": "/stock/2026-07-09-graphene-heat-dissipation.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "그래핀",
       "방열",
@@ -1993,7 +1993,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-09T11:40:00Z",
     "imageUrl": "/stock/2026-07-09-k-series-london-pitching.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "K시리즈",
       "방송영상콘텐츠",
@@ -2025,7 +2025,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-09T12:30:00Z",
     "imageUrl": "/stock/2026-07-09-new-horizons-wakeup.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 NASA 자료나 관제 화면이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "뉴호라이즌스",
       "NASA",
@@ -2057,7 +2057,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-09T11:00:00Z",
     "imageUrl": "/stock/2026-07-09-pregnant-eco-produce.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "임산부",
       "친환경농산물",
@@ -2089,7 +2089,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-09T11:10:00Z",
     "imageUrl": "/stock/2026-07-09-resident-survey-mobile.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "주민등록",
       "사실조사",
@@ -2121,7 +2121,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-09T11:20:00Z",
     "imageUrl": "/stock/2026-07-09-social-security-number.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "사회보장",
       "복지서비스",
@@ -2153,7 +2153,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-09T11:30:00Z",
     "imageUrl": "/stock/2026-07-09-trading-company-607.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "전문무역상사",
       "수출지원",
@@ -2185,7 +2185,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-09T11:50:00Z",
     "imageUrl": "/stock/2026-07-09-workplace-sports-team.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "직장운동경기부",
       "대한체육회",
@@ -2205,7 +2205,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "## 대상기업",
       "이번 자료는 자동차 부품사와 소재기업, 금형·가공·검사장비 업체, 배터리·전장·열관리 부품 공급사, 완성차 물류와 애프터마켓 기업이 우선 볼 통계다. 친환경차 전환에 맞춰 제품군을 조정하는 중소·중견기업과 북미·유럽 수출 비중이 큰 기업에도 직접적인 판단자료가 된다.",
       "5월 전체 자동차 수출액과 내수 판매량, 생산량은 모두 감소했다. 수출은 북미에서 1.0%, 유럽연합에서 6.5% 줄었고 아시아도 37.3% 감소했다. 반면 친환경차 수출액은 증가했고, 산업통상부는 하이브리드가 친환경차 수출 확대를 견인했다고 설명했다. 같은 자동차 업종 안에서도 동력원과 시장에 따라 수요 방향이 달랐다는 뜻이다.",
-      "![전기모터와 열관리·고전압 연결 부품을 품질 검사하는 작업대. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.](/stock/2026-07-14-auto-ecofriendly-export-gap-sub-1.jpg)",
+      "![전기모터와 열관리·고전압 연결 부품을 품질 검사하는 작업대. AI 생성 이미지.](/stock/2026-07-14-auto-ecofriendly-export-gap-sub-1.jpg)",
       "## 받을 수 있는 혜택·얻을 수 있는 기회",
       "친환경차 수출액은 24억달러로 전체 자동차 수출액의 40% 이상을 차지했다. 내수에서도 친환경차 판매는 7만7,000대로 5.5% 증가해 전체 판매의 60%를 넘었고, 전기차 판매는 3만5,000대로 65.4% 늘었다. 산업통상부는 하이브리드가 친환경차 수출 확대를 이끌었다고 설명했다. 전체 시장이 둔화한 한 달에도 친환경차 관련 수요는 다른 흐름을 보였다.",
       "부품사에는 수주가 자동으로 늘어난다는 의미가 아니라 영업 우선순위를 다시 계산할 근거다. 하이브리드 비중이 큰 수출 공급망과 전기차 증가 폭이 큰 내수 공급망은 필요한 부품, 인증, 원가 구조가 다르다. 자사 매출을 완성차 전체 생산량에만 연동해 예측했다면 동력원별 고객 물량과 품목 매출을 분리하는 것이 실무 가치가 있다.",
@@ -2239,7 +2239,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-14T07:35:00Z",
     "imageUrl": "/stock/2026-07-14-auto-ecofriendly-export-gap.jpg",
-    "imageCaption": "무표식 자동차 조립라인에서 친환경차 구동 부품과 차체를 점검하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "자동차수출",
       "친환경차",
@@ -2259,7 +2259,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "## 대상기업",
       "카페·외식·소매·서비스 매장을 열려는 예비창업자, 점포를 추가하려는 프랜차이즈와 다점포 사업자, 상가를 임차하거나 보유한 기업이 대상이다. 특히 초기 투자비에서 보증금·권리금·인테리어 비중이 큰 업종은 공실률을 임대료 협상과 회수기간 검토의 출발점으로 삼을 수 있다.",
       "한국부동산원 기준 중대형 상가는 건축물대장상 상가 용도이면서 3층 이상이거나 연면적 330㎡를 초과한 일반건축물이다. 소규모 상가는 2층 이하이면서 연면적 330㎡ 이하인 일반건축물이다. 기사에 나온 유형은 개별 점포의 전용면적 구분이 아니라 건물 기준이라는 점을 먼저 확인해야 한다.",
-      "![예비 임차인이 계약 전 빈 점포의 면적과 설비 상태를 확인하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.](/stock/2026-07-14-commercial-vacancy-rate-q1-sub-1.jpg)",
+      "![예비 임차인이 계약 전 빈 점포의 면적과 설비 상태를 확인하는 장면. AI 생성 이미지.](/stock/2026-07-14-commercial-vacancy-rate-q1-sub-1.jpg)",
       "## 받을 수 있는 혜택·얻을 수 있는 기회",
       "중대형 상가 공실률은 세종 27.0%, 충북 20.3%, 경북 18.6%로 전국 평균보다 높았다. 반면 서울은 9.3%, 제주는 10.8%, 경기는 11.6%였다. 소규모 상가의 전국 공실률은 8.3%였고 서울 6.3%, 제주 2.3%, 전남 10.6%로 집계됐다.",
       "공실률이 높은 지역에서는 임차인이 선택 가능한 공간이 많거나 임대조건을 협의할 여지가 있을 수 있다. 그러나 높은 공실이 약한 소비수요를 반영했을 가능성도 있어 낮은 임대료만으로 출점을 결정하면 안 된다. 반대로 공실률이 낮은 지역은 공간 희소성과 수요를 보여줄 수 있지만 임대료와 권리금 부담이 커질 수 있다.",
@@ -2289,7 +2289,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-14T06:55:00Z",
     "imageUrl": "/stock/2026-07-14-commercial-vacancy-rate-q1.jpg",
-    "imageCaption": "일부 빈 점포가 섞인 일반 상업지를 표현한 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "상가공실률",
       "상권분석",
@@ -2308,7 +2308,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "body": [
       "## 대상기업",
       "공고 시작일 기준 본사가 대구광역시에 있는 문화콘텐츠 분야 개인·법인 중소기업이 대상이다. 플랫폼, 솔루션, 지식정보, 실감콘텐츠, 방송, 애니메이션, 영상, 음악, 캐릭터 분야 등이 지원 범위에 포함된다. 대구에서 사업할 예정이라는 계획만으로는 부족하고 본사 소재 요건을 충족해야 한다.",
-      "![콘텐츠 제작사가 예산과 인턴 운영비를 검토하는 장면을 재구성한 AI 이미지. 실제 공식 자료나 현장 사진이 아님.](/stock/2026-07-14-daegu-content-production-support-sub-1.jpg)",
+      "![콘텐츠 제작사가 예산과 인턴 운영비를 검토하는 장면 장면의 AI 생성 이미지.](/stock/2026-07-14-daegu-content-production-support-sub-1.jpg)",
       "## 받을 수 있는 혜택",
       "총 지원규모는 2억7,600만원이며 약 3개사를 선정할 예정이다. 지역 메가이벤트 콘텐츠 제작지원은 약 1개사에 최대 9,200만원, 글로벌 콘텐츠 제작지원은 약 2개사에 각각 최대 9,200만원을 지원한다. 인건비, 임차비, 외주용역비 등 직접 사업비가 지원 범위에 포함될 수 있지만 최종 인정 비목은 공고와 협약 기준을 따라야 한다.",
       "## 금액·일정·필요서류",
@@ -2334,7 +2334,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-14T09:30:00Z",
     "imageUrl": "/stock/2026-07-14-daegu-content-production-support.jpg",
-    "imageCaption": "콘텐츠 제작팀이 영상·그래픽 작업을 협업하는 장면을 재구성한 AI 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대구",
       "문화콘텐츠",
@@ -2356,7 +2356,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "## 대상기업",
       "이번 공고는 일반 딥테크 기업 전체를 대상으로 하지 않는다. 신산업 창업 분야의 업력 10년 이내 기업 가운데 신청자가 광주과학기술원(GIST), 대구경북과학기술원(DGIST), 울산과학기술원(UNIST), 한국과학기술원(KAIST) 재학생이거나 졸업 후 5년 이내인 경우가 대상이다. 이들 과학기술원으로부터 기술을 이전받은 기업도 신청 범위에 들어간다.",
       "따라서 대표자의 학적·졸업일이나 기술이전 계약을 증명하지 못하는 기업은 기술력이 있다는 이유만으로 대상이 되지 않는다. 업력과 신산업 분야 판정 기준도 공고문과 첨부 기준을 함께 대조해야 한다.",
-      "![기술이전과 사업계획을 검토하는 장면을 재구성한 AI 이미지. 실제 공식 자료나 현장 사진이 아님.](/stock/2026-07-14-deeptech-startup-university-sub-1.jpg)",
+      "![기술이전과 사업계획을 검토하는 장면 장면의 AI 생성 이미지.](/stock/2026-07-14-deeptech-startup-university-sub-1.jpg)",
       "## 받을 수 있는 혜택",
       "사업화 자금은 평균 약 1억6,000만원, 최대 2억원이다. 평균액은 모든 선정기업이 같은 금액을 받는다는 뜻이 아니며 최대액도 보장 금액이 아니다. 창업기업 지원 프로그램이 함께 제공되고, 선정은 서면평가와 발표평가를 거친다.",
       "## 금액·일정·필요서류",
@@ -2379,7 +2379,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-14T08:30:00Z",
     "imageUrl": "/stock/2026-07-14-deeptech-startup-university.jpg",
-    "imageCaption": "딥테크 창업팀이 연구장비와 반도체 웨이퍼를 검토하는 모습을 재구성한 AI 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "딥테크",
       "창업중심대학",
@@ -2401,7 +2401,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "## 대상기업",
       "하도급법 적용 거래를 하는 원사업자와 수급사업자 가운데 전기·연료·열 등 에너지 비용 비중이 큰 제조·가공·건설·용역 기업이 우선 점검 대상이다. 8월 11일 시행되는 개정법은 목적물의 제조·수리·시공 또는 용역 수행에 쓰이는 에너지 중 그 비용이 하도급대금의 10% 이상인 경우를 ‘주요 에너지’로 정의한다.",
       "같은 회사라도 에너지 비용 비중은 계약마다 다를 수 있다. 공장 전체 전기요금이 크다는 사실만으로 모든 하도급계약이 연동 대상이 되는 것은 아니며, 개별 목적물이나 용역 수행에 들어가는 비용을 계약 단위로 계산해야 한다.",
-      "![설비 부품과 비용 구분 블록으로 계약 반영 기준을 협의하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.](/stock/2026-07-14-energy-subcontract-price-link-sub-1.jpg)",
+      "![설비 부품과 비용 구분 블록으로 계약 반영 기준을 협의하는 장면. AI 생성 이미지.](/stock/2026-07-14-energy-subcontract-price-link-sub-1.jpg)",
       "## 얻을 수 있는 기회",
       "이번 개정은 원재료 가격뿐 아니라 주요 에너지 비용의 변동도 계약대금 조정 구조에 반영할 수 있도록 범위를 넓힌다. 에너지 사용량이 많은 수급사업자는 계약 단계에서 가격 변동 위험을 수치로 제시할 근거가 생기고, 원사업자는 사후 단가 분쟁을 줄이기 위해 조정 기준을 미리 문서화할 수 있다.",
       "개정 법률상 연동은 주요 에너지 비용이 당사자가 10% 이내 범위에서 협의해 정한 비율 이상 변동할 때 그 변동분에 맞춰 하도급대금을 조정하는 구조다. 따라서 기준 지표와 조정요건을 계약 전에 구체적으로 합의하는 것이 핵심이다.",
@@ -2431,7 +2431,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-14T09:45:00Z",
     "imageUrl": "/stock/2026-07-14-energy-subcontract-price-link.jpg",
-    "imageCaption": "제조 현장에서 설비의 전력·열 사용 구조와 비용 배분을 점검하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "하도급대금연동",
       "에너지비용",
@@ -2453,7 +2453,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "이번 공고의 직접 대상은 나라장터에 교육클라우드서비스(SaaS, 세부품명번호 `8111151313`) 제조 또는 공급 물품과 소프트웨어사업자(컴퓨터관련서비스사업, 업종코드 `1468`)를 등록한 소기업 또는 소상공인이다. 지역 제한과 별도의 수행실적 하한은 공고문 참가자격에 명시돼 있지 않다.",
       "등록 업종만 맞는다고 참여할 수 있는 것은 아니다. 공고일 현재 유효한 CSAP, FedRAMP, NIPA 클라우드 컴퓨팅 서비스 품질·성능 확인 또는 한국클라우드산업협회 클라우드 서비스 확인 가운데 공고문이 인정한 인증을 갖춰야 한다. 대한민국 안에서 GPU 서버를 퍼블릭 클라우드로 제공하는 데이터센터를 소유하거나 임차하고 있어야 하며, 가용성과 장애 보상이 포함된 서비스수준협약(SLA), 요구규격 `ECR-013` 이상 자원을 제공할 수 있다는 증빙도 필요하다.",
       "기업규모는 소기업 또는 소상공인으로 제한된다. 공동계약 및 구성방식은 공식 첨부 공고문에 `불가`로 명시됐다.",
-      "![무표식 GPU 서버 부품과 냉각 구성을 검토하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.](/stock/2026-07-14-kaist-ai-cloud-license-sub-1.jpg)",
+      "![무표식 GPU 서버 부품과 냉각 구성을 검토하는 장면. AI 생성 이미지.](/stock/2026-07-14-kaist-ai-cloud-license-sub-1.jpg)",
       "## 받을 수 있는 혜택·얻을 수 있는 기회",
       "이 공고는 지원금이 아니라 납품계약 기회다. 사업예산은 부가가치세를 포함해 4,998만4,000원이고, 나라장터 상세의 추정가격은 4,544만원이다. 계약은 총액입찰·소액수의견적 방식이며 규격심사를 통과한 업체 가운데 예정가격의 88% 이상으로 최저가격을 제시한 업체를 계약상대자로 정한다.",
       "납품기한은 계약일로부터 10일 이내다. 이미 국내 GPU 퍼블릭 클라우드와 관련 인증, SLA 체계를 운영하고 있어 별도 구축 없이 필요한 자원을 제공할 수 있는 소규모 클라우드 사업자에게는 짧은 기간 안에 검토할 수 있는 조달 기회다. 반대로 인증이나 자원 증빙을 새로 준비해야 하는 업체에는 제출기간과 납품기간이 짧다.",
@@ -2496,7 +2496,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-14T10:45:00Z",
     "eventEndsAt": "2026-07-21T23:59:00Z",
     "imageUrl": "/stock/2026-07-14-kaist-ai-cloud-license.jpg",
-    "imageCaption": "국내 GPU 클라우드 운영을 일반화한 무표식 데이터센터 기술팀 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -2516,7 +2516,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "body": [
       "## 대상기업",
       "2026년 12월 31일 기준 예비·인증 사회적기업, 예비·정식 마을기업, 협동조합, 자활기업, 소셜벤처 가운데 하나에 해당해야 한다. 일반 기업은 대상에서 제외된다. 신청 전에 회사가 보유한 사회적경제 자격의 종류와 유효기간을 먼저 확인해야 하는 이유다.",
-      "![사회적기업 구성원이 사업계획과 재무자료를 준비하는 장면을 재구성한 AI 이미지. 실제 공식 자료나 현장 사진이 아님.](/stock/2026-07-14-kepco-social-economy-sub-1.jpg)",
+      "![사회적기업 구성원이 사업계획과 재무자료를 준비하는 장면 장면의 AI 생성 이미지.](/stock/2026-07-14-kepco-social-economy-sub-1.jpg)",
       "## 받을 수 있는 혜택",
       "지원은 세 갈래다. 한전 사업연계형은 서면심사와 발표심사를 거쳐 사업개발비를 최대 2,000만원까지 지원한다. 인증 지원은 서면심사를 거쳐 국내외 인증 관련 비용을 최대 350만원까지 지원한다. 사회적가치지표(SVI) 측정 유형은 전문 컨설팅을 제공한다.",
       "신청 자체가 지원 확정을 뜻하지 않는다. 유형별 심사를 통과해야 하며, 최대액은 자동 지급액이 아니다.",
@@ -2540,7 +2540,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-14T09:00:00Z",
     "imageUrl": "/stock/2026-07-14-kepco-social-economy.jpg",
-    "imageCaption": "사회적경제 조직이 지역 작업장의 에너지 개선 방안을 점검하는 장면을 재구성한 AI 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "사회적경제",
       "한국전력",
@@ -2562,7 +2562,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "## 대상기업",
       "고용노동부 고시는 사업장 규모나 업종을 나누지 않고 2026년 최저임금을 동일하게 적용한다고 안내한다. 정규직·계약직·시간제 등 고용형태의 명칭보다 실제 근로관계와 임금 산정 방식이 중요하다. 특히 최저임금에 가까운 시급·월급을 지급하는 소상공인, 외식·유통·숙박업, 생산·현장직 비중이 큰 중소기업은 급여대장 전수점검이 필요하다.",
       "근로시간이 서로 다른 직원에게 월 215만6,880원을 일률적으로 적용할 필요는 없다. 이 금액은 주 40시간 근무와 유급주휴 8시간을 포함해 월 209시간으로 환산한 고시 기준이다. 단시간 근로자나 근무일이 일정하지 않은 근로자는 각자의 소정근로시간과 주휴 요건을 기준으로 별도 계산해야 한다.",
-      "![근로시간표와 출퇴근 기록 카드를 항목별로 맞춰 보는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.](/stock/2026-07-14-minimum-wage-2026-checklist-sub-1.jpg)",
+      "![근로시간표와 출퇴근 기록 카드를 항목별로 맞춰 보는 장면. AI 생성 이미지.](/stock/2026-07-14-minimum-wage-2026-checklist-sub-1.jpg)",
       "## 받을 수 있는 혜택·얻을 수 있는 기회",
       "최저임금은 지원금이 아니라 사업주가 지켜야 할 임금 하한이다. 기업이 얻을 수 있는 실무상 이익은 연초에 인건비를 정확히 예산화하고, 뒤늦은 임금 정산이나 분쟁 가능성을 줄이는 데 있다.",
       "2025년 시간급 1만30원과 비교하면 2026년은 시간당 290원, 2.9% 올랐다. 월 209시간을 동일하게 적용하는 근로자 1명의 고시상 월 환산액 차이는 6만610원이다. 같은 조건의 근로자가 10명이라면 단순 차액은 월 60만6,100원이지만, 이 계산에는 연장·야간·휴일수당과 4대보험 사업주 부담분, 퇴직급여 충당액이 포함되지 않는다. 실제 예산은 이 부대비용까지 따로 반영해야 한다.",
@@ -2594,7 +2594,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-14T08:15:00Z",
     "imageUrl": "/stock/2026-07-14-minimum-wage-2026-checklist.jpg",
-    "imageCaption": "소규모 사업장 관리자가 근무표와 급여 산정표를 대조하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "2026최저임금",
       "급여계산",
@@ -2614,7 +2614,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "## 대상기업",
       "상생결제를 도입한 구매기업과 거래하는 1차 이하 협력사, 납품대금의 만기 수취와 조기 현금화를 관리하는 재무 담당자가 대상이다. 기존에는 구매기업부터 하위 협력사까지 같은 은행 계좌를 이용해야 하는 절차가 있었지만, 원스톱 방식은 참여 금융기관과 구매기업의 거래망에서 타행 계좌 수취가 가능하도록 설계됐다.",
       "특히 상생결제를 쓰기 위해 별도 계좌 개설을 망설였던 2차 이하 협력사라면 거래처가 새 방식을 도입했는지 확인할 실익이 있다.",
-      "![납품 내역과 대금 수취 상태를 함께 확인하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.](/stock/2026-07-14-onestop-winwin-payment-sub-1.jpg)",
+      "![납품 내역과 대금 수취 상태를 함께 확인하는 장면. AI 생성 이미지.](/stock/2026-07-14-onestop-winwin-payment-sub-1.jpg)",
       "## 얻을 수 있는 기회",
       "중소벤처기업부가 2026년 3월 발표한 원스톱 상생결제는 협력사가 새 계좌를 추가로 만들지 않고 주거래은행 계좌로 결제대금을 받을 수 있도록 은행 제약을 낮춘 것이 핵심이다. 상생결제 관련 업무를 하나의 플랫폼에서 처리하도록 한 점도 기존 절차와 달라진 부분이다.",
       "상생결제 자체는 협력사가 결제일에 현금으로 대금을 받고, 조건이 맞으면 구매기업의 신용도를 기준으로 결제일 전에 조기 현금화할 수 있도록 설계된 결제방식이다. 타행 수취가 실제 거래망에 적용되면 계좌 관리 부담을 줄이면서 기존 상생결제 기능을 이용할 여지가 생긴다.",
@@ -2643,7 +2643,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-14T10:15:00Z",
     "imageUrl": "/stock/2026-07-14-onestop-winwin-payment.jpg",
-    "imageCaption": "중소기업 재무담당자가 서로 다른 금융 경로를 확인하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "상생결제",
       "납품대금",
@@ -2663,7 +2663,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "## 대상기업",
       "이 통계는 자사몰과 전문몰을 운영하는 중소 브랜드, 종합몰·플랫폼 입점 판매자, 화장품·식품·가전·배달 서비스 기업, 온라인과 오프라인을 함께 운영하는 유통기업이 활용할 수 있다. 광고대행사, 결제·물류·고객관리 솔루션 기업처럼 온라인 판매자를 고객으로 둔 기업에도 시장 점검 자료가 된다.",
       "상품군별로는 화장품 거래액이 전년 동월보다 36.6%, 음·식료품이 14.0%, 음식서비스가 10.2% 증가했다. 반면 여행·교통서비스는 3.4% 감소했다. 온라인쇼핑 전체가 10.3% 늘었다는 한 숫자만으로 모든 판매 업종이 같은 성장세라고 판단하면 실제 시장과 어긋난다.",
-      "![문자 없는 추상 상품 화면의 휴대전화와 무표식 상품·포장재. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.](/stock/2026-07-14-online-shopping-specialty-mall-sub-1.jpg)",
+      "![문자 없는 추상 상품 화면의 휴대전화와 무표식 상품·포장재. AI 생성 이미지.](/stock/2026-07-14-online-shopping-specialty-mall-sub-1.jpg)",
       "## 받을 수 있는 혜택·얻을 수 있는 기회",
       "전문몰 거래액은 11조6,328억원으로 전년 동월보다 13.3% 증가했다. 종합몰 거래액은 13조3,802억원으로 규모는 더 컸지만 증가율은 7.8%였다. 특정 상품군에 집중한 판매자가 전문성, 콘텐츠, 재구매 구조를 강화할 여지가 있다는 신호로 읽을 수 있다. 다만 이 통계만으로 전문몰의 수익성이 종합몰보다 높다고 결론 내릴 수는 없다.",
       "모바일쇼핑 거래액은 19조2,890억원으로 9.7% 늘었고 전체 온라인 거래의 77.1%를 차지했다. 모바일 구매 동선이 여전히 기본이라는 뜻이다. 동시에 모바일 비중은 전년 동월보다 0.5%포인트 낮아졌다. 화장품은 전체 온라인 거래액이 36.6% 증가했지만 모바일 거래액 증가율은 15.9%였다. 업종별로 PC와 모바일의 성장 속도가 다를 수 있어 모든 예산을 모바일 한 채널에만 배치하는 것도 근거가 부족하다.",
@@ -2697,7 +2697,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-14T07:55:00Z",
     "imageUrl": "/stock/2026-07-14-online-shopping-specialty-mall.jpg",
-    "imageCaption": "무표식 생활용품과 식품·화장품을 포장하는 소규모 전문몰 작업장. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "온라인쇼핑",
       "전문몰",
@@ -2717,7 +2717,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "## 대상기업",
       "대상은 고용보험법상 우선지원대상기업 가운데 근로자에게 출산전후휴가·유산·사산휴가를 부여했거나, 30일 이상의 육아휴직 또는 육아기 근로시간 단축을 허용한 사업주다. 회사가 직접 대체인력을 고용하거나 파견근로자를 대체인력으로 사용하고, 30일 이상 계속 고용·사용해야 한다.",
       "대체인력은 출산전후휴가 등의 시작일 전 2개월이 되는 날 이후에 새로 고용하거나 파견 사용을 시작해야 한다. 예를 들어 휴가가 7월 1일 시작되면 5월 1일 이후 새로 투입한 대체인력이 원칙적인 지원 검토 대상이다. 기존 직원을 오래전부터 고용했다가 내부적으로 업무만 바꾸는 경우를 새 대체인력 채용으로 단정하면 안 된다.",
-      "![휴직 기간과 대체인력 채용 기간을 맞춰 보는 인사관리 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.](/stock/2026-07-14-parental-leave-replacement-grant-sub-1.jpg)",
+      "![휴직 기간과 대체인력 채용 기간을 맞춰 보는 인사관리 장면. AI 생성 이미지.](/stock/2026-07-14-parental-leave-replacement-grant-sub-1.jpg)",
       "## 받을 수 있는 혜택·얻을 수 있는 기회",
       "출산전후휴가와 육아휴직에 따른 대체인력은 사업장 피보험자 수에 따라 30인 미만 월 최대 140만원, 30인 이상 월 최대 130만원을 지원한다. 지원액은 사업주가 지급한 월 임금 또는 월별 파견 대가의 80%를 넘을 수 없다.",
       "육아기 근로시간 단축에 따른 대체인력은 월 최대 120만원이며, 단축된 시간 범위에서 실제로 대체근로가 이뤄진 시간에 대해 산정한다. 휴가 시작 전 최대 2개월의 사전 인수인계기간과 육아휴직 종료 후 최대 1개월의 사후 인수인계기간도 요건을 충족하면 지원 범위에 들어갈 수 있다.",
@@ -2752,7 +2752,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-14T08:45:00Z",
     "imageUrl": "/stock/2026-07-14-parental-leave-replacement-grant.jpg",
-    "imageCaption": "육아휴직 전 기존 업무를 대체인력에게 인계하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "육아휴직",
       "대체인력지원금",
@@ -2774,7 +2774,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "참가 대상은 나라장터에 기타자유업(행사대행업, 업종코드 `9901`) 또는 기타자유업종(업종코드 `9999`)으로 등록하고, 유효한 소기업·소상공인 확인서를 보유한 업체다. 두 업종을 모두 등록할 필요는 없고 공고문은 둘 중 하나를 요구한다.",
       "입찰참가자격 문단에는 지역 제한과 별도의 수행실적 하한이 명시돼 있지 않다. 기업규모는 소기업 또는 소상공인으로 제한되며, 공동수급체 구성은 공동이행방식을 포함해 불가하다고 공고문에 적혀 있다. 다른 업체와 공동수급체를 꾸려 부족한 업종이나 인력을 보완하는 방식으로 참여할 수 없다.",
       "교육과정 기획, 참가자 운영, 강사·프로그램 관리, 결과보고를 포함한 교육용역 제안 역량이 있는 소규모 행사·교육 운영사가 우선 검토할 만하다. 다만 실제 과업 범위와 인력요건은 첨부 제안요청서와 과업내용서를 기준으로 산정해야 한다.",
-      "![기업 교육용역 제안 발표를 앞둔 운영팀의 리허설 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.](/stock/2026-07-14-seoul-global-marketer-training-sub-1.jpg)",
+      "![기업 교육용역 제안 발표를 앞둔 운영팀의 리허설 장면. AI 생성 이미지.](/stock/2026-07-14-seoul-global-marketer-training-sub-1.jpg)",
       "## 받을 수 있는 혜택·얻을 수 있는 기회",
       "이 사업은 지원금이 아니라 협상에 의한 용역계약이다. 용역비는 부가가치세를 포함해 8,500만원이고, 나라장터 상세의 추정가격은 77,272,727원이다. 용역기간은 착수일부터 2026년 12월 31일까지다.",
       "낙찰자는 최저가만으로 정하지 않는다. 기술능력 90%, 입찰가격 10%로 평가한 뒤 협상적격자와 협상순위를 결정한다. 가격 경쟁력만 앞세우기보다 교육 운영 방법, 인력 배치, 일정 관리와 성과관리 방안을 구체적으로 제시할 수 있는 업체에 맞는 방식이다.",
@@ -2819,7 +2819,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-14T11:15:00Z",
     "eventEndsAt": "2026-07-28T23:59:00Z",
     "imageUrl": "/stock/2026-07-14-seoul-global-marketer-training.jpg",
-    "imageCaption": "기업 실무자 교육 프로그램 운영을 일반화한 무표식 강의 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -2840,7 +2840,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "## 대상기업",
       "이 자료를 먼저 볼 기업은 자체 연구소나 개발팀을 운영하는 중소 제조사와 정보통신기업, 전문·과학·기술서비스 기업이다. 연구장비, 시험·인증, 설계, 클라우드, 데이터, 지식재산, 기술사업화 서비스를 중소기업에 판매하는 공급사도 잠재고객군을 나누는 데 활용할 수 있다. 연구개발 예산을 처음 편성하려는 기업과 기존 투자액이 업종 평균에서 어느 정도 위치인지 점검하려는 경영진·재무담당자에게도 기준점이 된다.",
       "이번 조사는 모든 소상공인을 포함한 전체 사업체 통계가 아니다. 중소벤처기업부는 소상공인을 제외한 중기업·소기업을 대상으로 16개 산업 대분류, 표본 2만개 기업을 조사했고, 결과표에는 전체 업체수가 38만6,335개로 제시됐다. 음식점이나 영세 소매점까지 포함한 ‘전체 중소사업자’의 연구개발 참여율로 확대해서는 안 된다.",
-      "![무표식 측정도구로 정밀 시제품과 산업부품을 비교 검토하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.](/stock/2026-07-14-sme-rnd-investment-share-sub-1.jpg)",
+      "![무표식 측정도구로 정밀 시제품과 산업부품을 비교 검토하는 장면. AI 생성 이미지.](/stock/2026-07-14-sme-rnd-investment-share-sub-1.jpg)",
       "## 받을 수 있는 혜택·얻을 수 있는 기회",
       "연구개발 투자액은 제조업에 가장 많이 모였다. 제조업은 8조4,988억원으로 전체 16조4,368억원의 51.7%를 차지했고, 정보통신업은 3조4,105억원, 전문·과학·기술서비스업은 2조4,190억원이었다. 업종 내 투자기업 비중은 정보통신업 49.0%, 제조업 35.9%, 전문·과학·기술서비스업 22.5% 순이었다. 기술 공급사가 전체 중소기업을 하나의 영업시장으로 보기보다 이 세 업종을 제품 용도와 예산 규모에 따라 다시 나눠야 하는 이유다.",
       "투자기업 한 곳당 평균 연구개발비는 2억8,300만원이었다. 기업 규모별로는 중기업이 평균 3억9,300만원, 소기업이 2억1,600만원으로 약 1.8배 차이가 났다. 다만 매출액 대비 연구개발비는 투자기업 기준으로 소기업이 5.48%, 중기업이 1.99%였다. 절대 금액은 중기업이 컸지만, 연구개발을 하는 소기업은 매출 대비 부담이 더 높았다는 뜻이다. 장비·소프트웨어 공급사는 같은 기능이라도 초기 구축비, 월 이용료, 공동활용, 단계별 도입 같은 가격 구조를 따로 설계할 근거로 삼을 수 있다.",
@@ -2879,7 +2879,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-14T07:15:00Z",
     "imageUrl": "/stock/2026-07-14-sme-rnd-investment-share.jpg",
-    "imageCaption": "중소 제조기업 R&D 공간에서 연구원들이 정밀 시제품과 전자제어 모듈을 시험하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "중소기업",
       "연구개발",
@@ -2901,7 +2901,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "## 대상기업",
       "제조·건설·용역 분야에서 다른 사업자에게 업무를 위탁하거나 위탁받는 기업의 구매·영업·재무·법무 담당자가 직접 대상이다. 특히 같은 회사라도 소프트웨어 개발, 광고 제작, 설계, 제조처럼 거래 유형이 여러 개인 경우 계약 건마다 맞는 업종 양식을 다시 고를 필요가 있다.",
       "표준하도급계약서를 찾기 전에 해당 거래가 하도급법 적용 대상인지부터 확인해야 한다. 거래 당사자의 규모와 위탁 내용에 따라 법 적용 여부가 달라질 수 있기 때문이다.",
-      "![보관 계약 양식과 최신 관리본을 나란히 점검하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.](/stock/2026-07-14-standard-subcontract-forms-sub-1.jpg)",
+      "![보관 계약 양식과 최신 관리본을 나란히 점검하는 장면. AI 생성 이미지.](/stock/2026-07-14-standard-subcontract-forms-sub-1.jpg)",
       "## 얻을 수 있는 기회",
       "공정위는 표준하도급계약서를 법 위반을 줄이고 계약서 작성을 돕기 위한 목적으로 업종별로 보급하고 있다. 최신 양식을 기준표로 삼으면 목적물과 업무 범위, 검사, 대금 지급, 지식재산권과 기술자료, 계약 변경·해지처럼 분쟁이 잦은 항목을 빠뜨릴 가능성을 줄일 수 있다.",
       "공정위 게시판에는 업종별 계약서가 별도 항목으로 올라와 있고 개정일도 다르게 표시된다. 예를 들어 건축설계업종 게시물에는 과거 양식과 연동제 규정 추가본, 2024년 12월 24일 개정본이 함께 첨부돼 있다. 파일 이름만 보고 첫 번째 첨부물을 내려받기보다 개정일을 확인해야 하는 이유다.",
@@ -2932,7 +2932,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-14T09:15:00Z",
     "imageUrl": "/stock/2026-07-14-standard-subcontract-forms.jpg",
-    "imageCaption": "업종별 계약 양식을 비교하는 실무 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "표준하도급계약서",
       "하도급계약",
@@ -2952,7 +2952,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "## 대상기업",
       "사업자등록을 준비하는 예비창업자, 업력 5년 이하 초기기업, 프랜차이즈 가맹 희망자, 창업기업을 심사하는 투자·보육기관이 직접 대상이다. 업종별 격차가 크기 때문에 도·소매, 숙박·음식점, 정보통신, 전문·과학·기술, 예술·스포츠·여가 분야는 전 산업 평균만 사용하면 판단이 흐려질 수 있다.",
       "이미 영업 중인 기업도 자사 업력과 같은 구간의 생존율을 비교 기준으로 쓸 수 있다. 다만 이는 개별 기업의 폐업 확률을 계산해 주는 지표가 아니라 같은 시기에 생긴 기업 집단이 이후에도 존속했는지를 보여주는 행정통계다.",
-      "![예비창업자가 개업 전 집기와 고정비 항목을 점검하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.](/stock/2026-07-14-startup-survival-rate-sub-1.jpg)",
+      "![예비창업자가 개업 전 집기와 고정비 항목을 점검하는 장면. AI 생성 이미지.](/stock/2026-07-14-startup-survival-rate-sub-1.jpg)",
       "## 받을 수 있는 혜택·얻을 수 있는 기회",
       "1년 생존율은 제조업 69.8%, 숙박·음식점업 66.9%, 전문·과학·기술 64.2%, 정보통신업 61.1%, 도·소매업 55.2%였다. 5년 생존율은 제조업 46.4%, 전문·과학·기술 41.6%, 정보통신업 38.7%, 도·소매업 32.1%, 숙박·음식점업 27.2%, 예술·스포츠·여가 26.8%로 집계됐다.",
       "이 격차는 업종 선택의 정답을 주지는 않지만 비용구조를 얼마나 보수적으로 잡아야 하는지 보여준다. 예를 들어 5년 생존율이 상대적으로 낮은 업종은 인테리어·설비에 자금을 한꺼번에 쓰기보다 임대기간, 인력 고정비, 장비 회수기간을 짧게 설계하는 판단 근거로 활용할 수 있다.",
@@ -2980,7 +2980,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-14T06:35:00Z",
     "imageUrl": "/stock/2026-07-14-startup-survival-rate.jpg",
-    "imageCaption": "소규모 사업자가 장기 운영을 위해 고정비와 현금흐름을 점검하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "창업생존율",
       "기업생멸통계",
@@ -3000,7 +3000,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "## 대상기업",
       "이 통계는 새 사업을 준비하는 예비창업자와 초기기업뿐 아니라 창업보육기관, 투자사, 회계·법무·채용·클라우드처럼 창업기업을 고객으로 두는 사업자에게도 유효하다. 특히 정보통신, 전문·과학·기술서비스, 제조업 기반 창업을 검토하는 팀은 전체 창업 감소율보다 기술기반창업의 구성 변화를 함께 볼 필요가 있다.",
       "반대로 숙박·음식점업이나 부동산업처럼 창업 건수가 줄어든 업종의 예비사업자는 시장 진입이 줄었다는 사실을 경쟁 완화로 바로 해석하면 안 된다. 수요 둔화나 비용 부담이 함께 작용했을 수 있으므로 지역 상권과 실제 매출 자료를 별도로 확인해야 한다.",
-      "![기술창업을 준비하며 시제품과 사업계획 요소를 함께 검토하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.](/stock/2026-07-14-tech-startup-share-2025-sub-1.jpg)",
+      "![기술창업을 준비하며 시제품과 사업계획 요소를 함께 검토하는 장면. AI 생성 이미지.](/stock/2026-07-14-tech-startup-share-2025-sub-1.jpg)",
       "## 받을 수 있는 혜택·얻을 수 있는 기회",
       "공식 통계상 2025년 정보통신업 창업은 전년보다 17.5%, 금융·보험업은 25.9%, 전문·과학·기술서비스업은 5.0% 증가했다. 기술기반창업도 상반기에는 전년 동기보다 3.1% 감소했으나 하반기에는 9.3% 늘었다. 하반기 기술기반창업 수는 11만2,967개로 상반기 10만8,096개보다 많았다.",
       "이 수치는 특정 업종의 성공을 보장하지 않는다. 다만 창업지원기관이나 기업 대상 서비스 회사라면 신규 고객 발굴 우선순위를 정보통신·전문지식 분야로 조정할 근거가 된다. 예비창업자는 ‘창업이 줄었다’는 총량만 볼 것이 아니라 자신의 업종이 전체 흐름과 반대로 움직이는지 확인할 수 있다.",
@@ -3030,7 +3030,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-14T06:15:00Z",
     "imageUrl": "/stock/2026-07-14-tech-startup-share-2025.jpg",
-    "imageCaption": "기술 기반 창업팀이 시제품을 점검하는 일반화된 작업공간. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "창업기업동향",
       "기술기반창업",
@@ -3075,7 +3075,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-15T10:18:00Z",
     "imageUrl": "/stock/2026-07-15-ai-datacenter-support-taskforce.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "AI데이터센터",
       "AIDC",
@@ -3119,7 +3119,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-15T10:46:00Z",
     "imageUrl": "/stock/2026-07-15-australia-ausalert-national-test.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 호주 정부 경보 화면이나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "호주",
       "AusAlert",
@@ -3186,7 +3186,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-15T10:10:00Z",
     "imageUrl": "/stock/2026-07-15-cafe-franchise-sales-per-store.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "프랜차이즈",
       "카페창업",
@@ -3239,7 +3239,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-15T10:26:00Z",
     "imageUrl": "/stock/2026-07-15-construction-subcontract-payment-guarantee.jpg",
-    "imageCaption": "AI 생성 이미지. 건설 하도급 지급보증 제도 변화를 설명하기 위한 연출 이미지로, 공식 자료나 실제 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "건설하도급",
       "하도급대금",
@@ -3282,7 +3282,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-15T11:14:00Z",
     "imageUrl": "/stock/2026-07-15-culture-day-non-visitors.jpg",
-    "imageCaption": "AI 생성 이미지. 문화시설 이용자 조사와 조사에 포착되지 않은 비이용자의 간극을 상징적으로 연출했으며, 실제 공식 자료나 특정 문화시설·설문 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "문화요일",
       "문화향유",
@@ -3351,7 +3351,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-15T10:02:00Z",
     "eventEndsAt": "2026-07-24T23:59:00Z",
     "imageUrl": "/stock/2026-07-15-daegu-heat-pipeline-survey-bid.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 열수송관 공사 현장 사진이 아니며, 공공측량 용역을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -3420,7 +3420,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-15T09:58:00Z",
     "eventEndsAt": "2026-07-24T23:59:00Z",
     "imageUrl": "/stock/2026-07-15-daegu-school-hvac-bid.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 학교 현장 사진이 아니며, 냉난방기 구매·설치 사업을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -3480,7 +3480,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-15T10:22:00Z",
     "eventEndsAt": "2026-07-20T23:59:00Z",
     "imageUrl": "/stock/2026-07-15-e9-employment-permit-3rd-round.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, E-9 고용허가 신청 서류를 점검하는 상황을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "E9",
       "외국인고용허가",
@@ -3532,7 +3532,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-15T09:54:00Z",
     "eventEndsAt": "2026-07-20T23:59:00Z",
     "imageUrl": "/stock/2026-07-15-energy-ai-adoption-support.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국남동발전",
       "에너지AI",
@@ -3585,7 +3585,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-15T09:50:00Z",
     "eventEndsAt": "2026-07-22T23:59:00Z",
     "imageUrl": "/stock/2026-07-15-export-voucher-3rd-round.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "수출바우처",
       "중소기업",
@@ -3635,7 +3635,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-15T10:14:00Z",
     "imageUrl": "/stock/2026-07-15-github-pat-leak-check.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "깃허브",
       "개인액세스토큰",
@@ -3681,7 +3681,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-15T10:34:00Z",
     "imageUrl": "/stock/2026-07-15-june-employment-youth-gap.jpg",
-    "imageCaption": "청년 구직자가 고용시장 변화를 살피는 장면을 일반화해 연출한 AI 생성 이미지. 실제 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "고용동향",
       "취업자",
@@ -3726,7 +3726,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-15T10:38:00Z",
     "imageUrl": "/stock/2026-07-15-june-import-price-index.jpg",
-    "imageCaption": "국제유가와 환율이 수입 원가에 미치는 영향을 물류 오브젝트로 일반화해 연출한 AI 생성 이미지. 실제 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "수입물가",
       "수출물가",
@@ -3771,7 +3771,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-15T11:49:00Z",
     "imageUrl": "/stock/2026-07-15-korea-talent-award-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 교육부·한국장학재단 접수 화면이나 제출 서류가 아니며, 청년 지원자가 온라인 서류와 우편 추천서를 준비하는 상황을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대한민국인재상",
       "청년지원",
@@ -3816,7 +3816,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-15T10:42:00Z",
     "imageUrl": "/stock/2026-07-15-lodging-price-violation-penalty.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 숙박업소·예약 플랫폼·결제 화면이나 단속 현장이 아니며, 온라인 예약요금과 현장 결제를 대조하는 상황을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "숙박요금",
       "온라인예약",
@@ -3858,7 +3858,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-15T11:10:00Z",
     "imageUrl": "/stock/2026-07-15-microplastic-same-ruler.jpg",
-    "imageCaption": "AI 생성 이미지. 하천수와 해수의 미세플라스틱 분석값을 같은 기준으로 비교해야 한다는 논지를 상징적으로 연출했으며, 실제 공식 자료나 연구회·실험실 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "미세플라스틱",
       "환경측정",
@@ -3919,7 +3919,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-15T11:45:00Z",
     "imageUrl": "/stock/2026-07-15-midlife-companion-incentive.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 제조·운수기업의 중장년 근속 확인 상황을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "일손부족일자리",
       "동행인센티브",
@@ -3961,7 +3961,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-15T10:54:00Z",
     "imageUrl": "/stock/2026-07-15-movie-hope-release.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다. 작품 포스터, 스틸, 실제 배우를 사용하거나 합성하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "호프",
       "한국영화",
@@ -4002,7 +4002,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-15T10:58:00Z",
     "imageUrl": "/stock/2026-07-15-national-museum-cylindrical-ct.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다. 실제 유물, 국립중앙박물관 장비, 공식 조사 현장을 사용하거나 합성하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립중앙박물관",
       "보존과학",
@@ -4073,7 +4073,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-15T10:06:00Z",
     "eventEndsAt": "2026-08-03T23:59:00Z",
     "imageUrl": "/stock/2026-07-15-seoul-prep-academy-11th.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "프렙아카데미",
       "외식창업",
@@ -4115,7 +4115,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-15T10:50:00Z",
     "imageUrl": "/stock/2026-07-15-summer-travel-infection-prevention.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 보건당국 자료나 감염 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "해외여행",
       "뎅기열",
@@ -4161,7 +4161,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-15T11:02:00Z",
     "imageUrl": "/stock/2026-07-15-ulsan-whales-home-attendance.jpg",
-    "imageCaption": "지역 야구장의 홈 관중과 경기 분위기를 표현한 장면. AI 생성 이미지. 실제 공식 자료나 울산 웨일즈 경기 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "울산웨일즈",
       "KBO퓨처스리그",
@@ -4216,7 +4216,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-15T10:30:00Z",
     "imageUrl": "/stock/2026-07-15-winwin-payment-tax-credit.jpg",
-    "imageCaption": "AI 생성 이미지. 상생결제 지급기한별 세액공제 구조를 설명하기 위한 연출 이미지로, 공식 자료나 실제 업무 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "상생결제",
       "세액공제",
@@ -4259,7 +4259,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-15T11:06:00Z",
     "imageUrl": "/stock/2026-07-15-worldcup-england-argentina-semifinal.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "FIFA월드컵",
       "잉글랜드",
@@ -4321,7 +4321,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T10:26:00Z",
     "imageUrl": "/stock/2026-07-16-artist-labor-provider-insurance-report.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님. 예술인·노무제공자의 고용보험 피보험자격 누락과 정정 내역을 점검하는 한국 사업장 사무공간을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "예술인고용보험",
       "노무제공자",
@@ -4390,7 +4390,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T10:02:00Z",
     "imageUrl": "/stock/2026-07-16-beolgyo-juam-road-telecom-bid.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 국내 도로 터널 공사 구간에서 CCTV·비상방송·비상전화용 통신설비를 시공하는 장면을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "벌교주암",
@@ -4442,7 +4442,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T20:45:00Z",
     "imageUrl": "/stock/2026-07-16-character-licensing-fair.jpg",
-    "imageCaption": "캐릭터·콘텐츠 IP 전시를 위한 일반적인 무표식 조형 시제품과 입장 절차를 표현한 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 작품 고유 캐릭터·포스터·배우·로고를 사용하거나 합성하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "캐릭터라이선싱페어",
       "콘텐츠IP",
@@ -4494,7 +4494,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T10:46:00Z",
     "imageUrl": "/stock/2026-07-16-childcare-safety-videos.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 어린이집·유치원이나 교육부·어린이집안전공제회의 공식 영상 화면이 아니며, 통학차량과 소방 안전교육 자료를 확인하는 상황을 설명하기 위한 연출 이미지입니다. 실제 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "어린이집안전",
       "유치원안전",
@@ -4540,7 +4540,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T11:14:00Z",
     "imageUrl": "/stock/2026-07-16-customs-audit-data-governance.jpg",
-    "imageCaption": "AI 생성 이미지. 수입 거래의 실물·계약·전산 기록이 하나의 근거 사슬로 이어져야 한다는 논지를 상징적으로 연출했으며, 실제 공식 자료나 관세조사·기업 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "과세자료",
       "관세조사",
@@ -4617,7 +4617,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T10:34:00Z",
     "imageUrl": "/stock/2026-07-16-globon-potassium-chloride-contract.jpg",
-    "imageCaption": "AI 생성 이미지. 염화칼륨 스폿 거래와 해외 납품·대금 회수 절차를 설명하기 위한 연출 이미지로, 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "글로본",
       "염화칼륨",
@@ -4695,7 +4695,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-16T10:10:00Z",
     "eventEndsAt": "2026-08-07T23:59:00Z",
     "imageUrl": "/stock/2026-07-16-gyeonggi-startup-newyork-ir.jpg",
-    "imageCaption": "경기도 스타트업 실무진이 해외 투자설명회 발표자료와 출장 준비를 함께 점검하는 상황을 표현한 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "경기스타트업",
       "뉴욕투자유치",
@@ -4752,7 +4752,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T09:54:00Z",
     "imageUrl": "/stock/2026-07-16-gyeongnam-ai-medical-device-support.jpg",
-    "imageCaption": "AI 생성 이미지. 한국 바이오메디컬 기업의 AI 의료기기 시제품과 비식별 생체신호 분석 장비를 연구실 작업대에 연출했습니다. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "AI의료기기",
       "경남테크노파크",
@@ -4800,7 +4800,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T10:38:00Z",
     "imageUrl": "/stock/2026-07-16-june-housing-price-index.jpg",
-    "imageCaption": "AI 생성 이미지. 2026년 6월 주택가격 흐름의 수도권·지방 격차를 상징적으로 구성했으며, 실제 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "전국주택가격동향",
       "주택매매",
@@ -4852,7 +4852,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T10:14:00Z",
     "imageUrl": "/stock/2026-07-16-k-blockchain-europe-gitex.jpg",
-    "imageCaption": "AI 생성 이미지. 유럽 전시 이후 블록체인 기업 관계자가 상담 기록과 후속 계약 자료를 검토하는 장면을 일반화해 연출했습니다. 실제 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "블록체인",
       "GITEXAI유럽",
@@ -4905,7 +4905,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-16T11:02:00Z",
     "eventEndsAt": "2026-07-20T23:59:00Z",
     "imageUrl": "/stock/2026-07-16-k-heritage-house-busan.jpg",
-    "imageCaption": "세계유산·무형유산·기록유산을 전시와 디지털 체험으로 소개하는 공간을 일반화해 표현한 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 실제 국가유산·행사 로고·캐릭터·공식 전시물을 사용하거나 합성하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "K헤리티지하우스",
       "세계유산",
@@ -4954,7 +4954,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T11:10:00Z",
     "imageUrl": "/stock/2026-07-16-kbo-second-half-restart.jpg",
-    "imageCaption": "AI 생성 이미지. 프로야구 경기 전 그라운드 정비와 장비를 재구성한 일반 경기장 장면으로, KBO 공식 경기 사진이나 중계 화면이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO리그",
       "프로야구",
@@ -4997,7 +4997,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T10:58:00Z",
     "imageUrl": "/stock/2026-07-16-mars-metallic-dunes.jpg",
-    "imageCaption": "화성의 어두운 모래언덕과 서리를 지구의 행성지질 모형으로 일반화해 연출한 장면. AI 생성 이미지. 실제 유럽우주국 관측자료나 화성 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "화성",
       "마스익스프레스",
@@ -5043,7 +5043,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T10:42:00Z",
     "imageUrl": "/stock/2026-07-16-may-m2-money-supply.jpg",
-    "imageCaption": "AI 생성 이미지. 광의통화 증가와 경제주체별 보유액의 엇갈린 흐름을 상징적으로 구성했으며, 실제 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "통화및유동성",
       "광의통화",
@@ -5119,7 +5119,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T10:30:00Z",
     "imageUrl": "/stock/2026-07-16-mecaro-samiltech-acquisition.jpg",
-    "imageCaption": "AI 생성 이미지. 반도체 장비 기업의 지분 인수 결정과 거래 종결 준비를 설명하기 위한 연출 이미지로, 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "메카로",
       "삼일테크",
@@ -5168,7 +5168,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T13:45:00Z",
     "imageUrl": "/stock/2026-07-16-minimum-wage-2027.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 정부 자료나 현장 사진이 아니며, 2027년 최저임금과 월급 계산을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "2027최저임금",
       "2027최저시급",
@@ -5219,7 +5219,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T10:50:00Z",
     "imageUrl": "/stock/2026-07-16-national-recreation-forest-free-programs.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 국립자연휴양림이나 산림청 공식 체험 현장이 아니며, 아동·청소년 동반 가족이 여름 숲에서 곤충과 별을 관찰하는 상황을 설명하기 위한 연출 이미지입니다. 실제 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립자연휴양림",
       "여름방학",
@@ -5271,7 +5271,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T10:18:00Z",
     "imageUrl": "/stock/2026-07-16-overseas-certification-ai-portal.jpg",
-    "imageCaption": "AI 생성 이미지. 한국 수출기업 담당자가 제품 시제품과 시험장비를 놓고 해외인증 AI 검색 결과를 검토하는 장면을 일반화해 연출했습니다. 실제 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "해외인증",
       "기술규제",
@@ -5328,7 +5328,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-16T09:50:00Z",
     "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/2026-07-16-overseas-standards-certification-2nd.jpg",
-    "imageCaption": "AI 생성 이미지. 해외규격인증을 준비하는 한국 중소기업의 제품 시험 샘플과 인증 서류를 시험실 책상 위에 연출했습니다. 실제 공식 자료나 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "해외규격인증",
       "중소기업",
@@ -5393,7 +5393,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T10:22:00Z",
     "imageUrl": "/stock/2026-07-16-paternity-leave-workload-sharing-grant.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님. 배우자 출산휴가 기간의 업무분담과 동료 수당 지급을 준비하는 한국 중소기업 인사 현장을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "배우자출산휴가",
       "업무분담지원금",
@@ -5468,7 +5468,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T10:06:00Z",
     "imageUrl": "/stock/2026-07-16-pet-startup-contest-gyeonggi.jpg",
-    "imageCaption": "경기도 예비·초기창업자가 사회적경제조직의 소재·기술을 활용한 반려동물 제품 시제품을 검토하는 상황을 표현한 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "반려동물창업",
       "경기도창업",
@@ -5537,7 +5537,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T09:58:00Z",
     "imageUrl": "/stock/2026-07-16-seoul-yeokchon-elementary-electrical-bid.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 서울의 공립학교 개축 현장에서 전기 간선과 수변전 설비를 준비하는 장면을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "서울역촌초",
@@ -5583,7 +5583,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T10:54:00Z",
     "imageUrl": "/stock/2026-07-16-unep-ai-methane-monitoring.jpg",
-    "imageCaption": "위성 관측과 AI 분석으로 메탄 배출원을 찾는 과정을 일반화해 연출한 장면. AI 생성 이미지. 실제 유엔환경계획 자료나 특정 배출 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "메탄",
       "인공지능",
@@ -5628,7 +5628,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T11:18:00Z",
     "imageUrl": "/stock/2026-07-16-waste-workers-council-deadline-metrics.jpg",
-    "imageCaption": "AI 생성 이미지. 생활폐기물 처리 노동자의 장비와 작업환경을 개선해야 한다는 논지를 상징적으로 연출했으며, 실제 공식 자료나 노정협의체·폐기물 처리 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "생활폐기물",
       "자원순환",
@@ -5670,7 +5670,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T13:49:00Z",
     "imageUrl": "/stock/2026-07-16-worldcup-argentina-england-semifinal.jpg",
-    "imageCaption": "AI 생성 이미지. 국제축구 경기의 막판 역전 흐름을 재구성한 일반 경기장 장면으로, 아르헨티나-잉글랜드전의 실제 공식 경기 사진이나 중계 화면이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "아르헨티나잉글랜드",
       "월드컵준결승결과",
@@ -5711,7 +5711,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-16T11:06:00Z",
     "imageUrl": "/stock/2026-07-16-worldcup-spain-france-semifinal.jpg",
-    "imageCaption": "AI 생성 이미지. 국제축구 경기 준비를 재구성한 일반 경기장 장면으로, 스페인-프랑스전의 실제 공식 경기 사진이나 중계 화면이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "FIFA월드컵",
       "스페인",
@@ -5763,7 +5763,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T10:42:00Z",
     "imageUrl": "/stock/2026-07-17-academy-report-reward-increase.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 교육부·교육청 공식 자료나 학원 신고 현장 사진이 아니며, 교습비 자료와 신고 증빙을 확인하는 상황을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "학원신고포상금",
       "불법사교육신고센터",
@@ -5839,7 +5839,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-17T13:33:00Z",
     "eventEndsAt": "2026-07-21T23:59:00Z",
     "imageUrl": "/stock/2026-07-17-ai-data-problem-solving-bank.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "AI데이터문제해결은행",
       "중소기업",
@@ -5889,7 +5889,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T10:34:00Z",
     "imageUrl": "/stock/2026-07-17-base-rate-2-75-percent-hike.jpg",
-    "imageCaption": "AI 생성 이미지. 기준금리 인상 뒤 가계와 사업자의 대출·예금 조건 점검을 상징적으로 구성했으며, 실제 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "기준금리",
       "한국은행",
@@ -5941,7 +5941,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T10:14:00Z",
     "imageUrl": "/stock/2026-07-17-construction-cctv-performance-certification.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 한국인터넷진흥원·한국수자원공사 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "건설안전",
       "지능형CCTV",
@@ -6018,7 +6018,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T10:30:00Z",
     "imageUrl": "/stock/2026-07-17-daewoo-sinimun-station-construction.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대우건설",
       "신이문역세권",
@@ -6126,7 +6126,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-17T13:37:00Z",
     "eventEndsAt": "2026-08-04T23:59:00Z",
     "imageUrl": "/stock/2026-07-17-defense-startup-challenge.jpg",
-    "imageCaption": "한국의 창업기업 팀이 군·수요기업 협업을 위한 기술검증과 시제품 계획을 검토하는 상황을 표현한 장면. AI 생성 이미지. 실제 정부 자료나 현장 사진이 아니며, 지원사업 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "방산스타트업챌린지",
       "모두의챌린지방산",
@@ -6189,7 +6189,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T09:50:00Z",
     "imageUrl": "/stock/2026-07-17-disabled-small-business-store-improvement.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "장애소상공인",
       "장애인기업",
@@ -6243,7 +6243,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T10:10:00Z",
     "imageUrl": "/stock/2026-07-17-first-half-ict-exports-semiconductor.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "ICT수출",
       "반도체",
@@ -6284,7 +6284,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T10:50:00Z",
     "imageUrl": "/stock/2026-07-17-gstp-sao-paulo-round-ratification.jpg",
-    "imageCaption": "개발도상국 간 관세 인하 협상을 일반화해 연출한 물류 모형. AI 생성 이미지로 실제 UNCTAD 자료나 특정 항만·통관 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "GSTP",
       "상파울루라운드",
@@ -6351,7 +6351,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T10:22:00Z",
     "imageUrl": "/stock/2026-07-17-heatwave-work-rest-record.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 정부 자료나 현장 사진이 아니며, 정책 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "폭염작업",
       "체감온도",
@@ -6398,7 +6398,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T11:10:00Z",
     "imageUrl": "/stock/2026-07-17-im-sungjae-the-open-round1.jpg",
-    "imageCaption": "AI 생성 이미지로 실제 공식 자료나 경기 사진이 아님. 링크스 코스에서 우승 경쟁을 시작한 골퍼를 일반화한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "임성재",
       "디오픈",
@@ -6451,7 +6451,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T11:02:00Z",
     "imageUrl": "/stock/2026-07-17-incheon-city-theater-gyeongju.jpg",
-    "imageCaption": "지역의 역사와 이야기를 춤·노래로 풀어내는 렉처 퍼포먼스 무대를 일반화해 표현한 장면. AI 생성 이미지로 실제 공식 자료나 현장 사진이 아니며, 실제 공연 세트·포스터·출연자·행사 로고를 사용하거나 합성하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국공립극단페스티벌",
       "인천시립극단",
@@ -6537,7 +6537,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-17T13:35:00Z",
     "eventEndsAt": "2026-07-20T23:59:00Z",
     "imageUrl": "/stock/2026-07-17-iprnd-strategy-support.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "IPRND",
       "특허전략",
@@ -6578,7 +6578,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T10:54:00Z",
     "imageUrl": "/stock/2026-07-17-jeju-gimpo-busiest-air-route.jpg",
-    "imageCaption": "제주-김포 사이의 고밀도 국내 항공 이동을 일반화해 연출한 공항 운항 모형. AI 생성 이미지로 실제 IATA 통계 자료나 김포·제주공항 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "제주김포",
       "항공수요",
@@ -6649,7 +6649,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-17T09:58:00Z",
     "eventEndsAt": "2026-07-23T23:59:00Z",
     "imageUrl": "/stock/2026-07-17-jeungpyeong-school-fire-safety-bid.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다. 실제 학교·발주기관 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "증평공업고등학교",
@@ -6697,7 +6697,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T10:38:00Z",
     "imageUrl": "/stock/2026-07-17-june-shipping-freight-cost.jpg",
-    "imageCaption": "AI 생성 이미지. 주요 원거리 항로의 컨테이너 운송비 상승과 수출입 물류비 점검을 상징적으로 구성했으며, 실제 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "수출입운송비",
       "해상운송",
@@ -6743,7 +6743,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T11:06:00Z",
     "imageUrl": "/stock/2026-07-17-kt-lg-choi-wonjun-homerun.jpg",
-    "imageCaption": "AI 생성 이미지로 실제 공식 자료나 경기 사진이 아님. 프로야구 1점 차 승부의 결정적 타격 장면을 일반화한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "KT위즈",
@@ -6802,7 +6802,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T11:18:00Z",
     "imageUrl": "/stock/2026-07-17-leisure-time-recovery-quality.jpg",
-    "imageCaption": "AI 생성 이미지로 실제 공식 자료나 현장 사진이 아님을 밝힙니다. 여가의 질을 화면 사용 여부 하나로 재단하지 않고 대화·산책·스스로 선택한 휴식의 맥락까지 함께 봐야 한다는 논지를 연출했으며, 실제 생활시간조사 참여자나 생활 현장과 무관합니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "생활시간조사",
       "여가시간",
@@ -6899,7 +6899,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T13:31:00Z",
     "imageUrl": "/stock/2026-07-17-online-export-logistics-support-second.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "온라인수출물류지원",
       "온라인수출",
@@ -6973,7 +6973,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T10:18:00Z",
     "imageUrl": "/stock/2026-07-17-permanent-conversion-support-grant.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 정부 자료나 현장 사진이 아니며, 정책 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "정규직전환지원금",
       "고용안정장려금",
@@ -7030,7 +7030,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T11:14:00Z",
     "imageUrl": "/stock/2026-07-17-population-jobs-public-deliberation.jpg",
-    "imageCaption": "AI 생성 이미지로 실제 공식 자료나 현장 사진이 아님을 밝힙니다. 청년의 첫 취업과 중장년의 전환·재진입을 하나의 노동생애 경로로 연결해 논의해야 한다는 논지를 연출했으며, 실제 경제사회노동위원회 회의나 사업장과 무관합니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "인구구조",
       "일자리공론화",
@@ -7109,7 +7109,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T10:26:00Z",
     "imageUrl": "/stock/2026-07-17-posco-future-m-refractory-repair.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "포스코퓨처엠",
       "포스코",
@@ -7190,7 +7190,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T10:02:00Z",
     "imageUrl": "/stock/2026-07-17-pre-tips-2nd-round.jpg",
-    "imageCaption": "한국의 초기 창업팀이 민간투자 요건과 자기부담 계획을 확인하며 시제품을 검토하는 상황을 표현한 장면. AI 생성 이미지. 실제 정부 자료나 현장 사진이 아니며, 정책 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "프리팁스",
       "PreTIPS",
@@ -7265,7 +7265,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-17T09:54:00Z",
     "eventEndsAt": "2026-07-24T23:59:00Z",
     "imageUrl": "/stock/2026-07-17-seoul-heat-pipe-waste-disposal-bid.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다. 실제 나라장터 화면이나 발주기관 자료가 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "한국지역난방공사",
@@ -7318,7 +7318,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T10:58:00Z",
     "imageUrl": "/stock/2026-07-17-ultra-department-store-busan.jpg",
-    "imageCaption": "전시에서 문장을 고르고 책으로 엮는 참여 과정을 무인쇄 카드와 빈 책자로 일반화해 표현한 장면. AI 생성 이미지로 실제 공식 자료나 현장 사진이 아니며, 실제 전시장·작품·참가자·행사 로고를 사용하거나 합성하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "울트라백화점부산",
       "텍스트쇼핑클럽",
@@ -7403,7 +7403,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-17T10:06:00Z",
     "imageUrl": "/stock/2026-07-17-yongin-solo-creator-office.jpg",
-    "imageCaption": "1인 창업자가 지원센터 지정석 입주를 준비하며 업무 장비를 옮기는 상황을 표현한 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "용인창업",
       "1인창조기업",
@@ -7460,7 +7460,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-17T10:46:00Z",
     "eventEndsAt": "2026-07-28T23:59:00Z",
     "imageUrl": "/stock/2026-07-17-youth-self-reliance-financial-counseling.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 보건복지부·금융감독원 상담 화면이나 참여자 사진이 아니며, 자립준비청년의 1대1 비대면 재무상담을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "자립준비청년",
       "재무상담",
@@ -7503,7 +7503,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T10:54:00Z",
     "imageUrl": "/stock/2026-07-18-china-weather-ai-fenghe-opensource.jpg",
-    "imageCaption": "무상표 기상 센서와 연산 장비, 투명한 공기 흐름 모형을 스튜디오에 배치해 기상 AI를 표현한 개념 이미지. AI 생성 이미지로 실제 중국기상국 시설·장비·행사 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "펑허",
       "기상AI",
@@ -7558,7 +7558,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T11:22:00Z",
     "imageUrl": "/stock/2026-07-18-column-cash-payment-choice.jpg",
-    "imageCaption": "AI 생성 이미지입니다. 브랜드 없는 결제단말기와 현금 트레이, 생활용품으로 여러 결제수단과 비상 대안을 표현했으며, 실제 한국은행 조사·특정 매장·결제 장애 또는 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "현금사용",
       "현금없는매장",
@@ -7608,7 +7608,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T11:10:00Z",
     "imageUrl": "/stock/2026-07-18-doosan-nc-extra-innings-4-2.jpg",
-    "imageCaption": "AI 생성 이미지. 프로야구 연장 승부의 결정적 타격 순간을 일반화해 연출했으며, 실제 공식 자료나 경기 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "두산베어스",
@@ -7664,7 +7664,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T11:18:00Z",
     "imageUrl": "/stock/2026-07-18-editorial-subscription-cancellation-friction.jpg",
-    "imageCaption": "AI 생성 이미지입니다. 브랜드가 없는 기기와 갈라진 경로로 간단한 가입과 복잡한 해지의 대비를 표현했으며, 실제 서비스 화면·공식 자료·소비자 상담 또는 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "온라인구독",
       "구독해지",
@@ -7721,7 +7721,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T11:06:00Z",
     "imageUrl": "/stock/2026-07-18-etoile-of-our-time-ballet-gala.jpg",
-    "imageCaption": "한국의 대형 공연장에서 열리는 국제 발레 갈라를 연상시키도록 무대 중앙의 익명 무용수와 오케스트라 피트의 빛을 일반화해 연출한 장면. AI 생성 이미지로 실제 공식 자료나 현장 사진이 아니며, 실제 작품 안무·무대 세트·공연 포스터·출연자의 얼굴·기관 로고를 복제하거나 합성하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "우리시대에투알2026",
       "예술의전당",
@@ -7802,7 +7802,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T10:02:00Z",
     "imageUrl": "/stock/2026-07-18-geomdan3-building-automation-bid.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "인천광역시교육청",
@@ -7884,7 +7884,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T10:34:00Z",
     "imageUrl": "/stock/2026-07-18-gigalane-space-rf-component-contract.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "기가레인",
       "한국항공우주연구원",
@@ -7947,7 +7947,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T10:18:00Z",
     "imageUrl": "/stock/2026-07-18-government-gpu-35000-procurement.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "GPU",
       "B200환산",
@@ -8025,7 +8025,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-18T10:46:00Z",
     "eventEndsAt": "2026-07-23T23:59:00Z",
     "imageUrl": "/stock/2026-07-18-incheon-kkumdure-226-courses.jpg",
-    "imageCaption": "AI 생성 이미지. 고등학생이 공동교육과정 과목을 비교하는 상황을 상징적으로 연출했으며, 실제 학교 수업이나 인천시교육청 행사 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "꿈두레 공동교육과정",
       "인천 고교학점제",
@@ -8070,7 +8070,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T10:58:00Z",
     "imageUrl": "/stock/2026-07-18-june-global-ocean-surface-temp-record.jpg",
-    "imageCaption": "따뜻한 해수와 줄어든 해빙을 관측하는 무인 해양부이를 일반화해 연출한 장면. AI 생성 이미지로 실제 NOAA 관측 장비·특정 해역·기후 사건 현장 사진이 아님.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "세계기온",
       "해양표면온도",
@@ -8128,7 +8128,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T10:38:00Z",
     "imageUrl": "/stock/2026-07-18-june-household-loans-8-3tn.jpg",
-    "imageCaption": "AI 생성 이미지. 가계가 주택 관련 서류와 대출 조건을 점검하는 상황을 상징적으로 연출했으며, 실제 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "가계대출",
       "주택담보대출",
@@ -8195,7 +8195,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T10:14:00Z",
     "imageUrl": "/stock/2026-07-18-kfind-food-nutrition-database.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "K-FIND",
       "식품영양성분DB",
@@ -8255,7 +8255,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T10:42:00Z",
     "imageUrl": "/stock/2026-07-18-may-current-account-surplus.jpg",
-    "imageCaption": "AI 생성 이미지. 국내 제조품이 해외로 출하되는 대외거래 흐름을 상징적으로 연출했으며, 실제 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "경상수지",
       "국제수지",
@@ -8313,7 +8313,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T11:02:00Z",
     "imageUrl": "/stock/2026-07-18-national-museum-our-table-exhibition.jpg",
-    "imageCaption": "무문자 도자기와 곡물, 빈 노트, 보존용 장갑을 스튜디오에 배치해 식문화 연구를 표현한 개념 이미지. AI 생성 이미지로 실제 공식 자료나 현장 사진이 아니며, 실제 전시품·작품·전시장·기관 로고를 복제하거나 합성하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립중앙박물관",
       "우리들의밥상",
@@ -8390,7 +8390,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T09:50:00Z",
     "imageUrl": "/stock/2026-07-18-pohang-ai-promo-content-support.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "포항중소기업",
       "AI홍보콘텐츠",
@@ -8476,7 +8476,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T10:26:00Z",
     "imageUrl": "/stock/2026-07-18-recruitment-documents-return-30-employees.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "채용서류",
       "채용서류반환",
@@ -8568,7 +8568,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T10:06:00Z",
     "imageUrl": "/stock/2026-07-18-regional-advanced-manufacturing-startup-scaleup.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대전스타트업",
       "경북스타트업",
@@ -8640,7 +8640,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-18T10:50:00Z",
     "eventEndsAt": "2026-07-27T23:59:00Z",
     "imageUrl": "/stock/2026-07-18-seoul-lifelong-education-voucher-2nd.jpg",
-    "imageCaption": "AI 생성 이미지. 성인 학습자가 평생교육 강좌와 이용권 사용을 검토하는 상황을 상징적으로 연출했으며, 실제 신청 화면이나 서울시 상담·교육 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "서울 평생교육이용권",
       "평생교육바우처",
@@ -8721,7 +8721,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T09:58:00Z",
     "imageUrl": "/stock/2026-07-18-seoul-race-park-thermal-storage-bid.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "한국마사회",
@@ -8801,7 +8801,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T10:30:00Z",
     "imageUrl": "/stock/2026-07-18-shinsung-eng-pyeongtaek-p5-cleanroom.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "신성이엔지",
       "삼성전자",
@@ -8888,7 +8888,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T10:10:00Z",
     "imageUrl": "/stock/2026-07-18-small-business-july-bsi-outlook.jpg",
-    "imageCaption": "소규모 점포의 재고 상자와 계산기, 무지 영수증, 상승·하락 블록을 배치해 업황전망지수를 표현한 개념 이미지. AI 생성 이미지로 실제 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "소상공인경기",
       "상권분석",
@@ -8935,7 +8935,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T11:14:00Z",
     "imageUrl": "/stock/2026-07-18-tour-de-france-stage13-schmid.jpg",
-    "imageCaption": "AI 생성 이미지. 국제 도로 사이클 산악 스테이지의 선두 경쟁을 일반화해 연출했으며, 실제 투르 드 프랑스 공식 자료나 경기 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "투르드프랑스",
       "마우로슈미트",
@@ -9014,7 +9014,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T09:54:00Z",
     "imageUrl": "/stock/2026-07-18-ulsan-tech-commercialization-support.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "울산중소기업",
       "기술상용화",
@@ -9100,7 +9100,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-18T10:22:00Z",
     "imageUrl": "/stock/2026-07-18-work-rules-10-employees-report.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "취업규칙",
       "취업규칙신고",
@@ -9158,7 +9158,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T19:32:00Z",
     "imageUrl": "/stock/2026-07-19-2026-energy-voucher-apply.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다. 무표기 선풍기·담요·조명과 빈 카드를 배치해 여름·겨울 에너지 비용 지원을 상징적으로 표현했습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "에너지바우처",
       "냉난방비",
@@ -9233,7 +9233,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T18:44:00Z",
     "imageUrl": "/stock/2026-07-19-ai-devtool-fake-malware-kisa-alert.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KISA",
       "악성코드",
@@ -9313,7 +9313,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-19T18:26:00Z",
     "eventEndsAt": "2026-07-21T23:59:00Z",
     "imageUrl": "/stock/2026-07-19-chungnam-neighborhood-startup-school.jpg",
-    "imageCaption": "상가 입지와 임대차, 매장 운영을 함께 검토하는 청년 창업 준비 과정을 무표식 소품으로 구성한 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "충남창업",
       "동네창업학교",
@@ -9366,7 +9366,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T20:20:00Z",
     "imageUrl": "/stock/2026-07-19-column-power-bank-air-rules.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 항공사·공항·제품을 촬영하거나 특정 안전안내물을 복제한 것이 아닌 기사 주제 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "보조배터리",
       "리튬배터리",
@@ -9447,7 +9447,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-19T18:32:00Z",
     "eventEndsAt": "2026-07-29T23:59:00Z",
     "imageUrl": "/stock/2026-07-19-daejeon-tipstown-tips-link.jpg",
-    "imageCaption": "창업 특강과 참가자 연결을 상징하는 빈 워크숍 좌석, 무표식 연단과 연결 조각을 중심에 배치한 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대전팁스타운",
       "TIPSLink",
@@ -9502,7 +9502,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T20:14:00Z",
     "imageUrl": "/stock/2026-07-19-editorial-kiosk-accessibility.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 매장·기관·제품을 촬영하거나 특정 키오스크 화면을 복제한 것이 아닌 기사 주제 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "키오스크",
       "무인정보단말기",
@@ -9548,7 +9548,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T19:38:00Z",
     "imageUrl": "/stock/2026-07-19-eurozone-june-inflation-2-8pct.jpg",
-    "imageCaption": "숫자나 국기 없이 빈 물가계와 생활비 구성품을 배치해 유럽 물가의 둔화와 항목별 차이를 표현한 개념 이미지. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유로존",
       "유럽연합",
@@ -9607,7 +9607,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T19:26:00Z",
     "imageUrl": "/stock/2026-07-19-fall-student-loan-apply-execute.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다. 글자 없는 서류와 무표기 학용품을 놓은 학생 책상으로 학자금대출 신청과 실행 점검을 상징적으로 표현했습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "학자금대출",
       "한국장학재단",
@@ -9663,7 +9663,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T19:50:00Z",
     "imageUrl": "/stock/2026-07-19-fitness-boxing-3-switch2-release.jpg",
-    "imageCaption": "무표식 모션 컨트롤러와 운동 매트, 복싱 핸드랩을 배치해 리듬 운동 게임을 일반화한 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "피트니스복싱3",
       "FitnessBoxing3",
@@ -9738,7 +9738,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T19:08:00Z",
     "imageUrl": "/stock/2026-07-19-fx-brokerage-24h-offshore-krw-settlement.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "외환중개서비스",
       "외환시장",
@@ -9793,7 +9793,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T19:14:00Z",
     "imageUrl": "/stock/2026-07-19-h1-fruit-export-95-7m.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다. 무표기 운송 상자에 담긴 딸기·포도·배를 통해 과실류 수출을 상징적으로 표현했습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "과실류수출",
       "관세청",
@@ -9884,7 +9884,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-19T18:20:00Z",
     "eventEndsAt": "2026-07-23T23:59:00Z",
     "imageUrl": "/stock/2026-07-19-jeju-seongeup-tree-maintenance-bid.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "제주특별자치도",
@@ -9976,7 +9976,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-19T18:14:00Z",
     "eventEndsAt": "2026-07-28T23:59:00Z",
     "imageUrl": "/stock/2026-07-19-jinju-greenbio-hvac-bid.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "진주시",
@@ -10052,7 +10052,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T18:38:00Z",
     "imageUrl": "/stock/2026-07-19-june-auto-export-eco-100k.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "자동차수출",
       "친환경차",
@@ -10101,7 +10101,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T20:08:00Z",
     "imageUrl": "/stock/2026-07-19-kbo-first-half-7-63m-attendance.jpg",
-    "imageCaption": "관중으로 채워진 야간 야구장을 넓게 담은 실사형 개념 이미지. 팀·선수·문자·숫자를 식별할 수 없는 장면으로 구성했다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO 리그",
       "프로야구",
@@ -10158,7 +10158,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T19:56:00Z",
     "imageUrl": "/stock/2026-07-19-mmca-this-is-not-conceptual-art.jpg",
-    "imageCaption": "무표식 기하 오브젝트와 빈 프레임, 빛과 그림자로 개념미술 전시를 일반화한 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립현대미술관",
       "MMCA서울",
@@ -10244,7 +10244,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T18:08:00Z",
     "imageUrl": "/stock/2026-07-19-overseas-ghg-reduction-facility-support.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국제감축사업",
       "온실가스감축",
@@ -10300,7 +10300,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T19:20:00Z",
     "imageUrl": "/stock/2026-07-19-post-marriage-residence-move-57pct.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다. 무표기 이삿짐 상자와 업무용 소지품을 배치해 혼인 뒤 거주 이동과 고용 변화를 상징적으로 표현했습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "인구동태패널",
       "거주지이동",
@@ -10376,7 +10376,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T19:02:00Z",
     "imageUrl": "/stock/2026-07-19-power-grid-access-1year-30gw-inspection.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "전력망",
       "발전사업",
@@ -10426,7 +10426,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T19:44:00Z",
     "imageUrl": "/stock/2026-07-19-uk-cosmetics-scpn-notifications.jpg",
-    "imageCaption": "글자 없는 무상표 화장품 용기와 안전 점검 도구를 배치해 출시 전 확인 절차를 표현한 개념 이미지. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "영국화장품",
       "SCPN",
@@ -10506,7 +10506,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T18:56:00Z",
     "imageUrl": "/stock/2026-07-19-wage-statement-each-payday.jpg",
-    "imageCaption": "급여일에 항목별 계산과 공제를 점검하는 과정을 빈 세라믹 타일, 시간 막대와 무표식 회계 토큰으로 표현한 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "임금명세서",
       "급여명세서",
@@ -10597,7 +10597,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T18:50:00Z",
     "imageUrl": "/stock/2026-07-19-work-conditions-written-notice.jpg",
-    "imageCaption": "채용 전 근로시간과 임금 조건을 맞춰 보는 과정을 빈 크림색 판, 무표식 시간 막대와 펜으로 일반화한 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "근로계약서",
       "근로조건명시",
@@ -10643,7 +10643,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-19T20:02:00Z",
     "updatedAt": "2026-07-20T11:31:00Z",
     "imageUrl": "/stock/2026-07-19-worldcup-final-spain-argentina-preview.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 국가·팀·선수 식별 요소 없이 월드컵 결승 무대를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "2026 FIFA 월드컵",
       "월드컵 결승 결과",
@@ -10700,7 +10700,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-20T09:00:00Z",
     "eventEndsAt": "2026-07-20T23:59:00Z",
     "imageUrl": "/stock/2026-07-20-129-counseling-user-survey.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 보건복지상담센터나 설문 화면이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다. 무표기 헤드셋과 빈 설문 카드, 일반 스마트폰을 배치해 상담 이용자 의견 수렴을 상징적으로 표현했습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "보건복지상담",
       "129상담",
@@ -10774,7 +10774,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-20T08:32:00Z",
     "imageUrl": "/stock/2026-07-20-ai-design-application-human-contribution.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "AI디자인",
       "디자인출원",
@@ -10858,7 +10858,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-20T08:12:00Z",
     "eventEndsAt": "2026-07-24T23:59:00Z",
     "imageUrl": "/stock/2026-07-20-boryeong-flowmeter-calibration-bid.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "보령시시설관리공단",
@@ -10941,7 +10941,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-20T08:04:00Z",
     "imageUrl": "/stock/2026-07-20-bucheon-ip-cost-support-3m.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "부천중소기업",
       "지식재산지원",
@@ -10995,7 +10995,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-20T09:16:00Z",
     "imageUrl": "/stock/2026-07-20-busan-world-heritage-committee-korea-hall.jpg",
-    "imageCaption": "한국 전통 지붕선에서 착안한 전시 구조와 비식별 관람객으로 국제 문화유산 행사를 표현한 이미지. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "세계유산위원회",
       "유네스코",
@@ -11051,7 +11051,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-20T09:36:00Z",
     "imageUrl": "/stock/2026-07-20-citizen-science-result-feedback-column.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 탐사대나 특정 동굴·용천수 현장 사진이 아니며, 시민과 연구자가 지하수 생태계의 서식환경을 함께 기록하는 과정을 상징적으로 표현한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "시민과학",
       "지하수생태계",
@@ -11108,7 +11108,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-20T09:04:00Z",
     "imageUrl": "/stock/2026-07-20-crisis-pregnancy-protection-birth-2yr.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 상담기관이나 당사자 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다. 비어 있는 상담 의자와 무표기 전화기, 접힌 아기 담요를 배치해 위기임신 상담과 지원 연결을 상징적으로 표현했습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "위기임신상담",
       "보호출산제",
@@ -11174,7 +11174,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-20T08:44:00Z",
     "imageUrl": "/stock/2026-07-20-ecommerce-review-standard-jul21.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "전자상거래법",
       "온라인쇼핑몰",
@@ -11228,7 +11228,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-20T09:08:00Z",
     "imageUrl": "/stock/2026-07-20-eu-bank-regulation-2027q1-package.jpg",
-    "imageCaption": "일반화한 금융 업무공간과 빈 대출서류로 EU 은행 단일시장 논의를 표현한 이미지. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유럽연합",
       "EU은행",
@@ -11305,7 +11305,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-20T08:24:00Z",
     "imageUrl": "/stock/2026-07-20-gumi-startup360-3-companies.jpg",
-    "imageCaption": "기술 기반 창업자가 무표식 시제품과 이사용 상자를 두고 새 산업도시 작업공간을 준비하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "구미창업",
       "스타트업360",
@@ -11376,7 +11376,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-20T08:28:00Z",
     "imageUrl": "/stock/2026-07-20-july-sme-business-outlook-78-2.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "중소기업",
       "경기전망",
@@ -11429,7 +11429,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-20T09:24:00Z",
     "imageUrl": "/stock/2026-07-20-kia-ssg-8th-inning-9-5.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 선수나 7월 19일 경기 현장 사진이 아니며, 프로야구 경기의 후반 결승타 장면을 일반화해 표현한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "KIA타이거즈",
@@ -11484,7 +11484,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-20T09:28:00Z",
     "imageUrl": "/stock/2026-07-20-lotte-samsung-9th-comeback-11-8.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 선수나 7월 19일 경기 현장 사진이 아니며, 프로야구 9회 만루 승부의 결승 장타를 일반화해 표현한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "롯데자이언츠",
@@ -11542,7 +11542,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-20T09:20:00Z",
     "imageUrl": "/stock/2026-07-20-mid-budget-film-actor-fee-agreement.jpg",
-    "imageCaption": "영화 촬영 장비와 빈 계약서, 제작비 폴더로 중예산영화 제작비 자율협약을 표현한 이미지. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국영화",
       "중예산영화",
@@ -11594,7 +11594,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-20T09:12:00Z",
     "imageUrl": "/stock/2026-07-20-oecd-uk-growth-0-9pct.jpg",
-    "imageCaption": "생활물가 바구니와 소규모 제조 작업장, 전력 인프라를 한 장면에 배치해 영국의 성장·물가·생산성 과제를 표현한 이미지. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "영국경제",
       "OECD",
@@ -11669,7 +11669,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-20T08:36:00Z",
     "imageUrl": "/stock/2026-07-20-pureunssiat-under-50-expansion.jpg",
-    "imageCaption": "중소기업 인사담당자가 무표식 직원파일과 퇴직급여 적립 자료를 차분히 검토하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "푸른씨앗",
       "중소기업퇴직연금",
@@ -11724,7 +11724,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-20T09:32:00Z",
     "imageUrl": "/stock/2026-07-20-resident-survey-official-path-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 정부24 화면이나 주민등록 사실조사 참여 장면이 아니며, 집 안에서 모바일 행정서비스의 공식 경로와 위치 확인을 점검하는 상황을 상징적으로 표현한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "주민등록사실조사",
       "정부24",
@@ -11780,7 +11780,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-20T08:56:00Z",
     "imageUrl": "/stock/2026-07-20-seoul-property-tax-5m-bills.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 서울시 고지서나 주거 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다. 일반화한 아파트 실루엣과 무표기 고지 봉투, 집 열쇠를 배치해 7월분 재산세 납부를 상징적으로 표현했습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "재산세",
       "서울재산세",
@@ -11848,7 +11848,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-20T08:48:00Z",
     "imageUrl": "/stock/2026-07-20-subcontract-payment-89-1tn.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "하도급대금",
       "결제조건",
@@ -11925,7 +11925,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-20T08:20:00Z",
     "eventEndsAt": "2026-07-20T23:59:00Z",
     "imageUrl": "/stock/2026-07-20-suwon-startup-mentoring-30.jpg",
-    "imageCaption": "창업자가 전문가와 빈 사업계획 자료, 무표식 제품 모형을 놓고 경영 과제를 점검하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "수원창업",
       "창업멘토링",
@@ -12012,7 +12012,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-20T08:16:00Z",
     "eventEndsAt": "2026-07-30T23:59:00Z",
     "imageUrl": "/stock/2026-07-20-unho-high-uniform-bid.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "운호고등학교",
@@ -12071,7 +12071,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-20T08:52:00Z",
     "imageUrl": "/stock/2026-07-20-vat-final-return-jul27.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 국세청 자료나 사업장 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다. 무표기 서류와 영수증 롤, 닫힌 태블릿을 배치해 소상공인의 부가가치세 신고 준비를 상징적으로 표현했습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "부가가치세",
       "부가세신고",
@@ -12156,7 +12156,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-20T08:08:00Z",
     "eventEndsAt": "2026-07-30T23:59:00Z",
     "imageUrl": "/stock/2026-07-20-yongin-startup-commercialization-5m.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "용인창업지원",
       "맞춤형창업지원",
@@ -12238,7 +12238,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-20T08:40:00Z",
     "imageUrl": "/stock/2026-07-20-youth-job-leap-incentive-7-2m.jpg",
-    "imageCaption": "중소기업 현장에서 신규 청년 근로자가 무표식 고용서류를 받고 업무교육을 시작하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "청년일자리도약장려금",
       "청년채용",
@@ -12339,7 +12339,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T07:36:00Z",
     "imageUrl": "/stock/2026-07-21-anyang-alley-shopping-district.jpg",
-    "imageCaption": "비식별 상인들이 문자 없는 상권 배치도와 점포 구역을 함께 검토하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "안양골목상권",
       "골목형상점가",
@@ -12435,7 +12435,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T07:44:00Z",
     "imageUrl": "/stock/2026-07-21-banwol-sihwa-manufacturing-ax-280.jpg",
-    "imageCaption": "비식별 작업자가 범용 자동차부품·전자기판 공정의 센서와 품질 상태를 점검하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "반월시화산단",
       "제조AI",
@@ -12497,7 +12497,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T08:32:00Z",
     "imageUrl": "/stock/2026-07-21-biff-badge-early-registration.jpg",
-    "imageCaption": "빈 배지와 일반화한 영화제 등록 데스크로 자격별 배지 등록 절차를 표현한 이미지. AI 생성 이미지. 실제 영화제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "부산국제영화제",
       "BIFF2026",
@@ -12552,7 +12552,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T08:08:00Z",
     "imageUrl": "/stock/2026-07-21-egg-chicken-retail-price-mid-july.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 농림축산식품부 자료나 마트 현장 사진이 아니며, 기사 내용을 설명하기 위해 무표기 계란 포장과 식료품 진열대를 연출한 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "계란가격",
       "닭고기가격",
@@ -12657,7 +12657,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T07:48:00Z",
     "imageUrl": "/stock/2026-07-21-electric-appliance-safety-standards-7.jpg",
-    "imageCaption": "비식별 시험원이 무표식 생활 전기제품과 램프 부품의 안전 항목을 계측하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "전기용품안전",
       "KC안전기준",
@@ -12711,7 +12711,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T08:24:00Z",
     "imageUrl": "/stock/2026-07-21-eu-ecommerce-customs-6bn-items.jpg",
-    "imageCaption": "대량의 무표기 소포와 일반화한 검사대로 EU 전자상거래 통관 부담을 표현한 이미지. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유럽연합",
       "EU통관",
@@ -12766,7 +12766,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-21T08:16:00Z",
     "eventEndsAt": "2026-07-20T23:59:00Z",
     "imageUrl": "/stock/2026-07-21-family-relations-education-week.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 가족센터나 교육 현장 사진이 아니며, 식별되지 않는 성인 참여자와 무표기 교재를 배치해 가족관계교육 장면을 연출했습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "가족관계교육",
       "가족센터",
@@ -12826,7 +12826,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T08:20:00Z",
     "imageUrl": "/stock/2026-07-21-geunyangdream-july-locations.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 그냥드림 코너나 후원 전달식 현장 사진이 아니며, 무상표 식료품과 생활용품이 놓인 지역 나눔공간을 당사자 노출 없이 연출했습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "그냥드림",
       "먹거리기본보장",
@@ -12909,7 +12909,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-21T07:28:00Z",
     "eventEndsAt": "2026-07-31T23:59:00Z",
     "imageUrl": "/stock/2026-07-21-green-supply-chain-research-bid.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 발주기관 자료나 공식 연구 현장 사진이 아니며, 무표기 물류 표본을 검토하는 공급망 연구 상황을 설명하기 위해 연출했습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "한국환경산업기술원",
@@ -12982,7 +12982,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T08:04:00Z",
     "imageUrl": "/stock/2026-07-21-gs-wonpyeong2-contract-606-1b.jpg",
-    "imageCaption": "한국의 일반적인 도심 재개발 공사계획 검토 장면을 재구성한 AI 생성 이미지입니다. 실제 원평2동 현장, GS건설 또는 조합의 공식 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "GS건설",
       "원평2동",
@@ -13058,7 +13058,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T07:20:00Z",
     "imageUrl": "/stock/2026-07-21-gunsan-gimje-ftz-diagnosis-25.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 자유무역지역 입주 제조기업의 현장 진단 상황을 설명하기 위해 연출했습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "군산자유무역지역",
       "김제자유무역지역",
@@ -13114,7 +13114,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T08:40:00Z",
     "imageUrl": "/stock/2026-07-21-kt-futures-nc-7-5.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 선수나 7월 20일 익산 경기 현장 사진이 아니며, 로고와 식별 가능한 얼굴 없이 야간 야구 경기의 주루와 수비 긴장감을 일반화해 표현한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO퓨처스리그",
       "KT위즈",
@@ -13173,7 +13173,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T08:52:00Z",
     "imageUrl": "/stock/2026-07-21-livestock-odor-consulting-column.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 농림축산식품부 컨설팅이나 특정 농장 현장 사진이 아니며, 업체·지역·사람을 식별할 수 없도록 농장 주변 환경관리 점검을 일반화해 연출한 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "축산악취",
       "농림축산식품부",
@@ -13232,7 +13232,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T08:48:00Z",
     "imageUrl": "/stock/2026-07-21-logistics-fire-safety-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 화재 현장이나 정부 합동점검 사진이 아니며, 특정 기관·업체·시설을 식별할 수 없도록 익명의 물류창고 안전 점검 상황을 연출한 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "물류시설",
       "화재안전",
@@ -13288,7 +13288,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T08:44:00Z",
     "imageUrl": "/stock/2026-07-21-lotte-futures-samsung-19-5.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 선수나 7월 20일 사직 경기 현장 사진이 아니며, 로고와 식별 가능한 얼굴 없이 야구 타선이 연속 출루하는 흐름을 일반화해 표현한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO퓨처스리그",
       "롯데자이언츠",
@@ -13371,7 +13371,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-21T07:32:00Z",
     "eventEndsAt": "2026-07-28T23:59:00Z",
     "imageUrl": "/stock/2026-07-21-marine-weather-equipment-bid.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 발주기관 장비나 공식 시험 현장 사진이 아니며, 무표기 기상관측 센서 부품을 점검하는 상황을 설명하기 위해 연출했습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "한국해양과학기술원",
@@ -13447,7 +13447,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T07:24:00Z",
     "imageUrl": "/stock/2026-07-21-mexico-k-beauty-popup-8.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 행사 현장 사진이 아니며, 무표기 K-뷰티 제품을 활용한 해외 팝업 상황을 설명하기 위해 연출했습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KEXPO",
       "멕시코수출",
@@ -13507,7 +13507,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T08:36:00Z",
     "imageUrl": "/stock/2026-07-21-national-theater-season-75.jpg",
-    "imageCaption": "전통 악기와 비식별 공연자의 일반화한 무대 리허설로 국립극장 새 시즌의 장르 구성을 표현한 이미지. AI 생성 이미지. 실제 공연 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립극장",
       "레퍼토리시즌",
@@ -13565,7 +13565,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T08:12:00Z",
     "imageUrl": "/stock/2026-07-21-oil-blending-export-1-65tn.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 관세청 자료나 국내 탱크 터미널 현장 사진이 아니며, 무표기 저장탱크와 배관·빈 부두를 조합해 석유제품 블렌딩 물류를 상징적으로 연출했습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "석유블렌딩",
       "환적화물",
@@ -13634,7 +13634,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T07:52:00Z",
     "imageUrl": "/stock/2026-07-21-seoul-finance-inclusive-wage-audit.jpg",
-    "imageCaption": "한국의 일반 사무공간에서 익명의 인사담당자가 무표식 근태자료를 점검하는 모습을 재구성한 AI 생성 이미지입니다. 실제 공식 자료, 감독 현장 또는 특정 기업의 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "포괄임금",
       "고정OT",
@@ -13749,7 +13749,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-21T07:40:00Z",
     "eventEndsAt": "2026-07-29T23:59:00Z",
     "imageUrl": "/stock/2026-07-21-sunchang-youth-farmer-greenhouse.jpg",
-    "imageCaption": "비식별 청년농이 한국형 스마트온실에서 어린 작물과 재배 설비를 점검하는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "순창청년농",
       "스마트온실",
@@ -13808,7 +13808,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T08:28:00Z",
     "imageUrl": "/stock/2026-07-21-who-road-traffic-deaths-1-16m.jpg",
-    "imageCaption": "보행자·자전거·이륜차의 분리 동선이 있는 일반화한 교차로로 세계 도로 안전 과제를 표현한 이미지. AI 생성 이미지. 실제 공식 자료나 사고 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "세계보건기구",
       "WHO",
@@ -13888,7 +13888,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T07:56:00Z",
     "imageUrl": "/stock/2026-07-21-worklife-45-monthly-support.jpg",
-    "imageCaption": "한국 중소기업의 익명 구성원들이 근무를 일찍 마치고 사무실을 정리하는 모습을 재구성한 AI 생성 이미지입니다. 실제 참여기업, 공식 자료 또는 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "워라밸45",
       "실노동시간단축",
@@ -13960,7 +13960,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-21T08:00:00Z",
     "imageUrl": "/stock/2026-07-21-yoga-pilates-standard-terms.jpg",
-    "imageCaption": "일반적인 요가·필라테스 스튜디오에서 무표식 이용계약을 검토하는 상황을 재구성한 AI 생성 이미지입니다. 실제 공식 자료, 특정 업체 또는 분쟁 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "요가",
       "필라테스",
@@ -14025,7 +14025,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:30:00Z",
     "imageUrl": "/stock/2026-07-22-busan-port-tire-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 부산항 수거 현장이나 해양수산부 작업 사진이 아니며, 항만명·선박명·기관 로고·장비 문자·식별 가능한 얼굴 없이 수중 폐타이어 인양 준비를 일반화해 표현한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "부산항",
       "침적폐타이어",
@@ -14089,7 +14089,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:34:00Z",
     "imageUrl": "/stock/2026-07-22-childcare-act-amendments.jpg",
-    "imageCaption": "어린이집 보육환경 정비를 상징하도록 생성한 빈 교실 준비 장면. AI 생성 비현장 이미지이며 교육부 제공 자료나 특정 어린이집의 실제 교실·교직원 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국공립어린이집",
       "영유아보육법",
@@ -14158,7 +14158,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:08:00Z",
     "imageUrl": "/stock/2026-07-22-daebo-magnetic-subcontract-fine.jpg",
-    "imageCaption": "제조 부품 발주 전 계약조건과 도면을 함께 점검하는 구매 실무를 재구성한 AI 생성 이미지입니다. 실제 제재 기업·수급사업자·제품·계약서 또는 공정위 공식 자료가 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "하도급법",
       "서면발급의무",
@@ -14237,7 +14237,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:26:00Z",
     "imageUrl": "/stock/2026-07-22-disabled-employment-incentive.jpg",
-    "imageCaption": "중소기업 인사담당자가 포용적 채용과 임금 자료를 준비하는 모습을 재구성한 AI 생성 이미지입니다. 실제 신청인·사업장·공단 창구나 정부 공식 서류가 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "장애인고용개선장려금",
       "중증장애인고용",
@@ -14299,7 +14299,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:14:00Z",
     "imageUrl": "/stock/2026-07-22-farmland-survey-drone-ai.jpg",
-    "imageCaption": "농지 조사에 쓰이는 드론 운용을 상징하도록 생성한 한국 농촌 이미지. AI 생성 비현장 이미지이며 농림축산식품부·재정경제부 제공 자료나 실제 조사 현장 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "농지전수조사",
       "농림축산식품부",
@@ -14390,7 +14390,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:40:00Z",
     "imageUrl": "/stock/2026-07-22-gwangju-innoplus-40-rooms.jpg",
-    "imageCaption": "비식별 창업자들이 무표식 장비 케이스를 들고 산업형 창업 입주공간을 살펴보는 장면. AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "광주창업공간",
       "이노플러스스테이지",
@@ -14487,7 +14487,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-22T09:42:00Z",
     "eventEndsAt": "2026-08-12T23:59:00Z",
     "imageUrl": "/stock/2026-07-22-gyeongnam-women-startup-room.jpg",
-    "imageCaption": "비식별 여성 창업자가 무표식 작업 샘플과 빈 서류를 들고 소형 창업보육실을 살펴보는 장면. AI 생성 이미지. 실제 경남센터나 입주기업의 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "경남여성창업",
       "여성기업",
@@ -14552,7 +14552,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:46:00Z",
     "imageUrl": "/stock/2026-07-22-healthy-diet-cost-ppp.jpg",
-    "imageCaption": "표기 없는 식재료와 장바구니를 놓은 시장 정리대를 통해 건강식 비용과 접근성 문제를 일반화해 표현한 이미지. AI 생성 이미지. 실제 조사 대상이나 상점 사진이 아니며, 가격표·문자·로고·식별 가능한 인물은 포함하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유엔",
       "SOFI2026",
@@ -14646,7 +14646,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:20:00Z",
     "imageUrl": "/stock/2026-07-22-indonesia-halal-october.jpg",
-    "imageCaption": "비식별 수출기업 품질담당자가 무표식 식품·화장품 포장과 원재료 샘플을 놓고 인증 준비자료를 점검하는 장면. AI 생성 이미지. 실제 설명회나 인증기관 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "인도네시아수출",
       "할랄인증",
@@ -14739,7 +14739,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-22T09:02:00Z",
     "eventEndsAt": "2026-07-29T23:59:00Z",
     "imageUrl": "/stock/2026-07-22-kasi-lsst-kmtnet-server-bid.jpg",
-    "imageCaption": "천문 자료처리용 전산실을 연상시키는 공간에서 비식별 기술자가 무표식 랙 서버를 설치·점검하는 장면. AI 생성 이미지. 실제 한국천문연구원 시설이나 LSST·KMTNet 장비 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국천문연구원",
       "LSST",
@@ -14806,7 +14806,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:04:00Z",
     "imageUrl": "/stock/2026-07-22-korea-tourism-rising-star-13.jpg",
-    "imageCaption": "표기 없는 지역 모형과 여행 동선 도구를 놓은 관광정책 기획 현장을 일반화해 표현한 이미지. AI 생성 이미지. 실제 공모 심사장이나 관광지를 재현하지 않았으며, 문자·로고·국기·기관 화면·식별 가능한 인물은 포함하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국관광의샛별",
       "지역관광",
@@ -14896,7 +14896,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-22T09:00:00Z",
     "eventEndsAt": "2026-08-03T23:59:00Z",
     "imageUrl": "/stock/2026-07-22-ktl-security-consulting-bid.jpg",
-    "imageCaption": "보안관제실을 연상시키는 공간에서 비식별 정보보안 작업자들이 무표식 화면과 서버 장비를 점검하는 장면. AI 생성 이미지. 실제 한국산업기술시험원 시설·인력·시스템 화면이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국산업기술시험원",
       "KTL",
@@ -14989,7 +14989,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:18:00Z",
     "imageUrl": "/stock/2026-07-22-live-commerce-310-companies.jpg",
-    "imageCaption": "무표식 상품을 놓은 소규모 라이브커머스 스튜디오에서 비식별 작업자들이 촬영 장비와 조명을 준비하는 장면. AI 생성 이미지. 실제 참여기업·플랫폼·공식 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "소상공인라이브커머스",
       "판판대로",
@@ -15054,7 +15054,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:32:00Z",
     "imageUrl": "/stock/2026-07-22-multi-child-highway-discount.jpg",
-    "imageCaption": "다자녀 가구 통행료 할인 제도를 상징하도록 생성한 일반 승합차와 고속도로 요금소 이미지. AI 생성 비현장 이미지이며 국토교통부·한국도로공사 제공 자료나 실제 신청·운행 현장 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "다자녀가구",
       "고속도로통행료",
@@ -15110,7 +15110,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:36:00Z",
     "imageUrl": "/stock/2026-07-22-nc-lg-baseball-jul21.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 선수나 7월 21일 잠실 경기 현장 사진이 아니며, 구단 유니폼·등번호·로고·식별 가능한 얼굴 없이 야간 야구의 홈런 타구와 주루 긴장감을 일반화해 표현한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO리그",
       "NC다이노스",
@@ -15175,7 +15175,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:12:00Z",
     "imageUrl": "/stock/2026-07-22-novartis-investment-mou.jpg",
-    "imageCaption": "바이오 제조·저온 물류 투자계획을 시설 모형과 무표식 문서로 표현한 AI 생성 이미지. 보건복지부·노바티스 제공 자료나 실제 기업·시설·투자 현장 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "노바티스",
       "기업투자",
@@ -15243,7 +15243,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:24:00Z",
     "imageUrl": "/stock/2026-07-22-osh-decree-disclosure-500.jpg",
-    "imageCaption": "산업안전 자료와 보호구를 점검하는 국내 사업장 실무 장면을 재구성한 AI 생성 이미지입니다. 실제 기업·근로자·사고 현장이나 정부 공식 자료가 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "산업안전보건법",
       "안전보건공시",
@@ -15331,7 +15331,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:22:00Z",
     "imageUrl": "/stock/2026-07-22-overseas-customs-briefing.jpg",
-    "imageCaption": "비식별 수출기업 담당자와 통관 전문가가 무표식 제품 샘플과 빈 서류를 놓고 상담하는 장면. AI 생성 이미지. 실제 설명회나 관세관 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "해외통관제도",
       "수출기업",
@@ -15390,7 +15390,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:38:00Z",
     "imageUrl": "/stock/2026-07-22-samsung-kiwoom-baseball-jul21.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 선수나 7월 21일 고척 경기 현장 사진이 아니며, 구단 유니폼·등번호·로고·중계 화면·식별 가능한 얼굴 없이 실내 야구장의 결승 홈런 순간을 일반화해 표현한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO리그",
       "삼성라이온즈",
@@ -15450,7 +15450,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:28:00Z",
     "imageUrl": "/stock/2026-07-22-sanitary-pad-comparison-column.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 한국소비자원 시험실이나 특정 제품 사진이 아니며, 브랜드·포장 문자·제품명·식별 가능한 얼굴 없이 위생용품의 흡수성능과 단위가격을 비교하는 중립적 시험 장면을 연출한 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "팬티형생리대",
       "한국소비자원",
@@ -15536,7 +15536,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:16:00Z",
     "imageUrl": "/stock/2026-07-22-ulju-small-biz-300.jpg",
-    "imageCaption": "울주군의 소규모 점포를 연상시키는 공간에서 비식별 작업자가 무표식 판매기기와 실내 설비를 점검하는 장면. AI 생성 이미지. 실제 지원업체나 공식 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "울주군소상공인",
       "경영환경개선",
@@ -15611,7 +15611,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:10:00Z",
     "imageUrl": "/stock/2026-07-22-webcash-ibk-digital-banking.jpg",
-    "imageCaption": "국내 금융 IT 프로젝트 착수 회의와 개발 환경을 일반화해 재구성한 AI 생성 이미지입니다. 실제 웹케시·아이비케이시스템 직원, 사무실, 시스템 화면 또는 공시 첨부사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "웹케시",
       "IBK시스템",
@@ -15674,7 +15674,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-22T09:44:00Z",
     "imageUrl": "/stock/2026-07-22-who-research4life-25-years.jpg",
-    "imageCaption": "익명의 연구자가 표기 없는 학술자료를 살펴보는 국제 연구 열람 환경을 일반화해 표현한 이미지. AI 생성 이미지. 실제 WHO 시설이나 Research4Life 화면을 재현한 사진이 아니며, 문자·로고·식별 가능한 인물은 포함하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "세계보건기구",
       "WHO",
@@ -15743,7 +15743,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-22T09:06:00Z",
     "eventEndsAt": "2026-07-22T23:59:00Z",
     "imageUrl": "/stock/2026-07-22-yeowoorak-jangma-july-22-23.jpg",
-    "imageCaption": "비를 연상시키는 조명 아래 전통 현악기와 블루스 기타가 놓인 빈 공연 무대를 일반화해 표현한 이미지. AI 생성 이미지. 실제 공연·출연자·포스터·무대 디자인을 재현하지 않았으며, 문자·로고·식별 가능한 얼굴은 포함하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "여우락페스티벌",
       "국립극장",
@@ -15813,7 +15813,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:42:00Z",
     "imageUrl": "/stock/2026-07-23-chungbuk-smart-factory-12.jpg",
-    "imageCaption": "제조 창업자들이 공유공장 작업대에서 무표기 금속 시제품을 맞춰 조립하는 장면을 구현한 AI 생성 이미지. 실제 시설 내부나 기관 제공 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "충북",
       "청주",
@@ -15887,7 +15887,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:26:00Z",
     "imageUrl": "/stock/2026-07-23-chungnam-labor-education.jpg",
-    "imageCaption": "소규모 음식점·이·미용업 사업주를 위한 노무교육 장면을 일반화해 재구성한 AI 생성 이미지입니다. 실제 교육 참가자, 기관 행사장, 교재 또는 신청 화면이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "충청남도",
       "영세사업주",
@@ -15950,7 +15950,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:34:00Z",
     "imageUrl": "/stock/2026-07-23-coastal-ferry-summer-plan.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 항로·선사·운항 상황을 촬영한 것이 아니며, 출항 전 운항정보 확인 절차를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "연안여객선",
       "여름휴가",
@@ -16018,7 +16018,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:22:00Z",
     "imageUrl": "/stock/2026-07-23-deposit-token-payment-pilot.jpg",
-    "imageCaption": "무표기 스마트폰과 숫자 없는 결제 단말기를 기존 상점 계산대에서 연계하는 장면을 구현한 AI 생성 이미지. 실제 실증 현장이나 기관 제공 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "예금토큰",
       "결제인프라",
@@ -16080,7 +16080,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:32:00Z",
     "imageUrl": "/stock/2026-07-23-elderly-care-discharge-support.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 주민센터 상담이나 서비스 이용자를 촬영한 것이 아니며, 퇴원 후 돌봄 신청 절차를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "노인맞춤돌봄",
       "퇴원환자",
@@ -16150,7 +16150,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:24:00Z",
     "imageUrl": "/stock/2026-07-23-employment-insurance-4-jobs.jpg",
-    "imageCaption": "서로 다른 노무제공 직종의 계약과 업무 도구를 한 작업대에 일반화해 배치한 AI 생성 이미지입니다. 실제 종사자, 사업장, 정부 문서 또는 제도 화면이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "고용보험",
       "노무제공자",
@@ -16207,7 +16207,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:30:00Z",
     "imageUrl": "/stock/2026-07-23-first-step-parenting-column.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 산후조리원·보건소·특정 부모 또는 보건복지부 배포 현장 사진이 아니며, 책자 제목·QR코드·기관 로고·의료정보·식별 가능한 얼굴 없이 출산 초기 부모가 무표식 육아자료를 살펴보는 상황을 일반화해 표현한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "첫걸음육아",
       "출산초기",
@@ -16299,7 +16299,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-23T09:00:00Z",
     "eventEndsAt": "2026-07-28T23:59:00Z",
     "imageUrl": "/stock/2026-07-23-hamyang-road-crusher-bid.jpg",
-    "imageCaption": "비가 갠 경남 산간도로를 연상시키는 현장에서 무표식 노면파쇄기와 얼굴이 식별되지 않는 작업자가 도로 표면을 정비하는 장면. AI 생성 이미지. 실제 함양군 발주 장비·납품업체·작업 현장이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "함양군입찰",
       "노면파쇄기",
@@ -16354,7 +16354,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:38:00Z",
     "imageUrl": "/stock/2026-07-23-hanwha-kia-baseball-jul22.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 선수나 2026년 7월 22일 광주 경기의 공식 자료·현장 사진이 아니며, 실제 구단 로고·유니폼·등번호·중계 화면·식별 가능한 얼굴 없이 야간 야구 경기의 홈런 타구와 주루 장면을 일반화해 표현한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO리그",
       "한화이글스",
@@ -16411,7 +16411,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:14:00Z",
     "imageUrl": "/stock/2026-07-23-national-net-worth-2025.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 특정 지역이나 공식 통계표를 촬영한 것이 아니며, 국민순자산을 구성하는 주택·생산시설·인프라·토지를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국민순자산",
       "국민대차대조표",
@@ -16472,7 +16472,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:46:00Z",
     "imageUrl": "/stock/2026-07-23-nauru-world-heritage-aid.jpg",
-    "imageCaption": "열대 섬 해안의 일반화된 자연·문화유산 후보지를 비식별 조사자들이 기록하는 장면. AI 생성 이미지이며 실제 나우루 유산 후보지·유네스코 조사단·현장 사진이 아니고 문자·숫자·로고·국기·식별 가능한 얼굴을 포함하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유네스코",
       "UNESCO",
@@ -16533,7 +16533,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:28:00Z",
     "imageUrl": "/stock/2026-07-23-overseas-food-inspection-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 식약처 검사실이나 적발 제품의 공식 사진이 아니며, 제품명·성분명·기관 로고·검사 화면·식별 가능한 얼굴 없이 익명 검사자가 무표식 해외배송 식품 시료를 살피는 상황을 일반화해 표현한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "해외직구식품",
       "식품의약품안전처",
@@ -16587,7 +16587,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:12:00Z",
     "imageUrl": "/stock/2026-07-23-ppi-june-2026-flat.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 한국은행 자료나 특정 생산·유통 현장을 촬영한 것이 아니며, 생산자 가격을 구성하는 농산품·공산품·에너지 투입요소를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "생산자물가지수",
       "생산자물가",
@@ -16659,7 +16659,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:10:00Z",
     "imageUrl": "/stock/2026-07-23-ps-electronics-server-supply.jpg",
-    "imageCaption": "고성능 서버 장비와 부품의 입고·검수 작업을 일반화해 재구성한 AI 생성 이미지입니다. 실제 PS일렉트로닉스, 계약상대방, 데이터센터 또는 납품 제품이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "PS일렉트로닉스",
       "고성능서버",
@@ -16726,7 +16726,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:06:00Z",
     "imageUrl": "/stock/2026-07-23-sac-international-music-festival.jpg",
-    "imageCaption": "빈 클래식 공연장의 따뜻한 무대에 피아노·첼로·현악기를 배치해 여러 무대가 이어지는 음악제를 일반화한 이미지. AI 생성 이미지이며 실제 예술의전당 내부·공연·연주자·포스터 사진이 아니고 문자·숫자·로고·식별 가능한 얼굴을 포함하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "예술의전당",
       "국제음악제",
@@ -16812,7 +16812,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:16:00Z",
     "imageUrl": "/stock/2026-07-23-security-product-eval-support.jpg",
-    "imageCaption": "정보보호제품 성능시험을 연상시키는 시험실에서 비식별 작업자가 무표식 네트워크 장비와 계측기를 점검하는 장면. AI 생성 이미지. 실제 한국인터넷진흥원·평가기관·지원기업의 시설이나 제품이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "정보보호제품",
       "성능평가",
@@ -16880,7 +16880,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:40:00Z",
     "imageUrl": "/stock/2026-07-23-showcase-day-10-companies.jpg",
-    "imageCaption": "소상공인이 무표기 생활소비재를 전시대에 배치하는 장면을 구현한 AI 생성 이미지. 실제 행사 현장이나 기관 제공 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "소상공인",
       "쇼케이스데이",
@@ -16968,7 +16968,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:18:00Z",
     "imageUrl": "/stock/2026-07-23-small-biz-product-design-400.jpg",
-    "imageCaption": "소규모 브랜드 작업실에서 비식별 작업자들이 글자와 상표가 없는 상자·쇼핑백·색상 견본으로 상품 패키지를 검토하는 장면. AI 생성 이미지. 실제 지원기업이나 한국중소벤처기업유통원 현장이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "소상공인상품개선",
       "판판대로",
@@ -17022,7 +17022,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:36:00Z",
     "imageUrl": "/stock/2026-07-23-ssg-lotte-baseball-jul22.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 선수나 2026년 7월 22일 사직 경기의 공식 자료·현장 사진이 아니며, 실제 구단 로고·유니폼·등번호·중계 화면·식별 가능한 얼굴 없이 야간 야구 경기의 타격과 주루 긴장감을 일반화해 표현한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO리그",
       "SSG랜더스",
@@ -17095,7 +17095,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:08:00Z",
     "imageUrl": "/stock/2026-07-23-stradvision-aptiv-contract.jpg",
-    "imageCaption": "차량용 인지 소프트웨어의 시험·검수 작업공간을 일반화해 재구성한 AI 생성 이미지입니다. 실제 스트라드비젼·앱티브 시설, 차량, 제품 또는 시스템 화면이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "스트라드비젼",
       "앱티브",
@@ -17157,7 +17157,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:44:00Z",
     "imageUrl": "/stock/2026-07-23-unicef-cash-transfer-children.jpg",
-    "imageCaption": "표기 없는 지급 카드와 봉투를 비식별 손 사이에서 전달하는 장면을 통해 사회보호 현금이전을 일반화한 이미지. AI 생성 이미지이며 실제 유니세프 현장·수급자·기관 자료 사진이 아니고 문자·숫자·로고·식별 가능한 얼굴을 포함하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유니세프",
       "UNICEF",
@@ -17218,7 +17218,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:04:00Z",
     "imageUrl": "/stock/2026-07-23-vampir-global2-server.jpg",
-    "imageCaption": "문자 없는 어두운 판타지 풍경을 띄운 화면 앞에서 여러 지역 이용자가 함께 접속하는 상황을 비식별 뒷모습과 연결된 조명으로 일반화한 이미지. AI 생성 이미지이며 실제 뱀피르 게임 화면·캐릭터·서버 UI·홍보물이 아니고 문자·숫자·로고·국기·식별 가능한 얼굴을 포함하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "뱀피르",
       "넷마블",
@@ -17309,7 +17309,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-23T09:02:00Z",
     "eventEndsAt": "2026-08-12T23:59:00Z",
     "imageUrl": "/stock/2026-07-23-yeongju-caravan-bid.jpg",
-    "imageCaption": "국내 제작공장을 연상시키는 작업장에서 얼굴이 식별되지 않는 작업자들이 글자와 상표가 없는 흰색 캠핑 트레일러의 외장을 점검하는 장면. AI 생성 이미지. 실제 영주시 발주품·제작업체·영주호 오토캠핑장 현장이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "영주시입찰",
       "영주호오토캠핑장",
@@ -17383,7 +17383,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-23T09:20:00Z",
     "imageUrl": "/stock/2026-07-23-yeosu-petrochem-restructuring.jpg",
-    "imageCaption": "해안 석유화학단지의 두 배관망이 중앙 공용 배관으로 모이는 장면을 구현한 AI 생성 이미지. 실제 여수 사업장이나 기관 제공 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "여수석유화학",
       "사업재편",
@@ -17455,7 +17455,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-24T08:22:00Z",
     "imageUrl": "/stock/2026-07-24-critical-minerals-growth-fund.jpg",
-    "imageCaption": "금속 원료와 재활용 소재 샘플을 무표기 산업 설비 앞에서 비교하는 장면을 구현한 AI 생성 이미지. 실제 핵심광물 사업장이나 정부 간담회 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "핵심광물",
       "국민성장펀드",
@@ -17543,7 +17543,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-24T08:16:00Z",
     "imageUrl": "/stock/2026-07-24-dongjak-signboard-support-36.jpg",
-    "imageCaption": "동작구 소상공인의 노후 간판 교체 작업을 연상시키도록 빈 간판과 비식별 작업자를 구성한 장면. AI 생성 이미지. 실제 동작구 지원 점포나 공식 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "동작구",
       "소상공인지원",
@@ -17601,7 +17601,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-24T08:34:00Z",
     "imageUrl": "/stock/2026-07-24-emergency-ready-22-languages.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 재난 상황·공공기관 교육·특정 앱 화면을 촬영한 것이 아니며, 국내 체류 이용자들이 비상용품과 휴대전화를 함께 확인하는 다국어 안전안내 상황을 설명하기 위한 비식별 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "재난문자",
       "EmergencyReady",
@@ -17678,7 +17678,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-24T08:10:00Z",
     "imageUrl": "/stock/2026-07-24-fair-trade-decree-cvc-spc.jpg",
-    "imageCaption": "기업 투자펀드와 특수목적법인 거래구조를 검토하는 준법회의를 일반화해 재구성한 AI 생성 이미지입니다. 실제 공정거래위원회, 기업, 계약서, 펀드 또는 공식 제도 화면이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "공정거래법시행령",
       "입법예고",
@@ -17760,7 +17760,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-24T08:24:00Z",
     "imageUrl": "/stock/2026-07-24-gangwon-cement-win-win-pact.jpg",
-    "imageCaption": "시멘트 생산 현장의 안전점검과 원청·협력사 실무 협의를 일반화해 재구성한 AI 생성 이미지입니다. 실제 협약식, 기업, 노동자, 공장 또는 공식 자료가 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "강원시멘트",
       "원하청상생",
@@ -17815,7 +17815,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-24T08:12:00Z",
     "imageUrl": "/stock/2026-07-24-gdp-q2-2026-growth.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 한국은행 자료나 특정 기업·항만·생산현장을 촬영한 것이 아니며, 수출·제조·소비와 건설의 엇갈린 흐름을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국내총생산",
       "GDP",
@@ -17894,7 +17894,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-24T08:08:00Z",
     "imageUrl": "/stock/2026-07-24-hb-solution-sdv-contract.jpg",
-    "imageCaption": "디스플레이 유리용 광학 검사장비와 운송 상자·검수 도구가 놓인 납품·검수 환경을 일반화해 재구성한 AI 생성 이미지입니다. 실제 HB솔루션·삼성디스플레이 베트남 시설, 장비, 직원 또는 계약 현장이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "HB솔루션",
       "삼성디스플레이베트남",
@@ -17987,7 +17987,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-24T08:02:00Z",
     "eventEndsAt": "2026-07-31T23:59:00Z",
     "imageUrl": "/stock/2026-07-24-jeonbuk-antibiotic-test-equipment.jpg",
-    "imageCaption": "축산물 잔류항생물질 검사를 연상시키는 무표식 분석장비와 비식별 시험 인력을 구성한 장면. AI 생성 이미지. 실제 전북특별자치도 동물위생시험소 북부지소나 납품 장비의 공식 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -18042,7 +18042,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-24T08:14:00Z",
     "imageUrl": "/stock/2026-07-24-land-price-h1-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 특정 지역이나 부동산 매물을 촬영한 것이 아니며, 도시·산업용지·농지 등 서로 다른 토지시장의 흐름을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "전국지가",
       "토지가격",
@@ -18113,7 +18113,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-24T08:40:00Z",
     "eventEndsAt": "2026-08-04T23:59:00Z",
     "imageUrl": "/stock/2026-07-24-molit-startup-center-openings.jpg",
-    "imageCaption": "판교형 공유 사무공간에서 얼굴이 보이지 않는 창업팀이 국토교통 기술 시제품을 점검하는 장면을 구현한 AI 생성 이미지. 실제 창업지원센터나 기관 제공 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국토교통창업지원센터",
       "판교창업공간",
@@ -18204,7 +18204,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-24T08:00:00Z",
     "eventEndsAt": "2026-07-29T23:59:00Z",
     "imageUrl": "/stock/2026-07-24-namhae-reservoir-repair-bid.jpg",
-    "imageCaption": "농촌 저수지 제방 진입로를 보수하는 무표식 장비와 비식별 작업자를 구성한 장면. AI 생성 이미지. 실제 작장 재해위험저수지나 남해군 공사 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -18276,7 +18276,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-24T08:06:00Z",
     "updatedAt": "2026-08-18T11:20:00Z",
     "imageUrl": "/stock/2026-07-24-national-museum-summer-hours.jpg",
-    "imageCaption": "실제 국립중앙박물관 건축이나 전시품을 복제하지 않은 일반화된 현대 박물관 로비에서 가족 관람객의 비식별 뒷모습이 아침 전시장으로 들어가는 장면. AI 생성 이미지이며 실제 국립중앙박물관·관람객·전시실·공식 자료 사진이 아니고 문자·숫자·로고·식별 가능한 얼굴을 포함하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립중앙박물관",
       "여름방학",
@@ -18334,7 +18334,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-24T08:36:00Z",
     "imageUrl": "/stock/2026-07-24-nc-lg-baseball-jul23.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 NC-LG 경기나 잠실야구장을 촬영한 공식·현장 사진이 아니며, 팀 로고·등번호·식별 가능한 얼굴 없이 야간 프로야구 타격 장면을 일반화해 표현한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -18408,7 +18408,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-24T08:20:00Z",
     "imageUrl": "/stock/2026-07-24-postal-hub-ai-logistics-pilot.jpg",
-    "imageCaption": "무표기 물류상자와 운반대가 놓인 자동화 실증 공간에서 얼굴 없는 기술자가 센서를 점검하는 장면을 구현한 AI 생성 이미지. 실제 우편집중국이나 기관 제공 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "AI물류",
       "우편집중국",
@@ -18464,7 +18464,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-24T08:38:00Z",
     "imageUrl": "/stock/2026-07-24-samsung-kiwoom-baseball-jul23.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 삼성-키움 경기나 고척스카이돔을 촬영한 공식·현장 사진이 아니며, 팀 로고·등번호·식별 가능한 얼굴 없이 연장전 희생플라이와 주자의 진루 장면을 일반화해 표현한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -18537,7 +18537,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-24T08:42:00Z",
     "eventEndsAt": "2026-07-31T23:59:00Z",
     "imageUrl": "/stock/2026-07-24-seoul-ai-hub-daou-3-companies.jpg",
-    "imageCaption": "얼굴이 보이지 않는 스타트업 실무자들이 무표기 결제 단말기와 생활제품 샘플로 인공지능 커머스 기술을 점검하는 장면을 구현한 AI 생성 이미지. 실제 서울 AI 허브·다우데이타 프로그램이나 공식 현장 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "서울AI허브",
       "다우데이타",
@@ -18625,7 +18625,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-24T08:18:00Z",
     "imageUrl": "/stock/2026-07-24-seoul-small-biz-safety-test.jpg",
-    "imageCaption": "생활용품과 어린이제품의 안전성 시험을 연상시키는 무표식 시료와 시험장비를 구성한 장면. AI 생성 이미지. 실제 서울시 지정 시험기관이나 지원기업의 시설·제품이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "서울소상공인",
       "안전검사",
@@ -18698,7 +18698,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-24T08:26:00Z",
     "imageUrl": "/stock/2026-07-24-ssafy-16th-1050-trainees.jpg",
-    "imageCaption": "AI·소프트웨어 교육을 위한 노트북·소형 로봇 프로젝트 실습 공간을 일반화해 재구성한 AI 생성 이미지입니다. 실제 SSAFY 교육장, 입학생, 삼성전자 시설 또는 수업 장면이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "SSAFY",
       "싸피16기",
@@ -18753,7 +18753,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-24T08:28:00Z",
     "imageUrl": "/stock/2026-07-24-stats-ai-verification-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 국가데이터처나 언론사 편집국의 공식·현장 사진이 아니며, 기관 로고·통계 수치·기사 화면·식별 가능한 얼굴 없이 익명 편집자가 무표식 통계 도표를 대조하는 상황을 일반화해 표현한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국가데이터처",
       "공식통계",
@@ -18809,7 +18809,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-24T08:30:00Z",
     "imageUrl": "/stock/2026-07-24-telecom-benefits-disclosure-column.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 통신사 매장·고객·요금 안내 화면을 촬영한 공식·현장 사진이 아니며, 통신사 로고·요금 숫자·휴대전화 UI·식별 가능한 얼굴 없이 익명 이용자가 무표식 혜택 조건을 비교하는 상황을 일반화해 표현한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "과학기술정보통신부",
       "통신3사",
@@ -18864,7 +18864,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-24T08:32:00Z",
     "imageUrl": "/stock/2026-07-24-vacation-gap-care-1461.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 돌봄센터나 이용 아동을 촬영한 것이 아니며, 방학 중 돌봄과 식사 제공 환경을 설명하기 위한 비식별 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "방학돌봄",
       "틈새돌봄센터",
@@ -18926,7 +18926,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-24T08:46:00Z",
     "imageUrl": "/stock/2026-07-24-venezuela-quake-damage-196.jpg",
-    "imageCaption": "특정 도시나 건물을 복제하지 않은 일반화된 도시 기반시설 손상 평가 현장에서 비식별 조사자들이 균열 난 외벽과 도로를 살피는 장면. AI 생성 이미지이며 실제 베네수엘라 피해지역·이재민·조사단·공식 자료 사진이 아니고 문자·숫자·로고·국기·식별 가능한 얼굴을 포함하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "베네수엘라",
       "지진",
@@ -18987,7 +18987,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-24T08:44:00Z",
     "imageUrl": "/stock/2026-07-24-who-drowning-prevention-7.jpg",
-    "imageCaption": "표지판이나 기관 표식 없이 일반화한 물가 안전교육 현장에서 비식별 성인들이 구조부환과 구명조끼를 점검하는 장면. AI 생성 이미지이며 실제 WHO 행사·구조훈련·사고 현장이나 공식 자료 사진이 아니고 문자·숫자·로고·국기·식별 가능한 얼굴을 포함하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "WHO",
       "세계보건기구",
@@ -19058,7 +19058,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-25T09:22:00Z",
     "imageUrl": "/stock/2026-07-25-advanced-industry-standardization-contest-vipv.jpg",
-    "imageCaption": "무표기 곡면 태양전지 재료 시편과 광학 검사 장비를 산업 표준 품질평가 관점으로 배치한 AI 생성 이미지. 실제 수상 표준안의 시험장치, 참가 대학 연구실 또는 경진대회 현장 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "첨단산업표준화",
       "국가기술표준원",
@@ -19121,7 +19121,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-25T09:04:00Z",
     "imageUrl": "/stock/2026-07-25-art-service-business-report-system.jpg",
-    "imageCaption": "특정 화랑이나 작품을 복제하지 않은 일반화된 현대미술 갤러리 후면 업무공간에서 비식별 작업자가 빈 기록지와 포장 상자, 감정 도구를 정리하는 장면. AI로 생성한 이미지이며 실제 문체부·미술업체·신고 현장·미술품 또는 공식 자료 사진이 아니고 문자·숫자·로고·식별 가능한 얼굴을 포함하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "문화체육관광부",
       "미술진흥법",
@@ -19182,7 +19182,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-25T09:14:00Z",
     "imageUrl": "/stock/2026-07-25-cheil-worldwide-q2-2026-results.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 제일기획 사무실·광고 제작현장·DART 자료를 촬영한 것이 아니며, 광고 제작과 영업수익·이익의 다른 흐름을 설명하기 위한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "제일기획",
       "2분기실적",
@@ -19240,7 +19240,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-25T09:30:00Z",
     "imageUrl": "/stock/2026-07-25-free-photo-shoot-extra-cost-column.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 한국소비자원 간담회나 특정 촬영업체·소비자 피해 현장의 공식 사진이 아니며, 상표·가격표 문자·식별 가능한 얼굴 없이 무표식 카메라와 빈 앨범·액자·포장 상자로 촬영 서비스의 선택품목을 일반화해 표현한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국소비자원",
       "공정거래위원회",
@@ -19333,7 +19333,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-25T09:16:00Z",
     "eventEndsAt": "2026-08-05T23:59:00Z",
     "imageUrl": "/stock/2026-07-25-gangwon-overseas-certification-support.jpg",
-    "imageCaption": "해외 규격인증을 준비하는 제조기업의 시험·측정 업무를 연상시키도록 무표식 제품 시편과 측정 도구를 구성한 장면. AI 생성 이미지이며 실제 강원특별자치도 지원기업, 공식 자료 또는 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "강원특별자치도",
       "해외규격인증",
@@ -19417,7 +19417,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-25T09:18:00Z",
     "imageUrl": "/stock/2026-07-25-gyeonggi-export-matching-ocean-freight.jpg",
-    "imageCaption": "중소기업의 해상 수출 물류를 연상시키도록 무표식 화물선 모형, 일반 화물 상자, 로프와 팔레트를 구성한 장면. AI 생성 이미지이며 실제 경기도 지원기업, 공식 자료, 항만 또는 수출 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "경기도",
       "코리아경기도주식회사",
@@ -19495,7 +19495,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-25T09:08:00Z",
     "imageUrl": "/stock/2026-07-25-hyundai-autoever-gpu-server-contracts.jpg",
-    "imageCaption": "두 개의 별도 납품 구역에 일반화된 GPU 서버 장비를 배치하고 비식별 기술자가 검수하는 장면을 재구성한 AI 생성 이미지입니다. 실제 현대오토에버·현대자동차·기아의 서버, 사업장, 직원, 계약서 또는 납품 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "현대오토에버",
       "현대자동차",
@@ -19554,7 +19554,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-25T09:12:00Z",
     "imageUrl": "/stock/2026-07-25-kia-q2-2026-provisional-results.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 기아 차량·공장·DART 자료나 특정 생산현장을 촬영한 것이 아니며, 매출 증가와 수익성 변화를 설명하기 위한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "기아",
       "2분기실적",
@@ -19615,7 +19615,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-25T09:38:00Z",
     "imageUrl": "/stock/2026-07-25-kiwoom-kia-baseball-jul24.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 키움-KIA 경기나 광주 구장을 촬영한 공식·현장 사진이 아니며, 구단 로고·등번호·식별 가능한 얼굴 없이 늦은 이닝 3점 홈런 뒤 주자들이 베이스를 도는 장면을 일반화해 표현한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -19673,7 +19673,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-25T09:28:00Z",
     "imageUrl": "/stock/2026-07-25-kr-domain-registration-management-column.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 KISA·KRNIC 또는 특정 기업의 공식·현장 사진이 아니며, 기관 로고·도메인 주소·계정정보·읽히는 화면 없이 노트북과 네트워크 장비, 빈 인수인계표로 도메인 관리 업무를 일반화해 표현한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국가도메인",
       "KR도메인",
@@ -19735,7 +19735,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-25T09:36:00Z",
     "imageUrl": "/stock/2026-07-25-kt-lotte-baseball-jul24.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 KT-롯데 경기나 사직야구장을 촬영한 공식·현장 사진이 아니며, 구단 로고·등번호·식별 가능한 얼굴 없이 야간 야구의 홈런 타격 순간을 일반화해 표현한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -19807,7 +19807,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-25T09:42:00Z",
     "eventEndsAt": "2026-07-31T23:59:00Z",
     "imageUrl": "/stock/2026-07-25-login-local-regional-poc-challenges.jpg",
-    "imageCaption": "지역 현장에 투입할 무표기 이동형 실증 장비와 시제품을 야외에서 점검하는 장면을 구현한 AI 생성 이미지. 실제 로그인로컬 실증기관이나 선정기업 현장 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "로그인로컬",
       "지역실증",
@@ -19880,7 +19880,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-25T09:10:00Z",
     "imageUrl": "/stock/2026-07-25-mid-sized-builders-fair-trade-pact.jpg",
-    "imageCaption": "일반화된 건설 사업회의 탁자에서 비식별 원사업자·수급사업자 관계자가 빈 서류철과 안전모를 사이에 두고 지급조건을 검토하는 장면을 재구성한 AI 생성 이미지입니다. 실제 공정거래위원회 행사, 협약 서명식, 참여기업 직원, 계약서 또는 건설 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "공정거래위원회",
       "건설하도급",
@@ -19938,7 +19938,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-25T09:34:00Z",
     "eventEndsAt": "2026-08-03T23:59:00Z",
     "imageUrl": "/stock/2026-07-25-military-exam-center-closure-july.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 병무청·병역판정검사장·검사 장비나 특정 방문자를 촬영한 것이 아니며, 전국 검사장 일시 휴무와 시설 점검을 설명하기 위한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "병역판정검사",
       "입영판정검사",
@@ -19998,7 +19998,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-25T09:06:00Z",
     "eventEndsAt": "2026-08-09T23:59:00Z",
     "imageUrl": "/stock/2026-07-25-minecraft-dungeons-game-trial.jpg",
-    "imageCaption": "실제 게임 화면이나 기기를 복제하지 않은 밝은 거실의 일반화된 콘솔 게임 환경에서 비식별 이용자의 뒷모습과 무표식 컨트롤러 후면, 추상적인 기하학 조명이 보이는 장면. AI로 생성한 이미지이며 실제 Minecraft Dungeons 화면·캐릭터·한국닌텐도 행사·제품 또는 공식 자료 사진이 아니고 문자·숫자·로고·기관 UI·식별 가능한 얼굴을 포함하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국닌텐도",
       "NintendoSwitchOnline",
@@ -20059,7 +20059,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-25T09:46:00Z",
     "imageUrl": "/stock/2026-07-25-oecd-health-data-interoperability-value.jpg",
-    "imageCaption": "특정 병원 시스템이나 환자기록을 재현하지 않은 보건정보 업무 책상에서 비식별 작업자의 손과 빈 기록 카드, 연결선을 통해 데이터 연계를 상징한 장면. AI로 생성한 이미지이며 실제 OECD 조사·병원·환자·의료정보 화면이나 공식 자료 사진이 아니고 문자·숫자·로고·기관 UI·식별 가능한 얼굴을 포함하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "OECD",
       "경제협력개발기구",
@@ -20121,7 +20121,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-25T09:32:00Z",
     "eventEndsAt": "2026-07-28T23:59:00Z",
     "imageUrl": "/stock/2026-07-25-science-package-500-subscribers.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 국립과천과학관 학습꾸러미·교재·신청 화면이나 특정 가정을 촬영한 것이 아니며, 가정 과학체험을 설명하기 위한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "과학이또옴",
       "국립과천과학관",
@@ -20216,7 +20216,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-25T09:02:00Z",
     "eventEndsAt": "2026-08-03T23:59:00Z",
     "imageUrl": "/stock/2026-07-25-seoul-creative-arts-bus-lease-bid.jpg",
-    "imageCaption": "학교연계 체험버스 임차 과업을 연상시키도록 무표식 대형버스 모형과 안전벨트·차량 점검 도구를 구성한 장면. AI 생성 이미지이며 실제 서울특별시교육청 운행차량, 공식 자료 또는 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -20288,7 +20288,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-25T09:40:00Z",
     "eventEndsAt": "2026-07-28T23:59:00Z",
     "imageUrl": "/stock/2026-07-25-seoul-venture-nara-august-recommendation.jpg",
-    "imageCaption": "무표기 제품 시제품과 포장 샘플을 공공조달 준비 관점에서 점검하는 장면을 구현한 AI 생성 이미지. 실제 벤처나라 등록 제품이나 기관 심사 현장 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "벤처나라",
       "벤처창업기업제품",
@@ -20366,7 +20366,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-25T09:26:00Z",
     "eventEndsAt": "2026-07-31T23:59:00Z",
     "imageUrl": "/stock/2026-07-25-suseo-gtxa-nailcare-operator-recruit.jpg",
-    "imageCaption": "철도역 안의 접근 가능한 네일케어 작업공간에서 비식별 작업자가 도구를 정리하는 장면을 일반화해 재구성한 AI 생성 이미지입니다. 실제 수서역 GTX-A, 섬섬옥수 매장, 참여기업, 장애인 근로자, 공단 자료 또는 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "섬섬옥수",
       "수서역GTXA",
@@ -20426,7 +20426,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-25T09:44:00Z",
     "imageUrl": "/stock/2026-07-25-unesco-lead-esd-first-cohort-226.jpg",
-    "imageCaption": "특정 학교나 행사를 재현하지 않은 일반화된 지속가능발전교육 워크숍에서 비식별 성인 교육자들이 빈 노트와 교육 모형을 놓고 협업하는 장면. AI로 생성한 이미지이며 실제 유네스코·LEAD-ESD 졸업식·교육 현장이나 공식 자료 사진이 아니고 문자·숫자·로고·국기·식별 가능한 얼굴을 포함하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유네스코",
       "UNESCO",
@@ -20498,7 +20498,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-25T09:24:00Z",
     "imageUrl": "/stock/2026-07-25-work24-integrated-career-certificate-24.jpg",
-    "imageCaption": "채용 지원자가 여러 경력 자료를 한곳에서 정리하고 인사담당자가 이를 확인하는 과정을 일반화해 재구성한 AI 생성 이미지입니다. 실제 고용24 화면, 정부 자료, 증명서, 기업 또는 채용 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "고용24",
       "통합경력증명",
@@ -20567,7 +20567,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-25T09:20:00Z",
     "imageUrl": "/stock/2026-07-25-yungjin-pharm-cephalosporin-line-investment.jpg",
-    "imageCaption": "무표기 바이알과 스테인리스 생산설비를 배치해 제약 생산라인 점검 장면을 구현한 AI 생성 이미지. 실제 영진약품 남양공장이나 GMP 심사 현장 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "영진약품",
       "신규시설투자",
@@ -20656,7 +20656,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-27T08:59:00Z",
     "eventEndsAt": "2026-07-30T23:59:00Z",
     "imageUrl": "/stock/2026-07-26-chungbuk-ai-relocation-package-50m.jpg",
-    "imageCaption": "AI 기업의 연구개발 장비 이전과 새 업무공간 정착을 연상시키도록 무표식 로봇 팔·컴퓨팅 장비·포장 상자를 연출한 장면. AI 생성 이미지이며 실제 충북과학기술혁신원 공식 자료나 선정기업 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "충북",
       "AI기업",
@@ -20732,7 +20732,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:02:00Z",
     "imageUrl": "/stock/2026-07-26-digital-industry-sales-1378-trillion.jpg",
-    "imageCaption": "여러 무표기 디지털 기기와 물류 작업을 함께 관리하는 장면을 구현한 AI 생성 이미지. 실제 공식 통계 자료나 특정 플랫폼·사업체 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "디지털산업실태조사",
       "디지털산업",
@@ -20792,7 +20792,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T08:58:00Z",
     "imageUrl": "/stock/2026-07-26-fishery-household-income-2025.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 특정 어가·어항·어업 현장 사진이 아니며, 어가의 수입과 경영비 흐름을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "어가경제조사",
       "어가소득",
@@ -20847,7 +20847,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:13:00Z",
     "imageUrl": "/stock/2026-07-26-galileo-two-satellites-enter-service.jpg",
-    "imageCaption": "일반화된 위성 제작 공간에서 무표식 항법위성 2기와 비식별 작업자를 연출한 장면. AI 생성 이미지이며 실제 ESA·갈릴레오 시설, 위성, 시험 현장 또는 공식 자료 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "갈릴레오",
       "Galileo",
@@ -20923,7 +20923,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-27T09:11:00Z",
     "eventEndsAt": "2026-08-05T23:59:00Z",
     "imageUrl": "/stock/2026-07-26-goyang-content-hub-space-four-firms.jpg",
-    "imageCaption": "콘텐츠 스타트업이 입주를 준비하는 무표기 창작 사무공간을 구현한 AI 생성 이미지. 실제 고양문화창조허브 시설이나 입주기업 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "고양문화창조허브",
       "고양산업진흥원",
@@ -21012,7 +21012,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-27T08:51:00Z",
     "eventEndsAt": "2026-07-30T23:59:00Z",
     "imageUrl": "/stock/2026-07-26-gwangmyeong-velodrome-elevator-parts-bid.jpg",
-    "imageCaption": "승강기 안전부품 설치공사를 연상시키도록 무표식 승강기 도어 모형과 가이드레일·안전부품을 연출한 장면. AI 생성 이미지이며 실제 광명돔경륜장 공식 자료나 공사 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -21103,7 +21103,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-27T08:52:00Z",
     "eventEndsAt": "2026-07-30T23:59:00Z",
     "imageUrl": "/stock/2026-07-26-haenam-yeongchundeul-farm-road-bid.jpg",
-    "imageCaption": "농로 콘크리트 포장공사를 연상시키도록 축소 농로 모형과 철근망·미장을 위한 무표식 도구를 연출한 장면. AI 생성 이미지이며 실제 해남군 공식 자료나 영춘리 공사 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -21159,7 +21159,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:08:00Z",
     "imageUrl": "/stock/2026-07-26-heat-shelter-93000-daegu-inspection.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 특정 무더위쉼터·대구 현장 사진이 아니며, 폭염 때 이용하는 공공 휴식공간을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "무더위쉼터",
       "폭염특보",
@@ -21218,7 +21218,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T08:53:00Z",
     "imageUrl": "/stock/2026-07-26-korea-artist-prize-2026-four-artists.jpg",
-    "imageCaption": "현대미술 전시 공간을 일반화해 연출한 AI 생성 이미지입니다. 실제 올해의 작가상 2026 전시장, 출품작, 국립현대미술관 내부 또는 참여 작가의 작품을 재현한 이미지가 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "올해의작가상2026",
       "국립현대미술관",
@@ -21292,7 +21292,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T08:56:00Z",
     "imageUrl": "/stock/2026-07-26-large-retail-payment-terms-40-60-days.jpg",
-    "imageCaption": "납품·판매·정산의 서로 다른 기산점을 빈 장부와 상품 상자로 표현한 AI 생성 이미지입니다. 실제 공식 자료나 유통·납품 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대규모유통업법",
       "상품판매대금",
@@ -21357,7 +21357,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:10:00Z",
     "imageUrl": "/stock/2026-07-26-lg-hanwha-baseball-jul25.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 LG-한화 경기나 대전야구장을 촬영한 공식 자료 또는 현장 사진이 아니며, 구단 로고·등번호·점수판·식별 가능한 얼굴 없이 여러 주자가 움직이는 야간 야구 장면을 일반화한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -21433,7 +21433,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-27T09:01:00Z",
     "eventEndsAt": "2026-08-11T23:59:00Z",
     "imageUrl": "/stock/2026-07-26-modu-ai-b200-512-gpu-open-call.jpg",
-    "imageCaption": "무표기 서버와 연산장비를 점검하는 AI 서비스 개발 장면을 구현한 AI 생성 이미지. 실제 공식 자료나 정부·참여기업 데이터센터 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "모두의AI",
       "대국민AI서비스",
@@ -21489,7 +21489,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:05:00Z",
     "imageUrl": "/stock/2026-07-26-portable-aircon-install-condition-column.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 한국소비자원 시험실이나 특정 제품의 공식 자료 또는 현장 사진이 아니며, 상표·모델명·읽히는 숫자 없이 이동식 냉방기와 배기호스·창문 단열재를 일반화한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "이동식에어컨",
       "가정용에어컨",
@@ -21556,7 +21556,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:04:00Z",
     "imageUrl": "/stock/2026-07-26-rest-facility-20-workers-standard.jpg",
-    "imageCaption": "법정 기준을 고려한 일반 사업장 휴게시설을 비식별 공간으로 재구성한 AI 생성 이미지입니다. 실제 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "휴게시설",
       "산업안전보건법",
@@ -21614,7 +21614,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T08:54:00Z",
     "imageUrl": "/stock/2026-07-26-sac-kova-elephant-musical-jul30.jpg",
-    "imageCaption": "무대용 천과 추상적 곡선 오브제를 비식별 작업자의 손이 조립하는 일반화된 패브릭오브제극 작업 장면. AI 생성 이미지이며 실제 코 잃은 코끼리 코바 캐릭터·공연·제작 현장·예술의전당 또는 공식 자료 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "코잃은코끼리코바",
       "예술의전당",
@@ -21686,7 +21686,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:03:00Z",
     "imageUrl": "/stock/2026-07-26-safety-health-training-hiring-hours.jpg",
-    "imageCaption": "신규 근로자의 직무 배치 전 안전교육을 비식별 교육장면으로 재구성한 AI 생성 이미지입니다. 실제 고용노동부 자료나 사업장 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "안전보건교육",
       "채용시교육",
@@ -21746,7 +21746,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T08:55:00Z",
     "imageUrl": "/stock/2026-07-26-samchully-sungkyung-food-50bn-investment.jpg",
-    "imageCaption": "식품 제조 자회사에 대한 출자 결정을 무표식 조미김 생산설비와 빈 투자자료로 표현한 AI 생성 이미지입니다. 실제 삼천리·성경식품 자료나 생산 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "삼천리",
       "성경식품",
@@ -21811,7 +21811,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:09:00Z",
     "imageUrl": "/stock/2026-07-26-samsung-doosan-baseball-jul25.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 삼성-두산 경기나 잠실야구장을 촬영한 공식 자료 또는 현장 사진이 아니며, 구단 로고·등번호·식별 가능한 얼굴 없이 투수와 야구장을 일반화해 표현한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -21899,7 +21899,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-27T09:00:00Z",
     "eventEndsAt": "2026-08-13T23:59:00Z",
     "imageUrl": "/stock/2026-07-26-scallop-fta-direct-payment-2026.jpg",
-    "imageCaption": "가리비 생산과 출하 증빙 준비를 연상시키도록 가리비 껍데기와 무표식 양식 도구를 연출한 장면. AI 생성 이미지이며 실제 해양수산부·해운대구 공식 자료나 양식 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "가리비",
       "FTA피해보전직불금",
@@ -21956,7 +21956,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:06:00Z",
     "imageUrl": "/stock/2026-07-26-security-update-14-products-column.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 KISA·Microsoft 또는 특정 조직의 공식 자료나 현장 사진이 아니며, 로고·제품 UI·버전·계정정보·읽히는 문자 없이 보안 업데이트 점검 업무를 일반화한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "보안업데이트",
       "KISA",
@@ -22028,7 +22028,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-27T09:12:00Z",
     "eventEndsAt": "2026-08-17T23:59:00Z",
     "imageUrl": "/stock/2026-07-26-sejong-innovation-product-predeployment.jpg",
-    "imageCaption": "무표기 제품과 설치도구를 점검하는 선보급 준비 장면을 구현한 AI 생성 이미지. 실제 공식 자료나 세종 지역 설치 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "세종창조경제혁신센터",
       "혁신제품",
@@ -22085,7 +22085,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:07:00Z",
     "imageUrl": "/stock/2026-07-26-semi-registered-mailbox-service.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 우체국 앱 화면·특정 주택 우편함·수거 현장 사진이 아니며, 준등기 우편함 서비스 절차를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "준등기우편함서비스",
       "준등기",
@@ -22141,7 +22141,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T08:57:00Z",
     "imageUrl": "/stock/2026-07-26-sme-exports-h1-2026-64bn-dollars.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 수출기업·항만·물류 현장 사진이 아니며, 중소기업 수출 품목과 물류 흐름을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "중소기업수출",
       "2026상반기수출",
@@ -22198,7 +22198,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:14:00Z",
     "imageUrl": "/stock/2026-07-26-utah-solar-million-panels-400mw.jpg",
-    "imageCaption": "건조한 계곡의 일반화된 대규모 태양광 패널과 무표식 배터리 설비를 연출한 장면. AI 생성 이미지이며 실제 유타 시설, NASA 위성영상, 운영 현장 또는 공식 자료 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "NASA",
       "랜드샛8",
@@ -22274,7 +22274,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:28:00Z",
     "imageUrl": "/stock/2026-07-27-bankruptcy-wage-payment-6-months.jpg",
-    "imageCaption": "도산 사업장 근로자의 임금채권 확인 상황을 일반화해 재구성한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아님을 밝힙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "도산대지급금",
       "임금채권보장법",
@@ -22351,7 +22351,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:36:00Z",
     "imageUrl": "/stock/2026-07-27-busan-concert-commerce-sales-2026.jpg",
-    "imageCaption": "공연 관람객 유입 뒤 무표기 골목 상점과 음식점에 소비가 이어지는 장면을 구현한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아님을 밝힌다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "부산상권",
       "소상공인매출",
@@ -22437,7 +22437,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-27T09:23:00Z",
     "eventEndsAt": "2026-08-07T23:59:00Z",
     "imageUrl": "/stock/2026-07-27-chungnam-infosec-two-stage-support.jpg",
-    "imageCaption": "차량 전자제어 모듈과 회로기판을 연결해 보안 사업모델을 점검하는 무표식 작업대 장면. AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아님을 밝힙니다. 충남테크노파크·지원기업과 무관한 연출입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "충남테크노파크",
       "정보보호기업",
@@ -22495,7 +22495,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:30:00Z",
     "imageUrl": "/stock/2026-07-27-cosmetics-false-ad-178-column.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아님. 실제 식품의약품안전처 점검 화면이나 특정 판매자의 광고를 재현하지 않았고, 상표·제품 UI·읽히는 문자 없이 온라인 화장품 광고 검토를 일반화한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "화장품광고",
       "부당광고",
@@ -22554,7 +22554,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:37:00Z",
     "imageUrl": "/stock/2026-07-27-ecb-euro-inflation-expectation-30.jpg",
-    "imageCaption": "유럽 가계의 물가 기대를 설명하기 위해 식료품과 빈 영수증, 무표식 나무 토큰으로 구성한 일반화된 예산 점검 장면. AI 생성 이미지이며 실제 ECB 조사, 응답 가구, 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유로존",
       "유럽중앙은행",
@@ -22625,7 +22625,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:26:00Z",
     "imageUrl": "/stock/2026-07-27-esg-advanced-training-1000-people.jpg",
-    "imageCaption": "기업의 공급망과 온실가스 자료 준비 과정을 무표기 사물로 표현한 AI 생성 이미지. 실제 공식 자료나 기업 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "ESG공시",
       "지속가능성공시",
@@ -22695,7 +22695,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:20:00Z",
     "imageUrl": "/stock/2026-07-27-franchise-ad-consent-first-sanction.jpg",
-    "imageCaption": "가맹 광고비 사전동의 자료를 검토하는 상황을 일반화해 재구성한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아님을 밝힙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "가맹광고비",
       "광고사전동의",
@@ -22778,7 +22778,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:24:00Z",
     "imageUrl": "/stock/2026-07-27-gurye-card-fee-support-500k.jpg",
-    "imageCaption": "동네 가게 계산대에서 무표식 결제단말기·빈 카드·무인쇄 영수증을 정리하는 장면. AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아님을 밝힙니다. 구례군·지원업체와 무관한 연출입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "구례군",
       "소상공인",
@@ -22839,7 +22839,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:31:00Z",
     "imageUrl": "/stock/2026-07-27-highschool-university-hope-649.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 특정 학교·학생·진로교육 현장 사진이 아닙니다. 진로교육 현황조사 결과를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "진로교육현황조사",
       "고교생대학진학",
@@ -22915,7 +22915,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T11:31:00Z",
     "imageUrl": "/stock/2026-07-27-hongkong-poultry-export-resume-36.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 특정 가금제품 수출 작업장·검역·물류 현장 사진이 아닙니다. 홍콩 수출 재개와 검역 절차를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "홍콩가금제품수출",
       "닭고기수출",
@@ -22990,7 +22990,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:19:00Z",
     "imageUrl": "/stock/2026-07-27-kepco-corrugated-pipe-bid-rigging.jpg",
-    "imageCaption": "파형관 공공입찰의 사후 준법점검 장면을 일반화해 재구성한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아님을 밝힙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "입찰담합",
       "파형관",
@@ -23081,7 +23081,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-27T09:15:00Z",
     "eventEndsAt": "2026-08-05T23:59:00Z",
     "imageUrl": "/stock/2026-07-27-krc-multipurpose-vehicle-purchase-bid.jpg",
-    "imageCaption": "무표식 은색 다목적승용차를 점검장에서 빈 체크보드로 검수하는 장면. AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아님을 밝힙니다. 한국농어촌공사·납품차량과 무관한 연출입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -23137,7 +23137,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:22:00Z",
     "imageUrl": "/stock/2026-07-27-livestock-survey-q2-2026-hanwoo.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 특정 축산농가·사육 현장 사진이 아닙니다. 2026년 2분기 가축 사육 규모 변화를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "가축동향조사",
       "한육우사육마릿수",
@@ -23199,7 +23199,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:33:00Z",
     "imageUrl": "/stock/2026-07-27-lotte-kt-baseball-jul26.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아님. 실제 롯데-KT 경기나 사직야구장을 촬영하지 않았고, 구단 로고·등번호·점수판·식별 가능한 얼굴 없이 야간 야구의 대량 득점 흐름을 일반화한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -23269,7 +23269,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-27T09:35:00Z",
     "eventEndsAt": "2026-08-04T23:59:00Z",
     "imageUrl": "/stock/2026-07-27-lotte-rnd-open-innovation-2026.jpg",
-    "imageCaption": "무표기 식품 시료와 센서로 신선도 검증을 준비하는 장면을 구현한 AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "롯데중앙연구소",
       "부산창조경제혁신센터",
@@ -23328,7 +23328,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:29:00Z",
     "imageUrl": "/stock/2026-07-27-marriage-agency-1236-cases-editorial.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아님. 실제 한국소비자원 조사 문서나 특정 결혼중개업체 계약서를 재현하지 않았고, 상표·개인정보·읽히는 문자 없이 결혼중개 계약 검토를 일반화한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "결혼중개",
       "결혼정보서비스",
@@ -23387,7 +23387,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:32:00Z",
     "imageUrl": "/stock/2026-07-27-national-park-water-safety-249.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 특정 국립공원·물놀이 현장 사진이 아닙니다. 여름철 물놀이 안전관리 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립공원물놀이",
       "물놀이안전",
@@ -23448,7 +23448,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:34:00Z",
     "imageUrl": "/stock/2026-07-27-nc-ssg-baseball-jul26.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아님. 실제 NC-SSG 경기나 문학야구장을 촬영하지 않았고, 구단 로고·등번호·점수판·식별 가능한 얼굴 없이 연장전의 긴장과 비어 있는 홈플레이트를 일반화한 비현장 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -23512,7 +23512,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:18:00Z",
     "imageUrl": "/stock/2026-07-27-nuguna-classic-aug-18-19.jpg",
-    "imageCaption": "오케스트라와 날짜별 피아노·바이올린 협연을 설명하기 위해 빈 대형 공연장 무대에 무표식 그랜드피아노, 바이올린과 오케스트라 의자를 배치한 일반화된 장면. AI 생성 이미지이며 실제 수원시립교향악단·세종문화회관 공연, 출연진, 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "누구나클래식",
       "수원시립교향악단",
@@ -23574,7 +23574,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-27T09:17:00Z",
     "eventEndsAt": "2026-07-27T23:59:00Z",
     "imageUrl": "/stock/2026-07-27-piccolo-flute-recital-jul27.jpg",
-    "imageCaption": "피콜로와 플루트 리사이틀을 설명하기 위해 빈 실내악 무대의 무표식 악기와 악보대를 구성한 일반화된 공연 준비 장면. AI 생성 이미지이며 실제 연주자, 세종문화회관 공연, 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "피콜로",
       "플루트",
@@ -23639,7 +23639,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:25:00Z",
     "imageUrl": "/stock/2026-07-27-summer-products-53-recall-1117-tests.jpg",
-    "imageCaption": "무표기 여름용품 시료를 안전시험 장비로 검사하는 장면을 구현한 AI 생성 이미지. 실제 리콜 제품, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "여름용품리콜",
       "국가기술표준원",
@@ -23711,7 +23711,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:27:00Z",
     "imageUrl": "/stock/2026-07-27-weekend-employer-training-4hours.jpg",
-    "imageCaption": "주말 직업훈련 장면을 일반화해 재구성한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아님을 밝힙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "주말훈련",
       "사업주직업능력개발훈련",
@@ -23771,7 +23771,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-27T09:38:00Z",
     "imageUrl": "/stock/2026-07-27-who-hepatitis-287m-world-day.jpg",
-    "imageCaption": "바이러스간염의 검사와 예방을 설명하기 위해 무표식 검체관, 진단 트레이, 백신 용기와 장갑 낀 손을 구성한 일반화된 진료 준비 장면. AI 생성 이미지이며 실제 WHO·질병관리청 공식 자료나 환자·의료기관의 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "세계간염의날",
       "WHO",
@@ -23861,7 +23861,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-27T09:16:00Z",
     "eventEndsAt": "2026-07-31T23:59:00Z",
     "imageUrl": "/stock/2026-07-27-yeongdong-gugyori-village-building-bid.jpg",
-    "imageCaption": "농촌 마을의 소규모 단층 건축물 공사 초기 단계에서 무표식 장비를 착용한 작업자가 정렬을 확인하는 장면. AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아님을 밝힙니다. 영동군·구교리 공사와 무관한 연출입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -23920,7 +23920,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-28T09:49:00Z",
     "imageUrl": "/stock/2026-07-28-antarctic-penguin-guano-diet-satellite.jpg",
-    "imageCaption": "AI 생성 보도 삽화. 남극의 아델리펭귄 번식지와 분홍빛을 띠는 바위, 주변 해빙을 일반화해 표현했으며, NASA 공식 위성자료나 특정 조사 지점의 실제 현장 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "NASA",
       "남극",
@@ -23984,7 +23984,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-28T09:36:00Z",
     "imageUrl": "/stock/2026-07-28-automotive-ecosystem-rnd-24bn.jpg",
-    "imageCaption": "무표기 원통형 셀 배터리 모듈과 차량용 액추에이터 시제품을 시험하는 장면을 구현한 AI 생성 이미지. 실제 참여기업 시설, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "자동차산업",
       "생태계협력RND",
@@ -24056,7 +24056,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-28T09:47:00Z",
     "imageUrl": "/stock/2026-07-28-century-stores-artisans-300.jpg",
-    "imageCaption": "오래된 작업대에서 숙련 기술자가 무표기 공예품을 다듬는 장면을 구현한 AI 생성 이미지. 실제 지정업체, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "백년가게",
       "백년소공인",
@@ -24134,7 +24134,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-28T09:38:00Z",
     "eventEndsAt": "2026-07-31T23:59:00Z",
     "imageUrl": "/stock/2026-07-28-construction-worker-vacation-support-1000.jpg",
-    "imageCaption": "건설근로자가 휴가를 준비하는 상황을 일반화해 재구성한 AI 생성 보도 삽화이며 실제 공식 자료나 현장 사진이 아님을 밝힙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "건설근로자",
       "건설근로자공제회",
@@ -24195,7 +24195,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-28T09:32:00Z",
     "imageUrl": "/stock/2026-07-28-consumer-sentiment-index-july-1068.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 한국은행 공식 자료나 특정 가구·상점의 현장 사진이 아닙니다. 소비 심리와 가계 지출 전망을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "소비자심리지수",
       "CCSI",
@@ -24262,7 +24262,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-28T09:37:00Z",
     "imageUrl": "/stock/2026-07-28-drone-cybersecurity-iso-wg10.jpg",
-    "imageCaption": "무표기 상업용 드론을 보안 진단 작업대에서 점검하는 장면을 구현한 AI 생성 이미지. 실제 국제표준 회의, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "드론산업",
       "드론사이버보안",
@@ -24322,7 +24322,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-28T09:43:00Z",
     "imageUrl": "/stock/2026-07-28-foreign-student-employment-six-universities.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 교육부 공식 자료나 선정 대학·외국인 유학생 지원 현장 사진이 아닙니다. 대학의 취·창업 상담과 진로 지원을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "외국인유학생",
       "취업지원",
@@ -24393,7 +24393,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-28T09:31:00Z",
     "imageUrl": "/stock/2026-07-28-franchise-sector-survey-2026.jpg",
-    "imageCaption": "여러 가맹점의 계약·거래 실태를 조사하는 상황을 일반화해 재구성한 AI 생성 보도 삽화이며 실제 공식 자료나 조사 현장 사진이 아님을 밝힙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "가맹사업",
       "가맹본부",
@@ -24468,7 +24468,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-28T09:34:00Z",
     "eventEndsAt": "2026-08-10T23:59:00Z",
     "imageUrl": "/stock/2026-07-28-gimhae-onmall-detail-page-support.jpg",
-    "imageCaption": "무표식 지역상품을 촬영대에서 조명과 카메라로 촬영하는 전자상거래 콘텐츠 제작 장면. AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다. 김해시·김해의생명산업진흥원·지원기업과 무관한 연출입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "김해시",
       "김해의생명산업진흥원",
@@ -24542,7 +24542,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-28T09:27:00Z",
     "eventEndsAt": "2026-07-31T23:59:00Z",
     "imageUrl": "/stock/2026-07-28-gwacheon-gwanaksan-sewage-facility-bid.jpg",
-    "imageCaption": "산지 공중화장실 인근에서 무표식 지하 오수처리 탱크와 배관을 교체 설치하는 장면. AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다. 과천시·관악산 연주암·시공업체와 무관한 연출입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -24604,7 +24604,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-28T09:40:00Z",
     "imageUrl": "/stock/2026-07-28-high-risk-drinking-12-percent-editorial.jpg",
-    "imageCaption": "고위험음주 예방의 필요성을 절제된 식탁 장면으로 표현하도록 AI로 생성한 실사형 보도 삽화. 실제 조사 현장·공식 통계 이미지·제품 사진이 아니며, 상표와 식별 가능한 인물을 사용하지 않았다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "고위험음주",
       "지역사회건강조사",
@@ -24677,7 +24677,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-28T09:39:00Z",
     "eventEndsAt": "2026-07-27T23:59:00Z",
     "imageUrl": "/stock/2026-07-28-hyundai-hint-first-cohort-500.jpg",
-    "imageCaption": "청년 직무교육과 제조현장 실습을 일반화해 재구성한 AI 생성 보도 삽화이며 실제 공식 자료나 교육 현장 사진이 아님을 밝힙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "HINT",
       "K뉴딜아카데미",
@@ -24751,7 +24751,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-28T09:35:00Z",
     "eventEndsAt": "2026-08-17T23:59:00Z",
     "imageUrl": "/stock/2026-07-28-jinju-eastern-europe-trade-mission.jpg",
-    "imageCaption": "무표식 화장품·식품·소형가전 샘플을 가운데 두고 해외 바이어 상담을 준비하는 장면. AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다. 진주시·경상남도·참가기업과 무관한 연출입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "진주시",
       "경상남도",
@@ -24823,7 +24823,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-28T09:46:00Z",
     "imageUrl": "/stock/2026-07-28-k-brand-challenge-nine-companies.jpg",
-    "imageCaption": "무표기 뷰티·패션·생활용품 시제품을 심사 테이블에 배치한 장면을 구현한 AI 생성 이미지. 실제 참가기업 제품, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "K브랜드챌린지",
       "중소벤처기업부",
@@ -24881,7 +24881,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-28T09:45:00Z",
     "imageUrl": "/stock/2026-07-28-kia-samsung-baseball-jul28.jpg",
-    "imageCaption": "7월 28일 KIA-삼성 선발 맞대결을 상징하도록 AI로 생성한 실사형 보도 삽화. 실제 경기·선수·대구 경기장 현장 사진이나 KBO 공식 자료가 아니며, 식별 가능한 얼굴과 구단 로고를 사용하지 않았다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -24934,7 +24934,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-28T09:44:00Z",
     "imageUrl": "/stock/2026-07-28-kiwoom-lg-baseball-jul28.jpg",
-    "imageCaption": "7월 28일 키움-LG 선발 맞대결을 상징하도록 AI로 생성한 실사형 보도 삽화. 실제 경기·선수·잠실야구장 현장 사진이나 KBO 공식 자료가 아니며, 식별 가능한 얼굴과 구단 로고를 사용하지 않았다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -24989,7 +24989,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-28T09:29:00Z",
     "imageUrl": "/stock/2026-07-28-lee-wan-i-write-calligraphy-exhibition.jpg",
-    "imageCaption": "AI 생성 보도 삽화. 작업대 위 빈 종이와 붓·먹, 문자로 읽히지 않는 짧은 미완성 흔적을 일반화해 표현했으며, 이완 작가의 실제 작품이나 예술의전당 공식 자료·전시 현장 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "이완",
       "나는쓴다",
@@ -25058,7 +25058,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-28T09:30:00Z",
     "imageUrl": "/stock/2026-07-28-line-construction-delay-interest-sanction.jpg",
-    "imageCaption": "건설 하도급대금과 지연이자 사후점검 장면을 일반화해 재구성한 AI 생성 보도 삽화이며 실제 공식 자료나 현장 사진이 아님을 밝힙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "라인건설",
       "하도급대금",
@@ -25121,7 +25121,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-28T09:42:00Z",
     "imageUrl": "/stock/2026-07-28-railway-vehicle-14-devices-restriction.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 국토교통부 공식 자료나 특정 철도차량·정비기지의 현장 사진이 아닙니다. 철도차량 예방정비와 운행 안전을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "철도차량정비",
       "철도안전",
@@ -25180,7 +25180,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-28T09:33:00Z",
     "imageUrl": "/stock/2026-07-28-resident-foreign-currency-deposit-june.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 한국은행 공식 자료나 특정 은행·기업의 외화예금 현장 사진이 아닙니다. 통화별 외화예금 잔액 변화를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "거주자외화예금",
       "달러화예금",
@@ -25237,7 +25237,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-28T09:28:00Z",
     "imageUrl": "/stock/2026-07-28-son-yeoleum-piano-recital-oct18.jpg",
-    "imageCaption": "AI 생성 보도 삽화. 빈 콘서트홀 무대의 그랜드피아노로 독주회 분위기를 일반화해 표현했으며, 손열음 피아니스트의 실제 공연이나 예술의전당 공식 자료·현장 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "손열음",
       "피아노리사이틀",
@@ -25291,7 +25291,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-28T09:48:00Z",
     "imageUrl": "/stock/2026-07-28-wandering-black-hole-tde-2025abcr.jpg",
-    "imageCaption": "AI 생성 보도 삽화. 화면 중앙 왼쪽의 모은하와 중앙 오른쪽의 작은 단일 별 조석파괴 사건을 빈 우주 공간으로 분리한 일반화된 개념도로, NASA 공식 자료나 실제 관측 사진·현장 사진이 아니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "NASA",
       "스위프트우주망원경",
@@ -25367,7 +25367,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-28T09:26:00Z",
     "eventEndsAt": "2026-07-31T23:59:00Z",
     "imageUrl": "/stock/2026-07-28-yongin-hanteo-elementary-mechanical-bid.jpg",
-    "imageCaption": "비어 있는 다목적실에서 무표식 환기 덕트와 기계설비 배관을 설치하는 공사 장면. AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다. 한터초·용인교육지원청·시공업체와 무관한 연출입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -25427,7 +25427,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-28T09:41:00Z",
     "imageUrl": "/stock/2026-07-28-youth-job-leap-incentive-48-column.jpg",
-    "imageCaption": "청년 구직자와 상담자의 고용지원 상담을 상징하도록 AI로 생성한 실사형 보도 삽화. 실제 고용센터·참여자·공식 서류나 현장 사진이 아니며, 읽히는 개인정보·기관 UI·식별 가능한 얼굴을 사용하지 않았다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "청년고용",
       "청년일자리",
@@ -25488,7 +25488,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-29T10:35:00Z",
     "imageUrl": "/stock/2026-07-29-air-purifier-compatible-filter-mit-detected.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 한국소비자원 공식 자료, 시험실 또는 시험 대상 제품의 현장 사진이 아닙니다. 공기청정기 호환필터 품질비교를 설명하기 위한 무표식 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "공기청정기",
       "호환필터",
@@ -25546,7 +25546,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-29T10:32:00Z",
     "imageUrl": "/stock/2026-07-29-bank-deposit-loan-rate-june-308-431.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 한국은행 공식 자료나 특정 은행·기업의 현장 사진이 아닙니다. 예금과 대출의 평균금리 변화를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "금융기관가중평균금리",
       "저축성수신금리",
@@ -25608,7 +25608,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-29T10:38:00Z",
     "eventEndsAt": "2026-08-13T23:59:00Z",
     "imageUrl": "/stock/2026-07-29-chusa-kim-jeonghui-special-lecture-aug13.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 국립중앙박물관 공식 자료나 강연 현장 사진이 아닙니다. 빈 강연장과 무표식 서예 도구로 특별강연의 맥락을 일반화한 보도 삽화입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립중앙박물관",
       "추사김정희",
@@ -25675,7 +25675,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-29T10:24:00Z",
     "eventEndsAt": "2026-08-07T23:59:00Z",
     "imageUrl": "/stock/2026-07-29-daegu-character-global-entry-three-2026.jpg",
-    "imageCaption": "무표기 캐릭터 시제품의 해외 사업화 준비를 표현한 AI 생성 이미지. 실제 참가자 작품, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대구콘텐츠코리아랩",
       "대구디지털혁신진흥원",
@@ -25734,7 +25734,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-29T10:40:00Z",
     "imageUrl": "/stock/2026-07-29-doosan-ssg-extra-inning-2-1-jul28.jpg",
-    "imageCaption": "연장 승부의 긴장감을 야구공과 베이스로 표현한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다. 실제 선수·문학야구장·KBO 제공 사진이 아니며, 식별 가능한 얼굴과 구단 로고를 사용하지 않았다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -25809,7 +25809,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-29T10:20:00Z",
     "eventEndsAt": "2026-07-31T23:59:00Z",
     "imageUrl": "/stock/2026-07-29-gumi-foodtech-consortium-75m.jpg",
-    "imageCaption": "푸드테크 기업 담당자와 식품 제조·외식 사업자가 실증용 주방 자동화 장비를 함께 점검하는 장면. AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다. 구미시·경상북도경제진흥원·신청기업·선정기업과 무관한 연출입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "정부지원사업",
       "기업지원",
@@ -25894,7 +25894,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-29T10:21:00Z",
     "eventEndsAt": "2026-07-31T23:59:00Z",
     "imageUrl": "/stock/2026-07-29-gyeongbuk-okta-world-korean-business-nine.jpg",
-    "imageCaption": "해외 전시 참가를 앞두고 제품과 기본 상담부스를 점검하는 업무 장면. AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다. 경상북도경제진흥원·행사장·참가기업과 무관한 연출입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "기업지원",
       "수출지원",
@@ -25970,7 +25970,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-29T10:25:00Z",
     "eventEndsAt": "2026-08-13T23:59:00Z",
     "imageUrl": "/stock/2026-07-29-gyeongnam-gspace-content-twenty-startups-2026.jpg",
-    "imageCaption": "창업기업 제품의 스튜디오 촬영 지원을 표현한 AI 생성 이미지. 실제 선정기업 제품, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "경남창조경제혁신센터",
       "GSpaceEast",
@@ -26028,7 +26028,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-29T10:43:00Z",
     "imageUrl": "/stock/2026-07-29-gyeongnam-rainfall-34-percent-drought-column.jpg",
-    "imageCaption": "물이 줄어든 농업용 저수지와 관개시설을 상징적으로 표현한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다. 실제 가산저수지·밀양 농경지 사진이 아니며, 식별 가능한 인물·표지판·기관 UI를 사용하지 않았다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "경남가뭄",
       "밀양저수율",
@@ -26097,7 +26097,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-29T10:29:00Z",
     "eventEndsAt": "2026-08-11T23:59:00Z",
     "imageUrl": "/stock/2026-07-29-hearing-test-specialized-institution-aug11.jpg",
-    "imageCaption": "청력검사 장비가 있는 의료 공간을 일반화해 재구성한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "근로복지공단",
       "청력검사",
@@ -26159,7 +26159,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-29T10:33:00Z",
     "imageUrl": "/stock/2026-07-29-individual-landowners-2012-man-2025.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 국토교통부 공식 자료나 특정 지역의 항공·현장 사진이 아닙니다. 토지 구획과 소유 구조를 설명하기 위한 가상 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "토지소유현황",
       "개인토지소유자",
@@ -26223,7 +26223,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-29T10:39:00Z",
     "eventEndsAt": "2026-08-08T23:59:00Z",
     "imageUrl": "/stock/2026-07-29-jeonju-moon-jar-mother-of-pearl-keyring.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 국립전주박물관 공식 자료나 체험 현장 사진이 아닙니다. 달항아리형 틀에 자개 조각을 붙이는 공예 과정을 일반화한 보도 삽화입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립전주박물관",
       "달항아리",
@@ -26280,7 +26280,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-29T10:41:00Z",
     "imageUrl": "/stock/2026-07-29-kt-nc-shutout-10-0-jul28.jpg",
-    "imageCaption": "무실점으로 끝난 야구 경기의 투구 장면을 상징한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다. 실제 선수·창원 구장·KBO 제공 사진이 아니며, 식별 가능한 얼굴과 구단 로고를 사용하지 않았다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -26344,7 +26344,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-29T10:26:00Z",
     "imageUrl": "/stock/2026-07-29-manufacturing-digital-twin-iso-23247-five-six-2026.jpg",
-    "imageCaption": "제조 설비와 디지털 트윈의 연결·결합 개념을 표현한 AI 생성 이미지. 실제 표준 회의, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "제조디지털트윈",
       "ISO23247",
@@ -26403,7 +26403,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-29T10:42:00Z",
     "imageUrl": "/stock/2026-07-29-median-income-670-percent-editorial.jpg",
-    "imageCaption": "복지 선정기준과 가계 지출 항목을 무상표 생활 소품으로 표현한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다. 실제 수급가구·보건복지부 서류 사진이 아니며, 읽히는 금액·개인정보·기관 UI를 사용하지 않았다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "기준중위소득",
       "보건복지부",
@@ -26466,7 +26466,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-29T10:37:00Z",
     "imageUrl": "/stock/2026-07-29-nasa-oregon-wildfire-smoke-jul26.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 NASA 공식 위성자료나 오리건 현장 사진이 아닙니다. 실내 과학 스튜디오의 무표식 지형 모형과 반투명 회색 리본으로 광역 연기 관측 개념을 연출한 보도 삽화입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "NASA",
       "오리건",
@@ -26542,7 +26542,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-29T10:22:00Z",
     "eventEndsAt": "2026-08-03T23:59:00Z",
     "imageUrl": "/stock/2026-07-29-nonsan-hazard-tree-maintenance-bid.jpg",
-    "imageCaption": "주거지와 떨어진 녹지에서 작업구역을 점검하는 수목 정비 준비 장면. AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다. 논산시·공사 대상지·참가업체와 무관한 연출입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -26608,7 +26608,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-29T10:36:00Z",
     "imageUrl": "/stock/2026-07-29-oecd-malaysia-growth-49-outlook.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 OECD 공식 자료나 말레이시아 현장 사진이 아닙니다. 물류·산업·도시 인프라가 연결된 경제 환경을 일반화한 보도 삽화입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "OECD",
       "말레이시아",
@@ -26675,7 +26675,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-29T10:34:00Z",
     "imageUrl": "/stock/2026-07-29-register-census-2025-elderly-207-percent.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 국가데이터처 공식 자료나 인구주택총조사 현장 사진이 아닙니다. 인구·가구 구조의 변화를 설명하기 위한 익명 인물 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "인구주택총조사",
       "등록센서스",
@@ -26745,7 +26745,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-29T10:27:00Z",
     "imageUrl": "/stock/2026-07-29-rising-leaders-300-eighth-round-2026.jpg",
-    "imageCaption": "중견기업의 설비투자와 금융 심사 준비를 표현한 AI 생성 이미지. 실제 신청기업, 금융기관, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "라이징리더스300",
       "중견기업",
@@ -26818,7 +26818,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-29T10:31:00Z",
     "imageUrl": "/stock/2026-07-29-standard-subcontract-penalty-point-25-relief.jpg",
-    "imageCaption": "여러 하도급 계약서 양식을 점검하는 업무 장면을 일반화한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "공정거래위원회",
       "하도급법",
@@ -26890,7 +26890,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-29T10:30:00Z",
     "imageUrl": "/stock/2026-07-29-subcontract-model-company-application-2026.jpg",
-    "imageCaption": "중소기업의 하도급 대금 지급내역을 점검하는 업무 장면을 일반화한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "공정거래위원회",
       "하도급거래",
@@ -26968,7 +26968,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-29T10:23:00Z",
     "eventEndsAt": "2026-08-05T23:59:00Z",
     "imageUrl": "/stock/2026-07-29-ulju-village-welfare-center-interior-bid.jpg",
-    "imageCaption": "비어 있는 소규모 주민공간 내부에서 벽체와 천장 마감 상태를 점검하는 리모델링 준비 장면. AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다. 울주군·마을복지회관·참가업체와 무관한 연출입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -27043,7 +27043,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-29T10:28:00Z",
     "imageUrl": "/stock/2026-07-29-youth-policy-guide-zip-publication.jpg",
-    "imageCaption": "청년이 여러 고용·노동 정책을 분류해 살펴보는 상황을 일반화한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "청년정책",
       "고용노동부",
@@ -27107,7 +27107,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:26:00Z",
     "imageUrl": "/stock/2026-07-30-ai-data-center-alliance-18-4gw-2026.jpg",
-    "imageCaption": "AI 데이터센터의 서버·전력·냉각 설비 생태계를 일반화해 표현한 AI 생성 이미지. 실제 참여 기업 시설, 공식 행사나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "AI데이터센터",
       "AIDC",
@@ -27160,7 +27160,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:32:00Z",
     "imageUrl": "/stock/2026-07-30-business-sentiment-index-july-985.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 한국은행 자료나 특정 기업의 현장 사진이 아닙니다. 제조업과 서비스업의 엇갈린 체감경기를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "기업심리지수",
       "CBSI",
@@ -27228,7 +27228,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-30T09:20:00Z",
     "eventEndsAt": "2026-07-30T23:59:00Z",
     "imageUrl": "/stock/2026-07-30-daegu-dental-ai-prototype-support-2026.jpg",
-    "imageCaption": "치과용 디지털 의료제품 시제품을 개발하는 연구환경을 표현한 AI 생성 이미지. 실제 지원기업, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "치과AI",
       "디지털의료제품",
@@ -27290,7 +27290,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:36:00Z",
     "imageUrl": "/stock/2026-07-30-esa-total-solar-eclipse-aug12-leon.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 유럽우주국 공식 자료나 2026년 개기일식 현장 사진이 아닙니다. 천문대의 무표식 관측 장비와 개기일식의 순간을 일반화한 보도 삽화입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유럽개기일식",
       "2026개기일식",
@@ -27358,7 +27358,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:28:00Z",
     "imageUrl": "/stock/2026-07-30-family-friendly-certified-workplace-consulting-2026.jpg",
-    "imageCaption": "다양한 구성원이 회의 테이블에서 근무제도 개선안을 검토하는 모습을 표현한 AI 생성 이미지. 실제 참여기업, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "가족친화인증",
       "직장문화개선",
@@ -27422,7 +27422,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:39:00Z",
     "imageUrl": "/stock/2026-07-30-gwangju-museum-earthenware-306.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 국립광주박물관 공식 자료나 전시품·전시장 사진이 아닙니다. 시대별 질그릇의 형태와 생활용기 전시를 일반화한 보도 삽화입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립광주박물관",
       "도기",
@@ -27484,7 +27484,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:30:00Z",
     "imageUrl": "/stock/2026-07-30-holding-company-non-affiliate-shares-ftc-79m-2026.jpg",
-    "imageCaption": "지주회사의 비계열회사 지분 투자와 준법 점검을 일반화해 표현한 AI 생성 이미지. 실제 회사 사무실, 계약서, 공정위 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "공정거래위원회",
       "시알홀딩스",
@@ -27557,7 +27557,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-30T09:29:00Z",
     "eventEndsAt": "2026-08-11T23:59:00Z",
     "imageUrl": "/stock/2026-07-30-hwaseong-manufacturing-worker-dormitory-rent-2026.jpg",
-    "imageCaption": "중소 제조기업 담당자가 노동자 숙소 임대차 자료를 검토하는 모습을 표현한 AI 생성 이미지. 실제 참여기업, 기숙사, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "화성시",
       "중소제조기업",
@@ -27622,7 +27622,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:37:00Z",
     "imageUrl": "/stock/2026-07-30-itu-public-digital-learning-35-countries.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 국제전기통신연합·유네스코·유니세프 공식 자료나 교육 현장 사진이 아닙니다. 공공 교육 플랫폼의 연결성과 접근성을 일반화한 보도 삽화입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "ITU",
       "유네스코",
@@ -27689,7 +27689,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-30T09:21:00Z",
     "eventEndsAt": "2026-07-30T23:59:00Z",
     "imageUrl": "/stock/2026-07-30-jeonbuk-innovation-growth-rnd-second-2026.jpg",
-    "imageCaption": "전북 지역 중소기업 연구진이 상용화 기술개발 계획을 검토하는 장면을 표현한 AI 생성 이미지. 실제 참여기업, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "전북특별자치도",
       "혁신성장RND",
@@ -27744,7 +27744,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:35:00Z",
     "imageUrl": "/stock/2026-07-30-june-internal-migration-481k.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 국가데이터처 자료나 특정 지역의 이사 현장 사진이 아닙니다. 국내 인구이동과 지역별 순유입·순유출을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국내인구이동",
       "전입신고",
@@ -27805,7 +27805,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:41:00Z",
     "imageUrl": "/stock/2026-07-30-kia-samsung-9-4-jul29.jpg",
-    "imageCaption": "경기 초반 대량 득점의 흐름을 홈플레이트와 야구공으로 표현한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다. 실제 선수·대구 야구장·KBO 제공 사진이 아니며 식별 가능한 얼굴과 구단 로고를 사용하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -27864,7 +27864,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:40:00Z",
     "imageUrl": "/stock/2026-07-30-kiwoom-lg-18-11-jul29.jpg",
-    "imageCaption": "다득점 야구 경기의 흐름을 여러 개의 공과 베이스로 표현한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다. 실제 선수·잠실야구장·KBO 제공 사진이 아니며 식별 가능한 얼굴과 구단 로고를 사용하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -27919,7 +27919,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:34:00Z",
     "imageUrl": "/stock/2026-07-30-may-births-23160-natural-decrease-6413.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 국가데이터처 자료나 특정 가족의 사진이 아닙니다. 출생 증가와 인구 자연감소가 함께 나타난 통계를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "인구동향",
       "출생아수",
@@ -27977,7 +27977,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:43:00Z",
     "imageUrl": "/stock/2026-07-30-parasol-12-uv-light-blocking-column.jpg",
-    "imageCaption": "밝은 여름 햇빛 아래 암막 유무가 다른 무상표 우양산을 비교한 AI 생성 이미지이며 실제 공식 자료나 시험 제품 사진이 아닙니다. 실제 브랜드·한국소비자원 시험 장면이 아니며 읽히는 문자와 식별 가능한 얼굴을 사용하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "우양산",
       "양산",
@@ -28042,7 +28042,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:24:00Z",
     "imageUrl": "/stock/2026-07-30-pohang-one-person-company-selective-support-2026.jpg",
-    "imageCaption": "소규모 창업자가 시제품과 견적 자료를 검토하는 모습을 표현한 AI 생성 이미지. 실제 참여기업, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "포항테크노파크",
       "1인창조기업",
@@ -28107,7 +28107,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:31:00Z",
     "imageUrl": "/stock/2026-07-30-prepaid-installment-business-q2-count-check-2026.jpg",
-    "imageCaption": "선불식 서비스 계약 전 사업자 상태와 피해보상 장치를 확인하는 장면을 일반화한 AI 생성 이미지. 실제 업체 창구, 계약서, 개인정보 화면이나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "선불식할부거래",
       "상조",
@@ -28172,7 +28172,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:27:00Z",
     "imageUrl": "/stock/2026-07-30-public-nanofab-centers-two-launch-2026.jpg",
-    "imageCaption": "공공 나노팹에서 반도체 웨이퍼 공정을 준비하는 장면을 일반화한 AI 생성 이미지. 실제 기관 시설, 장비, 공식 행사나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "공공나노팹센터",
       "나노종합기술원",
@@ -28227,7 +28227,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:33:00Z",
     "imageUrl": "/stock/2026-07-30-regional-economy-report-first-half-2026.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 한국은행 자료나 특정 지역·사업장의 현장 사진이 아닙니다. 서비스업의 회복과 건설업의 둔화를 대비해 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "지역경제보고서",
       "지역경기",
@@ -28299,7 +28299,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-30T09:22:00Z",
     "eventEndsAt": "2026-08-11T23:59:00Z",
     "imageUrl": "/stock/2026-07-30-semas-restart-support-performance-analysis-bid-2026.jpg",
-    "imageCaption": "조사·분석 업체가 소상공인 설문 결과와 연구계획을 검토하는 장면을 표현한 AI 생성 이미지. 실제 수요기관, 입찰업체, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -28370,7 +28370,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:23:00Z",
     "imageUrl": "/stock/2026-07-30-seoul-police-wired-communications-maintenance-bid-2026.jpg",
-    "imageCaption": "통신 유지보수 기술자가 무표식 유선전화 장비와 케이블 연결 상태를 점검하는 장면을 표현한 AI 생성 이미지. 실제 경찰관서, 입찰업체, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -28437,7 +28437,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:25:00Z",
     "imageUrl": "/stock/2026-07-30-siheung-small-store-facility-improvement-2026.jpg",
-    "imageCaption": "소규모 점포 내부를 정비하며 견적과 공사 범위를 살피는 장면을 표현한 AI 생성 이미지. 실제 선정 점포, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "시흥시",
       "시흥산업진흥원",
@@ -28494,7 +28494,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:42:00Z",
     "imageUrl": "/stock/2026-07-30-small-library-2130-catalog-system-editorial.jpg",
-    "imageCaption": "작은도서관의 자료관리 전환을 무문자 책과 일반 노트북으로 표현한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다. 실제 도서관·이용자정보·국립중앙도서관 시스템 화면이 아니며 읽히는 문자와 식별 가능한 얼굴을 사용하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "작은도서관",
       "국립중앙도서관",
@@ -28556,7 +28556,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-30T09:38:00Z",
     "imageUrl": "/stock/2026-07-30-thai-art-masterpieces-free-until-aug2.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 국립중앙박물관 공식 자료나 전시품·전시장 사진이 아닙니다. 태국 미술의 장식·도자·금속 공예를 연상시키는 무표식 갤러리 장면을 일반화한 보도 삽화입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립중앙박물관",
       "어메이징타일랜드",
@@ -28610,7 +28610,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:32:00Z",
     "imageUrl": "/stock/2026-07-31-acc-newst-night-left-behind-free-aug30-2026.jpg",
-    "imageCaption": "AI로 생성한 주제 설명용 이미지입니다. ACC 공식 사진이나 '남겨진 밤'의 실제 전시장·작품을 재현한 이미지가 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립아시아문화전당",
       "ACC",
@@ -28686,7 +28686,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:35:00Z",
     "imageUrl": "/stock/2026-07-31-agency-contract-immediate-delivery-three-year-retention-2026.jpg",
-    "imageCaption": "공급업자와 대리점이 납품·대금·반품 조건을 계약서로 정리하는 상황을 일반화해 표현한 AI 생성 이미지. 실제 기업 계약서, 거래 당사자, 상품이나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대리점법",
       "대리점계약서",
@@ -28758,7 +28758,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-31T10:51:00Z",
     "eventEndsAt": "2026-08-10T23:59:00Z",
     "imageUrl": "/stock/2026-07-31-arts-prestartup-market-validation-15-aug10-2026.jpg",
-    "imageCaption": "예술 창업자가 조형 샘플과 무문자 포장 시제품을 놓고 시장검증 계획을 세우는 장면을 표현한 AI 생성 이미지. 실제 참여자, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "예술분야예비창업",
       "예술경영지원센터",
@@ -28816,7 +28816,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:36:00Z",
     "imageUrl": "/stock/2026-07-31-barley-garlic-onion-production-2026.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 국가데이터처 자료나 특정 농가의 현장 사진이 아닙니다. 보리·마늘·양파 생산량 변화를 설명하기 위한 에디토리얼 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "보리생산량",
       "마늘생산량",
@@ -28886,7 +28886,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:42:00Z",
     "imageUrl": "/stock/2026-07-31-dalseong-youth-hiring-workplace-80m-2026.jpg",
-    "imageCaption": "중소 제조사업장의 환기·조명·휴게환경 개선 계획을 무문자 도면과 안전장비로 표현한 AI 생성 이미지. 실제 선정기업, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "달성군",
       "대구테크노파크",
@@ -28945,7 +28945,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:49:00Z",
     "imageUrl": "/stock/2026-07-31-doosan-ssg-5-3-eighth-inning-comeback-july30-2026.jpg",
-    "imageCaption": "경기 후반 3득점 재역전을 야구공과 베이스 주변의 흙먼지로 표현한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다. 실제 선수·문학 야구장·KBO 제공 사진이 아니며 식별 가능한 얼굴과 구단 로고를 사용하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -29002,7 +29002,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:52:00Z",
     "imageUrl": "/stock/2026-07-31-eurostat-euro-area-q2-gdp-0-4-eu-0-5-2026.jpg",
-    "imageCaption": "AI로 생성한 주제 설명용 이미지입니다. Eurostat의 공식 통계표나 실제 현장을 재현한 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유로존",
       "유럽연합",
@@ -29070,7 +29070,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-31T10:30:00Z",
     "eventEndsAt": "2026-08-11T23:59:00Z",
     "imageUrl": "/stock/2026-07-31-green-remodeling-ecosystem-pilot-bid-80m-2026.jpg",
-    "imageCaption": "건물 모형과 단열재 견본으로 그린리모델링 사업모델을 검토하는 장면을 표현한 AI 생성 이미지. 실제 수요기관, 입찰업체, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -29133,7 +29133,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:41:00Z",
     "imageUrl": "/stock/2026-07-31-growth-fund-oled-hbm-loans-approved-july-2026.jpg",
-    "imageCaption": "OLED 패널 설비와 HBM 테스트장비 공급망을 일반화해 표현한 AI 생성 이미지. 실제 기업 공장, 제품, 투자 프로젝트나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국민성장펀드",
       "LG디스플레이",
@@ -29205,7 +29205,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:43:00Z",
     "imageUrl": "/stock/2026-07-31-gyeonggi-auto-new-hire-90-60-2026.jpg",
-    "imageCaption": "자동차 부품 작업대와 무문자 채용서류를 통해 신규입직자의 첫 근무 준비를 표현한 AI 생성 이미지. 실제 기업·근로자, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "경기자동차산업",
       "신규입직자",
@@ -29265,7 +29265,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:48:00Z",
     "imageUrl": "/stock/2026-07-31-hanwha-lotte-3-2-ninth-inning-comeback-july30-2026.jpg",
-    "imageCaption": "9회 말 역전 흐름을 홈플레이트와 야구공으로 표현한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다. 실제 선수·대전 야구장·KBO 제공 사진이 아니며 식별 가능한 얼굴과 구단 로고를 사용하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -29324,7 +29324,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:37:00Z",
     "imageUrl": "/stock/2026-07-31-housing-unsold-sales-june-2026.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 국토교통부 자료나 특정 주택 단지의 현장 사진이 아닙니다. 미분양 재고와 주택 거래·공급 단계를 설명하기 위한 에디토리얼 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "미분양주택",
       "준공후미분양",
@@ -29378,7 +29378,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T15:33:00Z",
     "imageUrl": "/stock/2026-07-31-insacheck-free-attendance-ios.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 인사책 앱 화면이나 고객사 현장 사진이 아니며, 스마트폰 기반 출퇴근·근태관리 기능을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "인사책",
       "무료 인사관리 앱",
@@ -29432,7 +29432,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:44:00Z",
     "imageUrl": "/stock/2026-07-31-ip-yearbook-counting-method-timeseries-editorial-2026.jpg",
-    "imageCaption": "통계 산정 기준과 시계열 비교를 무문자 서류·분류 오브젝트로 표현한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다. 실제 지식재산처 통계표·기관 문서가 아니며 읽히는 문자·숫자·기관 로고를 사용하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "지식재산통계연보",
       "상표출원",
@@ -29500,7 +29500,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-31T10:39:00Z",
     "eventEndsAt": "2026-08-07T23:59:00Z",
     "imageUrl": "/stock/2026-07-31-jeju-hidden-power-market-expansion-50m-2026.jpg",
-    "imageCaption": "제주 기업이 무상표 제품 견본과 시장진출 계획을 검토하는 장면을 표현한 AI 생성 이미지. 실제 지원기업, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "제주기업지원",
       "제주형히든파워기업",
@@ -29568,7 +29568,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:38:00Z",
     "imageUrl": "/stock/2026-07-31-jeonbuk-dense-area-stand-up-support-10m-2026.jpg",
-    "imageCaption": "지역 중소기업이 제품 견본과 사업화 계획을 검토하는 장면을 표현한 AI 생성 이미지. 실제 지원기업, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "전북중소기업",
       "Standup맞춤지원",
@@ -29640,7 +29640,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:31:00Z",
     "imageUrl": "/stock/2026-07-31-jungheung-high-school-uniform-bid-113m-2027.jpg",
-    "imageCaption": "교복 제작업체가 무상표 원단과 봉제 상태를 검토하는 장면을 표현한 AI 생성 이미지. 실제 수요기관, 입찰업체, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -29700,7 +29700,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:46:00Z",
     "imageUrl": "/stock/2026-07-31-living-population-q1-2026.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 국가데이터처·행정안전부 자료나 특정 지역의 현장 사진이 아닙니다. 통근·관광·숙박 등 지역 체류를 포함한 생활인구 개념을 설명하기 위한 에디토리얼 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "생활인구",
       "체류인구",
@@ -29755,7 +29755,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:33:00Z",
     "imageUrl": "/stock/2026-07-31-sema-cho-suk-jin-passing-place-100-works-2026.jpg",
-    "imageCaption": "AI로 생성한 주제 설명용 이미지입니다. 서울시립미술관 공식 사진이나 '지나가는 자리'의 실제 전시장·작품을 재현한 이미지가 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "서울시립미술관",
       "남서울미술관",
@@ -29810,7 +29810,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:45:00Z",
     "imageUrl": "/stock/2026-07-31-social-security-consultation-13-8-days-outcome-column-2026.jpg",
-    "imageCaption": "사회보장 협의 절차의 속도와 주민 도달 과제를 무문자 신청서함과 모래시계로 표현한 AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아닙니다. 실제 행정기관·민원 서류·정부 시스템 화면이 아니며 읽히는 문자·숫자·기관 로고를 사용하지 않았습니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "사회보장협의제도",
       "보건복지부",
@@ -29879,7 +29879,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:50:00Z",
     "imageUrl": "/stock/2026-07-31-social-venture-league-150m-aug19-2026.jpg",
-    "imageCaption": "사회문제 해결형 창업자가 돌봄·자원순환·에너지 아이디어의 무문자 시제품을 검토하는 장면을 표현한 AI 생성 이미지. 실제 신청기업, 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "모두의창업",
       "소셜벤처리그",
@@ -29954,7 +29954,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:34:00Z",
     "imageUrl": "/stock/2026-07-31-subcontract-inspection-result-ten-days-2026.jpg",
-    "imageCaption": "하도급 납품물의 품질검사와 서면 결과 통지를 일반화해 표현한 AI 생성 이미지. 실제 기업의 검사실, 특정 제품, 계약서나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "하도급법",
       "하도급계약",
@@ -30012,7 +30012,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:53:00Z",
     "imageUrl": "/stock/2026-07-31-who-long-term-care-34-standards-consultation-2026.jpg",
-    "imageCaption": "AI로 생성한 주제 설명용 이미지입니다. WHO의 공식 이미지나 실제 장기요양 시설을 촬영한 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "세계보건기구",
       "WHO",
@@ -30074,7 +30074,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:40:00Z",
     "imageUrl": "/stock/2026-07-31-wind-turbine-rna-ks-certification-july-31-2026.jpg",
-    "imageCaption": "중대형 풍력터빈의 로터·허브·나셀 인증과 정밀 점검을 일반화해 표현한 AI 생성 이미지. 실제 인증기관 시설, 특정 제품, 공식 시험이나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "풍력터빈",
       "RNA",
@@ -30138,7 +30138,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-31T10:47:00Z",
     "imageUrl": "/stock/2026-07-31-youth-civil-complaints-413429-2026.jpg",
-    "imageCaption": "AI 생성 이미지이며 국민권익위원회 공식 자료나 실제 민원 접수 현장이 아닙니다. 청년층의 주거·일자리·가족생활 관련 민원 제출을 설명하기 위한 에디토리얼 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "청년민원",
       "국민신문고",
@@ -30196,7 +30196,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-01T21:23:00Z",
     "eventEndsAt": "2026-08-07T23:59:00Z",
     "imageUrl": "/stock/2026-08-01-bukgu-youth-startup-contest-13m6-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "북구청장배",
       "청년창업",
@@ -30242,7 +30242,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-01T21:24:00Z",
     "imageUrl": "/stock/2026-08-01-business-restructuring-4-companies-754b-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 승인기업의 공장이나 제품, 정부 심의 현장 사진이 아니며 전기차 부품·정밀 밸브·자동화 설비로의 사업재편을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "사업재편",
       "전기차 부품",
@@ -30287,7 +30287,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-01T21:25:00Z",
     "imageUrl": "/stock/2026-08-01-canada-airport-security-5m2-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "캐나다",
       "캐나다통계청",
@@ -30336,7 +30336,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-01T21:26:00Z",
     "imageUrl": "/stock/2026-08-01-conscription-obesity-23-31-editorial-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 통계 화면이나 검사 현장이 아니며, 체중 분포 변화와 통계 범위의 중요성을 정물로 표현한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "사설",
       "국가통계",
@@ -30397,7 +30397,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-01T21:27:00Z",
     "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/2026-08-01-daegu-future-industry-commercialization-50m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대구미래신산업",
       "공동개발",
@@ -30444,7 +30444,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-01T21:28:00Z",
     "imageUrl": "/stock/2026-08-01-doosan-lg-4-2-july31-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 경기나 공식 자료 사진이 아니며, 두 차례 솔로 홈런과 결승 2점 홈런을 야구 정물로 표현한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -30497,7 +30497,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-01T21:29:00Z",
     "imageUrl": "/stock/2026-08-01-dutyfree-exchange-800usd-customs-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 관세청이나 면세점 교환 현장을 촬영한 사진이 아니며 면세품 국내 교환과 관세 납부 편의 확대를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "면세품교환",
       "여행자면세",
@@ -30557,7 +30557,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-01T21:30:00Z",
     "imageUrl": "/stock/2026-08-01-employment-retention-plan-filing-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "고용유지지원금",
       "유급휴업",
@@ -30615,7 +30615,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-01T21:31:00Z",
     "imageUrl": "/stock/2026-08-01-flexible-work-grant-200k-month-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유연근무장려금",
       "재택근무",
@@ -30661,7 +30661,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-01T21:32:00Z",
     "imageUrl": "/stock/2026-08-01-hd-marine-engine-47b5-contract-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 HD현대마린엔진 공장이나 계약 상대 조선소, 공급 대상 선박의 사진이 아니며 선박엔진 공급계약을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "HD현대마린엔진",
       "선박엔진",
@@ -30729,7 +30729,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-01T21:33:00Z",
     "eventEndsAt": "2026-08-10T23:59:00Z",
     "imageUrl": "/stock/2026-08-01-jeonnam-gwangju-food-popup-22m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "전남광주농수산식품",
       "팝업스토어",
@@ -30785,7 +30785,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-01T21:34:00Z",
     "eventEndsAt": "2026-08-12T23:59:00Z",
     "imageUrl": "/stock/2026-08-01-keri-ups-snmp-bid-45m9-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 수요기관의 전산기계실이나 납품 제품이 아니며 무정전전원장치 부품 구매를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "한국전기연구원",
@@ -30832,7 +30832,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-01T21:35:00Z",
     "eventEndsAt": "2026-08-06T23:59:00Z",
     "imageUrl": "/stock/2026-08-01-kofa-odyssey-4-films-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국영상자료원",
       "시네마테크KOFA",
@@ -30884,7 +30884,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-01T21:36:00Z",
     "eventEndsAt": "2026-08-12T23:59:00Z",
     "imageUrl": "/stock/2026-08-01-koroad-future-mobility-safety-bid-50m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 수요기관의 연구 현장이나 공식 자료가 아니며 공유 모빌리티 안전대책 연구를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "한국도로교통공단",
@@ -30930,7 +30930,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-01T21:37:00Z",
     "imageUrl": "/stock/2026-08-01-lgchem-q2-preliminary-sales-14t1759-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 LG화학이나 계열사의 생산시설·제품 사진이 아니며 화학 공정과 소재 생산을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "LG화학",
       "2분기 실적",
@@ -30975,7 +30975,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-01T21:38:00Z",
     "imageUrl": "/stock/2026-08-01-lies-of-p-switch2-aug6-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "Lies of P",
       "Complete Edition",
@@ -31018,7 +31018,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-01T21:39:00Z",
     "imageUrl": "/stock/2026-08-01-noaa-august-heat-outlook-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "미국",
       "NOAA",
@@ -31071,7 +31071,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-01T21:40:00Z",
     "imageUrl": "/stock/2026-08-01-open-fiscal-elearning-5-videos-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 열린재정 화면이나 교육 영상을 재현한 것이 아니며 국민 대상 온라인 재정교육을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "열린재정",
       "재정교육",
@@ -31119,7 +31119,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-01T21:41:00Z",
     "imageUrl": "/stock/2026-08-01-procurement-evaluator-monitoring-editorial-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 조달 평가나 기관 자료 사진이 아니며, 평가 과정의 교차 점검과 책임성을 무문자 정물로 표현한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "사설",
       "공공조달",
@@ -31164,7 +31164,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-01T21:42:00Z",
     "imageUrl": "/stock/2026-08-01-samsung-lotte-9-7-july31-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 경기나 공식 자료 사진이 아니며, 6회 대량 득점과 7회 추격 흐름을 상징적으로 표현한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -31211,7 +31211,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-01T21:43:00Z",
     "imageUrl": "/stock/2026-08-01-sk-siltron-doosan-2t3-deal-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 SK실트론 생산시설이나 SK·두산의 계약 체결 현장 사진이 아니며 실리콘 웨이퍼 제조기업의 지분 양수도를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "SK실트론",
       "SK",
@@ -31261,7 +31261,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-01T21:44:00Z",
     "eventEndsAt": "2026-08-07T23:59:00Z",
     "imageUrl": "/stock/2026-08-01-suwon-nammun-market-open-store-academy-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "수원남문시장",
       "열어가게",
@@ -31316,7 +31316,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-01T21:45:00Z",
     "imageUrl": "/stock/2026-08-01-tax-revenue-h1-223t-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 재정경제부 자료나 세입 현장을 촬영한 사진이 아니며 국세수입 누계를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국세수입",
       "상반기세수",
@@ -31370,7 +31370,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-01T21:46:00Z",
     "imageUrl": "/stock/2026-08-01-veterans-dementia-support-aug1-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 보훈의료대상자나 치매안심센터 상담 현장을 촬영한 사진이 아니며 비용 지원 신청을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "보훈의료대상자",
       "치매안심센터",
@@ -31414,7 +31414,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-02T17:04:00Z",
     "imageUrl": "/stock/2026-08-02-agentic-ai-four-projects-18b-2026.jpg",
-    "imageCaption": "에이전틱 AI 연구개발 협업 환경을 상징적으로 재구성한 AI 생성 이미지로 실제 공식 자료나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "에이전틱AI",
       "인공지능",
@@ -31458,7 +31458,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-02T17:05:00Z",
     "imageUrl": "/stock/2026-08-02-dual-listing-rules-aug3-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "중복상장",
       "물적분할",
@@ -31515,7 +31515,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-02T21:48:00Z",
     "eventEndsAt": "2026-08-05T23:59:00Z",
     "imageUrl": "/stock/2026-08-02-eco-design-prototype-support-20m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 지원기관의 자료나 선정 제품이 아니며 친환경제품 설계와 시제품 제작을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "친환경제품",
       "에코디자인",
@@ -31559,7 +31559,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-02T17:06:00Z",
     "imageUrl": "/stock/2026-08-02-ecosimplex-landfill-contract-update-pending-2026.jpg",
-    "imageCaption": "폐기물 자원화 시설의 운영 환경을 상징적으로 재구성한 AI 생성 이미지로 실제 계약 시설이나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "에코심플렉스",
       "수도권매립지",
@@ -31615,7 +31615,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-02T17:07:00Z",
     "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/2026-08-02-g-bio-funding-lab-10-startups-aug14-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 참여기업 현장 사진이 아니며 기사 내용을 설명하기 위해 연출한 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "경기바이오",
       "GBioFundingLab",
@@ -31676,7 +31676,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-02T21:49:00Z",
     "imageUrl": "/stock/2026-08-02-goyang-video-company-incentive-20pct-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 고양시 등록기업이나 촬영 현장이 아니며 영상 제작사와 협력기업의 제작 협업을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "고양산업진흥원",
       "영상기업인센티브",
@@ -31724,7 +31724,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-02T17:08:00Z",
     "imageUrl": "/stock/2026-08-02-gugak-orchestra-festival-ticket-aug3-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국악관현악축제",
       "국립국악원",
@@ -31766,7 +31766,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-02T17:09:00Z",
     "imageUrl": "/stock/2026-08-02-home-heat-illness-12-percent-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "폭염",
       "온열질환",
@@ -31810,7 +31810,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-02T17:10:00Z",
     "imageUrl": "/stock/2026-08-02-july-exports-988-9b-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "7월수출",
       "수출입동향",
@@ -31853,7 +31853,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-02T17:11:00Z",
     "imageUrl": "/stock/2026-08-02-knr-phwr-contract-end-date-revised-2026.jpg",
-    "imageCaption": "원격 산업 절단 장비의 실증 환경을 상징적으로 재구성한 AI 생성 이미지로 실제 계약 장비나 현장 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "케이엔알시스템",
       "공급계약",
@@ -31903,7 +31903,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-02T21:51:00Z",
     "imageUrl": "/stock/2026-08-02-korail-youth-store-two-aug10-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "코레일유통",
       "청년창업",
@@ -31948,7 +31948,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-02T17:12:00Z",
     "imageUrl": "/stock/2026-08-02-kt-hanwha-7-4-seven-run-third-aug1-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 경기나 공식 자료 사진이 아니며, 한 이닝에 타선이 연속해서 연결된 흐름을 야구 정물로 표현한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -31992,7 +31992,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-02T17:13:00Z",
     "imageUrl": "/stock/2026-08-02-old-bridges-57-safety-measures-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "노후교량",
       "교량안전",
@@ -32038,7 +32038,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-02T17:14:00Z",
     "imageUrl": "/stock/2026-08-02-orchard-irrigation-reference-conditions-editorial-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 농촌진흥청 자료나 특정 과수원이 아니며, 고온기 과수원의 점적관수와 토양 수분 관리를 표현한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "사설",
       "농촌진흥청",
@@ -32085,7 +32085,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-02T17:15:00Z",
     "imageUrl": "/stock/2026-08-02-parental-leave-employer-support-1m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "육아휴직지원금",
       "고용24",
@@ -32128,7 +32128,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-02T17:16:00Z",
     "imageUrl": "/stock/2026-08-02-raon-robotics-q2-sales-profit-2026.jpg",
-    "imageCaption": "정밀 로봇 생산 현장을 상징적으로 재구성한 AI 생성 이미지로 실제 기업 시설이나 제품 사진이 아닙니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "라온로보틱스",
       "로봇산업",
@@ -32186,7 +32186,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-02T17:17:00Z",
     "imageUrl": "/stock/2026-08-02-senior-continuous-employment-grant-400k-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 사업장 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "고령자계속고용장려금",
       "계속고용제도",
@@ -32234,7 +32234,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-02T17:18:00Z",
     "eventEndsAt": "2026-08-02T23:59:00Z",
     "imageUrl": "/stock/2026-08-02-sokcho-summer-festival-final-day-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "속초",
       "속초썸머페스티벌",
@@ -32279,7 +32279,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-02T17:19:00Z",
     "imageUrl": "/stock/2026-08-02-ssg-kiwoom-10-2-homers-aug1-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 경기나 공식 자료 사진이 아니며, 두 차례의 결정적인 홈런과 야간 야구장의 분위기를 정물로 표현한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -32326,7 +32326,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-02T17:20:00Z",
     "imageUrl": "/stock/2026-08-02-strawberry-seedling-survival-83-39-conditions-column-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 농촌진흥청 시험이나 침수 피해 현장이 아니며, 배수 뒤 회복을 관리하는 딸기 모종을 표현한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "칼럼",
       "농촌진흥청",
@@ -32374,7 +32374,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-02T17:21:00Z",
     "imageUrl": "/stock/2026-08-02-us-june-income-pce-price-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "미국소비",
       "개인소득",
@@ -32422,7 +32422,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-02T17:22:00Z",
     "imageUrl": "/stock/2026-08-02-us-q2-gdp-advance-1-5-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "미국경제",
       "미국GDP",
@@ -32482,7 +32482,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-02T21:50:00Z",
     "eventEndsAt": "2026-08-06T23:59:00Z",
     "imageUrl": "/stock/2026-08-02-yesan-shinhung-reservoir-safety-bid-44m9-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 신흥소류지나 조사 현장이 아니며 저수지 정밀안전진단 용역을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "예산군",
@@ -32528,7 +32528,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-03T08:50:00Z",
     "imageUrl": "/stock/2026-08-03-bee-sting-snakebite-jul-sep-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "벌쏘임",
       "뱀물림",
@@ -32574,7 +32574,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-03T08:51:00Z",
     "imageUrl": "/stock/2026-08-03-byeongpungdo-access-rules-editorial-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "사설",
       "병풍도",
@@ -32625,7 +32625,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-03T08:52:00Z",
     "eventEndsAt": "2026-08-11T23:59:00Z",
     "imageUrl": "/stock/2026-08-03-daejeon-startup-hub-seven-offices-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대전창업허브",
       "대전창조경제혁신센터",
@@ -32671,7 +32671,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-03T08:53:00Z",
     "imageUrl": "/stock/2026-08-03-emergency-medical-loan-100b-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "응급의료",
       "의료취약지",
@@ -32719,7 +32719,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-03T08:54:00Z",
     "imageUrl": "/stock/2026-08-03-employment-promotion-subsidy-7m2-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "고용촉진장려금",
       "취약계층채용",
@@ -32766,7 +32766,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-03T08:55:00Z",
     "imageUrl": "/stock/2026-08-03-fao-beverage-price-shocks-90-percent-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "FAO",
       "커피",
@@ -32813,7 +32813,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-03T08:56:00Z",
     "imageUrl": "/stock/2026-08-03-global-runway-safety-joint-initiative-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "항공안전",
       "활주로침범",
@@ -32858,7 +32858,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-03T08:57:00Z",
     "imageUrl": "/stock/2026-08-03-h1-major-retailer-sales-up-7-3-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "산업통상부",
       "유통업체매출",
@@ -32906,7 +32906,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-03T08:58:00Z",
     "eventEndsAt": "2026-08-11T23:59:00Z",
     "imageUrl": "/stock/2026-08-03-jangheung-dam-rest-area-renewal-bid-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "장흥군",
@@ -32951,7 +32951,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-03T08:59:00Z",
     "imageUrl": "/stock/2026-08-03-june-all-industry-output-up-2-3-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국가데이터처",
       "산업활동동향",
@@ -32998,7 +32998,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-03T09:00:00Z",
     "imageUrl": "/stock/2026-08-03-karts-dance-30th-free-tickets-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국예술종합학교",
       "무용원",
@@ -33046,7 +33046,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-03T09:01:00Z",
     "imageUrl": "/stock/2026-08-03-kibo-succession-mna-consulting-7m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "기업승계",
       "M&A",
@@ -33093,7 +33093,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-03T09:02:00Z",
     "eventEndsAt": "2026-08-13T23:59:00Z",
     "imageUrl": "/stock/2026-08-03-kocca-rnd-performance-study-bid-210m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "한국콘텐츠진흥원",
@@ -33138,7 +33138,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-03T09:03:00Z",
     "imageUrl": "/stock/2026-08-03-korail-sr-merger-fare-plan-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "코레일",
       "SR",
@@ -33185,7 +33185,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-03T09:04:00Z",
     "imageUrl": "/stock/2026-08-03-kt-hanwha-12-1-august-2-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KT위즈",
       "한화이글스",
@@ -33231,7 +33231,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-03T09:05:00Z",
     "imageUrl": "/stock/2026-08-03-layer-low-nitrogen-feed-evidence-editorial-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "사설",
       "질소저감사료",
@@ -33276,7 +33276,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-03T09:06:00Z",
     "imageUrl": "/stock/2026-08-03-logisys-nonghyup-logistics-4b3-contract-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "로지시스",
       "농협물류",
@@ -33325,7 +33325,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-03T09:07:00Z",
     "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/2026-08-03-molit-startup-ir-twelve-per-track-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국토교통과학기술진흥원",
       "국토교통스타트업",
@@ -33371,7 +33371,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-03T09:08:00Z",
     "imageUrl": "/stock/2026-08-03-open-market-disputes-442-h1-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "오픈마켓",
       "온라인플랫폼",
@@ -33419,7 +33419,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-03T09:09:00Z",
     "imageUrl": "/stock/2026-08-03-regional-employment-promotion-grant-68100-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "지역고용촉진지원금",
       "고용위기선제대응지역",
@@ -33466,7 +33466,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-03T09:10:00Z",
     "eventEndsAt": "2026-08-09T23:59:00Z",
     "imageUrl": "/stock/2026-08-03-sema-airborne-exhibition-aug9-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "최은빈",
       "Airborne",
@@ -33512,7 +33512,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-03T09:11:00Z",
     "imageUrl": "/stock/2026-08-03-snt-energy-air-cooler-27b-contract-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "SNT에너지",
       "에어쿨러",
@@ -33559,7 +33559,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-03T09:12:00Z",
     "imageUrl": "/stock/2026-08-03-textile-microfactory-itube-support-aug21-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "섬유산업",
       "테크웨어",
@@ -33603,7 +33603,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-03T09:13:00Z",
     "imageUrl": "/stock/2026-08-03-yu-taebin-taipei-open-runner-up-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유태빈",
       "배드민턴",
@@ -33646,7 +33646,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-04T10:18:00Z",
     "imageUrl": "/stock/2026-08-04-ai-quantum-us-standards-four-fields-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "인공지능",
       "AI",
@@ -33689,7 +33689,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-04T10:19:00Z",
     "imageUrl": "/stock/2026-08-04-asia-pacific-youth-cultural-exchange-40-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "아태청년교류단",
       "국제문화교류",
@@ -33735,7 +33735,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-04T10:20:00Z",
     "imageUrl": "/stock/2026-08-04-biohealth-global-partnering-six-startups-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "서울창조경제혁신센터",
       "바이오헬스",
@@ -33782,7 +33782,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-04T10:21:00Z",
     "imageUrl": "/stock/2026-08-04-dalseo-air-pollution-control-support-90pct-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대구광역시",
       "달서구",
@@ -33829,7 +33829,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-04T10:22:00Z",
     "imageUrl": "/stock/2026-08-04-disabled-worker-rights-workplace-supervision-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "장애인노동자",
       "장애인표준사업장",
@@ -33877,7 +33877,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-04T10:23:00Z",
     "imageUrl": "/stock/2026-08-04-entrusted-trade-508-suspected-firms-2024.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "상생협력법",
       "수탁위탁거래",
@@ -33921,7 +33921,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-04T10:24:00Z",
     "eventEndsAt": "2026-08-04T23:59:00Z",
     "imageUrl": "/stock/2026-08-04-fantasia-in-concert-aug4-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "예술의전당",
       "판타지아인콘서트",
@@ -33966,7 +33966,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-04T10:25:00Z",
     "imageUrl": "/stock/2026-08-04-first-exporters-19746-five-year-high-2025.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "첫수출기업",
       "수출기업",
@@ -34012,7 +34012,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-04T10:26:00Z",
     "imageUrl": "/stock/2026-08-04-franchisee-group-registration-bargaining-draft-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "가맹사업",
       "프랜차이즈",
@@ -34060,7 +34060,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-04T10:27:00Z",
     "eventEndsAt": "2026-08-04T23:59:00Z",
     "imageUrl": "/stock/2026-08-04-gimhae-startup-camp-investor-meetup-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "김해스타트업",
       "김해창업캠프",
@@ -34106,7 +34106,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-04T10:28:00Z",
     "imageUrl": "/stock/2026-08-04-hand-foot-mouth-week30-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "수족구병",
       "영유아건강",
@@ -34153,7 +34153,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-04T10:29:00Z",
     "imageUrl": "/stock/2026-08-04-jobworld-youth-career-story-contest-43-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국잡월드",
       "청년공모전",
@@ -34201,7 +34201,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-04T10:30:00Z",
     "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/2026-08-04-k-convergence-global-testing-support-7m5-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "K-Convergence",
       "글로벌실증",
@@ -34246,7 +34246,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-04T10:31:00Z",
     "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/2026-08-04-kird-ai-overseas-training-bid-215m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국가과학기술인력개발원",
       "KIRD",
@@ -34288,7 +34288,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-04T10:32:00Z",
     "imageUrl": "/stock/2026-08-04-korea-argentina-critical-minerals-four-cooperation-tracks-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "핵심광물",
       "리튬",
@@ -34337,7 +34337,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-04T10:33:00Z",
     "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/2026-08-04-ktl-radiation-test-smu-bid-98m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국산업기술시험원",
       "KTL",
@@ -34382,7 +34382,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-04T10:34:00Z",
     "imageUrl": "/stock/2026-08-04-migrant-rights-investigation-editorial-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "사설",
       "이민자인권",
@@ -34428,7 +34428,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-04T10:35:00Z",
     "imageUrl": "/stock/2026-08-04-nps-local-subscriber-premium-support-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국민연금",
       "연금보험료",
@@ -34471,7 +34471,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-04T10:36:00Z",
     "imageUrl": "/stock/2026-08-04-samsung-heavy-two-tankers-268b-contract-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "삼성중공업",
       "유조선",
@@ -34516,7 +34516,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-04T10:37:00Z",
     "imageUrl": "/stock/2026-08-04-tarik-skubal-dodgers-trade-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "타릭스쿠벌",
       "LA다저스",
@@ -34561,7 +34561,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-04T10:38:00Z",
     "imageUrl": "/stock/2026-08-04-team-k-league-manchester-city-roster-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "팀K리그",
       "맨체스터시티",
@@ -34603,7 +34603,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-04T10:39:00Z",
     "imageUrl": "/stock/2026-08-04-un-ggim-sixteenth-session-webcast-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유엔",
       "UNGGIM",
@@ -34647,7 +34647,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-04T10:40:00Z",
     "imageUrl": "/stock/2026-08-04-urban-forest-canopy-heat-editorial-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "사설",
       "도시숲",
@@ -34689,7 +34689,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-04T10:41:00Z",
     "imageUrl": "/stock/2026-08-04-who-youth-video-competition-90sec-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "WHO",
       "세계보건기구",
@@ -34732,7 +34732,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T15:19:00Z",
     "imageUrl": "/stock/2026-08-05-ai-factory-42-sites-productivity-30-1-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "AI팩토리",
       "제조AI",
@@ -34776,7 +34776,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T14:54:00Z",
     "imageUrl": "/stock/2026-08-05-analysis-center-design-bid-220m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "기술용역",
@@ -34818,7 +34818,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T16:04:00Z",
     "imageUrl": "/stock/2026-08-05-australia-census-accessibility-aug11-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "호주",
       "인구조사",
@@ -34861,7 +34861,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T15:49:00Z",
     "imageUrl": "/stock/2026-08-05-child-assembly-academic-burden-110-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대한민국아동총회",
       "학업부담",
@@ -34906,7 +34906,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-05T14:39:00Z",
     "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/2026-08-05-chungbuk-ai-buyer-discovery-50-firms-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "충북",
       "수출지원",
@@ -34948,7 +34948,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T14:49:00Z",
     "imageUrl": "/stock/2026-08-05-daegu-solar-platform-bid-100m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "용역입찰",
@@ -35000,7 +35000,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-05T15:04:00Z",
     "eventEndsAt": "2026-08-12T23:59:00Z",
     "imageUrl": "/stock/2026-08-05-defense-startup-15-companies-150m-aug12-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "중소벤처기업부",
       "창업진흥원",
@@ -35044,7 +35044,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T15:54:00Z",
     "imageUrl": "/stock/2026-08-05-early-warning-after-event-review-four-agencies-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "조기경보",
       "재난안전",
@@ -35090,7 +35090,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T16:34:00Z",
     "imageUrl": "/stock/2026-08-05-eye-drop-like-cosmetics-packaging-safety-editorial-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "사설",
       "소비자안전",
@@ -35134,7 +35134,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T14:44:00Z",
     "imageUrl": "/stock/2026-08-05-green-abs-interest-support-1675m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "녹색금융",
       "자산유동화증권",
@@ -35176,7 +35176,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T16:14:00Z",
     "imageUrl": "/stock/2026-08-05-gugak-long-sanjo-concerto-aug20-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립국악원",
       "긴산조협주곡",
@@ -35226,7 +35226,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-05T14:59:00Z",
     "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/2026-08-05-gyeongbuk-youth-startup-four-20m-aug14-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "경상북도경제진흥원",
       "청년창업",
@@ -35269,7 +35269,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T15:59:00Z",
     "imageUrl": "/stock/2026-08-05-gyeongnam-initial-child-protection-pilot-august-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "초기보호아동",
       "원가정복귀",
@@ -35313,7 +35313,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T16:24:00Z",
     "imageUrl": "/stock/2026-08-05-hanwha-samsung-4-1-wang-six-scoreless-aug4-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한화이글스",
       "삼성라이온즈",
@@ -35356,7 +35356,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T15:39:00Z",
     "imageUrl": "/stock/2026-08-05-july-cpi-up-2-8-transport-up-7-7-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "소비자물가",
       "7월물가",
@@ -35399,7 +35399,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T15:44:00Z",
     "imageUrl": "/stock/2026-08-05-june-online-shopping-24t-mobile-share-76-9-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "온라인쇼핑",
       "모바일쇼핑",
@@ -35447,7 +35447,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T15:09:00Z",
     "imageUrl": "/stock/2026-08-05-polytechnic-professors-120-schedule-delayed-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국폴리텍대학",
       "교수초빙",
@@ -35495,7 +35495,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T15:14:00Z",
     "imageUrl": "/stock/2026-08-05-safety-management-loan-rate-2-1pp-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "안전보건공단",
       "안전경영",
@@ -35540,7 +35540,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T15:34:00Z",
     "imageUrl": "/stock/2026-08-05-sapien-semiconductor-display-chip-contract-7b2-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "사피엔반도체",
       "디스플레이구동칩",
@@ -35584,7 +35584,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T15:24:00Z",
     "imageUrl": "/stock/2026-08-05-semiconductor-cluster-infrastructure-50-100-decree-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "반도체",
       "반도체특별법",
@@ -35628,7 +35628,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-05T16:09:00Z",
     "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/2026-08-05-seoul-ballet-death-and-maiden-aug14-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "서울시발레단",
       "죽음과소녀",
@@ -35672,7 +35672,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T16:19:00Z",
     "imageUrl": "/stock/2026-08-05-ssg-lg-10-8-seven-run-seventh-aug4-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "SSG랜더스",
       "LG트윈스",
@@ -35718,7 +35718,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T16:29:00Z",
     "imageUrl": "/stock/2026-08-05-stroke-three-session-education-continuity-editorial-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "사설",
       "뇌졸중",
@@ -35762,7 +35762,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-05T15:29:00Z",
     "imageUrl": "/stock/2026-08-05-xilab-ai-software-contract-30b7-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "씨이랩",
       "공급계약",
@@ -35806,7 +35806,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T07:15:00Z",
     "imageUrl": "/stock/2026-08-06-blockchain-specialized-university-two-consortia-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "블록체인",
       "특성화대학원",
@@ -35854,7 +35854,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T08:15:00Z",
     "imageUrl": "/stock/2026-08-06-construction-worker-mutual-aid-2025-report.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "건설근로자공제회",
       "건설노동자",
@@ -35898,7 +35898,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T07:30:00Z",
     "imageUrl": "/stock/2026-08-06-doosan-fuel-cell-reverion-sofc-stack-1087b-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "두산퓨얼셀",
       "Reverion",
@@ -35944,7 +35944,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T08:25:00Z",
     "imageUrl": "/stock/2026-08-06-euro-area-producer-prices-june-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유로존",
       "유럽연합",
@@ -35990,7 +35990,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T08:05:00Z",
     "imageUrl": "/stock/2026-08-06-gangwon-lips-investor-day-aug24-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "강원창조경제혁신센터",
       "LIPS",
@@ -36038,7 +36038,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-06T07:50:00Z",
     "eventEndsAt": "2026-08-11T23:59:00Z",
     "imageUrl": "/stock/2026-08-06-gumi-traffic-safety-plan-40m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "구미시",
@@ -36081,7 +36081,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T07:45:00Z",
     "imageUrl": "/stock/2026-08-06-hygiene-products-market-up-9-7-2025.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "위생용품",
       "위생용품시장",
@@ -36125,7 +36125,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T07:20:00Z",
     "imageUrl": "/stock/2026-08-06-live-digital-twin-infrastructure-damage-prediction-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "과학기술인상",
       "이종한",
@@ -36172,7 +36172,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-06T08:20:00Z",
     "eventEndsAt": "2026-08-05T23:59:00Z",
     "imageUrl": "/stock/2026-08-06-migrant-worker-name-respect-campaign-asan-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "고용노동부",
       "이주노동자",
@@ -36217,7 +36217,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T08:35:00Z",
     "imageUrl": "/stock/2026-08-06-mmca-lee-daiwon-deoksugung-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "이대원",
       "국립현대미술관",
@@ -36259,7 +36259,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T07:55:00Z",
     "imageUrl": "/stock/2026-08-06-national-fire-risk-alert-severe-heatwave-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "화재위험경보",
       "폭염",
@@ -36305,7 +36305,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T08:30:00Z",
     "imageUrl": "/stock/2026-08-06-new-zealand-unemployment-june-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "뉴질랜드",
       "실업률",
@@ -36347,7 +36347,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T07:35:00Z",
     "imageUrl": "/stock/2026-08-06-older-workers-work-until-73-6-may-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "고령층",
       "고령층고용",
@@ -36393,7 +36393,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T08:45:00Z",
     "imageUrl": "/stock/2026-08-06-rangers-giants-5-4-duran-walkoff-aug5-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "텍사스레인저스",
       "샌프란시스코자이언츠",
@@ -36436,7 +36436,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T08:00:00Z",
     "imageUrl": "/stock/2026-08-06-senior-centers-extended-hours-heatwave-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "거점경로당",
       "폭염대책",
@@ -36484,7 +36484,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-06T07:05:00Z",
     "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/2026-08-06-seongnam-textile-brand-package-5m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "성남",
       "섬유제조",
@@ -36531,7 +36531,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T07:40:00Z",
     "imageUrl": "/stock/2026-08-06-seoul-metro-exam-outsourcing-110m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "서울교통공사",
@@ -36575,7 +36575,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T07:25:00Z",
     "imageUrl": "/stock/2026-08-06-songwoo-infotech-lh-a-eye-contract-37b8-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "송우인포텍",
       "한국토지주택공사",
@@ -36621,7 +36621,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T08:50:00Z",
     "imageUrl": "/stock/2026-08-06-tigers-mariners-8-0-melton-seven-scoreless-aug5-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "디트로이트타이거스",
       "시애틀매리너스",
@@ -36668,7 +36668,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T08:55:00Z",
     "imageUrl": "/stock/2026-08-06-vehicle-recall-owner-check-editorial-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "사설",
       "자동차리콜",
@@ -36714,7 +36714,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-06T08:40:00Z",
     "eventEndsAt": "2026-08-06T23:59:00Z",
     "imageUrl": "/stock/2026-08-06-wald-ensemble-neoclassic-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "발트앙상블",
       "예술의전당",
@@ -36762,7 +36762,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T09:00:00Z",
     "imageUrl": "/stock/2026-08-06-wedding-cost-total-price-editorial-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "사설",
       "결혼서비스",
@@ -36810,7 +36810,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T08:10:00Z",
     "imageUrl": "/stock/2026-08-06-women-one-person-incubator-seoul-aug13-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국여성벤처협회",
       "여성창업",
@@ -36858,7 +36858,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-06T07:10:00Z",
     "imageUrl": "/stock/2026-08-06-yongin-certification-ip-support-5m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "용인",
       "중소기업",
@@ -36902,7 +36902,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T09:37:00Z",
     "imageUrl": "/stock/2026-08-07-angels-orioles-4-1-neto-three-run-homer.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "메이저리그",
       "MLB",
@@ -36946,7 +36946,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T10:37:00Z",
     "imageUrl": "/stock/2026-08-07-daejeon-forest-education-replacement-hire-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립대전숲체원",
       "한국산림복지진흥원",
@@ -36990,7 +36990,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T09:07:00Z",
     "imageUrl": "/stock/2026-08-07-daejeon-overseas-certification-third-14m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대전",
       "해외규격인증",
@@ -37035,7 +37035,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T10:17:00Z",
     "imageUrl": "/stock/2026-08-07-gumi-startup-field-three-offices-20m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "구미스타트업필드",
       "구미전자정보기술원",
@@ -37081,7 +37081,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-07T09:12:00Z",
     "eventEndsAt": "2026-08-12T23:59:00Z",
     "imageUrl": "/stock/2026-08-07-gyeongsang-ir-level-up-rebid-56m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "경상국립대학교",
       "산학협력단",
@@ -37125,7 +37125,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T10:22:00Z",
     "imageUrl": "/stock/2026-08-07-home-care-recipients-stay-home-69-4-2025.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "장기요양",
       "장기요양실태조사",
@@ -37169,7 +37169,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T09:42:00Z",
     "imageUrl": "/stock/2026-08-07-itu-t-first-sdv-standard-korean-chair-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "ETRI",
       "ITU-T",
@@ -37210,7 +37210,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T10:02:00Z",
     "imageUrl": "/stock/2026-08-07-june-current-account-surplus-497-3-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국제수지",
       "경상수지",
@@ -37256,7 +37256,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-07T10:52:00Z",
     "eventEndsAt": "2026-08-07T23:59:00Z",
     "imageUrl": "/stock/2026-08-07-knso-falla-three-cornered-hat-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립심포니오케스트라",
       "삼각모자",
@@ -37300,7 +37300,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T10:27:00Z",
     "imageUrl": "/stock/2026-08-07-kwater-yecheon-water-operations-hire-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국수자원공사",
       "예천수도지사",
@@ -37344,7 +37344,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T10:32:00Z",
     "imageUrl": "/stock/2026-08-07-manhole-work-suffocation-fall-safety-guide-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "맨홀작업",
       "밀폐공간",
@@ -37390,7 +37390,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T09:32:00Z",
     "imageUrl": "/stock/2026-08-07-mets-guardians-13-6-seven-late-runs.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "메이저리그",
       "MLB",
@@ -37436,7 +37436,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T09:47:00Z",
     "imageUrl": "/stock/2026-08-07-moafab-used-semiconductor-equipment-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "DB하이텍",
       "모아팹",
@@ -37482,7 +37482,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T10:47:00Z",
     "imageUrl": "/stock/2026-08-07-oecd-household-income-q1-0-2-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "OECD",
       "가계소득",
@@ -37529,7 +37529,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T10:07:00Z",
     "imageUrl": "/stock/2026-08-07-open-innovation-performance-followup-200m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "오픈이노베이션",
       "성과기업후속지원",
@@ -37574,7 +37574,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-07T09:17:00Z",
     "eventEndsAt": "2026-08-07T23:59:00Z",
     "imageUrl": "/stock/2026-08-07-seongnam-school-lab-waste-bid-41m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "성남교육지원청",
       "과학실험",
@@ -37619,7 +37619,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T10:57:00Z",
     "imageUrl": "/stock/2026-08-07-seoul-urban-planning-exhibition-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "서울도시계획대관람",
       "서울역사박물관",
@@ -37668,7 +37668,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T09:22:00Z",
     "imageUrl": "/stock/2026-08-07-telecom-unfair-terms-four-types-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "사설",
       "통신서비스",
@@ -37713,7 +37713,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T10:42:00Z",
     "imageUrl": "/stock/2026-08-07-us-labor-productivity-q2-1-4-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "미국",
       "노동생산성",
@@ -37756,7 +37756,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T10:12:00Z",
     "imageUrl": "/stock/2026-08-07-used-car-total-price-warranty-plan-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "중고차",
       "중고차거래",
@@ -37800,7 +37800,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T09:57:00Z",
     "imageUrl": "/stock/2026-08-07-vitzronextech-nuri-engine-components-contract-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "비츠로넥스텍",
       "비츠로테크",
@@ -37849,7 +37849,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T09:27:00Z",
     "imageUrl": "/stock/2026-08-07-weather-bigdata-125-teams-field-validation-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "사설",
       "날씨빅데이터",
@@ -37894,7 +37894,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T09:52:00Z",
     "imageUrl": "/stock/2026-08-07-wiseitech-korea-bank-ito-contract-revised-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "위세아이텍",
       "LG CNS",
@@ -37938,7 +37938,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-07T09:02:00Z",
     "imageUrl": "/stock/2026-08-07-yesan-root-industry-efficiency-10m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "예산군",
       "뿌리산업",
@@ -37984,7 +37984,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T12:06:00Z",
     "imageUrl": "/stock/2026-08-08-allergen-snack-recall-point-of-sale-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "식품의약품안전처",
       "식품회수",
@@ -38034,7 +38034,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T11:11:00Z",
     "imageUrl": "/stock/2026-08-08-andong-uiseong-four-myeon-disaster-support-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "특별재난지역",
       "호우피해",
@@ -38079,7 +38079,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T10:36:00Z",
     "imageUrl": "/stock/2026-08-08-chungcheong-welcome-tips-early-startups-aug18-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "웰컴투팁스",
       "충청권창업",
@@ -38129,7 +38129,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T10:41:00Z",
     "imageUrl": "/stock/2026-08-08-daejeon-tips-japan-partner-consulting-20-aug12-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "일본진출",
       "해외상담회",
@@ -38174,7 +38174,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T10:26:00Z",
     "imageUrl": "/stock/2026-08-08-first-export-overseas-certification-precheck-5m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "해외인증",
       "첫수출",
@@ -38220,7 +38220,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T10:21:00Z",
     "imageUrl": "/stock/2026-08-08-gyeongbuk-marine-content-production-45m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "경상북도",
       "해양콘텐츠",
@@ -38266,7 +38266,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T11:26:00Z",
     "imageUrl": "/stock/2026-08-08-japan-household-spending-june-down-3-3-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "일본",
       "가계소비",
@@ -38312,7 +38312,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T10:46:00Z",
     "imageUrl": "/stock/2026-08-08-k-pet-export-fair-sample-logistics-bid-42m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "한국농수산식품유통공사",
@@ -38360,7 +38360,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T10:51:00Z",
     "imageUrl": "/stock/2026-08-08-komir-interns-40-application-aug15-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국광해광업공단",
       "공공기관채용",
@@ -38409,7 +38409,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T10:56:00Z",
     "imageUrl": "/stock/2026-08-08-livestock-environment-contract-workers-8-aug21-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "축산환경관리원",
       "기간제근로자",
@@ -38457,7 +38457,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T11:31:00Z",
     "imageUrl": "/stock/2026-08-08-national-museum-thailand-art-education-august-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립중앙박물관",
       "어메이징타일랜드",
@@ -38503,7 +38503,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T11:36:00Z",
     "imageUrl": "/stock/2026-08-08-national-theater-repertory-season-aug21-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립극장",
       "레퍼토리시즌",
@@ -38553,7 +38553,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T12:01:00Z",
     "imageUrl": "/stock/2026-08-08-naver-q2-revenue-operating-profit-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "네이버",
       "NAVER",
@@ -38599,7 +38599,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T10:31:00Z",
     "imageUrl": "/stock/2026-08-08-open-global-road-consulting-bid-50m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "경북대학교",
@@ -38644,7 +38644,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T11:51:00Z",
     "imageUrl": "/stock/2026-08-08-padres-diamondbacks-5-1-bullpen-scoreless.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "메이저리그",
       "MLB",
@@ -38696,7 +38696,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T12:11:00Z",
     "imageUrl": "/stock/2026-08-08-pharmicell-doosan-electronic-material-contract-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "파미셀",
       "두산",
@@ -38740,7 +38740,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T11:41:00Z",
     "imageUrl": "/stock/2026-08-08-red-sox-white-sox-12-11-durbin-walkoff-13th.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "메이저리그",
       "MLB",
@@ -38786,7 +38786,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T11:56:00Z",
     "imageUrl": "/stock/2026-08-08-rice-cake-livelihood-sector-guidance-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "떡국떡",
       "떡볶이떡",
@@ -38836,7 +38836,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T11:16:00Z",
     "imageUrl": "/stock/2026-08-08-safety-education-nine-best-practice-institutions-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국민안전교육",
       "행정안전부",
@@ -38886,7 +38886,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T12:16:00Z",
     "imageUrl": "/stock/2026-08-08-sensorview-ground-radar-connector-contract-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "센서뷰",
       "넥스윌",
@@ -38936,7 +38936,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T11:46:00Z",
     "imageUrl": "/stock/2026-08-08-sk-hynix-yongin-cheongju-fab-investment-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "SK하이닉스",
       "용인 반도체 클러스터",
@@ -38985,7 +38985,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T11:01:00Z",
     "imageUrl": "/stock/2026-08-08-sme-tax-reform-proposals-local-startups-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "중소기업",
       "세제개편안",
@@ -39034,7 +39034,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T11:06:00Z",
     "imageUrl": "/stock/2026-08-08-sweet-nectarine-wholesale-volume-2025.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "천도복숭아",
       "이노센스",
@@ -39081,7 +39081,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-08T11:21:00Z",
     "imageUrl": "/stock/2026-08-08-us-july-payroll-down-23k-unemployment-4-1-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "미국",
       "비농업고용",
@@ -39124,7 +39124,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-09T21:13:00Z",
     "imageUrl": "/stock/2026-08-09-galaxy-z8-korea-launch-price-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "갤럭시 Z8",
       "갤럭시 Z 플립8",
@@ -39172,7 +39172,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-09T20:41:00Z",
     "updatedAt": "2026-08-18T16:45:00Z",
     "imageUrl": "/stock/2026-08-09-history-exam-79-answer-objection-result-date-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 시험 현장이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국사능력검정시험",
       "한능검",
@@ -39215,7 +39215,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-09T20:53:00Z",
     "imageUrl": "/stock/2026-08-09-island-challenge-88-islands-sep27-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 섬 현장이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "섬의날",
       "찾아가고싶은섬",
@@ -39260,7 +39260,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-09T21:01:00Z",
     "imageUrl": "/stock/2026-08-09-jeju-samdasoo-masters-jang-eunsu-win-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 대회 현장이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "장은수",
       "제주삼다수마스터스",
@@ -39305,7 +39305,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-09T21:05:00Z",
     "imageUrl": "/stock/2026-08-09-kbo-ten-games-heat-canceled-aug8-9-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 야구장 현장이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KBO",
       "프로야구",
@@ -39352,7 +39352,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-09T20:57:00Z",
     "imageUrl": "/stock/2026-08-09-lafc-toluca-1-0-son-start-segura-90-1-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 경기 현장이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "손흥민",
       "LAFC",
@@ -39396,7 +39396,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-09T21:09:00Z",
     "imageUrl": "/stock/2026-08-09-lotto-1236-winners-numbers-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 추첨 장면이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "로또",
       "로또1236회",
@@ -39438,7 +39438,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-09T21:17:00Z",
     "imageUrl": "/stock/2026-08-09-plant-melatonin-foods-27-over-2mg-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "식물성 멜라토닌",
       "멜라토닌 식품",
@@ -39480,7 +39480,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-09T20:45:00Z",
     "imageUrl": "/stock/2026-08-09-sbs-gayo-summer-27-teams-kintex-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 공연 현장이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "SBS가요대전",
       "가요대전Summer",
@@ -39528,7 +39528,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-09T21:25:00Z",
     "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/2026-08-09-sme-rnd-top-50-deadline-aug14-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "중소기업 R&D",
       "우수성과 50선",
@@ -39573,7 +39573,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-09T20:49:00Z",
     "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/2026-08-09-swan-lake-95-6-percent-aug14-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 공연 현장이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "백조의호수",
       "예술의전당",
@@ -39616,7 +39616,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-09T21:21:00Z",
     "imageUrl": "/stock/2026-08-09-webtoon-webnovel-refund-seven-platforms-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "웹툰 환불",
       "웹소설 환불",
@@ -39664,7 +39664,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T07:14:00Z",
     "imageUrl": "/stock/2026-08-10-agri-food-tech-protection-consulting-7-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "농림식품기술기획평가원",
       "농식품중소기업",
@@ -39710,7 +39710,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T08:09:00Z",
     "imageUrl": "/stock/2026-08-10-australia-june-household-spending-up-0-8-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "호주",
       "가계지출",
@@ -39758,7 +39758,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T07:34:00Z",
     "imageUrl": "/stock/2026-08-10-barley-special-purchase-25k-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "보리",
       "보리수급",
@@ -39806,7 +39806,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T09:04:00Z",
     "imageUrl": "/stock/2026-08-10-bk21-scholarship-18549-graduate-students-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "BK21",
       "대학원생",
@@ -39853,7 +39853,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T08:14:00Z",
     "imageUrl": "/stock/2026-08-10-cubs-royals-10-2-happ-20th-homer.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "시카고컵스",
       "캔자스시티로열스",
@@ -39898,7 +39898,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T07:54:00Z",
     "imageUrl": "/stock/2026-08-10-fao-july-food-price-index-131-1-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "FAO",
       "식량가격지수",
@@ -39946,7 +39946,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T07:49:00Z",
     "imageUrl": "/stock/2026-08-10-foodborne-illness-319-cases-2025.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "식중독",
       "살모넬라",
@@ -39992,7 +39992,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T07:59:00Z",
     "imageUrl": "/stock/2026-08-10-ha-seong-kim-winning-run-braves-yankees-2-1.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "김하성",
       "애틀랜타브레이브스",
@@ -40037,7 +40037,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T08:44:00Z",
     "imageUrl": "/stock/2026-08-10-hanam-iruda-plus-20-startups-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "하남이루다플러스",
       "하남도시공사",
@@ -40083,7 +40083,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T08:19:00Z",
     "imageUrl": "/stock/2026-08-10-ipark-second-gyeongchun-road-contract-140b-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "아이파크현대산업개발",
       "제2경춘국도",
@@ -40131,7 +40131,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-10T07:24:00Z",
     "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/2026-08-10-jangseong-police-elevator-construction-bid-368m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "전남경찰청",
@@ -40178,7 +40178,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T08:04:00Z",
     "imageUrl": "/stock/2026-08-10-jinair-fourteen-aircraft-lease-707b-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "진에어",
       "항공기 리스",
@@ -40225,7 +40225,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T08:49:00Z",
     "imageUrl": "/stock/2026-08-10-korad-regular-recruitment-23-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국원자력환경공단",
       "공공기관채용",
@@ -40274,7 +40274,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T08:54:00Z",
     "imageUrl": "/stock/2026-08-10-kps-haman-site-monitoring-two-workers-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한전KPS",
       "함안지점",
@@ -40327,7 +40327,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T07:39:00Z",
     "imageUrl": "/stock/2026-08-10-livestock-origin-violations-106-businesses-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "축산물원산지",
       "원산지표시",
@@ -40377,7 +40377,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T07:29:00Z",
     "imageUrl": "/stock/2026-08-10-local-public-enterprises-268-evaluation-2025.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "지방공기업",
       "경영평가",
@@ -40424,7 +40424,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T08:34:00Z",
     "imageUrl": "/stock/2026-08-10-mobis-neotech-ai-smart-factory-contract-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "모비스",
       "네오텍",
@@ -40472,7 +40472,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T08:59:00Z",
     "imageUrl": "/stock/2026-08-10-nonghyup-hanaro-863-contracts-462m-penalty-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "농협하나로유통",
       "공정거래위원회",
@@ -40522,7 +40522,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T07:09:00Z",
     "imageUrl": "/stock/2026-08-10-overseas-forest-loan-3664m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "산림청",
       "해외산림자원개발",
@@ -40567,7 +40567,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T07:44:00Z",
     "imageUrl": "/stock/2026-08-10-second-space-center-two-bids-october-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "제2우주센터",
       "우주항공청",
@@ -40613,7 +40613,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T08:24:00Z",
     "imageUrl": "/stock/2026-08-10-seoul-fringe-festival-online-ticket-rules-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "서울프린지페스티벌",
       "프린지페스티벌",
@@ -40661,7 +40661,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T07:19:00Z",
     "imageUrl": "/stock/2026-08-10-shinmok-school-uniform-bid-169k-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "신목중학교",
@@ -40709,7 +40709,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T08:39:00Z",
     "imageUrl": "/stock/2026-08-10-svc-seoul-membership-50-companies-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "SVC Seoul",
       "창업진흥원",
@@ -40755,7 +40755,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-10T08:29:00Z",
     "imageUrl": "/stock/2026-08-10-umyeonsan-starlight-festival-paid-nol-ticket-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "우면산별밤축제",
       "국립국악원",
@@ -40800,7 +40800,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T06:37:00Z",
     "imageUrl": "/stock/2026-08-11-banpo-mv-remodeling-supervision-bid-2223m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "서초구",
       "반포엠브이",
@@ -40852,7 +40852,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T09:06:00Z",
     "imageUrl": "/stock/2026-08-11-daegu-spatial-robotics-prestartup-30m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대구테크노파크",
       "예비창업자",
@@ -40894,7 +40894,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-11T06:15:00Z",
     "eventEndsAt": "2026-08-12T23:59:00Z",
     "imageUrl": "/stock/2026-08-11-geneva-youth-day-dialogue-kst-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국제청년의날",
       "유엔제네바",
@@ -40936,7 +40936,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T06:36:00Z",
     "imageUrl": "/stock/2026-08-11-gyeongbuk-solar-income-village-strategy-bid-180m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "경상북도",
       "환동해지역본부",
@@ -40980,7 +40980,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T07:30:00Z",
     "imageUrl": "/stock/2026-08-11-hansol-iones-anseong-factory-investment-91b-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한솔아이원스",
       "반도체",
@@ -41024,7 +41024,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T07:40:00Z",
     "imageUrl": "/stock/2026-08-11-hd-hyundai-heavy-engine-generator-contract-956b-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "HD현대중공업",
       "엔진발전기",
@@ -41068,7 +41068,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T06:25:00Z",
     "imageUrl": "/stock/2026-08-11-heatwave-drought-grant-disclosure-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "재난특교세",
       "폭염 대응",
@@ -41117,7 +41117,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T08:20:00Z",
     "imageUrl": "/stock/2026-08-11-hometown-donation-tax-credit-2027-plan.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 특정 지역을 지목하지 않는 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "고향사랑기부",
       "세액공제",
@@ -41169,7 +41169,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-11T10:39:00Z",
     "sponsor": "bridzzi",
     "imageUrl": "/stock/2026-08-11-insacheck-ios-android-web-free-attendance-2026.jpg",
-    "imageCaption": "AI 생성 홍보 이미지. 실제 인사책 앱 화면이나 고객사 현장 사진이 아니며, 웹·안드로이드·아이폰 지원을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "인사책",
       "무료 출퇴근기록기",
@@ -41216,7 +41216,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T06:10:00Z",
     "imageUrl": "/stock/2026-08-11-jeonbuk-online-platform-28-startups-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "전북창조경제혁신센터",
       "전북스타트업",
@@ -41268,7 +41268,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T09:08:00Z",
     "imageUrl": "/stock/2026-08-11-kwater-nakdong-housing-cleaners-two-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국수자원공사",
       "K-water",
@@ -41318,7 +41318,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T08:30:00Z",
     "imageUrl": "/stock/2026-08-11-living-products-emf-4780-sites-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 특정 제품이나 정부 측정 현장을 재현하지 않은 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "전자파",
       "생활제품",
@@ -41362,7 +41362,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T07:35:00Z",
     "imageUrl": "/stock/2026-08-11-nowrobotics-factory-investment-revised-3b9-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나우로보틱스",
       "로봇산업",
@@ -41415,7 +41415,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T08:40:00Z",
     "imageUrl": "/stock/2026-08-11-older-adults-grip-strength-sarcopenia-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 실제 환자나 진료 장면을 재현하지 않은 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "근감소증",
       "악력",
@@ -41460,7 +41460,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T06:20:00Z",
     "imageUrl": "/stock/2026-08-11-padres-astros-four-homers-7-2.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "샌디에이고 파드리스",
       "휴스턴 애스트로스",
@@ -41501,7 +41501,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T06:15:00Z",
     "imageUrl": "/stock/2026-08-11-phillies-blue-jays-12th-walkoff-7-6.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "필라델피아 필리스",
       "토론토 블루제이스",
@@ -41551,7 +41551,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T09:07:00Z",
     "imageUrl": "/stock/2026-08-11-polytechnic-aviation-youth-interns-three-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국폴리텍대학",
       "항공캠퍼스",
@@ -41604,7 +41604,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T08:10:00Z",
     "imageUrl": "/stock/2026-08-11-recall-2656-cases-2025.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 특정 리콜 제품을 지목하지 않는 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "리콜",
       "결함보상",
@@ -41651,7 +41651,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T06:15:00Z",
     "imageUrl": "/stock/2026-08-11-seafood-cold-transport-80-percent-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "해양수산부",
       "한국수산무역협회",
@@ -41692,7 +41692,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T06:20:00Z",
     "imageUrl": "/stock/2026-08-11-sejong-youth-classic-aug14-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "세종문화회관",
       "세종체임버홀",
@@ -41740,7 +41740,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T09:05:00Z",
     "imageUrl": "/stock/2026-08-11-seogwipo-startuptown-two-offices-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "서귀포스타트업타운",
       "제주창업",
@@ -41784,7 +41784,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T06:30:00Z",
     "imageUrl": "/stock/2026-08-11-street-tree-public-vote-evidence-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "가로수",
       "도시숲",
@@ -41827,7 +41827,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T07:45:00Z",
     "imageUrl": "/stock/2026-08-11-unison-eoreumbi-wind-operations-contract-4b4-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유니슨",
       "어름비풍력발전소",
@@ -41868,7 +41868,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T06:10:00Z",
     "imageUrl": "/stock/2026-08-11-world-steelpan-day-aug11-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "세계스틸팬의날",
       "스틸팬",
@@ -41907,7 +41907,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-11T06:25:00Z",
     "imageUrl": "/stock/2026-08-11-yumi-cells-musical-aug23-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유미의세포들",
       "뮤지컬",
@@ -41954,7 +41954,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T06:20:00Z",
     "imageUrl": "/stock/2026-08-12-august-1-10-exports-213b-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 8월 초 수출입 흐름을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "수출",
       "수입",
@@ -42001,7 +42001,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T09:40:00Z",
     "imageUrl": "/stock/2026-08-12-bareundonghaeng-startups-investment-500m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "바른동행",
       "한국투자액셀러레이터",
@@ -42048,7 +42048,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T07:35:00Z",
     "imageUrl": "/stock/2026-08-12-coex-ac-halls-remodeling-exhibitions-2027.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "코엑스",
       "전시산업",
@@ -42097,7 +42097,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T06:25:00Z",
     "imageUrl": "/stock/2026-08-12-coffee-market-3t7359b-won-2024.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 국내 커피산업 구조를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "커피산업",
       "커피전문점",
@@ -42149,7 +42149,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T06:30:00Z",
     "imageUrl": "/stock/2026-08-12-csat-application-aug24-sep4-2027.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 응시원서 준비 과정을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "2027수능",
       "수능원서접수",
@@ -42192,7 +42192,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T06:20:00Z",
     "imageUrl": "/stock/2026-08-12-dbacks-rockies-9-0-arenado-grand-slam.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "애리조나다이아몬드백스",
       "콜로라도로키스",
@@ -42234,7 +42234,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T06:20:00Z",
     "imageUrl": "/stock/2026-08-12-euro-area-eu-services-production-up-0-8-may-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유로존",
       "유럽연합",
@@ -42280,7 +42280,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T09:10:00Z",
     "imageUrl": "/stock/2026-08-12-gangnam-china-trade-mission-10-companies-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "강남구",
       "중국무역사절단",
@@ -42332,7 +42332,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T06:20:00Z",
     "imageUrl": "/stock/2026-08-12-kodma-h2-recruitment-14-aug31-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국중소벤처기업유통원",
       "공공기관채용",
@@ -42379,7 +42379,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T06:30:00Z",
     "imageUrl": "/stock/2026-08-12-kolon-ansan-reconstruction-contract-218b-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "코오롱글로벌",
       "안산현대1차아파트",
@@ -42421,7 +42421,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T06:35:00Z",
     "imageUrl": "/stock/2026-08-12-mmca-child-art-learning-free-2027.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립현대미술관",
       "그래도해보던날들",
@@ -42466,7 +42466,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T09:30:00Z",
     "imageUrl": "/stock/2026-08-12-noon-water-filter-sand-296m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -42514,7 +42514,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T09:30:00Z",
     "imageUrl": "/stock/2026-08-12-public-data-bottom-up-startups-100m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "공공데이터",
       "창업기업",
@@ -42558,7 +42558,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T06:25:00Z",
     "imageUrl": "/stock/2026-08-12-rangers-angels-10th-inning-4-1.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "텍사스레인저스",
       "로스앤젤레스에인절스",
@@ -42600,7 +42600,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T06:30:00Z",
     "imageUrl": "/stock/2026-08-12-sac-saturday-concert-beethoven-aug15-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "예술의전당",
       "토요콘서트",
@@ -42646,7 +42646,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T09:20:00Z",
     "imageUrl": "/stock/2026-08-12-sejong-fire-rescue-equipment-183m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "나라장터",
       "공공입찰",
@@ -42692,7 +42692,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T06:35:00Z",
     "imageUrl": "/stock/2026-08-12-small-housing-common-fee-disclosure-aug28-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 소규모 주택의 관리비 설명 의무를 표현한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "공동관리비",
       "원룸",
@@ -42745,7 +42745,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T06:25:00Z",
     "imageUrl": "/stock/2026-08-12-social-enterprise-agency-recruitment-12-aug26-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국사회적기업진흥원",
       "공공기관채용",
@@ -42788,7 +42788,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T06:30:00Z",
     "imageUrl": "/stock/2026-08-12-trout-farm-heat-response-records-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "송어양식장",
       "고수온대응",
@@ -42833,7 +42833,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T07:30:00Z",
     "imageUrl": "/stock/2026-08-12-us-polysilicon-import-price-tariff-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "폴리실리콘",
       "태양광",
@@ -42875,7 +42875,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T06:25:00Z",
     "imageUrl": "/stock/2026-08-12-wmo-youth-flood-drought-projects-3000-chf-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "세계기상기구",
       "청년공모",
@@ -42921,7 +42921,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T09:00:00Z",
     "imageUrl": "/stock/2026-08-12-wood-export-voucher-prep-10m-additional-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "목재수출",
       "수출바우처",
@@ -42966,7 +42966,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-12T06:35:00Z",
     "eventEndsAt": "2026-08-12T23:59:00Z",
     "imageUrl": "/stock/2026-08-12-work-study-second-application-university-check-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국가근로장학금",
       "한국장학재단",
@@ -43016,7 +43016,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-12T06:35:00Z",
     "imageUrl": "/stock/2026-08-12-yujinrobot-india-automation-contract-3b4-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유진로봇",
       "자동화생산라인",
@@ -43066,7 +43066,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T09:20:00Z",
     "imageUrl": "/stock/2026-08-13-art-startup-open-innovation-40m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "예술기업",
       "오픈이노베이션",
@@ -43110,7 +43110,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T07:20:00Z",
     "imageUrl": "/stock/2026-08-13-broadcast-ad-time-viewer-metrics-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "방송광고",
       "일총량제",
@@ -43151,7 +43151,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T06:25:00Z",
     "imageUrl": "/stock/2026-08-13-eu-packaging-rules-apply-aug12-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유럽연합",
       "EU포장규정",
@@ -43191,7 +43191,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T07:30:00Z",
     "imageUrl": "/stock/2026-08-13-fire-inspection-reminder-30-days-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "소방시설 자체점검",
       "국민비서",
@@ -43232,7 +43232,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T07:40:00Z",
     "imageUrl": "/stock/2026-08-13-food-voucher-bundle-nationwide-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "농식품 바우처",
       "꾸러미 배송",
@@ -43279,7 +43279,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T07:50:00Z",
     "imageUrl": "/stock/2026-08-13-gemvax-seocho-property-acquisition-30b-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "젬백스",
       "유형자산양수",
@@ -43323,7 +43323,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T07:10:00Z",
     "imageUrl": "/stock/2026-08-13-gimpo-rnd-consulting-support-9m-2026.jpg",
-    "imageCaption": "AI 생성 이미지로 제조기업의 R&D 과제 컨설팅 장면을 표현했으며 실제 공식 자료나 현장 사진이 아니며 이해를 돕기 위한 장면입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "김포시",
       "중소기업",
@@ -43365,7 +43365,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-13T06:35:00Z",
     "eventEndsAt": "2026-08-15T23:59:00Z",
     "imageUrl": "/stock/2026-08-13-gugak-saturday-masterpieces-aug15-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립국악원",
       "토요명품",
@@ -43407,7 +43407,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T07:00:00Z",
     "imageUrl": "/stock/2026-08-13-gyeongbuk-influencer-promotion-support-5m-2026.jpg",
-    "imageCaption": "AI 생성 이미지로 인플루언서 협업형 제품 촬영 환경을 표현했으며 실제 공식 자료나 현장 사진이 아니며 이해를 돕기 위한 장면입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "경상북도",
       "경북세일페스타",
@@ -43451,7 +43451,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T07:00:00Z",
     "imageUrl": "/stock/2026-08-13-hanwha-doosan-heo-inseo-10th-double-4-3.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한화 이글스",
       "두산 베어스",
@@ -43499,7 +43499,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T09:40:00Z",
     "imageUrl": "/stock/2026-08-13-jd-k-consumer-goods-direct-purchase-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "징둥닷컴",
       "JD닷컴",
@@ -43542,7 +43542,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T07:10:00Z",
     "imageUrl": "/stock/2026-08-13-july-employment-108k-youth-unemployment-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "7월 고용동향",
       "취업자",
@@ -43584,7 +43584,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T07:20:00Z",
     "imageUrl": "/stock/2026-08-13-kentech-battery-tester-bid-29m6-2026.jpg",
-    "imageCaption": "AI 생성 이미지로 배터리 충방전 시험 장비를 표현했으며 실제 공식 자료나 현장 사진이 아니며 이해를 돕기 위한 장면입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국에너지공과대학교",
       "배터리시험기",
@@ -43632,7 +43632,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T07:40:00Z",
     "imageUrl": "/stock/2026-08-13-knudh-admin-one-aug26-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "경북대학교치과병원",
       "원무행정",
@@ -43680,7 +43680,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T08:00:00Z",
     "imageUrl": "/stock/2026-08-13-kolmar-bnh-orals-capital-injection-20b-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "콜마비앤에이치",
       "콜마오랄스",
@@ -43722,7 +43722,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T07:20:00Z",
     "imageUrl": "/stock/2026-08-13-marriage-tax-support-proposal-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "세제개편안",
       "주말부부",
@@ -43764,7 +43764,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T07:30:00Z",
     "imageUrl": "/stock/2026-08-13-nmc-public-health-education-study-bid-30m-2026.jpg",
-    "imageCaption": "AI 생성 이미지로 공공보건 교육과정 진단 환경을 표현했으며 실제 공식 자료나 현장 사진이 아니며 이해를 돕기 위한 장면입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립중앙의료원",
       "공공보건의료",
@@ -43815,7 +43815,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T09:30:00Z",
     "imageUrl": "/stock/2026-08-13-overseas-koreans-startup-support-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "재외국민창업",
       "모두의창업",
@@ -43863,7 +43863,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T07:30:00Z",
     "imageUrl": "/stock/2026-08-13-polytechnic-namdaegu-cook-one-aug20-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국폴리텍대학",
       "남대구캠퍼스",
@@ -43913,7 +43913,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T09:50:00Z",
     "imageUrl": "/stock/2026-08-13-seed-critical-minerals-stockpile-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "7대SEED",
       "핵심광물",
@@ -43958,7 +43958,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T06:30:00Z",
     "imageUrl": "/stock/2026-08-13-sejong-detroit-masterpieces-ends-aug23-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "세종문화회관",
       "디트로이트미술관",
@@ -44002,7 +44002,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T07:10:00Z",
     "imageUrl": "/stock/2026-08-13-ssg-lotte-choi-jihoon-9-1.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "SSG 랜더스",
       "롯데 자이언츠",
@@ -44047,7 +44047,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T07:30:00Z",
     "imageUrl": "/stock/2026-08-13-travel-cleanup-local-impact-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "환경정화",
       "지역관광",
@@ -44088,7 +44088,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-13T06:20:00Z",
     "imageUrl": "/stock/2026-08-13-us-july-cpi-up-0-1-energy-down-1-5-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "미국경제",
       "미국소비자물가",
@@ -44133,7 +44133,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T07:30:00Z",
     "imageUrl": "/stock/2026-08-14-air-conditioner-fire-160-safety-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "에어컨 화재",
       "실외기",
@@ -44179,7 +44179,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T06:18:00Z",
     "imageUrl": "/stock/2026-08-14-antarctic-station-generator-parts-bid-149m-2026.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아니고, 남극과학기지 발전기 부품 조달을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "극지연구소",
       "남극과학기지",
@@ -44228,7 +44228,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T06:16:00Z",
     "imageUrl": "/stock/2026-08-14-children-product-test-voucher-1m5-2026.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아니고, 어린이제품 안전시험 비용 지원을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "어린이제품",
       "시험비용",
@@ -44273,7 +44273,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T09:50:00Z",
     "imageUrl": "/stock/2026-08-14-daedong-reshoring-investment-80b-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대동",
       "국내복귀기업",
@@ -44320,7 +44320,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T06:15:00Z",
     "imageUrl": "/stock/2026-08-14-geumsan-us-promotion-10-companies-2026.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아니고, 인삼제품의 미국 시장 진출 지원을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "금산군",
       "인삼기업",
@@ -44364,7 +44364,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T09:20:00Z",
     "imageUrl": "/stock/2026-08-14-gyeonggi-manufacturing-startup-demo-day-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "경기스타트업",
       "제조창업",
@@ -44409,7 +44409,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T09:30:00Z",
     "imageUrl": "/stock/2026-08-14-gyeonggi-startup-academy-investment-course-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "경기스타트업",
       "창업아카데미",
@@ -44455,7 +44455,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T07:10:00Z",
     "imageUrl": "/stock/2026-08-14-july-auto-exports-record-6b24-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "자동차 수출",
       "7월 수출",
@@ -44503,7 +44503,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T07:20:00Z",
     "imageUrl": "/stock/2026-08-14-june-fiscal-balance-deficit-84t4-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "월간 재정동향",
       "관리재정수지",
@@ -44550,7 +44550,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T07:45:00Z",
     "imageUrl": "/stock/2026-08-14-kdi-management-interns-two-aug18-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KDI국제정책대학원",
       "인턴채용",
@@ -44598,7 +44598,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T07:40:00Z",
     "imageUrl": "/stock/2026-08-14-keis-public-workers-three-aug28-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국고용정보원",
       "공무직채용",
@@ -44644,7 +44644,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T06:17:00Z",
     "imageUrl": "/stock/2026-08-14-ktl-gwangyang-steel-company-diagnosis-bid-29m83-2026.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아니고, 철강·금속 기업 진단 용역 입찰을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국산업기술시험원",
       "광양만권",
@@ -44688,7 +44688,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T07:15:00Z",
     "imageUrl": "/stock/2026-08-14-long-term-care-caregiver-direct-employment-metrics-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "요양병원",
       "간병인",
@@ -44734,7 +44734,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T07:05:00Z",
     "imageUrl": "/stock/2026-08-14-nc-kt-kim-joo-won-home-run-6-5.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "NC 다이노스",
       "KT 위즈",
@@ -44776,7 +44776,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T06:36:00Z",
     "imageUrl": "/stock/2026-08-14-ntok-curious-instruments-aug15-16-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립극장",
       "꾸러기음악회",
@@ -44819,7 +44819,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T09:40:00Z",
     "imageUrl": "/stock/2026-08-14-nuclear-export-safety-regulation-cooperation-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "원전수출",
       "원자력안전",
@@ -44864,7 +44864,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T07:10:00Z",
     "imageUrl": "/stock/2026-08-14-real-estate-services-bsi-sector-gap-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "부동산서비스산업",
       "기업경기조사",
@@ -44906,7 +44906,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-14T06:35:00Z",
     "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/2026-08-14-sac-red-riding-hood-opera-aug14-16-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "예술의전당",
       "어린이오페라",
@@ -44950,7 +44950,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T07:00:00Z",
     "imageUrl": "/stock/2026-08-14-samsung-kia-kang-minho-sacrifice-fly-9-8.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "삼성 라이온즈",
       "KIA 타이거즈",
@@ -44999,7 +44999,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T07:50:00Z",
     "imageUrl": "/stock/2026-08-14-solum-usa-capital-injection-42b45-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "솔루엠",
       "미국자회사",
@@ -45047,7 +45047,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T07:55:00Z",
     "imageUrl": "/stock/2026-08-14-sungho-des-holdings-shares-20b-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "성호전자",
       "디이에스홀딩스",
@@ -45088,7 +45088,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T06:26:00Z",
     "imageUrl": "/stock/2026-08-14-unesco-esd-session-proposals-aug31-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유네스코",
       "지속가능발전교육",
@@ -45134,7 +45134,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T07:40:00Z",
     "imageUrl": "/stock/2026-08-14-unreported-cabbage-slicer-recall-2000-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "양배추 칼",
       "식약처 회수",
@@ -45173,7 +45173,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-14T06:25:00Z",
     "imageUrl": "/stock/2026-08-14-us-july-ppi-flat-goods-down-services-up-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "미국",
       "생산자물가",
@@ -45222,7 +45222,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T22:39:00Z",
     "imageUrl": "/stock/2026-08-15-baeksan-sanghoe-independence-movement-network.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "백산상회",
       "백산무역주식회사",
@@ -45272,7 +45272,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T06:30:00Z",
     "imageUrl": "/stock/2026-08-15-bonded-goods-manager-exam-560-pass-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "보세사 시험",
       "보세사 합격자",
@@ -45319,7 +45319,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T06:27:00Z",
     "imageUrl": "/stock/2026-08-15-busan-power-semiconductor-hvac-bid-305m966k-2026.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아니고, 전력반도체센터 공조시설 개보수 입찰을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "부산광역시",
       "전력반도체센터",
@@ -45362,7 +45362,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T06:20:00Z",
     "imageUrl": "/stock/2026-08-15-canada-manufacturing-sales-june-up-0-1-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "캐나다",
       "제조업",
@@ -45404,7 +45404,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T06:25:00Z",
     "imageUrl": "/stock/2026-08-15-canada-wholesale-sales-june-up-2-8-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "캐나다",
       "도매업",
@@ -45448,7 +45448,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T06:35:00Z",
     "imageUrl": "/stock/2026-08-15-child-food-certification-sugar-alcohol-under-10-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "어린이 기호식품",
       "품질인증",
@@ -45489,7 +45489,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T06:35:00Z",
     "imageUrl": "/stock/2026-08-15-dfac-jiwon-yeom-piano-recital-aug15-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "꿈의숲아트센터",
       "꿈의숲콘서트홀",
@@ -45534,7 +45534,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T09:30:00Z",
     "imageUrl": "/stock/2026-08-15-gangbuk-startup-education-free-aug27-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "강북창업지원센터",
       "창업교육",
@@ -45580,7 +45580,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T07:15:00Z",
     "imageUrl": "/stock/2026-08-15-homeplus-support-normalization-metrics-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "홈플러스",
       "기업회생",
@@ -45628,7 +45628,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T06:24:00Z",
     "imageUrl": "/stock/2026-08-15-hwaseong-marketing-support-3m-2026.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아니고, 중소기업 마케팅 비용 지원을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "화성시",
       "화성산업진흥원",
@@ -45670,7 +45670,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T22:39:00Z",
     "imageUrl": "/stock/2026-08-15-independence-hall-liberation-day-event-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "독립기념관",
       "광복절",
@@ -45718,7 +45718,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T09:20:00Z",
     "imageUrl": "/stock/2026-08-15-india-new-delhi-venture-export-five-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "인도진출",
       "뉴델리",
@@ -45768,7 +45768,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T06:20:00Z",
     "imageUrl": "/stock/2026-08-15-july-export-import-prices-trade-terms-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "수출물가지수",
       "수입물가지수",
@@ -45817,7 +45817,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T06:25:00Z",
     "imageUrl": "/stock/2026-08-15-july-household-loans-up-6t2-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "가계대출",
       "주택담보대출",
@@ -45860,7 +45860,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T09:40:00Z",
     "imageUrl": "/stock/2026-08-15-july-ict-exports-53b36-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "ICT수출",
       "반도체수출",
@@ -45908,7 +45908,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T06:25:00Z",
     "imageUrl": "/stock/2026-08-15-keco-esg-contract-workers-three-aug28-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국환경공단",
       "K-eco연구원",
@@ -45958,7 +45958,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T06:30:00Z",
     "imageUrl": "/stock/2026-08-15-knoc-regular-workers-45-aug28-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국석유공사",
       "정규직채용",
@@ -46005,7 +46005,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T06:54:00Z",
     "imageUrl": "/stock/2026-08-15-korea-house-chwiseongwan-electrical-bid-103m976k-2026.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아니고, 다목적홀 환경개선 전기공사 입찰을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국가유산진흥원",
       "한국의집",
@@ -46050,7 +46050,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T22:39:00Z",
     "imageUrl": "/stock/2026-08-15-liberation-day-memory-open-access-records-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "광복절",
       "제81주년광복절",
@@ -46099,7 +46099,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T06:40:00Z",
     "imageUrl": "/stock/2026-08-15-linked-exchange-bond-early-redemption-707m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "링크드",
       "교환사채",
@@ -46144,7 +46144,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T07:05:00Z",
     "imageUrl": "/stock/2026-08-15-nc-lotte-ninth-inning-9-8.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "NC 다이노스",
       "롯데 자이언츠",
@@ -46191,7 +46191,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T06:35:00Z",
     "imageUrl": "/stock/2026-08-15-nh-prime-hana-office-reit-shares-15b-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "NH프라임리츠",
       "하나오피스리츠",
@@ -46236,7 +46236,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T07:10:00Z",
     "imageUrl": "/stock/2026-08-15-samsung-hanwha-koo-ja-wook-two-homers-8-5.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "삼성 라이온즈",
       "한화 이글스",
@@ -46282,7 +46282,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T07:20:00Z",
     "imageUrl": "/stock/2026-08-15-school-break-child-meals-access-gap-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "아동급식",
       "방학 돌봄",
@@ -46324,7 +46324,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T06:30:00Z",
     "imageUrl": "/stock/2026-08-15-sema-title-match-human-error-23-works-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "서울시립미술관",
       "북서울미술관",
@@ -46367,7 +46367,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T09:50:00Z",
     "imageUrl": "/stock/2026-08-15-terrapower-sk-innovation-smr-terms-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "테라파워",
       "SK이노베이션",
@@ -46412,7 +46412,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T22:39:00Z",
     "imageUrl": "/stock/2026-08-15-why-liberation-day-photos-august-16.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "광복절",
       "광복절 사진",
@@ -46462,7 +46462,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-15T06:58:00Z",
     "imageUrl": "/stock/2026-08-15-yesan-good-price-store-facility-10m-2026.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아니고, 착한가격업소 시설개선 지원을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "예산군",
       "착한가격업소",
@@ -46510,7 +46510,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T12:03:00Z",
     "imageUrl": "/stock/2026-08-16-aug16-heavy-rain-south-jeju-200mm-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "8월 16일 날씨",
       "남부지방 호우",
@@ -46554,7 +46554,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T06:35:00Z",
     "imageUrl": "/stock/2026-08-16-beach-fees-badaon-check-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "해수욕장",
       "바다온",
@@ -46597,7 +46597,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T06:20:00Z",
     "imageUrl": "/stock/2026-08-16-capital-region-housing-supply-230k-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "수도권 주택공급",
       "주택 신속공급",
@@ -46638,7 +46638,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T06:30:00Z",
     "imageUrl": "/stock/2026-08-16-captain-tsubasa-2-korean-release-aug27-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "캡틴츠바사2",
       "월드파이터즈",
@@ -46679,7 +46679,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T09:30:00Z",
     "imageUrl": "/stock/2026-08-16-daejeon-tips-link-japan-program-aug28-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대전팁스타운",
       "팁스링크",
@@ -46723,7 +46723,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T09:35:00Z",
     "imageUrl": "/stock/2026-08-16-dobong-startup-incubator-six-rooms-aug26-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "도봉구",
       "창업보육센터",
@@ -46768,7 +46768,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T07:15:00Z",
     "imageUrl": "/stock/2026-08-16-external-labor-counsel-confidentiality-followup-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "직장 내 괴롭힘",
       "직장 내 갑질",
@@ -46811,7 +46811,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T09:45:00Z",
     "imageUrl": "/stock/2026-08-16-illegal-spam-blocking-telecom-measures-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "불법스팸",
       "대량문자",
@@ -46865,7 +46865,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T06:25:00Z",
     "imageUrl": "/stock/2026-08-16-jejunuh-physical-therapist-one-aug25-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "제주대학교병원",
       "물리치료사",
@@ -46912,7 +46912,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T07:10:00Z",
     "imageUrl": "/stock/2026-08-16-kia-doosan-yang-hyeonjong-kim-doyoung-6-1.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KIA 타이거즈",
       "두산 베어스",
@@ -46958,7 +46958,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T07:05:00Z",
     "imageUrl": "/stock/2026-08-16-kiwoom-kt-park-chanhyuk-three-run-homer-10-5.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "키움 히어로즈",
       "KT 위즈",
@@ -47008,7 +47008,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T06:35:00Z",
     "imageUrl": "/stock/2026-08-16-korea-carbon-four-subsidiaries-merger-nov2-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국카본",
       "흡수합병",
@@ -47055,7 +47055,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T06:50:00Z",
     "imageUrl": "/stock/2026-08-16-kribb-hplc-bid-91m85-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국생명공학연구원",
       "HPLC",
@@ -47097,7 +47097,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T06:25:00Z",
     "imageUrl": "/stock/2026-08-16-large-business-groups-affiliates-net-minus-four-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대규모기업집단",
       "공시대상기업집단",
@@ -47141,7 +47141,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T07:20:00Z",
     "imageUrl": "/stock/2026-08-16-lonely-death-check-in-support-continuity-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "고독사 예방",
       "독거 어르신",
@@ -47192,7 +47192,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T06:20:00Z",
     "imageUrl": "/stock/2026-08-16-post-facility-management-20-workers-aug28-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "우체국시설관리단",
       "현장직채용",
@@ -47241,7 +47241,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T06:30:00Z",
     "imageUrl": "/stock/2026-08-16-samsung-ea-agic-contract-end-nov13-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "삼성EA",
       "사우디아라비아",
@@ -47283,7 +47283,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T06:35:00Z",
     "imageUrl": "/stock/2026-08-16-seagull-flying-ntok-aug15-18-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "갈매기날다",
       "연극",
@@ -47329,7 +47329,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T06:55:00Z",
     "imageUrl": "/stock/2026-08-16-seoul-metro-ventilation-power-bid-58m685-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "서울교통공사",
       "고덕차량기지",
@@ -47375,7 +47375,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T06:40:00Z",
     "imageUrl": "/stock/2026-08-16-small-business-logistics-service-1m98-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "소상공인",
       "물류서비스",
@@ -47422,7 +47422,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T06:45:00Z",
     "imageUrl": "/stock/2026-08-16-sme-data-leak-prevention-system-50m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "중소기업",
       "기술보호",
@@ -47464,7 +47464,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T06:20:00Z",
     "imageUrl": "/stock/2026-08-16-uk-q2-gdp-0-4-services-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "영국경제",
       "영국GDP",
@@ -47505,7 +47505,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T06:25:00Z",
     "imageUrl": "/stock/2026-08-16-us-july-retail-food-sales-down-0-6-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "미국경제",
       "미국소매판매",
@@ -47548,7 +47548,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-16T09:40:00Z",
     "imageUrl": "/stock/2026-08-16-us-uas-section-232-tariff-sep3-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "미국관세",
       "드론",
@@ -47595,7 +47595,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T09:02:00Z",
     "imageUrl": "/stock/2026-08-17-ai-summit-seoul-expo-aug19-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "AISummitSeoul",
       "AI엑스포",
@@ -47651,7 +47651,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T06:10:00Z",
     "imageUrl": "/stock/2026-08-17-at-leave-replacement-admin-five-aug31-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국농수산식품유통공사",
       "aT채용",
@@ -47696,7 +47696,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T07:15:00Z",
     "imageUrl": "/stock/2026-08-17-auto-inspection-violations-followup-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "자동차검사소",
       "자동차 정기검사",
@@ -47747,7 +47747,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T06:30:00Z",
     "imageUrl": "/stock/2026-08-17-cheongju-girls-uniform-bid-344k-2027.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 입찰 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "청주여자고등학교",
       "교복입찰",
@@ -47791,7 +47791,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T09:02:00Z",
     "imageUrl": "/stock/2026-08-17-chungbuk-ip-startup-zone-sep3-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "충북IP창업존",
       "지식재산",
@@ -47844,7 +47844,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T06:20:00Z",
     "imageUrl": "/stock/2026-08-17-frtek-kt-5g-repeater-contract-5b584-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "에프알텍",
       "KT",
@@ -47900,7 +47900,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T06:15:00Z",
     "imageUrl": "/stock/2026-08-17-gwangju-science-museum-six-aug30-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립광주과학관",
       "공공기관채용",
@@ -47942,7 +47942,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T06:35:00Z",
     "imageUrl": "/stock/2026-08-17-heat-illness-cumulative-3431-aug15-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "온열질환",
       "폭염 건강",
@@ -47989,7 +47989,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T06:35:00Z",
     "imageUrl": "/stock/2026-08-17-jeju-reckless-concert-bid-120m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "렛츠런파크제주",
       "레클리스콘서트",
@@ -48030,7 +48030,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T06:25:00Z",
     "imageUrl": "/stock/2026-08-17-krx-substitution-holiday-closure-aug17-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국거래소",
       "증권시장 휴장",
@@ -48078,7 +48078,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T07:10:00Z",
     "imageUrl": "/stock/2026-08-17-kt-kiwoom-choi-wonjun-four-hits-6-2.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "KT 위즈",
       "키움 히어로즈",
@@ -48119,7 +48119,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T06:20:00Z",
     "imageUrl": "/stock/2026-08-17-national-fuel-prices-aug16-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "전국 유가",
       "휘발유 가격",
@@ -48161,7 +48161,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T06:30:00Z",
     "imageUrl": "/stock/2026-08-17-national-scholarship-second-round-sep9-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국가장학금",
       "국가장학금 2차",
@@ -48203,7 +48203,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T06:40:00Z",
     "imageUrl": "/stock/2026-08-17-odyssey-korea-weekend-box-office-1m691k-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "오디세이",
       "주말 박스오피스",
@@ -48246,7 +48246,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T09:02:00Z",
     "imageUrl": "/stock/2026-08-17-public-tech-sk-ecoplant-meetup-sep1-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "공공기술",
       "오픈이노베이션",
@@ -48292,7 +48292,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T09:02:00Z",
     "imageUrl": "/stock/2026-08-17-q2-enterprise-trade-concentration-55-3-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "기업특성별무역통계",
       "수출",
@@ -48334,7 +48334,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T06:45:00Z",
     "imageUrl": "/stock/2026-08-17-sac-international-music-festival-aug18-23-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "예술의전당 국제음악제",
       "클래식 공연",
@@ -48382,7 +48382,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T06:25:00Z",
     "imageUrl": "/stock/2026-08-17-small-chemical-workplace-safety-support-oct30-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 지원 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "유해화학물질",
       "중소기업지원",
@@ -48429,7 +48429,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T07:05:00Z",
     "imageUrl": "/stock/2026-08-17-ssg-lg-avila-seven-scoreless-6-0.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "SSG 랜더스",
       "LG 트윈스",
@@ -48473,7 +48473,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T06:20:00Z",
     "imageUrl": "/stock/2026-08-17-suseong-alphacity-private-5g-750gb-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "수성알파시티",
       "기업전용5G",
@@ -48515,7 +48515,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T06:30:00Z",
     "imageUrl": "/stock/2026-08-17-tropical-storm-lala-hawaii-warnings-aug17-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "열대폭풍 랄라",
       "하와이 날씨",
@@ -48556,7 +48556,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T06:35:00Z",
     "imageUrl": "/stock/2026-08-17-vanuatu-port-olry-magnitude-6-1-earthquake-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "바누아투 지진",
       "포트올리",
@@ -48608,7 +48608,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T06:25:00Z",
     "imageUrl": "/stock/2026-08-17-woojin-i-s-osan-segyo-fire-contract-22b-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "우진아이엔에스",
       "오산세교2지구",
@@ -48655,7 +48655,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-17T07:20:00Z",
     "imageUrl": "/stock/2026-08-17-youth-savings-panel-outcomes-causality-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "청년내일저축계좌",
       "저소득 청년",
@@ -48701,7 +48701,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T08:32:00Z",
     "imageUrl": "/stock/2026-08-18-ai-saas-suppliers-50-aug27-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 범용 AI 솔루션 공급기업의 서비스 검토 과정을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "모두의창업",
       "AI솔루션",
@@ -48743,7 +48743,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T06:40:00Z",
     "imageUrl": "/stock/2026-08-18-australia-june-visitor-arrivals-down-9-2-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "호주 여행",
       "호주 입국",
@@ -48790,7 +48790,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T07:00:00Z",
     "imageUrl": "/stock/2026-08-18-cardinals-reds-burleson-double-2-1.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "세인트루이스 카디널스",
       "신시내티 레즈",
@@ -48835,7 +48835,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T07:15:00Z",
     "imageUrl": "/stock/2026-08-18-care-farming-certification-followup-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 치유농업시설의 이용환경과 품질관리를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "치유농업",
       "우수 치유농업시설",
@@ -48880,7 +48880,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T06:00:00Z",
     "imageUrl": "/stock/2026-08-18-chilgok-card-fee-support-400k-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 칠곡 소상공인의 카드수수료 지원금 산정과 신청을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "칠곡군",
       "소상공인",
@@ -48923,7 +48923,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T06:20:00Z",
     "imageUrl": "/stock/2026-08-18-coffee-grinder-eight-products-test-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 커피그라인더 품질비교 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "커피그라인더",
       "원두분쇄기",
@@ -48970,7 +48970,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T06:00:00Z",
     "imageUrl": "/stock/2026-08-18-daejeon-social-enterprise-prototype-10m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 대전 사회적경제기업의 시제품 제작 지원 절차를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대전광역시",
       "사회적경제기업",
@@ -49012,7 +49012,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T06:30:00Z",
     "imageUrl": "/stock/2026-08-18-delivery-rider-safety-training-16-hours-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 이륜차 교통안전 실습교육을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "배달 이륜차",
       "교통안전교육",
@@ -49065,7 +49065,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T06:20:00Z",
     "imageUrl": "/stock/2026-08-18-dh-autonex-autolead-sale-final-7b351-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기업 간 주식 양도 거래를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "DH오토넥스",
       "DH오토리드",
@@ -49120,7 +49120,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T06:15:00Z",
     "imageUrl": "/stock/2026-08-18-dirams-postdoc-one-aug31-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 박사후 연구원 채용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "동남권원자력의학원",
       "박사후연구원",
@@ -49168,7 +49168,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-18T08:32:00Z",
     "eventEndsAt": "2026-08-13T23:59:00Z",
     "imageUrl": "/stock/2026-08-18-food-machinery-public-evaluation-framework-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 식품가공기계의 성능·위생·안전 점검 과정을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "식품가공기계",
       "성능평가",
@@ -49211,7 +49211,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T06:45:00Z",
     "imageUrl": "/stock/2026-08-18-hong-kong-sports-gdp-70bn-2024-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "홍콩 경제",
       "스포츠 산업",
@@ -49263,7 +49263,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T06:00:00Z",
     "imageUrl": "/stock/2026-08-18-jeju-icu-pendant-bid-472m45-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 중환자실 펜던트와 월케어유니트 구매설치 입찰을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "제주대학교병원",
       "나라장터",
@@ -49311,7 +49311,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T08:32:00Z",
     "imageUrl": "/stock/2026-08-18-koen-startup-supporters-20m-aug21-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 에너지·산업 분야 초기기업이 시제품 사업화를 준비하는 과정을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국남동발전",
       "경남창조경제혁신센터",
@@ -49354,7 +49354,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T06:25:00Z",
     "imageUrl": "/stock/2026-08-18-kpass-offpeak-refund-sep30-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 대중교통비 환급 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "K-패스",
       "모두의카드",
@@ -49408,7 +49408,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T06:10:00Z",
     "imageUrl": "/stock/2026-08-18-kps-kijang-watch-two-sep8-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 상주감시 채용 조건을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한전KPS",
       "기장지점",
@@ -49452,7 +49452,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T06:35:00Z",
     "imageUrl": "/stock/2026-08-18-malatang-20-products-sodium-survey-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 마라탕 영양성분 조사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "마라탕",
       "나트륨",
@@ -49499,7 +49499,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T07:05:00Z",
     "imageUrl": "/stock/2026-08-18-mariners-astros-arozarena-raleigh-homers-3-2.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "시애틀 매리너스",
       "휴스턴 애스트로스",
@@ -49541,7 +49541,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T06:50:00Z",
     "imageUrl": "/stock/2026-08-18-national-museum-textbook-heritage-aug26-28-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국립중앙박물관",
       "교과서 속 문화유산 탐험",
@@ -49583,7 +49583,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T06:55:00Z",
     "imageUrl": "/stock/2026-08-18-ps-plus-catalog-aug18-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "플레이스테이션 플러스",
       "PS Plus",
@@ -49629,7 +49629,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T08:32:00Z",
     "imageUrl": "/stock/2026-08-18-pyridine-nitrogen-editing-yield-88-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 피리딘 고리의 질소 위치를 바꾸는 분자 편집 개념을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "피리딘",
       "분자편집",
@@ -49675,7 +49675,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T07:10:00Z",
     "imageUrl": "/stock/2026-08-18-rice-heading-local-observation-advisory-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 벼의 생육 상태를 관찰해 영농 시기를 조정하는 필요성을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "벼 이삭패기",
       "경북 농업",
@@ -49728,7 +49728,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T06:25:00Z",
     "imageUrl": "/stock/2026-08-18-sk-rentacar-karina-merger-sep29-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 렌터카 기업의 흡수합병 구조를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "SK렌터카",
       "카리나모빌리티서비시스",
@@ -49779,7 +49779,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-18T06:00:00Z",
     "imageUrl": "/stock/2026-08-18-yongdap-police-station-construction-bid-841m64-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 도심 파출소 신축 건축공사 입찰을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "서울경찰청",
       "용답파출소",
@@ -49822,7 +49822,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-19T06:07:00Z",
     "imageUrl": "/stock/2026-08-19-australia-active-businesses-2m814778-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 호주 사업체 통계를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "호주 사업체 통계",
       "호주 기업 수",
@@ -49866,7 +49866,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-19T06:08:00Z",
     "imageUrl": "/stock/2026-08-19-civil-service-seven-first-pass-4816-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "국가직7급",
       "7급공채",
@@ -49917,7 +49917,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-19T06:09:00Z",
     "eventEndsAt": "2026-09-02T12:00:00Z",
     "imageUrl": "/stock/2026-08-19-daejeon-bohun-hospital-five-regular-workers-sep2-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 병원 기술·보건·시설 분야 정규직 채용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대전보훈병원",
       "정규직채용",
@@ -49965,7 +49965,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-19T06:57:00Z",
     "eventEndsAt": "2026-08-27T10:00:00Z",
     "imageUrl": "/stock/2026-08-19-daejeon-line2-mixed-aggregate-bid-135m2-2026.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아니며, 철도 건설용 혼합골재의 입도와 품질을 확인하는 과정을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대전도시철도2호선",
       "나라장터",
@@ -50010,7 +50010,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-19T06:08:00Z",
     "eventEndsAt": "2026-09-18T18:00:00Z",
     "imageUrl": "/stock/2026-08-19-disaster-prevention-photo-video-contest-sep18-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "재난예방공모전",
       "사진공모전",
@@ -50054,7 +50054,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-19T06:08:00Z",
     "eventEndsAt": "2026-11-02T23:59:00Z",
     "imageUrl": "/stock/2026-08-19-flood-hit-geoje-tongyeong-tax-extension-nov2-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "거제중소기업",
       "통영중소기업",
@@ -50101,7 +50101,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-19T06:15:00Z",
     "eventEndsAt": "2026-08-28T10:00:00Z",
     "imageUrl": "/stock/2026-08-19-goyang-plate-heat-exchanger-bid-116m93-2026.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아니며, 건물 기계실에 판형열교환기를 설치하는 과정을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "고양시",
       "나라장터",
@@ -50146,7 +50146,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-19T06:07:00Z",
     "eventEndsAt": "2026-08-23T17:20:00Z",
     "imageUrl": "/stock/2026-08-19-gwangdae-olympics-ntok-aug23-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 참여형 전통연희의 분위기를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "광대 올림픽 희로애락",
       "국립극장 하늘극장",
@@ -50194,7 +50194,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-19T06:18:00Z",
     "imageUrl": "/stock/2026-08-19-infectious-disease-social-response-four-levels-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "감염병 위기",
       "사회대응 매뉴얼",
@@ -50239,7 +50239,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-19T06:07:00Z",
     "imageUrl": "/stock/2026-08-19-innovation-products-127b-pilot-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "혁신제품",
       "시범구매",
@@ -50293,7 +50293,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-19T06:09:00Z",
     "eventEndsAt": "2026-08-24T00:00:00Z",
     "imageUrl": "/stock/2026-08-19-kopo-changwon-cafeteria-worker-aug23-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 캠퍼스 식당 단시간근로자 채용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국폴리텍대학",
       "창원캠퍼스",
@@ -50340,7 +50340,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-19T06:08:00Z",
     "imageUrl": "/stock/2026-08-19-lg-kt-moon-jungbin-grand-slam-five-rbi-9-1.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "LG 트윈스",
       "KT 위즈",
@@ -50388,7 +50388,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-19T06:08:00Z",
     "imageUrl": "/stock/2026-08-19-lotte-kiwoom-seventh-inning-13-runs-15-10.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "롯데 자이언츠",
       "키움 히어로즈",
@@ -50434,7 +50434,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-19T06:08:00Z",
     "imageUrl": "/stock/2026-08-19-masld-24-1-association-not-diagnosis-editorial.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "대사이상 지방간질환",
       "지방간",
@@ -50478,7 +50478,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-19T06:08:00Z",
     "imageUrl": "/stock/2026-08-19-pacific-bluefin-tuna-tac-27399-2027-2028.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "태평양참다랑어",
       "총허용어획량",
@@ -50521,7 +50521,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-19T06:07:00Z",
     "eventEndsAt": "2026-08-24T19:00:00Z",
     "imageUrl": "/stock/2026-08-19-sema-ahn-sangbeom-black-box-aug24-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 전시 주제를 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "안상범 블랙 박스",
       "서울시립미술관",
@@ -50569,7 +50569,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-19T06:07:00Z",
     "eventEndsAt": "2026-08-26T23:59:00Z",
     "imageUrl": "/stock/2026-08-19-shipbuilding-startups-poc-aug26-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "조선해양스타트업",
       "글로벌오픈이노베이션",
@@ -50619,7 +50619,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-19T06:09:00Z",
     "imageUrl": "/stock/2026-08-19-sk-biopharm-cenobamate-us-supply-99b4-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 미국 자회사 대상 의약품 공급계약을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "SK바이오팜",
       "세노바메이트",
@@ -50665,7 +50665,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-19T06:07:00Z",
     "imageUrl": "/stock/2026-08-19-sovereign-ai-model-three-teams-b200-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "독자AI",
       "파운데이션모델",
@@ -50715,7 +50715,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-19T06:09:00Z",
     "imageUrl": "/stock/2026-08-19-teraview-semiconductor-inspection-order-949m-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 해외 고객사 대상 반도체 검사장비 공급계약을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "테라뷰",
       "반도체검사장비",
@@ -50758,7 +50758,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-08-19T06:07:00Z",
     "imageUrl": "/stock/2026-08-19-uk-vacancies-707k-may-july-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 영국 고용시장 상황을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "영국 고용시장",
       "영국 구인 공석",
@@ -50806,7 +50806,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-19T06:57:00Z",
     "eventEndsAt": "2026-08-28T18:00:00Z",
     "imageUrl": "/stock/2026-08-19-venture-joint-recruitment-fourth-2026.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아니며, 벤처기업 공동채용 지원을 위한 채용자료 검토 과정을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "벤처기업",
       "공동채용",
@@ -50853,7 +50853,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-19T06:07:00Z",
     "eventEndsAt": "2026-09-17T23:59:00Z",
     "imageUrl": "/stock/2026-08-19-veterans-startup-contest-sep17-2026.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "제대군인창업",
       "창업경진대회",
@@ -50901,7 +50901,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-19T06:15:00Z",
     "eventEndsAt": "2026-08-25T18:00:00Z",
     "imageUrl": "/stock/2026-08-19-yangyang-export-promotion-support-3m-2026.jpg",
-    "imageCaption": "AI 생성 이미지이며 실제 공식 자료나 현장 사진이 아니며, 수출용 제품 홍보물을 제작하는 과정을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "양양군",
       "중소기업",
@@ -50939,7 +50939,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "기업당 지원규모는 400만원 이내다. 하지만 이 금액은 신청기업에 현금으로 지급되는 금액이라고 쓰면 안 된다. 공고의 표현상 지원은 ESG 교육, 진단, 컨설팅, 수준평가, 확인서 발급 등 서비스 제공 형태다. 내부 보고서에는 400만원 수령 가능이 아니라 기업당 400만원 이내 상당의 ESG 지원 프로그램처럼 표현하는 편이 안전하다.",
       "사업기간은 협약 체결일부터 2026년 12월까지다. HWP 공고문은 추진절차를 모집공고, 참여기업 선정, ESG 역량진단, ESG 교육, 현장실사 및 컨설팅, ESG 개선활동, ESG 수준확인, 완료보고 흐름으로 제시한다. 선정 후 곧바로 확인서가 나오는 구조가 아니라, 진단과 개선활동을 거쳐 수준확인을 받는 일정으로 이해해야 한다.",
       "확인서 발급은 중요한 기회지만 무조건 보장된 결과는 아니다. HWP 공고문은 준수율이 일정 수준 이상일 때 ESG 우수중소기업 확인서 발급이 가능하다는 취지의 흐름을 담고 있다. 따라서 신청기업은 확인서 자체만 목표로 쓰기보다, 현재 ESG 관리 수준을 진단하고 개선계획을 실행할 준비가 되어 있다는 점을 사업계획에 담아야 한다.",
-      "![AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 중소기업 ESG 진단과 현장 컨설팅 절차를 설명하기 위한 연출 이미지입니다.](/stock/keco-small-business-esg-support-2026-sub-01.jpg)",
+      "![ AI 생성 이미지. 중소기업 ESG 진단과 현장 컨설팅 절차를 설명하기 위한 연출 이미지입니다.](/stock/keco-small-business-esg-support-2026-sub-01.jpg)",
       "## 제외조건과 흔한 오해",
       "첫 번째 오해는 현금 지원이다. 공고에 기업당 400만원 이내가 적혀 있지만, 지원내용은 ESG 교육, 역량진단, 맞춤형 현장 컨설팅, ESG 수준평가 및 확인서 발급이다. 기사 제목과 본문에서 이를 현금 지급, 환급, 직접 보조금처럼 표현하면 사업 성격을 오도할 수 있다.",
       "두 번째 오해는 확인서 자동 발급이다. 사업에 선정됐다고 바로 ESG 확인서를 받는 구조로 단정하면 안 된다. 공고상 지원 흐름은 역량진단, 교육, 현장 컨설팅, 개선활동, 수준확인을 거친다. 확인서 발급은 평가와 확인 절차의 결과로 이해해야 한다.",
@@ -50992,7 +50992,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T15:20:00Z",
     "imageUrl": "/stock/keco-small-business-esg-support-2026-main.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "한국환경공단",
       "중소기업ESG지원사업",
@@ -51028,7 +51028,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "두 번째 대분류는 AI-Ready 구축이다. 공공데이터 수집 및 정제, 공공데이터 구조화 및 라벨링, AI 서비스용 학습데이터 준비가 여기에 들어간다. AI 모델을 붙이기 전에 데이터 형식이 제각각이거나, 분석 가능한 형태로 정리되지 않았거나, 학습데이터 품질을 검증해야 하는 기업에 해당한다. 쉽게 말해 AI 개발 전에 데이터를 쓸 수 있는 상태로 만드는 작업을 돕는 축이다.",
       "세 번째 대분류는 AI 서비스 고도화다. 기존 사업모델 및 서비스 고도화, AI 모델 고도화, 공공데이터 활용 서비스 특허 출원 지원이 포함된다. 이미 서비스를 운영 중이지만 추천 정확도, 모델 성능, 기능 설계, 지식재산권 확보가 과제로 남아 있는 기업이 검토할 만하다. 단, 특허 출원 지원이 곧 특허 등록 보장이라는 뜻은 아니다.",
       "네 번째 대분류는 투자유치 및 해외진출이다. 사업 체계화 및 투자 유치, 투자 연계 IR·네트워킹 지원, 해외 시장 조사 및 진출 전략 수립이 포함된다. 투자자 미팅이나 해외 시장 진출을 준비하는 기업에는 실무 점검 기회가 될 수 있지만, 투자 유치나 해외 매출이 확정되는 사업은 아니다.",
-      "![AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 신청 서류와 컨설팅 프로그램 선택 과정을 설명하기 위한 연출 이미지입니다.](/stock/public-data-ai-growth-consulting-2026-sub-01.jpg)",
+      "![ AI 생성 이미지. 신청 서류와 컨설팅 프로그램 선택 과정을 설명하기 위한 연출 이미지입니다.](/stock/public-data-ai-growth-consulting-2026-sub-01.jpg)",
       "## 제외조건과 흔한 오해",
       "가장 흔한 오해는 30개 기업에 현금성 지원금을 준다는 식의 해석이다. 공고 PDF는 지원내용을 기업의 사업에 필요한 맞춤형 컨설팅 제공으로 적고 있다. 선정기업은 프로그램에 참여하고 필요한 자료 제출에 협조해야 하며, 지원 여부와 내용, 규모 또는 횟수는 심의위원회 결과에 따라 결정된다.",
       "두 번째 오해는 AI라는 단어만 있으면 대상이라는 해석이다. 평가는 공공데이터·AI 활용 사업목적 부합성, 서비스 구체성, 기대효과 등을 종합적으로 본다. 공공데이터가 서비스에서 어떤 문제를 해결하는지, AI가 단순 홍보문구가 아니라 어떤 기능 또는 분석 과정에 들어가는지 설명할 수 있어야 한다.",
@@ -51069,7 +51069,7 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-07-19T15:24:00Z",
     "eventEndsAt": "2026-08-14T23:59:00Z",
     "imageUrl": "/stock/public-data-ai-growth-consulting-2026-main.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 공공데이터와 AI 활용기업 맞춤형 성장 지원을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "공공데이터AI성장지원",
       "공공데이터활용기업",
@@ -51106,7 +51106,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "추가지원은 두 갈래다. 첫째, TV홈쇼핑 판매지원으로 공영홈쇼핑 생방송 1회가 있다. 단, 코칭·상담회 1차 평가 통과기업을 대상으로 3차 전문가 품평회 심사가 진행되고, 우수제품 최대 5개사에 한해 지원된다. 방송 소요시간은 50분이며, 협력사가 재고부담을 요청하면 40분 편성이 가능하다고 공고에 표시돼 있다.",
       "둘째, 라이브커머스 입점지원이다. 공고는 코칭·상담회 1차 평가 통과기업에 공영홈쇼핑 라이브커머스 입점 기회를 제공한다고 안내한다. 이 역시 30개사 전원에게 자동으로 입점이 보장된다는 뜻이 아니라 1차 평가 통과기업 대상의 기회로 이해해야 한다.",
       "실무 해석: 이 사업의 핵심 가치는 홈쇼핑 채널에 맞는 제품 설명, 품질관리, 판매 포인트를 전문가와 점검해 보는 데 있다. TV 생방송 지원을 목표로 한다면 신청서 단계부터 재고, 생산능력, 방송 판매 가능성, 품질관리, 제품 차별성을 설명할 수 있어야 한다. 방송 후보가 되더라도 판매수수료 등 직접비는 기업 부담이므로, 마케팅 효과만 보고 비용 구조를 빼놓으면 안 된다.",
-      "![AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 홈쇼핑 입점 코칭과 제품 품평 절차를 설명하기 위한 연출 이미지입니다.](/stock/public-home-shopping-disabled-business-coaching-2026-sub-01.jpg)",
+      "![ AI 생성 이미지. 홈쇼핑 입점 코칭과 제품 품평 절차를 설명하기 위한 연출 이미지입니다.](/stock/public-home-shopping-disabled-business-coaching-2026-sub-01.jpg)",
       "## 제외조건과 흔한 오해: 무료 코칭과 방송 비용은 다르다",
       "첫 번째 오해는 30개사 모집을 30개사 방송 지원으로 읽는 것이다. 공식 공고는 모집규모를 30개사 내외로 두지만, TV홈쇼핑 방송 지원은 코칭·상담회 참여기업 중 최대 5개사다. 그것도 1차 평가와 3차 전문가 품평회 심사를 거쳐야 한다.",
       "두 번째 오해는 비용이다. 기본 코칭·상담, 교육지원, 지원사업 설명회는 무료지원으로 안내돼 있다. 그러나 방송 판매직접비, 판매수수료 8% 등은 수익자 부담 원칙에 따라 선정기업이 부담한다. 따라서 코칭 비용과 방송 판매직접비를 같은 지원 항목처럼 묶어 쓰면 안 된다.",
@@ -51138,7 +51138,7 @@ export const CONTENT_ARTICLES: Article[] = [
     },
     "publishedAt": "2026-07-19T15:28:00Z",
     "imageUrl": "/stock/public-home-shopping-disabled-business-coaching-2026-main.jpg",
-    "imageCaption": "AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 공영홈쇼핑 장애인기업제품 코칭·상담회 모집 내용을 설명하기 위한 연출 이미지입니다.",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
       "공영홈쇼핑",
       "장애인기업",

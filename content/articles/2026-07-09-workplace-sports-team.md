@@ -6,7 +6,7 @@ publishedAt: 2026-07-09 11:50
 tags: 직장운동경기부, 대한체육회, 창단지원, 스포츠
 summary: 대한체육회의 직장운동경기부 창단 지원 2차 공모를 지원 규모와 주의점 중심으로 정리했다.
 image: /stock/2026-07-09-workplace-sports-team.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 source: https://www.culture.go.kr/portal/cltBnf/cltSup/view.do?menuNo=200104&pageIndex=3&rcrtSn=222367&sSort=2&viewTp=2
 ---

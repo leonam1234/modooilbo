@@ -6,7 +6,7 @@ publishedAt: 2026-07-17 09:50
 tags: 장애소상공인, 장애인기업, 영업환경개선, 점포리모델링, KSD나눔재단, 소상공인지원, 시설개보수
 summary: 장애인기업확인서와 소상공인확인서를 갖춘 7개사를 선정해 점포 개보수 등을 공급가액 기준 최대 1,000만원 지원한다. 선정기업이 비용을 먼저 집행한 뒤 증빙 심사를 거쳐 정산받는다.
 image: /stock/2026-07-17-disabled-small-business-store-improvement.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 ---
 

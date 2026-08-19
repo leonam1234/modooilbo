@@ -6,7 +6,7 @@ publishedAt: 2026-07-17 10:10
 tags: ICT수출, 반도체, 메모리, SSD, 중소기업, 수출통계, AI인프라
 summary: ICT 수출은 역대 상반기 최대였지만 증가분은 반도체와 SSD에 집중됐다. 기업은 전체 120.5%보다 자사 품목·지역·규모별 증가율을 비교해야 한다.
 image: /stock/2026-07-17-first-half-ict-exports-semiconductor.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 ---
 

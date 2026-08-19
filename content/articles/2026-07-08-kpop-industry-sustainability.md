@@ -6,7 +6,7 @@ publishedAt: 2026-07-08 10:45
 tags: K팝, 케이뮤직, 음악산업, 대중문화
 summary: K팝 산업의 지속 가능한 성장을 위한 현장 간담회 의제를 정리했다.
 image: /stock/2026-07-08-kpop-industry-sustainability.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아님.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 source: https://www.mcst.go.kr/site/s_notice/press/pressView.jsp?pSeq=22570
 ---

@@ -6,7 +6,7 @@ publishedAt: 2026-07-18 11:14
 tags: 투르드프랑스, 마우로슈미트, 로드사이클, 13스테이지, 벨포르, HaroldTejada, TomPidcock, 산악스테이지
 summary: 마우로 슈미트가 Dole에서 Belfort까지 이어진 205.8km 13스테이지에서 공식 기록 4시간 6분 58초로 1위에 올랐다. Harold Tejada Canacue가 같은 기록으로 2위, Tom Pidcock이 2초 차 3위를 차지했다.
 image: /stock/2026-07-18-tour-de-france-stage13-schmid.jpg
-imageCaption: AI 생성 이미지. 국제 도로 사이클 산악 스테이지의 선두 경쟁을 일반화해 연출했으며, 실제 투르 드 프랑스 공식 자료나 경기 현장 사진이 아닙니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 ---
 ## 공식 13스테이지 결과

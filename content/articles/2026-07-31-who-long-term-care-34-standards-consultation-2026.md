@@ -6,7 +6,7 @@ publishedAt: 2026-07-31 10:53
 tags: 세계보건기구, WHO, 장기요양, 고령사회, 돌봄서비스, 국제표준, 공공의견수렴, 돌봄인력, 요양품질, 건강정책
 summary: WHO가 노인을 위한 장기요양 국제표준 초안에 대해 10월 30일까지 공개 의견을 받는다. 초안은 8개 장의 34개 기준과 106개 품질 진술로 구성됐으며 아직 최종 표준은 아니다.
 image: /stock/2026-07-31-who-long-term-care-34-standards-consultation-2026.jpg
-imageCaption: AI로 생성한 주제 설명용 이미지입니다. WHO의 공식 이미지나 실제 장기요양 시설을 촬영한 사진이 아닙니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 ---
 ## 한 문장 결론

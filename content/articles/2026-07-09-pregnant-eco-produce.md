@@ -6,7 +6,7 @@ publishedAt: 2026-07-09 11:00
 tags: 임산부, 친환경농산물, 생활지원, 농식품부
 summary: 7월부터 본격 시행되는 임산부 친환경 농산물 꾸러미 지원의 대상과 주의점을 정리했다.
 image: /stock/2026-07-09-pregnant-eco-produce.jpg
-imageCaption: AI 생성 이미지. 실제 공식 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 source: https://www.mafra.go.kr/bbs/home/792/578408/artclView.do?layout=unknown
 ---

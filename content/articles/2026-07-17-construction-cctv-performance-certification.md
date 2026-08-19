@@ -6,7 +6,7 @@ publishedAt: 2026-07-17 10:14
 tags: 건설안전, 지능형CCTV, 영상분석, 성능시험, 인공지능, 수자원, 스마트건설
 summary: KISA와 한국수자원공사는 수자원·수도 건설현장용 CCTV의 영상 DB와 성능평가 기반을 만들기로 했다. 인증 시행·기업 모집·구매계약은 아직 확정되지 않았다.
 image: /stock/2026-07-17-construction-cctv-performance-certification.jpg
-imageCaption: AI 생성 이미지. 실제 한국인터넷진흥원·한국수자원공사 자료나 현장 사진이 아니며, 기사 내용을 설명하기 위한 연출 이미지입니다.
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관
 ---
 
