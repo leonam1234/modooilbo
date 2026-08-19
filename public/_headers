@@ -61,8 +61,12 @@
 # 그래도 default-src 'self' + object-src 'none' + base-uri 'self' + form-action 'self'가
 # 남아 있어, 외부 스크립트 주입·폼 탈취·base 태그 하이재킹은 막힌다.
 #
-# frame-ancestors는 X-Frame-Options의 현대 대체재다. 구형 헤더는 브라우저별 해석이
-# 갈리므로 둘 다 둔다.
+# frame-ancestors 정책(2026-08-19 변경): X-Frame-Options는 **제거**했다.
+# 애드센스 광고 설정 미리보기가 사이트를 iframe으로 불러오는데 XFO SAMEORIGIN이
+# 이를 차단해 "페이지를 찾을 수 없습니다"가 났다. XFO는 특정 출처 예외를 지정할 수
+# 없는 구식 헤더라(ALLOW-FROM은 폐기됨) CSP frame-ancestors로 일원화하고, 구글
+# 심사·미리보기 도메인만 허용 목록에 추가했다. 모던 브라우저는 전부 CSP를 우선한다.
+# 클릭재킹 방어는 frame-ancestors 'self' + 허용 목록으로 계속 유지된다.
 #
 # 2026-08 보강: 관찰 목록(8/3 실측 9개 호스트)에 없었지만 AdSense가 상용으로 쓰는
 # 경로 2곳을 선제 허용 — frame-src tpc.googlesyndication.com(SafeFrame 광고 프레임),
@@ -81,13 +85,12 @@
 #      이대로 전면 강제했으면 카카오 공유가 조용히 죽었다.
 /*
   X-Content-Type-Options: nosniff
-  X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(self)
   X-DNS-Prefetch-Control: on
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Content-Security-Policy: base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'
-  Content-Security-Policy-Report-Only: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://www.clarity.ms https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://*.adtrafficquality.google https://static.cloudflareinsights.com https://t1.kakaocdn.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net data:; img-src 'self' data: blob: https://img.modooilbo.com https://*.google.com https://*.gstatic.com https://*.googlesyndication.com https://*.doubleclick.net https://*.adtrafficquality.google; connect-src 'self' https://*.clarity.ms https://api.open-meteo.com https://*.adtrafficquality.google https://*.googlesyndication.com https://cloudflareinsights.com https://kapi.kakao.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://*.adtrafficquality.google https://www.google.com https://www.youtube-nocookie.com https://www.youtube.com
+  Content-Security-Policy: base-uri 'self'; object-src 'none'; frame-ancestors 'self' https://*.google.com https://*.googlesyndication.com https://googleads.g.doubleclick.net; form-action 'self'
+  Content-Security-Policy-Report-Only: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self' https://*.google.com https://*.googlesyndication.com https://googleads.g.doubleclick.net; form-action 'self'; script-src 'self' 'unsafe-inline' https://www.clarity.ms https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://*.adtrafficquality.google https://static.cloudflareinsights.com https://t1.kakaocdn.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net data:; img-src 'self' data: blob: https://img.modooilbo.com https://*.google.com https://*.gstatic.com https://*.googlesyndication.com https://*.doubleclick.net https://*.adtrafficquality.google; connect-src 'self' https://*.clarity.ms https://api.open-meteo.com https://*.adtrafficquality.google https://*.googlesyndication.com https://cloudflareinsights.com https://kapi.kakao.com; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://*.adtrafficquality.google https://www.google.com https://www.youtube-nocookie.com https://www.youtube.com
 
 # 자체 호스팅 폰트 — 불변 캐시 1년
 /fonts/*

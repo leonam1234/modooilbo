@@ -126,10 +126,19 @@ export default function RootLayout({
             data-cf-beacon={`{"token": "${process.env.NEXT_PUBLIC_CF_BEACON_TOKEN}"}`}
           />
         )}
-        {/* Google AdSense 스크립트(adsbygoogle.js)는 head가 아니라 <AdSenseLoader/>가 LCP 이후 지연 주입한다
-            (head의 async 스크립트도 파서가 읽는 즉시 요청 → LCP 이미지와 대역폭 경합).
-            preconnect도 그 시점에 함께 붙는다 — 사유는 AdSenseLoader.tsx 주석 참조.
-            자동광고는 대시보드에서 OFF. 광고는 <AdSlot/> 수동 슬롯(홈 1·기사 1)에만 나온다. */}
+        {/* Google AdSense — **head 표준 삽입으로 복원(2026-08-19)**.
+            종전엔 AdSenseLoader가 LCP 이후 유휴 시점에 지연 주입했는데(성능 최적),
+            그 결과 초기 HTML에 스크립트 태그가 아예 없어 **애드센스 심사 봇이
+            "광고 코드 없는 사이트"로 판정**했고 승인이 반복 탈락했다.
+            심사 봇은 load+유휴까지 기다려주지 않는다. 승인이 성능보다 우선이다.
+            async라 파싱은 비차단이며, 실제 광고 push는 여전히 AdSlot이 수동으로 한다.
+            ⚠️ 승인 후에도 이 태그를 지연 주입으로 되돌리지 말 것 — 애드센스는 승인 후에도
+            사이트를 상시 재크롤하며, 코드가 안 보이면 광고 게재 제한이 다시 걸릴 수 있다. */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1741876528103024"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="font-sans">
         <AutoRefresh />

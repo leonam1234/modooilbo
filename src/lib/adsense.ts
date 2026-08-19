@@ -44,6 +44,36 @@ export function loadAdSenseScript(): void {
   if (phase !== "idle") return;
   phase = "loading";
 
+  // 2026-08-19부터 스크립트 태그는 layout <head>에 SSR로 박혀 있다(심사 봇이 코드를
+  // 못 보던 문제의 해결책 — layout.tsx 주석 참조). 같은 스크립트를 두 번 주입하면
+  // 구글이 콘솔 에러를 내므로, 기존 태그가 있으면 **그 태그의 로드 상태에 편승**한다.
+  const existing = document.querySelector<HTMLScriptElement>(
+    `script[src^="${SCRIPT_ORIGIN}/pagead/js/adsbygoogle.js"]`,
+  );
+  if (existing) {
+    // 이미 로드 완료됐는지: adsbygoogle.js는 로드 시 window.adsbygoogle.loaded = true 를 세운다.
+    const w = window as unknown as { adsbygoogle?: { loaded?: boolean } };
+    if (w.adsbygoogle?.loaded) {
+      settle(true);
+      return;
+    }
+    existing.addEventListener("load", () => settle(true), { once: true });
+    existing.addEventListener("error", () => settle(false), { once: true });
+    // load 이벤트를 이미 놓친 경우(리스너 부착 전에 로드 완료) 대비 폴백 폴링 — 짧게 몇 번만.
+    let tries = 0;
+    const t = setInterval(() => {
+      tries += 1;
+      if (w.adsbygoogle?.loaded) {
+        clearInterval(t);
+        settle(true);
+      } else if (tries >= 20 || phase !== "loading") {
+        clearInterval(t); // 4초 내 미로드면 이벤트 리스너에 맡긴다(차단기면 error가 온다)
+      }
+    }, 200);
+    return;
+  }
+
+  // 폴백: head 태그가 없는 예외 상황(구버전 캐시 HTML 등)에만 직접 주입한다.
   const pre = document.createElement("link");
   pre.rel = "preconnect";
   pre.href = SCRIPT_ORIGIN;
