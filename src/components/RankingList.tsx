@@ -6,8 +6,9 @@ import { CATEGORY_MAP } from "@/lib/categories";
 import type { CategorySlug } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { TrendingIcon } from "./icons";
+import { SponsorTag } from "./SponsorNotice";
 
-type Item = { id: string; slug: string; title: string; category: CategorySlug };
+type Item = { id: string; slug: string; title: string; category: CategorySlug; sponsor?: string };
 type Counted = Item & { count?: number };
 type TabId = "read" | "commented";
 
@@ -155,6 +156,8 @@ export function RankingList({ pool, count = 6 }: { pool: Item[]; count?: number 
                 </span>
                 <Link prefetch={false} href={`/article/${a.slug}`} className="group flex-1">
                   <h3 className="clamp-2 min-h-[2.75em] text-sm font-semibold leading-snug text-ink-800 group-hover:text-signal-600 dark:group-hover:text-signal-400 dark:text-ink-100">
+                    {/* 광고성 콘텐츠는 랭킹에서도 표기한다 — 목록·카드와 같은 원칙(2026-08-19). */}
+                    {a.sponsor && <SponsorTag className="mr-1.5 align-middle" />}
                     {a.title}
                   </h3>
                   <span className="mt-1 block text-xs text-ink-500 dark:text-ink-400">

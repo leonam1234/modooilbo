@@ -442,7 +442,7 @@ export default async function ArticlePage({
         <aside className="space-y-10">
           <RankingList
             count={6}
-            pool={getMostRead(60).map((a) => ({ id: a.id, slug: a.slug, title: a.title, category: a.category }))}
+            pool={getMostRead(60).map((a) => ({ id: a.id, slug: a.slug, title: a.title, category: a.category, sponsor: a.sponsor }))}
           />
           <RecentArticles excludeId={article.id} />
           <div className="glass-card rounded-xl border border-ink-200 p-6 dark:border-ink-800">

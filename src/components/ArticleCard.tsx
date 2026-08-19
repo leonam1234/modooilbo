@@ -98,7 +98,8 @@ function BadgeSr({ article }: { article: ArticleCardItem }) {
   return (
     <>
       {/* 광고성 콘텐츠는 목록에서도 표시한다 — 클릭한 뒤 알면 늦다.
-          카드 변형 4종이 모두 이 컴포넌트를 쓰므로 여기 한 곳이면 전부 반영된다. */}
+          카드 변형 6종(horizontal·list·compact·text·overlay·feature)이 모두 이 컴포넌트를 쓴다.
+          text·overlay 는 2026-08-19 브리찌 게이트에서 누락이 발견돼 보강했다 — 새 변형을 만들면 반드시 포함할 것. */}
       {article.sponsor && <SponsorTag className="mr-1.5 align-middle" />}
       {label ? <span className="sr-only">{label} </span> : null}
     </>
@@ -131,6 +132,7 @@ export function ArticleCard({
             )}
           >
             <Link prefetch={false} href={href} className="clamp-2 hover:text-signal-700 dark:hover:text-signal-400">
+            <BadgeSr article={article} />
               <BadgeSr article={article} />
               {article.title}
             </Link>
@@ -255,7 +257,10 @@ export function ArticleCard({
                 headingClassName,
               )}
             >
-              <span className="clamp-2">{article.title}</span>
+              <span className="clamp-2">
+                <BadgeSr article={article} />
+                {article.title}
+              </span>
             </h3>
           </div>
         </Link>

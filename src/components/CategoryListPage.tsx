@@ -129,7 +129,7 @@ export function CategoryListPage({ slug, page = 1 }: { slug: CategorySlug; page?
         <aside className="space-y-10">
           <RankingList
             count={6}
-            pool={getMostRead(60).map((a) => ({ id: a.id, slug: a.slug, title: a.title, category: a.category }))}
+            pool={getMostRead(60).map((a) => ({ id: a.id, slug: a.slug, title: a.title, category: a.category, sponsor: a.sponsor }))}
           />
           <RecentArticles />
         </aside>

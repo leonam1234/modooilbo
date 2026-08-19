@@ -111,7 +111,7 @@ export default function Home() {
           <aside className="space-y-8">
             <RankingList
               count={10}
-              pool={getMostRead(60).map((a) => ({ id: a.id, slug: a.slug, title: a.title, category: a.category }))}
+              pool={getMostRead(60).map((a) => ({ id: a.id, slug: a.slug, title: a.title, category: a.category, sponsor: a.sponsor }))}
             />
 
             <div className="rounded-xl border border-ink-200 bg-ink-50 p-6 dark:border-ink-800 dark:bg-ink-900">
