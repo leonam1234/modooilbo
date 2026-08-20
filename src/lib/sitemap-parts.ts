@@ -38,6 +38,7 @@ export function articlesOfYear(year: string) {
 export const STATIC_PATHS = [
   "",
   "/about",
+  "/newsroom",
   "/careers",
   "/subscribe",
   "/newsletter",

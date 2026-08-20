@@ -59,6 +59,7 @@ export function ReporterPage({ slug, page = 1 }: { slug: string; page?: number }
       description: reporter.beat,
       url: profileUrl,
       worksFor: { "@type": "NewsMediaOrganization", "@id": `${SITE.url}/#organization`, name: "모두일보" },
+      knowsAbout: reporter.expertise,
     },
   };
 
@@ -76,6 +77,9 @@ export function ReporterPage({ slug, page = 1 }: { slug: string; page?: number }
             {reporter.name} <span className="text-lg font-medium text-ink-500 sm:text-xl">{reporter.role}</span>
           </h1>
           <p className="mt-1.5 text-sm leading-relaxed text-ink-500 dark:text-ink-300">{reporter.beat}</p>
+          <p className="mt-1 text-sm leading-relaxed text-ink-500 dark:text-ink-300">
+            {`전문 분야: ${reporter.expertise}`}
+          </p>
           <div className="mt-2 flex items-center gap-3">
             <SubscribeButton slug={reporter.slug} />
             <p className="text-xs tabular-nums text-ink-500 dark:text-ink-400">
@@ -85,6 +89,31 @@ export function ReporterPage({ slug, page = 1 }: { slug: string; page?: number }
           </div>
         </div>
       </header>
+
+      {/* 연락 창구·취재윤리 — 실재하는 정보만 싣는다(개별 사서함 미개설 상태, 공용 편집국 주소 사용) */}
+      <section
+        aria-label="연락 및 취재윤리"
+        className="mt-6 rounded-lg border border-ink-100 bg-ink-50/50 px-5 py-4 text-sm leading-relaxed text-ink-600 dark:border-ink-800 dark:bg-ink-900/40 dark:text-ink-300"
+      >
+        <p>
+          제보·문의는 편집국 공용 주소{" "}
+          <a href={`mailto:newsroom@modooilbo.com?subject=${encodeURIComponent(`[${reporter.name} ${reporter.role}] 문의`)}`} className="font-medium text-signal-600 hover:underline dark:text-signal-400">
+            newsroom@modooilbo.com
+          </a>
+          &nbsp;으로 받습니다. 제목에 기자명을 적어 주시면 담당 기자에게 전달됩니다.
+        </p>
+        <p className="mt-2">
+          모두일보의 모든 기자는{" "}
+          <Link href="/ethics" className="font-medium text-signal-600 hover:underline dark:text-signal-400">
+            윤리강령·편집위원회 규정
+          </Link>
+          을 준수합니다. 이해상충이 있는 사안은 기사에 고지하며, 광고성 콘텐츠는 광고 표기와 함께 발행합니다. 오류 정정은{" "}
+          <Link href="/corrections" className="font-medium text-signal-600 hover:underline dark:text-signal-400">
+            정정·반론 보도 모음
+          </Link>
+          에서 확인할 수 있습니다.
+        </p>
+      </section>
 
       {/* 기사 목록 */}
       <section className="mt-2 divide-y divide-ink-100 dark:divide-ink-800" aria-label="기자의 기사 목록">

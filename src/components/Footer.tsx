@@ -8,6 +8,7 @@ const FOOTER_COLS: { title: string; links: { href: string; label: string }[] }[]
     title: "회사",
     links: [
       { href: "/about", label: "회사소개" },
+      { href: "/newsroom", label: "편집국 소개" },
       { href: "/careers", label: "인재채용·기자모집" },
       { href: "/ethics", label: "윤리강령·편집위원회" },
       { href: "/committee", label: "이용자위원회" },
