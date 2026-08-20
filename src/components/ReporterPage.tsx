@@ -34,7 +34,9 @@ export function reporterMetadata(slug: string, page = 1): Metadata {
   const path = pageHref(`/reporter/${r.slug}/`, page);
   return {
     title: page > 1 ? `${base} (${page}페이지)` : base,
-    description: `모두일보 ${r.name} ${r.role} — ${r.beat}`,
+    // 빙 웹마스터 지적(2026-08-20) 반영 — 한 줄 소개만으로는 설명문이 35자대라 너무 짧다.
+    // 전문 분야와 확인 절차를 덧붙여 검색 결과에서 저자 전문성이 드러나게 한다.
+    description: `모두일보 ${r.name} ${r.role} — ${r.beat} 전문 분야는 ${r.expertise}입니다. 공공 원자료를 직접 확인해 쓴 기사 목록과 취재윤리·연락 창구를 함께 안내합니다.`,
     alternates: { canonical: path },
     // 색인 여부는 lib/reporters.ts의 REPORTER_INDEXABLE 하나로 일괄 제어(사이트맵 등재와 같은 스위치)
     ...(REPORTER_INDEXABLE ? {} : { robots: { index: false, follow: true } }),

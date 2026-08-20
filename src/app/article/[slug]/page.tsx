@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { metaDescription } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -55,14 +56,14 @@ export async function generateMetadata({
   const cat = CATEGORY_MAP[a.category];
   return {
     title: a.title,
-    description: a.summary,
+    description: metaDescription(a),
     // <meta name="author">는 각 기사의 실제 기자명(루트 layout의 전역 "모두일보"를 덮어씀).
     // 발행처(publisher)는 계속 "모두일보" — JSON-LD NewsArticle.publisher/@id organization로 게재.
     authors: [{ name: a.author.name }],
     alternates: { canonical: `/article/${a.slug}/` },
     openGraph: {
       title: a.title,
-      description: a.summary,
+      description: metaDescription(a),
       type: "article",
       locale: "ko_KR",
       siteName: "모두일보",
@@ -79,7 +80,7 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: a.title,
-      description: a.summary,
+      description: metaDescription(a),
       images: [imageUrl],
     },
     // title: <meta name="title">(포털용) — 기사 페이지는 사이트명이 아니라 <title>과 동일한
@@ -133,7 +134,7 @@ export default async function ArticlePage({
       : {}),
     mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
     headline: article.title.slice(0, 110),
-    description: article.summary,
+    description: metaDescription(article),
     image: [{ "@type": "ImageObject", url: imageUrl, width: ARTICLE_IMAGE_WIDTH, height: ARTICLE_IMAGE_HEIGHT }],
     thumbnailUrl: imageUrl,
     datePublished: toKstIso(article.publishedAt),

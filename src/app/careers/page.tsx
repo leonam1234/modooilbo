@@ -7,7 +7,7 @@ import { ApplyForm } from "./ApplyForm";
 export const metadata: Metadata = {
   title: "인재채용",
   description:
-    "모두일보와 함께 모두를 위한 신뢰의 뉴스를 만들 동료를 찾습니다. 기자·PD·데이터 저널리스트·개발자·마케터 채용 공고와 지원 안내.",
+    "모두일보와 함께 모두를 위한 신뢰의 뉴스를 만들 동료를 찾습니다. 기자·PD·데이터 저널리스트·개발자·마케터 채용 공고와 지원 안내. 채용 절차와 근무 조건, 지원 방법을 안내하며 진행 중인 공고가 없을 때도 상시 지원을 받습니다. 공공데이터를 다루는 취재에 관심 있는 분을 기다립니다.",
   alternates: { canonical: "/careers/" },
 };
 

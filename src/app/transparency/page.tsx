@@ -7,7 +7,7 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = {
   title: "투명성 보고",
   description:
-    "모두일보의 소유구조, 재정·수익구조 원칙, 편집 독립성과 이해상충 정책을 공개합니다.",
+    "모두일보의 소유구조, 재정·수익구조 원칙, 편집 독립성과 이해상충 정책을 공개합니다. 발행인과 편집인, 등록번호와 등록일, 광고·후원 계약사와 이해관계 고지 원칙, 정정·반론 처리 절차까지 독자가 확인할 수 있도록 정리했습니다. 신뢰할 수 있는 언론이 되기 위한 약속을 문서로 남깁니다.",
   alternates: { canonical: "/transparency/" },
 };
 

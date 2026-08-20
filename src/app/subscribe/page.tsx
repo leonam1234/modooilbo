@@ -4,7 +4,7 @@ import { PageHeader } from "@/components/PageHeader";
 export const metadata: Metadata = {
   title: "구독·후원",
   description:
-    "독자의 힘으로 만드는 독립 저널리즘. 모두일보는 광고에 휘둘리지 않는 지속가능한 후원 모델을 준비하고 있습니다.",
+    "독자의 힘으로 만드는 독립 저널리즘. 모두일보는 광고에 휘둘리지 않는 지속가능한 후원 모델을 준비하고 있습니다. 후원 방식과 사용처, 후원자에게 제공하는 것과 제공하지 않는 것을 명확히 밝히고, 편집권 독립을 어떻게 지키는지 함께 공개합니다. 뉴스레터와 후원 문의 창구도 함께 안내합니다.",
   alternates: { canonical: "/subscribe/" },
 };
 
