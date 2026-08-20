@@ -44,8 +44,8 @@ export type CommitteeMinutes = {
  * [외부2] { name: "", affiliation: "", role: "위원", external: true,  appointedAt: "" },
  * [외부3] { name: "", affiliation: "", role: "위원", external: true,  appointedAt: "" },
  * [내부1] { name: "남동균", affiliation: "모두일보 편집인", role: "위원", external: false, appointedAt: "" },
- * [내부2] { name: "유수화", affiliation: "모두일보 고충처리인", role: "간사", external: false, appointedAt: "" },
- *   — 간사는 규칙 제8조 ②에 따라 고충처리인(유수화) 자동 겸직.
+ * [내부2] { name: "박유주", affiliation: "모두일보 고충처리인", role: "간사", external: false, appointedAt: "" },
+ *   — 간사는 규칙 제8조 ②에 따라 고충처리인이 자동 겸직(2026-08-20 기준 박유주).
  * ────────────────────────────────────────────────────────────
  */
 export const COMMITTEE_MEMBERS: CommitteeMember[] = [];
