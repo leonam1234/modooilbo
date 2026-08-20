@@ -21,6 +21,7 @@ import { ViewCount } from "@/components/ViewCount";
 import { ImageLightbox } from "@/components/ImageLightbox";
 import { ReadingProgress } from "@/components/ReadingProgress";
 import { ArticleBody, articleSpeechText, splitSources, sourceLinks } from "@/components/ArticleBody";
+import { ReportingBadge } from "@/components/ReportingBadge";
 import { SponsorBadge, SponsorFooter } from "@/components/SponsorNotice";
 import { PARTNERS } from "@/lib/partners";
 import { ogImageUrl, displayImageUrl } from "@/lib/stock";
@@ -249,6 +250,7 @@ export default async function ArticlePage({
                   수정 <time dateTime={toKstIso(article.updatedAt)}>{formatKoreanDateTime(article.updatedAt)}</time>
                 </span>
               )}
+              <ReportingBadge article={article} className="ml-2 align-middle" />
               <ViewCount articleId={article.id} />
               <span className="ml-2 text-ink-500 dark:text-ink-400">읽는 시간 {readMinutes}분</span>
             </div>
