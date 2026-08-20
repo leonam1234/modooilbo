@@ -72,6 +72,17 @@ export interface Article {
    * 광고계약서 제6조 ③(광고성 콘텐츠에 "광고" 표기)의 이행 수단이다.
    */
   sponsor?: string;
+
+  /**
+   * 취재 유형(2026-08-21 도입) — 포털 제휴 심사의 '자체기사 비율' 근거.
+   * direct 자체취재 / desk 원자료 재구성 / sponsored 광고·협찬·기업소식 / wire 외부 제공.
+   * 비율은 direct ÷ (direct + desk) 로 계산하고 sponsored·wire 는 양쪽에서 뺀다.
+   * ⚠️ 필드가 없는 기사는 unknown 이다 — 과거 기사에 소급 추정하지 않는다.
+   *    라이브 화면 노출은 별도 승인 전까지 하지 않는다(원고 필드를 AI 관여도로 오해할 소지).
+   */
+  reporting?: "direct" | "desk" | "sponsored" | "wire";
+  /** direct 기사의 취재 방식. direct 가 아닌 기사에 붙으면 빌드 실패. */
+  reportingType?: "inquiry" | "interview" | "data-analysis" | "field" | "follow-up";
   imageUrl: string;
   imageCaption?: string;
   youtubeId?: string; // 영상 기사 = 유튜브 쇼츠 임베드

@@ -37,6 +37,32 @@ const STOCK_KEYWORD = {
 const BLOCKED_STATUS = ["발행보류", "보류"];
 
 /**
+ * 취재 유형 분류(2026-08-21 도입) — 포털 제휴 심사의 '자체기사 비율' 근거 데이터.
+ *
+ * reporting 은 모든 신규 기사의 필수값이다.
+ *   direct    자체 취재(질의·인터뷰·자체분석·현장·후속확인) — 비율의 분자
+ *   desk      공개 원자료를 재구성한 기사              — 분모에만 포함
+ *   sponsored 광고·협찬·기업소식                       — 분자·분모 양쪽에서 제외
+ *   wire      외부에서 제공받은 원고                    — 분자·분모 양쪽에서 제외
+ *
+ * ⚠️ sponsored/wire 를 둔 이유: 종전 설계는 '분자에서만 제외'였는데 그러면
+ *    광고를 낼수록 비율이 떨어지고, '외부 제공'은 식별 수단 자체가 없었다
+ *    (source: 는 참고한 원출처 URL 이지 외부 원고라는 뜻이 아니다 — 오분류 위험).
+ *    한 축으로 모아 비율 정의를 direct ÷ (direct + desk) 하나로 확정한다.
+ *
+ * reportingType 은 direct 일 때만 쓰고, 그 외 값에 붙으면 오류다.
+ */
+const REPORTING = ["direct", "desk", "sponsored", "wire"];
+const REPORTING_TYPE = ["inquiry", "interview", "data-analysis", "field", "follow-up"];
+
+/**
+ * 유예 구간 — 규약 시행일(8/21)부터 한 주는 누락을 경고만 하고 통과시킨다.
+ * 8/28 부터는 누락도 빌드 실패다. 그 전 발행분(과거 기사)은 소급 추정하지 않고 조용히 unknown.
+ */
+const REPORTING_SINCE = "2026-08-21";
+const REPORTING_ENFORCE = "2026-08-28";
+
+/**
  * 광고주 slug 화이트리스트 — src/lib/partners.ts 를 읽어 만든다.
  * 오타(bcmobilty 등)를 빌드에서 잡지 못하면 "광고인데 광고 표시가 안 붙은 기사"가
  * 그대로 나간다. 그건 표시 누락이라 광고자율규약 위반이다 → 반드시 실패시킨다.
@@ -146,6 +172,8 @@ async function run() {
   const slugs = new Set();
   // 검증 오류는 모아서 마지막에 한 번에 실패시킨다(경고 후 건너뛰기 금지 — 기사가 조용히 사라진다).
   const errors = [];
+  // 경고는 빌드를 막지 않는다 — 유예 구간의 reporting 누락 등, 나중에 필수가 될 항목을 미리 알린다.
+  const warnings = [];
   // 예약(미래 발행시각)으로 건너뛴 기사 — 종료 시 요약으로 다시 알린다.
   // ⚠️ 종전엔 스킵이 로그 한 줄로만 흘러가, 24편 패키지에서 4편이 통째로 빠진 것을
   //    건수를 세보기 전엔 아무도 몰랐다(2026-08-15). 발행 사고의 직접 원인이다.
@@ -278,6 +306,34 @@ async function run() {
       continue;
     }
 
+    // 취재 유형 — 값·조합 검증. 누락은 시행일/강제일 기준으로 단계 적용.
+    const reporting = (fm.reporting || "").trim();
+    const reportingType = (fm.reportingType || "").trim();
+    const pubDay = publishedAt.slice(0, 10);
+    if (reporting && !REPORTING.includes(reporting)) {
+      errors.push(`${file}: reporting "${reporting}" 는 허용값이 아닙니다. 가능: ${REPORTING.join(", ")}`);
+      continue;
+    }
+    if (reportingType && !REPORTING_TYPE.includes(reportingType)) {
+      errors.push(`${file}: reportingType "${reportingType}" 는 허용값이 아닙니다. 가능: ${REPORTING_TYPE.join(", ")}`);
+      continue;
+    }
+    if (reporting === "direct" && !reportingType) {
+      errors.push(`${file}: reporting: direct 인데 reportingType 이 없습니다. 가능: ${REPORTING_TYPE.join(", ")}`);
+      continue;
+    }
+    if (reporting && reporting !== "direct" && reportingType) {
+      errors.push(`${file}: reporting: ${reporting} 에는 reportingType 을 쓰지 않습니다(direct 전용).`);
+      continue;
+    }
+    if (!reporting && pubDay >= REPORTING_SINCE) {
+      if (pubDay >= REPORTING_ENFORCE) {
+        errors.push(`${file}: reporting 이 없습니다(${REPORTING_ENFORCE}부터 필수). 가능: ${REPORTING.join(", ")}`);
+        continue;
+      }
+      warnings.push(`${file}: reporting 누락 — ${REPORTING_ENFORCE}부터는 빌드가 실패합니다.`);
+    }
+
     articles.push({
       id: slug,
       slug,
@@ -291,6 +347,8 @@ async function run() {
       ...(eventEndsAt ? { eventEndsAt } : {}),
       ...(correction ? { correction } : {}),
       ...(sponsor ? { sponsor } : {}),
+      ...(reporting ? { reporting } : {}),
+      ...(reportingType ? { reportingType } : {}),
       imageUrl,
       imageCaption: (fm.imageCaption || "").trim() || undefined,
       tags,
@@ -305,6 +363,10 @@ async function run() {
 
   // 잘못된 기사가 하나라도 있으면 생성물을 쓰지 않고 중단 — 반쪽짜리 사이트가 배포되는 것 방지.
   if (errors.length) failBuild(errors);
+  if (warnings.length) {
+    console.warn(`\n⚠ 경고 ${warnings.length}건 (빌드는 계속합니다):`);
+    for (const w of warnings) console.warn(`  • ${w}`);
+  }
 
   writeFileSync(OUT_TS, header() + `export const CONTENT_ARTICLES: Article[] = ${JSON.stringify(articles, null, 2)};\n`);
   console.log(`완료: 콘텐츠 기사 ${articles.length}건 → src/lib/content.generated.ts`);
