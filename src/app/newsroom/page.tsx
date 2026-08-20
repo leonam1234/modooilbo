@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { REPORTERS } from "@/lib/reporters";
 import { SITE } from "@/lib/site";
 import { PageHeader } from "@/components/PageHeader";
@@ -32,9 +33,20 @@ export default function NewsroomPage() {
             className="group rounded-xl border border-ink-200 bg-white p-6 transition-colors hover:border-signal-400 dark:border-ink-800 dark:bg-ink-900"
           >
             <div className="flex items-center gap-4">
-              <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-ink-900 font-headline text-xl font-bold text-white dark:bg-white dark:text-ink-900">
-                {r.name.slice(0, 1)}
-              </span>
+              {r.photo ? (
+                <Image
+                  src={r.photo}
+                  alt={`${r.name} ${r.role}`}
+                  width={56}
+                  height={56}
+                  unoptimized
+                  className="h-14 w-14 shrink-0 rounded-full object-cover ring-1 ring-ink-200 dark:ring-ink-700"
+                />
+              ) : (
+                <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-ink-900 font-headline text-xl font-bold text-white dark:bg-white dark:text-ink-900">
+                  {r.name.slice(0, 1)}
+                </span>
+              )}
               <div className="min-w-0">
                 <h2 className="font-headline text-lg font-bold text-ink-900 group-hover:text-signal-600 dark:text-white">
                   {r.name} <span className="text-sm font-medium text-ink-500">{r.role}</span>

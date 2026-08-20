@@ -60,6 +60,7 @@ export function ReporterPage({ slug, page = 1 }: { slug: string; page?: number }
       url: profileUrl,
       worksFor: { "@type": "NewsMediaOrganization", "@id": `${SITE.url}/#organization`, name: "모두일보" },
       knowsAbout: reporter.expertise,
+      ...(reporter.photo ? { image: `${SITE.url}${reporter.photo}` } : {}),
     },
   };
 
@@ -69,9 +70,20 @@ export function ReporterPage({ slug, page = 1 }: { slug: string; page?: number }
       {paged.page === 1 && <JsonLd data={profileLd} />}
       {/* 프로필 헤더 */}
       <header className="flex items-center gap-5 border-b-2 border-ink-900 pb-8 dark:border-white">
+        {reporter.photo ? (
+          <Image
+            src={reporter.photo}
+            alt={`${reporter.name} ${reporter.role}`}
+            width={80}
+            height={80}
+            unoptimized
+            className="h-20 w-20 shrink-0 rounded-full object-cover ring-1 ring-ink-200 dark:ring-ink-700"
+          />
+        ) : (
         <span className="grid h-20 w-20 shrink-0 place-items-center rounded-full bg-ink-900 font-headline text-3xl font-bold text-white dark:bg-white dark:text-ink-900">
           {reporter.name.slice(0, 1)}
         </span>
+        )}
         <div className="min-w-0">
           <h1 className="font-headline text-2xl font-bold text-ink-900 dark:text-white sm:text-3xl">
             {reporter.name} <span className="text-lg font-medium text-ink-500 sm:text-xl">{reporter.role}</span>

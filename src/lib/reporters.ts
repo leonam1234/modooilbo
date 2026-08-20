@@ -10,6 +10,11 @@ export interface Reporter {
   beat: string; // 담당 분야 한 줄
   /** 전문 분야 — 이 매체에서 실제로 발행한 기사 구성에서 도출한다(외부 경력 창작 금지, 아카이브로 검증 가능). */
   expertise: string;
+  /**
+   * 프로필 사진 경로(public 기준). 본인이 제공한 실사진만 넣는다.
+   * ⚠️ 없는 얼굴을 생성해 채우면 실명 가장이 된다 — 미제공자는 이 필드를 비우고 이니셜 아바타를 쓴다.
+   */
+  photo?: string;
 }
 
 export const REPORTERS: Reporter[] = [
@@ -18,7 +23,7 @@ export const REPORTERS: Reporter[] = [
   { slug: "kim-sungwoo", name: "김성우", role: "국제부 기자", beat: "국제 정세와 외교를 취재합니다." , expertise: "국제기구·주요국 공식 통계와 정책 원자료 해설" },
   { slug: "park-yuju", name: "박유주", role: "테크부 기자", beat: "IT·과학·스타트업을 취재합니다." , expertise: "산업 정책·기업 동향, 정부 R&D·기술 지원사업 분석" },
   { slug: "nam-dongkyun", name: "남동균", role: "문화·스포츠부 기자", beat: "문화·연예·스포츠 현장을 취재합니다." , expertise: "공연·전시 일정 검증 보도, KBO·해외 스포츠 공식 기록 분석" },
-  { slug: "yoo-suhwa", name: "유수화", role: "논설위원", beat: "모두일보의 시각을 칼럼과 사설로 전합니다." , expertise: "공공데이터에 근거한 정책 논평과 사설" },
+  { slug: "yoo-suhwa", photo: "/reporters/yoo-suhwa.jpg", name: "유수화", role: "논설위원", beat: "모두일보의 시각을 칼럼과 사설로 전합니다." , expertise: "공공데이터에 근거한 정책 논평과 사설" },
 ];
 
 export function getReporterBySlug(slug: string): Reporter | undefined {
