@@ -75,9 +75,13 @@ export function getByCategory(slug: CategorySlug, count?: number): Article[] {
  */
 export function getMostRead(count = 5): Article[] {
   const byReadThenNewest = (a: Article, b: Article) => b.readCount - a.readCount || byNewest(a, b);
+  // 광고(sponsor)는 랭킹 경쟁에서 제외한다 — 광고가 '많이 본 뉴스'에 뉴스처럼 오르면
+  // 표기를 해도 매체가 자사 광고를 밀어주는 프레임으로 읽힌다(2026-08-20 외부 점검).
+  const eligible = (a: Article) => !a.sponsor;
   // getAllArticles()는 공유 캐시 참조라 정렬 전 filter로 새 배열을 만든 뒤에만 sort한다.
-  const fresh = getAllArticles().filter(isHomeFresh).sort(byReadThenNewest);
+  const fresh = getAllArticles().filter(eligible).filter(isHomeFresh).sort(byReadThenNewest);
   const stale = getAllArticles()
+    .filter(eligible)
     .filter((a) => !isHomeFresh(a))
     .sort(byReadThenNewest);
   return [...fresh, ...stale].slice(0, count);

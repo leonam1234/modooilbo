@@ -33,6 +33,12 @@ const siteGraphLd = {
       url: `${SITE.url}/`, // canonical(끝슬래시)과 동일 표기
       logo: { "@type": "ImageObject", url: `${SITE.url}/logo.png`, width: 512, height: 512 },
       foundingDate: SITE.regDate.replace(/\./g, "-"),
+      // 인터넷신문 등록번호 — 포털·검색이 매체 실체를 기계 확인할 수 있는 식별자(2026-08-20 점검 반영)
+      identifier: {
+        "@type": "PropertyValue",
+        propertyID: "인터넷신문 등록번호",
+        value: SITE.regNumber,
+      },
       address: {
         "@type": "PostalAddress",
         streetAddress: SITE.address,
