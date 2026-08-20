@@ -26,7 +26,7 @@ export default function NewsroomPage() {
       />
 
       <section aria-label="기자 명단" className="mt-8 grid gap-5 sm:grid-cols-2">
-        {REPORTERS.map((r) => (
+        {REPORTERS.filter((r) => r.listed !== false).map((r) => (
           <Link
             key={r.slug}
             href={`/reporter/${r.slug}/`}
