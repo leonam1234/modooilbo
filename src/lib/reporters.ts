@@ -18,8 +18,8 @@ export interface Reporter {
 }
 
 export const REPORTERS: Reporter[] = [
-  { slug: "kim-younghwan", name: "김영환", role: "경제부 기자", beat: "거시경제·산업·금융을 취재합니다." , expertise: "정부지원사업·공공입찰 공고 분석, 기업 공시(DART)·거시경제 지표 해설" },
-  { slug: "yoo-seunghyun", name: "유승현", role: "사회부 기자", beat: "사건·노동·교육 등 사회 전반을 취재합니다." , expertise: "사회 정책·행정 서비스, 창업지원 프로그램, 채용·노동 공고 분석" },
+  { slug: "kim-younghwan", photo: "/reporters/kim-younghwan.jpg", name: "김영환", role: "경제부 기자", beat: "거시경제·산업·금융을 취재합니다." , expertise: "정부지원사업·공공입찰 공고 분석, 기업 공시(DART)·거시경제 지표 해설" },
+  { slug: "yoo-seunghyun", photo: "/reporters/yoo-seunghyun.jpg", name: "유승현", role: "사회부 기자", beat: "사건·노동·교육 등 사회 전반을 취재합니다." , expertise: "사회 정책·행정 서비스, 창업지원 프로그램, 채용·노동 공고 분석" },
   { slug: "kim-sungwoo", name: "김성우", role: "국제부 기자", beat: "국제 정세와 외교를 취재합니다." , expertise: "국제기구·주요국 공식 통계와 정책 원자료 해설" },
   { slug: "park-yuju", name: "박유주", role: "테크부 기자", beat: "IT·과학·스타트업을 취재합니다." , expertise: "산업 정책·기업 동향, 정부 R&D·기술 지원사업 분석" },
   { slug: "nam-dongkyun", name: "남동균", role: "문화·스포츠부 기자", beat: "문화·연예·스포츠 현장을 취재합니다." , expertise: "공연·전시 일정 검증 보도, KBO·해외 스포츠 공식 기록 분석" },
