@@ -13,7 +13,7 @@ import { PageHeader } from "@/components/PageHeader";
 export const metadata: Metadata = {
   title: "편집국 소개",
   description:
-    "모두일보 편집국의 기자 구성과 담당 분야, 연락 창구를 안내합니다. 모든 기자는 윤리강령을 준수하며 이해상충은 기사에 고지합니다.",
+    "모두일보 편집국의 기자 구성과 담당 분야, 연락 창구를 안내합니다. 모든 기자는 윤리강령을 준수하며 이해상충은 기사에 고지합니다. 기자별 담당과 전문 분야, 원자료 대조 절차와 광고 구분 원칙, 편집국 연락처를 함께 안내합니다. 기사는 공식 원자료를 직접 확인해 작성합니다.",
   alternates: { canonical: "/newsroom/" },
 };
 

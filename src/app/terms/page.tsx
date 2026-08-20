@@ -3,7 +3,7 @@ import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
   title: "이용약관",
-  description: "모두일보 서비스 이용약관 — 회원과 회사의 권리·의무 및 이용 조건을 안내합니다.",
+  description: "모두일보 서비스 이용약관 — 회원과 회사의 권리·의무 및 이용 조건을 안내합니다. 회원 가입과 계정 이용, 게시물과 댓글 운영, 서비스 변경과 중단, 책임의 범위와 분쟁 해결 절차를 담았습니다. 개정 시에는 시행일과 함께 미리 공지합니다.",
   alternates: { canonical: "/terms/" },
 };
 

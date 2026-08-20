@@ -7,7 +7,7 @@ import { NewsletterToggle } from "./NewsletterToggle";
 export const metadata: Metadata = {
   title: "뉴스레터",
   description:
-    "모두일보 에디터가 엄선한 뉴스를 메일함으로. 매주 월요일 통합 레터를 발송하며, 핵심 브리핑부터 경제·테크·문화 심층 레터까지, 원하는 주제만 골라 구독하세요.",
+    "모두일보 에디터가 엄선한 뉴스를 메일함으로. 매주 월요일 통합 레터를 발송하며, 핵심 브리핑부터 경제·테크·문화 심층 레터까지, 원하는 주제만 골라 구독하세요. 구독은 무료이며 메일 하단에서 언제든 해지할 수 있습니다. 주제별 레터는 순차적으로 열 예정이며 준비되는 대로 이 페이지에서 안내합니다.",
   alternates: { canonical: "/newsletter/" },
 };
 

@@ -8,7 +8,7 @@ import { PageHeader } from "@/components/PageHeader";
 export const metadata: Metadata = {
   title: "정정·반론 보도 모음",
   description:
-    "모두일보가 게재한 정정 및 반론 보도 내역을 투명하게 공개하는 아카이브입니다.",
+    "모두일보가 게재한 정정 및 반론 보도 내역을 투명하게 공개하는 아카이브입니다. 언론중재법에 따라 정정·반론 청구를 접수하고, 정정한 기사에는 무엇이 어떻게 바로잡혔는지 사유를 함께 남깁니다. 고충처리인 연락처와 언론중재위원회 조정 절차도 안내합니다.",
   alternates: { canonical: "/corrections/" },
 };
 

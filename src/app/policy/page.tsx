@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/PageHeader";
 export const metadata: Metadata = {
   title: "운영정책",
   description:
-    "모두일보 자율 운영정책 — 허위·조작정보 대응, 신고·이의신청 절차, 댓글 운영 기준을 안내합니다.",
+    "모두일보 자율 운영정책 — 허위·조작정보 대응, 신고·이의신청 절차, 댓글 운영 기준을 안내합니다. 허위·조작정보 대응 원칙과 신고·이의신청 절차, 댓글 운영 기준, 팩트체크 협력과 투명성 보고까지 모두일보가 스스로 지키는 운영 규범을 문서로 남깁니다.",
   alternates: { canonical: "/policy/" },
 };
 

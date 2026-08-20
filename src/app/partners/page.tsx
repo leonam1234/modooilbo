@@ -7,7 +7,7 @@ import { PARTNERS } from "@/lib/partners";
 export const metadata: Metadata = {
   title: "광고·후원 계약사",
   description:
-    "모두일보에 광고·콘텐츠 제작 용역을 위탁한 계약사와 모두일보와의 이해관계를 공개합니다.",
+    "모두일보에 광고·콘텐츠 제작 용역을 위탁한 계약사와 모두일보와의 이해관계를 공개합니다. 광고·후원 계약사의 상호와 사업 내용, 발행인과의 이해관계를 공개합니다. 광고성 콘텐츠는 기사와 구분해 광고 표기와 함께 발행하며 편집권은 독립적으로 행사합니다.",
   alternates: { canonical: "/partners/" },
 };
 

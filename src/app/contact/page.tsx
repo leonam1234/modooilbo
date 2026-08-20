@@ -7,7 +7,7 @@ import { ContactForm } from "./ContactForm";
 export const metadata: Metadata = {
   title: "고객센터",
   description:
-    "모두일보 부서별 연락처와 자주 묻는 질문, 온라인 문의 양식을 안내합니다. 구독·광고·제보 등 무엇이든 문의해 주세요.",
+    "모두일보 부서별 연락처와 자주 묻는 질문, 온라인 문의 양식을 안내합니다. 구독·광고·제보 등 무엇이든 문의해 주세요. 제보와 취재 요청, 광고·제휴 문의, 채용 지원과 정정 요청 창구를 안내합니다. 접수하시면 서버가 발급한 접수번호를 드리고 담당 부서로 전달합니다.",
   alternates: { canonical: "/contact/" },
 };
 

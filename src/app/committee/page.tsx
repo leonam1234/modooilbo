@@ -7,7 +7,7 @@ import { COMMITTEE_MEMBERS, COMMITTEE_MINUTES } from "@/lib/committee";
 export const metadata: Metadata = {
   title: "이용자위원회",
   description:
-    "모두일보 이용자위원회의 운영규칙과 구성, 회의 기록을 공개합니다. 독자의 의견을 정기적으로 듣고 무엇을 고쳤는지 남깁니다.",
+    "모두일보 이용자위원회의 운영규칙과 구성, 회의 기록을 공개합니다. 독자의 의견을 정기적으로 듣고 무엇을 고쳤는지 남깁니다. 외부 위원 구성과 위촉 절차, 회의 운영 규칙과 회의록 공개 방침을 담았습니다. 법정 필수 기구는 아니지만 스스로를 검증할 외부 장치로 자발적으로 둡니다.",
   alternates: { canonical: "/committee/" },
 };
 
