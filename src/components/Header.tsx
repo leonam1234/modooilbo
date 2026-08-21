@@ -93,7 +93,9 @@ export function Header() {
   return (
     <header className="relative">
       {/* 상단 유틸리티 바 */}
-      <div className="hidden border-b border-ink-100/70 bg-ink-50/75 text-xs text-ink-500 backdrop-blur-md dark:border-ink-800/70 dark:bg-ink-950/85 dark:text-ink-400 md:block">
+      {/* 유틸바 — 아래 마스트헤드와 같은 유리로 통일(2026-08-21).
+          종전엔 ink-50/75 + blur-md 라 아래 줄보다 훨씬 불투명해 층이 따로 놀았다. */}
+      <div className="hidden border-b border-ink-100/70 bg-white/30 text-xs text-ink-500 backdrop-blur-2xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/30 dark:border-ink-800/70 dark:bg-ink-950/45 dark:text-ink-400 dark:supports-[backdrop-filter]:bg-ink-950/45 md:block">
         <div className="container-page flex h-9 items-center justify-between">
           <span className="tabular-nums">{today || " "}</span>
           <nav className="flex items-center gap-4">
@@ -171,7 +173,7 @@ export function Header() {
         </nav>
         {/* 하단 줄: 종합뉴스 카테고리 (옅은 배경으로 분리, 색만 옅게).
             컬럼 폭은 위 줄과 같은 --gnb-col(정의는 헤더 wrapper 한 곳). */}
-        <nav aria-label="종합뉴스" className="hidden border-t border-ink-100 bg-ink-50/70 dark:border-ink-800/60 dark:bg-ink-900/40 md:block">
+        <nav aria-label="종합뉴스" className="hidden border-t border-ink-100/80 dark:border-ink-800/60 md:block">
           <div className="container-page">
           <div className="grid w-max grid-cols-[repeat(6,var(--gnb-col))] items-center">
             {SUB_CATEGORIES.map((c) => (
