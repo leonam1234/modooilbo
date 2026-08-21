@@ -38,11 +38,47 @@ export function getLeadArticle(): Article {
   );
 }
 
+/**
+ * 히어로 보조 기사 — 종합뉴스와 사업 축을 절반씩 섞는다(2026-08-21 결정).
+ *
+ * 종전엔 서브리드도 종합뉴스 전용이었는데, 발행량은 하루 24편 중 12편(누적 993편 중 470편,
+ * 47%)이 사업 축이라 대문 상단이 발행 실태와 어긋나 있었다. 리드 1건과 속보 티커는
+ * 종합뉴스 전용을 그대로 유지하고(톱기사 톤 보존), 보조 4칸만 50:50으로 맞춘다.
+ *
+ * 한쪽 축이 모자라면 다른 축이 채워 항상 count 를 채운다 — 빈 슬롯이 생기면 히어로
+ * 레이아웃에 구멍이 난다.
+ */
+/**
+ * 최신순 목록에서 n건을 뽑되 카테고리가 겹치지 않는 것을 먼저 채운다.
+ *
+ * 그냥 최신순 slice 를 쓰면 같은 카테고리가 나란히 걸린다 — 하루 24편이 카테고리별 2편씩
+ * 묶여 같은 시각으로 들어오기 때문에 드문 일이 아니다(2026-08-21 홈에서 공공입찰 2건이
+ * 연속으로 잡혔다). 서로 다른 축이 안 보이면 보조 4칸을 둔 의미가 없다.
+ * 후보가 모자라면 남은 것으로 채워 항상 n 을 맞춘다.
+ */
+function pickVaried(list: Article[], n: number): Article[] {
+  const seen = new Set<CategorySlug>();
+  const picked = list.filter((a) => !seen.has(a.category) && (seen.add(a.category), true)).slice(0, n);
+  if (picked.length < n) {
+    const chosen = new Set(picked.map((a) => a.id));
+    picked.push(...list.filter((a) => !chosen.has(a.id)).slice(0, n - picked.length));
+  }
+  return picked;
+}
+
 export function getSubLeads(count = 4): Article[] {
   const lead = getLeadArticle();
-  return getAllArticles()
-    .filter((a) => a.id !== lead.id && a.type !== "opinion" && isGeneralNews(a))
-    .slice(0, count);
+  const pool = getAllArticles().filter((a) => a.id !== lead.id && a.type !== "opinion");
+  const biz = pickVaried(pool.filter((a) => !isGeneralNews(a)), Math.floor(count / 2));
+  const general = pickVaried(pool.filter(isGeneralNews), count - biz.length);
+  // 종합뉴스가 모자랐다면 남은 칸을 사업 축이 더 가져간다(위 biz slice 밖의 기사로 보충).
+  const picked = [...general, ...biz];
+  if (picked.length < count) {
+    const chosen = new Set(picked.map((a) => a.id));
+    picked.push(...pool.filter((a) => !chosen.has(a.id)).slice(0, count - picked.length));
+  }
+  // 뽑은 뒤 최신순으로 되돌린다 — 축별로 뭉쳐 있으면 발행 시각 순서와 어긋나 보인다.
+  return picked.sort(byNewest);
 }
 
 /** 속보 시효 판정은 `lib/breaking`으로 옮겼다 — 전체 기사 배열이 아니라 최신 발행시각 상수만 쓴다.
