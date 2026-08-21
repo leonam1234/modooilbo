@@ -95,7 +95,7 @@ export function Header() {
       {/* 상단 유틸리티 바 */}
       {/* 유틸바 — 아래 마스트헤드와 같은 유리로 통일(2026-08-21).
           종전엔 ink-50/75 + blur-md 라 아래 줄보다 훨씬 불투명해 층이 따로 놀았다. */}
-      <div className="hidden border-b border-ink-100/70 bg-white/30 text-xs text-ink-500 backdrop-blur-2xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/30 dark:border-ink-800/70 dark:bg-ink-950/30 dark:text-ink-400 dark:supports-[backdrop-filter]:bg-ink-950/30 md:block">
+      <div className="hidden text-xs text-ink-500 dark:text-ink-400 md:block">
         <div className="container-page flex h-9 items-center justify-between">
           <span className="tabular-nums">{today || " "}</span>
           <nav className="flex items-center gap-4">
@@ -116,7 +116,7 @@ export function Header() {
       {/* --gnb-col: 아래 2행 GNB(사업 6 + 종합 6 = 12칸)의 컬럼 앵커.
           ⚠️ 반드시 이 한 곳에서만 정의한다 — nav 별로 적으면 한쪽만 고쳐져 정렬이 어긋난다.
           md(768px)에서 6×7rem=672px 라 가장 좁은 데스크톱에서도 가로 넘침이 없다. */}
-      <div className="border-b border-ink-200/60 bg-white/95 [--gnb-col:7rem] backdrop-blur-2xl lg:[--gnb-col:7.5rem] backdrop-saturate-150 supports-[backdrop-filter]:bg-white/30 dark:border-ink-800/60 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/30">
+      <div className="[--gnb-col:7rem] lg:[--gnb-col:7.5rem]">
         <div className="container-page flex h-14 items-center justify-between gap-3 sm:h-16">
           <div className="flex items-center gap-2">
             <button
@@ -152,7 +152,7 @@ export function Header() {
             글자가 트랙보다 길어지면 그 항목만 밀려나므로, 라벨을 늘릴 때는 --gnb-col 도 함께 볼 것.
             justify-self-center: 칸 왼쪽에 붙이면 「정부지원금」 아래 「경제」가 왼쪽으로 치우쳐 보인다.
             글자 수가 5:2 로 차이나서 시각적 중심이 어긋나기 때문 — 두 줄 다 칸 중앙에 둔다. */}
-        <nav aria-label="사업 메뉴" className="hidden border-t border-ink-100 dark:border-ink-800/60 md:block">
+        <nav aria-label="사업 메뉴" className="hidden md:block">
           <div className="container-page">
           <div className="grid w-max grid-cols-[repeat(6,var(--gnb-col))] items-center">
             {BIZ_CATEGORIES.map((m) => (
@@ -175,7 +175,7 @@ export function Header() {
         </nav>
         {/* 하단 줄: 종합뉴스 카테고리 (옅은 배경으로 분리, 색만 옅게).
             컬럼 폭은 위 줄과 같은 --gnb-col(정의는 헤더 wrapper 한 곳). */}
-        <nav aria-label="종합뉴스" className="hidden border-t border-ink-100/80 dark:border-ink-800/60 md:block">
+        <nav aria-label="종합뉴스" className="hidden md:block">
           <div className="container-page">
           <div className="grid w-max grid-cols-[repeat(6,var(--gnb-col))] items-center">
             {SUB_CATEGORIES.map((c) => (
@@ -187,7 +187,7 @@ export function Header() {
                   "relative justify-self-center px-3.5 py-2.5 text-[15px] font-medium transition-colors hover:text-signal-600 dark:hover:text-signal-400",
                   isActive(c.slug)
                     ? "text-signal-600 dark:text-signal-400 after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:bg-signal-600"
-                    : "text-ink-500 dark:text-ink-400",
+                    : "text-ink-900 dark:text-white",
                 )}
               >
                 {c.name}

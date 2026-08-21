@@ -55,8 +55,8 @@ export function TrendingTags() {
   const cur = data.tags[idx % data.tags.length];
 
   return (
-    <div className="relative border-b border-ink-100 bg-white/95 backdrop-blur-2xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/30 dark:border-ink-800 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/30">
-      <div className="container-page flex items-center gap-3 py-1.5">
+    <div className="relative">
+      <div className="container-page flex h-11 items-center gap-3">
         <span className="shrink-0 text-xs font-bold text-ink-800 dark:text-ink-100">
           <span className="tw-live mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-breaking align-middle" />
           실시간 인기
@@ -122,7 +122,7 @@ export function TrendingTags() {
       {open && (
         <div
           ref={panelRef}
-          className="absolute inset-x-0 top-full z-50 border-b border-ink-100 bg-white/95 shadow-lg backdrop-blur-2xl dark:border-ink-800 dark:bg-ink-950/95 sm:hidden"
+          className="absolute inset-x-0 top-full z-50 border-b border-ink-100 bg-white/95 shadow-lg backdrop-blur-md dark:border-ink-800 dark:bg-ink-950/95 sm:hidden"
         >
           <div className="container-page pb-3 pt-4">
             <div className="mb-2.5 flex items-center justify-between">

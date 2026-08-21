@@ -151,8 +151,13 @@ export default function RootLayout({
         >
           본문 바로가기
         </a>
-        {/* 헤더 + 속보 티커를 한 덩어리로 sticky 고정 (스크롤 시 같이 따라옴) */}
-        <div className="no-print sticky top-0 z-40">
+        {/* 헤더 + 속보 + 실시간인기 = **통유리 한 장**.
+            유리(배경 알파 + backdrop-filter)를 여기 한 곳에서만 건다. 자식들은 전부 투명이다.
+            ⚠️ 자식에 배경이나 backdrop-filter 를 도로 넣지 말 것 — 각자 제 백드롭을 따로
+               필터링해 층이 갈리고, 경계마다 톤이 어긋나 '판 여러 장'으로 보인다.
+            ⚠️ 기본값은 불투명(95%)이고 투명(30%)은 supports-[backdrop-filter] 안에서만 켠다.
+               블러가 없는 브라우저에서 30% 만 남으면 뒤 본문이 그대로 비쳐 헤더를 읽을 수 없다. */}
+        <div className="no-print sticky top-0 z-40 border-b border-ink-200/50 bg-white/95 backdrop-blur-md backdrop-saturate-150 supports-[backdrop-filter]:bg-white/30 dark:border-ink-800/50 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/30">
           <Header />
           <BreakingTicker />
           <TrendingTags />
