@@ -95,7 +95,7 @@ export function Header() {
       {/* 상단 유틸리티 바 */}
       {/* 유틸바 — 아래 마스트헤드와 같은 유리로 통일(2026-08-21).
           종전엔 ink-50/75 + blur-md 라 아래 줄보다 훨씬 불투명해 층이 따로 놀았다. */}
-      <div className="hidden border-b border-ink-100/70 bg-white/30 text-xs text-ink-500 backdrop-blur-2xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/30 dark:border-ink-800/70 dark:bg-ink-950/45 dark:text-ink-400 dark:supports-[backdrop-filter]:bg-ink-950/45 md:block">
+      <div className="hidden border-b border-ink-100/70 bg-white/30 text-xs text-ink-500 backdrop-blur-2xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/30 dark:border-ink-800/70 dark:bg-ink-950/30 dark:text-ink-400 dark:supports-[backdrop-filter]:bg-ink-950/30 md:block">
         <div className="container-page flex h-9 items-center justify-between">
           <span className="tabular-nums">{today || " "}</span>
           <nav className="flex items-center gap-4">
@@ -116,7 +116,7 @@ export function Header() {
       {/* --gnb-col: 아래 2행 GNB(사업 6 + 종합 6 = 12칸)의 컬럼 앵커.
           ⚠️ 반드시 이 한 곳에서만 정의한다 — nav 별로 적으면 한쪽만 고쳐져 정렬이 어긋난다.
           md(768px)에서 6×7rem=672px 라 가장 좁은 데스크톱에서도 가로 넘침이 없다. */}
-      <div className="border-b border-ink-200/60 bg-white/95 [--gnb-col:7rem] backdrop-blur-2xl lg:[--gnb-col:7.5rem] backdrop-saturate-150 supports-[backdrop-filter]:bg-white/30 dark:border-ink-800/60 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/45">
+      <div className="border-b border-ink-200/60 bg-white/95 [--gnb-col:7rem] backdrop-blur-2xl lg:[--gnb-col:7.5rem] backdrop-saturate-150 supports-[backdrop-filter]:bg-white/30 dark:border-ink-800/60 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/30">
         <div className="container-page flex h-14 items-center justify-between gap-3 sm:h-16">
           <div className="flex items-center gap-2">
             <button
