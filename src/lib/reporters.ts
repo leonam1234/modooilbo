@@ -38,7 +38,7 @@ export const REPORTERS: Reporter[] = [
     expertise: "국제기구·주요국 공식 통계와 정책 원자료 해설",
     listed: false,
   },
-  { slug: "park-yuju", name: "박유주", role: "논설위원", beat: "모두일보의 시각을 칼럼과 사설로 전합니다. 산업·기술 분야를 취재해 왔습니다." , expertise: "산업 정책·기업 동향, 정부 R&D·기술 지원사업 분석" },
+  { slug: "park-yuju", photo: "/reporters/park-yuju.jpg", name: "박유주", role: "논설위원", beat: "모두일보의 시각을 칼럼과 사설로 전합니다. 산업·기술 분야를 취재해 왔습니다." , expertise: "산업 정책·기업 동향, 정부 R&D·기술 지원사업 분석" },
   // 2026-08-20 합류. 국제 전담 — 종전 국제 75편은 김성우 발행인이 맡았는데
   // 발행인이 편집국 명단에서 빠지며 담당자가 없어진 축이다.
   // ⚠️ expertise 는 발행 이력이 쌓이면 아카이브 기준으로 다시 맞춘다(경력 창작 금지).
@@ -46,7 +46,7 @@ export const REPORTERS: Reporter[] = [
   // 2026-08-20 합류. 공공입찰 전담 — 종전엔 김영환 기자가 economy·bids·deals·grants
   // 네 축을 혼자 맡아 하루 5.8편이었다. bids 를 떼어내 부담을 나누고 전문 분야를 선명히 한다.
   // ⚠️ expertise 는 발행 이력이 쌓이면 아카이브 기준으로 다시 맞춘다(경력 창작 금지).
-  { slug: "seo-youngho", name: "서영호", role: "공공입찰 전담기자", beat: "나라장터 공고와 공공조달 동향을 취재합니다.", expertise: "나라장터 입찰공고 분석 — 추정가격·배정예산, 입찰·개찰 일정, 정정·취소 확인" },
+  { slug: "seo-youngho", photo: "/reporters/seo-youngho.jpg", name: "서영호", role: "공공입찰 전담기자", beat: "나라장터 공고와 공공조달 동향을 취재합니다.", expertise: "나라장터 입찰공고 분석 — 추정가격·배정예산, 입찰·개찰 일정, 정정·취소 확인" },
   { slug: "nam-dongkyun", name: "남동균", role: "문화·스포츠부 기자", beat: "문화·연예·스포츠 현장을 취재합니다." , expertise: "공연·전시 일정 검증 보도, KBO·해외 스포츠 공식 기록 분석" },
   {
     slug: "yoo-suhwa",
