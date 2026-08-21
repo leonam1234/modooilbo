@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { AutoRefresh } from "@/components/AutoRefresh";
 import { WeatherBackground } from "@/components/WeatherBackground";
 import { BackToTop } from "@/components/BackToTop";
+import { GlassFilters } from "@/components/GlassFilters";
 import { ThirdPartyScripts } from "@/components/ThirdPartyScripts";
 import { DEFAULT_OG_IMAGE, SITE, SITE_DESCRIPTION } from "@/lib/site";
 
@@ -141,6 +142,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans">
+        <GlassFilters />
         <AutoRefresh />
         <WeatherBackground />
         <a

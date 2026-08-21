@@ -307,6 +307,30 @@
   .dark .glass-card { background: rgba(16, 18, 23, 0.97); }
 }
 
+/* ── 굴절(refraction) — 뒤 배경을 흐리는 데서 그치지 않고 실제로 밀어낸다 ─────────
+   blur 는 아무리 세게 걸어도 직선을 직선으로 남긴다. 유리처럼 보이려면 배경이 휘어야 하고,
+   그건 SVG feDisplacementMap 으로만 된다(필터 정의: components/GlassFilters.tsx).
+
+   ⚠️ 크로미움 전용이다. 사파리·파이어폭스는 backdrop-filter 에서 url() 을 받지 않는다.
+      그래서 굴절은 '더하기'로만 얹는다 — 아래 @supports 가 통째로 무시되면 위의 blur 유리가
+      그대로 남는다. 순서를 뒤집어 url() 을 기본값에 넣으면 사파리에서 유리가 사라진다.
+
+   ⚠️ 이 사이트는 신문이다. 유리 뒤가 대부분 기사 텍스트라, 변위를 키우면 글자가 뭉개져
+      '고급스러움'이 아니라 '렌더링 버그'로 읽힌다. 그래서 opt-in(.glass--refract)이고
+      값도 보수적으로 잡았다. 본문을 가리는 넓은 면에는 붙이지 않는다. */
+@supports (backdrop-filter: url(#lg-sm)) {
+  /* ⚠️ 블러를 .glass 기본값(18px)보다 크게 낮췄다. 블러가 세면 변위가 밀어낼 디테일이
+     이미 사라져서 굴절이 '적용은 됐는데 안 보이는' 상태가 된다. 둘은 맞바꿈 관계다. */
+  .glass--refract {
+    -webkit-backdrop-filter: url(#lg-sm) blur(5px) saturate(1.7);
+            backdrop-filter: url(#lg-sm) blur(5px) saturate(1.7);
+  }
+  .glass--refract-lg {
+    -webkit-backdrop-filter: url(#lg-lg) blur(7px) saturate(1.7);
+            backdrop-filter: url(#lg-lg) blur(7px) saturate(1.7);
+  }
+}
+
 
 
 /* 금빛 광 스윕 — 뉴스레터 CTA(검정 밴드) 전용 프리미엄 모션.
