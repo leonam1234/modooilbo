@@ -1,6 +1,6 @@
 # 07 · 리뷰 & QA
 
-상세 로그: [REVIEW.md](../REVIEW.md). 캡쳐물: `review-shots/<round>/`.
+상세 로그: [archive/REVIEW.md](archive/REVIEW.md)(2026-07 초기 빌드 기록). 캡쳐물: `review-shots/<round>/`.
 
 ## 1. 방법론 — 스크린샷 기반 직접 판독
 - 도구: **Playwright 헤드리스 크로미움** ([scripts/shoot.mjs](../scripts/shoot.mjs)).

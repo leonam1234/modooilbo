@@ -60,7 +60,6 @@ scripts/static-server.mjs  # out/ 정적 서빙 (CF 동작 근사)
 - 배포: ✅ Cloudflare Pages 준비 완료 (`npm run deploy:cf`)
 
 ## 🔗 루트 문서 (이 위키의 원천/보완)
-- [PLAN.md](../PLAN.md) — 전체 계획·진행 로그
-- [REVIEW.md](../REVIEW.md) — 리뷰 라운드 상세 로그
-- [DEPLOY.md](../DEPLOY.md) — 배포 상세
+- [decisions/](decisions/) — **결정 기록** (왜 그렇게 했고 무엇을 버렸는가)
+- [archive/](archive/) — 역할이 끝난 문서(PLAN·REVIEW·DEPLOY·DEPLOYMENT)
 - [docs/AGENT_BRIEF.md](../docs/AGENT_BRIEF.md) — 페이지 작성 에이전트 공통 브리핑
