@@ -1,41 +1,90 @@
 # 05 · 페이지 맵 (Pages / Routes)
 
-App Router. 전부 정적(Static) 또는 SSG. 빌드 시 90개 페이지 생성.
+App Router. 전부 Static 또는 SSG. **빌드 시 1,098개 HTML 생성**(2026-08-21, 기사 993편 기준).
 
-## 뉴스
-| 경로 | 파일 | 목적 | 렌더 |
-|------|------|------|------|
-| `/` | [page.tsx](../src/app/page.tsx) | 홈 — 리드·섹션·랭킹·오피니언·미디어·뉴스레터 | Static |
-| `/[category]` | [\[category\]/page.tsx](../src/app/[category]/page.tsx) | 섹션 목록(8종) — 리드 + 그리드 + 사이드 랭킹 | SSG×8 |
-| `/article/[slug]` | [article/\[slug\]/page.tsx](../src/app/article/[slug]/page.tsx) | 기사 상세 — 본문·액션·태그·관련기사·JSON-LD·읽는시간 | SSG×62 |
-| `/search` | [search/page.tsx](../src/app/search/page.tsx) + [SearchClient](../src/app/search/SearchClient.tsx) | 검색(클라 필터, 서버 인덱스 주입) | Static |
-| `/media` | [media/page.tsx](../src/app/media/page.tsx) | 포토·영상 그리드 | Static |
+> 2026-08-21 전면 갱신. 종전 판은 "90개 페이지 · 카테고리 8종 · 기사 62편" 기준이었고
+> 이미 삭제된 `/media` 와 `sitemap.ts` 를 싣고 있었다.
 
-> `/opinion`은 별도 페이지가 아니라 `[category]`의 opinion 슬러그로 처리.
+## 1. 뉴스
 
-## 회사 · 서비스
+| 경로 | 파일 | 목적 | 생성 수 |
+|---|---|---|---|
+| `/` | [page.tsx](../src/app/page.tsx) | 홈 — 히어로 + 기업데이터 6섹션 + 종합뉴스 6섹션 | 1 |
+| `/article/[slug]` | [article/\[slug\]](../src/app/article/[slug]/page.tsx) | 기사 상세 | **993** |
+| `/[category]` | [\[category\]](../src/app/[category]/page.tsx) | 종합뉴스 섹션 목록 | 7 |
+| `/[category]/page/[n]` | [+ page/\[page\]](../src/app/[category]/page/[page]/page.tsx) | 종합 페이지네이션 | 다수 |
+| `/grants` `/bids` `/startup` `/industry` `/labor` `/deals` | 각 디렉터리 | **사업 축 6종**(별도 라우트) | 6 + 각 `/page/[n]` |
+| `/reporter/[slug]` (+ `/page/[n]`) | [reporter/\[slug\]](../src/app/reporter/[slug]/page.tsx) | 기자 프로필 + 기사 목록 | 8명 |
+| `/search` | [search](../src/app/search/page.tsx) | 검색(클라 필터 + 인덱스 JSON) | 1 |
+
+⚠️ **사업 축은 `[category]` 동적 라우트가 아니라 각자 디렉터리**를 가진다.
+종합뉴스 루프가 사업 축을 순회하지 않게 하려는 의도적 분리다([03 §2](03-content-model.md)).
+목록 화면 자체는 [CategoryListPage](../src/components/CategoryListPage.tsx) 하나로 구현돼 있다.
+
+⚠️ `/opinion` 은 별도 페이지가 아니라 `[category]` 의 opinion 슬러그다.
+`/tech` 는 편성에서 빠졌지만 색인 보존을 위해 라우트는 살아 있다.
+
+## 2. 편집국 · 신뢰
+
+| 경로 | 비고 |
+|---|---|
+| `/newsroom` | 편집국 소개 — 기자 6명(명단 제외 2명은 목록에서만 빠짐) |
+| `/corrections` | 정정·반론 보도 모음 — `correction` 필드가 있는 기사만 |
+| `/ethics` | 윤리강령·청소년보호 |
+| `/policy` | 운영정책 — 허위조작정보·신고·이의신청·댓글·팩트체크·투명성 + **7절 AI 활용 고지** ([decisions/0001](decisions/0001-ai-disclosure-scope.md)) |
+| `/transparency` | 투명성 보고 |
+| `/committee` | 편집위원회 |
+| `/ombudsman` | 고충처리인 |
+| `/about` | 회사소개 — 미션·가치·연혁 |
+| `/partners` | 제휴·광고주 |
+
+## 3. 서비스 · 계정
+
+| 경로 | 비고 |
+|---|---|
+| `/subscribe` `/newsletter` | 구독·후원, 뉴스레터 |
+| `/advertise` `/tips` `/contact` `/careers` | 광고문의·제보·문의·채용 |
+| `/login` `/register` `/account` | 로그인·가입·내 계정 |
+| `/forgot` `/reset` `/verify-email` `/verify-signup` | 비밀번호 재설정·이메일 인증 |
+| `/terms` `/privacy` | 약관·개인정보처리방침 |
+| `/weather` | 날씨 |
+
+⚠️ 이 폼들은 **데모가 아니다.** [functions/api/](../functions/api/)(Cloudflare Pages
+Functions + D1)가 실제로 처리한다 — [04 §8](04-components.md) 참조.
+
+## 4. 피드 · 사이트맵 (route handler, `force-static`)
+
 | 경로 | 파일 | 비고 |
-|------|------|------|
-| `/about` | [about](../src/app/about/page.tsx) | 회사소개(미션·가치·연혁·조직) |
-| `/careers` | [careers](../src/app/careers/page.tsx) + ApplyForm | **인재채용·기자모집** + 지원폼 |
-| `/subscribe` | [subscribe](../src/app/subscribe/page.tsx) | 구독·후원 요금제 3종 |
-| `/newsletter` | [newsletter](../src/app/newsletter/page.tsx) + NewsletterToggle | 뉴스레터 종류 + 구독 |
-| `/advertise` | [advertise](../src/app/advertise/page.tsx) + AdInquiryForm | 광고·제휴 + 문의폼 |
-| `/tips` | [tips](../src/app/tips/page.tsx) + TipForm | 제보(익명 옵션) |
-| `/contact` | [contact](../src/app/contact/page.tsx) + ContactForm | 고객센터 + 문의폼 |
-| `/ethics` | [ethics](../src/app/ethics/page.tsx) | 윤리강령·편집위원회·청소년보호 |
-| `/login` | [login](../src/app/login/page.tsx) + LoginForm | 로그인 + 소셜 |
-| `/register` | [register](../src/app/register/page.tsx) + RegisterForm | 회원가입 |
-| `/terms` | [terms](../src/app/terms/page.tsx) | 이용약관 |
-| `/privacy` | [privacy](../src/app/privacy/page.tsx) | 개인정보처리방침 |
+|---|---|---|
+| `/sitemap.xml` | [sitemap.xml/route.ts](../src/app/sitemap.xml/route.ts) | **인덱스** — 아래 둘을 가리킴 |
+| `/sitemap-pages.xml` | [route](../src/app/sitemap-pages.xml/route.ts) | 정적 페이지 + 기자 프로필 |
+| `/sitemap-articles/[year]/sitemap.xml` | [route](../src/app/sitemap-articles/[year]/sitemap.xml/route.ts) | 연도별 기사 |
+| `/news-sitemap.xml` | [route](../src/app/news-sitemap.xml/route.ts) | 구글 뉴스용(최근분) |
+| `/rss.xml` | [route](../src/app/rss.xml/route.ts) | RSS. **IndexNow 통지 URL 목록의 출처** |
+| `/articles-index.json` | [route](../src/app/articles-index.json/route.ts) | 검색용 경량 인덱스. `?v=CONTENT_VERSION` 으로 캐시 무효화 |
+| `/robots.txt` | [robots.ts](../src/app/robots.ts) | AI 크롤러 허용 |
 
-## 시스템
-| 경로 | 파일 | 비고 |
-|------|------|------|
-| (404) | [not-found.tsx](../src/app/not-found.tsx) | 브랜드형 404 → `out/404.html` |
-| (로딩) | [loading.tsx](../src/app/loading.tsx) | 라우트 전환 스피너 |
-| `/robots.txt` | [robots.ts](../src/app/robots.ts) | `force-static` |
-| `/sitemap.xml` | [sitemap.ts](../src/app/sitemap.ts) | 정적+카테고리+기사 전체 |
+⚠️ 종전 문서의 `sitemap.ts` 는 2026-07-31 에 위 구조로 대체됐다.
+사이트맵 구성 로직은 [sitemap-parts.ts](../src/lib/sitemap-parts.ts) 에 있고,
+기자 프로필 등재는 `REPORTER_INDEXABLE` 로 게이트된다(noindex 페이지가 사이트맵에
+남는 드리프트 방지).
 
-## 공통 레이아웃
-[layout.tsx](../src/app/layout.tsx): `<skip-link>` → `<Header/>` → `<BreakingTicker/>` → `<main id="content">{children}</main>` → `<Footer/>`. 메타데이터 `title.template = "%s | 모두일보"`.
+## 5. 시스템
+
+| 경로 | 파일 |
+|---|---|
+| (404) | [not-found.tsx](../src/app/not-found.tsx) → `out/404.html` |
+| (로딩) | [loading.tsx](../src/app/loading.tsx) |
+
+## 6. 공통 레이아웃
+
+[layout.tsx](../src/app/layout.tsx):
+skip-link → `Header` → `TrendingTags` → `BreakingTicker` → `<main id="content">` → `Footer`
++ `BackToTop` · `ThirdPartyScripts` · 날씨 배경.
+메타데이터 `title.template = "%s | 모두일보"`.
+
+## 7. 삭제된 라우트 (되살리지 말 것)
+
+| 경로 | 삭제 | 이유 |
+|---|---|---|
+| `/media` | 2026-07-08 | 대표 지시로 유튜브 노출 전면 철수. `MediaGrid` 도 함께 제거 |

@@ -7,17 +7,18 @@
 ## 1. 기술 스택
 | 영역 | 선택 | 비고 |
 |------|------|------|
-| 프레임워크 | **Next.js 15.1.6** (App Router) | RSC 기반, 정적 export |
+| 프레임워크 | **Next.js 15.5.20** (App Router) | RSC 기반, 정적 export |
 | 언어 | **TypeScript** (strict) | |
 | 스타일 | **Tailwind CSS 3.4** | `darkMode: "class"` |
 | 폰트 | Pretendard(본문, CDN 동적 서브셋) + MaruBuri Bold(헤드라인, `/fonts/` 자체 서브셋 275KB) | globals.css @font-face |
-| 이미지 | `next/image` + `unoptimized` | 정적 export용, picsum 더미 |
+| 이미지 | `next/image` + `unoptimized` | 정적 export용. 대표 이미지는 `/stock/<slug>.jpg` 셀프호스팅(R2 `img.modooilbo.com`) |
 | 배포 | **Cloudflare Pages** (정적 `out/`) | → [06-deployment](06-deployment.md) |
 | 테스트/리뷰 | Playwright (스크린샷) | `scripts/shoot.mjs` |
 
-## 2. 렌더링 모델 — 전부 정적
+## 2. 렌더링 모델 — 페이지는 정적, API 만 Functions
 - 모든 라우트가 **Static** 또는 **SSG**(generateStaticParams). 서버 런타임 없음.
-- `next.config.mjs`의 `output: "export"` → `next build` 시 `out/`에 완전한 정적 사이트 생성(90 페이지).
+- `next.config.mjs`의 `output: "export"` → `next build` 시 `out/`에 완전한 정적 사이트 생성(**1,098 페이지**, 2026-08-21 기준).
+- ⚠️ **서버 런타임이 아주 없는 것은 아니다.** API 는 Next route handler 가 아니라 **Cloudflare Pages Functions**(`functions/api/*`)로 분리돼 있어 `output: "export"` 를 유지한다.
 - 인터랙션은 **클라이언트 컴포넌트 하이드레이션**으로 처리(테마 토글·검색·폼·모바일 메뉴·기사 액션).
 - `trailingSlash: true` → `out/about/index.html` 식 폴더 구조(정적 호스팅 안정).
 
@@ -26,7 +27,7 @@
 src/
   app/
     layout.tsx          # 루트 레이아웃: <Header/> <BreakingTicker/> <main/> <Footer/>
-    page.tsx            # 홈 (HeroLead + SectionBlock×N + Ranking + Opinion + Media + Newsletter)
+    page.tsx            # 홈 (HeroLead + BizSectionGroup + SectionBlock×6 + Ranking + Newsletter)
     globals.css         # 디자인 토큰/유틸/접근성/인쇄 CSS
     [category]/page.tsx # 섹션 목록 (dynamicParams=false, generateStaticParams=8 카테고리)
     article/[slug]/page.tsx # 기사 상세 (62 슬러그, JSON-LD, 읽는시간)
