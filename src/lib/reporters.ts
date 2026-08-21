@@ -47,7 +47,7 @@ export const REPORTERS: Reporter[] = [
   // 네 축을 혼자 맡아 하루 5.8편이었다. bids 를 떼어내 부담을 나누고 전문 분야를 선명히 한다.
   // ⚠️ expertise 는 발행 이력이 쌓이면 아카이브 기준으로 다시 맞춘다(경력 창작 금지).
   { slug: "seo-youngho", photo: "/reporters/seo-youngho.jpg", name: "서영호", role: "공공입찰 전담기자", beat: "나라장터 공고와 공공조달 동향을 취재합니다.", expertise: "나라장터 입찰공고 분석 — 추정가격·배정예산, 입찰·개찰 일정, 정정·취소 확인" },
-  { slug: "nam-dongkyun", name: "남동균", role: "문화·스포츠부 기자", beat: "문화·연예·스포츠 현장을 취재합니다." , expertise: "공연·전시 일정 검증 보도, KBO·해외 스포츠 공식 기록 분석" },
+  { slug: "nam-dongkyun", photo: "/reporters/nam-dongkyun.jpg", name: "남동균", role: "문화·스포츠부 기자", beat: "문화·연예·스포츠 현장을 취재합니다." , expertise: "공연·전시 일정 검증 보도, KBO·해외 스포츠 공식 기록 분석" },
   {
     slug: "yoo-suhwa",
     photo: "/reporters/yoo-suhwa.jpg",
