@@ -27,7 +27,10 @@ export interface Reporter {
 
 export const REPORTERS: Reporter[] = [
   { slug: "kim-younghwan", photo: "/reporters/kim-younghwan.jpg", name: "김영환", role: "경제부 기자", beat: "거시경제·산업·금융을 취재합니다." , expertise: "정부지원사업·공공입찰 공고 분석, 기업 공시(DART)·거시경제 지표 해설" },
-  { slug: "yoo-seunghyun", photo: "/reporters/yoo-seunghyun.jpg", name: "유승현", role: "사회부 기자", beat: "사건·노동·교육 등 사회 전반을 취재합니다." , expertise: "사회 정책·행정 서비스, 창업지원 프로그램, 채용·노동 공고 분석" },
+  // 2026-08-21 담당 조정 — labor 를 최은영에게 넘기고 startup 을 유지한다.
+  // startup 75편이 이 기자의 단일 저자 아카이브라 넘기면 단절이 크고, labor 는 이미
+  // 유승현 65 + 김영환 12로 복수 저자 이력이 있어 인수인계 선례가 있다.
+  { slug: "yoo-seunghyun", photo: "/reporters/yoo-seunghyun.jpg", name: "유승현", role: "사회부 기자", beat: "사건·교육 등 사회 전반과 창업 생태계를 취재합니다." , expertise: "사회 정책·행정 서비스 해설, 창업지원 프로그램·스타트업 모집공고 분석" },
   {
     slug: "kim-sungwoo",
     name: "김성우",
@@ -41,8 +44,9 @@ export const REPORTERS: Reporter[] = [
   { slug: "park-yuju", photo: "/reporters/park-yuju.jpg", name: "박유주", role: "논설위원", beat: "모두일보의 시각을 칼럼과 사설로 전합니다. 산업·기술 분야를 취재해 왔습니다." , expertise: "산업 정책·기업 동향, 정부 R&D·기술 지원사업 분석" },
   // 2026-08-20 합류. 국제 전담 — 종전 국제 75편은 김성우 발행인이 맡았는데
   // 발행인이 편집국 명단에서 빠지며 담당자가 없어진 축이다.
+  // 2026-08-21 두 번째 축을 startup 에서 labor 로 교체했다(위 유승현 주석 참조).
   // ⚠️ expertise 는 발행 이력이 쌓이면 아카이브 기준으로 다시 맞춘다(경력 창작 금지).
-  { slug: "choi-eunyoung", photo: "/reporters/choi-eunyoung.jpg", name: "최은영", role: "국제부 기자", beat: "각국 공식 통계와 국제기구 발표를 취재합니다.", expertise: "주요국 통계기관·국제기구 원자료 해설 — 발표 시점과 집계 기준 확인" },
+  { slug: "choi-eunyoung", photo: "/reporters/choi-eunyoung.jpg", name: "최은영", role: "국제부 기자", beat: "각국 공식 통계와 국제기구 발표, 채용·노동 공고를 취재합니다.", expertise: "주요국 통계기관·국제기구 원자료 해설 — 발표 시점과 집계 기준 확인, 채용·노동 공고 분석" },
   // 2026-08-20 합류. 공공입찰 전담 — 종전엔 김영환 기자가 economy·bids·deals·grants
   // 네 축을 혼자 맡아 하루 5.8편이었다. bids 를 떼어내 부담을 나누고 전문 분야를 선명히 한다.
   // ⚠️ expertise 는 발행 이력이 쌓이면 아카이브 기준으로 다시 맞춘다(경력 창작 금지).
