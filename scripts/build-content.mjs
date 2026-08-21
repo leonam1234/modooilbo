@@ -404,9 +404,13 @@ function newestModule(articles) {
   // (필드 목록은 src/app/articles-index.json/route.ts 와 맞춰 유지할 것)
   // ⚠️ author는 {name, role} 객체라 문자열로 풀어 넣는다 — 그대로 join하면 항상
   //    "[object Object]"가 되어 바이라인만 고친 수정이 지문을 못 바꿨다(2026-08-14 점검).
+  // ⚠️ 구분자는 반드시 ·  **이스케이프 표기**로 둘 것. 종전엔 같은 문자를 raw
+  //    제어 바이트로 박아 뒀는데, 그러면 grep이 이 파일을 바이너리로 보고 **에러 없이 침묵**한다
+  //    (`grep reporting build-content.mjs` → 결과 0줄). 실제로 그것 때문에 "검증 로직이 아예
+  //    없다"고 오판한 적 있다(2026-08-21). 런타임 값은 둘이 완전히 같다 — 지문도 안 바뀐다.
   for (const a of articles) {
     fingerprint.update(
-      [a.id, a.slug, a.title, a.summary, a.category, a.publishedAt, (a.tags ?? []).join(""), `${a.author.name}/${a.author.role}`, a.imageUrl, a.type, a.isBreaking].join(" "),
+      [a.id, a.slug, a.title, a.summary, a.category, a.publishedAt, (a.tags ?? []).join("\u0001"), `${a.author.name}/${a.author.role}`, a.imageUrl, a.type, a.isBreaking].join("\u0000"),
     );
   }
   // 하드코딩 배치(articles.ts·articles2.ts)도 후보에 포함 — 콘텐츠가 비어 있어도 값이 남게.
