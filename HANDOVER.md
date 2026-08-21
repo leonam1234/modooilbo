@@ -34,15 +34,20 @@ macOS 권한이라 에이전트가 풀 수 없습니다.
 **영향**: 코덱스 원고 패키지가 `~/Documents/Codex/모두일보/출고대기/` 에 있어
 **현재 발행 작업이 불가능합니다.**
 
+배포 자체는 되지만 마지막 단계에서 `deployments/deploy-log.jsonl` 쓰기가
+EPERM 으로 실패합니다(그 폴더가 iCloud 동기화 대상). 배포·푸시·라이브 반영은
+정상이므로 그 에러만 보고 실패로 오해하지 마십시오.
+
 **복구 방법(오너 작업)**: 시스템 설정 → 개인정보 보호 및 보안 → 파일 및 폴더
 → Claude Code 에 문서·다운로드 폴더 허용. 또는 패키지를 `~/GIT` 아래로 이동.
 
 ## 2. 열려 있는 작업
 
-- **최은영 기자 사진 1장** — 나머지 5명은 반영 완료. 파일을
-  `~/GIT/modooilbo/public/reporters/choi-eunyoung.jpg` 로 받으면
-  512px 정사각 크롭 후 `src/lib/reporters.ts` 의 해당 항목에
-  `photo: "/reporters/choi-eunyoung.jpg"` 를 넣으면 끝.
+- ~~기자 사진~~ **완료(8/21)** — 편집국 6명 전원 실사진. 이니셜 아바타 0개.
+  새 기자 추가 시: 사진을 `public/reporters/<slug>.jpg` 로 512px 정사각 크롭 후
+  `src/lib/reporters.ts` 에 `photo: "/reporters/<slug>.jpg"` 추가.
+  ⚠️ 원본 파일을 지우기 전에 크롭 결과를 눈으로 확인할 것 — 상반신 사진은
+     얼굴이 작게 잡혀 재크롭이 필요한데, 원본을 지우면 소재가 없어진다.
 - **애드센스 심사 대기** — ads.txt 승인됨, 사이트 검토 중. 구글 응답 대기라
   할 일 없음. 탈락하면 사유 보고 재대응.
 - **빙 재크롤 요청**(오너) — meta description 57건 지적은 전부 수정 완료.
