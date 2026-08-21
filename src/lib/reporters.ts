@@ -42,7 +42,7 @@ export const REPORTERS: Reporter[] = [
   // 2026-08-20 합류. 국제 전담 — 종전 국제 75편은 김성우 발행인이 맡았는데
   // 발행인이 편집국 명단에서 빠지며 담당자가 없어진 축이다.
   // ⚠️ expertise 는 발행 이력이 쌓이면 아카이브 기준으로 다시 맞춘다(경력 창작 금지).
-  { slug: "choi-eunyoung", name: "최은영", role: "국제부 기자", beat: "각국 공식 통계와 국제기구 발표를 취재합니다.", expertise: "주요국 통계기관·국제기구 원자료 해설 — 발표 시점과 집계 기준 확인" },
+  { slug: "choi-eunyoung", photo: "/reporters/choi-eunyoung.jpg", name: "최은영", role: "국제부 기자", beat: "각국 공식 통계와 국제기구 발표를 취재합니다.", expertise: "주요국 통계기관·국제기구 원자료 해설 — 발표 시점과 집계 기준 확인" },
   // 2026-08-20 합류. 공공입찰 전담 — 종전엔 김영환 기자가 economy·bids·deals·grants
   // 네 축을 혼자 맡아 하루 5.8편이었다. bids 를 떼어내 부담을 나누고 전문 분야를 선명히 한다.
   // ⚠️ expertise 는 발행 이력이 쌓이면 아카이브 기준으로 다시 맞춘다(경력 창작 금지).
