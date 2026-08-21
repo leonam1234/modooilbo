@@ -57,7 +57,7 @@ export function TrendingTags() {
   return (
     <div className="relative border-t border-ink-200/45 dark:border-ink-700/40">
       <div className="container-page flex h-11 items-center gap-3">
-        <span className="shrink-0 text-xs font-bold text-ink-800 dark:text-ink-100">
+        <span className="shrink-0 text-xs font-bold text-ink-900 dark:text-white">
           <span className="tw-live mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-breaking align-middle" />
           실시간 인기
         </span>
@@ -97,7 +97,7 @@ export function TrendingTags() {
                 href={`/search?q=${encodeURIComponent(t)}`}
                 rel="nofollow"
                 style={{ animationDelay: `${(i % 5) * 0.35}s` }}
-                className="tw-chip shrink-0 text-sm font-bold text-ink-700 transition-colors hover:text-signal-700 dark:text-ink-200"
+                className="tw-chip shrink-0 text-sm font-bold text-ink-900 transition-colors hover:text-signal-700 dark:text-white"
               >
                 <span className="text-xs font-semibold text-ink-500 dark:text-ink-400">{i + 1}</span>
                 <span className="ml-0.5">#{t}</span>
