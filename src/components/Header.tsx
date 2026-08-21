@@ -149,7 +149,9 @@ export function Header() {
         {/* 상단 줄: 신규 사업 메뉴 (진하게) */}
         {/* ⚠️ 두 줄의 컬럼 앵커는 --gnb-col 하나로 묶여 있다. 위(사업 6)·아래(종합 6) 12칸이
             같은 x 에서 시작해야 한 세트로 읽힌다. 폭을 한쪽만 바꾸면 정렬이 깨진다.
-            글자가 트랙보다 길어지면 그 항목만 밀려나므로, 라벨을 늘릴 때는 --gnb-col 도 함께 볼 것. */}
+            글자가 트랙보다 길어지면 그 항목만 밀려나므로, 라벨을 늘릴 때는 --gnb-col 도 함께 볼 것.
+            justify-self-center: 칸 왼쪽에 붙이면 「정부지원금」 아래 「경제」가 왼쪽으로 치우쳐 보인다.
+            글자 수가 5:2 로 차이나서 시각적 중심이 어긋나기 때문 — 두 줄 다 칸 중앙에 둔다. */}
         <nav aria-label="사업 메뉴" className="hidden border-t border-ink-100 dark:border-ink-800/60 md:block">
           <div className="container-page">
           <div className="grid w-max grid-cols-[repeat(6,var(--gnb-col))] items-center">
@@ -159,7 +161,7 @@ export function Header() {
                 href={`/${m.slug}`}
                 aria-current={isActive(m.slug) ? "page" : undefined}
                 className={cn(
-                  "relative px-3.5 py-3 text-[15px] font-bold transition-colors hover:text-signal-600 dark:hover:text-signal-400",
+                  "relative justify-self-center px-3.5 py-3 text-[15px] font-bold transition-colors hover:text-signal-600 dark:hover:text-signal-400",
                   isActive(m.slug)
                     ? "text-signal-600 dark:text-signal-400 after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:bg-signal-600"
                     : "text-ink-900 dark:text-white",
@@ -182,7 +184,7 @@ export function Header() {
                 href={`/${c.slug}`}
                 aria-current={isActive(c.slug) ? "page" : undefined}
                 className={cn(
-                  "relative px-3.5 py-2.5 text-[15px] font-medium transition-colors hover:text-signal-600 dark:hover:text-signal-400",
+                  "relative justify-self-center px-3.5 py-2.5 text-[15px] font-medium transition-colors hover:text-signal-600 dark:hover:text-signal-400",
                   isActive(c.slug)
                     ? "text-signal-600 dark:text-signal-400 after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:bg-signal-600"
                     : "text-ink-500 dark:text-ink-400",
