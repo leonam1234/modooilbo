@@ -60,15 +60,15 @@ export function AuthMenu({ variant }: { variant: "links" | "pill" }) {
   if (variant === "links") {
     return user ? (
       <>
-        <Link href="/account" className="font-medium text-ink-700 hover:text-ink-900 dark:text-ink-200 dark:hover:text-white">{user.name}님</Link>
-        <button type="button" onClick={logout} className="hover:text-ink-900 dark:hover:text-white">
+        <Link href="/account" className="font-medium text-ink-900 hover:text-signal-600 dark:text-white dark:hover:text-signal-400">{user.name}님</Link>
+        <button type="button" onClick={logout} className="hover:text-signal-600 dark:hover:text-signal-400">
           로그아웃
         </button>
       </>
     ) : (
       <>
-        <Link href="/login" className="hover:text-ink-900 dark:hover:text-white">로그인</Link>
-        <Link href="/register" className="hover:text-ink-900 dark:hover:text-white">회원가입</Link>
+        <Link href="/login" className="hover:text-signal-600 dark:hover:text-signal-400">로그인</Link>
+        <Link href="/register" className="hover:text-signal-600 dark:hover:text-signal-400">회원가입</Link>
       </>
     );
   }

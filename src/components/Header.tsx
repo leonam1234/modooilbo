@@ -94,19 +94,21 @@ export function Header() {
     <header className="relative">
       {/* 상단 유틸리티 바 */}
       {/* 유틸바 — 아래 마스트헤드와 같은 유리로 통일(2026-08-21).
-          종전엔 ink-50/75 + blur-md 라 아래 줄보다 훨씬 불투명해 층이 따로 놀았다. */}
-      <div className="hidden border-b border-ink-200/45 text-xs text-ink-500 dark:border-ink-700/40 dark:text-ink-400 md:block">
+          종전엔 ink-50/75 + blur-md 라 아래 줄보다 훨씬 불투명해 층이 따로 놀았다.
+          글자는 GNB 두 줄과 같은 블랙 — 유리 뒤로 사진이 지나면 옅은 회색은 묻힌다.
+          기본이 블랙이라 hover 는 signal 색으로 준다(hover:text-ink-900 은 무효). */}
+      <div className="hidden border-b border-ink-200/45 text-xs text-ink-900 dark:border-ink-700/40 dark:text-white md:block">
         <div className="container-page flex h-9 items-center justify-between">
           <span className="tabular-nums">{today || " "}</span>
           <nav className="flex items-center gap-4">
             {/* 강조(signal)는 회원가입 pill(AuthMenu) 몫이다. 후원·구독은 가입 퍼널을
                 가리지 않게 일반 링크로 둔다 — 목적지가 아직 '멤버십 준비중' 페이지다. */}
-            <Link prefetch={false} href="/subscribe" className="hover:text-ink-900 dark:hover:text-white">
+            <Link prefetch={false} href="/subscribe" className="hover:text-signal-600 dark:hover:text-signal-400">
               후원·구독
             </Link>
-            <span aria-hidden className="text-ink-200 dark:text-ink-700">|</span>
+            <span aria-hidden className="text-ink-300 dark:text-ink-600">|</span>
             <AuthMenu variant="links" />
-            <Link prefetch={false} href="/newsletter" className="hover:text-ink-900 dark:hover:text-white">뉴스레터</Link>
+            <Link prefetch={false} href="/newsletter" className="hover:text-signal-600 dark:hover:text-signal-400">뉴스레터</Link>
             <ThemeToggle className="h-7 w-7" />
           </nav>
         </div>
