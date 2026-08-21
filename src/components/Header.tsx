@@ -114,7 +114,7 @@ export function Header() {
       {/* --gnb-col: 아래 2행 GNB(사업 6 + 종합 6 = 12칸)의 컬럼 앵커.
           ⚠️ 반드시 이 한 곳에서만 정의한다 — nav 별로 적으면 한쪽만 고쳐져 정렬이 어긋난다.
           md(768px)에서 6×7rem=672px 라 가장 좁은 데스크톱에서도 가로 넘침이 없다. */}
-      <div className="border-b border-ink-200/60 bg-white/95 [--gnb-col:7rem] backdrop-blur-xl lg:[--gnb-col:7.5rem] backdrop-saturate-150 supports-[backdrop-filter]:bg-white/65 dark:border-ink-800/60 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/80">
+      <div className="border-b border-ink-200/60 bg-white/95 [--gnb-col:7rem] backdrop-blur-2xl lg:[--gnb-col:7.5rem] backdrop-saturate-150 supports-[backdrop-filter]:bg-white/50 dark:border-ink-800/60 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/60">
         <div className="container-page flex h-14 items-center justify-between gap-3 sm:h-16">
           <div className="flex items-center gap-2">
             <button
