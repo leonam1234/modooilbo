@@ -111,7 +111,10 @@ export function Header() {
       </div>
 
       {/* 마스트헤드 + 내비 (헤더 전체가 sticky) */}
-      <div className="border-b border-ink-200/60 bg-white/95 backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-white/65 dark:border-ink-800/60 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/80">
+      {/* --gnb-col: 아래 2행 GNB(사업 6 + 종합 6 = 12칸)의 컬럼 앵커.
+          ⚠️ 반드시 이 한 곳에서만 정의한다 — nav 별로 적으면 한쪽만 고쳐져 정렬이 어긋난다.
+          md(768px)에서 6×7rem=672px 라 가장 좁은 데스크톱에서도 가로 넘침이 없다. */}
+      <div className="border-b border-ink-200/60 bg-white/95 [--gnb-col:7rem] backdrop-blur-xl lg:[--gnb-col:7.5rem] backdrop-saturate-150 supports-[backdrop-filter]:bg-white/65 dark:border-ink-800/60 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/80">
         <div className="container-page flex h-14 items-center justify-between gap-3 sm:h-16">
           <div className="flex items-center gap-2">
             <button
@@ -142,8 +145,12 @@ export function Header() {
 
         {/* 데스크톱 내비 A안 2행 — 상단: 사업 메뉴(메인·강조) / 하단: 종합뉴스(서브·옅은 배경) */}
         {/* 상단 줄: 신규 사업 메뉴 (진하게) */}
+        {/* ⚠️ 두 줄의 컬럼 앵커는 --gnb-col 하나로 묶여 있다. 위(사업 6)·아래(종합 6) 12칸이
+            같은 x 에서 시작해야 한 세트로 읽힌다. 폭을 한쪽만 바꾸면 정렬이 깨진다.
+            글자가 트랙보다 길어지면 그 항목만 밀려나므로, 라벨을 늘릴 때는 --gnb-col 도 함께 볼 것. */}
         <nav aria-label="사업 메뉴" className="hidden border-t border-ink-100 dark:border-ink-800/60 md:block">
-          <div className="container-page flex items-center gap-1">
+          <div className="container-page">
+          <div className="grid w-max grid-cols-[repeat(6,var(--gnb-col))] items-center">
             {BIZ_CATEGORIES.map((m) => (
               <Link prefetch={false}
                 key={m.slug}
@@ -160,10 +167,13 @@ export function Header() {
               </Link>
             ))}
           </div>
+          </div>
         </nav>
-        {/* 하단 줄: 종합뉴스 카테고리 (옅은 배경으로 분리, 색만 옅게) */}
+        {/* 하단 줄: 종합뉴스 카테고리 (옅은 배경으로 분리, 색만 옅게).
+            컬럼 폭은 위 줄과 같은 --gnb-col(정의는 헤더 wrapper 한 곳). */}
         <nav aria-label="종합뉴스" className="hidden border-t border-ink-100 bg-ink-50/70 dark:border-ink-800/60 dark:bg-ink-900/40 md:block">
-          <div className="container-page flex items-center gap-1">
+          <div className="container-page">
+          <div className="grid w-max grid-cols-[repeat(6,var(--gnb-col))] items-center">
             {SUB_CATEGORIES.map((c) => (
               <Link prefetch={false}
                 key={c.slug}
@@ -179,6 +189,7 @@ export function Header() {
                 {c.name}
               </Link>
             ))}
+          </div>
           </div>
         </nav>
       </div>
