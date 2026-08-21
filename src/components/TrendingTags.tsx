@@ -55,7 +55,7 @@ export function TrendingTags() {
   const cur = data.tags[idx % data.tags.length];
 
   return (
-    <div className="relative">
+    <div className="relative border-t border-ink-200/45 dark:border-ink-700/40">
       <div className="container-page flex h-11 items-center gap-3">
         <span className="shrink-0 text-xs font-bold text-ink-800 dark:text-ink-100">
           <span className="tw-live mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-breaking align-middle" />
