@@ -45,10 +45,24 @@ function Logo({ className }: { className?: string }) {
           라이트/다크 × 모바일/데스크톱 = 4장이지만 각 조건에서 실제로 내려받는 건 1장이다. */}
       {/* 뷰포트 분기를 컨테이너로 빼고 테마 분기만 이미지에 남긴다.
           `dark:sm:block` 처럼 변형을 겹치면 생성 선택자가 헷갈리기 쉬워 이렇게 나눈다. */}
-      <span className="inline-flex sm:hidden">
-        <Image src="/logo-b-m.png?v=1" alt="모두일보" width={401} height={66} loading="lazy" className="h-8 w-auto dark:hidden" />
-        <Image src="/logo-b-dark-m.png?v=1" alt="" aria-hidden width={401} height={66} loading="lazy" className="hidden h-8 w-auto dark:block" />
+      {/* 정식 심볼(5인 원형) — 흰 라운드 칩에 담는다. 심볼의 검정 인물이 다크 헤더(ink-950)에
+          묻히므로, 라이트/다크 모두 흰 배경 위에 얹어 어디서든 다섯 인물이 온전히 보이게 한다.
+          제호 텍스트(모두일보)는 옆 워드마크가 담당하므로 여기선 aria-hidden. */}
+      <span className="mr-2 inline-flex shrink-0 items-center justify-center rounded-lg bg-white p-1 ring-1 ring-ink-200/70 dark:ring-white/10">
+        <Image
+          src="/logo-symbol.png?v=1"
+          alt=""
+          aria-hidden
+          width={256}
+          height={256}
+          loading="lazy"
+          className="h-7 w-7 sm:h-9 sm:w-9"
+        />
       </span>
+      {/* 모바일(<640px)은 심볼 칩만 노출한다. 헤더 폭이 좁아(≈380px) 심볼 칩 + 워드마크(≈194px)를
+          함께 넣으면 다른 헤더 항목에 밀려 워드마크가 0폭으로 찌부된다. 심볼이 제호 역할을 하고
+          Link 의 aria-label="모두일보"가 접근성을 담보하므로, 데스크톱(sm+)에서만 워드마크를 병기한다.
+          (구 모바일 워드마크 logo-b-m.png 는 심볼 도입으로 헤더에서 미사용) */}
       <span className="hidden sm:inline-flex">
         <Image src="/logo-b.png?v=2" alt="모두일보" width={450} height={150} loading="lazy" className="h-12 w-auto dark:hidden" />
         <Image src="/logo-b-dark.png?v=2" alt="" aria-hidden width={450} height={150} loading="lazy" className="hidden h-12 w-auto dark:block" />
