@@ -29,25 +29,13 @@ const SUB_CATEGORIES = CATEGORIES.filter((c) => c.slug !== "tech");
 function Logo({ className }: { className?: string }) {
   return (
     <Link prefetch={false} href="/" className={cn("flex items-center", className)} aria-label="모두일보">
-      {/* 정식 로고 B안(데이터심볼: 「보」 끝이 상승 막대그래프) — 라이트=검정/다크=흰색 2에셋 스위칭.
-          ⚠️ priority·loading="eager" 금지 → 반드시 lazy. 이유:
-           1) 테마가 class 기반이라 media 조건부 preload가 불가능해 두 장이 **모두** preload됐다.
-              어느 테마든 하나는 display:none이라 한 장은 100% 낭비였고, 그 두 장이 LCP(히어로
-              이미지) preload보다 앞줄을 차지했다.
-           2) next/image는 priority뿐 아니라 loading="eager"에도 preload를 건다
-              (get-img-props: isLazy = !priority && loading !== 'eager'). 즉 lazy만이 preload를 뺀다.
-           3) lazy면 display:none인 쪽은 아예 내려받지 않고, 보이는 쪽은 최초 뷰포트 안이라
-              레이아웃 직후 바로 로드된다(5KB 안팎이라 체감 지연 없음). */}
-      {/* 모바일(<640px)은 축약형을 쓴다 — 전체형은 캔버스 450x150 안에서 "modoo ilbo"
-          영문이 작고, h-10(40px)으로 줄면 글자 높이가 6px 남짓이라 읽히지 않고 얼룩이
-          된다. 「보」에서 막대그래프로 넘어가는 29px 빈 구간도 그 크기에서는 의미 없는
-          가로선으로 보인다. 축약형은 영문을 빼고 그 공백을 10px로 좁힌 것이다.
-          라이트/다크 × 모바일/데스크톱 = 4장이지만 각 조건에서 실제로 내려받는 건 1장이다. */}
-      {/* 뷰포트 분기를 컨테이너로 빼고 테마 분기만 이미지에 남긴다.
-          `dark:sm:block` 처럼 변형을 겹치면 생성 선택자가 헷갈리기 쉬워 이렇게 나눈다. */}
-      {/* 정식 심볼(5인 원형) — 흰 라운드 칩에 담는다. 심볼의 검정 인물이 다크 헤더(ink-950)에
-          묻히므로, 라이트/다크 모두 흰 배경 위에 얹어 어디서든 다섯 인물이 온전히 보이게 한다.
-          제호 텍스트(모두일보)는 옆 워드마크가 담당하므로 여기선 aria-hidden. */}
+      {/* 제호 락업(2026-08-24 확정): 심볼 칩 + 타이핑 제호.
+          - 심볼(5인 원형)은 흰 라운드 칩에 담는다 — 심볼의 검정 인물과 투명한 꽃 중심이
+            다크 헤더(ink-950)에 묻히므로, 어느 테마든 흰 배경 위에서 다섯 인물이 온전히 보이게.
+          - 제호는 이미지가 아니라 **글자**다(마루부리 명조 = font-headline). 이미지 워드마크
+            (logo-b*.png, 「보」끝 막대그래프 구형 심볼 포함)는 새 심볼과 병기 시 심볼이
+            두 개가 되는 문제로 헤더에서 퇴역했다 — 파일은 롤백 대비 보존.
+          - 글자 제호는 가벼워서 모바일에도 함께 노출한다(이미지 시절의 0폭 찌부 문제 없음). */}
       <span className="mr-2 inline-flex shrink-0 items-center justify-center rounded-lg bg-white p-1 ring-1 ring-ink-200/70 dark:ring-white/10">
         <Image
           src="/logo-symbol.png?v=1"
@@ -59,13 +47,10 @@ function Logo({ className }: { className?: string }) {
           className="h-7 w-7 sm:h-9 sm:w-9"
         />
       </span>
-      {/* 모바일(<640px)은 심볼 칩만 노출한다. 헤더 폭이 좁아(≈380px) 심볼 칩 + 워드마크(≈194px)를
-          함께 넣으면 다른 헤더 항목에 밀려 워드마크가 0폭으로 찌부된다. 심볼이 제호 역할을 하고
-          Link 의 aria-label="모두일보"가 접근성을 담보하므로, 데스크톱(sm+)에서만 워드마크를 병기한다.
-          (구 모바일 워드마크 logo-b-m.png 는 심볼 도입으로 헤더에서 미사용) */}
-      <span className="hidden sm:inline-flex">
-        <Image src="/logo-b.png?v=2" alt="모두일보" width={450} height={150} loading="lazy" className="h-12 w-auto dark:hidden" />
-        <Image src="/logo-b-dark.png?v=2" alt="" aria-hidden width={450} height={150} loading="lazy" className="hidden h-12 w-auto dark:block" />
+      {/* whitespace-nowrap 필수 — 헤더가 좁아지면 flex 가 이 span 을 최소폭으로 눌러
+          한 글자씩 세로로 꺾인다(모바일 실측). shrink-0 로 제호는 절대 줄이지 않는다. */}
+      <span className="shrink-0 whitespace-nowrap font-headline text-xl font-bold leading-none tracking-tight text-ink-900 dark:text-white sm:text-[27px]">
+        모두일보
       </span>
     </Link>
   );
@@ -156,7 +141,12 @@ export function Header() {
               <SearchIcon className="h-5 w-5" />
             </button>
             <ThemeToggle className="md:hidden" />
-            <LocationPicker className="ml-1" />
+            {/* 날씨 핀(≈99px)은 모바일에서 숨긴다 — 타이핑 제호 도입(2026-08-24)으로 375px 헤더가
+                82px 초과했고, 우측 묶음에서 유일한 비필수 항목이 이것이다. 제호와 회원가입 CTA 는
+                유지한다. 날씨는 /weather 페이지에서 그대로 볼 수 있다. */}
+            <span className="hidden sm:inline-flex">
+              <LocationPicker className="ml-1" />
+            </span>
             <AuthMenu variant="pill" />
           </div>
         </div>
