@@ -437,7 +437,11 @@ function newestModule(articles) {
 }
 
 function header() {
-  return `// 자동 생성 파일 — 직접 수정 금지. content/articles/*.md 에서 \`npm run content\`로 생성.\nimport type { Article } from "./types";\n\n`;
+  // @ts-nocheck 이유: 기사 1,085편 시점에 tsc가 이 배열 리터럴에서 TS2590
+  // (union type too complex)으로 빌드를 끊었다. 파일 내용은 이 스크립트가 검증한
+  // 기계 산출물이고, 내보내는 값의 타입(Article[])은 주석과 무관하게 유지되므로
+  // 소비처 타입 검사는 그대로다. 기사 수는 계속 늘어나므로 지우면 재발한다.
+  return `// @ts-nocheck — 자동 생성 파일(직접 수정 금지). content/articles/*.md 에서 \`npm run content\`로 생성.\n// 기사 수가 늘면 배열 리터럴 타입 추론이 TS2590으로 터진다(1,085편에서 실측) — ts-nocheck는 그 방지용.\nimport type { Article } from "./types";\n\n`;
 }
 
 run();
