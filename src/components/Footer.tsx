@@ -135,6 +135,8 @@ export function Footer() {
             <span>{`사업자등록번호 ${SITE.bizNumber}`}</span>
             <span>{`등록번호 ${SITE.regNumber}`}</span>
             <span>{`등록일 ${SITE.regDate}`}</span>
+            {/* 전자상거래법 제12조·제13조 법정 표시 — 후원·구독을 운영하므로 의무 대상이다. 지우지 말 것. */}
+            <span>{`통신판매업신고 ${SITE.mailOrderNumber}`}</span>
             <span>{`대표전화 ${SITE.tel}`}</span>
             <span>이메일 <PlainEmail address={SITE.email} /></span>
           </p>

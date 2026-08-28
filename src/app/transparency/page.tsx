@@ -79,6 +79,15 @@ export default function TransparencyPage() {
                     </dt>
                     <dd className="text-ink-700 dark:text-ink-200">{SITE.bizNumber}</dd>
                   </div>
+                  {/* 통신판매업 신고번호 — 전자상거래법 제12조·제13조 법정 표시.
+                      후원·구독(/subscribe)을 운영하므로 의무 대상이다. 사업자등록번호·신문
+                      등록번호와 각각 다른 값이라 라벨로 구분한다. */}
+                  <div className="flex gap-3">
+                    <dt className="w-24 shrink-0 font-semibold text-ink-500 dark:text-ink-400">
+                      통신판매업신고
+                    </dt>
+                    <dd className="text-ink-700 dark:text-ink-200">{SITE.mailOrderNumber}</dd>
+                  </div>
                   <div className="flex gap-3">
                     <dt className="w-24 shrink-0 font-semibold text-ink-500 dark:text-ink-400">
                       대표이사·발행인
