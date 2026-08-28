@@ -28,6 +28,21 @@ ls content/articles/$(date +%Y-%m-%d)-*.md 2>/dev/null | wc -l             # 오
 
 ## 1. 패키지 경로와 파일 권한
 
+**2026-08-28부터 운영정보가 전부 깃허브에 있습니다**(오너 지시 — "다른 개발자도 알 수 있게").
+
+| 저장소 | 공개 | 무엇이 |
+|---|---|---|
+| `leonam1234/modooilbo` | **공개** | 사이트 코드·기사·이 인계서·wiki |
+| `wlashvpel/modooilbo-packages` | 비공개 | 원고 패키지·코덱스 전달문·HOLD사유 (로컬 `~/GIT/modooilbo-packages/`) |
+| `wlashvpel/modooilbo-codex` | 비공개 | 콘텐츠 총괄 정본·파이프라인 (로컬 `~/Documents/Codex/모두일보/`) |
+
+⚠️ **운영 문서를 공개 저장소에 새로 넣지 마십시오.** 제작 파이프라인·검수 기록은
+포털 제휴 심사에서 「자동생성기사」 판정 근거가 될 수 있습니다(구 제평위 규정 별표 1 단서 —
+감사 §2-4). 새 운영 문서는 위 두 비공개 저장소에 넣습니다.
+
+⚠️ **비공개 저장소 둘은 사본이 아니라 그 폴더 자체입니다.** 작업 경로는 종전 그대로이고
+커밋만 하면 됩니다. 사본을 따로 만들지 마십시오 — 반드시 어긋납니다.
+
 **코덱스 원고 패키지는 `~/GIT/modooilbo-packages/` 에 있습니다.**
 
 ```
@@ -48,8 +63,11 @@ ls content/articles/$(date +%Y-%m-%d)-*.md 2>/dev/null | wc -l             # 오
 ⚠️ **발행한 적 없는 원고를 `발행완료/` 에 넣지 마십시오.** 기록이 거짓이 됩니다.
 못 내보낸 것은 `아카이브_미발행/` 으로 보내고 사유를 README 에 적습니다.
 
-⚠️ **git 저장소가 아닙니다.** 사이트 저장소(`~/GIT/modooilbo`)와 형제 폴더이며
-커밋 대상이 아닙니다. 그 안에서 git 명령을 실행하지 마십시오.
+⚠️ **2026-08-28부터 git 저장소입니다**(`wlashvpel/modooilbo-packages`, 비공개).
+종전 규칙("git 명령을 실행하지 마십시오")은 **폐기**됐습니다. 패키지를 옮기거나
+전달문을 쓴 뒤에는 커밋·푸시하십시오.
+추적 대상은 `*.md`·`*.txt` 뿐입니다 — 이미지(약 2GB)와 검증 증빙(pdf·hwp 등 약 250MB)은
+`.gitignore` 로 빠집니다. **지운 게 아니라 로컬에 그대로 있습니다.**
 
 발행이 끝나면 해당 패키지를 `발행완료/` 로 옮기십시오. 출고대기에는 아직
 안 나간 것만 남습니다.
@@ -120,7 +138,8 @@ ls content/articles/$(date +%Y-%m-%d)-*.md 2>/dev/null | wc -l             # 오
   소재가 없다. **전날 미리 질의를 걸어두는 운영 변경**과 위 메일 발송 설정이 필요하다.
   포털 심사에서 자체기사 비율 근거로 쓰이는 지표라 방치하면 안 된다.
   집계: `node scripts/reporting-report.mjs`
-  📘 **실무 정본은 코덱스 쪽입니다: `~/Documents/Codex/모두일보/직접취재_분류_증빙_정본.md`**
+  📘 **실무 정본은 코덱스 쪽입니다: `직접취재_분류_증빙_정본.md`**
+     (`wlashvpel/modooilbo-codex` 비공개 저장소 · 로컬 `~/Documents/Codex/모두일보/`)
      (저장소의 `wiki/operations/05-direct-reporting.md` 는 중복이라 8/28 폐기).
      코덱스가 갖고 있지 않던 3가지(게이트 충돌→질의 대상 매핑 · 이해관계 고지 실사례 ·
      발송 계정 병목)는 `~/GIT/modooilbo-packages/코덱스_전달_20260828.md` §5 에 있다.
@@ -152,7 +171,9 @@ ls content/articles/$(date +%Y-%m-%d)-*.md 2>/dev/null | wc -l             # 오
   근거·단서 전문은 `scripts/reporting-report.mjs` 머리 주석에 박아 뒀다.
 - ~~**B. 정본 중복 정리**~~ **결정: 폐기, 2026-08-28 완료.**
   `wiki/operations/05-direct-reporting.md` 를 지우고 3가지만 코덱스 전달문으로 넘겼다.
-  정본은 `~/Documents/Codex/모두일보/` 한 곳이다.
+  정본은 `wlashvpel/modooilbo-codex`(로컬 `~/Documents/Codex/모두일보/`) 한 곳이다.
+  ⚠️ 8/28 저녁에 그 폴더를 git 저장소로 만들었다 — 종전엔 정본이 로컬에만 있어
+  다른 개발자가 볼 수 없었다. 폐기 결정 자체는 유효하되, 접근 문제는 이걸로 풀렸다.
 - ~~**AI 고지 방향**~~ **결정: 최소(B-1) 유지, 2026-08-21 구현.**
   ⚠️ 종전 이 항목의 서술("운영정책의 AI 활용 고지는 제거된 상태")은 **사실과 달랐습니다.**
   실제로는 모든 기사 하단에 고지 배너가 살아 있었고(`article/[slug]/page.tsx`),
@@ -216,6 +237,7 @@ node scripts/reporting-report.mjs      # 직접취재 비율 확인 (목표 20~3
 git add -A && git commit -F <메시지파일>   # 한글은 -m 대신 -F 로
 npm run deploy:prod
 # 5) 라이브 검증 — 반드시 데스크톱 UA 로 (기본 UA 는 403)
+npm run smoke -- https://modooilbo.com / /policy/ /newsroom/   # 모바일 4조합
 ```
 
 ⚠️ **배포 직후 첫 요청은 엣지 캐시로 404 가 뜰 수 있습니다.** 20초 뒤
@@ -236,6 +258,30 @@ npm run deploy:prod
 **그때 바이트가 다 지워지지 않았습니다.** 8/28 에 마지막 한 쌍을 찾아 제거했습니다 —
 하필 *이 함정을 경고하는 주석 자신*이 `\u0001`·`\u0000` 을 raw 로 갖고 있었습니다.
 지금은 `file` 이 `UTF-8 text` 로 판정하고 `grep` 이 정상 동작합니다.
+
+### 모바일 4조합 검증 — `npm run smoke`
+
+엔진 2종(chromium=안드로이드 · webkit=**아이폰 전체**) × 화면 2종(설치앱 402×874 ·
+브라우저 402×660). 2026-08-28 도입. 도구 원본은 `wlashvpel/mobile-smoke`(공개).
+아이폰은 크롬을 깔아도 엔진이 웹킷이라, 크로뮴만 보면 아이폰 버그를 통째로 놓칩니다.
+
+```bash
+npm run smoke -- https://modooilbo.com / /policy/ /newsroom/
+```
+
+⚠️ **웹킷은 항상 FAIL 로 나옵니다 — 오탐입니다.** 애드센스 스크립트가 사파리의
+교차출처 정책에 걸려 콘솔 에러를 냅니다.
+
+```
+JS에러: …/modooilbo.com" from accessing a frame with origin
+        "https://googleads.g.doubleclick.net"
+```
+
+**우리 코드가 아닙니다.** 2026-08-28 실측에서 크로뮴·웹킷 렌더가 동일했고
+본문 글자수도 같았습니다(홈 5861 대 5857). 판정은 `결론:` 줄이 아니라
+`compare-*.png` 를 눈으로 보고 하십시오. 두 쪽이 다르게 보일 때만 버그입니다.
+
+⚠️ 웹킷 브라우저 버전이 안 맞으면 `npx playwright install webkit` 을 먼저 돌리십시오.
 
 ## 6. 발행 직전 게이트 — 반복되는 실패 유형
 

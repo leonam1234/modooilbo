@@ -16,7 +16,8 @@
     "deploy:prod": "node scripts/deploy.mjs prod",
     "deploy:cf": "node scripts/deploy.mjs prod",
     "report:tracking": "node scripts/tracking-report.mjs",
-    "fetch:stock": "node scripts/fetch-stock.mjs"
+    "fetch:stock": "node scripts/fetch-stock.mjs",
+    "smoke": "node scripts/mobile-smoke.mjs"
   },
   "dependencies": {
     "next": "15.5.20",
