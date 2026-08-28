@@ -134,7 +134,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
   const expanded = suggestions.length > 0;
 
   return (
-    <div className="glass absolute inset-x-0 top-full z-40 animate-[slide-down-in_.25s_ease-out] border-b border-ink-200/50 dark:border-ink-800/50">
+    <div className="glass-panel absolute inset-x-0 top-full z-40 animate-[slide-down-in_.25s_ease-out] border-b border-ink-200/50 dark:border-ink-800/50">
       <form onSubmit={submitSearch} className="container-page flex items-center gap-3 py-4">
         <SearchIcon className="h-5 w-5 shrink-0 text-ink-500 dark:text-ink-400" />
         <input

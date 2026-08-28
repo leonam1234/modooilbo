@@ -298,6 +298,31 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.13),
     inset 0 0 0 1px rgba(255, 255, 255, 0.09);
 }
+/* 읽어야 하는 패널 — 검색 오버레이·모바일 드로어 전용.
+   ⚠️ .glass(44%)를 그대로 쓰면 뒤 속보·인기 티커와 본문이 비쳐 **입력창과 결과를 읽을 수
+   없다**(2026-08-28 실측). .glass 는 맨위로 버튼·랭킹 탭 같은 '보기만 하는 작은 크롬'용이고,
+   글자를 읽고 조작하는 패널은 이쪽을 쓴다. 유리 느낌은 블러와 테두리로 내고 알파는 양보한다.
+   ⚠️ 94% 로도 속보 티커가 입력 줄에 비쳐 지저분했다. 타이핑하는 면이라 98.5% 까지 올렸다.
+   유리감은 가장자리 블러와 inset 하이라이트가 낸다 — 알파를 더 내리지 말 것. */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.985);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  backdrop-filter: blur(24px) saturate(1.6);
+  box-shadow:
+    0 8px 32px rgba(15, 17, 21, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+.dark .glass-panel {
+  background: rgba(16, 18, 23, 0.985);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-panel { background: rgba(255, 255, 255, 0.99); }
+  .dark .glass-panel { background: rgba(16, 18, 23, 0.99); }
+}
+
 /* 콘텐츠 카드용 라이트 글라스 — .glass(크롬용 18px)보다 블러를 낮춰 다수 배치에도 가볍게.
    뒤의 날씨 캔버스(비·눈)가 흐릿하게 비쳐 보이는 것이 목적. 입력창·버튼은 불투명 유지. */
 .glass-card {
