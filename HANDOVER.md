@@ -269,17 +269,24 @@ npm run smoke -- https://modooilbo.com / /policy/ /newsroom/   # 모바일 4조�
 npm run smoke -- https://modooilbo.com / /policy/ /newsroom/
 ```
 
-⚠️ **웹킷은 항상 FAIL 로 나옵니다 — 오탐입니다.** 애드센스 스크립트가 사파리의
-교차출처 정책에 걸려 콘솔 에러를 냅니다.
+**서드파티(광고·분석) 에러는 세지 않습니다.** 애드센스가 사파리 교차출처 정책에
+걸려 webkit 전 페이지에서 에러를 내는데, 그걸 FAIL 로 세면 **광고를 붙인 우리 사이트는
+자동 게이트가 항상 막혀** 도구를 못 씁니다. 2026-08-28 에 필터를 넣어 올렸습니다
+(원본 저장소에도 반영 — `wlashvpel/mobile-smoke` `1d079d8`).
 
 ```
-JS에러: …/modooilbo.com" from accessing a frame with origin
-        "https://googleads.g.doubleclick.net"
+적용 전  webkit 8/8 FAIL (전부 애드센스 교차출처)
+적용 후  PASS · exit 0    ✓ webkit-app-home text=5857자 | (서드파티 3건 무시)
 ```
 
-**우리 코드가 아닙니다.** 2026-08-28 실측에서 크로뮴·웹킷 렌더가 동일했고
-본문 글자수도 같았습니다(홈 5861 대 5857). 판정은 `결론:` 줄이 아니라
-`compare-*.png` 를 눈으로 보고 하십시오. 두 쪽이 다르게 보일 때만 버그입니다.
+⚠️ **무시 목록을 함부로 넓히지 마십시오.** 넓힐수록 진짜 버그가 빠져나갑니다.
+`TypeError`·`ReferenceError`·하이드레이션 오류는 지금도 전부 FAIL 입니다(역방향 시험 확인).
+
+⚠️ **`결론:` 줄만 믿지 마십시오.** 레이아웃 깨짐은 JS 에러를 안 냅니다 —
+`compare-*.png` 로 안드↔아이폰을 눈으로 대조해야 잡힙니다.
+
+⚠️ **prod URL 로 돌리면 "배포 후 검증"입니다.** 배포 *전* 게이트로 쓰려면
+`npm run deploy:preview` 로 먼저 올리고 그 URL 을 검사하십시오.
 
 ⚠️ 웹킷 브라우저 버전이 안 맞으면 `npx playwright install webkit` 을 먼저 돌리십시오.
 

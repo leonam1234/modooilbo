@@ -34,6 +34,12 @@ const MATRIX = [
 ]
 const slug = p => p.replace(/[^a-z0-9가-힣]+/gi, '_').replace(/^_+|_+$/g, '') || 'home'
 
+// 서드파티(광고·분석) 스크립트가 낸 에러는 우리 버그가 아니다 → FAIL 로 세지 않는다.
+// 실측: 애드센스가 사파리 교차출처 정책에 걸려 webkit 전 페이지에서 에러를 낸다.
+//       그대로 두면 `&& npm run deploy` 자동 게이트가 항상 막혀 도구가 무용지물이 된다.
+// 이 목록에 없는 에러는 전부 FAIL 이다 — 의심스러우면 넓히지 말고 그대로 두라.
+const THIRD_PARTY = /doubleclick\.net|googlesyndication|googletagmanager|google-analytics|adservice\.google|googleads|pagead2|facebook\.net|connect\.facebook|hotjar|clarity\.ms|criteo|taboola|outbrain/i
+
 let fail = 0
 for (const m of MATRIX) {
   const browser = await pw[m.engine].launch()
@@ -43,8 +49,12 @@ for (const m of MATRIX) {
   })
   for (const p of PAGES) {
     const page = await ctx.newPage()
-    const errs = []
-    page.on('pageerror', e => errs.push(String(e?.message || e)))
+    const errs = []      // 우리 책임 — FAIL
+    const vendor = []    // 서드파티 — 알리기만 하고 통과
+    page.on('pageerror', e => {
+      const m = String(e?.message || e) + ' ' + String(e?.stack || '')
+      ;(THIRD_PARTY.test(m) ? vendor : errs).push(String(e?.message || e))
+    })
     const name = `${m.engine}-${m.vp}-${slug(p)}`
     try {
       await page.goto(base.replace(/\/+$/, '') + p, { waitUntil: 'load', timeout: 30000 })
@@ -56,7 +66,8 @@ for (const m of MATRIX) {
       const bad = errs.length > 0 || blank
       if (bad) fail++
       console.log(`${bad ? '❌' : '✓'} ${name} text=${textLen}자` +
-        (errs.length ? ' | JS에러: ' + errs[0].slice(0, 120) : '') + (blank ? ' | 빈 화면 의심' : ''))
+        (errs.length ? ' | JS에러: ' + errs[0].slice(0, 120) : '') + (blank ? ' | 빈 화면 의심' : '') +
+        (vendor.length ? ` | (서드파티 ${vendor.length}건 무시)` : ''))
     } catch (e) { fail++; console.log(`❌ ${name} 접속 실패: ${e.message}`) }
     await page.close()
   }
