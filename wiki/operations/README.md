@@ -10,7 +10,8 @@
 3. [01-trust-eeat](01-trust-eeat.md) — 2순위(신뢰·E-E-A-T)
 4. [02-growth-and-revenue](02-growth-and-revenue.md) — 3순위(측정·성장·수익)
 5. [03-supplementary](03-supplementary.md) — 보조(실시간성·GEO/AEO·이미지·접근성)
-6. [04-publishing-protocol](04-publishing-protocol.md) — **일일 기사 발행 규약**(코덱스↔클로드 합의, 2026-08-18 확정). publishedAt 정본·발행 후 수정 원칙·발행 직전 동적 게이트·원출처 모순 처리
+6. [05-direct-reporting](05-direct-reporting.md) — **직접취재 실무 매뉴얼**(사람이 읽고 실행하는 정본, 2026-08-28). 질의 대상 고르기·메일 서식·이해관계·회신 정리 형식. direct 비율 2.4% → 20% 회복 경로
+7. [04-publishing-protocol](04-publishing-protocol.md) — **일일 기사 발행 규약**(코덱스↔클로드 합의, 2026-08-18 확정). publishedAt 정본·발행 후 수정 원칙·발행 직전 동적 게이트·원출처 모순 처리
 
 ## 📊 우선순위 매트릭스
 | 순위 | 항목 | 문서 | 정적export 내 가능? | 선행조건 |
