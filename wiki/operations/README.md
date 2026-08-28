@@ -10,8 +10,7 @@
 3. [01-trust-eeat](01-trust-eeat.md) — 2순위(신뢰·E-E-A-T)
 4. [02-growth-and-revenue](02-growth-and-revenue.md) — 3순위(측정·성장·수익)
 5. [03-supplementary](03-supplementary.md) — 보조(실시간성·GEO/AEO·이미지·접근성)
-6. [05-direct-reporting](05-direct-reporting.md) — **직접취재 실무 매뉴얼**(사람이 읽고 실행하는 정본, 2026-08-28). 질의 대상 고르기·메일 서식·이해관계·회신 정리 형식. direct 비율 2.4% → 20% 회복 경로
-7. [04-publishing-protocol](04-publishing-protocol.md) — **일일 기사 발행 규약**(코덱스↔클로드 합의, 2026-08-18 확정). publishedAt 정본·발행 후 수정 원칙·발행 직전 동적 게이트·원출처 모순 처리
+6. [04-publishing-protocol](04-publishing-protocol.md) — **일일 기사 발행 규약**(코덱스↔클로드 합의, 2026-08-18 확정). publishedAt 정본·발행 후 수정 원칙·발행 직전 동적 게이트·원출처 모순 처리
 
 ## 📊 우선순위 매트릭스
 | 순위 | 항목 | 문서 | 정적export 내 가능? | 선행조건 |
@@ -49,3 +48,8 @@
 
 ## ⚠️ 전 항목 공통 불변식 (어기지 말 것)
 정적 export 제약·SSR안전(렌더중 Date.now/Math.random 금지)·단일 리드·dark: 페어링·`queries.ts` 단일 출처 등은 [08-conventions](../08-conventions.md)를 따른다. **동적 기능(인증·댓글·서버검색·결제콜백·ISR)이 필요해지면** `output:"export"`를 버리고 `@opennextjs/cloudflare`(Workers)로 승급 — 경로는 [06-deployment §5](../06-deployment.md).
+
+> **직접취재 실무 정본은 이 저장소에 없습니다.** `~/Documents/Codex/모두일보/직접취재_분류_증빙_정본.md`
+> 등 코덱스 4종이 정본입니다. 종전 `05-direct-reporting.md` 가 그와 겹쳐 2026-08-28 폐기했고,
+> 코덱스가 가질 수 없던 3가지(게이트 충돌→질의 대상 매핑 · 이해관계 고지 실사례 ·
+> 발송 계정 병목)는 `~/GIT/modooilbo-packages/코덱스_전달_20260828.md` §5 로 넘겼습니다.

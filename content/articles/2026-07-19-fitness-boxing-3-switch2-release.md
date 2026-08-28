@@ -4,7 +4,7 @@ category: culture
 author: 남동균 / 문화부 기자
 publishedAt: 2026-07-19 19:50
 tags: 피트니스복싱3, FitnessBoxing3, 닌텐도스위치2, NintendoSwitch2, 신작게임, 운동게임, 리듬게임, 게임출시, 한국닌텐도
-summary: 한국닌텐도 공식 발매 일정은 ‘Fitness Boxing 3: Your Personal Trainer – Nintendo Switch 2 Edition’의 패키지·다운로드 버전 출시일을 2026년 7월 16일로 표시한다. 7월 19일 22시 16분 KST 기준 공식 스토어의 실물 패키지 상품은 ‘구매 가능’, 6만4,800원으로 표시됐으며, 해당 상품 페이지는 Nintendo Switch 2 전용·1~2명·한국어 대응·전체이용가 조건을 안내한다. 다운로드판 가격과 실물판의 실제 수령일은 이번 확인 범위에서 확정하지 않았다.
+summary: 한국닌텐도 공식 발매 일정은 ‘Fitness Boxing 3: Your Personal Trainer – Nintendo Switch 2 Edition’의 패키지·다운로드 버전 출시일을 2026년 7월 16일로 표시한다. 7월 19일 22시 16분 기준 공식 스토어의 실물 패키지 상품은 ‘구매 가능’, 6만4,800원으로 표시됐으며, 해당 상품 페이지는 Nintendo Switch 2 전용·1~2명·한국어 대응·전체이용가 조건을 안내한다. 다운로드판 가격과 실물판의 실제 수령일은 이번 확인 범위에서 확정하지 않았다.
 image: /stock/2026-07-19-fitness-boxing-3-switch2-release.jpg
 imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 status: 인증전보관

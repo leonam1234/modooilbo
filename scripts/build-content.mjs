@@ -63,6 +63,43 @@ const REPORTING_SINCE = "2026-08-21";
 const REPORTING_ENFORCE = "2026-08-28";
 
 /**
+ * 집필 지침 유출 검사(2026-08-28 도입).
+ * 기사가 독자가 아니라 자기 자신에게 쓰기 지시를 하는 문장을 잡는다.
+ * 2026-07-08 두 편이 실제로 그 상태로 발행됐고, 코퍼스 전수에서 8편이 나왔다.
+ *
+ * ⚠️ `이 기사는` 을 통째로 막으면 안 된다. 정상 면책 고지가 88편에 있고
+ *    전부 과거형·부정형(…아니다 / …않는다 / …작성했다)으로 끝난다.
+ *    현재형 규칙 어미만 잡는다.
+ *
+ *   ERROR    주어가 이 기사 자신        「이 기사는 … 써야 한다」   해석의 여지 없음
+ *   WARNING  주어가 기사 일반(장르·언론) 「자격시험 기사는 … 쓰면 안 된다」
+ *            사설은 언론 관행을 규범적으로 논하는 것이 제 목소리라 빌드를 막지 않는다.
+ */
+const RULE_ENDING =
+  "(?:쓰면 안 된다|써야 한다|쓰지 않는 것이 중요하다|쓰지 말아야 한다|남겨야 한다|작성해야 한다|서술해야 한다|기술해야 한다)";
+const SELF_INSTRUCTION = new RegExp(`(?:이|본|해당)\\s*기사(?:는|가|에서는)[^.\\n]{0,120}?${RULE_ENDING}\\.`);
+const GENRE_INSTRUCTION = new RegExp(`기사(?:는|에서는|에서|에)[^.\\n]{0,120}?${RULE_ENDING}\\.`);
+/**
+ * 편집 산출물(기사·제목·본문·리드)을 어떻게 만들지 지시하는 문장.
+ * 「제목과 본문은 … 유지해야 한다」처럼 어미가 달라 위 두 패턴을 빠져나간다 —
+ * 2026-08-28 전수 재조사에서 5편이 이 형태로 남아 있었다.
+ * ⚠️ `밝혀야 한다`(사설이 기관에 요구) · `붙여야 한다`(공모전 제출 규정)는 넣지 않는다.
+ *    정상 문장이 매일 걸려 경고가 소음이 된다.
+ */
+const EDITORIAL_INSTRUCTION =
+  /(?:기사|제목|본문|리드)[^.\n]{0,80}?(?:반영해야 한다|유지해야 한다|명시해야 한다|표기해야 한다)\./;
+
+/** 본문만(「출처 메모」 이후 제외) 한 덩어리로 — 지침 유출 검사용. */
+function bodyText(paragraphs) {
+  const out = [];
+  for (const p of paragraphs) {
+    if (/^#{1,6}\s*출처 메모/.test(p)) break;
+    out.push(p);
+  }
+  return out.join("\n");
+}
+
+/**
  * 광고주 slug 화이트리스트 — src/lib/partners.ts 를 읽어 만든다.
  * 오타(bcmobilty 등)를 빌드에서 잡지 못하면 "광고인데 광고 표시가 안 붙은 기사"가
  * 그대로 나간다. 그건 표시 누락이라 광고자율규약 위반이다 → 반드시 실패시킨다.
@@ -334,6 +371,32 @@ async function run() {
       warnings.push(`${file}: reporting 누락 — ${REPORTING_ENFORCE}부터는 빌드가 실패합니다.`);
     }
 
+    // 집필 지침 유출 — 기사가 독자가 아니라 자기 자신에게 쓰기 지시를 한 문장.
+    const bodyOnly = bodyText(paragraphs);
+    const selfLeak = bodyOnly.match(SELF_INSTRUCTION);
+    if (selfLeak) {
+      errors.push(
+        `${file}: 집필 지침이 본문에 남아 있습니다 — "${selfLeak[0]}" ` +
+          `기사가 독자가 아니라 자기 자신에게 쓰기 지시를 하고 있습니다. ` +
+          `독자에게 하는 서술로 바꿔 주세요(예: "…쓰면 안 된다" → "…뜻으로 읽기는 어렵다").`,
+      );
+      continue;
+    }
+    const genreLeak = bodyOnly.match(GENRE_INSTRUCTION);
+    if (genreLeak) {
+      warnings.push(
+        `${file}: 집필 지침으로 읽힐 문장 — "${genreLeak[0]}" ` +
+          `기자에게 하는 말이면 독자용 서술로 고치고, 사설이라 의도한 것이면 그대로 두세요.`,
+      );
+    }
+    const editLeak = bodyOnly.match(EDITORIAL_INSTRUCTION);
+    if (editLeak) {
+      warnings.push(
+        `${file}: 편집 지시로 읽힐 문장 — "${editLeak[0]}" ` +
+          `제목·본문을 어떻게 만들지는 독자에게 할 말이 아닙니다.`,
+      );
+    }
+
     articles.push({
       id: slug,
       slug,
@@ -404,7 +467,7 @@ function newestModule(articles) {
   // (필드 목록은 src/app/articles-index.json/route.ts 와 맞춰 유지할 것)
   // ⚠️ author는 {name, role} 객체라 문자열로 풀어 넣는다 — 그대로 join하면 항상
   //    "[object Object]"가 되어 바이라인만 고친 수정이 지문을 못 바꿨다(2026-08-14 점검).
-  // ⚠️ 구분자는 반드시 ·  **이스케이프 표기**로 둘 것. 종전엔 같은 문자를 raw
+  // ⚠️ 구분자는 반드시 \u0001·\u0000 **이스케이프 표기**로 둘 것. 종전엔 같은 문자를 raw
   //    제어 바이트로 박아 뒀는데, 그러면 grep이 이 파일을 바이너리로 보고 **에러 없이 침묵**한다
   //    (`grep reporting build-content.mjs` → 결과 0줄). 실제로 그것 때문에 "검증 로직이 아예
   //    없다"고 오판한 적 있다(2026-08-21). 런타임 값은 둘이 완전히 같다 — 지문도 안 바뀐다.
