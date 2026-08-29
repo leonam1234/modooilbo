@@ -18,7 +18,7 @@ export default function TermsPage() {
 
       <div className="container-page py-10 sm:py-12">
         <article className="mx-auto max-w-3xl">
-          <p className="mb-10 text-sm text-ink-500 dark:text-ink-400">시행일: 2026년 1월 1일</p>
+          <p className="mb-10 text-sm text-ink-500 dark:text-ink-400">시행일: 2026년 8월 30일</p>
 
           <section className="mb-10">
             <h2 className="font-headline text-xl font-bold text-ink-900 dark:text-white sm:text-2xl">
@@ -133,7 +133,10 @@ export default function TermsPage() {
               회사가 작성한 콘텐츠에 대한 저작권 및 기타 지식재산권은 회사에 귀속합니다. 이용자는
               서비스를 이용함으로써 얻은 정보 중 회사에 지식재산권이 귀속된 정보를 회사의 사전 승낙
               없이 복제·송신·출판·배포·방송 기타 방법에 의하여 영리목적으로 이용하거나 제3자에게
-              이용하게 하여서는 안 됩니다.
+              이용하게 하여서는 안 됩니다. 다만 검색 색인과 실시간 AI 검색·답변에서 짧게
+              요약·인용하면서 발행처 &ldquo;모두일보&rdquo;와 해당 원문 URL을 함께 표시하는 이용은
+              허용합니다. 기사·이미지를 AI 모델의 학습 또는 미세조정 데이터로 수집·이용하는 것은
+              허용하지 않습니다.
             </p>
           </section>
 

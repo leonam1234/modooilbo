@@ -2,9 +2,9 @@
 
 > 이 문서는 모두일보의 운영 지표 **정의·데이터 출처·집계 기준**을 못 박는 정본입니다.
 > 핵심 원칙: **실제로 저장·집계되지 않는 값은 절대 숫자로 만들지 않는다 → `확인 불가 / unavailable`.**
-> 리포트 실행: `npm run report:tracking` (옵션 `-- --date=YYYY-MM-DD --json`).
+> 리포트 실행: 트래픽 `npm run report:tracking`, 검색·AI 가시성 `npm run report:visibility`.
 
-최종 갱신: 2026-06-30 (KST)
+최종 갱신: 2026-08-30 (KST)
 
 ---
 
@@ -12,14 +12,18 @@
 
 | 영역 | 현황 | 결론 |
 |---|---|---|
-| 사이트 구조 | Next.js **정적 export** + Cloudflare Pages. **백엔드/Functions/DB 바인딩 없음** | 서버에 저장할 곳이 없음 |
-| 애널리틱스(beacon) | CF Web Analytics **beacon 코드는 존재**(`src/app/layout.tsx`). 단 `NEXT_PUBLIC_CF_BEACON_TOKEN`이 **없으면 실제 빌드 결과물에는 삽입되지 않음**. 현재 토큰 미설정 → 미삽입 | 토큰 설정 + 배포해야 수집 시작 |
-| 애널리틱스(집계) | 리포트의 CF GraphQL 어댑터 **구현 완료**(`scripts/tracking-report.mjs`). 조회용 `CLOUDFLARE_API_TOKEN`/`CF_ACCOUNT_ID`/`CF_WEB_ANALYTICS_SITE_TAG` 설정 시 실집계 | 토큰 미설정 → unavailable |
+| 사이트 구조 | Next.js **정적 export** + Cloudflare Pages. D1/KV 바인딩은 있으나 회원·뉴스레터·결제 기능은 데모 | 제품 지표는 실제 저장 여부를 따로 확인 |
+| Cloudflare 트래픽 | Zone Analytics GraphQL 어댑터가 Wrangler OAuth를 자동 재사용. 별도 beacon 없이 edge 요청·HTML 페이지뷰·visits·uniques 집계 | **실집계 가동** |
+| Web Analytics(beacon) | 선택 기능. `NEXT_PUBLIC_CF_BEACON_TOKEN`이 있으면 RUM을 삽입하며, 없으면 Zone Analytics를 사용 | AI referrer host까지 보려면 RUM 연결 권장 |
+| 검색·AI 가시성 | `scripts/search-visibility-report.mjs`: 라이브 정책, CF 트래픽, AI User-Agent, AI referrer, GSC, Bing을 한 리포트로 집계 | CF·정책은 즉시, GSC·Bing·referrer는 아래 권한 필요 |
+| Google Search Console | 읽기 전용 API 어댑터 구현. 현재 실행 계정에는 `modooilbo.com` 속성 권한/OAuth 없음 | 권한 부여 후 실집계 |
+| Bing Webmaster | API 키 및 사용자 지정 신규 REST URL 어댑터 구현. 현재 인증 없음 | Bing 로그인·API 인증 후 실집계 |
+| AI 인용/유입 | AI 크롤러 요청은 CF에서 실집계. AI 서비스 referrer host는 현재 Zone 플랜 필드 제한으로 unavailable | CF Web Analytics 연결 시 보강 |
 | `/register` | `RegisterForm`은 `useState`만 변경, 화면에 "데모 환경이므로 실제 계정은 생성되지 않습니다" 표시 | **가입자 저장 안 됨 (데모)** |
 | `/newsletter` | `NewsletterToggle`은 `useState` 토글뿐 | **구독자 저장 안 됨 (데모)** |
 | `/subscribe` | 정적 안내 페이지, 결제·후원 연동 없음 | **유료/후원 집계 안 됨 (데모)** |
 
-➡️ **현재 보고 기준:** 트래픽 3종은 토큰 미설정이라 `unavailable`, 회원·뉴스레터·유료 5종은 데모(실제 레코드 생성 없음)라 **`0` + 비고**(`운영 DB/ESP/PG 없음 / 데모 동작 / 실제 레코드 생성 없음`)로 출력합니다. 데모 버튼 클릭·프론트 상태 변경은 **집계에 절대 포함하지 않습니다.**
+➡️ **현재 보고 기준:** 트래픽 3종과 AI 크롤러 요청은 Wrangler OAuth로 실집계합니다. GSC·Bing·AI referrer는 인증/플랜이 갖춰지기 전까지 `unavailable`로 출력합니다. 회원·뉴스레터·유료 5종은 데모(실제 레코드 생성 없음)라 **`0` + 비고**로 출력합니다. 데모 버튼 클릭·프론트 상태 변경은 **집계에 절대 포함하지 않습니다.**
 
 ---
 
@@ -30,9 +34,9 @@
 ### 트래픽 (일일)
 | 지표 | 정의 | 데이터 출처(예정) | 현재 |
 |---|---|---|---|
-| 일일 유입자 (unique visitors) | KST 하루 동안 사이트를 방문한 **고유 방문자 수** (중복 제거) | Cloudflare Web Analytics | `unavailable` |
-| 일일 방문 세션 (sessions) | KST 하루 동안 발생한 **세션 수** (방문 단위, 30분 비활동 시 종료) | Cloudflare Web Analytics | `unavailable` |
-| 일일 페이지뷰 (pageviews) | KST 하루 동안 로드된 **페이지 수**. 유입자·가입자와 **무관** | Cloudflare Web Analytics | `unavailable` |
+| 일일 유입자 (unique visitors) | KST 하루 동안 Cloudflare edge가 구분한 **고유 방문자 수** | Cloudflare Zone Analytics | 실집계 |
+| 일일 방문 세션 (sessions) | Cloudflare `visits`: 외부 referrer 또는 직접 링크에서 시작된 방문 | Cloudflare Zone Analytics | 실집계 |
+| 일일 페이지뷰 (pageviews) | 성공한 HTML 응답 수. 유입자·가입자와 **무관** | Cloudflare Zone Analytics | 실집계 |
 
 ### 멤버 / 구독 (일일 신규 + 누적)
 | 지표 | 정의 | 데이터 출처(예정) | 현재 |
@@ -62,30 +66,44 @@
 - API 키/토큰은 코드·로그·리포트에 평문 저장 금지. 환경변수로만 주입한다(아래).
 - 리포트 산출물(파일)에도 PII가 들어가지 않도록, 소스 쿼리는 **COUNT/집계만** 수행한다.
 
-## 4. 데이터 소스 연동 방법 (구현 시 = unavailable 해제)
+## 4. 검색·AI 가시성 정의
+
+`npm run report:visibility -- --days=7`은 아래를 동시에 점검한다.
+
+1. **정책 일치:** 라이브 `robots.txt`, `llms.txt`, 운영정책, 최신 기사 저작권 문구가 `검색·인용 허용 / AI 모델 학습 금지`와 일치하는지 확인한다. Content Signals 정본은 `search=yes, ai-input=yes, ai-train=no, use=reference`다.
+2. **AI 크롤러 수요:** OAI-SearchBot·Claude-SearchBot·PerplexityBot 등 검색·인용용 요청과 GPTBot·ClaudeBot·Google-Extended·CCBot 등 학습 차단 대상 요청을 User-Agent 기준으로 분리한다. User-Agent는 위조 가능하므로 **요청 수를 곧 실제 업체의 크롤 또는 인용 수라고 부르지 않는다.**
+3. **AI 서비스 유입:** `chatgpt.com`, `perplexity.ai`, `claude.ai`, `gemini.google.com`, `copilot.microsoft.com` referrer 방문을 집계한다. 현재 Zone Analytics 무료 필드로는 referrer host가 제한되어 `unavailable`; Web Analytics RUM을 연결하면 보강한다.
+4. **검색 성과:** GSC 클릭·노출·CTR·평균순위, Bing 클릭·노출·상위 쿼리를 각각 공식 API에서 읽는다.
+
+AI 답변 내부의 실제 인용 노출은 제공사별 공통 공식 API가 없으므로, **크롤 요청 → AI referrer 방문 → GSC/Bing 검색 성과**를 서로 다른 단계로 유지한다. 어느 하나를 다른 지표로 대신 부르지 않는다.
+
+## 5. 데이터 소스 연동 방법 (구현 시 = unavailable 해제)
 
 리포트 도구(`scripts/tracking-report.mjs`)는 **환경변수와 어댑터 구현이 모두 완료되면** 해당 지표를 실집계한다. 비어 있거나 어댑터가 없으면 `unavailable`(데모로 레코드가 0인 항목은 `0`+비고).
 
-- **트래픽 3종**: CF GraphQL 어댑터 **구현 완료** → 아래 환경변수만 채우면 실집계.
+- **트래픽 3종·AI 크롤러**: CF GraphQL 어댑터 **가동 중** → Wrangler OAuth 자동 사용. CI에서는 최소 Zone Analytics Read 토큰을 주입.
 - **회원·뉴스레터·유료**: 어댑터·백엔드 **미구현** → 환경변수와 어댑터가 **둘 다** 갖춰져야 실집계(현재는 데모라 0).
 
 | 지표군 | 필요한 것 | 환경변수(예) |
 |---|---|---|
-| 트래픽 3종 | ① 사이트에 CF Web Analytics beacon 삽입(`NEXT_PUBLIC_CF_BEACON_TOKEN`) ② 조회용 CF API 토큰 | `CLOUDFLARE_API_TOKEN`, `CF_ACCOUNT_ID`, `CF_WEB_ANALYTICS_SITE_TAG` |
+| CF 트래픽·AI 크롤러 | 로컬은 Wrangler OAuth 자동 사용, CI는 Analytics Read 토큰 | `CLOUDFLARE_API_TOKEN`(선택), `CF_ZONE_ID`(선택) |
+| AI referrer | CF Web Analytics 사이트 + beacon + 조회 권한 | `NEXT_PUBLIC_CF_BEACON_TOKEN`, `CF_ACCOUNT_ID`, `CF_WEB_ANALYTICS_SITE_TAG` |
+| GSC | 속성 읽기 권한이 있는 OAuth access token 또는 서비스 계정(JSON 키는 로컬 secret만) | `GSC_ACCESS_TOKEN` 또는 `GOOGLE_APPLICATION_CREDENTIALS`, `GSC_SITE_URL`(기본 `sc-domain:modooilbo.com`) |
+| Bing | Webmaster API 인증. 신규 REST는 전체 query-stats URL을 어댑터에 전달 | `BING_WEBMASTER_API_KEY` 또는 `BING_WEBMASTER_QUERY_STATS_URL` + `BING_WEBMASTER_ACCESS_TOKEN` |
 | 회원(신규/누적) | 회원 DB(예: Cloudflare D1) + 가입 API(Pages Functions) | `MEMBERS_DB`(D1 바인딩) 또는 `DATABASE_URL` |
 | 뉴스레터(신규/누적) | ESP 계정 + 구독 API | `ESP_PROVIDER`, `ESP_API_KEY`, `ESP_LIST_ID` |
 | 유료/후원 | 결제 PG 계정 + 웹훅 기록 | `PAY_PROVIDER`, `PAY_API_KEY` |
 
 > ⚠️ 정적 export 사이트라 **폼 저장·결제·웹훅은 백엔드가 필요**하다(Cloudflare Pages Functions + D1, 또는 외부 ESP/PG). 이 백엔드는 별도 구현·승인 대상이다.
 >
-> 트래픽: beacon 코드는 `layout.tsx`에 **이미 존재**하나 `NEXT_PUBLIC_CF_BEACON_TOKEN`이 있어야 빌드에 삽입되어 수집이 시작된다. 리포트 집계 어댑터(CF GraphQL)는 구현 완료라, 조회 토큰까지 설정하면 실집계된다. (CF Web Analytics는 쿠키 없는 측정이라 일일 고유 방문자는 시간별 합산 **상한 추정**이며 중복 가능 — 리포트 비고에 명시된다.)
+> 트래픽: beacon이 없어도 Cloudflare edge의 Zone Analytics가 실집계된다. RUM beacon은 referrer·Core Web Vitals 등 브라우저 차원의 상세 분석을 추가할 때 사용한다.
 
-## 5. 관리자 리포트
+## 6. 관리자 리포트
 
 - 현재: **CLI 리포트** `npm run report:tracking` (트래킹 담당자가 로컬/Codex에서 하루 단위 실행).
 - 향후(백엔드 생기면): 인증 보호된 관리자 API(`/admin/metrics`, Pages Function + 토큰)로 동일 집계를 노출 가능. 이때도 위 2·3 기준을 그대로 적용한다.
 
-## 6. 검증 / CI 명령
+## 7. 검증 / CI 명령
 
 | 명령 | 용도 |
 |---|---|
@@ -93,7 +111,9 @@
 | `npm run lint` | 비대화형 타입체크(`tsc --noEmit`). ESLint 설정 프롬프트 없이 pass/fail 반환 |
 | `npm run report:tracking -- --date=2026-06-29` | 사람용 표 리포트(KST) |
 | `npm run report:tracking -- --date=2026-06-29 --json` | 기계용 JSON |
+| `npm run report:visibility -- --days=7` | 정책·CF·AI 크롤러·AI 유입·GSC·Bing 통합 리포트 |
+| `npm run --silent report:visibility -- --days=7 --json` | 자동화/저장용 JSON |
 
 - **JSON을 파이프할 때**는 `npm run` 배너(stdout)가 섞이므로 `npm run --silent report:tracking -- --json` 또는 `node scripts/tracking-report.mjs --json`을 쓴다.
-- CF 트래픽 실집계 환경변수: `CLOUDFLARE_API_TOKEN`, `CF_ACCOUNT_ID`, `CF_WEB_ANALYTICS_SITE_TAG` (모두 env로만 주입, 코드/리포트에 평문 금지). beacon 삽입: 빌드 시 `NEXT_PUBLIC_CF_BEACON_TOKEN`.
-- ⚠️ CF Web Analytics RUM 스키마(`sum.visits`, `uniq.uniques`, `datetimeHour`)는 실제 계정 첫 연결 시 한 번 검증 권장(데이터셋 필드명 변동 가능). 어댑터는 오류 시 숫자를 만들지 않고 `unavailable`로 떨어진다.
+- API 키·OAuth·서비스 계정 JSON은 env/로컬 secret로만 주입하고 저장소나 리포트에 평문으로 남기지 않는다.
+- Cloudflare adaptive 요청 데이터는 User-Agent 관측치다. verified bot 판정이나 발신 IP 검증을 하지 않은 상태에서는 업체별 실제 크롤로 단정하지 않는다.

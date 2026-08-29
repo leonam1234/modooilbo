@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
+import { CONTENT_USE_POLICY } from "@/lib/content-use-policy";
 
 export const metadata: Metadata = {
   title: "운영정책",
@@ -23,7 +24,7 @@ export default function PolicyPage() {
       />
       <div className="container-page py-10 sm:py-12">
         <article className="mx-auto max-w-3xl">
-          <p className="mb-10 text-sm text-ink-500 dark:text-ink-400">시행일: 2026년 7월 7일</p>
+          <p className="mb-10 text-sm text-ink-500 dark:text-ink-400">시행일: 2026년 8월 30일</p>
 
           <section className="mb-10">
             <h2 className={H}>1. 허위·조작정보 대응 원칙</h2>
@@ -113,6 +114,27 @@ export default function PolicyPage() {
               <li className={LI}>
                 사실과 다른 내용이 확인되면 위 <b>1·2·3항</b>의 정정·신고·이의신청 절차를 그대로
                 따릅니다. AI 도구를 활용했다는 사정은 정정 의무를 덜지 않습니다.
+              </li>
+            </ul>
+          </section>
+
+          <section id="content-use" className="mb-10 scroll-mt-28">
+            <h2 className={H}>8. 검색·인용 및 AI 학습 정책</h2>
+            <p className={P}>{CONTENT_USE_POLICY.attribution}</p>
+            <p className={P}>{CONTENT_USE_POLICY.training}</p>
+            <ul className="mt-3 list-disc space-y-2 pl-5">
+              <li className={LI}>
+                허용 범위는 검색 색인, 짧은 발췌, 실시간 검색·답변의 근거 인용입니다. 기사 전문의
+                재게시, 원문을 대체하는 저장·배포, 유료 접근 제한의 우회까지 허용하는 것은 아닙니다.
+              </li>
+              <li className={LI}>
+                <code>robots.txt</code>와 Cloudflare Content Signals에도 같은 원칙을 기계 판독 가능한
+                형태로 표시합니다: <code>search=yes</code>, <code>ai-input=yes</code>,{" "}
+                <code>ai-train=no</code>, <code>use=reference</code>.
+              </li>
+              <li className={LI}>
+                검색·인용 전용 크롤러는 허용하고, 모델 학습 또는 검색과 학습을 함께 수행하는
+                크롤러는 차단합니다.
               </li>
             </ul>
           </section>

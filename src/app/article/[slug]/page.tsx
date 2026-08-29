@@ -28,6 +28,7 @@ import { PARTNERS } from "@/lib/partners";
 import { ogImageUrl, displayImageUrl } from "@/lib/stock";
 import { getReporterByName } from "@/lib/reporters";
 import { SITE, absoluteUrl } from "@/lib/site";
+import { CONTENT_USE_POLICY } from "@/lib/content-use-policy";
 import JsonLd from "@/components/JsonLd";
 import { PortalMeta } from "@/components/PortalMeta";
 
@@ -329,7 +330,7 @@ export default async function ArticlePage({
           </div>
 
           <div className="mt-6 border-t border-ink-100 pt-4 text-xs leading-relaxed text-ink-500 dark:text-ink-400 dark:border-ink-800">
-            <p>ⓒ 모두일보(modooilbo.com) — 무단 전재·재배포 및 AI 학습·활용 금지</p>
+            <p>{CONTENT_USE_POLICY.articleNotice}</p>
             <p className="no-print mt-1.5">
               기사에서 잘못된 정보나 오탈자를 발견하셨나요?{" "}
               <a

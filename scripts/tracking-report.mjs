@@ -17,6 +17,9 @@
  * 기준 문서: docs/tracking.md
  */
 import process from "node:process";
+import { existsSync, readFileSync } from "node:fs";
+import { homedir } from "node:os";
+import { join } from "node:path";
 
 const args = process.argv.slice(2);
 const jsonOut = args.includes("--json");
@@ -38,34 +41,99 @@ const endUTC = new Date(new Date(`${reportDate}T00:00:00+09:00`).getTime() + 24 
 // ── Cloudflare Web Analytics 어댑터 (#1 실제 집계) ───────────
 // 한 번만 호출해 캐시. 토큰 없으면 unavailable. 호출/필드 오류 시에도 graceful unavailable.
 let _cfCache;
+function wranglerOAuthToken() {
+  const candidates = [
+    join(homedir(), "Library", "Preferences", ".wrangler", "config", "default.toml"),
+    join(homedir(), ".config", ".wrangler", "config", "default.toml"),
+  ];
+  for (const path of candidates) {
+    if (!existsSync(path)) continue;
+    const text = readFileSync(path, "utf8");
+    const token = text.match(/^oauth_token\s*=\s*"([^"]+)"/m)?.[1];
+    if (token) return token;
+  }
+  return null;
+}
+
+async function cfApiJson(url, token, options = {}) {
+  const res = await fetch(url, {
+    ...options,
+    headers: { Authorization: `Bearer ${token}`, ...(options.headers || {}) },
+  });
+  const json = await res.json();
+  if (!res.ok || json.success === false) {
+    throw new Error(json.errors?.[0]?.message || `HTTP ${res.status}`);
+  }
+  return json;
+}
+
 async function getCfTraffic() {
   if (_cfCache) return _cfCache;
-  const token = env.CLOUDFLARE_API_TOKEN;
+  const token = env.CLOUDFLARE_API_TOKEN || wranglerOAuthToken();
   const account = env.CF_ACCOUNT_ID;
   const siteTag = env.CF_WEB_ANALYTICS_SITE_TAG;
-  if (!token || !account || !siteTag) {
+  if (!token) {
     _cfCache = {
       ok: false,
-      reason: "미연동 (CLOUDFLARE_API_TOKEN/CF_ACCOUNT_ID/CF_WEB_ANALYTICS_SITE_TAG 미설정)",
+      reason: "미연동 (CLOUDFLARE_API_TOKEN도 Wrangler OAuth도 없음)",
     };
     return _cfCache;
   }
-  // 변수 대신 안전한 자체 env 값을 인라인(스칼라 타입 선언 불일치 회피). KST→UTC 범위로 필터.
-  const q = `{
-    viewer {
-      accounts(filter: { accountTag: "${account}" }) {
-        total: rumPageloadEventsAdaptiveGroups(
-          filter: { siteTag: "${siteTag}", datetime_geq: "${startUTC}", datetime_lt: "${endUTC}" }
-          limit: 1
-        ) { count sum { visits } }
-        byHour: rumPageloadEventsAdaptiveGroups(
-          filter: { siteTag: "${siteTag}", datetime_geq: "${startUTC}", datetime_lt: "${endUTC}" }
-          limit: 24
-        ) { uniq { uniques } dimensions { datetimeHour } }
-      }
-    }
-  }`;
   try {
+    // Web Analytics siteTag가 있으면 RUM을 우선한다.
+    if (account && siteTag) {
+      const q = `{
+        viewer {
+          accounts(filter: { accountTag: "${account}" }) {
+            total: rumPageloadEventsAdaptiveGroups(
+              filter: { siteTag: "${siteTag}", datetime_geq: "${startUTC}", datetime_lt: "${endUTC}" }
+              limit: 1
+            ) { count sum { visits } }
+            byHour: rumPageloadEventsAdaptiveGroups(
+              filter: { siteTag: "${siteTag}", datetime_geq: "${startUTC}", datetime_lt: "${endUTC}" }
+              limit: 24
+            ) { uniq { uniques } dimensions { datetimeHour } }
+          }
+        }
+      }`;
+      const json = await cfApiJson("https://api.cloudflare.com/client/v4/graphql", token, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: q }),
+      });
+      if (json.errors?.length) throw new Error(json.errors[0].message);
+      const acc = json.data?.viewer?.accounts?.[0];
+      if (!acc) throw new Error("CF 응답에 account 없음(siteTag/토큰 권한 확인)");
+      const total = acc.total?.[0] ?? {};
+      _cfCache = {
+        ok: true,
+        source: "Cloudflare Web Analytics",
+        pageviews: total.count ?? 0,
+        sessions: total.sum?.visits ?? 0,
+        uniqueVisitors: (acc.byHour ?? []).reduce((s, g) => s + (g.uniq?.uniques ?? 0), 0),
+        uniqueNote: "시간별 고유 방문자 합산(상한 추정) — 동일인의 다른 시간대 재방문 중복 가능",
+      };
+      return _cfCache;
+    }
+
+    // RUM이 없어도 Cloudflare zone edge 데이터는 수집되어 있다. Wrangler OAuth로 자동 조회한다.
+    let zoneId = env.CF_ZONE_ID;
+    if (!zoneId) {
+      const zones = await cfApiJson("https://api.cloudflare.com/client/v4/zones?name=modooilbo.com", token);
+      zoneId = zones.result?.[0]?.id;
+    }
+    if (!zoneId) throw new Error("modooilbo.com zone을 찾지 못함");
+    const q = `{
+      viewer { zones(filter: { zoneTag: "${zoneId}" }) {
+        daily: httpRequests1dGroups(limit: 1, filter: { date_geq: "${reportDate}", date_leq: "${reportDate}" }) {
+          sum { pageViews requests } uniq { uniques }
+        }
+        visitRows: httpRequestsAdaptiveGroups(
+          limit: 1
+          filter: { datetime_geq: "${startUTC}", datetime_lt: "${endUTC}", requestSource: "eyeball" }
+        ) { sum { visits } }
+      } }
+    }`;
     const res = await fetch("https://api.cloudflare.com/client/v4/graphql", {
       method: "POST",
       headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
@@ -77,21 +145,16 @@ async function getCfTraffic() {
       _cfCache = { ok: false, reason: `CF GraphQL 오류: ${json.errors[0].message}` };
       return _cfCache;
     }
-    const acc = json.data?.viewer?.accounts?.[0];
-    if (!acc) {
-      _cfCache = { ok: false, reason: "CF 응답에 account 없음(siteTag/토큰 권한 확인)" };
-      return _cfCache;
-    }
-    const total = acc.total?.[0] ?? {};
-    const pageviews = total.count ?? 0;
-    const sessions = total.sum?.visits ?? 0;
-    // 일일 고유 방문자: CF는 쿠키 없는 측정이라 일 단위 dedup을 직접 주지 않음.
-    // → 시간별 고유 방문자(uniq.uniques)를 합산한 "상한 추정". 동일인의 다른 시간대 재방문이 중복될 수 있음.
-    const uniqueVisitorsHourlySum = (acc.byHour ?? []).reduce(
-      (s, g) => s + (g.uniq?.uniques ?? 0),
-      0,
-    );
-    _cfCache = { ok: true, pageviews, sessions, uniqueVisitorsHourlySum };
+    const zone = json.data?.viewer?.zones?.[0];
+    const daily = zone?.daily?.[0] || {};
+    _cfCache = {
+      ok: true,
+      source: "Cloudflare Zone Analytics",
+      pageviews: daily.sum?.pageViews ?? 0,
+      sessions: zone?.visitRows?.[0]?.sum?.visits ?? 0,
+      uniqueVisitors: daily.uniq?.uniques ?? 0,
+      uniqueNote: "KST 보고일의 edge uniques(브라우저 beacon 없이 Cloudflare 요청 로그에서 집계)",
+    };
     return _cfCache;
   } catch (e) {
     _cfCache = { ok: false, reason: `CF 호출 실패: ${e.message}` };
@@ -99,29 +162,27 @@ async function getCfTraffic() {
   }
 }
 
-const CF_SOURCE = "Cloudflare Web Analytics";
-
 async function cfPageviews() {
   const t = await getCfTraffic();
   return t.ok
-    ? { value: t.pageviews, source: CF_SOURCE, note: "KST 일일 합계(페이지뷰=pageload count)" }
-    : { unavailable: true, source: CF_SOURCE, note: t.reason };
+    ? { value: t.pageviews, source: t.source, note: "KST 일일 HTML 페이지뷰" }
+    : { unavailable: true, source: "Cloudflare Analytics", note: t.reason };
 }
 async function cfSessions() {
   const t = await getCfTraffic();
   return t.ok
-    ? { value: t.sessions, source: CF_SOURCE, note: "KST 일일 합계(세션=visits)" }
-    : { unavailable: true, source: CF_SOURCE, note: t.reason };
+    ? { value: t.sessions, source: t.source, note: "KST 일일 합계(세션=Cloudflare visits)" }
+    : { unavailable: true, source: "Cloudflare Analytics", note: t.reason };
 }
 async function cfUniqueVisitors() {
   const t = await getCfTraffic();
   return t.ok
     ? {
-        value: t.uniqueVisitorsHourlySum,
-        source: CF_SOURCE,
-        note: "시간별 고유 방문자 합산(상한 추정) — 동일인의 다른 시간대 재방문이 중복 집계될 수 있음",
+        value: t.uniqueVisitors,
+        source: t.source,
+        note: t.uniqueNote,
       }
-    : { unavailable: true, source: CF_SOURCE, note: t.reason };
+    : { unavailable: true, source: "Cloudflare Analytics", note: t.reason };
 }
 
 // ── 회원/뉴스레터/유료 (#2: 현재 데모 → 0명 + 비고) ──────────
@@ -200,7 +261,7 @@ for (const r of rows) {
 const unavailable = rows.filter((r) => r.value === "unavailable").length;
 console.log(`\n  요약: ${rows.length}개 지표 중 ${unavailable}개 unavailable.`);
 console.log(
-  `  → 트래픽: 어댑터 구현 완료. CLOUDFLARE_API_TOKEN/CF_ACCOUNT_ID/CF_WEB_ANALYTICS_SITE_TAG 설정 시 실집계.`,
+  `  → 트래픽: Wrangler OAuth 또는 CLOUDFLARE_API_TOKEN으로 Cloudflare Zone Analytics를 자동 조회.`,
 );
 console.log(
   `  → 회원·뉴스레터·유료: 환경변수와 어댑터 구현이 모두 완료되면 실집계(현재 백엔드 없음 → 데모, 0). 기준: docs/tracking.md\n`,
