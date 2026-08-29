@@ -17,6 +17,7 @@
  * 기준 문서: docs/tracking.md
  */
 import process from "node:process";
+import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
@@ -41,7 +42,16 @@ const endUTC = new Date(new Date(`${reportDate}T00:00:00+09:00`).getTime() + 24 
 // ── Cloudflare Web Analytics 어댑터 (#1 실제 집계) ───────────
 // 한 번만 호출해 캐시. 토큰 없으면 unavailable. 호출/필드 오류 시에도 graceful unavailable.
 let _cfCache;
-function wranglerOAuthToken() {
+function wranglerOAuthToken({ refresh = false } = {}) {
+  if (refresh) {
+    try {
+      execFileSync(join(process.cwd(), "node_modules", ".bin", "wrangler"), ["whoami"], {
+        stdio: "ignore",
+      });
+    } catch {
+      // 오프라인·미로그인 환경은 아래 토큰 조회 및 기존 unavailable 처리로 넘긴다.
+    }
+  }
   const candidates = [
     join(homedir(), "Library", "Preferences", ".wrangler", "config", "default.toml"),
     join(homedir(), ".config", ".wrangler", "config", "default.toml"),
@@ -69,7 +79,7 @@ async function cfApiJson(url, token, options = {}) {
 
 async function getCfTraffic() {
   if (_cfCache) return _cfCache;
-  const token = env.CLOUDFLARE_API_TOKEN || wranglerOAuthToken();
+  const token = env.CLOUDFLARE_API_TOKEN || wranglerOAuthToken({ refresh: true });
   const account = env.CF_ACCOUNT_ID;
   const siteTag = env.CF_WEB_ANALYTICS_SITE_TAG;
   if (!token) {

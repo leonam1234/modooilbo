@@ -6,6 +6,7 @@
  * unavailable과 이유를 남긴다. Cloudflare는 Wrangler OAuth를 자동 재사용할 수 있다.
  */
 import { createSign } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
@@ -89,7 +90,16 @@ async function fetchJson(url, options = {}) {
   return body;
 }
 
-function wranglerOAuthToken() {
+function wranglerOAuthToken({ refresh = false } = {}) {
+  if (refresh) {
+    try {
+      execFileSync(join(process.cwd(), "node_modules", ".bin", "wrangler"), ["whoami"], {
+        stdio: "ignore",
+      });
+    } catch {
+      // 오프라인·미로그인 환경은 아래 토큰 조회 및 기존 unavailable 처리로 넘긴다.
+    }
+  }
   const candidates = [
     join(homedir(), "Library", "Preferences", ".wrangler", "config", "default.toml"),
     join(homedir(), ".config", ".wrangler", "config", "default.toml"),
@@ -104,7 +114,7 @@ function wranglerOAuthToken() {
 }
 
 async function cloudflareContext() {
-  const token = process.env.CLOUDFLARE_API_TOKEN || wranglerOAuthToken();
+  const token = process.env.CLOUDFLARE_API_TOKEN || wranglerOAuthToken({ refresh: true });
   if (!token) throw new Error("CLOUDFLARE_API_TOKEN도 Wrangler OAuth도 없음");
   let zoneId = process.env.CF_ZONE_ID;
   let accountId = process.env.CF_ACCOUNT_ID;
