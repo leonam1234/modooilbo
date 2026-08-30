@@ -42,6 +42,7 @@ const humanTypes = new Set(["inquiry", "interview", "field", "follow-up"]);
 const percent = (n, d) => d ? (n / d) * 100 : null;
 const originalCount = recent30.filter((r) => r.reporting === "direct").length;
 const humanCount = recent30.filter((r) => r.reporting === "direct" && humanTypes.has(r.reportingType)).length;
+const reviewedLatest = latest.filter((r) => r.reviewedBy && r.reviewedAt && r.reporterInsight).length;
 const result = {
   model: "editorial-quality-v1",
   target: QUALITY_TARGET,
@@ -57,6 +58,7 @@ const result = {
     humanReportedArticles: humanCount,
     humanReportedPercent: percent(humanCount, recent30.length),
   },
+  reviewCoverage: { latest100: percent(reviewedLatest, latest.length), reviewed: reviewedLatest, total: latest.length },
   failures: inScope.filter((r) => r.errors.length),
 };
 
@@ -73,6 +75,7 @@ if (asJson) {
   const pct = (v) => v === null ? "—" : `${v.toFixed(1)}%`;
   console.log(`  최근 30개 발행일 자체취재·분석 ${result.kpi30.originalArticles}/${result.kpi30.eligibleArticles} (${pct(result.kpi30.originalPercent)}) · 30일 목표 30%`);
   console.log(`  최근 30개 발행일 사람 직접취재 ${result.kpi30.humanReportedArticles}/${result.kpi30.eligibleArticles} (${pct(result.kpi30.humanReportedPercent)}) · 30일 목표 15%\n`);
+  console.log(`  최신 100편 기자 검수·해설 기록 ${result.reviewCoverage.reviewed}/${result.reviewCoverage.total} (${pct(result.reviewCoverage.latest100)}) · 시행 후 목표 100%\n`);
   for (const row of result.failures.slice(0, 20)) {
     console.log(`  ✖ ${row.file} — ${row.score}점`);
     for (const error of row.errors) console.log(`    · ${error}`);

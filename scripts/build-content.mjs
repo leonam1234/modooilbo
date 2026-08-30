@@ -114,6 +114,16 @@ const PARTNER_SLUGS = (() => {
   }
 })();
 
+/** 기자 검수 실명은 기자 로스터에 등록된 이름만 허용한다. 임의 이름으로 검수 기록을 꾸미는 것을 막는다. */
+const REPORTER_NAMES = (() => {
+  try {
+    const src = readFileSync(join(ROOT, "src", "lib", "reporters.ts"), "utf8");
+    return new Set([...src.matchAll(/\bname:\s*"([^"]+)"/g)].map((m) => m[1]));
+  } catch {
+    return new Set();
+  }
+})();
+
 /** 수집한 오류를 한 번에 보여주고 빌드를 실패시킨다(첫 오류에서 끊지 않아 한 번에 다 고칠 수 있음). */
 function failBuild(errors) {
   console.error(`\n✖ 콘텐츠 빌드 실패 — 기사 ${errors.length}건에 문제가 있습니다:\n`);
@@ -356,6 +366,14 @@ async function run() {
     const contactStatus = (fm.contactStatus || "").trim();
     const visualType = (fm.visualType || "").trim();
     const aiRole = qualityList(fm.aiRole);
+    const reviewedBy = (fm.reviewedBy || "").trim();
+    const reviewedAtRaw = (fm.reviewedAt || "").trim();
+    const reviewedAt = reviewedAtRaw ? normDate(reviewedAtRaw) : undefined;
+    const reporterInsight = (fm.reporterInsight || "").trim();
+    if (reviewedBy && REPORTER_NAMES.size && !REPORTER_NAMES.has(reviewedBy)) {
+      errors.push(`${file}: reviewedBy "${reviewedBy}"는 src/lib/reporters.ts 기자 로스터에 없습니다.`);
+      continue;
+    }
     const pubDay = publishedAt.slice(0, 10);
     if (reporting && !REPORTING.includes(reporting)) {
       errors.push(`${file}: reporting "${reporting}" 는 허용값이 아닙니다. 가능: ${REPORTING.join(", ")}`);
@@ -428,6 +446,9 @@ async function run() {
       ...(contactStatus ? { contactStatus } : {}),
       ...(visualType ? { visualType } : {}),
       ...(aiRole.length ? { aiRole } : {}),
+      ...(reviewedBy ? { reviewedBy } : {}),
+      ...(reviewedAt ? { reviewedAt } : {}),
+      ...(reporterInsight ? { reporterInsight } : {}),
       imageUrl,
       imageCaption: (fm.imageCaption || "").trim() || undefined,
       tags,

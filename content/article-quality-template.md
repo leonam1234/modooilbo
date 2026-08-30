@@ -1,6 +1,7 @@
 # 편집 품질 8.5 기사 템플릿
 
 이 파일은 복사용이며 `content/articles/`에 넣지 않는다. 대괄호 안내문을 실제 사실로 바꾼다.
+초안 작성자는 reviewedBy·reviewedAt을 비워 두고, 실제 책임 기자가 원문 대조를 마친 뒤 입력한다.
 
 ```markdown
 ---
@@ -14,6 +15,9 @@ addedValue: [독자가 원자료만 읽으면 놓칠 자격·기한·계산·충
 sourceBasis: primary
 visualType: ai-illustration
 aiRole: research-assist, draft-assist, copyedit, image
+reviewedBy: 김영환
+reviewedAt: 2026-09-01 09:05
+reporterInsight: [원문에서 가장 중요하거나 놓치기 쉬운 지점과 그 이유를 40~350자로 해설]
 summary: [핵심 사실과 독자 영향을 함께 담은 40자 이상 요약]
 image: /stock/[파일명].jpg
 imageCaption: AI 생성 이미지. 실제 현장 사진이 아닙니다.

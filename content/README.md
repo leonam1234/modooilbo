@@ -28,6 +28,9 @@ addedValue: 발표문을 옮기지 않고 신청자가 놓치기 쉬운 자격�
 sourceBasis: primary
 visualType: source-photo
 aiRole: research-assist, draft-assist, copyedit
+reviewedBy: 박서연
+reviewedAt: 2026-06-30 11:35
+reporterInsight: 이번 변경의 핵심은 지원 확대 자체보다 적용 시점과 대상별 예외다. 신청자는 발표 요약보다 실제 공고문의 자격 기준을 먼저 확인해야 한다.
 tags: 소상공인, 노란우산, 정책
 summary: 한 줄 요약(목록·검색·OG에 노출). 비우면 본문 첫 문단을 씀.
 ---
@@ -53,6 +56,9 @@ summary: 한 줄 요약(목록·검색·OG에 노출). 비우면 본문 첫 문�
 | `contactStatus` | 조건부 | `inquiry`, `interview`, `follow-up` 직접취재는 `replied` 필수 |
 | `visualType` | ✅* | `original-photo`, `source-photo`, `editorial-illustration`, `ai-illustration`, `stock-photo` |
 | `aiRole` | ✅* | `research-assist`, `draft-assist`, `copyedit`, `image`, `none` 중 콤마 구분. `none`은 단독 사용 |
+| `reviewedBy` | ✅* | 배포 전 최종 검수 책임을 진 `src/lib/reporters.ts` 등록 기자 실명. 포괄 명칭·임의 이름 금지 |
+| `reviewedAt` | ✅* | 검수 완료 KST 시각. `publishedAt`보다 늦으면 발행 차단 |
+| `reporterInsight` | ✅* | 사실과 분리해 공개할 근거 기반 기자 해설 40~350자. 감상·홍보·무근거 단정 금지 |
 | `tags` | 권장 | 콤마로 구분 (예: `추경, 국회`) |
 | `summary` | 권장 | 한 줄 요약. 없으면 본문 첫 문단 사용 |
 | `image` | 선택 | 대표 이미지 URL. **없으면 카테고리에 맞는 무료 스톡이 자동**으로 붙음 |
@@ -60,7 +66,7 @@ summary: 한 줄 요약(목록·검색·OG에 노출). 비우면 본문 첫 문�
 | `breaking` | 선택 | `true`면 속보(빨간 배지) |
 | `type` | 선택 | `opinion`/`video` (기본 `article`) |
 
-`✅*`는 **2026-09-01 이후 발행 기사부터 필수**다. 신규 기사는 내부 편집 품질 80점 미만이거나 같은 분에 5편 이상 배정되면 빌드가 실패한다. `aiRole`은 내부 감사 기록이며, 취재 방식과 섞어 독자에게 표시하지 않는다.
+`✅*`는 **2026-09-01 이후 일반 기사(`direct`·`desk`)부터 필수**다. 신규 기사는 내부 편집 품질 80점 미만이거나 같은 분에 5편 이상 배정되면 빌드가 실패한다. `aiRole`은 내부 감사 기록이며, 취재 방식과 섞어 독자에게 표시하지 않는다.
 
 ### 카테고리 (반드시 이 영문 슬러그로 — 두 축 12종 + 동결 1종)
 **종합뉴스** (일일 편성 6종 — `tech`는 동결: 슬러그는 유효하나 신규 편성하지 않음)

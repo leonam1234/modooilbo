@@ -95,6 +95,12 @@ export interface Article {
   visualType?: "original-photo" | "source-photo" | "editorial-illustration" | "ai-illustration" | "stock-photo";
   /** AI가 맡은 역할의 내부 감사 기록. 독자용 취재 방식과 섞어 표시하지 않는다. */
   aiRole?: Array<"research-assist" | "draft-assist" | "copyedit" | "image" | "none">;
+  /** 배포 전 최종 검수 책임을 진 기자 이름. 편집국·AI 같은 포괄 명칭은 사용할 수 없다. */
+  reviewedBy?: string;
+  /** 기자가 최종 검수를 마친 KST 시각. publishedAt보다 늦을 수 없다. */
+  reviewedAt?: string;
+  /** 사실 보도와 분리해 공개하는 근거 기반 기자 해설. 단순 감상이나 홍보 문구는 금지한다. */
+  reporterInsight?: string;
   imageUrl: string;
   imageCaption?: string;
   youtubeId?: string; // 영상 기사 = 유튜브 쇼츠 임베드

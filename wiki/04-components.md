@@ -54,6 +54,7 @@
 | [SponsorNotice](../src/components/SponsorNotice.tsx) | **광고성 콘텐츠 표시**(`sponsor` 필드) |
 | [ReportingBadge](../src/components/ReportingBadge.tsx) | 취재 방식 — `direct` 기사에만. ⚠️ **AI 관여도 표시가 아니다** |
 | [ReportingDisclosure](../src/components/ReportingDisclosure.tsx) | 기사별 실제 취재·검증 행위와 연결 원문 수 공개 |
+| [ReporterInsight](../src/components/ReporterInsight.tsx) | 사실 본문과 분리된 근거 기반 기자 해설·최종 검수자 표시 |
 | [EventEndedNotice](../src/components/EventEndedNotice.tsx) | 종료된 행사·접수 안내(`eventEndsAt`) |
 
 ## 4. 홈 모듈

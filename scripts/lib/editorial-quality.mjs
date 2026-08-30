@@ -44,6 +44,9 @@ export function assessEditorialQuality({ file, fm, paragraphs, publishedAt, same
   const contactStatus = String(fm.contactStatus || "").trim();
   const visualType = String(fm.visualType || "").trim();
   const aiRoles = list(fm.aiRole);
+  const reviewedBy = String(fm.reviewedBy || "").trim();
+  const reviewedAt = String(fm.reviewedAt || "").trim();
+  const reporterInsight = String(fm.reporterInsight || "").trim();
   const urls = sourceUrls(paragraphs);
   const sourceIndex = paragraphs.findIndex((p) => /^#{1,6}\s*출처/.test(p));
   const bodyOnly = paragraphs.slice(0, sourceIndex < 0 ? paragraphs.length : sourceIndex).join(" ");
@@ -58,6 +61,25 @@ export function assessEditorialQuality({ file, fm, paragraphs, publishedAt, same
     if (!VISUAL_TYPE.includes(visualType)) errors.push(`visualType이 필요합니다(${VISUAL_TYPE.join(", ")}).`);
     if (!aiRoles.length || aiRoles.some((v) => !AI_ROLE.includes(v)) || (aiRoles.includes("none") && aiRoles.length > 1)) {
       errors.push(`aiRole이 필요합니다(${AI_ROLE.join(", ")}; none은 단독 사용).`);
+    }
+    if (["direct", "desk"].includes(reporting)) {
+      if (reviewedBy.length < 2 || /^(모두일보|편집국|데스크|AI|자동)$/i.test(reviewedBy)) {
+        errors.push("reviewedBy에는 최종 검수 책임을 진 기자 실명을 적어야 합니다.");
+      }
+      const normalizedReview = reviewedAt.replace(" ", "T").replace(/(?:Z|[+-]\d{2}:?\d{2})$/i, "") + "Z";
+      const reviewTime = new Date(normalizedReview).getTime();
+      const publishTime = new Date(publishedAt).getTime();
+      if (!/^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}$/.test(reviewedAt) || Number.isNaN(reviewTime)) {
+        errors.push("reviewedAt은 YYYY-MM-DD HH:MM 형식의 KST 검수 완료 시각이어야 합니다.");
+      } else if (!Number.isNaN(publishTime) && reviewTime > publishTime) {
+        errors.push("reviewedAt은 publishedAt보다 늦을 수 없습니다. 배포 전에 검수해야 합니다.");
+      }
+      if (reporterInsight.length < 40 || reporterInsight.length > 350) {
+        errors.push("reporterInsight는 근거 있는 기자 해설을 40~350자로 적어야 합니다.");
+      }
+      if (/(제\s*생각|내\s*생각|느낌상|좋아\s*보인다|나빠\s*보인다|무조건|분명히\s*성공)/.test(reporterInsight)) {
+        errors.push("reporterInsight에 근거 없는 개인 감상·단정 표현이 있습니다. 원문 근거와 독자 영향을 중심으로 고치세요.");
+      }
     }
     if (!["sponsored", "wire"].includes(reporting) && urls.length < 1) errors.push("본문의 출처 메모에 원문 URL이 1개 이상 필요합니다.");
     if (reporting === "direct" && reportingType === "data-analysis" && urls.length < 2) {
@@ -89,10 +111,10 @@ export function assessEditorialQuality({ file, fm, paragraphs, publishedAt, same
   }
   if (verificationNote.length >= 20) evidenceScore = Math.min(25, evidenceScore + 5);
 
-  const valueScore = (addedValue.length >= 20 ? 10 : 0) + (sectionCount >= 2 ? 5 : 0) + (textLength >= 700 ? 5 : 0);
+  const valueScore = (addedValue.length >= 20 ? 5 : 0) + (reporterInsight.length >= 40 ? 5 : 0) + (sectionCount >= 2 ? 5 : 0) + (textLength >= 700 ? 5 : 0);
   const completenessScore = (String(fm.summary || "").trim().length >= 40 ? 5 : 0) + (textLength >= 500 ? 5 : 0) + (tags.length >= 5 ? 5 : 0);
   const transparencyScore = (reporting ? 4 : 0) + (sourceBasis ? 3 : 0) + (visualType ? 3 : 0);
-  const hygieneScore = (sameMinuteCount <= MAX_SAME_MINUTE ? 5 : 0) + (aiRoles.length ? 5 : 0);
+  const hygieneScore = (sameMinuteCount <= MAX_SAME_MINUTE ? 4 : 0) + (aiRoles.length ? 3 : 0) + (reviewedBy && reviewedAt ? 3 : 0);
   const breakdown = {
     sources: Math.min(20, sourceScore),
     evidence: Math.min(25, evidenceScore),
@@ -105,5 +127,8 @@ export function assessEditorialQuality({ file, fm, paragraphs, publishedAt, same
   if (inScope && score < QUALITY_PASS) errors.push(`편집 품질 ${score}점으로 출고선 ${QUALITY_PASS}점 미달입니다.`);
   if (!inScope && score < QUALITY_TARGET) warnings.push(`현재 메타데이터 기준 ${score}점(목표 ${QUALITY_TARGET}점). 과거 기사 소급 보정은 선택 사항입니다.`);
 
-  return { file, pubDay, inScope, score, breakdown, errors, warnings, urls: urls.length, reporting, reportingType };
+  return {
+    file, pubDay, inScope, score, breakdown, errors, warnings, urls: urls.length,
+    reporting, reportingType, reviewedBy, reviewedAt, reporterInsight,
+  };
 }

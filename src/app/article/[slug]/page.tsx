@@ -24,6 +24,7 @@ import { ReadingProgress } from "@/components/ReadingProgress";
 import { ArticleBody, articleSpeechText, splitSources, sourceLinks } from "@/components/ArticleBody";
 import { ReportingBadge } from "@/components/ReportingBadge";
 import { ReportingDisclosure } from "@/components/ReportingDisclosure";
+import { ReporterInsight } from "@/components/ReporterInsight";
 import { SponsorBadge, SponsorFooter } from "@/components/SponsorNotice";
 import { PARTNERS } from "@/lib/partners";
 import { ogImageUrl, displayImageUrl } from "@/lib/stock";
@@ -310,6 +311,7 @@ export default async function ArticlePage({
               삽입 위치 판단은 본문 구조를 아는 ArticleBody가 한다(짧은 기사는 자동 제외). */}
           <ArticleBody body={article.body} sponsored={!!article.sponsor} midSlot={<AdSlot placement="article" className="!my-9" />} />
 
+          <ReporterInsight article={article} />
           <ReportingDisclosure article={article} sourceCount={articleCitations.length} />
 
           {/* 본문 끝 고지 — 위 배지를 못 본 독자(본문부터 읽기 시작)를 위한 두 번째 표시.

@@ -85,6 +85,8 @@ interface Article {
   contactStatus?: "not-needed" | "contacted" | "replied" | "no-response" | "declined";
   visualType?: "original-photo" | "source-photo" | "editorial-illustration" | "ai-illustration" | "stock-photo";
   aiRole?: ("research-assist" | "draft-assist" | "copyedit" | "image" | "none")[];
+  reviewedBy?, reviewedAt?: string;
+  reporterInsight?: string;
   imageUrl: string;      // 보통 /stock/<slug>.jpg (셀프호스팅)
   imageCaption?, imageAlt?, youtubeId?: string;
   tags: string[];
@@ -111,6 +113,8 @@ type ArticleIndexItem = ArticleCardItem & { tags };  // /articles-index.json 한
   “편집국 검수 완료” 같은 추상 표현은 증거가 아니다.
 - `addedValue` — 원자료를 옮기는 데 그치지 않고 독자에게 무엇을 더했는지 쓰는 내부 필드다.
 - `aiRole` — AI 활용 역할을 감사하기 위한 내부 기록이다. `reporting`·`reportingType`과 별개다.
+- `reviewedBy`·`reviewedAt` — 배포 전에 최종 검수한 기자 실명과 시각이다. 검수시각은 발행시각보다 늦을 수 없다.
+- `reporterInsight` — 원문에서 놓치기 쉬운 점과 독자 영향을 40~350자로 해설한다. 기사 화면에서 사실 본문과 분리해 공개한다.
 - 위 신규 품질 필드는 2026-09-01부터 필수이며, [편집 품질 AS-IS/TO-BE](../docs/editorial-quality-as-is-to-be.md)의
   80점 출고선을 빌드가 강제한다.
 - `isLead` — **전체 1건만**(불변식). 원고 frontmatter 로는 설정할 수 없다.

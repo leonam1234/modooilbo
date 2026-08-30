@@ -9,6 +9,9 @@ const goodFrontmatter = {
   sourceBasis: "primary",
   visualType: "ai-illustration",
   aiRole: "research-assist, draft-assist, copyedit, image",
+  reviewedBy: "김영환",
+  reviewedAt: "2026-09-01 09:05",
+  reporterInsight: "이 공고의 핵심은 지원 규모보다 두 공식 화면의 마감 시각이 다르다는 점이다. 신청자는 더 이른 시각을 기준으로 서류를 준비하는 편이 안전하다.",
   summary: "공식 원문 두 개를 대조해 신청 자격과 실제 마감 시각의 차이를 정리한 기사다.",
   imageCaption: "AI 생성 이미지. 실제 현장 사진이 아닙니다.",
   tags: "정부지원, 신청자격, 마감시각, 원문검증, 기업지원",
@@ -51,4 +54,13 @@ const falseInterview = assessEditorialQuality({
 });
 assert.ok(falseInterview.errors.some((e) => e.includes("contactStatus: replied")), "답변 없는 인터뷰를 direct로 분류하면 안 된다.");
 
-console.log(`편집 품질 게이트 테스트 통과: 정상 ${passing.score}점 · 누락 ${missingEvidence.score}점 · 허위 인터뷰 차단`);
+const lateReview = assessEditorialQuality({
+  file: "late-review.md",
+  fm: { ...goodFrontmatter, reviewedAt: "2026-09-01 09:11" },
+  paragraphs: goodParagraphs,
+  publishedAt: "2026-09-01T09:10:00Z",
+  sameMinuteCount: 1,
+});
+assert.ok(lateReview.errors.some((e) => e.includes("배포 전에 검수")), "배포 뒤 검수시각을 허용하면 안 된다.");
+
+console.log(`편집 품질 게이트 테스트 통과: 정상 ${passing.score}점 · 누락 ${missingEvidence.score}점 · 허위 인터뷰·배포 후 검수 차단`);
