@@ -53126,6 +53126,16 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-21T06:12:00Z",
     "reporting": "direct",
     "reportingType": "data-analysis",
+    "verificationNote": "지식재산처 국적별 특허 표와 유엔 무역통계의 한국·일본 HS 6704 수출값을 국가코드와 기준연도를 맞춰 대조했다.",
+    "addedValue": "20년 누적 특허와 1년 수출액의 범위 차이를 분리하고 원자료 값을 다시 계산해 19.7배를 확인했다.",
+    "sourceBasis": "primary",
+    "contactStatus": "not-needed",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "image"
+    ],
+    "series": "data-crosscheck",
+    "methodologyNote": "특허는 2004~2023년 세계 5대 지식재산기관의 국적별 누적 출원, 무역은 2023년 HS 6704 대세계 수출액을 사용했다. 기간과 분류 범위가 달라 두 수치로 특허의 사업화 성과나 기술가치를 직접 추정할 수 없으며 기업별 생산지와 브랜드 소유 구조도 분석에서 제외했다.",
     "imageUrl": "/stock/2026-08-21-wig-patents-exports-data-analysis-2026.jpg",
     "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
@@ -57732,6 +57742,15 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-26T14:17:00Z",
     "reporting": "direct",
     "reportingType": "interview",
+    "verificationNote": "8월 24일 서면 질의를 보내 8월 26일 담당자 답변을 받았고 삼성전자 공식 파트너 안내와 회사 공개 자료를 함께 확인했다.",
+    "addedValue": "표시 가격이 아니라 설치·배송·카드·사은품 조건을 분리해 실제 구매 전 확인할 기준과 이해관계를 공개했다.",
+    "sourceBasis": "mixed",
+    "contactStatus": "replied",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "image"
+    ],
+    "series": "on-the-record",
     "imageUrl": "/stock/2026-08-26-hyunsung-electronics-online-appliance-consulting-interview-2026.jpg",
     "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [
@@ -61187,6 +61206,19 @@ export const CONTENT_ARTICLES: Article[] = [
     "publishedAt": "2026-08-29T06:19:00Z",
     "eventEndsAt": "2026-09-11T18:30:00Z",
     "reporting": "desk",
+    "verificationNote": "기업마당 공고문과 실제 BizOK 접수 화면의 마감 시각·모집 규모·지원 한도 표기를 서로 대조했다.",
+    "addedValue": "두 공식 화면에서 다르게 보이는 마감 시각과 모집 규모를 분리하고 신청 전 확인할 문의처를 정리했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "image"
+    ],
+    "series": "notice-check",
+    "readerChecklist": [
+      "인천 소재이면서 항공산업 진출 희망기업 요건에 맞는지 확인",
+      "9월 11일 오후 6시 30분 전 BizOK 접수 완료",
+      "5개사 모집과 기업별 지원 한도를 항공산업센터에 재확인"
+    ],
     "imageUrl": "/stock/2026-08-29-incheon-aviation-consulting-sep11-2026.jpg",
     "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
     "tags": [

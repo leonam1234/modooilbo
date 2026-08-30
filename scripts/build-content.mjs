@@ -56,6 +56,16 @@ const BLOCKED_STATUS = ["발행보류", "보류"];
 const REPORTING = ["direct", "desk", "sponsored", "wire"];
 const REPORTING_TYPE = ["inquiry", "interview", "data-analysis", "document-verification", "field", "follow-up"];
 
+/** 등록된 기획 연재만 허용한다. 기사마다 비슷한 이름을 새로 만들어 자산이 흩어지는 것을 막는다. */
+const SERIES_SLUGS = (() => {
+  try {
+    const src = readFileSync(join(ROOT, "src", "lib", "editorial-series.ts"), "utf8");
+    return new Set([...src.matchAll(/\bslug:\s*"([^"]+)"/g)].map((m) => m[1]));
+  } catch {
+    return new Set();
+  }
+})();
+
 /**
  * 유예 구간 — 규약 시행일(8/21)부터 한 주는 누락을 경고만 하고 통과시킨다.
  * 8/28 부터는 누락도 빌드 실패다. 그 전 발행분(과거 기사)은 소급 추정하지 않고 조용히 unknown.
@@ -370,6 +380,16 @@ async function run() {
     const reviewedAtRaw = (fm.reviewedAt || "").trim();
     const reviewedAt = reviewedAtRaw ? normDate(reviewedAtRaw) : undefined;
     const reporterInsight = (fm.reporterInsight || "").trim();
+    const series = (fm.series || "").trim();
+    const methodologyNote = (fm.methodologyNote || "").trim();
+    const readerChecklist = String(fm.readerChecklist || "")
+      .split("|")
+      .map((item) => item.trim())
+      .filter(Boolean);
+    if (series && SERIES_SLUGS.size && !SERIES_SLUGS.has(series)) {
+      errors.push(`${file}: series "${series}"는 src/lib/editorial-series.ts에 등록되지 않았습니다.`);
+      continue;
+    }
     if (reviewedBy && REPORTER_NAMES.size && !REPORTER_NAMES.has(reviewedBy)) {
       errors.push(`${file}: reviewedBy "${reviewedBy}"는 src/lib/reporters.ts 기자 로스터에 없습니다.`);
       continue;
@@ -449,6 +469,9 @@ async function run() {
       ...(reviewedBy ? { reviewedBy } : {}),
       ...(reviewedAt ? { reviewedAt } : {}),
       ...(reporterInsight ? { reporterInsight } : {}),
+      ...(series ? { series } : {}),
+      ...(methodologyNote ? { methodologyNote } : {}),
+      ...(readerChecklist.length ? { readerChecklist } : {}),
       imageUrl,
       imageCaption: (fm.imageCaption || "").trim() || undefined,
       tags,

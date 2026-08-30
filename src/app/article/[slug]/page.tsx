@@ -25,12 +25,14 @@ import { ArticleBody, articleSpeechText, splitSources, sourceLinks } from "@/com
 import { ReportingBadge } from "@/components/ReportingBadge";
 import { ReportingDisclosure } from "@/components/ReportingDisclosure";
 import { ReporterInsight } from "@/components/ReporterInsight";
+import { MethodologyNote, ReaderChecklist } from "@/components/EditorialEvidence";
 import { SponsorBadge, SponsorFooter } from "@/components/SponsorNotice";
 import { PARTNERS } from "@/lib/partners";
 import { ogImageUrl, displayImageUrl } from "@/lib/stock";
 import { getReporterByName } from "@/lib/reporters";
 import { SITE, absoluteUrl } from "@/lib/site";
 import { CONTENT_USE_POLICY } from "@/lib/content-use-policy";
+import { getEditorialSeries } from "@/lib/editorial-series";
 import JsonLd from "@/components/JsonLd";
 import { PortalMeta } from "@/components/PortalMeta";
 
@@ -109,6 +111,7 @@ export default async function ArticlePage({
   const readMinutes = Math.max(1, Math.round(article.body.join(" ").length / 600));
   const articleUrl = `${SITE.url}/article/${article.slug}/`;
   const imageUrl = absoluteUrl(displayImageUrl(article));
+  const editorialSeries = getEditorialSeries(article.series);
 
   const isOpinion = article.type === "opinion" || article.category === "opinion";
   const wordCount = article.body.join(" ").trim().split(/\s+/).filter(Boolean).length;
@@ -161,6 +164,15 @@ export default async function ArticlePage({
       },
     },
     articleSection: cat?.name,
+    ...(editorialSeries
+      ? {
+          isPartOf: {
+            "@type": "CreativeWorkSeries",
+            name: editorialSeries.name,
+            url: `${SITE.url}/series/${editorialSeries.slug}/`,
+          },
+        }
+      : {}),
     // 출처 계보(P2-02) — 본문 하단 사람용 출처 블록과 같은 파서 출력을 기계용으로 병기한다.
     // 파서가 기관을 못 뽑으면 빈 배열이 되므로 조건부로만 싣는다.
     ...(articleCitations.length ? { citation: articleCitations } : {}),
@@ -219,12 +231,25 @@ export default async function ArticlePage({
 
           {/* 광고성 콘텐츠는 제목보다 먼저 알린다 — 읽기 시작한 뒤 알면 늦다. */}
           {article.sponsor && <SponsorBadge sponsor={article.sponsor} />}
-          <Link
-            href={`/${article.category}`}
-            className="text-sm font-bold text-signal-600 dark:text-signal-400 hover:text-signal-700"
-          >
-            {cat?.name}
-          </Link>
+          <div className="flex flex-wrap items-center gap-2 text-sm font-bold">
+            <Link
+              href={`/${article.category}`}
+              className="text-signal-600 hover:text-signal-700 dark:text-signal-400"
+            >
+              {cat?.name}
+            </Link>
+            {editorialSeries && (
+              <>
+                <span aria-hidden className="text-ink-300 dark:text-ink-700">/</span>
+                <Link
+                  href={`/series/${editorialSeries.slug}/`}
+                  className="rounded-full border border-ink-200 px-2.5 py-1 text-xs text-ink-700 hover:border-signal-400 hover:text-signal-600 dark:border-ink-700 dark:text-ink-200 dark:hover:text-signal-400"
+                >
+                  기획 · {editorialSeries.name}
+                </Link>
+              </>
+            )}
+          </div>
           <h1 className="mt-2 font-headline text-3xl font-extrabold leading-tight text-ink-900 dark:text-white sm:text-4xl sm:leading-tight">
             {article.title}
           </h1>
@@ -307,11 +332,14 @@ export default async function ArticlePage({
 
           <ThreeLineSummary lines={getThreeLineSummary(article)} />
 
+          <ReaderChecklist items={article.readerChecklist} />
+
           {/* 광고(AdSense 수동 슬롯) — 본문 중간(일반 문단 3개 뒤, 뉴스 관행). 기사당 이 1개만.
               삽입 위치 판단은 본문 구조를 아는 ArticleBody가 한다(짧은 기사는 자동 제외). */}
           <ArticleBody body={article.body} sponsored={!!article.sponsor} midSlot={<AdSlot placement="article" className="!my-9" />} />
 
           <ReporterInsight article={article} />
+          <MethodologyNote note={article.methodologyNote} />
           <ReportingDisclosure article={article} sourceCount={articleCitations.length} />
 
           {/* 본문 끝 고지 — 위 배지를 못 본 독자(본문부터 읽기 시작)를 위한 두 번째 표시.

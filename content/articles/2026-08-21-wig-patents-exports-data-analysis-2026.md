@@ -6,6 +6,14 @@ author: 박유주 / 논설위원
 publishedAt: 2026-08-21 06:12
 reporting: direct
 reportingType: data-analysis
+series: data-crosscheck
+verificationNote: 지식재산처 국적별 특허 표와 유엔 무역통계의 한국·일본 HS 6704 수출값을 국가코드와 기준연도를 맞춰 대조했다.
+addedValue: 20년 누적 특허와 1년 수출액의 범위 차이를 분리하고 원자료 값을 다시 계산해 19.7배를 확인했다.
+sourceBasis: primary
+contactStatus: not-needed
+visualType: ai-illustration
+aiRole: image
+methodologyNote: 특허는 2004~2023년 세계 5대 지식재산기관의 국적별 누적 출원, 무역은 2023년 HS 6704 대세계 수출액을 사용했다. 기간과 분류 범위가 달라 두 수치로 특허의 사업화 성과나 기술가치를 직접 추정할 수 없으며 기업별 생산지와 브랜드 소유 구조도 분석에서 제외했다.
 tags: 가발, 가발특허, 수출통계, 지식재산, HS6704, 산업데이터, 유엔무역통계, 일본, 한국
 summary: 지식재산처 특허 자료와 유엔 무역통계를 결합하면 한국의 가발 관련 누적 특허출원은 일본의 55.0%였지만 2023년 HS 6704 수출액은 19.7배였다.
 image: /stock/2026-08-21-wig-patents-exports-data-analysis-2026.jpg

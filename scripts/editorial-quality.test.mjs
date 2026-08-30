@@ -12,6 +12,8 @@ const goodFrontmatter = {
   reviewedBy: "김영환",
   reviewedAt: "2026-09-01 09:05",
   reporterInsight: "이 공고의 핵심은 지원 규모보다 두 공식 화면의 마감 시각이 다르다는 점이다. 신청자는 더 이른 시각을 기준으로 서류를 준비하는 편이 안전하다.",
+  category: "grants",
+  readerChecklist: "신청 대상과 소재지 요건 확인 | 실제 접수 화면의 마감 시각 확인 | 필수 첨부서류와 문의처 확인",
   summary: "공식 원문 두 개를 대조해 신청 자격과 실제 마감 시각의 차이를 정리한 기사다.",
   imageCaption: "AI 생성 이미지. 실제 현장 사진이 아닙니다.",
   tags: "정부지원, 신청자격, 마감시각, 원문검증, 기업지원",
@@ -53,6 +55,15 @@ const falseInterview = assessEditorialQuality({
   sameMinuteCount: 1,
 });
 assert.ok(falseInterview.errors.some((e) => e.includes("contactStatus: replied")), "답변 없는 인터뷰를 direct로 분류하면 안 된다.");
+
+const missingMethod = assessEditorialQuality({
+  file: "missing-method.md",
+  fm: { ...goodFrontmatter, category: "industry", reporting: "direct", reportingType: "data-analysis" },
+  paragraphs: goodParagraphs,
+  publishedAt: "2026-09-01T09:12:00Z",
+  sameMinuteCount: 1,
+});
+assert.ok(missingMethod.errors.some((e) => e.includes("methodologyNote")), "자체 데이터 분석은 방법과 한계를 공개해야 한다.");
 
 const lateReview = assessEditorialQuality({
   file: "late-review.md",

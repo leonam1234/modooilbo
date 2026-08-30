@@ -6,6 +6,13 @@ author: 박유주 / 논설위원
 publishedAt: 2026-08-26 14:17
 reporting: direct
 reportingType: interview
+series: on-the-record
+verificationNote: 8월 24일 서면 질의를 보내 8월 26일 담당자 답변을 받았고 삼성전자 공식 파트너 안내와 회사 공개 자료를 함께 확인했다.
+addedValue: 표시 가격이 아니라 설치·배송·카드·사은품 조건을 분리해 실제 구매 전 확인할 기준과 이해관계를 공개했다.
+sourceBasis: mixed
+contactStatus: replied
+visualType: ai-illustration
+aiRole: image
 tags: 현성전자, 삼성전자온라인공식대리점, 삼성가전, 삼성가전구독, 온라인가전, 가전상담, 가전견적, 설치상담, 카드혜택, 사후관리, AI가전, 공식대리점
 summary: 삼성 온라인 공식 파트너 현성전자가 제품 비교부터 설치 가능 여부, 카드·프로모션 적용 조건, 구매 후 문의까지 이어지는 온라인 맞춤 상담 방식을 소개했다.
 image: /stock/2026-08-26-hyunsung-electronics-online-appliance-consulting-interview-2026.jpg

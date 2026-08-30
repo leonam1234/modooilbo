@@ -43,6 +43,11 @@ const percent = (n, d) => d ? (n / d) * 100 : null;
 const originalCount = recent30.filter((r) => r.reporting === "direct").length;
 const humanCount = recent30.filter((r) => r.reporting === "direct" && humanTypes.has(r.reportingType)).length;
 const reviewedLatest = latest.filter((r) => r.reviewedBy && r.reviewedAt && r.reporterInsight).length;
+const methodologyEligible = latest.filter((r) => r.reporting === "direct" && ["data-analysis", "document-verification"].includes(r.reportingType));
+const methodologyCovered = methodologyEligible.filter((r) => r.methodologyNote.length >= 40).length;
+const actionEligible = latest.filter((r) => ["grants", "bids", "labor"].includes(r.category));
+const actionCovered = actionEligible.filter((r) => r.readerChecklist.length >= 3).length;
+const seriesCovered = latest.filter((r) => r.series).length;
 const result = {
   model: "editorial-quality-v1",
   target: QUALITY_TARGET,
@@ -59,6 +64,11 @@ const result = {
     humanReportedPercent: percent(humanCount, recent30.length),
   },
   reviewCoverage: { latest100: percent(reviewedLatest, latest.length), reviewed: reviewedLatest, total: latest.length },
+  benchmarkCoverage: {
+    series: { covered: seriesCovered, total: latest.length, percent: percent(seriesCovered, latest.length) },
+    methodology: { covered: methodologyCovered, total: methodologyEligible.length, percent: percent(methodologyCovered, methodologyEligible.length) },
+    readerChecklist: { covered: actionCovered, total: actionEligible.length, percent: percent(actionCovered, actionEligible.length) },
+  },
   failures: inScope.filter((r) => r.errors.length),
 };
 
@@ -76,6 +86,9 @@ if (asJson) {
   console.log(`  최근 30개 발행일 자체취재·분석 ${result.kpi30.originalArticles}/${result.kpi30.eligibleArticles} (${pct(result.kpi30.originalPercent)}) · 30일 목표 30%`);
   console.log(`  최근 30개 발행일 사람 직접취재 ${result.kpi30.humanReportedArticles}/${result.kpi30.eligibleArticles} (${pct(result.kpi30.humanReportedPercent)}) · 30일 목표 15%\n`);
   console.log(`  최신 100편 기자 검수·해설 기록 ${result.reviewCoverage.reviewed}/${result.reviewCoverage.total} (${pct(result.reviewCoverage.latest100)}) · 시행 후 목표 100%\n`);
+  console.log(`  최신 100편 기획 연재 연결 ${result.benchmarkCoverage.series.covered}/${result.benchmarkCoverage.series.total} (${pct(result.benchmarkCoverage.series.percent)})`);
+  console.log(`  자체 데이터·문서검증 방법론 ${result.benchmarkCoverage.methodology.covered}/${result.benchmarkCoverage.methodology.total} (${pct(result.benchmarkCoverage.methodology.percent)}) · 시행 후 목표 100%`);
+  console.log(`  공고·입찰·노동 체크리스트 ${result.benchmarkCoverage.readerChecklist.covered}/${result.benchmarkCoverage.readerChecklist.total} (${pct(result.benchmarkCoverage.readerChecklist.percent)}) · 시행 후 목표 100%\n`);
   for (const row of result.failures.slice(0, 20)) {
     console.log(`  ✖ ${row.file} — ${row.score}점`);
     for (const error of row.errors) console.log(`    · ${error}`);

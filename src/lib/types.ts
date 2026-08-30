@@ -1,3 +1,5 @@
+import type { EditorialSeriesSlug } from "./editorial-series";
+
 export type CategorySlug =
   | "economy"
   | "society"
@@ -101,6 +103,12 @@ export interface Article {
   reviewedAt?: string;
   /** 사실 보도와 분리해 공개하는 근거 기반 기자 해설. 단순 감상이나 홍보 문구는 금지한다. */
   reporterInsight?: string;
+  /** 반복 발행해 전문성을 축적하는 편집국 기획 연재. 임의 문자열 대신 등록된 slug만 사용한다. */
+  series?: EditorialSeriesSlug;
+  /** 데이터·문서 검증 기사의 입력자료, 계산 기준, 제외 범위와 한계를 독자에게 공개한다. */
+  methodologyNote?: string;
+  /** 공고·입찰·노동 기사를 읽은 뒤 독자가 실제로 확인하거나 실행할 항목. */
+  readerChecklist?: string[];
   imageUrl: string;
   imageCaption?: string;
   youtubeId?: string; // 영상 기사 = 유튜브 쇼츠 임베드

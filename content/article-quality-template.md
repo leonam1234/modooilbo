@@ -18,6 +18,9 @@ aiRole: research-assist, draft-assist, copyedit, image
 reviewedBy: 김영환
 reviewedAt: 2026-09-01 09:05
 reporterInsight: [원문에서 가장 중요하거나 놓치기 쉬운 지점과 그 이유를 40~350자로 해설]
+series: notice-check
+methodologyNote: [data-analysis·document-verification일 때 입력자료·계산 기준·제외 범위·한계를 40자 이상]
+readerChecklist: [grants·bids·labor일 때 독자가 확인할 행동 1 | 행동 2 | 행동 3]
 summary: [핵심 사실과 독자 영향을 함께 담은 40자 이상 요약]
 image: /stock/[파일명].jpg
 imageCaption: AI 생성 이미지. 실제 현장 사진이 아닙니다.
@@ -41,3 +44,6 @@ tags: [5개 이상의 구체 태그를 콤마로 구분]
 
 direct 기사라면 reportingType을 추가한다. inquiry·interview·follow-up은 실제 답변을 받았을 때만
 contactStatus: replied를 쓴다. 답변을 받지 못했다면 direct로 올리지 않는다.
+
+기획 연재 slug는 `notice-check`(공고 원문검증), `data-crosscheck`(데이터 교차검증),
+`on-the-record`(답변을 받았습니다) 중 기사 성격에 맞을 때만 쓴다. 억지로 붙이지 않는다.

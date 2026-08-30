@@ -6,6 +6,13 @@ author: 서영호 / 공공입찰 전담기자
 publishedAt: 2026-08-29 06:19
 eventEndsAt: 2026-09-11 18:30
 reporting: desk
+series: notice-check
+verificationNote: 기업마당 공고문과 실제 BizOK 접수 화면의 마감 시각·모집 규모·지원 한도 표기를 서로 대조했다.
+addedValue: 두 공식 화면에서 다르게 보이는 마감 시각과 모집 규모를 분리하고 신청 전 확인할 문의처를 정리했다.
+sourceBasis: primary
+visualType: ai-illustration
+aiRole: image
+readerChecklist: 인천 소재이면서 항공산업 진출 희망기업 요건에 맞는지 확인 | 9월 11일 오후 6시 30분 전 BizOK 접수 완료 | 5개사 모집과 기업별 지원 한도를 항공산업센터에 재확인
 summary: 인천테크노파크가 인천지역 항공산업 진출 희망기업을 대상으로 기업진단과 맞춤형 1대1 전문가 컨설팅 참여기업을 모집한다.
 image: /stock/2026-08-29-incheon-aviation-consulting-sep11-2026.jpg
 imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.

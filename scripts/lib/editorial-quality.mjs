@@ -16,6 +16,8 @@ export const AI_ROLE = ["research-assist", "draft-assist", "copyedit", "image", 
 
 const HUMAN_REPORTING = new Set(["inquiry", "interview", "field", "follow-up"]);
 const RESPONSE_REQUIRED = new Set(["inquiry", "interview", "follow-up"]);
+const METHODOLOGY_REQUIRED = new Set(["data-analysis", "document-verification"]);
+const ACTION_CATEGORIES = new Set(["grants", "bids", "labor"]);
 
 export function list(value) {
   return String(value || "")
@@ -47,6 +49,8 @@ export function assessEditorialQuality({ file, fm, paragraphs, publishedAt, same
   const reviewedBy = String(fm.reviewedBy || "").trim();
   const reviewedAt = String(fm.reviewedAt || "").trim();
   const reporterInsight = String(fm.reporterInsight || "").trim();
+  const methodologyNote = String(fm.methodologyNote || "").trim();
+  const readerChecklist = String(fm.readerChecklist || "").split("|").map((v) => v.trim()).filter(Boolean);
   const urls = sourceUrls(paragraphs);
   const sourceIndex = paragraphs.findIndex((p) => /^#{1,6}\s*출처/.test(p));
   const bodyOnly = paragraphs.slice(0, sourceIndex < 0 ? paragraphs.length : sourceIndex).join(" ");
@@ -85,6 +89,12 @@ export function assessEditorialQuality({ file, fm, paragraphs, publishedAt, same
     if (reporting === "direct" && reportingType === "data-analysis" && urls.length < 2) {
       errors.push("자체 데이터 분석은 서로 구분되는 원문 URL이 2개 이상 필요합니다.");
     }
+    if (reporting === "direct" && METHODOLOGY_REQUIRED.has(reportingType) && methodologyNote.length < 40) {
+      errors.push("자체 데이터·문서 검증은 입력자료·계산 기준·제외 범위·한계를 methodologyNote에 40자 이상 공개해야 합니다.");
+    }
+    if (ACTION_CATEGORIES.has(String(fm.category || "").trim()) && readerChecklist.length < 3) {
+      errors.push("공고·입찰·노동 기사는 readerChecklist에 독자 실행 항목을 | 구분으로 3개 이상 적어야 합니다.");
+    }
     if (reporting === "direct" && RESPONSE_REQUIRED.has(reportingType) && contactStatus !== "replied") {
       errors.push(`${reportingType}을 직접취재로 분류하려면 contactStatus: replied가 필요합니다.`);
     }
@@ -111,6 +121,8 @@ export function assessEditorialQuality({ file, fm, paragraphs, publishedAt, same
   }
   if (verificationNote.length >= 20) evidenceScore = Math.min(25, evidenceScore + 5);
 
+  // 신규 방법론·체크리스트는 필수 게이트와 별도 커버리지로 관리한다. 기존 100점 모델의
+  // 시계열을 깨지 않도록 배점은 바꾸지 않는다.
   const valueScore = (addedValue.length >= 20 ? 5 : 0) + (reporterInsight.length >= 40 ? 5 : 0) + (sectionCount >= 2 ? 5 : 0) + (textLength >= 700 ? 5 : 0);
   const completenessScore = (String(fm.summary || "").trim().length >= 40 ? 5 : 0) + (textLength >= 500 ? 5 : 0) + (tags.length >= 5 ? 5 : 0);
   const transparencyScore = (reporting ? 4 : 0) + (sourceBasis ? 3 : 0) + (visualType ? 3 : 0);
@@ -129,6 +141,7 @@ export function assessEditorialQuality({ file, fm, paragraphs, publishedAt, same
 
   return {
     file, pubDay, inScope, score, breakdown, errors, warnings, urls: urls.length,
-    reporting, reportingType, reviewedBy, reviewedAt, reporterInsight,
+    reporting, reportingType, reviewedBy, reviewedAt, reporterInsight, methodologyNote, readerChecklist,
+    category: String(fm.category || "").trim(), series: String(fm.series || "").trim(),
   };
 }

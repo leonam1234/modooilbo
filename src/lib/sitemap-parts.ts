@@ -4,6 +4,7 @@ import { extraPageNumbers, pageHref } from "./paginate";
 import { getByCategory } from "./queries";
 import { REPORTERS, REPORTER_INDEXABLE } from "./reporters";
 import { SITE } from "./site";
+import { EDITORIAL_SERIES } from "./editorial-series";
 
 /**
  * 사이트맵 조각 구성 — 단일 sitemap.xml이 규격 상한(URL 50,000개 / 압축 전 50MB)에
@@ -54,6 +55,7 @@ export const STATIC_PATHS = [
   "/partners",
   "/terms",
   "/privacy",
+  "/series",
 ] as const;
 
 export type Entry = { loc: string; lastmod?: Date; changefreq?: string; priority?: number };
@@ -113,7 +115,18 @@ export function pageEntries(): Entry[] {
       })
     : [];
 
-  return [...statics, ...categories, ...reporters];
+  const seriesPages: Entry[] = EDITORIAL_SERIES.flatMap((series) => {
+    const list = ALL_ARTICLES.filter((article) => article.series === series.slug);
+    const lastmod = latest(list);
+    return [{
+      loc: `${SITE.url}/series/${series.slug}/`,
+      ...(lastmod ? { lastmod } : {}),
+      changefreq: "weekly",
+      priority: 0.6,
+    }];
+  });
+
+  return [...statics, ...categories, ...reporters, ...seriesPages];
 }
 
 export function articleEntries(year: string): Entry[] {
