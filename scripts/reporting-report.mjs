@@ -48,12 +48,12 @@ const SINCE = "2026-08-21"; // 규약 시행일 — 이전 발행분은 집계 �
  *      존속하는 것은 확인되나 수치 임계값은 미공개다.
  *    · 카카오 30%는 2025년 회차 기준이며 2026년 재공고는 확인되지 않았다.
  *
- * 내부 목표는 2026-08-28 오너 결정으로 20% → 10% 로 내렸다. 기자 4명이 하루 5~7편을
- * 자체취재하는 것은 발송 계정조차 없는 현재 물리적으로 불가능해, 20%는 매일 헛울리는
- * 경보였다. 발송 설정이 끝나면 다시 올린다.
+ * 2026-08-30 편집 품질 8.5 설계부터 direct 안에서도 사람 직접취재와 자체분석을 나눈다.
+ * 30일 목표: direct 30% 이상, 사람 직접취재 15% 이상. 90일 목표는 각각 40%, 25%다.
  */
-const TARGET_LO = 10, TARGET_HI = 30;
-/** 법·포털 기준 자체기사 비율의 임계값(위 세 제도가 공통으로 쓰는 값). */
+const TARGET_LO = 30, TARGET_HI = 100;
+const HUMAN_TARGET_LO = 15;
+/** 과거 제도와 법령 문구를 비교하기 위한 참고선. 충족 여부를 법적 판정으로 표현하지 않는다. */
 const LEGAL_MIN = 30;
 
 const asJson = process.argv.includes("--json");
@@ -93,6 +93,9 @@ function tally(list) {
     if (r.reporting === "direct" && r.reportingType) types[r.reportingType] = (types[r.reportingType] || 0) + 1;
   }
   const base = c.direct + c.desk;
+  const humanDirect = list.filter(
+    (r) => r.reporting === "direct" && ["inquiry", "interview", "field", "follow-up"].includes(r.reportingType),
+  ).length;
   // 법·포털 기준 「자체기사」 = direct + desk (보도자료 재분석·재구성 포함).
   // 분모는 분류가 끝난 기사 전체 — 광고·외부제공은 분모에 남고 분자에서만 빠진다.
   // (미표기 unknown 은 판정 자체가 불가해 양쪽에서 뺀다.)
@@ -102,6 +105,8 @@ function tally(list) {
     total: list.length,
     base,
     pct: base ? (c.direct / base) * 100 : null,
+    humanDirect,
+    humanPct: base ? (humanDirect / base) * 100 : null,
     classified,
     selfPct: classified ? (base / classified) * 100 : null,
     types,
@@ -128,18 +133,20 @@ if (asJson) {
   console.log(JSON.stringify(result, null, 2));
 } else {
   const pct = (v) => (v === null ? "  —  " : `${v.toFixed(1)}%`.padStart(6));
-  const mark = (v) => (v === null ? "" : v >= TARGET_LO && v <= TARGET_HI ? "  ✔ 목표" : v < TARGET_LO ? "  ▼ 미달" : "  ▲ 초과");
+  const mark = (v) => (v === null ? "" : v >= TARGET_LO && v <= TARGET_HI ? "  ✔ 목표" : "  ▼ 미달");
   console.log(`\n■ 취재 유형 집계 (규약 시행 ${SINCE} 이후)\n`);
   console.log(`  ${"일자".padEnd(12)}${"direct".padStart(7)}${"desk".padStart(6)}${"광고".padStart(6)}${"외부".padStart(6)}${"미표기".padStart(7)}${"비율".padStart(8)}`);
   for (const d of result.daily) {
     console.log(`  ${d.day.padEnd(12)}${String(d.direct).padStart(7)}${String(d.desk).padStart(6)}${String(d.sponsored).padStart(6)}${String(d.wire).padStart(6)}${String(d.unknown).padStart(7)}${pct(d.pct)}${mark(d.pct)}`);
   }
   for (const [label, w] of [["7일 이동", result.window7], ["30일 이동", result.window30]]) {
-    console.log(`\n  ${label}  direct ${w.direct} / 대상 ${w.base}  ${pct(w.pct)}${mark(w.pct)}   (내부 목표 ${TARGET_LO}~${TARGET_HI}%)`);
+    console.log(`\n  ${label}  direct ${w.direct} / 대상 ${w.base}  ${pct(w.pct)}${mark(w.pct)}   (30일 목표 ${TARGET_LO}% 이상)`);
+    const humanMark = w.humanPct !== null && w.humanPct >= HUMAN_TARGET_LO ? "✔ 목표" : "▼ 미달";
+    console.log(`    사람 직접취재  ${w.humanDirect} / ${w.base}  ${pct(w.humanPct)}   ${humanMark} (30일 목표 ${HUMAN_TARGET_LO}% 이상)`);
     // 대외 방어용 숫자 — 이쪽이 법·포털이 실제로 재는 값이다.
     if (w.selfPct !== null) {
-      const ok = w.selfPct >= LEGAL_MIN ? `✔ 법정 ${LEGAL_MIN}% 충족` : `▼ 법정 ${LEGAL_MIN}% 미달`;
-      console.log(`    자체기사(법·포털 기준)  ${w.base} / ${w.classified}  ${pct(w.selfPct)}   ${ok}`);
+      const ok = w.selfPct >= LEGAL_MIN ? `참고선 ${LEGAL_MIN}% 이상` : `참고선 ${LEGAL_MIN}% 미만`;
+      console.log(`    분류상 자체생산 추정  ${w.base} / ${w.classified}  ${pct(w.selfPct)}   ${ok} (법적 판정 아님)`);
     }
     const t = Object.entries(w.types).sort((a, b) => b[1] - a[1]);
     if (t.length) console.log(`    세부  ${t.map(([k, v]) => `${k} ${v}`).join(" · ")}`);

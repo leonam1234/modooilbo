@@ -23,6 +23,7 @@ import { ImageLightbox } from "@/components/ImageLightbox";
 import { ReadingProgress } from "@/components/ReadingProgress";
 import { ArticleBody, articleSpeechText, splitSources, sourceLinks } from "@/components/ArticleBody";
 import { ReportingBadge } from "@/components/ReportingBadge";
+import { ReportingDisclosure } from "@/components/ReportingDisclosure";
 import { SponsorBadge, SponsorFooter } from "@/components/SponsorNotice";
 import { PARTNERS } from "@/lib/partners";
 import { ogImageUrl, displayImageUrl } from "@/lib/stock";
@@ -309,6 +310,8 @@ export default async function ArticlePage({
               삽입 위치 판단은 본문 구조를 아는 ArticleBody가 한다(짧은 기사는 자동 제외). */}
           <ArticleBody body={article.body} sponsored={!!article.sponsor} midSlot={<AdSlot placement="article" className="!my-9" />} />
 
+          <ReportingDisclosure article={article} sourceCount={articleCitations.length} />
+
           {/* 본문 끝 고지 — 위 배지를 못 본 독자(본문부터 읽기 시작)를 위한 두 번째 표시.
               태그·댓글보다 앞에 둔다. 다 읽자마자 무엇을 읽었는지 알아야 한다. */}
           {article.sponsor && <SponsorFooter sponsor={article.sponsor} />}
@@ -376,7 +379,9 @@ export default async function ArticlePage({
             {/* AI 활용 고지 + 정정요청 (정보통신망법 2026-07-07 시행 대응) */}
           <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-ink-100 bg-ink-50/60 px-4 py-3 text-xs leading-relaxed text-ink-500 dark:border-ink-800 dark:bg-ink-900/60 dark:text-ink-400">
             <span>
-              이 기사는 AI 도구를 활용해 작성되고 편집국 검수를 거쳤습니다.{" "}
+              {article.aiRole?.includes("none")
+                ? "이 기사는 편집국이 직접 작성하고 검수했습니다."
+                : "이 기사는 AI 도구를 활용해 작성되고 편집국 검수를 거쳤습니다."}{" "}
               <a href="/policy" className="underline">운영정책</a>
             </span>
             <a

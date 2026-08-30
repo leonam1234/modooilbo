@@ -15,6 +15,7 @@ const LABEL: Record<string, string> = {
   inquiry: "담당기관 직접 확인",
   interview: "인터뷰 취재",
   "data-analysis": "자체 데이터 분석",
+  "document-verification": "원문·문서 검증",
   field: "현장 취재",
   "follow-up": "후속 확인 취재",
 };

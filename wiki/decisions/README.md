@@ -59,3 +59,4 @@
 | [0001](0001-ai-disclosure-scope.md) | AI 활용 고지 수위 | 2026-08-21 | 적용됨 |
 | [0002](0002-startup-labor-beat-swap.md) | startup ↔ labor 담당 교환 | 2026-08-21 | 적용됨 |
 | [0003](0003-home-hero-business-axis.md) | 홈 히어로의 사업 축 노출 | 2026-08-21 | 적용됨 |
+| [0004](0004-editorial-evidence-system.md) | 기사별 취재·검증 증거와 편집 품질 8.5 게이트 | 2026-08-30 | 적용됨 |

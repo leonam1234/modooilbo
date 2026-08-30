@@ -79,7 +79,12 @@ interface Article {
   correction?: { at, note };   // 이 필드가 있는 기사만 /corrections 에 실린다
   sponsor?: string;      // 있으면 기사가 아니라 광고. 표시 의무 발생
   reporting?: "direct" | "desk" | "sponsored" | "wire";
-  reportingType?: "inquiry" | "interview" | "data-analysis" | "field" | "follow-up";
+  reportingType?: "inquiry" | "interview" | "data-analysis" | "document-verification" | "field" | "follow-up";
+  verificationNote?, addedValue?: string;
+  sourceBasis?: "primary" | "mixed" | "secondary";
+  contactStatus?: "not-needed" | "contacted" | "replied" | "no-response" | "declined";
+  visualType?: "original-photo" | "source-photo" | "editorial-illustration" | "ai-illustration" | "stock-photo";
+  aiRole?: ("research-assist" | "draft-assist" | "copyedit" | "image" | "none")[];
   imageUrl: string;      // 보통 /stock/<slug>.jpg (셀프호스팅)
   imageCaption?, imageAlt?, youtubeId?: string;
   tags: string[];
@@ -102,6 +107,12 @@ type ArticleIndexItem = ArticleCardItem & { tags };  // /articles-index.json 한
 - `reporting` — **2026-08-28 부터 신규 기사에 필수**(누락 시 빌드 실패).
   `direct` 일 때만 `reportingType` 을 붙인다. 과거 기사에 소급 추정하지 않는다.
   ⚠️ AI 관여도 표시가 아니다.
+- `verificationNote` — 실제 취재·대조·계산 행위를 독자에게 공개한다. 결과를 자랑하는 문구나
+  “편집국 검수 완료” 같은 추상 표현은 증거가 아니다.
+- `addedValue` — 원자료를 옮기는 데 그치지 않고 독자에게 무엇을 더했는지 쓰는 내부 필드다.
+- `aiRole` — AI 활용 역할을 감사하기 위한 내부 기록이다. `reporting`·`reportingType`과 별개다.
+- 위 신규 품질 필드는 2026-09-01부터 필수이며, [편집 품질 AS-IS/TO-BE](../docs/editorial-quality-as-is-to-be.md)의
+  80점 출고선을 빌드가 강제한다.
 - `isLead` — **전체 1건만**(불변식). 원고 frontmatter 로는 설정할 수 없다.
 
 ## 4. 시각 규약 — KST 벽시계-as-Z
@@ -156,6 +167,7 @@ frontmatter 필수: `title` · `category` · `author` · `publishedAt` · 본문
 
 **빌드가 막는 것** — 카테고리 오타, slug 중복, `status: 보류`, 날짜 형식 오류,
 정정 짝 불일치, 광고주 미등록, `reporting` 조합 오류.
+2026-09-01 이후에는 취재·검증 메타데이터 누락, 품질 80점 미달, 같은 분 5편 이상 배치도 포함한다.
 조용히 건너뛰지 않고 **전부 모아서 한 번에 실패**시킨다.
 
 ## 7. 영상(유튜브) 임베드

@@ -17,6 +17,10 @@
     "deploy:cf": "node scripts/deploy.mjs prod",
     "report:tracking": "node scripts/tracking-report.mjs",
     "report:visibility": "node scripts/search-visibility-report.mjs",
+    "report:reporting": "node scripts/reporting-report.mjs",
+    "report:editorial": "node scripts/editorial-quality-report.mjs",
+    "check:editorial": "node scripts/editorial-quality-report.mjs --strict",
+    "test:editorial": "node scripts/editorial-quality.test.mjs",
     "fetch:stock": "node scripts/fetch-stock.mjs",
     "smoke": "node scripts/mobile-smoke.mjs"
   },

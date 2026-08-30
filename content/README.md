@@ -4,6 +4,8 @@
 > 별도 글쓰기 버튼·관리자 화면 없음. 파일을 쓰는 게 곧 글쓰기입니다.
 
 ## 1. 어디에 쓰나
+
+신규 품질 필드까지 포함한 복사용 정본은 [article-quality-template.md](article-quality-template.md)다.
 ```
 content/articles/<슬러그>.md
 ```
@@ -20,6 +22,12 @@ title: 하반기 소상공인 지원 확대…노란우산 납입한도 상향
 category: economy
 author: 박서연 / 경제부 기자
 publishedAt: 2026-06-30 11:40
+reporting: desk
+verificationNote: 중소벤처기업부 공고문과 신청 화면의 대상·기한·지원 한도를 대조했다.
+addedValue: 발표문을 옮기지 않고 신청자가 놓치기 쉬운 자격과 마감 차이를 정리했다.
+sourceBasis: primary
+visualType: source-photo
+aiRole: research-assist, draft-assist, copyedit
 tags: 소상공인, 노란우산, 정책
 summary: 한 줄 요약(목록·검색·OG에 노출). 비우면 본문 첫 문단을 씀.
 ---
@@ -37,12 +45,22 @@ summary: 한 줄 요약(목록·검색·OG에 노출). 비우면 본문 첫 문�
 | `category` | ✅ | **아래 7개 중 하나(영문 슬러그).** 이게 지면 분류 기준 |
 | `author` | 권장 | `이름 / 직함` (예: `박서연 / 경제부 기자`). 없으면 "모두일보 / 기자" |
 | `publishedAt` | 권장 | **KST 기준** `YYYY-MM-DD HH:MM` (예: `2026-06-30 11:40`). 없으면 현재시각 |
+| `reporting` | ✅ | `direct` 편집국 독자 취재·분석 / `desk` 공개자료 검증·재구성 / `sponsored` 광고·기업소식 / `wire` 외부 제공 |
+| `reportingType` | 조건부 | `direct`일 때 필수: `inquiry`, `interview`, `field`, `follow-up`, `data-analysis`, `document-verification` |
+| `verificationNote` | ✅* | 실제로 무엇을 질의·대조·계산했는지 독자에게 공개할 한 문장(20자 이상) |
+| `addedValue` | ✅* | 원자료에 더한 독자 가치(20자 이상, 내부 품질 평가용) |
+| `sourceBasis` | ✅* | `primary` 원문 중심 / `mixed` 원문+보조자료 / `secondary` 2차자료 중심 |
+| `contactStatus` | 조건부 | `inquiry`, `interview`, `follow-up` 직접취재는 `replied` 필수 |
+| `visualType` | ✅* | `original-photo`, `source-photo`, `editorial-illustration`, `ai-illustration`, `stock-photo` |
+| `aiRole` | ✅* | `research-assist`, `draft-assist`, `copyedit`, `image`, `none` 중 콤마 구분. `none`은 단독 사용 |
 | `tags` | 권장 | 콤마로 구분 (예: `추경, 국회`) |
 | `summary` | 권장 | 한 줄 요약. 없으면 본문 첫 문단 사용 |
 | `image` | 선택 | 대표 이미지 URL. **없으면 카테고리에 맞는 무료 스톡이 자동**으로 붙음 |
 | `imageCaption` | 선택 | 사진/생성 이미지 설명. AI 생성 이미지는 오해 방지를 위해 캡션에 표기 권장 |
 | `breaking` | 선택 | `true`면 속보(빨간 배지) |
 | `type` | 선택 | `opinion`/`video` (기본 `article`) |
+
+`✅*`는 **2026-09-01 이후 발행 기사부터 필수**다. 신규 기사는 내부 편집 품질 80점 미만이거나 같은 분에 5편 이상 배정되면 빌드가 실패한다. `aiRole`은 내부 감사 기록이며, 취재 방식과 섞어 독자에게 표시하지 않는다.
 
 ### 카테고리 (반드시 이 영문 슬러그로 — 두 축 12종 + 동결 1종)
 **종합뉴스** (일일 편성 6종 — `tech`는 동결: 슬러그는 유효하나 신규 편성하지 않음)
@@ -76,6 +94,8 @@ npm run deploy:prod # 3) 라이브 게시 (modooilbo.com)
 - 기사 본문은 **사실·출처 기반.** 날조 금지(편집 원칙·정치 중립 준수).
 - 톱기사(메인 대표) 지정은 콘텐츠 파일에서 불가(시스템이 관리). `isLead` 같은 건 쓰지 않음.
 - 파일명이 `_`로 시작하면 게시 안 됨(초안 보관용).
+- 분량을 채우기 위한 반복 발행보다 독자 가치와 검증 증거를 우선한다. **24편은 생산능력 상한이지 일일 할당량이 아니다.**
+- 출고 전 `npm run report:editorial`로 점수와 `npm run report:reporting`으로 취재 구성을 확인한다.
 
 ## 5. 기사 이미지 스펙
 
