@@ -2,6 +2,7 @@ import Link from "next/link";
 import { PlainEmail } from "./PlainEmail";
 import { CATEGORIES } from "@/lib/categories";
 import { SITE } from "@/lib/site";
+import { CONTENT_USE_POLICY } from "@/lib/content-use-policy";
 
 const FOOTER_COLS: { title: string; links: { href: string; label: string }[] }[] = [
   {
@@ -142,6 +143,11 @@ export function Footer() {
           </p>
           <p className="mt-4 text-ink-500 dark:text-ink-400">
             {`© ${SITE.copyrightYear} 모두일보. All rights reserved.`}
+          </p>
+          <p className="mt-1">
+            <Link href="/policy/#content-use" className="underline underline-offset-2">
+              {CONTENT_USE_POLICY.shortLabel}
+            </Link>
           </p>
         </div>
       </div>

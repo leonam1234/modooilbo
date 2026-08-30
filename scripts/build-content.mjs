@@ -12,6 +12,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync, statSy
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { assessEditorialQuality, list as qualityList } from "./lib/editorial-quality.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const CONTENT_DIR = join(ROOT, "content", "articles");
@@ -53,7 +54,7 @@ const BLOCKED_STATUS = ["발행보류", "보류"];
  * reportingType 은 direct 일 때만 쓰고, 그 외 값에 붙으면 오류다.
  */
 const REPORTING = ["direct", "desk", "sponsored", "wire"];
-const REPORTING_TYPE = ["inquiry", "interview", "data-analysis", "field", "follow-up"];
+const REPORTING_TYPE = ["inquiry", "interview", "data-analysis", "document-verification", "field", "follow-up"];
 
 /**
  * 유예 구간 — 규약 시행일(8/21)부터 한 주는 누락을 경고만 하고 통과시킨다.
@@ -108,6 +109,16 @@ const PARTNER_SLUGS = (() => {
   try {
     const src = readFileSync(join(ROOT, "src", "lib", "partners.ts"), "utf8");
     return new Set([...src.matchAll(/slug:\s*"([^"]+)"/g)].map((m) => m[1]));
+  } catch {
+    return new Set();
+  }
+})();
+
+/** 기자 검수 실명은 기자 로스터에 등록된 이름만 허용한다. 임의 이름으로 검수 기록을 꾸미는 것을 막는다. */
+const REPORTER_NAMES = (() => {
+  try {
+    const src = readFileSync(join(ROOT, "src", "lib", "reporters.ts"), "utf8");
+    return new Set([...src.matchAll(/\bname:\s*"([^"]+)"/g)].map((m) => m[1]));
   } catch {
     return new Set();
   }
@@ -215,6 +226,9 @@ async function run() {
   // ⚠️ 종전엔 스킵이 로그 한 줄로만 흘러가, 24편 패키지에서 4편이 통째로 빠진 것을
   //    건수를 세보기 전엔 아무도 몰랐다(2026-08-15). 발행 사고의 직접 원인이다.
   const scheduled = [];
+  // 2026-09-01 이후 편집 품질 80점 출고선과 동일 분(分) 배치 상한을 마지막에 함께 검사한다.
+  // 같은 분 기사 수는 전체 원고를 읽어야 알 수 있어 개별 기사 루프 안에서는 확정할 수 없다.
+  const qualityInputs = [];
 
   for (const file of files.sort()) {
     const slug = file.replace(/\.md$/, "");
@@ -346,6 +360,20 @@ async function run() {
     // 취재 유형 — 값·조합 검증. 누락은 시행일/강제일 기준으로 단계 적용.
     const reporting = (fm.reporting || "").trim();
     const reportingType = (fm.reportingType || "").trim();
+    const verificationNote = (fm.verificationNote || "").trim();
+    const addedValue = (fm.addedValue || "").trim();
+    const sourceBasis = (fm.sourceBasis || "").trim();
+    const contactStatus = (fm.contactStatus || "").trim();
+    const visualType = (fm.visualType || "").trim();
+    const aiRole = qualityList(fm.aiRole);
+    const reviewedBy = (fm.reviewedBy || "").trim();
+    const reviewedAtRaw = (fm.reviewedAt || "").trim();
+    const reviewedAt = reviewedAtRaw ? normDate(reviewedAtRaw) : undefined;
+    const reporterInsight = (fm.reporterInsight || "").trim();
+    if (reviewedBy && REPORTER_NAMES.size && !REPORTER_NAMES.has(reviewedBy)) {
+      errors.push(`${file}: reviewedBy "${reviewedBy}"는 src/lib/reporters.ts 기자 로스터에 없습니다.`);
+      continue;
+    }
     const pubDay = publishedAt.slice(0, 10);
     if (reporting && !REPORTING.includes(reporting)) {
       errors.push(`${file}: reporting "${reporting}" 는 허용값이 아닙니다. 가능: ${REPORTING.join(", ")}`);
@@ -412,6 +440,15 @@ async function run() {
       ...(sponsor ? { sponsor } : {}),
       ...(reporting ? { reporting } : {}),
       ...(reportingType ? { reportingType } : {}),
+      ...(verificationNote ? { verificationNote } : {}),
+      ...(addedValue ? { addedValue } : {}),
+      ...(sourceBasis ? { sourceBasis } : {}),
+      ...(contactStatus ? { contactStatus } : {}),
+      ...(visualType ? { visualType } : {}),
+      ...(aiRole.length ? { aiRole } : {}),
+      ...(reviewedBy ? { reviewedBy } : {}),
+      ...(reviewedAt ? { reviewedAt } : {}),
+      ...(reporterInsight ? { reporterInsight } : {}),
       imageUrl,
       imageCaption: (fm.imageCaption || "").trim() || undefined,
       tags,
@@ -421,7 +458,23 @@ async function run() {
       ...(youtubeId ? { youtubeId } : {}),
       type: youtubeId ? "video" : (["opinion", "video"].includes(fm.type) ? fm.type : (category === "opinion" ? "opinion" : "article")),
     });
+    qualityInputs.push({ file, fm, paragraphs, publishedAt });
     console.log(`  ✓ ${slug} [${category}] "${fm.title.trim()}"`);
+  }
+
+  const minuteCounts = qualityInputs.reduce((map, row) => {
+    const minute = row.publishedAt.slice(0, 16);
+    map.set(minute, (map.get(minute) || 0) + 1);
+    return map;
+  }, new Map());
+  for (const input of qualityInputs) {
+    const quality = assessEditorialQuality({
+      ...input,
+      sameMinuteCount: minuteCounts.get(input.publishedAt.slice(0, 16)) || 1,
+    });
+    if (quality.inScope) {
+      for (const error of quality.errors) errors.push(`${input.file}: ${error}`);
+    }
   }
 
   // 잘못된 기사가 하나라도 있으면 생성물을 쓰지 않고 중단 — 반쪽짜리 사이트가 배포되는 것 방지.

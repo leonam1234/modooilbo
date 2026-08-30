@@ -74,15 +74,33 @@ export interface Article {
   sponsor?: string;
 
   /**
-   * 취재 유형(2026-08-21 도입) — 포털 제휴 심사의 '자체기사 비율' 근거.
-   * direct 자체취재 / desk 원자료 재구성 / sponsored 광고·협찬·기업소식 / wire 외부 제공.
+   * 제작 출처(2026-08-21 도입) — 포털 제휴 심사의 '자체기사 비율' 근거.
+   * direct 편집국 독자 취재·분석 / desk 공개 원자료 재구성 / sponsored 광고·협찬·기업소식 / wire 외부 제공.
    * 비율은 direct ÷ (direct + desk) 로 계산하고 sponsored·wire 는 양쪽에서 뺀다.
    * ⚠️ 필드가 없는 기사는 unknown 이다 — 과거 기사에 소급 추정하지 않는다.
-   *    라이브 화면 노출은 별도 승인 전까지 하지 않는다(원고 필드를 AI 관여도로 오해할 소지).
+   *    이 값은 AI 관여도가 아니며, 화면에서는 verificationNote와 함께 취재·검증 정보로만 표시한다.
    */
   reporting?: "direct" | "desk" | "sponsored" | "wire";
-  /** direct 기사의 취재 방식. direct 가 아닌 기사에 붙으면 빌드 실패. */
-  reportingType?: "inquiry" | "interview" | "data-analysis" | "field" | "follow-up";
+  /** direct 기사의 취재·분석 방식. direct 가 아닌 기사에 붙으면 빌드 실패. */
+  reportingType?: "inquiry" | "interview" | "data-analysis" | "document-verification" | "field" | "follow-up";
+  /** 독자에게 공개하는 취재·검증 행위 한 문장. 결과가 아니라 무엇을 확인했는지 쓴다. */
+  verificationNote?: string;
+  /** 해당 기사가 원자료에 더한 독자 가치. 편집 품질 평가용 내부 메모. */
+  addedValue?: string;
+  /** 출처 구성. primary=원문 중심, mixed=원문+보조자료, secondary=2차 자료 중심. */
+  sourceBasis?: "primary" | "mixed" | "secondary";
+  /** 연락 취재 상태. 인터뷰·질의·후속확인을 direct로 분류할 때 증거가 된다. */
+  contactStatus?: "not-needed" | "contacted" | "replied" | "no-response" | "declined";
+  /** 대표 시각물의 실제 제작 출처. */
+  visualType?: "original-photo" | "source-photo" | "editorial-illustration" | "ai-illustration" | "stock-photo";
+  /** AI가 맡은 역할의 내부 감사 기록. 독자용 취재 방식과 섞어 표시하지 않는다. */
+  aiRole?: Array<"research-assist" | "draft-assist" | "copyedit" | "image" | "none">;
+  /** 배포 전 최종 검수 책임을 진 기자 이름. 편집국·AI 같은 포괄 명칭은 사용할 수 없다. */
+  reviewedBy?: string;
+  /** 기자가 최종 검수를 마친 KST 시각. publishedAt보다 늦을 수 없다. */
+  reviewedAt?: string;
+  /** 사실 보도와 분리해 공개하는 근거 기반 기자 해설. 단순 감상이나 홍보 문구는 금지한다. */
+  reporterInsight?: string;
   imageUrl: string;
   imageCaption?: string;
   youtubeId?: string; // 영상 기사 = 유튜브 쇼츠 임베드
