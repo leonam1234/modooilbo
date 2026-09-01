@@ -19,6 +19,22 @@ const RESPONSE_REQUIRED = new Set(["inquiry", "interview", "follow-up"]);
 const METHODOLOGY_REQUIRED = new Set(["data-analysis", "document-verification"]);
 const ACTION_CATEGORIES = new Set(["grants", "bids", "labor"]);
 
+/**
+ * "YYYY-MM-DD HH:MM"(KST 벽시계)든 이미 정규화된 "...Z"든 같은 기준으로 맞춘다.
+ *
+ * ⚠️ 정규화를 호출자에게 맡기면 안 된다. build-content.mjs 는 normDate()로 Z를 붙여
+ *    넘기는데 editorial-quality-report.mjs 는 그대로 넘겨, publishedAt 만 로컬시각(KST)
+ *    으로 파싱되고 reviewedAt 은 UTC 로 파싱돼 9시간 어긋났다. 그 결과 정상 원고까지
+ *    "배포 전에 검수해야 합니다"로 잡혔다(2026-09-01 실측: 24편 전부 오탐, 빌드는 통과).
+ */
+export function wallClockUtc(value) {
+  let v = String(value ?? "").trim().replace(" ", "T").replace(/(?:Z|[+-]\d{2}:?\d{2})$/i, "");
+  if (!v) return "";
+  if (/^\d{4}-\d{2}-\d{2}$/.test(v)) v += "T09:00";           // normDate()와 같은 기본값
+  if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(v)) v += ":00";
+  return v + "Z";
+}
+
 export function list(value) {
   return String(value || "")
     .replace(/^\[|\]$/g, "")
@@ -70,9 +86,9 @@ export function assessEditorialQuality({ file, fm, paragraphs, publishedAt, same
       if (reviewedBy.length < 2 || /^(모두일보|편집국|데스크|AI|자동)$/i.test(reviewedBy)) {
         errors.push("reviewedBy에는 최종 검수 책임을 진 기자 실명을 적어야 합니다.");
       }
-      const normalizedReview = reviewedAt.replace(" ", "T").replace(/(?:Z|[+-]\d{2}:?\d{2})$/i, "") + "Z";
-      const reviewTime = new Date(normalizedReview).getTime();
-      const publishTime = new Date(publishedAt).getTime();
+      // 둘 다 같은 기준으로 맞춘 뒤 비교한다(호출자가 어떤 형태로 넘기든).
+      const reviewTime = new Date(wallClockUtc(reviewedAt)).getTime();
+      const publishTime = new Date(wallClockUtc(publishedAt)).getTime();
       if (!/^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}$/.test(reviewedAt) || Number.isNaN(reviewTime)) {
         errors.push("reviewedAt은 YYYY-MM-DD HH:MM 형식의 KST 검수 완료 시각이어야 합니다.");
       } else if (!Number.isNaN(publishTime) && reviewTime > publishTime) {

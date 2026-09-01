@@ -74,4 +74,19 @@ const lateReview = assessEditorialQuality({
 });
 assert.ok(lateReview.errors.some((e) => e.includes("배포 전에 검수")), "배포 뒤 검수시각을 허용하면 안 된다.");
 
+// 회귀: publishedAt 을 정규화하지 않은 형태로 넘겨도 판정이 같아야 한다.
+// 종전엔 리포트 스크립트가 "2026-09-01T09:10"(Z 없음)을 넘겨 로컬시각으로 파싱되는 바람에
+// 검수가 발행보다 9시간 늦은 것처럼 보여 정상 원고 24편이 전부 오탐으로 잡혔다.
+for (const raw of ["2026-09-01T09:10:00Z", "2026-09-01T09:10", "2026-09-01 09:10"]) {
+  const r = assessEditorialQuality({
+    file: "tz-" + raw + ".md",
+    fm: { ...goodFrontmatter, reviewedAt: "2026-09-01 09:05" },
+    paragraphs: goodParagraphs,
+    publishedAt: raw,
+    sameMinuteCount: 1,
+  });
+  assert.ok(!r.errors.some((e) => e.includes("배포 전에 검수")),
+    `publishedAt 표기(${raw})에 따라 검수 시각 판정이 달라지면 안 된다.`);
+}
+
 console.log(`편집 품질 게이트 테스트 통과: 정상 ${passing.score}점 · 누락 ${missingEvidence.score}점 · 허위 인터뷰·배포 후 검수 차단`);
