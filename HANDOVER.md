@@ -238,6 +238,10 @@ git add -A && git commit -F <메시지파일>   # 한글은 -m 대신 -F 로
 npm run deploy:prod
 # 5) 라이브 검증 — 반드시 데스크톱 UA 로 (기본 UA 는 403)
 npm run smoke -- https://modooilbo.com / /policy/ /newsroom/   # 모바일 4조합
+# 6) 색인 — IndexNow 는 배포가 자동으로 하지만 RSS 기반이라 최신 30개뿐이다.
+#    24편을 확실히 넣으려면 오늘 slug 로 직접 제출한다(빙·네이버).
+# 7) ⚠️ 오너에게 오늘 기사 링크 24개를 목록으로 준다 — 매번 요구하신다.
+#    구글은 IndexNow 를 안 쓰므로 서치 콘솔에 오너가 직접 넣어야 한다.
 ```
 
 ⚠️ **배포 직후 첫 요청은 엣지 캐시로 404 가 뜰 수 있습니다.** 20초 뒤
