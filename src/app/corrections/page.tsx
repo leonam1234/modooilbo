@@ -4,6 +4,7 @@ import { getAllArticles } from "@/lib/queries";
 import { formatKoreanDateTime, toKstIso } from "@/lib/utils";
 import { ArticleCard } from "@/components/ArticleCard";
 import { PageHeader } from "@/components/PageHeader";
+import { PlainEmailLink, PUBLIC_EMAILS } from "@/components/PlainEmail";
 
 export const metadata: Metadata = {
   title: "정정·반론 보도 모음",
@@ -66,12 +67,10 @@ export default function CorrectionsPage() {
         </h2>
         <p className="leading-relaxed text-ink-600 dark:text-ink-300">
           보도 내용에 오류가 있거나 반론이 필요하다고 판단되면{" "}
-          <a
-            href="mailto:correction@modooilbo.com"
+          <PlainEmailLink
+            address={PUBLIC_EMAILS.correction}
             className="font-medium text-signal-600 hover:text-signal-700 dark:text-signal-400"
-          >
-            correction@modooilbo.com
-          </a>{" "}
+          />{" "}
           으로 접수해 주십시오. 접수된 사안은 편집위원회가 검토하며,{" "}
           <Link
             href="/contact"

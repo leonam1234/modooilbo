@@ -1,6 +1,7 @@
 import { Fragment, type ReactNode } from "react";
 import Image from "next/image";
 import { stockUrl, webpSrc } from "@/lib/stock";
+import { PlainEmailText } from "@/components/PlainEmail";
 
 /**
  * 기사 본문 렌더러 — 문단 배열을 소제목(##/###)·이미지 마크다운·일반 문단으로 그린다.
@@ -342,11 +343,11 @@ function BodyBlock({ p }: { p: string }) {
   if (heading) {
     return heading[1].length === 2 ? (
       <h2 className="!mt-9 border-l-4 border-signal-600 pl-3 font-headline text-[21px] font-bold leading-snug text-ink-900 dark:text-white">
-        {heading[2]}
+        <PlainEmailText text={heading[2]} />
       </h2>
     ) : (
       <h3 className="!mt-8 font-headline text-lg font-bold leading-snug text-ink-900 dark:text-white">
-        {heading[2]}
+        <PlainEmailText text={heading[2]} />
       </h3>
     );
   }
@@ -383,11 +384,15 @@ function BodyBlock({ p }: { p: string }) {
             className="object-cover"
           />
         </span>
-        {img[1] && <figcaption className="mt-2 text-xs text-ink-500 dark:text-ink-400">{img[1]}</figcaption>}
+        {img[1] && (
+          <figcaption className="mt-2 text-xs text-ink-500 dark:text-ink-400">
+            <PlainEmailText text={img[1]} />
+          </figcaption>
+        )}
       </figure>
     );
   }
-  return <p>{p}</p>;
+  return <p><PlainEmailText text={p} /></p>;
 }
 
 /** 본문 중간 삽입물(midSlot)을 넣는 위치 = '일반 문단' 이만큼 뒤(뉴스 관행). 소제목·이미지·영상은 세지 않는다. */

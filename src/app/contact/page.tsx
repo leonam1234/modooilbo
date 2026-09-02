@@ -3,6 +3,12 @@ import { PageHeader } from "@/components/PageHeader";
 import { MailIcon } from "@/components/icons";
 import { SITE } from "@/lib/site";
 import { ContactForm } from "./ContactForm";
+import {
+  PlainEmailLink,
+  PlainEmailText,
+  PUBLIC_EMAILS,
+  type PublicEmailAddress,
+} from "@/components/PlainEmail";
 
 export const metadata: Metadata = {
   title: "고객센터",
@@ -13,35 +19,35 @@ export const metadata: Metadata = {
 
 // 부서별 직통번호는 아직 없다 — 전 부서가 등록증상 대표전화(SITE.tel) 하나를 공유한다.
 // 부서 구분은 이메일로만 이뤄지며, 직통번호가 개설되면 그때 개별 값으로 대체한다.
-const DEPARTMENTS: { name: string; desc: string; email: string; phone: string }[] = [
+const DEPARTMENTS: { name: string; desc: string; email: PublicEmailAddress; phone: string }[] = [
   {
     name: "편집국",
     desc: "보도 내용 및 기사 관련 문의",
-    email: "newsroom@modooilbo.com",
+    email: PUBLIC_EMAILS.newsroom,
     phone: SITE.tel,
   },
   {
     name: "광고·제휴",
     desc: "광고 집행, 콘텐츠 제휴 제안",
-    email: "ad@modooilbo.com",
+    email: PUBLIC_EMAILS.advertising,
     phone: SITE.tel,
   },
   {
     name: "구독·후원",
     desc: "유료 구독, 멤버십, 결제 문의",
-    email: "members@modooilbo.com",
+    email: PUBLIC_EMAILS.members,
     phone: SITE.tel,
   },
   {
     name: "제보",
     desc: "단독·탐사 보도를 위한 취재 제보",
-    email: "tip@modooilbo.com",
+    email: PUBLIC_EMAILS.tips,
     phone: SITE.tel,
   },
   {
     name: "일반문의",
     desc: "그 밖의 모든 문의 및 의견",
-    email: "help@modooilbo.com",
+    email: PUBLIC_EMAILS.help,
     phone: SITE.tel,
   },
 ];
@@ -103,12 +109,10 @@ export default function ContactPage() {
                   <dt className="sr-only">이메일</dt>
                   <MailIcon className="h-4 w-4 shrink-0 text-ink-500 dark:text-ink-400" />
                   <dd>
-                    <a
-                      href={`mailto:${d.email}`}
+                    <PlainEmailLink
+                      address={d.email}
                       className="font-medium text-signal-600 hover:text-signal-700 dark:text-signal-400"
-                    >
-                      {d.email}
-                    </a>
+                    />
                   </dd>
                 </div>
                 <div className="flex items-center gap-2 text-ink-600 dark:text-ink-300">
@@ -154,7 +158,9 @@ export default function ContactPage() {
                     +
                   </span>
                 </summary>
-                <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">{f.a}</p>
+                <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
+                  <PlainEmailText text={f.a} />
+                </p>
               </details>
             ))}
           </div>

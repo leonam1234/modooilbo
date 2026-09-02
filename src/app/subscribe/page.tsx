@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
+import { PlainEmail, PlainEmailLink, PlainEmailText, PUBLIC_EMAILS } from "@/components/PlainEmail";
 
 export const metadata: Metadata = {
   title: "구독·후원",
@@ -33,18 +34,6 @@ const FAQS: { q: string; a: string }[] = [
     a: "지속가능하고 공정한 방식으로 준비 중입니다. ‘출시 소식 받기’를 신청해 주시면 준비되는 대로 가장 먼저 안내드리겠습니다.",
   },
 ];
-
-const MAIL_INQUIRY = `mailto:help@modooilbo.com?subject=${encodeURIComponent(
-  "[모두일보] 제휴·후원 문의",
-)}&body=${encodeURIComponent("회사명:\n담당자:\n연락처:\n문의 내용:\n")}`;
-
-const MAIL_PARTNER = `mailto:help@modooilbo.com?subject=${encodeURIComponent(
-  "[모두일보] 기업 파트너(월 200만 원) 문의",
-)}&body=${encodeURIComponent("회사명:\n담당자:\n연락처:\n희망 시작 시기:\n문의 내용:\n")}`;
-
-const MAIL_NOTIFY = `mailto:help@modooilbo.com?subject=${encodeURIComponent(
-  "[모두일보] 멤버십 출시 알림 신청",
-)}&body=${encodeURIComponent("모두일보 멤버십·후원 출시 소식을 받고 싶습니다. 이 메일 주소로 안내해 주세요.\n")}`;
 
 const PARTNER_BENEFITS = [
   "후원사 크레딧 상시 노출 — 홈·기사 하단 \"모두일보와 함께하는 기업\" 로고·링크",
@@ -117,21 +106,23 @@ export default function SubscribePage() {
             ))}
           </ul>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={MAIL_INQUIRY}
+            <PlainEmailLink
+              address={PUBLIC_EMAILS.help}
+              subject="[모두일보] 제휴·후원 문의"
+              body={"회사명:\n담당자:\n연락처:\n문의 내용:\n"}
+              label="제휴·후원 문의하기"
               className="inline-flex items-center justify-center gap-2 rounded-md bg-ink-900 px-6 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-ink-700 dark:bg-white dark:text-ink-900 dark:hover:bg-ink-100"
-            >
-              제휴·후원 문의하기
-            </a>
-            <a
-              href={MAIL_NOTIFY}
+            />
+            <PlainEmailLink
+              address={PUBLIC_EMAILS.help}
+              subject="[모두일보] 멤버십 출시 알림 신청"
+              body={"모두일보 멤버십·후원 출시 소식을 받고 싶습니다. 이 메일 주소로 안내해 주세요.\n"}
+              label="출시 소식 받기"
               className="inline-flex items-center justify-center gap-2 rounded-md border border-ink-300 px-6 py-3 text-center text-sm font-semibold text-ink-700 transition-colors hover:border-signal-500 hover:text-signal-600 dark:hover:text-signal-400 dark:border-ink-600 dark:text-ink-200"
-            >
-              출시 소식 받기
-            </a>
+            />
           </div>
           <p className="mt-4 text-xs text-ink-500 dark:text-ink-400">
-            문의는 help@modooilbo.com 으로도 보내실 수 있습니다.
+            문의는 <PlainEmail address={PUBLIC_EMAILS.help} /> 으로도 보내실 수 있습니다.
           </p>
         </div>
       </section>
@@ -163,12 +154,13 @@ export default function SubscribePage() {
             ))}
           </ul>
           <div className="mt-8">
-            <a
-              href={MAIL_PARTNER}
+            <PlainEmailLink
+              address={PUBLIC_EMAILS.help}
+              subject="[모두일보] 기업 파트너(월 200만 원) 문의"
+              body={"회사명:\n담당자:\n연락처:\n희망 시작 시기:\n문의 내용:\n"}
+              label="기업 파트너 문의하기"
               className="inline-flex items-center justify-center rounded-md bg-[#d4af37] px-7 py-3.5 text-sm font-bold text-ink-900 transition-opacity hover:opacity-85"
-            >
-              기업 파트너 문의하기
-            </a>
+            />
             {/* 어두운 파트너 카드 위 — ink-500은 3.77:1로 AA 미달, ink-400=5.69:1 */}
             <p className="mt-3 text-xs text-ink-400">
               문의 후 상담 → 계약 → 세금계산서 발행 순으로 진행됩니다.
@@ -191,7 +183,9 @@ export default function SubscribePage() {
                   <path d="m6 9 6 6 6-6" />
                 </svg>
               </summary>
-              <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">{faq.a}</p>
+              <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
+                <PlainEmailText text={faq.a} />
+              </p>
             </details>
           ))}
         </div>

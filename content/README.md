@@ -1,12 +1,13 @@
 # 모두일보 기사 발행 가이드 (에이전트용)
 
-> **기사 1건 = 파일 1개.** 이 폴더(`content/articles/`)의 `.md` 파일은 승인 뒤 빌드·배포할 때
+> **기사 1건 = 파일 1개.** 이 폴더(`content/articles/`)의 `.md` 파일은 독립 리뷰·최종 게이트 PASS 뒤 빌드·배포할 때
 > 사이트에 포함됩니다. 별도 글쓰기 버튼·관리자 화면은 없지만, 파일 생성만으로 자동 게시되지는 않습니다.
 >
 > 🚫 따라서 패키지 단계 원고를 이 폴더에 미리 복사하지 않습니다. 1차 정적·동적 게이트,
 > `모두일보 독립 리뷰 담당`(작업 ID `01a05a60-a035-7921-8154-7aa4a7024f31`)의 기사별 검수,
 > `reviewedBy`·`reviewedAt`·`reporterInsight`와 PASS/HOLD·수정 요구 회수, 최종 게이트를 끝낸 뒤
-> **유수화님이 해당 패키지를 명시 승인한 경우에만** 이 폴더로 CMS 변환합니다.
+> PASS·HOLD 0이면 **2026-09-02 상시 자동 배포 승인**에 따라 별도 승인 질문 없이 이 폴더로
+> CMS 변환합니다. HOLD 또는 사용자의 현재 중지 지시가 있으면 진행하지 않습니다.
 
 ## 1. 어디에 쓰나
 
@@ -76,8 +77,8 @@ set -euo pipefail   # 아래 게이트 하나라도 실패하면 즉시 중단
 MODOO_RELEASE_BRANCH="$(git branch --show-current)"
 [[ -n "$MODOO_RELEASE_BRANCH" && "$MODOO_RELEASE_BRANCH" != master ]]
 test -z "$(git status --porcelain)"
-# 승인 전: 작업 인수 → 1차 정적·동적 게이트 → 독립 리뷰 요청·회수 → 최종 게이트 → 승인 요청 후 중지
-# 유수화님 명시 승인 뒤:
+# 필수 선행: 작업 인수 → 1차 정적·동적 게이트 → 독립 리뷰 요청·회수 → 최종 게이트
+# PASS·HOLD 0이면 상시 자동 배포 승인에 따라 별도 승인 질문 없이 계속:
 MODOO_PACKAGE_DIR="/absolute/path/to/approved-package"
 MODOO_COMMIT_MSG_FILE="/absolute/path/to/commit-message.txt"
 cp "$MODOO_PACKAGE_DIR"/articles/**/*.md content/articles/
@@ -122,11 +123,11 @@ test "$MODOO_RELEASE_SHA" = "$(git ls-remote origin refs/heads/master | awk '{pr
 npm run deploy:prod -- --force-branch
 npm run smoke -- https://modooilbo.com / /policy/ /newsroom/ "${MODOO_ARTICLE_PATHS[@]}"
 ```
-> 운영 규칙(2026-09-01): **승인은 CMS 변환·Git·빌드보다 먼저** 받는다. 독립 리뷰 PASS,
-> HOLD 0, 게이트 통과는 승인이 아니다. 승인 뒤 기사 내용이 바뀌면 변경 기사 재검수와
-> 재승인이 필요하다.
+> 운영 규칙(2026-09-02): 유수화님의 **상시 자동 배포 승인**에 따라 독립 리뷰와 최종 게이트가
+> PASS·HOLD 0이면 CMS 변환·Git·빌드·Preview·Production·라이브 검증을 별도 승인 질문 없이
+> 진행한다. 검수 뒤 기사 내용이 바뀌면 변경 기사 재검수와 최종 게이트를 다시 통과해야 한다.
 > 검수 흐름: 패키지 1차 정적·동적 게이트 → 독립 리뷰 기사별 검수 → 결과 회수·수정분 재검수 →
-> 발행 직전 동적 게이트 전수 확인 → 유수화님 명시 승인 → CMS 변환·게이트·빌드 → Git 커밋 → Preview·Production·라이브 검증.
+> 발행 직전 동적 게이트 전수 확인 → PASS·HOLD 0 확인 → CMS 변환·게이트·빌드 → Git 커밋 → Preview·Production·라이브 검증.
 > HOLD 원고는 **파일을 커밋하지 않는** 방식으로 보류한다. `editorial/출고대기/`는 현재 페르소나 문서 보관소이며 스테이징 폴더로 쓰이지 않는다.
 > publishedAt은 출고 직전 재배치가 관행이며 허용 범위 근거 문서(`최종마감.md`)는 **리포 밖**에 있다(총괄 보관). 상세: [wiki/09-publishing](../wiki/09-publishing.md)
 > 라이브 검증 뒤 신규 기사 canonical URL 전건을 HTTP 200·self-canonical·index/follow 확인 후

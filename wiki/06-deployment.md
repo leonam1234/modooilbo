@@ -16,12 +16,13 @@
 ```
 
 **GitHub = 코드 기록용, Cloudflare = 실배포.** 둘은 별개 동작입니다. 기사 패키지는 독립
-리뷰·최종 게이트가 끝나도 **유수화님 명시 승인 전에는 CMS·Git·빌드·배포를 시작하지 않습니다.**
+리뷰·최종 게이트가 PASS·HOLD 0이면 **2026-09-02 상시 자동 배포 승인**에 따라 별도 승인 질문
+없이 CMS·Git·빌드·Preview·Production·라이브 검증을 이어서 수행합니다.
 
 배포 스크립트는 미커밋 변경을 막지만, 승인 여부·원격 `master` 최신성·라이브 응답은 검사하지
 않습니다. 안전한 기사 승급 순서는 다음과 같습니다.
 
-> **명시 승인 → CMS·코드 게이트 → 비-master 릴리스 브랜치 커밋 → Preview → 전건 검증 →
+> **독립 리뷰·최종 게이트 PASS → CMS·코드 게이트 → 비-master 릴리스 브랜치 커밋 → Preview → 전건 검증 →
 > 검증한 SHA를 master에 push·3자 대조 → 통제된 Production → 라이브 재검증 → 색인 인계**
 
 ```bash
@@ -48,6 +49,7 @@ process.exit(1);
 ' "$MODOO_RELEASE_SHA")"
 [[ "$MODOO_PREVIEW_URL" == https://*.pages.dev* ]]
 npm run smoke -- "$MODOO_PREVIEW_URL" / /policy/ /newsroom/ "${MODOO_ARTICLE_PATHS[@]}"
+npm run check:preview-assets -- "$MODOO_PREVIEW_URL"
 # PASS·비교 이미지·HTTP/canonical/index/follow/OG/이미지 전건 확인 뒤에만
 test "$(git rev-parse HEAD)" = "$MODOO_RELEASE_SHA"
 test -z "$(git status --porcelain)"
@@ -104,7 +106,28 @@ npm run deploy:prod      # clean master에서 실행. 릴리스 브랜치 경로
   비-master 릴리스 브랜치에서 실행합니다.**
 - clean master worktree를 쓸 수 있으면 같은 SHA에서 일반 `deploy:prod`를 실행해도 됩니다.
 
-## 5. 자동배포는 **의도적으로 없습니다**
+### Ahrefs 재크롤 전용 2시간 무배포 창
+
+Next.js 해시 자산은 배포마다 이름이 달라질 수 있습니다. 크롤 도중 Production이 교체되면 배포
+전에 읽은 HTML이 가리키는 이전 `/_next/static/*.js`와 교체 뒤 자산이 섞여, 정상 배포 두 건도
+크롤 결과에서는 broken JavaScript로 집계될 수 있습니다. 이전 해시 자산을 장기 보존하는 변경보다
+먼저 아래 안정화 창을 사용합니다.
+
+1. 상시 자동 배포 승인에 따라 Production 배포와 라이브 검증을 모두 끝낸다.
+2. 운영 SHA·배포 URL·시작 시각을 기록하고 **그 시각부터 최소 2시간 동안 Preview와 Production을
+   포함한 모든 Pages 배포를 중단**한다. 기사 발행도 새 Production을 만들므로 같은 창에서 멈춘다.
+3. 창 시작 직전에 `npm run check:preview-assets -- https://modooilbo.com --all-articles`로 사이트맵
+   전 페이지가 현재 참조하는 JavaScript를 HTTP 200·무리디렉션으로 다시 확인한 뒤 Ahrefs 재크롤을
+   시작한다.
+4. 크롤 완료 시각과 결과를 기록한 뒤 창을 해제한다. 긴급 배포가 필요하면 재크롤을 중단하고,
+   배포·라이브 자산 검사 후 새 2시간 창에서 다시 시작한다.
+
+이 절은 재크롤 중 배포 혼재를 막는 운영 게이트입니다. Production은 상시 자동 배포 승인 범위지만,
+외부 Ahrefs 재크롤 실행은 별도 지시 범위이며 자동 승인에 포함하지 않습니다.
+
+## 5. 인프라 자동배포는 **의도적으로 없습니다**
+- 상시 자동 배포 승인은 담당자가 검수·게이트 뒤 배포 절차를 계속 수행하라는 운영 승인입니다.
+  Git push만으로 무검증 Production이 실행되는 Git 연동·CI 자동배포를 뜻하지 않습니다.
 - **GitHub Actions 배포 워크플로 없음**(`.github/` 폴더 자체가 없음) → push 는 코드 기록일 뿐.
 - **Cloudflare Pages Git 연동 없음**(프로젝트 `Git Provider: No`) → CF 가 깃을 감시하지 않음.
 - ⚠️ 대시보드에서 **Git 연동을 붙이거나** `.github/workflows` 에 배포 워크플로를 추가하면

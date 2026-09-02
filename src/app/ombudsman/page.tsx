@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { SITE } from "@/lib/site";
+import { PlainEmailLink } from "@/components/PlainEmail";
 
 export const metadata: Metadata = {
   title: "고충처리인 제도",
@@ -54,12 +55,11 @@ export default function OmbudsmanPage() {
               <div className="flex flex-wrap gap-x-3 gap-y-1">
                 <dt className="w-24 shrink-0 font-semibold text-ink-500 dark:text-ink-400">이메일</dt>
                 <dd className="break-all text-ink-700 dark:text-ink-200">
-                  <a
-                    href={`mailto:${SITE.email}?subject=%5B%EA%B3%A0%EC%B6%A9%EC%B2%98%EB%A6%AC%5D%20`}
+                  <PlainEmailLink
+                    address={SITE.email}
+                    subject="[고충처리] "
                     className="font-medium text-signal-600 hover:text-signal-700 dark:text-signal-400"
-                  >
-                    {SITE.email}
-                  </a>
+                  />
                 </dd>
               </div>
               <div className="flex flex-wrap gap-x-3 gap-y-1">

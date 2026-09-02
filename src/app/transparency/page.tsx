@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { PageHeader } from "@/components/PageHeader";
 import { SITE } from "@/lib/site";
+import { PlainEmail } from "@/components/PlainEmail";
 
 export const metadata: Metadata = {
   title: "투명성 보고",
@@ -239,7 +240,7 @@ export default function TransparencyPage() {
             </section>
 
             <p className="mt-12 border-t border-ink-200 pt-6 text-sm text-ink-500 dark:text-ink-400 dark:border-ink-800">
-              최종 갱신 2026년 8월 19일 · 문의 {SITE.email}
+              최종 갱신 2026년 8월 19일 · 문의 <PlainEmail address={SITE.email} />
             </p>
           </article>
         </div>

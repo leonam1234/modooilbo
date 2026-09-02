@@ -4,6 +4,7 @@ import Image from "next/image";
 import { REPORTERS } from "@/lib/reporters";
 import { SITE } from "@/lib/site";
 import { PageHeader } from "@/components/PageHeader";
+import { PlainEmailLink, PUBLIC_EMAILS } from "@/components/PlainEmail";
 
 /**
  * 편집국 소개 — 실제 발행 중인 로스터만 싣는다(2026-08-20 외부 점검 반영).
@@ -83,9 +84,10 @@ export default function NewsroomPage() {
         </p>
         <p>
           편집국 연락처:{" "}
-          <a href="mailto:newsroom@modooilbo.com" className="font-medium text-signal-600 hover:underline dark:text-signal-400">
-            newsroom@modooilbo.com
-          </a>{" "}
+          <PlainEmailLink
+            address={PUBLIC_EMAILS.newsroom}
+            className="font-medium text-signal-600 hover:underline dark:text-signal-400"
+          />{" "}
           · 대표전화 {SITE.tel}
         </p>
       </section>

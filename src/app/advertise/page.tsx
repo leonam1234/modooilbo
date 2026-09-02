@@ -3,6 +3,7 @@ import type { SVGProps } from "react";
 import { PageHeader } from "@/components/PageHeader";
 import { ArrowRightIcon } from "@/components/icons";
 import { AdInquiryForm } from "./AdInquiryForm";
+import { PlainEmailLink, PUBLIC_EMAILS } from "@/components/PlainEmail";
 
 export const metadata: Metadata = {
   title: "광고·제휴",
@@ -313,12 +314,10 @@ export default function AdvertisePage() {
             </div>
             <p className="mt-6 text-center text-sm text-ink-500 dark:text-ink-400">
               빠른 상담이 필요하신가요? 광고·제휴 문의{" "}
-              <a
-                href="mailto:ad@modooilbo.com"
+              <PlainEmailLink
+                address={PUBLIC_EMAILS.advertising}
                 className="font-semibold text-signal-600 dark:text-signal-400 hover:text-signal-700"
-              >
-                ad@modooilbo.com
-              </a>
+              />
             </p>
           </div>
         </div>

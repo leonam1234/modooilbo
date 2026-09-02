@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { PlainEmail, PUBLIC_EMAILS } from "@/components/PlainEmail";
 
 const CATEGORIES = [
   "정치·행정",
@@ -269,7 +270,7 @@ export function TipForm() {
       </button>
 
       <p className="text-xs text-ink-500 dark:text-ink-400">
-        접수 내용은 담당 데스크만 열람합니다. 긴급한 제보는 tip@modooilbo.com 으로도 보내실 수 있습니다.
+        접수 내용은 담당 데스크만 열람합니다. 긴급한 제보는 <PlainEmail address={PUBLIC_EMAILS.tips} /> 으로도 보내실 수 있습니다.
       </p>
     </form>
   );

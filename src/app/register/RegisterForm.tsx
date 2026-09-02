@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { SocialSigninButtons } from "@/components/SocialSigninButtons";
+import { PlainEmailLink, PUBLIC_EMAILS } from "@/components/PlainEmail";
 
 export function RegisterForm() {
   const [name, setName] = useState("");
@@ -115,9 +116,7 @@ export function RegisterForm() {
         <p className="mt-3 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
           확인 메일 발송 설비를 점검하고 있어 이메일 가입을 잠시 멈췄습니다. 위의 카카오·네이버·구글
           버튼으로 가입하시면 확인 메일 없이 바로 이용하실 수 있습니다. 문의는{" "}
-          <a href="mailto:help@modooilbo.com" className="underline">
-            help@modooilbo.com
-          </a>
+          <PlainEmailLink address={PUBLIC_EMAILS.help} className="underline" />
           으로 주세요.
         </p>
       </details>

@@ -61,3 +61,4 @@
 | [0003](0003-home-hero-business-axis.md) | 홈 히어로의 사업 축 노출 | 2026-08-21 | 적용됨 |
 | [0004](0004-editorial-evidence-system.md) | 기사별 취재·검증 증거와 편집 품질 8.5 게이트 | 2026-08-30 | 적용됨 |
 | [0005](0005-reporter-review-and-insight.md) | 공고 기사 배포 전 기자 검수와 근거 기반 해설 | 2026-08-30 | 적용됨 |
+| [0006](0006-email-obfuscation-crawl-safety.md) | 공개 이메일 링크와 Cloudflare 난독화의 크롤 안전성 | 2026-09-02 | 구현·로컬 검증 완료, 배포 대기 |

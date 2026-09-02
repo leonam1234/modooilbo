@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PlainEmail } from "@/components/PlainEmail";
+import { PlainEmailLink, PUBLIC_EMAILS } from "@/components/PlainEmail";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { SITE } from "@/lib/site";
@@ -163,12 +163,10 @@ export default function EthicsPage() {
               </h3>
               <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
                 정정 및 반론 보도 청구는 이메일{" "}
-                <a
-                  href="mailto:correction@modooilbo.com"
+                <PlainEmailLink
+                  address={PUBLIC_EMAILS.correction}
                   className="font-medium text-signal-600 hover:text-signal-700 dark:text-signal-400"
-                >
-                  <PlainEmail address="correction@modooilbo.com" />
-                </a>{" "}
+                />{" "}
                 로 접수한다. 접수된 사안은 편집위원회가 검토하며, 분쟁이 원만히 해결되지 않을 경우
                 언론중재위원회의 조정 절차를 따른다.
               </p>
@@ -204,12 +202,10 @@ export default function EthicsPage() {
                   <div className="flex gap-3">
                     <dt className="w-24 shrink-0 font-semibold text-ink-500 dark:text-ink-400">이메일</dt>
                     <dd className="text-ink-700 dark:text-ink-200">
-                      <a
-                        href="mailto:ombudsman@modooilbo.com"
+                      <PlainEmailLink
+                        address={PUBLIC_EMAILS.ombudsman}
                         className="font-medium text-signal-600 hover:text-signal-700 dark:text-signal-400"
-                      >
-                        <PlainEmail address="ombudsman@modooilbo.com" />
-                      </a>
+                      />
                     </dd>
                   </div>
                 </dl>
@@ -305,12 +301,10 @@ export default function EthicsPage() {
                       이메일
                     </dt>
                     <dd className="text-ink-700 dark:text-ink-200">
-                      <a
-                        href="mailto:youth@modooilbo.com"
+                      <PlainEmailLink
+                        address={PUBLIC_EMAILS.youth}
                         className="font-medium text-signal-600 hover:text-signal-700 dark:text-signal-400"
-                      >
-                        <PlainEmail address="youth@modooilbo.com" />
-                      </a>
+                      />
                     </dd>
                   </div>
                 </dl>

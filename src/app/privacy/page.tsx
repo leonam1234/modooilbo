@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/PageHeader";
 import { SITE } from "@/lib/site";
+import { PlainEmail, PUBLIC_EMAILS } from "@/components/PlainEmail";
 
 export const metadata: Metadata = {
   title: "개인정보처리방침",
@@ -201,7 +202,7 @@ export default function PrivacyPage() {
                   <dt className="w-24 shrink-0 font-medium text-ink-700 dark:text-ink-200">
                     이메일
                   </dt>
-                  <dd>privacy@modooilbo.com</dd>
+                  <dd><PlainEmail address={PUBLIC_EMAILS.privacy} /></dd>
                 </div>
                 <div className="flex gap-3">
                   <dt className="w-24 shrink-0 font-medium text-ink-700 dark:text-ink-200">

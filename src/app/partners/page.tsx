@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { PARTNERS } from "@/lib/partners";
+import { PlainEmail, PUBLIC_EMAILS } from "@/components/PlainEmail";
 
 export const metadata: Metadata = {
   title: "광고·후원 계약사",
@@ -177,7 +178,7 @@ export default function PartnersPage() {
               <Link href="/advertise/" className="underline underline-offset-4 hover:text-signal-600 dark:hover:text-signal-400">
                 광고·제휴 안내
               </Link>
-              를 참고하시거나 ad@modooilbo.com 으로 연락해 주세요. 보도에 관한 의견은{" "}
+              를 참고하시거나 <PlainEmail address={PUBLIC_EMAILS.advertising} /> 으로 연락해 주세요. 보도에 관한 의견은{" "}
               <Link href="/committee/" className="underline underline-offset-4 hover:text-signal-600 dark:hover:text-signal-400">
                 이용자위원회
               </Link>

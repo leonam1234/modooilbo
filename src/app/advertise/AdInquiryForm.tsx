@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { PlainEmail, PUBLIC_EMAILS } from "@/components/PlainEmail";
 
 const INQUIRY_TYPES = [
   "디스플레이 배너",
@@ -307,7 +308,7 @@ export function AdInquiryForm() {
           {busy ? "보내는 중…" : "문의 보내기"}
         </button>
         <p className="text-xs text-ink-500 dark:text-ink-400">
-          이메일 ad@modooilbo.com 으로도 보내실 수 있습니다.
+          이메일 <PlainEmail address={PUBLIC_EMAILS.advertising} /> 으로도 보내실 수 있습니다.
         </p>
       </div>
     </form>

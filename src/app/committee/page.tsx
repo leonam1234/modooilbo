@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { SITE } from "@/lib/site";
 import { COMMITTEE_MEMBERS, COMMITTEE_MINUTES } from "@/lib/committee";
+import { PlainEmailLink } from "@/components/PlainEmail";
 
 export const metadata: Metadata = {
   title: "이용자위원회",
@@ -283,12 +284,11 @@ export default function CommitteePage() {
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
                     위원으로 참여하실 뜻이 있는 분은{" "}
-                    <a
-                      href={`mailto:${SITE.email}?subject=%5B%EB%AA%A8%EB%91%90%EC%9D%BC%EB%B3%B4%5D%20%EC%9D%B4%EC%9A%A9%EC%9E%90%EC%9C%84%EC%9B%90%ED%9A%8C%20%EC%B0%B8%EC%97%AC%20%EB%AC%B8%EC%9D%98`}
+                    <PlainEmailLink
+                      address={SITE.email}
+                      subject="[모두일보] 이용자위원회 참여 문의"
                       className="font-medium text-signal-600 hover:text-signal-700 dark:text-signal-400"
-                    >
-                      {SITE.email}
-                    </a>
+                    />
                     로 연락해 주십시오.
                   </p>
                 </div>

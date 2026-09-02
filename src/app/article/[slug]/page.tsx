@@ -35,6 +35,7 @@ import { CONTENT_USE_POLICY } from "@/lib/content-use-policy";
 import { getEditorialSeries } from "@/lib/editorial-series";
 import JsonLd from "@/components/JsonLd";
 import { PortalMeta } from "@/components/PortalMeta";
+import { PlainEmailLink, PUBLIC_EMAILS } from "@/components/PlainEmail";
 
 // 기사 대표 이미지(AI 생성 스톡)는 전부 16:9 1200×675 원본이다.
 // og:image·구조화데이터에 실제와 다른 치수를 신고하면 스크레이퍼가 잘못 자르고
@@ -366,12 +367,12 @@ export default async function ArticlePage({
             <p>{CONTENT_USE_POLICY.articleNotice}</p>
             <p className="no-print mt-1.5">
               기사에서 잘못된 정보나 오탈자를 발견하셨나요?{" "}
-              <a
-                href={`mailto:correction@modooilbo.com?subject=${encodeURIComponent(`[정정요청] ${article.title}`)}`}
+              <PlainEmailLink
+                address={PUBLIC_EMAILS.correction}
+                subject={`[정정요청] ${article.title}`}
+                label="정정 요청하기"
                 className="underline underline-offset-2 hover:text-signal-600 dark:hover:text-signal-400"
-              >
-                정정 요청하기
-              </a>
+              />
               <span aria-hidden> · </span>
               <Link href="/ethics" className="underline underline-offset-2 hover:text-signal-600 dark:hover:text-signal-400">
                 정정·반론 원칙
@@ -412,14 +413,15 @@ export default async function ArticlePage({
               {article.aiRole?.includes("none")
                 ? "이 기사는 편집국이 직접 작성하고 검수했습니다."
                 : "이 기사는 AI 도구를 활용해 작성되고 편집국 검수를 거쳤습니다."}{" "}
-              <a href="/policy" className="underline">운영정책</a>
+              <a href="/policy/" className="underline">운영정책</a>
             </span>
-            <a
-              href={`mailto:help@modooilbo.com?subject=${encodeURIComponent(`[정정요청] ${article.title}`)}&body=${encodeURIComponent(`기사: https://modooilbo.com/article/${article.slug}/\n\n정정 요청 내용을 적어 주세요.`)}`}
+            <PlainEmailLink
+              address={PUBLIC_EMAILS.help}
+              subject={`[정정요청] ${article.title}`}
+              body={`기사: https://modooilbo.com/article/${article.slug}/\n\n정정 요청 내용을 적어 주세요.`}
+              label="정정요청·신고"
               className="shrink-0 font-semibold text-ink-700 underline dark:text-ink-200"
-            >
-              정정요청·신고
-            </a>
+            />
           </div>
 
           <CommentSection articleId={article.id} />

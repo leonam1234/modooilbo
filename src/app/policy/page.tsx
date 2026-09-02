@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { CONTENT_USE_POLICY } from "@/lib/content-use-policy";
+import { PlainEmailLink, PUBLIC_EMAILS } from "@/components/PlainEmail";
 
 export const metadata: Metadata = {
   title: "운영정책",
@@ -42,7 +43,7 @@ export default function PolicyPage() {
               <li className={LI}>누구나 기사·댓글에 대해 신고할 수 있습니다.</li>
               <li className={LI}>
                 기사: 각 기사 하단의 <b>정정요청·신고</b> 또는{" "}
-                <a href="mailto:help@modooilbo.com" className="underline">help@modooilbo.com</a>
+                <PlainEmailLink address={PUBLIC_EMAILS.help} className="underline" />
               </li>
               <li className={LI}>댓글: 각 댓글의 <b>신고</b> 버튼(로그인 필요) — 서로 다른 이용자 신고가 누적되면 자동으로 가려집니다.</li>
               <li className={LI}>접수 후 지체 없이 검토하며, 위반 확인 시 정정·삭제·가림 등 조치하고 결과를 신고자에게 회신합니다.</li>
@@ -53,7 +54,7 @@ export default function PolicyPage() {
             <h2 className={H}>3. 이의신청</h2>
             <p className={P}>
               신고 처리 결과 또는 게시물 조치에 동의하지 않는 신고자·게재자는{" "}
-              <a href="mailto:help@modooilbo.com" className="underline">help@modooilbo.com</a>으로
+              <PlainEmailLink address={PUBLIC_EMAILS.help} className="underline" />으로
               이의신청할 수 있습니다. 접수일로부터 7일 이내에 재검토 결과를 안내합니다. 언론중재법에
               따른 조정·중재는 고충처리인(푸터 표기)을 통해 안내받을 수 있습니다.
             </p>

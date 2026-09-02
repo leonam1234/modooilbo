@@ -4,13 +4,15 @@ import Link from "next/link";
 import { ALL_ARTICLES } from "@/lib/news";
 import { REPORTER_INDEXABLE, getReporterBySlug } from "@/lib/reporters";
 import { CATEGORY_MAP } from "@/lib/categories";
-import { SITE } from "@/lib/site";
+import { DEFAULT_OG_IMAGE, SITE } from "@/lib/site";
 import { formatKoreanDateTime } from "@/lib/utils";
 import { displayImageUrl } from "@/lib/stock";
 import { pageHref, paginate } from "@/lib/paginate";
 import { SubscribeButton } from "@/components/SubscribeButton";
 import { Pagination } from "@/components/Pagination";
 import JsonLd from "@/components/JsonLd";
+import { reporterSeoText } from "@/lib/reporter-seo";
+import { PlainEmailLink, PUBLIC_EMAILS } from "@/components/PlainEmail";
 
 /**
  * 기자 프로필 + 기사 목록 — 1페이지(/reporter/<slug>/)와 2페이지 이상
@@ -30,14 +32,28 @@ export function reporterArticles(name: string) {
 export function reporterMetadata(slug: string, page = 1): Metadata {
   const r = getReporterBySlug(slug);
   if (!r) return {};
-  const base = `${r.name} ${r.role}`;
   const path = pageHref(`/reporter/${r.slug}/`, page);
+  const { title, description } = reporterSeoText(r, page);
   return {
-    title: page > 1 ? `${base} (${page}페이지)` : base,
-    // 빙 웹마스터 지적(2026-08-20) 반영 — 한 줄 소개만으로는 설명문이 35자대라 너무 짧다.
-    // 전문 분야와 확인 절차를 덧붙여 검색 결과에서 저자 전문성이 드러나게 한다.
-    description: `모두일보 ${r.name} ${r.role} — ${r.beat} 전문 분야는 ${r.expertise}입니다. 공공 원자료를 직접 확인해 쓴 기사 목록과 취재윤리·이해상충 원칙, 편집국 연락 창구를 함께 안내합니다.`,
+    title,
+    description,
     alternates: { canonical: path },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      url: path,
+      // openGraph는 얕게 병합되므로 루트 메타의 공통값도 함께 유지한다.
+      siteName: SITE.name,
+      locale: "ko_KR",
+      images: [DEFAULT_OG_IMAGE],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [DEFAULT_OG_IMAGE.url],
+    },
     // 색인 여부는 lib/reporters.ts의 REPORTER_INDEXABLE 하나로 일괄 제어(사이트맵 등재와 같은 스위치)
     ...(REPORTER_INDEXABLE ? {} : { robots: { index: false, follow: true } }),
   };
@@ -111,9 +127,11 @@ export function ReporterPage({ slug, page = 1 }: { slug: string; page?: number }
       >
         <p>
           제보·문의는 편집국 공용 주소{" "}
-          <a href={`mailto:newsroom@modooilbo.com?subject=${encodeURIComponent(`[${reporter.name} ${reporter.role}] 문의`)}`} className="font-medium text-signal-600 hover:underline dark:text-signal-400">
-            newsroom@modooilbo.com
-          </a>
+          <PlainEmailLink
+            address={PUBLIC_EMAILS.newsroom}
+            subject={`[${reporter.name} ${reporter.role}] 문의`}
+            className="font-medium text-signal-600 hover:underline dark:text-signal-400"
+          />
           &nbsp;으로 받습니다. 제목에 기자명을 적어 주시면 담당 기자에게 전달됩니다.
         </p>
         <p className="mt-2">

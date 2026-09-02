@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { PlainEmail, PUBLIC_EMAILS } from "@/components/PlainEmail";
 
 type Inquiry = "subscription" | "ad" | "tip" | "etc";
 
@@ -259,7 +260,7 @@ export function ContactForm() {
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs text-ink-500 dark:text-ink-400">
-          이메일 help@modooilbo.com 으로도 보내실 수 있습니다.
+          이메일 <PlainEmail address={PUBLIC_EMAILS.help} /> 으로도 보내실 수 있습니다.
         </p>
         <button
           type="submit"
