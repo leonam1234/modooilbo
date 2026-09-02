@@ -29,6 +29,8 @@ const ADSENSE_SCRIPT_SELECTOR =
   'script[src*="googlesyndication.com/pagead/js/adsbygoogle.js"]';
 const CLOUDFLARE_BEACON_SELECTOR =
   'script[src*="static.cloudflareinsights.com/beacon.min.js"]';
+const CLOUDFLARE_JSD_SELECTOR =
+  'script[src*="/cdn-cgi/challenge-platform/scripts/jsd/"]';
 
 function isHostOrSubdomain(hostname, domain) {
   return hostname === domain || hostname.endsWith(`.${domain}`);
@@ -463,6 +465,14 @@ async function assertNoCloudflareBeacon(page, label) {
   );
 }
 
+async function assertNoCloudflareJsd(page, label) {
+  assert.equal(
+    await page.locator(CLOUDFLARE_JSD_SELECTOR).count(),
+    0,
+    `${label}: Cloudflare JavaScript Detection script exists`,
+  );
+}
+
 function countRawAdsenseReferences(html) {
   const normalized = html.replace(/\\\//g, "/");
   return [...normalized.matchAll(
@@ -477,12 +487,20 @@ function countRawCloudflareBeaconReferences(html) {
   )].length;
 }
 
+function countRawCloudflareJsdReferences(html) {
+  const normalized = html.replace(/\\\//g, "/");
+  return [...normalized.matchAll(
+    /\/cdn-cgi\/challenge-platform\/scripts\/jsd\//gi,
+  )].length;
+}
+
 function assertTokenProtectionHeaders(headers, label) {
   const get = (name) => typeof headers.get === "function"
     ? headers.get(name)
     : headers[name.toLowerCase()] ?? null;
   assert.equal(get("referrer-policy"), "no-referrer", `${label}: Referrer-Policy`);
   assert.match(get("cache-control") ?? "", /(?:^|,)\s*no-store(?:\s*(?:,|$))/i, `${label}: Cache-Control`);
+  assert.match(get("cache-control") ?? "", /(?:^|,)\s*no-transform(?:\s*(?:,|$))/i, `${label}: Cache-Control no-transform`);
   assert.equal(get("pragma"), "no-cache", `${label}: Pragma`);
   assert.equal(get("expires"), "0", `${label}: Expires`);
   assert.equal(get("etag"), null, `${label}: ETag must be removed`);
@@ -532,6 +550,11 @@ async function verifyEdgeTokenIsolation(browser, edgeRuntime) {
       0,
       `${pathname}: raw edge HTML contains a Cloudflare Web Analytics beacon reference`,
     );
+    assert.equal(
+      countRawCloudflareJsdReferences(rawHtml),
+      0,
+      `${pathname}: raw edge HTML contains a Cloudflare JavaScript Detection reference`,
+    );
 
     const context = await browser.newContext();
     await installClientState(context, "granted");
@@ -546,6 +569,7 @@ async function verifyEdgeTokenIsolation(browser, edgeRuntime) {
     await assertNoGoogleTag(page, `${pathname} edge hydration`);
     await assertNoAdsenseTag(page, `${pathname} edge hydration`);
     await assertNoCloudflareBeacon(page, `${pathname} edge hydration`);
+    await assertNoCloudflareJsd(page, `${pathname} edge hydration`);
     assert.equal(
       await page.evaluate((measurementId) => window[`ga-disable-${measurementId}`], ID),
       true,
@@ -590,6 +614,7 @@ async function verifyEdgeTokenIsolation(browser, edgeRuntime) {
     await assertNoGoogleTag(page, `${pathname} conditional reload`);
     await assertNoAdsenseTag(page, `${pathname} conditional reload`);
     await assertNoCloudflareBeacon(page, `${pathname} conditional reload`);
+    await assertNoCloudflareJsd(page, `${pathname} conditional reload`);
     const reloadTelemetry = records.slice(reloadStart).filter((record) =>
       record.google || record.adsense || record.cloudflareBeacon);
     assert.deepEqual(

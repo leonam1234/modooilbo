@@ -138,7 +138,7 @@ test("one global Basic Consent implementation owns the only GA/GTM measurement I
     tokenMiddleware,
     /headers\.set\(\s*["']Referrer-Policy["']\s*,\s*["']no-referrer["']\s*\)/,
   );
-  assert.match(tokenMiddleware, /headers\.set\(\s*["']Cache-Control["']\s*,\s*["']no-store, max-age=0["']/);
+  assert.match(tokenMiddleware, /headers\.set\(\s*["']Cache-Control["']\s*,\s*["']no-store, no-transform, max-age=0["']/);
   assert.match(tokenMiddleware, /headers\.delete\(\s*["']ETag["']\s*\)/);
   assert.match(tokenMiddleware, /upstreamHeaders\.delete\(name\)/);
   for (const requestHeader of [

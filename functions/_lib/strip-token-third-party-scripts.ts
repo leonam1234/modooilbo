@@ -59,7 +59,9 @@ export const stripTokenPageThirdPartyScripts: PagesFunction = async (context) =>
   // Apply this before the content-type branch so redirects and unexpected 304s stay protected.
   const headers = new Headers(response.headers);
   headers.set("Referrer-Policy", "no-referrer");
-  headers.set("Cache-Control", "no-store, max-age=0");
+  // `no-transform` also prevents Cloudflare's zone-level Web Analytics and
+  // JavaScript Detection features from injecting scripts after this Function sanitizes HTML.
+  headers.set("Cache-Control", "no-store, no-transform, max-age=0");
   headers.set("Pragma", "no-cache");
   headers.set("Expires", "0");
   headers.delete("ETag");

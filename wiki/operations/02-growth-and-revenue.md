@@ -12,7 +12,7 @@
 ### 현재 상태
 - `src/app/layout.tsx`에 Cloudflare beacon 흔적 존재(정식화 필요).
 - google-site-verification 토큰 존재(GSC 연결 가능 상태).
-- GA4 `G-R2MDE3WDFY`는 Basic Consent와 함께 공통 삽입돼 있다. 개인정보처리방침 사전 고지에 맞춰 Cloudflare 서버 시각 기준 2026-09-10 12:00 KST부터 선택창을 활성화하며, 이용자가 허용하기 전에는 Google tag 자체를 불러오지 않는다. 인증 토큰 경로 4종은 GA4를 항상 제외하고 Pages middleware가 AdSense 및 조건부 Cloudflare Web Analytics의 head/Flight 태그를 제거하며 `Referrer-Policy: no-referrer`를 강제한다. 공개↔토큰 경계 이동은 새 문서로 전환한다.
+- GA4 `G-R2MDE3WDFY`는 Basic Consent와 함께 공통 삽입돼 있다. 개인정보처리방침 사전 고지에 맞춰 Cloudflare 서버 시각 기준 2026-09-10 12:00 KST부터 선택창을 활성화하며, 이용자가 허용하기 전에는 Google tag 자체를 불러오지 않는다. 인증 토큰 경로 4종은 GA4를 항상 제외하고 Pages middleware가 AdSense 및 조건부 Cloudflare Web Analytics의 head/Flight 태그를 제거하며 `Referrer-Policy: no-referrer`를 강제한다. 응답의 `Cache-Control: no-store, no-transform, max-age=0`은 캐시와 Cloudflare 후단 beacon·JavaScript Detection 재주입을 함께 막는다. 공개↔토큰 경계 이동은 새 문서로 전환한다.
 - Google Analytics 국외 이전 수령자는 Google LLC(미국, 1600 Amphitheatre Parkway Mountain View CA 94043 USA)이며 공식 개인정보 문의 URL은 <https://support.google.com/policies/troubleshooter/7575787>이다. 분석 허용 후 접속·기기·페이지 이용 데이터가 방문 통계 및 콘텐츠 개선 목적으로 이용자의 기기에서 Google 서버로 인터넷 네트워크를 통해 수시 자동 전송된다. 사용자·이벤트 단위 데이터는 회사 정책상 수집일로부터 14개월 이내만 보유하며, 실제 속성 설정과 삭제 절차를 관리해 이를 초과하지 않도록 한다.
 - GA4 국외 이전은 분석 쿠키 선택창, 페이지 하단의 분석 쿠키 설정, 브라우저의 해당 사이트 쿠키·사이트 데이터(로컬 저장소 포함) 삭제 또는 개인정보보호책임자 요청으로 거부·철회할 수 있다. 사이트 데이터 삭제 시 선택값도 초기화되어 다시 허용하기 전에는 GA tag가 로드되지 않는다. 거부하면 분석 목적의 국외 이전과 통계 반영은 중단되지만 기사 열람 등 기본 서비스는 제한되지 않는다.
 
