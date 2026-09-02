@@ -81,11 +81,19 @@ function cleanDocumentNavigationUrl(
 }
 
 function eraseGoogleAnalyticsCookies() {
+  const hostnameParts = location.hostname.split(".");
+  const domainCandidates = hostnameParts.length > 1
+    ? hostnameParts.slice(0, -1).map((_, index) => `.${hostnameParts.slice(index).join(".")}`)
+    : [];
+
   for (const part of document.cookie.split(";")) {
     const name = part.split("=", 1)[0]?.trim();
     if (!name || (name !== "_ga" && !name.startsWith("_ga_"))) continue;
-    document.cookie = `${name}=; Max-Age=0; Path=/; SameSite=Lax`;
-    document.cookie = `${name}=; Max-Age=0; Path=/; Domain=.${location.hostname}; SameSite=Lax`;
+    const expired = `${name}=; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT; Path=/; SameSite=Lax`;
+    document.cookie = expired;
+    for (const domain of domainCandidates) {
+      document.cookie = `${expired}; Domain=${domain}`;
+    }
   }
 }
 

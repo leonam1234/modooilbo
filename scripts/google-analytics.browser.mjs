@@ -104,13 +104,24 @@ function isCloudflareBeaconRecord(record) {
   }
 }
 
-function containsToken(value, token) {
-  if (value.includes(token) || value.includes(encodeURIComponent(token))) return true;
-  try {
-    return decodeURIComponent(value).includes(token);
-  } catch {
-    return false;
+function decodedVariants(value) {
+  const variants = [String(value)];
+  for (let depth = 0; depth < 3; depth += 1) {
+    try {
+      const decoded = decodeURIComponent(variants.at(-1));
+      if (decoded === variants.at(-1)) break;
+      variants.push(decoded);
+    } catch {
+      break;
+    }
   }
+  return variants;
+}
+
+function containsToken(value, token) {
+  const encodedToken = encodeURIComponent(token);
+  return decodedVariants(value).some((candidate) =>
+    candidate.includes(token) || candidate.includes(encodedToken));
 }
 
 function describeRecords(records) {
@@ -293,6 +304,94 @@ async function waitForStablePageView(records, startIndex, pathname, label) {
 function assertNoGa4Traffic(records, startIndex, label) {
   const leaked = records.slice(startIndex).filter(isGa4CollectionRecord);
   assert.deepEqual(leaked, [], `${label}: unexpected GA4 traffic\n${describeRecords(leaked)}`);
+}
+
+function valueReferencesTokenPath(value) {
+  if (!value) return false;
+  return decodedVariants(value).some((candidate) => {
+    try {
+      const pathname = new URL(candidate, `${BASE}/`).pathname;
+      return TOKEN_PATHS.some((tokenPath) =>
+        pathname === tokenPath ||
+        pathname === tokenPath.slice(0, -1) ||
+        pathname.startsWith(tokenPath));
+    } catch {
+      return TOKEN_PATHS.some((tokenPath) =>
+        candidate.includes(tokenPath) || candidate.includes(tokenPath.slice(0, -1)));
+    }
+  });
+}
+
+function isSafeDelayedTagDiagnostics(record) {
+  let url;
+  try {
+    url = new URL(record.url);
+  } catch {
+    return false;
+  }
+  if (
+    url.hostname !== "www.googletagmanager.com" ||
+    url.pathname !== "/td" ||
+    !["GET", "POST"].includes(record.method)
+  ) return false;
+
+  const payloads = payloadCandidates(record);
+  return payloads.length > 0 && payloads.every((payload) => {
+    const measurementId = payload.get("id") || payload.get("tid");
+    const location = payload.get("dl");
+    const pagePath = payload.get("dp");
+    const referrer = payload.get("dr");
+    return (
+      measurementId === ID &&
+      Boolean(location || pagePath) &&
+      ![location, pagePath, referrer].some(valueReferencesTokenPath)
+    );
+  });
+}
+
+function assertNoUnexpectedGa4TrafficAfterTokenNavigation(records, startIndex, label) {
+  const leaked = records.slice(startIndex).filter((record) =>
+    isGa4CollectionRecord(record) && !isSafeDelayedTagDiagnostics(record));
+  assert.deepEqual(
+    leaked,
+    [],
+    `${label}: unexpected GA4 traffic beyond a safe delayed /td request\n${describeRecords(leaked)}`,
+  );
+}
+
+function verifyTagDiagnosticsAllowlist() {
+  const makeRecord = (params = {}, pathname = "/td") => {
+    const url = new URL(pathname, "https://www.googletagmanager.com");
+    url.searchParams.set("id", ID);
+    url.searchParams.set("dl", `${BASE}/`);
+    for (const [name, value] of Object.entries(params)) {
+      if (value == null) url.searchParams.delete(name);
+      else url.searchParams.set(name, value);
+    }
+    return {
+      url: url.href,
+      method: "GET",
+      resourceType: "image",
+      frameUrl: `${BASE}/`,
+      postData: "",
+      referer: `${BASE}/`,
+    };
+  };
+
+  assert.equal(isSafeDelayedTagDiagnostics(makeRecord()), true);
+  assert.equal(isSafeDelayedTagDiagnostics(makeRecord({ dp: "/reset/" })), false);
+  assert.equal(isSafeDelayedTagDiagnostics(makeRecord({ dr: `${BASE}/verify-email/?token=x` })), false);
+  assert.equal(isSafeDelayedTagDiagnostics(makeRecord({ dl: null, dp: null })), false);
+  assert.equal(isSafeDelayedTagDiagnostics(makeRecord({}, "/g/collect")), false);
+}
+
+function verifyTokenLeakDetection() {
+  const token = "SENSITIVE_TEST_TOKEN_:/?#";
+  const pageUrl = `${BASE}/reset/?token=${encodeURIComponent(token)}`;
+  const nestedCollectUrl =
+    `https://www.google-analytics.com/g/collect?tid=${ID}&dl=${encodeURIComponent(pageUrl)}`;
+  assert.equal(containsToken(nestedCollectUrl, token), true);
+  assert.equal(valueReferencesTokenPath(encodeURIComponent(pageUrl)), true);
 }
 
 function assertGoogleFirewall(records, label) {
@@ -604,6 +703,9 @@ async function verifyTokenHistoryHardNavigation(browser, edgeRuntime) {
   await context.close();
 }
 
+verifyTagDiagnosticsAllowlist();
+verifyTokenLeakDetection();
+
 const browser = await chromium.launch({ headless: true });
 try {
   const { edgeRuntime } = await verifyLiveServerGate();
@@ -616,7 +718,9 @@ try {
     const records = await installExternalRequestFirewall(context);
     const page = await context.newPage();
     await page.goto(`${BASE}/`, { waitUntil: "domcontentloaded" });
-    await page.waitForTimeout(500);
+    await page.waitForFunction(
+      () => document.documentElement.dataset.ga4Active === "false",
+    );
     await assertNoGoogleTag(page, "server before activation");
     assert.equal(await page.getByLabel("분석 쿠키 선택").count(), 0);
     assertNoGa4Traffic(records, 0, "server before activation");
@@ -763,7 +867,14 @@ try {
     await page.waitForTimeout(1000);
     await assertNoGoogleTag(page, "public to token hard navigation");
     assert.equal(await page.evaluate((measurementId) => window[`ga-disable-${measurementId}`], ID), true);
-    assertNoGa4Traffic(records, start, "public to token hard navigation");
+    // gtag.js may finish a delayed tag-diagnostics request for the preceding public
+    // document after navigation starts. It is safe only when the payload still names
+    // the public URL; any GA payload that names a token route remains a hard failure.
+    assertNoUnexpectedGa4TrafficAfterTokenNavigation(
+      records,
+      start,
+      "public to token hard navigation",
+    );
     assertNoExternalTokenLeak(records, start, sensitiveToken, "public to token hard navigation");
 
     for (const pathname of TOKEN_PATHS) {
