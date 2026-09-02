@@ -18,9 +18,20 @@
 **GitHub = 코드 기록용, Cloudflare = 실배포.** 둘은 별개 동작입니다.
 
 배포 스크립트는 **커밋되지 않은 변경이 있으면 배포를 중단**합니다.
-즉 "현재 커밋 = 배포된 것"이 항상 보장됩니다. 그래서 순서는 항상:
+즉 "현재 커밋 = 배포된 것"이 항상 보장됩니다. 그래서 운영 승급 순서는 항상:
 
-> **먼저 커밋 → 그다음 배포**
+> **먼저 커밋 → Preview 배포 → 모바일 4조합 스모크와 비교 이미지 확인 → Production 배포**
+
+```bash
+npm run deploy:preview
+npm run smoke -- <Preview URL> / /policy/ /newsroom/
+# 결론 PASS와 smoke-shots/<실행시각>/compare-*.png 육안 대조 뒤에만
+npm run deploy:prod
+npm run smoke -- https://modooilbo.com / /policy/ /newsroom/
+```
+
+스모크가 FAIL이거나 Chromium·WebKit 비교 이미지에서 레이아웃 차이가 확인되면
+Production 배포를 중단합니다. 운영 배포 뒤에는 같은 경로를 다시 검사해 라이브 반영을 증명합니다.
 
 ## 3. 명령어
 

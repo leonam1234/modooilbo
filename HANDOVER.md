@@ -250,12 +250,16 @@ node scripts/editorial-quality-report.mjs --strict
 node scripts/reporting-report.mjs
 npm run content && npm run build
 git add -A && git commit -F <메시지파일>   # 한글은 -m 대신 -F 로
+# 6) Preview 선검증 — 운영 반영 전에 4조합과 비교 이미지를 확인
+npm run deploy:preview
+npm run smoke -- <Preview URL> / /policy/ /newsroom/
+# smoke-shots/<실행시각>/compare-*.png를 눈으로 대조하고 FAIL이면 운영 배포 중단
 npm run deploy:prod
-# 6) 라이브 검증 — 반드시 데스크톱 UA 로 (기본 UA 는 403)
+# 7) 운영 라이브 재검증 — 반드시 데스크톱 UA 로 (기본 UA 는 403)
 npm run smoke -- https://modooilbo.com / /policy/ /newsroom/   # 모바일 4조합
-# 7) 색인 — IndexNow 는 배포가 자동으로 하지만 RSS 기반이라 최신 30개뿐이다.
+# 8) 색인 — IndexNow 는 배포가 자동으로 하지만 RSS 기반이라 최신 30개뿐이다.
 #    24편을 확실히 넣으려면 오늘 slug 로 직접 제출한다(빙·네이버).
-# 8) ⚠️ 오너에게 오늘 기사 링크 24개를 목록으로 준다 — 매번 요구하신다.
+# 9) ⚠️ 오너에게 오늘 기사 링크 24개를 목록으로 준다 — 매번 요구하신다.
 #    구글은 IndexNow 를 안 쓰므로 서치 콘솔에 오너가 직접 넣어야 한다.
 ```
 
@@ -308,8 +312,9 @@ npm run smoke -- https://modooilbo.com / /policy/ /newsroom/
 ⚠️ **`결론:` 줄만 믿지 마십시오.** 레이아웃 깨짐은 JS 에러를 안 냅니다 —
 `compare-*.png` 로 안드↔아이폰을 눈으로 대조해야 잡힙니다.
 
-⚠️ **prod URL 로 돌리면 "배포 후 검증"입니다.** 배포 *전* 게이트로 쓰려면
-`npm run deploy:preview` 로 먼저 올리고 그 URL 을 검사하십시오.
+⚠️ **prod URL 로 돌리면 "배포 후 검증"입니다.** 운영 배포 전에는 반드시
+`npm run deploy:preview` 로 먼저 올리고 그 URL을 검사한 뒤, PASS와 `compare-*.png`
+육안 대조를 모두 마친 경우에만 `npm run deploy:prod`로 승급하십시오.
 
 ⚠️ 웹킷 브라우저 버전이 안 맞으면 `npx playwright install webkit` 을 먼저 돌리십시오.
 
