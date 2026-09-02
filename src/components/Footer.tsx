@@ -3,6 +3,7 @@ import { PlainEmail, PlainEmailLink, PUBLIC_EMAILS } from "./PlainEmail";
 import { CATEGORIES } from "@/lib/categories";
 import { SITE } from "@/lib/site";
 import { CONTENT_USE_POLICY } from "@/lib/content-use-policy";
+import { AnalyticsConsentSettings } from "@/components/AnalyticsConsentSettings";
 
 const FOOTER_COLS: { title: string; links: { href: string; label: string }[] }[] = [
   {
@@ -147,6 +148,9 @@ export function Footer() {
             <Link href="/policy/#content-use" className="underline underline-offset-2">
               {CONTENT_USE_POLICY.shortLabel}
             </Link>
+          </p>
+          <p className="mt-1">
+            <AnalyticsConsentSettings />
           </p>
         </div>
       </div>

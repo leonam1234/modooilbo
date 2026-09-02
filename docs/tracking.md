@@ -4,7 +4,7 @@
 > 핵심 원칙: **실제로 저장·집계되지 않는 값은 절대 숫자로 만들지 않는다 → `확인 불가 / unavailable`.**
 > 리포트 실행: 트래픽 `npm run report:tracking`, 검색·AI 가시성 `npm run report:visibility`.
 
-최종 갱신: 2026-08-30 (KST)
+최종 갱신: 2026-09-02 (KST)
 
 ---
 
@@ -15,6 +15,7 @@
 | 사이트 구조 | Next.js **정적 export** + Cloudflare Pages. D1/KV 바인딩은 있으나 회원·뉴스레터·결제 기능은 데모 | 제품 지표는 실제 저장 여부를 따로 확인 |
 | Cloudflare 트래픽 | Zone Analytics GraphQL 어댑터가 Wrangler OAuth를 자동 재사용. 별도 beacon 없이 edge 요청·HTML 페이지뷰·visits·uniques 집계 | **실집계 가동** |
 | Web Analytics(beacon) | 선택 기능. `NEXT_PUBLIC_CF_BEACON_TOKEN`이 있으면 RUM을 삽입하며, 없으면 Zone Analytics를 사용 | AI referrer host까지 보려면 RUM 연결 권장 |
+| Google Analytics 4 | `G-R2MDE3WDFY`를 Basic Consent로 설치. Cloudflare 서버 시각이 방침 시행 예정 시각인 2026-09-10 12:00 KST를 지난 뒤에도 이용자가 분석을 허용해야만 tag를 로드 | **시행·동의 전 미수집. 시행 후 라이브 수신 별도 확인** |
 | 검색·AI 가시성 | `scripts/search-visibility-report.mjs`: 라이브 정책, CF 트래픽, AI User-Agent, AI referrer, GSC, Bing을 한 리포트로 집계 | CF·정책은 즉시, GSC·Bing·referrer는 아래 권한 필요 |
 | Google Search Console | 읽기 전용 API 어댑터 구현. 현재 실행 계정에는 `modooilbo.com` 속성 권한/OAuth 없음 | 권한 부여 후 실집계 |
 | Bing Webmaster | API 키 및 사용자 지정 신규 REST URL 어댑터 구현. 현재 인증 없음 | Bing 로그인·API 인증 후 실집계 |
@@ -65,6 +66,10 @@
 - 리포트에는 **집계 수치만** 출력한다. 이메일·이름·전화·결제정보·토큰·chat id·고객 상세는 **절대 출력 금지**.
 - API 키/토큰은 코드·로그·리포트에 평문 저장 금지. 환경변수로만 주입한다(아래).
 - 리포트 산출물(파일)에도 PII가 들어가지 않도록, 소스 쿼리는 **COUNT/집계만** 수행한다.
+- GA4는 `/reset`, `/verify-signup`, `/verify-email`, `/forgot`에서 항상 제외한다. 공개 경로도 분석 허용 전에는 Google tag와 요청을 모두 차단하며, 광고 신호·광고 개인화 신호는 보내지 않는다. 네 토큰 경로에서는 Cloudflare Pages middleware가 정적 head와 Next Flight 데이터의 AdSense 및 조건부 Cloudflare Web Analytics 태그를 제거하고 `Referrer-Policy: no-referrer`를 강제한다. 공개↔토큰 경계 이동도 새 문서로 전환해 토큰 문서의 Navigation Timing이 서드파티 코드와 공존하지 않게 한다.
+- GA4 국외 이전 수령자는 **Google LLC**, 이전 국가는 **미국**, 주소는 **1600 Amphitheatre Parkway Mountain View CA 94043 USA**, 공식 개인정보 문의 URL은 <https://support.google.com/policies/troubleshooter/7575787>이다. 분석 허용 후 접속 IP 주소, 쿠키·클라이언트 식별자, 방문 페이지 URL·제목, 유입 경로, 접속 시각, 브라우저·기기 정보와 페이지 이용 이벤트가 방문·이용 통계 분석 및 콘텐츠 개선 목적으로 이용자의 기기에서 Google 서버로 인터넷 네트워크를 통해 수시 자동 전송된다.
+- Google Analytics 사용자·이벤트 단위 데이터는 **회사 정책상 수집일로부터 14개월 이내**만 보유한다. 현재 실행 환경은 Google Analytics 관리자에 로그인되지 않아 속성 화면의 2개월/14개월 설정값을 확인하지 못했지만, 이를 미확정 보유기간으로 두지 않는다. 회사는 실제 속성 설정과 삭제 절차를 관리하여 14개월을 초과해 보유하지 않도록 한다.
+- 이용자는 최초 분석 쿠키 선택창에서 거부하거나 페이지 하단의 **분석 쿠키 설정**에서 동의를 철회할 수 있고, 브라우저에서 이 사이트의 쿠키와 사이트 데이터(로컬 저장소 포함)를 삭제하거나 개인정보보호책임자에게 요청할 수도 있다. 사이트 데이터 삭제 시 선택값도 초기화되므로 다시 허용하기 전에는 GA tag를 불러오지 않는다. 거부·철회 시 분석 목적의 국외 이전이 발생하지 않으며 기사 열람 등 기본 서비스는 제한되지 않는다. 단, 해당 이용 기록은 방문 통계와 콘텐츠 개선 분석에 반영되지 않는다.
 
 ## 4. 검색·AI 가시성 정의
 
@@ -109,6 +114,8 @@ AI 답변 내부의 실제 인용 노출은 제공사별 공통 공식 API가 �
 |---|---|
 | `npm run build` | 정적 export 빌드(타입 포함) |
 | `npm run lint` | 비대화형 타입체크(`tsc --noEmit`). ESLint 설정 프롬프트 없이 pass/fail 반환 |
+| `npm run test:analytics` | GA4 ID·시행일·Basic Consent·토큰 경로·CSP·정적 산출물 회귀 검사 |
+| `npm run test:analytics:browser -- <baseUrl>` | 시행 전/동의 전/허용/철회 및 공개·토큰 경로의 실제 브라우저 tag·요청 검사 |
 | `npm run report:tracking -- --date=2026-06-29` | 사람용 표 리포트(KST) |
 | `npm run report:tracking -- --date=2026-06-29 --json` | 기계용 JSON |
 | `npm run report:visibility -- --days=7` | 정책·CF·AI 크롤러·AI 유입·GSC·Bing 통합 리포트 |
