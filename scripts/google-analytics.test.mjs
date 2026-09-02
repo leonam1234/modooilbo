@@ -127,6 +127,12 @@ test("one global Basic Consent implementation owns the only GA/GTM measurement I
   const thirdParty = await readFile(path.join(ROOT, "src/components/ThirdPartyScripts.tsx"), "utf8");
   assert.equal(countMatches(thirdParty, /<GoogleAnalytics\b/g), 1);
   assert.match(thirdParty, /<GoogleAnalytics blocked=\{blocked\}/);
+  assert.match(thirdParty, /useRef\(isThirdPartyTokenPath\(pathname\)\)/);
+  assert.match(
+    thirdParty,
+    /documentStartedOnTokenPath\.current\s*\|\|\s*isThirdPartyTokenPath\(pathname\)/,
+    "a document opened on a token path must remain blocked until unload",
+  );
   const layout = await readFile(path.join(ROOT, "src/app/layout.tsx"), "utf8");
   assert.equal(countMatches(layout, /<ThirdPartyScripts\s*\/>/g), 1);
 

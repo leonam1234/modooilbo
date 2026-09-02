@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { AdSenseLoader } from "@/components/AdSenseLoader";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { isThirdPartyTokenPath } from "@/lib/google-analytics";
@@ -30,7 +30,11 @@ const CLARITY_PROJECT = "y04dqzduac";
 
 export function ThirdPartyScripts() {
   const pathname = usePathname() || "/";
-  const blocked = isThirdPartyTokenPath(pathname);
+  // Next or another history wrapper can briefly publish the destination pathname before a
+  // guarded hard navigation commits. A document born on a token URL must therefore remain
+  // third-party-free for its entire lifetime, even during that pre-commit render window.
+  const documentStartedOnTokenPath = useRef(isThirdPartyTokenPath(pathname));
+  const blocked = documentStartedOnTokenPath.current || isThirdPartyTokenPath(pathname);
 
   useEffect(() => {
     if (blocked) return;
