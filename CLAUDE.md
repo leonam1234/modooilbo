@@ -5,6 +5,12 @@
 
 한국어 온라인 신문사 프론트엔드. **Next.js 15 (App Router) · 정적 export · Cloudflare Pages**.
 
+## 현재 역할과 발행 중단선
+
+- 역할명: **`모두일보 개발 및 배포 담당자`**. 종전 모두일보 총괄·개발담당 업무와 사이트 코딩·유지보수를 이어받는다.
+- 신규 패키지는 1차 정적·동적 게이트 뒤 `모두일보 독립 리뷰 담당`(작업 ID `01a05a60-a035-7921-8154-7aa4a7024f31`)에게 기사별 검수를 요청한다. `reviewedBy`·`reviewedAt`·`reporterInsight`와 PASS/HOLD·수정 요구를 회수해 최종 게이트를 완료한다.
+- **유수화님이 해당 패키지를 명시 승인하기 전에는 CMS 변환, Git, 빌드, 발행, 배포를 하지 않는다.** 상세 순서는 `HANDOVER.md` §5가 정본이다.
+
 ## 📖 먼저 읽을 것
 **[wiki/README.md](wiki/README.md)** — LLM 지식베이스(방향성·아키텍처·디자인·콘텐츠·페이지·배포·컨벤션).
 작업 전 **[wiki/08-conventions.md](wiki/08-conventions.md)** 의 불변식을 반드시 확인하세요.
