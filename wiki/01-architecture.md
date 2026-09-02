@@ -1,8 +1,8 @@
 # 01 · 아키텍처 (Architecture)
 
-> **2026-08 현행 노트** — 아래 본문은 순수 정적 시절 서술이 남아 있다. 현재는 **하이브리드**다:
+> **2026-09-02 현행 노트** — 현재 구조는 **하이브리드**다:
 > 정적 export(`out/`) + **Pages Functions(`functions/api/*`: 인증·댓글·뉴스레터·조회수·시세) + D1(`modooilbo-members`) + KV + R2 이미지(`img.modooilbo.com` — Pages 2만 파일 한도 회피, `scripts/sync-stock-r2.mjs`)**.
-> 콘텐츠는 `content/articles/*.md → scripts/build-content.mjs → src/lib/content.generated.ts`. 사이트맵은 인덱스 방식(`src/lib/sitemap-parts.ts`). 배포는 `scripts/deploy.mjs`(빌드 → R2 sync → prune → 파일수 게이트 → wrangler → IndexNow 네이버). 발행 파이프라인 상세: [09-publishing](09-publishing.md).
+> 콘텐츠는 `content/articles/*.md → scripts/build-content.mjs → src/lib/content.generated.ts`. 사이트맵은 인덱스 방식(`src/lib/sitemap-parts.ts`). 배포는 `scripts/deploy.mjs`(빌드 → R2 sync → prune → 파일수 게이트 → wrangler → Production에서 Bing/IndexNow·Naver 통지). 발행 파이프라인 상세: [09-publishing](09-publishing.md).
 
 ## 1. 기술 스택
 | 영역 | 선택 | 비고 |
@@ -17,7 +17,7 @@
 
 ## 2. 렌더링 모델 — 페이지는 정적, API 만 Functions
 - 모든 라우트가 **Static** 또는 **SSG**(generateStaticParams). 서버 런타임 없음.
-- `next.config.mjs`의 `output: "export"` → `next build` 시 `out/`에 완전한 정적 사이트 생성(**1,098 페이지**, 2026-08-21 기준).
+- `next.config.mjs`의 `output: "export"` → `next build` 시 `out/`에 완전한 정적 사이트 생성(2026-09-02 기준 **1,400페이지 이상**).
 - ⚠️ **서버 런타임이 아주 없는 것은 아니다.** API 는 Next route handler 가 아니라 **Cloudflare Pages Functions**(`functions/api/*`)로 분리돼 있어 `output: "export"` 를 유지한다.
 - 인터랙션은 **클라이언트 컴포넌트 하이드레이션**으로 처리(테마 토글·검색·폼·모바일 메뉴·기사 액션).
 - `trailingSlash: true` → `out/about/index.html` 식 폴더 구조(정적 호스팅 안정).
@@ -29,30 +29,35 @@ src/
     layout.tsx          # 루트 레이아웃: <Header/> <BreakingTicker/> <main/> <Footer/>
     page.tsx            # 홈 (HeroLead + BizSectionGroup + SectionBlock×6 + Ranking + Newsletter)
     globals.css         # 디자인 토큰/유틸/접근성/인쇄 CSS
-    [category]/page.tsx # 섹션 목록 (dynamicParams=false, generateStaticParams=8 카테고리)
-    article/[slug]/page.tsx # 기사 상세 (62 슬러그, JSON-LD, 읽는시간)
-    search/{page,SearchClient}.tsx  # 검색 (서버가 경량 인덱스 주입 → 클라이언트 필터)
-    media/page.tsx
+    [category]/page.tsx # 종합뉴스 7개 섹션(dynamicParams=false)
+    grants|bids|startup|industry|labor|deals/ # 사업 6개 전용 섹션
+    article/[slug]/page.tsx # 기사 상세(Markdown 1,277편 기준, JSON-LD, 읽는시간)
+    search/{page,SearchClient}.tsx  # 검색(경량 articles-index fetch → 클라이언트 필터)
     about|careers|subscribe|newsletter|advertise|tips|contact|ethics|login|register|terms|privacy/
-    not-found.tsx, loading.tsx, sitemap.ts, robots.ts
+    sitemap.xml|news-sitemap.xml|sitemap-pages.xml|robots.txt|rss.xml/route.ts
+    not-found.tsx, loading.tsx
   components/           # → 04-components.md
   lib/                  # → 03-content-model.md
 ```
 
 ## 4. 데이터 흐름
 ```
-articles.ts  (ARTICLES   a01–a30)
-articles2.ts (ARTICLES_2 a31–a62)
-        └──► news.ts  (ALL_ARTICLES = [...배치1, ...배치2])
-                  └──► queries.ts  (getLeadArticle, getByCategory, getMostRead, ...)
-                            └──► 서버 컴포넌트/페이지에서 호출 → 정적 렌더
+content/articles/*.md
+        └──► scripts/build-content.mjs
+                  └──► content.generated.ts (CONTENT_ARTICLES)
+                            └──► news.ts (ALL_ARTICLES)
+                                      ├──► queries.ts → 서버 컴포넌트·정적 렌더
+                                      └──► articles-index.json → 클라이언트 검색·계정 화면
 ```
-- **검색만 예외**: `search/page.tsx`(서버)가 `ALL_ARTICLES`에서 **본문 제외 경량 인덱스**(`ArticleListItem[]`)를 만들어 `<SearchClient index=.../>`로 주입 → 클라이언트 번들에서 본문 제외(번들 -30kB).
+- **검색·계정 화면**은 `ALL_ARTICLES`를 클라이언트 번들에 넣지 않고
+  `/articles-index.json?v=<CONTENT_VERSION>`의 본문 제외 경량 인덱스를 fetch합니다.
 
 ## 5. 라우팅 규칙
 - 정적 라우트(`/about` 등)가 동적 `[category]`보다 **우선**.
 - `[category]`/`[slug]` 모두 `export const dynamicParams = false` + `generateStaticParams` → 목록 외 경로는 빌드 시 미생성 → 404(`not-found.tsx` → `out/404.html`).
-- 메타데이터 라우트(`sitemap.ts`, `robots.ts`)는 `export const dynamic = "force-static"` (정적 export 호환).
+- XML·robots 라우트(`sitemap.xml/route.ts`, `news-sitemap.xml/route.ts`,
+  `sitemap-pages.xml/route.ts`, `robots.txt/route.ts`, `rss.xml/route.ts`)는
+  `export const dynamic = "force-static"`으로 빌드 시 정적 생성합니다.
 
 ## 6. 서버/클라이언트 경계
 - **클라이언트(`"use client"`)**: `Header`, `ThemeToggle`, `NewsletterCTA`, `ArticleActions`, `SearchClient`, 각 폼(`ApplyForm`, `ContactForm`, `TipForm`, `AdInquiryForm`, `LoginForm`, `RegisterForm`, `NewsletterToggle`).
@@ -64,7 +69,8 @@ articles2.ts (ARTICLES_2 a31–a62)
 | `npm run dev` | 개발 서버 (localhost:3000) |
 | `npm run build` | 정적 export → `out/` |
 | `npm run preview:static` | `out/`를 정적 서버로 서빙 (localhost:3001, `scripts/static-server.mjs`) |
-| `npm run deploy:cf` | build + `wrangler pages deploy out` |
+| `npm run deploy:preview` | 비-master 브랜치에서 Preview 빌드·배포(`master`에서 실행 금지) |
+| `npm run deploy:prod` | clean master Production. 릴리스 worktree는 원격 SHA 3자 일치 뒤 `-- --force-branch` |
 | `node scripts/shoot.mjs <round> <light\|dark> <core\|full> <fullpage\|fold>` | 리뷰 스크린샷 |
 
 ## 8. SSR 안전(하이드레이션) 규칙 — 중요

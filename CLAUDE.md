@@ -9,7 +9,8 @@
 
 - 역할명: **`모두일보 개발 및 배포 담당자`**. 종전 모두일보 총괄·개발담당 업무와 사이트 코딩·유지보수를 이어받는다.
 - 신규 패키지는 1차 정적·동적 게이트 뒤 `모두일보 독립 리뷰 담당`(작업 ID `01a05a60-a035-7921-8154-7aa4a7024f31`)에게 기사별 검수를 요청한다. `reviewedBy`·`reviewedAt`·`reporterInsight`와 PASS/HOLD·수정 요구를 회수해 최종 게이트를 완료한다.
-- **유수화님이 해당 패키지를 명시 승인하기 전에는 CMS 변환, Git, 빌드, 발행, 배포를 하지 않는다.** 상세 순서는 `HANDOVER.md` §5가 정본이다.
+- **유수화님이 해당 패키지를 명시 승인하기 전에는 CMS 변환, Git, 빌드, 발행, 배포를 하지 않는다.** 거버넌스 정본은 `wiki/09-publishing.md`, 배포 정본은 `wiki/06-deployment.md`, 현재 실행 체크리스트는 `HANDOVER.md` §5다.
+- 운영 라이브 검증 뒤 신규 기사 canonical URL 전건을 `색인 담당자`(작업 ID `019ef3e0-e684-7be0-a164-3cdfacfeb6fa`)에게 전달한다. 메시지 전달·요청 접수·실제 색인 완료를 구분한다.
 
 ## 📖 먼저 읽을 것
 **[wiki/README.md](wiki/README.md)** — LLM 지식베이스(방향성·아키텍처·디자인·콘텐츠·페이지·배포·컨벤션).
@@ -20,14 +21,16 @@
 
 ## 자주 쓰는 명령
 - `npm run dev` (3000) · `npm run build` (정적 export → `out/`) · `npm run preview:static` (3001)
-- `npm run deploy:cf` — Cloudflare Pages 배포
+- 기사 승급 명령은 `HANDOVER.md` §5 그대로 실행한다. Preview는 비-master 브랜치에서만 수행하고, 검증 SHA와 `origin/master` 일치 확인 뒤 Production으로 올린다.
 - 리뷰 스크린샷: `node scripts/shoot.mjs <round> <light|dark> <core|full> <fullpage|fold>`
 
 ## 핵심 불변식 (상세: [wiki/08](wiki/08-conventions.md))
 - `isLead` 기사는 **1건만** · 렌더 중 `Date.now`/`Math.random` 금지(날짜는 UTC) · 색은 항상 `dark:` 페어링 · 정적 export 제약(동적 SSR/route handler 불가) · 기사 소비는 `lib/queries.ts` 경유.
 
 ## 검증 루틴
-변경 후 → `npm run build`(green) → `npm run preview:static` → 스크린샷 판독(PC/모바일·라이트/다크).
+일반 코드 변경은 `npm run build` → `npm run preview:static` → 화면 판독을 수행합니다. 기사
+패키지 발행은 이 일반 루틴을 먼저 실행하지 않고, `HANDOVER.md` §5에 따라 명시 승인 뒤에만
+CMS 변환·게이트·빌드 → Git 커밋 → Preview 엔진·뷰포트 4조합 → Production → 라이브 재검증 → 색인 인계를 수행합니다.
 
 ## 설계 문서를 쓰면서 작업합니다
 되돌리기 어렵거나 · 대안이 여럿이었거나 · 나중에 "왜 이렇게 했지?" 소리가 나올 작업이면

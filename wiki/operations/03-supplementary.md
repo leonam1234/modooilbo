@@ -17,7 +17,7 @@
 
 ### 구현 방향
 1. **단기(정적 유지)**: CMS 발행 웹훅 → Cloudflare Pages Deploy Hook 재빌드. 또는 Cloudflare **Cron Trigger**로 주기적 재빌드(예: 5~15분). 발행량 적을 때 충분.
-2. **본격**: `@opennextjs/cloudflare`(Workers) 승급 → ISR/온디맨드 재검증으로 기사만 부분 갱신. → [06 §5](../06-deployment.md)
+2. **본격**: `@opennextjs/cloudflare`(Workers) 승급 → ISR/온디맨드 재검증으로 기사만 부분 갱신. → [06 §10](../06-deployment.md)
 3. **속보 배너/티커**: `BreakingTicker`는 빌드 고정 → 실시간이면 클라이언트가 경량 JSON(엣지 KV) 폴링.
 
 ### 완료 기준 ✅
@@ -36,7 +36,7 @@
 검색의 무게중심이 **생성형 답변(ChatGPT·Perplexity·Google AI Overviews)** 으로 이동. AI가 인용하기 좋게 구조화하면 새 유입 채널이 열린다(GEO=Generative Engine Optimization, AEO=Answer Engine Optimization).
 
 ### 현재 상태
-- `robots.ts`에 주요 AI 크롤러 **명시 허용**(GPTBot/ClaudeBot/anthropic-ai/PerplexityBot/Google-Extended/CCBot/Applebot-Extended).
+- `src/app/robots.txt/route.ts`에 주요 AI 크롤러 **명시 허용**(GPTBot/ClaudeBot/anthropic-ai/PerplexityBot/Google-Extended/CCBot/Applebot-Extended).
 - `public/llms.txt` **존재**(내용 고도화 필요).
 - 기사 NewsArticle JSON-LD·요약(`summary`) 보유.
 

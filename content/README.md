@@ -1,7 +1,7 @@
 # 모두일보 기사 발행 가이드 (에이전트용)
 
-> **기사 1건 = 파일 1개.** 이 폴더(`content/articles/`)에 `.md` 파일을 만들면 사이트에 게시됩니다.
-> 별도 글쓰기 버튼·관리자 화면 없음. 파일을 쓰는 게 곧 글쓰기입니다.
+> **기사 1건 = 파일 1개.** 이 폴더(`content/articles/`)의 `.md` 파일은 승인 뒤 빌드·배포할 때
+> 사이트에 포함됩니다. 별도 글쓰기 버튼·관리자 화면은 없지만, 파일 생성만으로 자동 게시되지는 않습니다.
 >
 > 🚫 따라서 패키지 단계 원고를 이 폴더에 미리 복사하지 않습니다. 1차 정적·동적 게이트,
 > `모두일보 독립 리뷰 담당`(작업 ID `01a05a60-a035-7921-8154-7aa4a7024f31`)의 기사별 검수,
@@ -20,37 +20,15 @@ content/articles/<슬러그>.md
 
 ## 2. 파일 형식 (머리표 + 본문)
 파일 맨 위에 `---` 사이의 **머리표(송장)**를 적고, 그 아래 **본문**을 씁니다.
-
-```markdown
----
-title: 하반기 소상공인 지원 확대…노란우산 납입한도 상향
-category: economy
-author: 박서연 / 경제부 기자
-publishedAt: 2026-06-30 11:40
-reporting: desk
-verificationNote: 중소벤처기업부 공고문과 신청 화면의 대상·기한·지원 한도를 대조했다.
-addedValue: 발표문을 옮기지 않고 신청자가 놓치기 쉬운 자격과 마감 차이를 정리했다.
-sourceBasis: primary
-visualType: source-photo
-aiRole: research-assist, draft-assist, copyedit
-reviewedBy: 박서연
-reviewedAt: 2026-06-30 11:35
-reporterInsight: 이번 변경의 핵심은 지원 확대 자체보다 적용 시점과 대상별 예외다. 신청자는 발표 요약보다 실제 공고문의 자격 기준을 먼저 확인해야 한다.
-tags: 소상공인, 노란우산, 정책
-summary: 한 줄 요약(목록·검색·OG에 노출). 비우면 본문 첫 문단을 씀.
----
-본문 첫 문단입니다. 한 문단은 한 줄로, 문단 사이는 빈 줄로 구분합니다.
-
-둘째 문단입니다. 빈 줄로 나누면 자동으로 새 문단(<p>)이 됩니다.
-
-셋째 문단 …
-```
+복사용 YAML·본문은 [article-quality-template.md](article-quality-template.md)만 사용합니다.
+이 문서에 별도 축약 예제를 두지 않습니다. 초안 작성자는 `reviewedBy`·`reviewedAt`·
+`reporterInsight`를 임의로 채우지 않고, 독립 리뷰 결과를 회수한 뒤 반영합니다.
 
 ### 머리표 필드
 | 키 | 필수 | 설명 |
 |---|---|---|
 | `title` | ✅ | 기사 제목 |
-| `category` | ✅ | **아래 7개 중 하나(영문 슬러그).** 이게 지면 분류 기준 |
+| `category` | ✅ | **아래 13개 중 하나(영문 슬러그, `tech`는 신규 편성 동결).** 이게 지면 분류 기준 |
 | `author` | 권장 | `이름 / 직함` (예: `박서연 / 경제부 기자`). 없으면 "모두일보 / 기자" |
 | `publishedAt` | 권장 | **KST 기준** `YYYY-MM-DD HH:MM` (예: `2026-06-30 11:40`). 없으면 현재시각 |
 | `reporting` | ✅ | `direct` 편집국 독자 취재·분석 / `desk` 공개자료 검증·재구성 / `sponsored` 광고·기업소식 / `wire` 외부 제공 |
@@ -64,6 +42,9 @@ summary: 한 줄 요약(목록·검색·OG에 노출). 비우면 본문 첫 문�
 | `reviewedBy` | ✅* | 배포 전 최종 검수 책임을 진 `src/lib/reporters.ts` 등록 기자 실명. 포괄 명칭·임의 이름 금지 |
 | `reviewedAt` | ✅* | 검수 완료 KST 시각. `publishedAt`보다 늦으면 발행 차단 |
 | `reporterInsight` | ✅* | 사실과 분리해 공개할 근거 기반 기자 해설 40~350자. 감상·홍보·무근거 단정 금지 |
+| `series` | 선택 | `notice-check`, `data-crosscheck`, `on-the-record` 중 실제 기사 성격에 맞을 때만 사용 |
+| `methodologyNote` | 조건부 | direct의 `data-analysis`·`document-verification`이면 입력자료·계산·제외범위·한계를 40자 이상 공개 |
+| `readerChecklist` | 조건부 | `grants`·`bids`·`labor` 기사면 독자 실행 항목 3개 이상을 `\|`로 구분 |
 | `tags` | 권장 | 콤마로 구분 (예: `추경, 국회`) |
 | `summary` | 권장 | 한 줄 요약. 없으면 본문 첫 문단 사용 |
 | `image` | 선택 | 대표 이미지 URL. **없으면 카테고리에 맞는 무료 스톡이 자동**으로 붙음 |
@@ -91,24 +72,67 @@ summary: 한 줄 요약(목록·검색·OG에 노출). 비우면 본문 첫 문�
 
 ## 3. 게시 흐름 (파일 쓴 뒤)
 ```bash
+set -euo pipefail   # 아래 게이트 하나라도 실패하면 즉시 중단
+MODOO_RELEASE_BRANCH="$(git branch --show-current)"
+[[ -n "$MODOO_RELEASE_BRANCH" && "$MODOO_RELEASE_BRANCH" != master ]]
+test -z "$(git status --porcelain)"
 # 승인 전: 작업 인수 → 1차 정적·동적 게이트 → 독립 리뷰 요청·회수 → 최종 게이트 → 승인 요청 후 중지
 # 유수화님 명시 승인 뒤:
-cp <패키지>/articles/**/*.md content/articles/
-cp <패키지>/images_1200x675_jpg/*.jpg public/stock/
+MODOO_PACKAGE_DIR="/absolute/path/to/approved-package"
+MODOO_COMMIT_MSG_FILE="/absolute/path/to/commit-message.txt"
+cp "$MODOO_PACKAGE_DIR"/articles/**/*.md content/articles/
+cp "$MODOO_PACKAGE_DIR"/images_1200x675_jpg/*.jpg public/stock/
 npm run check:editorial
 npm run report:reporting
-npm run content
-npm run build
-git add . && git commit -m "기사: <제목>"
-npm run deploy:prod
+npm run build   # prebuild가 content·WebP·trending 생성까지 수행
+git status --short
+git add -- content/articles public/stock src/lib/content.generated.ts \
+  src/lib/newest.generated.ts src/lib/trending-data.generated.json \
+  src/lib/webp-manifest.generated.json
+git diff --cached --name-status
+git commit -F "$MODOO_COMMIT_MSG_FILE"
+git fetch -q origin master
+MODOO_BASE_SHA="$(git rev-parse origin/master)"
+MODOO_RELEASE_SHA="$(git rev-parse HEAD)"
+git merge-base --is-ancestor "$MODOO_BASE_SHA" "$MODOO_RELEASE_SHA"
+MODOO_ARTICLE_PATHS=(${(f)"$(git diff --diff-filter=AM --name-only \
+  "$MODOO_BASE_SHA" "$MODOO_RELEASE_SHA" -- 'content/articles/*.md' \
+  | sed -nE '/\/_/d; s#^content/articles/(.*)\.md$#/article/\1/#p')"})
+(( ${#MODOO_ARTICLE_PATHS[@]} > 0 ))
+print -l -- "${MODOO_ARTICLE_PATHS[@]}" # 승인 범위·건수와 전건 대조
+# Preview는 master가 아닌 깨끗한 릴리스 브랜치에서 실행
+npm run deploy:preview
+MODOO_PREVIEW_URL="$(node -e '
+const fs = require("fs");
+const rows = fs.readFileSync("deployments/deploy-log.jsonl", "utf8").trim().split("\n").reverse();
+for (const line of rows) { try { const r = JSON.parse(line); if (r.env === "Preview" && r.commit === process.argv[1] && r.url) { process.stdout.write(r.url); process.exit(0); } } catch {} }
+process.exit(1);
+' "$MODOO_RELEASE_SHA")"
+[[ "$MODOO_PREVIEW_URL" == https://*.pages.dev* ]]
+npm run smoke -- "$MODOO_PREVIEW_URL" / /policy/ /newsroom/ "${MODOO_ARTICLE_PATHS[@]}"
+# PASS·비교 이미지·HTTP/canonical/index/follow/OG/이미지 확인 뒤에만
+test "$(git rev-parse HEAD)" = "$MODOO_RELEASE_SHA"
+test -z "$(git status --porcelain)"
+git push origin HEAD:master
+git fetch -q origin master
+MODOO_REMOTE_MASTER="$(git ls-remote origin refs/heads/master | awk '{print $1}')"
+test "$MODOO_RELEASE_SHA" = "$MODOO_REMOTE_MASTER"
+test "$MODOO_RELEASE_SHA" = "$(git rev-parse origin/master)"
+test "$MODOO_RELEASE_SHA" = "$(git ls-remote origin refs/heads/master | awk '{print $1}')"
+npm run deploy:prod -- --force-branch
+npm run smoke -- https://modooilbo.com / /policy/ /newsroom/ "${MODOO_ARTICLE_PATHS[@]}"
 ```
 > 운영 규칙(2026-09-01): **승인은 CMS 변환·Git·빌드보다 먼저** 받는다. 독립 리뷰 PASS,
 > HOLD 0, 게이트 통과는 승인이 아니다. 승인 뒤 기사 내용이 바뀌면 변경 기사 재검수와
 > 재승인이 필요하다.
 > 검수 흐름: 패키지 1차 정적·동적 게이트 → 독립 리뷰 기사별 검수 → 결과 회수·수정분 재검수 →
-> 발행 직전 동적 게이트 전수 확인 → 유수화님 명시 승인 → CMS 변환·Git·빌드·발행·배포.
+> 발행 직전 동적 게이트 전수 확인 → 유수화님 명시 승인 → CMS 변환·게이트·빌드 → Git 커밋 → Preview·Production·라이브 검증.
 > HOLD 원고는 **파일을 커밋하지 않는** 방식으로 보류한다. `editorial/출고대기/`는 현재 페르소나 문서 보관소이며 스테이징 폴더로 쓰이지 않는다.
 > publishedAt은 출고 직전 재배치가 관행이며 허용 범위 근거 문서(`최종마감.md`)는 **리포 밖**에 있다(총괄 보관). 상세: [wiki/09-publishing](../wiki/09-publishing.md)
+> 라이브 검증 뒤 신규 기사 canonical URL 전건을 HTTP 200·self-canonical·index/follow 확인 후
+> `색인 담당자`(작업 ID `019ef3e0-e684-7be0-a164-3cdfacfeb6fa`)에게 발행일·건수·사이트
+> 커밋·IndexNow 접수 결과와 함께 보낸다. `handoff_sent`는 실제 색인 완료가 아니다.
+> 스모크 자동 PASS가 보증하는 범위와 Preview 브랜치 주의사항은 [wiki/06-deployment](../wiki/06-deployment.md)가 정본이다.
 
 ## 4. 규칙 (지킬 것)
 - 파일명(슬러그)은 **고유**하게. 날짜 접두사 권장.

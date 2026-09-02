@@ -1,6 +1,6 @@
 # 세션 인계서 — 모두일보
 
-> **새 세션은 이 파일부터 읽으십시오.** 마지막 갱신 2026-09-01.
+> **새 세션은 이 파일부터 읽으십시오.** 마지막 갱신 2026-09-02.
 > 역할명은 **`모두일보 개발 및 배포 담당자`**입니다. 종전 Claude 모두일보 총괄·개발담당
 > 업무와 사이트 코딩·유지보수도 이 역할이 이어받습니다.
 >
@@ -9,8 +9,9 @@
 > `모두일보 독립 리뷰 담당` 기사별 검수 → 결과 회수 → 최종 게이트 → **유수화님 명시적 승인** 순서를
 > 지키십시오. 승인 전에는 CMS 변환, `content/articles/` 반영, Git 변경·커밋, 빌드, 발행,
 > 배포를 모두 하지 않습니다. 리뷰 PASS·HOLD 0·게이트 통과는 승인이 아닙니다.
-> 이 파일은 "지금 무엇이 열려 있고 무엇을 조심해야 하는가"만 담습니다.
-> 상시 규약은 `CLAUDE.md`, 운영 정본은 `wiki/operations/`에 있습니다.
+> 이 파일은 현재 세션 진입점과 실행 체크리스트입니다. 우선순위는 **유수화님의 현재 명시 지시 →
+> 발행 거버넌스 `wiki/09-publishing.md` → 배포·승급 `wiki/06-deployment.md` → 세부 사례
+> `wiki/operations/04-publishing-protocol.md`**입니다. 구현 사실은 현재 코드와 대조합니다.
 > 2026-08-28 감사(취재 비율 목표의 근거 · AI 지문) 결과는
 > [`wiki/audits/2026-08-28-취재비율-근거와-AI지문.md`](wiki/audits/2026-08-28-취재비율-근거와-AI지문.md)
 > 에 있습니다. **그 문서 §5에 "검증에서 무너진 주장" 목록이 있으니 다시 꺼내지 마십시오.**
@@ -21,7 +22,7 @@
 cd ~/GIT/modooilbo
 git log --oneline -3
 git status --porcelain          # 비어야 정상
-git fetch -q origin master && git rev-list --count origin/master..master   # 0 이어야 정상
+git fetch -q origin master && git rev-list --left-right --count HEAD...origin/master  # "0 0" 이어야 정상
 ls content/articles/$(date +%Y-%m-%d)-*.md 2>/dev/null | wc -l             # 오늘 발행분
 ```
 
@@ -233,7 +234,11 @@ culture·sports 남동균 | opinion·industry 박유주 | world·labor  최은�
 ## 5. 발행 절차
 
 ```bash
-cd ~/GIT/modooilbo
+# 먼저 깨끗한 비-master 릴리스 worktree로 이동한 뒤 실행
+set -euo pipefail   # 아래 게이트 하나라도 실패하면 즉시 중단
+MODOO_RELEASE_BRANCH="$(git branch --show-current)"
+[[ -n "$MODOO_RELEASE_BRANCH" && "$MODOO_RELEASE_BRANCH" != master ]]
+test -z "$(git status --porcelain)"
 # ── 승인 전: 아래 1~4만 수행 ──
 # 1) 콘텐츠 제작 작업 인수 + 1차 정적·동적 게이트
 #    원고·JPG·PNG 수량, slug, 보류자료, 검수문서, 공식 원문·접수화면·동적 값
@@ -244,26 +249,63 @@ cd ~/GIT/modooilbo
 
 # ── 유수화님이 해당 패키지를 명시 승인한 뒤에만 수행 ──
 # 5) CMS 규약 검사·반영
-cp <패키지>/articles/**/*.md content/articles/
-cp <패키지>/images_1200x675_jpg/*.jpg public/stock/
+MODOO_PACKAGE_DIR="/absolute/path/to/approved-package"   # 실제 승인 패키지 경로로 교체
+MODOO_COMMIT_MSG_FILE="/absolute/path/to/commit-message.txt"
+cp "$MODOO_PACKAGE_DIR"/articles/**/*.md content/articles/
+cp "$MODOO_PACKAGE_DIR"/images_1200x675_jpg/*.jpg public/stock/
 node scripts/editorial-quality-report.mjs --strict
 node scripts/reporting-report.mjs
-npm run content && npm run build
-git add -A && git commit -F <메시지파일>   # 한글은 -m 대신 -F 로
-# 6) Preview 선검증 — 운영 반영 전에 4조합과 비교 이미지를 확인
+npm run build   # prebuild가 content·WebP·trending 생성까지 수행
+git status --short
+git add -- content/articles public/stock src/lib/content.generated.ts \
+  src/lib/newest.generated.ts src/lib/trending-data.generated.json \
+  src/lib/webp-manifest.generated.json
+git diff --cached --name-status
+git commit -F "$MODOO_COMMIT_MSG_FILE"   # 한글은 -m 대신 -F 로
+git fetch -q origin master
+MODOO_BASE_SHA="$(git rev-parse origin/master)"
+MODOO_RELEASE_SHA="$(git rev-parse HEAD)"
+git merge-base --is-ancestor "$MODOO_BASE_SHA" "$MODOO_RELEASE_SHA"
+MODOO_ARTICLE_PATHS=(${(f)"$(git diff --diff-filter=AM --name-only \
+  "$MODOO_BASE_SHA" "$MODOO_RELEASE_SHA" -- 'content/articles/*.md' \
+  | sed -nE '/\/_/d; s#^content/articles/(.*)\.md$#/article/\1/#p')"})
+(( ${#MODOO_ARTICLE_PATHS[@]} > 0 ))   # 0건이면 기사 패키지 승급 중단
+print -l -- "${MODOO_ARTICLE_PATHS[@]}" # 승인 범위·건수와 전건 대조
+# 6) Preview 선검증 — master가 아닌 깨끗한 release 브랜치에서 실행
 npm run deploy:preview
-npm run smoke -- <Preview URL> / /policy/ /newsroom/
+MODOO_PREVIEW_URL="$(node -e '
+const fs = require("fs");
+const rows = fs.readFileSync("deployments/deploy-log.jsonl", "utf8").trim().split("\n").reverse();
+for (const line of rows) { try { const r = JSON.parse(line); if (r.env === "Preview" && r.commit === process.argv[1] && r.url) { process.stdout.write(r.url); process.exit(0); } } catch {} }
+process.exit(1);
+' "$MODOO_RELEASE_SHA")"
+[[ "$MODOO_PREVIEW_URL" == https://*.pages.dev* ]]
+npm run smoke -- "$MODOO_PREVIEW_URL" / /policy/ /newsroom/ "${MODOO_ARTICLE_PATHS[@]}"
 # smoke-shots/<실행시각>/compare-*.png를 눈으로 대조하고 FAIL이면 운영 배포 중단
-npm run deploy:prod
-# 7) 운영 라이브 재검증 — 반드시 데스크톱 UA 로 (기본 UA 는 403)
-npm run smoke -- https://modooilbo.com / /policy/ /newsroom/   # 모바일 4조합
-# 8) IndexNow 자동 통지 결과를 기록한다. 요청 접수와 실제 색인 완료를 구분한다.
-# 9) 필수 색인 인계 — 오늘 신규 발행 기사 전건의 운영 canonical URL을 추출한다.
+# 자동 FAIL 판정은 사이트 JS pageerror와 본문 100자 미만뿐이다.
+# HTTP 상태·canonical·index/follow·OG·이미지 응답은 별도로 전건 확인한다.
+# 7) Preview PASS 뒤 검증한 정확한 커밋을 master로 올리고 원격 SHA를 대조
+test "$(git rev-parse HEAD)" = "$MODOO_RELEASE_SHA"
+test -z "$(git status --porcelain)"
+git push origin HEAD:master
+git fetch -q origin master
+MODOO_REMOTE_MASTER="$(git ls-remote origin refs/heads/master | awk '{print $1}')"
+test "$MODOO_RELEASE_SHA" = "$MODOO_REMOTE_MASTER"
+test "$MODOO_RELEASE_SHA" = "$(git rev-parse origin/master)"
+# Production 호출 직전 원격을 한 번 더 읽어 Preview 검증 SHA가 바뀌지 않았는지 확인
+test "$MODOO_RELEASE_SHA" = "$(git ls-remote origin refs/heads/master | awk '{print $1}')"
+# 검증한 release 브랜치 HEAD가 원격 master와 정확히 같을 때만 브랜치 가드를 통제 우회
+npm run deploy:prod -- --force-branch
+# 8) 운영 라이브 재검증 — 신규 기사 경로 전건까지 엔진·뷰포트 4조합으로 확인
+npm run smoke -- https://modooilbo.com / /policy/ /newsroom/ "${MODOO_ARTICLE_PATHS[@]}"
+# HTTP·XML·OG 직접 검사는 아래 §9의 curl 예시로 별도 확인한다.
+# 9) IndexNow 자동 통지 결과를 기록한다. 요청 접수와 실제 색인 완료를 구분한다.
+# 10) 필수 색인 인계 — 오늘 신규 발행 기사 전건의 운영 canonical URL을 추출한다.
 #    HTTP 200·self-canonical·index/follow를 확인한 URL만 아래 색인 담당자 작업으로 보낸다.
 #    codex://threads/019ef3e0-e684-7be0-a164-3cdfacfeb6fa  (`색인 담당자`)
 #    전달문에는 발행일·URL 전건·건수·사이트 커밋·기존 IndexNow 접수 결과를 포함한다.
 #    색인 담당자는 엔진별 기존 증빙을 대조해 중복 요청을 피하고 Google·Naver·Bing 상태를 기록한다.
-# 10) ⚠️ 오너에게도 오늘 기사 링크 전건을 목록으로 준다 — 매번 요구하신다.
+# 11) ⚠️ 오너에게도 오늘 기사 링크 전건을 목록으로 준다 — 매번 요구하신다.
 ```
 
 ⚠️ **승인은 패키지 또는 slug 범위가 드러나는 현재 메시지로 받아야 합니다.** 과거 승인,
@@ -279,8 +321,9 @@ npm run smoke -- https://modooilbo.com / /policy/ /newsroom/   # 모바일 4조�
 `no-cache` 를 붙여도 404 가 나는 경우가 있습니다(8/24 실제 발생). 실제 누락인지는
 `out/article/<slug>/index.html` 존재 여부로 판정하고, 있으면 잠시 뒤 다시 부르십시오.
 
-⚠️ **bash 의 `${#var}` 는 한글을 바이트로 셉니다.** 글자 수는 python 으로
-재십시오. 이것 때문에 meta description 길이를 3배로 잘못 읽은 적 있습니다.
+⚠️ **`${#var}` 길이는 셸과 locale에 따라 해석이 달라질 수 있습니다.** UTF-8 bash·zsh는
+보통 한글 문자 수를 세지만, 바이트 수 도구와 섞으면 결과가 달라집니다. 메타 설명 길이는
+사이트가 쓰는 JavaScript 기준으로 다시 계산하십시오.
 
 ⚠️ **React 주석**(`<!-- -->`)이 문자열을 쪼갭니다. HTML 검증 전에
 `perl -0777 -pe 's/<!--.*?-->//gs'` 로 제거하십시오.
@@ -295,9 +338,10 @@ npm run smoke -- https://modooilbo.com / /policy/ /newsroom/   # 모바일 4조�
 
 ### 모바일 4조합 검증 — `npm run smoke`
 
-엔진 2종(chromium=안드로이드 · webkit=**아이폰 전체**) × 화면 2종(설치앱 402×874 ·
-브라우저 402×660). 2026-08-28 도입. 도구 원본은 `wlashvpel/mobile-smoke`(공개).
-아이폰은 크롬을 깔아도 엔진이 웹킷이라, 크로뮴만 보면 아이폰 버그를 통째로 놓칩니다.
+엔진 2종(Chromium·WebKit) × 뷰포트 2종(402×874·402×660). 2026-08-28 도입.
+도구 원본은 `wlashvpel/mobile-smoke`(공개)입니다. 현재 스크립트는 네 조합 모두 iPhone
+Safari UA를 쓰고 `app`·`browser`는 높이만 모사합니다. 따라서 이는 **엔진·뷰포트 비교**이며
+실제 Android UA, 설치 PWA 상태, 주소창·키보드·인앱브라우저 UI의 실기기 검증이 아닙니다.
 
 ```bash
 npm run smoke -- https://modooilbo.com / /policy/ /newsroom/
@@ -316,14 +360,16 @@ npm run smoke -- https://modooilbo.com / /policy/ /newsroom/
 ⚠️ **무시 목록을 함부로 넓히지 마십시오.** 넓힐수록 진짜 버그가 빠져나갑니다.
 `TypeError`·`ReferenceError`·하이드레이션 오류는 지금도 전부 FAIL 입니다(역방향 시험 확인).
 
-⚠️ **`결론:` 줄만 믿지 마십시오.** 레이아웃 깨짐은 JS 에러를 안 냅니다 —
-`compare-*.png` 로 안드↔아이폰을 눈으로 대조해야 잡힙니다.
+⚠️ **`결론:` 줄만 믿지 마십시오.** 레이아웃 깨짐은 JS 에러를 안 냅니다.
+`compare-*.png`는 긴 뷰포트의 Chromium↔WebKit만 합성하므로 이를 눈으로 대조하고,
+짧은 660px 뷰포트는 조합별 원본 PNG도 따로 확인하십시오.
 
 ⚠️ **prod URL 로 돌리면 "배포 후 검증"입니다.** 운영 배포 전에는 반드시
 `npm run deploy:preview` 로 먼저 올리고 그 URL을 검사한 뒤, PASS와 `compare-*.png`
 육안 대조를 모두 마친 경우에만 `npm run deploy:prod`로 승급하십시오.
 
-⚠️ 웹킷 브라우저 버전이 안 맞으면 `npx playwright install webkit` 을 먼저 돌리십시오.
+⚠️ 브라우저 바이너리가 없거나 버전이 안 맞으면 `npx playwright install chromium webkit` 을
+먼저 돌리십시오.
 
 ## 6. 발행 직전 게이트 — 반복되는 실패 유형
 
@@ -564,29 +610,25 @@ GNB 2행은 `--gnb-col`(layout 아닌 Header wrapper 한 곳에서 정의) 6칸 
 ## 9. 자주 쓰는 확인
 
 ```bash
-# 라이브 검증(데스크톱 UA 필수)
-UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/140.0 Safari/537.36"
-curl -s -o /dev/null -w "%{http_code}" -A "$UA" https://modooilbo.com/article/<slug>/
+# 라이브 HTTP 확인. UA 지정은 차단 증상을 재현·우회할 때만 선택적으로 사용한다.
+curl -sS -o /dev/null -w "%{http_code}\n" -H "Cache-Control: no-cache" \
+  https://modooilbo.com/article/<slug>/
 
 # 나라장터 / DART
 node scripts/check-bid.mjs R26BK0XXXXXXX
 curl -s -A "Mozilla/5.0" "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=<14자리>"
 
 # 배포 스크립트는 자기 실행 중 scripts/.r2-synced.json 을 갱신합니다.
-# 그 파일은 gitignore 되어 있으니 미커밋 게이트에 걸리지 않습니다.
+# gitignore 대상인 worktree별 로컬 캐시라 미커밋 게이트에는 걸리지 않습니다.
+# 새 worktree에는 캐시가 없어 기존 이미지까지 다시 확인할 수 있으므로 오류로 오해하지 마십시오.
 ```
 
-⚠️ **배포 로그의 `[indexnow] N개 URL 통지 → HTTP 200` 은 네이버입니다. 빙이 아닙니다.**
-`scripts/ping-indexnow.mjs` 는 `searchadvisor.naver.com/indexnow` 로만 보냅니다 —
-공용 `api.indexnow.org` 는 빙 검증 지연 403 이 계속돼 2026-07-07 에 일부러 뺐습니다.
-게다가 URL 목록은 RSS 기반이라 **최신 기사 30개 + 홈**뿐이라, `/policy`·`/about` 같은
-정적 페이지는 애초에 안 들어갑니다. **빙 색인은 웹마스터에서 수동으로 해야 합니다.**
-
-✅ **2026-08-30 해소.** 다른 개발자가 키를 64자로 갈고 빙 엔드포인트를 되살렸는데
-**둘 다 살았습니다.** 배포 로그가 이제 이렇게 찍힙니다.
+`scripts/ping-indexnow.mjs`의 **현재 정본 동작**은 RSS 최신 기사 최대 30개와 홈을 모아
+Bing/IndexNow와 Naver에 병렬 통지하는 것입니다. 응답 코드는 실행 시점에 달라질 수 있으므로
+로그에 나온 엔진별 HTTP 상태를 그대로 기록하십시오.
 
 ```
-[indexnow] 31개 URL 통지 → Bing/IndexNow HTTP 202 · Naver HTTP 200
+[indexnow] 31개 URL 통지 → Bing/IndexNow HTTP <상태> · Naver HTTP <상태>
 ```
 
 ⚠️ **키 파일 두 개를 모두 남겨 두십시오.** `public/df645cf5….txt`(옛 32자)와
@@ -594,5 +636,6 @@ curl -s -A "Mozilla/5.0" "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=<14자리
 검증해 둔 쪽이 깨질 수 있습니다. 종전 경고("키를 바꾸지 마라")는 이 커밋으로
 무효가 됐지만, **키를 또 갈 이유는 없습니다.**
 
-⚠️ 통지 URL 목록은 여전히 RSS 기반이라 **최신 기사 30개 + 홈**뿐입니다.
-`/policy`·`/about` 같은 정적 페이지는 안 들어갑니다.
+⚠️ HTTP 200·202는 요청 접수 증거일 뿐 `indexed_current` 증거가 아닙니다. 통지 목록은
+RSS 최신 기사 최대 30개 + 홈뿐이므로, 신규 발행 canonical URL 전건은 §5의 색인 담당자에게
+별도로 인계합니다. `/policy`·`/about` 같은 정적 페이지는 자동 목록에 포함되지 않습니다.

@@ -2,8 +2,9 @@
 
 > 메이저 인터넷 신문이 "어떻게 검색·SNS 유입을 만들고, 독자를 묶고, 돈을 버는가"를 분석해 모두일보에 그대로 적용하기 위한 실행 문서.
 > 다루는 것은 **운영·구조 규칙**이지 남의 콘텐츠 복제가 아니다. 출처는 매체·플랫폼 이름으로만 표기.
-> 기술 전제: Next.js 15 App Router + 정적 export(`output: "export"`) + Cloudflare Pages. 현재 `robots.ts`·`sitemap.ts`·`icon.png`·`og.png`·`_headers` 존재.
-> 최종 갱신: 2026-06-29
+> 기술 전제: Next.js 15 App Router + 정적 export(`output: "export"`) + Cloudflare Pages.
+> 현재 `robots.txt/route.ts`·`sitemap.xml/route.ts`와 분할 사이트맵 route·`icon.png`·`og.png`·`_headers`가 존재한다.
+> 최종 구현 경로 보정: 2026-09-02
 
 ---
 
@@ -78,7 +79,9 @@
 - 새 기사 나올 때마다 **같은 파일 갱신**(매번 새 파일 만들지 말 것).
 - `<news:name>`은 Google News에 등록될 매체명과 정확히 일치.
 
-> 모두일보 구현: 현재 `sitemap.ts`(일반)는 유지하고, `public/news-sitemap.xml`을 빌드 스크립트로 **최근 2일 기사만** 생성하는 별도 라우트/스크립트 추가. `robots.ts`에 두 사이트맵 모두 명시.
+> 모두일보 구현: `src/app/sitemap.xml/route.ts`가 일반 사이트맵 인덱스를 만들고,
+> `src/app/news-sitemap.xml/route.ts`가 최신 기사 기준 24시간 창의 뉴스 사이트맵을 빌드 시
+> 정적 생성한다. `src/app/robots.txt/route.ts`에 일반·뉴스 사이트맵을 명시한다.
 
 ### 1-7. Core Web Vitals (정적 export의 강점 살리기)
 
@@ -328,7 +331,9 @@ Google은 경험·전문성·권위·신뢰를 **페이지/작성자/매체** 3�
 
 ## 10. 90일 성장 로드맵
 
-기술 전제: Next.js 정적 export + Cloudflare Pages. 현재 `robots.ts`·`sitemap.ts`·`icon.png`·`og.png`·`_headers`·`ethics/about/contact/newsletter` 페이지 보유.
+기술 전제: Next.js 정적 export + Cloudflare Pages. 현재 `robots.txt/route.ts`·
+`sitemap.xml/route.ts`·분할 사이트맵 route·`icon.png`·`og.png`·`_headers`·
+`ethics/about/contact/newsletter` 페이지를 보유한다.
 
 ### 단계별 실행 표
 
@@ -345,7 +350,7 @@ Google은 경험·전문성·권위·신뢰를 **페이지/작성자/매체** 3�
 - [ ] `datePublished`/`dateModified` ISO 8601 + **KST(+09:00)**
 - [ ] 작성자 프로필 페이지 + ProfilePage 구조화데이터 + `rel="author"` SNS
 - [ ] 홈 Organization 구조화데이터(logo·sameAs)
-- [ ] 뉴스 사이트맵(최근 2일, 1,000개 이하, `<news:name>` = 등록 매체명) + `robots.ts` 등록
+- [ ] 뉴스 사이트맵(최근 2일, 1,000개 이하, `<news:name>` = 등록 매체명) + `robots.txt` route 등록
 - [ ] OG 태그 동적(title/description/image/url/type=article), 이미지 1200×630·영문 파일명·중앙 안전영역
 - [ ] CWV: 이미지 width/height 명시, 광고 슬롯 높이 예약, 폰트 swap+서브셋, 서드파티 defer
 - [ ] URL 영구 고정(`trailingSlash` 유지), 변경 시 301

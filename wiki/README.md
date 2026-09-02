@@ -2,9 +2,9 @@
 
 이 폴더는 **모두일보(Modoo Ilbo)** 프로젝트의 단일 진실 공급원(SSOT)이자, AI 에이전트·협업자가 빠르게 맥락을 잡기 위한 **LLM 친화 지식베이스**입니다. 새 세션의 에이전트는 여기부터 읽으세요.
 
-> **한 줄 요약** — 모두일보는 **실운영 중인 한국어 독립 디지털 언론**입니다(인터넷신문 등록 경기 아54891, 법인 주식회사 모두일보). 두 축 편집 체계 — ① 기업 공공데이터 뉴스 6부문(정부지원금·공공입찰·창업상권·산업트렌드·채용노무·계약거래), ② 종합뉴스(경제·사회·국제·문화·스포츠·오피니언, 테크는 동결) — 로 **매일 24편(12카테고리×2)** 을 발행합니다. 기술은 Next.js 15 정적 export + **Cloudflare Pages Functions·D1·KV·R2 하이브리드**(인증·댓글·뉴스레터·조회수는 동적, 이미지는 img.modooilbo.com R2 서빙). 기사 660편+, 라이트/다크·반응형.
+> **한 줄 요약** — 모두일보는 **실운영 중인 한국어 독립 디지털 언론**입니다(인터넷신문 등록 경기 아54891, 법인 주식회사 모두일보). 두 축 편집 체계 — ① 기업 공공데이터 뉴스 6부문(정부지원금·공공입찰·창업상권·산업트렌드·채용노무·계약거래), ② 종합뉴스(경제·사회·국제·문화·스포츠·오피니언, 테크는 동결) — 로 **품질 통과분을 하루 최대 24편** 발행합니다. 기술은 Next.js 15 정적 export + **Cloudflare Pages Functions·D1·KV·R2 하이브리드**(인증·댓글·뉴스레터·조회수는 동적, 이미지는 img.modooilbo.com R2 서빙). 2026-09-02 기준 기사 Markdown 1,277편, 13개 유효 카테고리(일일 편성 12개), 라이트/다크·반응형입니다.
 >
-> ⚠️ 이 위키의 세부 문서 일부는 프로토타입 시절 서술이 남아 있습니다. 어긋나면 **코드가 정본**입니다. 발행·검증 시스템은 [09-publishing](09-publishing.md)이 최신입니다.
+> ⚠️ 이 위키의 세부 문서 일부는 프로토타입 시절 서술이 남아 있습니다. 구현과 어긋나면 **코드가 정본**입니다. 발행·검증은 [09-publishing](09-publishing.md), 배포·승급은 [06-deployment](06-deployment.md)이 운영 정본입니다.
 
 ## 🤖 에이전트용 권장 읽기 순서
 1. [00-direction](00-direction.md) — **무엇을·왜** (방향성·브랜드·원칙·로드맵)
@@ -25,7 +25,7 @@
 | 06 | [배포](06-deployment.md) | Cloudflare Pages 최적화 + 승급 경로 |
 | 07 | [리뷰·QA](07-review-qa.md) | 스크린샷 리뷰 루프 방법론 + 결과 |
 | 08 | [컨벤션](08-conventions.md) | 코드 규칙·불변식·추가 방법·에이전트 가이드 |
-| 09 | [발행·검증 시스템](09-publishing.md) | **독립 리뷰·명시 승인·품질 통과분만 최대 24편·80점 출고선·HOLD·공공API 게이트** |
+| 09 | [발행·검증 시스템](09-publishing.md) | **독립 리뷰·명시 승인·품질 통과분만 최대 24편·80점 출고선·Preview/라이브 검증·색인 인계** |
 
 ## 🚀 운영 로드맵 (매체화 — 반드시 해야 할 작업)
 매체화 필수작업의 SSOT(상당수 완료: 법인·인터넷신문 등록·뉴스레터 실연동·유튜브 sameAs — 각 문서의 체크리스트 참조). → **[operations/README.md](operations/README.md)**
@@ -42,10 +42,12 @@ src/
   app/                 # Next App Router (라우트 = 폴더)
     layout.tsx         # 루트 레이아웃 (Header+Ticker+Footer 셸)
     page.tsx           # 홈
-    [category]/        # 섹션 (8종, 정적)
-    article/[slug]/    # 기사 상세 (62종, 정적)
-    search/, media/, about/, careers/ ...  # 검색·미디어·회사 페이지
-    sitemap.ts, robots.ts, not-found.tsx, loading.tsx
+    [category]/        # 종합뉴스 7종, 정적 생성
+    grants|bids|startup|industry|labor|deals/  # 사업 6종 전용 정적 라우트
+    article/[slug]/    # 기사 상세 (Markdown 1,277편 기준, 정적 생성)
+    search/, about/, careers/ ...  # 검색·회사 페이지
+    sitemap.xml/, news-sitemap.xml/, robots.txt/, rss.xml/  # 정적 route handlers
+    not-found.tsx, loading.tsx
   components/          # 재사용 컴포넌트 (Header, ArticleCard, ...)
   lib/                 # 데이터·로직 (types, categories, articles, news, queries, utils)
   app/globals.css      # 디자인 토큰 CSS (폰트/유틸/접근성/인쇄)
@@ -55,9 +57,9 @@ scripts/static-server.mjs  # out/ 정적 서빙 (CF 동작 근사)
 ```
 
 ## ✅ 현재 상태 (스냅샷)
-- 빌드: ✅ green (정적 export, 90 페이지) · 타입체크 ✅ pass
+- 빌드: 최근 green(정적 export 1,400페이지 이상) · 타입체크 pass
 - 리뷰: 10라운드 + Cloudflare 라운드 완료 → [07-review-qa](07-review-qa.md)
-- 배포: ✅ Cloudflare Pages 준비 완료 (`npm run deploy:cf`)
+- 배포: Cloudflare Pages 운영 중. 비-master Preview 검증 뒤 SHA 3자 일치 시 통제된 Production 승급
 
 ## 🔗 루트 문서 (이 위키의 원천/보완)
 - [decisions/](decisions/) — **결정 기록** (왜 그렇게 했고 무엇을 버렸는가)

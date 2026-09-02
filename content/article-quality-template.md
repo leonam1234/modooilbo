@@ -1,30 +1,34 @@
 # 편집 품질 8.5 기사 템플릿
 
-이 파일은 복사용이며 `content/articles/`에 넣지 않는다. 대괄호 안내문을 실제 사실로 바꾼다.
-초안 작성자는 reviewedBy·reviewedAt을 비워 두고, 실제 책임 기자가 원문 대조를 마친 뒤 입력한다.
+이 파일은 복사용이며 `content/articles/`에 넣지 않는다. 고정 예시값을 두지 않은 이유는
+다른 기사에 날짜·지면·취재 방식·연재가 그대로 복제되는 사고를 막기 위해서다. 빈 필수값과
+대괄호 본문은 기사별 사실로 바꾼다. 초안 작성자는 `reviewedBy`·`reviewedAt`·
+`reporterInsight`를 비워 두고, 독립 리뷰에서 실제 책임 기자가 원문 대조를 마친 뒤 입력한다.
 
 ```markdown
 ---
-title: [확인된 사실을 과장 없이 담은 제목]
-category: economy
-author: 김영환 / 경제부 기자
-publishedAt: 2026-09-01 09:10
-reporting: desk
-verificationNote: [원문·공고·통계 중 무엇과 무엇을 어떤 기준으로 대조했는지 20자 이상]
-addedValue: [독자가 원자료만 읽으면 놓칠 자격·기한·계산·충돌·영향 중 무엇을 더했는지 20자 이상]
-sourceBasis: primary
-visualType: ai-illustration
-aiRole: research-assist, draft-assist, copyedit, image
-reviewedBy: 김영환
-reviewedAt: 2026-09-01 09:05
-reporterInsight: [원문에서 가장 중요하거나 놓치기 쉬운 지점과 그 이유를 40~350자로 해설]
-series: notice-check
-methodologyNote: [data-analysis·document-verification일 때 입력자료·계산 기준·제외 범위·한계를 40자 이상]
-readerChecklist: [grants·bids·labor일 때 독자가 확인할 행동 1 | 행동 2 | 행동 3]
-summary: [핵심 사실과 독자 영향을 함께 담은 40자 이상 요약]
-image: /stock/[파일명].jpg
-imageCaption: AI 생성 이미지. 실제 현장 사진이 아닙니다.
-tags: [5개 이상의 구체 태그를 콤마로 구분]
+title:
+category:
+author:
+publishedAt:
+reporting:
+reportingType:
+contactStatus:
+verificationNote:
+addedValue:
+sourceBasis:
+visualType:
+aiRole:
+reviewedBy:
+reviewedAt:
+reporterInsight:
+series:
+methodologyNote:
+readerChecklist:
+summary:
+image:
+imageCaption:
+tags:
 ---
 
 [무슨 일이 있었는지. 핵심 수치와 기준일을 포함한다.]
@@ -38,12 +42,15 @@ tags: [5개 이상의 구체 태그를 콤마로 구분]
 [원자료보다 더한 계산·함정·행동 정보를 설명한다.]
 
 ## 출처 메모
-- [1차 기관]: https://example.go.kr/original
-- [비교한 다른 원문]: https://example.go.kr/second
+- [1차 기관]: SOURCE_URL_REQUIRED
+- [비교한 다른 원문]: SECOND_SOURCE_URL_REQUIRED
 ```
 
-direct 기사라면 reportingType을 추가한다. inquiry·interview·follow-up은 실제 답변을 받았을 때만
-contactStatus: replied를 쓴다. 답변을 받지 못했다면 direct로 올리지 않는다.
+허용값과 길이는 [README.md](README.md)의 머리표 필드표를 따른다. 조건부 필드가 적용되지
+않으면 줄을 비워 두거나 삭제한다. `direct`의 `data-analysis`·`document-verification`은
+`methodologyNote` 40자 이상, `grants`·`bids`·`labor`는 `readerChecklist` 3개 이상이 필수다.
+`inquiry`·`interview`·`follow-up`은 실제 답변을 받은 경우에만 `contactStatus: replied`를 쓰며,
+답변을 받지 못했다면 해당 유형을 direct로 올리지 않는다.
 
-기획 연재 slug는 `notice-check`(공고 원문검증), `data-crosscheck`(데이터 교차검증),
+선택적인 기획 연재 slug는 `notice-check`(공고 원문검증), `data-crosscheck`(데이터 교차검증),
 `on-the-record`(답변을 받았습니다) 중 기사 성격에 맞을 때만 쓴다. 억지로 붙이지 않는다.

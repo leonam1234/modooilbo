@@ -1,6 +1,7 @@
 # 05 · 페이지 맵 (Pages / Routes)
 
-App Router. 전부 Static 또는 SSG. **빌드 시 1,098개 HTML 생성**(2026-08-21, 기사 993편 기준).
+App Router. 전부 Static 또는 SSG. 2026-09-02 기준 기사 Markdown **1,277편**, 빌드 산출물은
+**1,400페이지 이상**이다.
 
 > 2026-08-21 전면 갱신. 종전 판은 "90개 페이지 · 카테고리 8종 · 기사 62편" 기준이었고
 > 이미 삭제된 `/media` 와 `sitemap.ts` 를 싣고 있었다.
@@ -10,7 +11,7 @@ App Router. 전부 Static 또는 SSG. **빌드 시 1,098개 HTML 생성**(2026-0
 | 경로 | 파일 | 목적 | 생성 수 |
 |---|---|---|---|
 | `/` | [page.tsx](../src/app/page.tsx) | 홈 — 히어로 + 기업데이터 6섹션 + 종합뉴스 6섹션 | 1 |
-| `/article/[slug]` | [article/\[slug\]](../src/app/article/[slug]/page.tsx) | 기사 상세 | **993** |
+| `/article/[slug]` | [article/\[slug\]](../src/app/article/[slug]/page.tsx) | 기사 상세 | **1,277** |
 | `/[category]` | [\[category\]](../src/app/[category]/page.tsx) | 종합뉴스 섹션 목록 | 7 |
 | `/[category]/page/[n]` | [+ page/\[page\]](../src/app/[category]/page/[page]/page.tsx) | 종합 페이지네이션 | 다수 |
 | `/grants` `/bids` `/startup` `/industry` `/labor` `/deals` | 각 디렉터리 | **사업 축 6종**(별도 라우트) | 6 + 각 `/page/[n]` |
@@ -62,7 +63,7 @@ Functions + D1)가 실제로 처리한다 — [04 §8](04-components.md) 참조.
 | `/news-sitemap.xml` | [route](../src/app/news-sitemap.xml/route.ts) | 구글 뉴스용(최근분) |
 | `/rss.xml` | [route](../src/app/rss.xml/route.ts) | RSS. **IndexNow 통지 URL 목록의 출처** |
 | `/articles-index.json` | [route](../src/app/articles-index.json/route.ts) | 검색용 경량 인덱스. `?v=CONTENT_VERSION` 으로 캐시 무효화 |
-| `/robots.txt` | [robots.ts](../src/app/robots.ts) | AI 크롤러 허용 |
+| `/robots.txt` | [robots.txt/route.ts](../src/app/robots.txt/route.ts) | AI 크롤러 허용 |
 
 ⚠️ 종전 문서의 `sitemap.ts` 는 2026-07-31 에 위 구조로 대체됐다.
 사이트맵 구성 로직은 [sitemap-parts.ts](../src/lib/sitemap-parts.ts) 에 있고,
