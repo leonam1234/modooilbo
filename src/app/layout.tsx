@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { BreakingTicker } from "@/components/BreakingTicker";
@@ -143,17 +144,15 @@ export default function RootLayout({
             data-cf-beacon={`{"token": "${process.env.NEXT_PUBLIC_CF_BEACON_TOKEN}"}`}
           />
         )}
-        {/* Google AdSense — **head 표준 삽입으로 복원(2026-08-19)**.
-            종전엔 AdSenseLoader가 LCP 이후 유휴 시점에 지연 주입했는데(성능 최적),
-            그 결과 초기 HTML에 스크립트 태그가 아예 없어 **애드센스 심사 봇이
-            "광고 코드 없는 사이트"로 판정**했고 승인이 반복 탈락했다.
-            심사 봇은 load+유휴까지 기다려주지 않는다. 승인이 성능보다 우선이다.
-            async라 파싱은 비차단이며, 실제 광고 push는 여전히 AdSlot이 수동으로 한다.
-            ⚠️ 승인 후에도 이 태그를 지연 주입으로 되돌리지 말 것 — 애드센스는 승인 후에도
-            사이트를 상시 재크롤하며, 코드가 안 보이면 광고 게재 제한이 다시 걸릴 수 있다.
-            단, 인증 토큰 착지 경로 4종에서는 Pages middleware가 응답 단계에서 이 태그와
-            Next Flight 복제 노드를 제거해 URL 토큰이 광고 요청으로 유출되지 않게 한다. */}
-        <script
+        {/* Google AdSense — Next가 초기 HTML에 preload와 설정을 남기되, 실제 스크립트는
+            hydration 뒤 즉시 1회 실행한다. raw async head 실행은 AdSense가 React보다 먼저
+            body에 ins/iframe을 삽입해 WebKit 전 페이지에서 hydration #418을 만들었다.
+            afterInteractive는 기존 LCP 이후 idle 로더보다 훨씬 일찍 실행되며, 실제 광고
+            push는 계속 AdSlot이 담당한다. 인증 토큰 착지 경로 4종에서는 Pages middleware가
+            preload와 Next Flight 설정까지 제거해 외부 요청과 URL 토큰 유출을 막는다. */}
+        <Script
+          id="adsense-script"
+          strategy="afterInteractive"
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1741876528103024"
           crossOrigin="anonymous"

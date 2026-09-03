@@ -1,5 +1,7 @@
 const ADSENSE_SCRIPT_SELECTOR =
   'script[src^="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]';
+const ADSENSE_PRELOAD_SELECTOR =
+  'link[rel="preload"][as="script"][href^="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]';
 const CLOUDFLARE_BEACON_SELECTOR =
   'script[src="https://static.cloudflareinsights.com/beacon.min.js"]';
 const GA4_BOOTSTRAP_SELECTOR = "script#ga4-consent-bootstrap";
@@ -19,6 +21,13 @@ const GA4_LOADER_FLIGHT_SCRIPT_PATTERN =
   /\[\\"\$\\",\\"script\\",null,\{(?:(?!\}\])[\s\S])*?\\"id\\":\\"ga4-loader\\"(?:(?!\}\])[\s\S])*?\}\]/g;
 const ADSENSE_FLIGHT_TEXT_SCRIPT_PATTERN =
   /\["\$","script",null,\{(?:(?!\}\])[\s\S])*?"src":"https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js(?:\?[^\"]*)?"(?:(?!\}\])[\s\S])*?\}\]/g;
+// next/script(strategy="afterInteractive") serializes the component as a lazy
+// reference ($L<n>) and also emits a preload link. Strip both forms on token
+// documents so the post-hydration loader cannot be recreated from Flight data.
+const ADSENSE_NEXT_SCRIPT_FLIGHT_PATTERN =
+  /\[\\"\$\\",\\"\$L\d+\\",null,\{(?:(?!\}\])[\s\S])*?\\"id\\":\\"adsense-script\\"(?:(?!\}\])[\s\S])*?\}\]/g;
+const ADSENSE_NEXT_SCRIPT_FLIGHT_TEXT_PATTERN =
+  /\["\$","\$L\d+",null,\{(?:(?!\}\])[\s\S])*?"id":"adsense-script"(?:(?!\}\])[\s\S])*?\}\]/g;
 const CLOUDFLARE_BEACON_FLIGHT_TEXT_SCRIPT_PATTERN =
   /\["\$","script",null,\{(?:(?!\}\])[\s\S])*?"src":"https:\/\/static\.cloudflareinsights\.com\/beacon\.min\.js"(?:(?!\}\])[\s\S])*?\}\]/g;
 const GA4_BOOTSTRAP_FLIGHT_TEXT_SCRIPT_PATTERN =
@@ -29,10 +38,12 @@ const GA4_LOADER_FLIGHT_TEXT_SCRIPT_PATTERN =
 function sanitizeFlightData(source: string): string {
   return source
     .replace(ADSENSE_FLIGHT_SCRIPT_PATTERN, "null")
+    .replace(ADSENSE_NEXT_SCRIPT_FLIGHT_PATTERN, "null")
     .replace(CLOUDFLARE_BEACON_FLIGHT_SCRIPT_PATTERN, "null")
     .replace(GA4_BOOTSTRAP_FLIGHT_SCRIPT_PATTERN, "null")
     .replace(GA4_LOADER_FLIGHT_SCRIPT_PATTERN, "null")
     .replace(ADSENSE_FLIGHT_TEXT_SCRIPT_PATTERN, "null")
+    .replace(ADSENSE_NEXT_SCRIPT_FLIGHT_TEXT_PATTERN, "null")
     .replace(CLOUDFLARE_BEACON_FLIGHT_TEXT_SCRIPT_PATTERN, "null")
     .replace(GA4_BOOTSTRAP_FLIGHT_TEXT_SCRIPT_PATTERN, "null")
     .replace(GA4_LOADER_FLIGHT_TEXT_SCRIPT_PATTERN, "null");
@@ -117,6 +128,7 @@ export const stripTokenPageThirdPartyScripts: PagesFunction = async (context) =>
 
   return new HTMLRewriter()
     .on(ADSENSE_SCRIPT_SELECTOR, removeScript)
+    .on(ADSENSE_PRELOAD_SELECTOR, removeScript)
     .on(CLOUDFLARE_BEACON_SELECTOR, removeScript)
     .on(GA4_BOOTSTRAP_SELECTOR, removeScript)
     .on(GA4_LOADER_SELECTOR, removeScript)
