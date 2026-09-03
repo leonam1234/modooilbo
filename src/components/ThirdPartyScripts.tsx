@@ -23,8 +23,9 @@ import { isThirdPartyTokenPath } from "@/lib/google-analytics";
  * [범위] 아래 경로에서만 뺀다. 나머지 페이지의 분석·광고는 그대로다.
  * 토큰을 프래그먼트(#)로 옮기는 개선과 병행 가능하지만, 그건 메일 링크 형식과
  * 프론트 파싱을 함께 바꿔야 해서 별건으로 둔다. 이 컴포넌트 바깥에 있는 RootLayout의
- * AdSense 심사용 head 태그와 조건부 Cloudflare Web Analytics beacon은 Cloudflare
- * Pages의 경로별 middleware가 실제 태그와 Next Flight 직렬화 노드를 함께 제거한다.
+ * GA4 direct head 태그, AdSense 심사용 head 태그와 조건부 Cloudflare Web Analytics
+ * beacon은 Cloudflare Pages의 경로별 middleware가 실제 태그와 Next Flight 직렬화
+ * 노드(standalone text Flight 포함)를 함께 제거한다.
  */
 const CLARITY_PROJECT = "y04dqzduac";
 

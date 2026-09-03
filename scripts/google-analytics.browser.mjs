@@ -12,6 +12,8 @@ const ACTIVATION_AT = "2026-09-03T09:30:00+09:00";
 const STORAGE_KEY = "modoo-analytics-consent-v1";
 const CLIENT_CLOCK_AFTER_ACTIVATION = Date.parse("2026-09-03T09:31:00+09:00");
 const PAGE_VIEW_STABILITY_MS = 2000;
+const WITHDRAWAL_STATE_KEY = "ga4-withdrawal-beforeunload";
+const WITHDRAWAL_PRIOR_CLIENT_ID = "123456789.123456789";
 const PUBLIC_PATHS = [
   "/",
   "/article/2026-09-02-july-online-shopping-25tn-mobile-78-2026/",
@@ -31,6 +33,16 @@ const CLOUDFLARE_BEACON_SELECTOR =
   'script[src*="static.cloudflareinsights.com/beacon.min.js"]';
 const CLOUDFLARE_JSD_SELECTOR =
   'script[src*="/cdn-cgi/challenge-platform/scripts/jsd/"]';
+const CLARITY_SELECTOR = 'script#clarity-tag[src*="clarity.ms/tag/"]';
+const GA4_BOOTSTRAP_SELECTOR = "#ga4-consent-bootstrap";
+const GA4_LOADER_SELECTOR = "#ga4-loader";
+
+const DENIED_CONSENT = {
+  ad_storage: "denied",
+  ad_user_data: "denied",
+  ad_personalization: "denied",
+  analytics_storage: "denied",
+};
 
 function isHostOrSubdomain(hostname, domain) {
   return hostname === domain || hostname.endsWith(`.${domain}`);
@@ -101,6 +113,14 @@ function isCloudflareBeaconRecord(record) {
   try {
     const url = new URL(record.url);
     return isCloudflareAnalyticsUrl(url);
+  } catch {
+    return false;
+  }
+}
+
+function isClarityRecord(record) {
+  try {
+    return isHostOrSubdomain(new URL(record.url).hostname, "clarity.ms");
   } catch {
     return false;
   }
@@ -216,10 +236,12 @@ async function installExternalRequestFirewall(context) {
       google: isGoogleHostname(url.hostname),
       adsense: false,
       cloudflareBeacon: false,
+      clarity: false,
       action: "fallback",
     };
     record.adsense = isAdsenseRecord(record);
     record.cloudflareBeacon = isCloudflareBeaconRecord(record);
+    record.clarity = isClarityRecord(record);
     records.push(record);
 
     if (isExactLoaderRecord(record)) {
@@ -229,7 +251,12 @@ async function installExternalRequestFirewall(context) {
     }
 
     // Google 외 호스트로 ID가 흘러가는 잘못된 구현도 실제 네트워크로 내보내지 않는다.
-    if (record.google || record.cloudflareBeacon || requestEvidence(record).includes(ID)) {
+    if (
+      record.google ||
+      record.cloudflareBeacon ||
+      record.clarity ||
+      requestEvidence(record).includes(ID)
+    ) {
       record.action = "blocked";
       await route.fulfill({ status: 204 });
       return;
@@ -306,6 +333,24 @@ async function waitForStablePageView(records, startIndex, pathname, label) {
 function assertNoGa4Traffic(records, startIndex, label) {
   const leaked = records.slice(startIndex).filter(isGa4CollectionRecord);
   assert.deepEqual(leaked, [], `${label}: unexpected GA4 traffic\n${describeRecords(leaked)}`);
+}
+
+function isGa4CollectEndpoint(record) {
+  try {
+    const url = new URL(record.url);
+    return (
+      isGoogleHostname(url.hostname) &&
+      /(?:^|\/)collect$/.test(url.pathname) &&
+      payloadCandidates(record).some((payload) => payload.get("tid") === ID)
+    );
+  } catch {
+    return false;
+  }
+}
+
+function assertNoGa4Collect(records, startIndex, label) {
+  const leaked = records.slice(startIndex).filter(isGa4CollectEndpoint);
+  assert.deepEqual(leaked, [], `${label}: unexpected GA4 collect request\n${describeRecords(leaked)}`);
 }
 
 function valueReferencesTokenPath(value) {
@@ -427,6 +472,94 @@ function assertNoTokenInGaReferrer(records, startIndex, pathname, token, label) 
   );
 }
 
+async function readGaState(page) {
+  return page.evaluate((measurementId) => {
+    const commands = (window.dataLayer || []).map((entry, index) => ({
+      index,
+      command: entry?.[0],
+      action: entry?.[1],
+      payload: entry?.[2],
+    }));
+    const cookieNames = document.cookie
+      .split(";")
+      .map((part) => part.split("=", 1)[0]?.trim())
+      .filter((name) => name === "_ga" || name?.startsWith("_ga_"));
+    return {
+      defaults: commands.filter(({ command, action }) =>
+        command === "consent" && action === "default"),
+      updates: commands.filter(({ command, action }) =>
+        command === "consent" && action === "update"),
+      configs: commands.filter(({ command, action }) =>
+        command === "config" && action === measurementId),
+      pageViewEvents: commands.filter(({ command, action }) =>
+        command === "event" && action === "page_view"),
+      disabled: window[`ga-disable-${measurementId}`],
+      cookieNames,
+    };
+  }, ID);
+}
+
+function assertConsentPayload(payload, analyticsStorage, label) {
+  assert.ok(payload && typeof payload === "object", `${label}: consent payload missing`);
+  for (const field of ["ad_storage", "ad_user_data", "ad_personalization"]) {
+    assert.equal(payload[field], DENIED_CONSENT[field], `${label}: ${field}`);
+  }
+  assert.equal(payload.analytics_storage, analyticsStorage, `${label}: analytics_storage`);
+}
+
+async function assertAdvancedHeadState(page, label) {
+  await assertSingleGoogleTag(page, label);
+  const state = await readGaState(page);
+  assert.equal(state.defaults.length, 1, `${label}: consent default count`);
+  assertConsentPayload(state.defaults[0].payload, "denied", `${label}: consent default`);
+  assert.equal(state.defaults[0].payload?.wait_for_update, 500, `${label}: wait_for_update`);
+  assert.equal(state.configs.length, 1, `${label}: config count`);
+  assert.equal(state.configs[0].payload?.send_page_view, false, `${label}: send_page_view`);
+  assert.equal(state.configs[0].payload?.allow_google_signals, false, `${label}: Google signals`);
+  assert.equal(
+    state.configs[0].payload?.allow_ad_personalization_signals,
+    false,
+    `${label}: ad personalization signals`,
+  );
+  assert.ok(
+    state.defaults[0].index < state.configs[0].index,
+    `${label}: consent default must precede config`,
+  );
+  return state;
+}
+
+function assertLatestConsentUpdate(state, analyticsStorage, label) {
+  assert.ok(state.updates.length > 0, `${label}: consent update missing`);
+  assertConsentPayload(state.updates.at(-1).payload, analyticsStorage, `${label}: latest update`);
+}
+
+function assertInitialPageViewState(state, analyticsStorage, label) {
+  assertLatestConsentUpdate(state, analyticsStorage, label);
+  assert.equal(state.pageViewEvents.length, 1, `${label}: explicit page_view count`);
+  assert.ok(
+    state.updates.at(-1).index < state.pageViewEvents[0].index,
+    `${label}: consent update must precede initial page_view`,
+  );
+}
+
+function assertNoGaCookies(state, label) {
+  assert.deepEqual(state.cookieNames, [], `${label}: GA cookies remain`);
+}
+
+async function waitForConsentUpdate(page, analyticsStorage) {
+  await page.waitForFunction(({ expectedAnalyticsStorage }) => {
+    const updates = (window.dataLayer || []).filter((entry) =>
+      entry?.[0] === "consent" && entry?.[1] === "update");
+    const payload = updates.at(-1)?.[2];
+    return (
+      payload?.analytics_storage === expectedAnalyticsStorage &&
+      payload?.ad_storage === "denied" &&
+      payload?.ad_user_data === "denied" &&
+      payload?.ad_personalization === "denied"
+    );
+  }, { expectedAnalyticsStorage: analyticsStorage });
+}
+
 async function assertNoGoogleTag(page, label) {
   assert.equal(
     await page.locator('script[src*="googletagmanager.com/gtag/js"]').count(),
@@ -444,13 +577,13 @@ async function assertSingleGoogleTag(page, label) {
     `${label}: Google tag loader count`,
   );
   assert.equal(await page.locator(`script[src="${SCRIPT_URL}"]`).count(), 1, `${label}: exact loader count`);
-  assert.equal(await page.locator("#ga4-loader").count(), 1, `${label}: loader id count`);
+  assert.equal(await page.locator(GA4_LOADER_SELECTOR).count(), 1, `${label}: loader id count`);
   assert.equal(
     await page.locator("#ga4-loader").getAttribute("src"),
     SCRIPT_URL,
     `${label}: loader URL`,
   );
-  assert.equal(await page.locator("#ga4-consent-bootstrap").count(), 1, `${label}: bootstrap count`);
+  assert.equal(await page.locator(GA4_BOOTSTRAP_SELECTOR).count(), 1, `${label}: bootstrap count`);
 }
 
 async function assertNoAdsenseTag(page, label) {
@@ -473,6 +606,10 @@ async function assertNoCloudflareJsd(page, label) {
   );
 }
 
+async function assertNoClarityTag(page, label) {
+  assert.equal(await page.locator(CLARITY_SELECTOR).count(), 0, `${label}: Clarity tag exists`);
+}
+
 function countRawAdsenseReferences(html) {
   const normalized = html.replace(/\\\//g, "/");
   return [...normalized.matchAll(
@@ -492,6 +629,54 @@ function countRawCloudflareJsdReferences(html) {
   return [...normalized.matchAll(
     /\/cdn-cgi\/challenge-platform\/scripts\/jsd\//gi,
   )].length;
+}
+
+function rawContainsGa4(source) {
+  const normalized = source.replace(/\\\//g, "/");
+  return [
+    ID,
+    "www.googletagmanager.com/gtag/js",
+    "ga4-consent-bootstrap",
+    "ga4-loader",
+  ].some((needle) => normalized.includes(needle));
+}
+
+function assertNoRawThirdParty(source, label) {
+  assert.equal(rawContainsGa4(source), false, `${label}: GA4 reference remains`);
+  assert.equal(countRawAdsenseReferences(source), 0, `${label}: AdSense reference remains`);
+  assert.equal(
+    countRawCloudflareBeaconReferences(source),
+    0,
+    `${label}: Cloudflare Web Analytics reference remains`,
+  );
+  assert.equal(
+    countRawCloudflareJsdReferences(source),
+    0,
+    `${label}: Cloudflare JavaScript Detection reference remains`,
+  );
+}
+
+async function verifyPublicInitialHtml() {
+  const response = await fetch(`${BASE}/`, { headers: { accept: "text/html" } });
+  assert.equal(response.status, 200, "public initial HTML status");
+  const html = await response.text();
+  const bootstrapMatches = [...html.matchAll(
+    /<script\b(?=[^>]*\bid=["']ga4-consent-bootstrap["'])[^>]*>/gi,
+  )];
+  const loaderMatches = [...html.matchAll(
+    /<script\b(?=[^>]*\bid=["']ga4-loader["'])(?=[^>]*\bsrc=["']https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-R2MDE3WDFY["'])[^>]*>/gi,
+  )];
+  assert.equal(bootstrapMatches.length, 1, "public initial HTML bootstrap count");
+  assert.equal(loaderMatches.length, 1, "public initial HTML loader count");
+  assert.ok(
+    bootstrapMatches[0].index < loaderMatches[0].index,
+    "public initial HTML bootstrap must precede loader",
+  );
+  assert.match(html, /analytics_storage:\s*['"]denied['"]/);
+  assert.match(html, /ad_storage:\s*['"]denied['"]/);
+  assert.match(html, /ad_user_data:\s*['"]denied['"]/);
+  assert.match(html, /ad_personalization:\s*['"]denied['"]/);
+  assert.match(html, /send_page_view:\s*false/);
 }
 
 function assertTokenProtectionHeaders(headers, label) {
@@ -540,21 +725,24 @@ async function verifyEdgeTokenIsolation(browser, edgeRuntime) {
     assert.equal(rawResponse.status, 200, `${pathname}: raw edge document status`);
     assertTokenProtectionHeaders(rawResponse.headers, `${pathname}: raw edge document`);
     const rawHtml = await rawResponse.text();
-    assert.equal(
-      countRawAdsenseReferences(rawHtml),
-      0,
-      `${pathname}: raw edge HTML contains an AdSense reference`,
-    );
-    assert.equal(
-      countRawCloudflareBeaconReferences(rawHtml),
-      0,
-      `${pathname}: raw edge HTML contains a Cloudflare Web Analytics beacon reference`,
-    );
-    assert.equal(
-      countRawCloudflareJsdReferences(rawHtml),
-      0,
-      `${pathname}: raw edge HTML contains a Cloudflare JavaScript Detection reference`,
-    );
+    assert.ok(rawHtml.length > 100, `${pathname}: raw edge HTML is unexpectedly empty`);
+    assertNoRawThirdParty(rawHtml, `${pathname}: raw edge HTML`);
+
+    // Next static export가 클라이언트 전환에 사용하는 standalone Flight 파일도 edge에서
+    // 별도로 정화되어야 한다. HTML만 검사하면 index.txt 복제 노드를 놓칠 수 있다.
+    const flightTarget = new URL(`${pathname}index.txt`, `${BASE}/`);
+    flightTarget.searchParams.set("token", token);
+    flightTarget.searchParams.set("_rsc", `browser-test-${slug.toLowerCase()}`);
+    const flightResponse = await fetch(flightTarget, {
+      headers: { accept: "*/*", rsc: "1" },
+    });
+    assert.equal(flightResponse.status, 200, `${pathname}: standalone Flight status`);
+    assertTokenProtectionHeaders(flightResponse.headers, `${pathname}: standalone Flight`);
+    const rawFlight = await flightResponse.text();
+    assert.ok(rawFlight.length > 20, `${pathname}: standalone Flight is unexpectedly empty`);
+    assert.match(rawFlight, /(?:reset|verify|forgot|__next_f)/i, `${pathname}: Flight route marker`);
+    assertNoRawThirdParty(rawFlight, `${pathname}: standalone Flight`);
+    assert.equal(rawFlight.includes(token), false, `${pathname}: token reflected in standalone Flight`);
 
     const context = await browser.newContext();
     await installClientState(context, "granted");
@@ -570,6 +758,7 @@ async function verifyEdgeTokenIsolation(browser, edgeRuntime) {
     await assertNoAdsenseTag(page, `${pathname} edge hydration`);
     await assertNoCloudflareBeacon(page, `${pathname} edge hydration`);
     await assertNoCloudflareJsd(page, `${pathname} edge hydration`);
+    await assertNoClarityTag(page, `${pathname} edge hydration`);
     assert.equal(
       await page.evaluate((measurementId) => window[`ga-disable-${measurementId}`], ID),
       true,
@@ -577,11 +766,11 @@ async function verifyEdgeTokenIsolation(browser, edgeRuntime) {
     );
 
     const thirdPartyTelemetry = records.filter((record) =>
-      record.google || record.adsense || record.cloudflareBeacon);
+      record.google || record.adsense || record.cloudflareBeacon || record.clarity);
     assert.deepEqual(
       thirdPartyTelemetry,
       [],
-      `${pathname}: Google/AdSense/Cloudflare request escaped edge token isolation\n${describeRecords(thirdPartyTelemetry)}`,
+      `${pathname}: Google/AdSense/Cloudflare/Clarity request escaped edge token isolation\n${describeRecords(thirdPartyTelemetry)}`,
     );
     assertNoExternalTokenLeak(records, 0, token, `${pathname} edge hydration`);
     assertGoogleFirewall(records, `${pathname} edge hydration`);
@@ -615,8 +804,9 @@ async function verifyEdgeTokenIsolation(browser, edgeRuntime) {
     await assertNoAdsenseTag(page, `${pathname} conditional reload`);
     await assertNoCloudflareBeacon(page, `${pathname} conditional reload`);
     await assertNoCloudflareJsd(page, `${pathname} conditional reload`);
+    await assertNoClarityTag(page, `${pathname} conditional reload`);
     const reloadTelemetry = records.slice(reloadStart).filter((record) =>
-      record.google || record.adsense || record.cloudflareBeacon);
+      record.google || record.adsense || record.cloudflareBeacon || record.clarity);
     assert.deepEqual(
       reloadTelemetry,
       [],
@@ -636,7 +826,8 @@ async function verifyEdgeTokenIsolation(browser, edgeRuntime) {
     assert.equal(await page.evaluate(() => document.referrer), "", `${pathname}: public referrer`);
     await page.locator(`script[src="${SCRIPT_URL}"]`).waitFor({ state: "attached" });
     await waitForStablePageView(records, publicStart, "/", `${pathname} token-to-public`);
-    await assertSingleGoogleTag(page, `${pathname} token-to-public`);
+    const publicState = await assertAdvancedHeadState(page, `${pathname} token-to-public`);
+    assertInitialPageViewState(publicState, "granted", `${pathname} token-to-public`);
     assert.equal(
       records.slice(publicStart).filter(isExactLoaderRecord).length,
       1,
@@ -689,17 +880,13 @@ async function verifyTokenHistoryHardNavigation(browser, edgeRuntime) {
   assert.equal(await page.evaluate(() => document.referrer), "", "token history public referrer");
   await page.locator(`script[src="${SCRIPT_URL}"]`).waitFor({ state: "attached" });
   await waitForStablePageView(records, historyStart, "/about/", "token history to public");
-  await assertSingleGoogleTag(page, "token history to public");
+  const historyState = await assertAdvancedHeadState(page, "token history to public");
+  assertInitialPageViewState(historyState, "granted", "token history to public");
   assert.equal(
     await page.evaluate((key) => Number(sessionStorage.getItem(key) || "0"), executionStorageKey),
     1,
     "token history to public: loader execution count",
   );
-  const configs = await page.evaluate((measurementId) =>
-    (window.dataLayer || []).filter((entry) =>
-      entry?.[0] === "config" && entry?.[1] === measurementId).length,
-  ID);
-  assert.equal(configs, 1, "token history to public: config count");
   const historyLoaders = records.slice(historyStart).filter(isExactLoaderRecord);
   const destinationLoaders = historyLoaders.filter((record) => {
     try {
@@ -734,8 +921,9 @@ verifyTokenLeakDetection();
 const browser = await chromium.launch({ headless: true });
 try {
   const { edgeRuntime } = await verifyLiveServerGate();
+  await verifyPublicInitialHtml();
 
-  // 서버가 시행 전이면 방문자가 기기 시계를 미래로 바꾸고 허용값을 저장해도 완전 미로드한다.
+  // 서버가 시행 전이면 head의 denied bootstrap/loader/config까지만 존재하고 수집은 멈춘다.
   {
     const context = await browser.newContext();
     await mockServerActivation(context, false);
@@ -746,15 +934,22 @@ try {
     await page.waitForFunction(
       () => document.documentElement.dataset.ga4Active === "false",
     );
-    await assertNoGoogleTag(page, "server before activation");
+    await page.locator(`script[src="${SCRIPT_URL}"]`).waitFor({ state: "attached" });
+    await page.waitForTimeout(PAGE_VIEW_STABILITY_MS);
+    const inactiveState = await assertAdvancedHeadState(page, "server before activation");
+    assert.equal(inactiveState.updates.length, 0, "server before activation: consent update count");
+    assert.equal(inactiveState.pageViewEvents.length, 0, "server before activation: page_view event count");
+    assert.equal(inactiveState.disabled, true, "server before activation: GA disable flag");
+    assertNoGaCookies(inactiveState, "server before activation");
     assert.equal(await page.getByLabel("분석 쿠키 선택").count(), 0);
-    assertNoGa4Traffic(records, 0, "server before activation");
-    assert.equal(await page.evaluate((measurementId) => window[`ga-disable-${measurementId}`], ID), true);
+    assert.equal(pageViewCount(records, 0, "/"), 0, "server before activation: network page_view count");
+    assertNoGa4Collect(records, 0, "server before activation");
+    assert.equal(records.filter(isExactLoaderRecord).length, 1, "server before activation: loader request count");
     assertGoogleFirewall(records, "server before activation");
     await context.close();
   }
 
-  // 서버 시행 후 최초 방문: 선택창은 보이지만 허용 전에는 Basic Consent로 완전 미로드한다.
+  // 서버 시행 후 최초 방문과 저장된 거부 상태는 denied cookieless page_view를 문서당 한 번 보낸다.
   {
     const context = await browser.newContext();
     await mockServerActivation(context, true);
@@ -764,23 +959,47 @@ try {
     await page.goto(`${BASE}/`, { waitUntil: "domcontentloaded" });
     const banner = page.getByLabel("분석 쿠키 선택");
     await banner.waitFor({ state: "visible" });
-    await assertNoGoogleTag(page, "before consent");
-    assertNoGa4Traffic(records, 0, "before consent");
+    await page.locator(`script[src="${SCRIPT_URL}"]`).waitFor({ state: "attached" });
+    await waitForStablePageView(records, 0, "/", "before consent");
+    const freshState = await assertAdvancedHeadState(page, "before consent");
+    assertInitialPageViewState(freshState, "denied", "before consent");
+    assert.equal(freshState.disabled, false, "before consent: GA disable flag");
+    assertNoGaCookies(freshState, "before consent");
+    assert.equal(records.filter(isExactLoaderRecord).length, 1, "before consent: loader request count");
+
+    const denialStart = records.length;
     await banner.getByRole("button", { name: "거부" }).click();
     await banner.waitFor({ state: "hidden" });
+    await waitForConsentUpdate(page, "denied");
+    await page.waitForTimeout(500);
     assert.equal(await page.evaluate((key) => localStorage.getItem(key), STORAGE_KEY), "denied");
+    const deniedInPlaceState = await assertAdvancedHeadState(page, "denied in place");
+    assertLatestConsentUpdate(deniedInPlaceState, "denied", "denied in place");
+    assert.equal(deniedInPlaceState.pageViewEvents.length, 1, "denied in place: page_view event count");
+    assertNoGaCookies(deniedInPlaceState, "denied in place");
+    assert.equal(pageViewCount(records, denialStart, "/"), 0, "denied in place: new page_view count");
+
     const afterDenial = records.length;
     await page.reload({ waitUntil: "domcontentloaded" });
     await page.waitForFunction(() => document.documentElement.dataset.ga4Active === "true");
-    await page.waitForTimeout(200);
-    await assertNoGoogleTag(page, "after denial");
+    await page.locator(`script[src="${SCRIPT_URL}"]`).waitFor({ state: "attached" });
+    await waitForStablePageView(records, afterDenial, "/", "stored denial reload");
+    const deniedReloadState = await assertAdvancedHeadState(page, "after denial");
+    assertInitialPageViewState(deniedReloadState, "denied", "after denial");
+    assert.equal(deniedReloadState.disabled, false, "after denial: GA disable flag");
+    assertNoGaCookies(deniedReloadState, "after denial");
     assert.equal(await page.getByLabel("분석 쿠키 선택").count(), 0);
-    assertNoGa4Traffic(records, afterDenial, "after denial");
+    assert.equal(
+      records.slice(afterDenial).filter(isExactLoaderRecord).length,
+      1,
+      "after denial: loader request count",
+    );
     assertGoogleFirewall(records, "consent denied");
     await context.close();
   }
 
-  // 실제 허용 버튼과 이후 철회가 loader·쿠키 수명주기를 올바르게 바꾸는지 확인한다.
+  // 허용은 추가 page_view 없이 storage만 granted로 올리고, 철회는 즉시 denied/disable 후
+  // 새 문서를 열어 cookieless page_view 한 번만 보내며 GA 쿠키를 남기지 않는다.
   {
     const context = await browser.newContext();
     await mockServerActivation(context, true);
@@ -788,42 +1007,90 @@ try {
     const records = await installExternalRequestFirewall(context);
     const page = await context.newPage();
     await page.goto(`${BASE}/`, { waitUntil: "domcontentloaded" });
-    const start = records.length;
-    await page.getByRole("button", { name: "국외이전·분석 허용" }).click();
+    const banner = page.getByLabel("분석 쿠키 선택");
+    await banner.waitFor({ state: "visible" });
     await page.locator(`script[src="${SCRIPT_URL}"]`).waitFor({ state: "attached" });
-    await waitForStablePageView(records, start, "/", "allow click");
-    await assertSingleGoogleTag(page, "allow click");
-    const configs = await page.evaluate((measurementId) =>
-      (window.dataLayer || []).filter((entry) =>
-        entry?.[0] === "config" && entry?.[1] === measurementId).length,
-    ID);
-    assert.equal(configs, 1, "allow click: config count");
+    await waitForStablePageView(records, 0, "/", "allow baseline");
+    const baselineState = await assertAdvancedHeadState(page, "allow baseline");
+    assertInitialPageViewState(baselineState, "denied", "allow baseline");
+    assertNoGaCookies(baselineState, "allow baseline");
+    assert.equal(records.filter(isExactLoaderRecord).length, 1, "allow baseline: loader request count");
+
+    const allowStart = records.length;
+    await page.getByRole("button", { name: "분석 저장·쿠키 허용" }).click();
+    await waitForConsentUpdate(page, "granted");
+    await page.waitForTimeout(500);
+    const grantedState = await assertAdvancedHeadState(page, "allow click");
+    assertLatestConsentUpdate(grantedState, "granted", "allow click");
+    assert.equal(grantedState.pageViewEvents.length, 1, "allow click: page_view event count");
+    assert.equal(grantedState.disabled, false, "allow click: GA disable flag");
+    assert.equal(await page.evaluate((key) => localStorage.getItem(key), STORAGE_KEY), "granted");
+    assert.equal(pageViewCount(records, allowStart, "/"), 0, "allow click: new page_view count");
     assert.equal(
-      records.slice(start).filter(isExactLoaderRecord).length,
-      1,
-      "allow click: gtag.js request count",
+      records.slice(allowStart).filter(isExactLoaderRecord).length,
+      0,
+      "allow click: loader was requested again",
     );
+
+    // 철회 삭제를 실제로 증명할 수 있도록 현재 host의 두 GA 쿠키 이름을 심는다.
+    await page.evaluate(({ measurementId, clientId }) => {
+      document.cookie = `_ga=GA1.1.${clientId}; Path=/; SameSite=Lax`;
+      document.cookie = `_ga_${measurementId.slice(2)}=GS1.1.1.1.1.1.1.0.0.0; Path=/; SameSite=Lax`;
+    }, { measurementId: ID, clientId: WITHDRAWAL_PRIOR_CLIENT_ID });
+    assert.ok((await readGaState(page)).cookieNames.length >= 2, "withdrawal fixture: GA cookies missing");
     await page.getByRole("button", { name: "분석 쿠키 설정" }).click();
     await page.getByLabel("분석 쿠키 선택").waitFor({ state: "visible" });
-    // Footer 버튼을 화면에 보이게 하는 자동 스크롤이 기존 허용 상태의 90% 이벤트를 만들 수
-    // 있으므로, Google의 지연 전송까지 먼저 비운 뒤 철회 클릭부터 새 요청이 없는지 검사한다.
-    await page.waitForTimeout(6000);
+    // 철회는 장래효다. 클릭 전에 적법하게 생성·큐된 이벤트는 지연 전송될 수 있으므로
+    // 네트워크 전체를 소급 차단하지 않고, 클릭 순간의 denied/disable과 새 문서 상태를 검사한다.
+    const withdrawalSentinel = `WITHDRAWAL_SENTINEL_${Date.now()}`;
+    await page.evaluate(({ measurementId, stateKey, sentinel }) => {
+      window.__ga4WithdrawalSentinel = sentinel;
+      window.addEventListener("beforeunload", () => {
+        const updates = (window.dataLayer || []).filter((entry) =>
+          entry?.[0] === "consent" && entry?.[1] === "update");
+        sessionStorage.setItem(stateKey, JSON.stringify({
+          disabled: window[`ga-disable-${measurementId}`],
+          latestUpdate: updates.at(-1)?.[2] ?? null,
+        }));
+      }, { once: true });
+    }, { measurementId: ID, stateKey: WITHDRAWAL_STATE_KEY, sentinel: withdrawalSentinel });
+
     const withdrawalStart = records.length;
     await Promise.all([
       page.waitForEvent("load"),
       page.getByLabel("분석 쿠키 선택").getByRole("button", { name: "거부" }).click(),
     ]);
+    assert.equal(
+      await page.evaluate(() => window.__ga4WithdrawalSentinel),
+      undefined,
+      "consent withdrawal did not replace the document",
+    );
     await page.waitForFunction(() => document.documentElement.dataset.ga4Active === "true");
-    await page.waitForTimeout(250);
-    await assertNoGoogleTag(page, "after consent withdrawal");
-    assertNoGa4Traffic(records, withdrawalStart, "after consent withdrawal");
+    await page.locator(`script[src="${SCRIPT_URL}"]`).waitFor({ state: "attached" });
+    await waitForStablePageView(records, withdrawalStart, "/", "after consent withdrawal");
+    const withdrawnState = await assertAdvancedHeadState(page, "after consent withdrawal");
+    assertInitialPageViewState(withdrawnState, "denied", "after consent withdrawal");
+    assert.equal(withdrawnState.disabled, false, "after consent withdrawal: GA disable flag");
+    assertNoGaCookies(withdrawnState, "after consent withdrawal");
     assert.equal(await page.evaluate((key) => localStorage.getItem(key), STORAGE_KEY), "denied");
     assert.equal(
-      await page.evaluate(() => document.cookie
-        .split(";")
-        .map((part) => part.split("=", 1)[0]?.trim())
-        .some((name) => name === "_ga" || name?.startsWith("_ga_"))),
-      false,
+      records.slice(withdrawalStart).filter(isExactLoaderRecord).length,
+      1,
+      "after consent withdrawal: loader request count",
+    );
+    const withdrawalSnapshot = await page.evaluate((key) => {
+      const value = sessionStorage.getItem(key);
+      return value ? JSON.parse(value) : null;
+    }, WITHDRAWAL_STATE_KEY);
+    assert.ok(withdrawalSnapshot, "consent withdrawal: beforeunload snapshot missing");
+    assert.equal(withdrawalSnapshot.disabled, true, "consent withdrawal: disable before reload");
+    assertConsentPayload(withdrawalSnapshot.latestUpdate, "denied", "consent withdrawal before reload");
+    const withdrawnPageViews = matchingPageViews(records, withdrawalStart, "/");
+    assert.equal(withdrawnPageViews.length, 1, "after consent withdrawal: denied page_view count");
+    assert.notEqual(
+      withdrawnPageViews[0].payload.get("cid"),
+      WITHDRAWAL_PRIOR_CLIENT_ID,
+      "after consent withdrawal: new page_view reused withdrawn client id",
     );
     assertGoogleFirewall(records, "allow then withdraw");
     await context.close();
@@ -846,12 +1113,9 @@ try {
       await page.goto(`${BASE}${pathname}`, { waitUntil: "domcontentloaded" });
       await page.locator(`script[src="${SCRIPT_URL}"]`).waitFor({ state: "attached" });
       await waitForStablePageView(records, start, pathname, pathname);
-      await assertSingleGoogleTag(page, pathname);
-      const configs = await page.evaluate((measurementId) =>
-        (window.dataLayer || []).filter((entry) =>
-          entry?.[0] === "config" && entry?.[1] === measurementId).length,
-      ID);
-      assert.equal(configs, 1, `${pathname}: config count`);
+      const publicState = await assertAdvancedHeadState(page, pathname);
+      assertInitialPageViewState(publicState, "granted", pathname);
+      assert.equal(publicState.disabled, false, `${pathname}: GA disable flag`);
       assert.equal(
         records.slice(start).filter(isExactLoaderRecord).length,
         1,
@@ -863,6 +1127,8 @@ try {
     await page.goto(`${BASE}/`, { waitUntil: "domcontentloaded" });
     await page.locator(`script[src="${SCRIPT_URL}"]`).waitFor({ state: "attached" });
     await waitForStablePageView(records, start, "/", "SPA initial page");
+    const spaInitialState = await assertAdvancedHeadState(page, "SPA initial page");
+    assertInitialPageViewState(spaInitialState, "granted", "SPA initial page");
 
     const spaSentinel = `SPA_SENTINEL_${Date.now()}`;
     await page.evaluate((value) => { window.__ga4SpaSentinel = value; }, spaSentinel);
@@ -880,13 +1146,17 @@ try {
       0,
       "SPA navigation re-requested gtag.js",
     );
-    await assertSingleGoogleTag(page, "SPA navigation");
+    const spaState = await assertAdvancedHeadState(page, "SPA navigation");
+    assertLatestConsentUpdate(spaState, "granted", "SPA navigation");
+    assert.equal(spaState.pageViewEvents.length, 1, "SPA navigation: app initial page_view count");
 
     // 프로그램 방식의 토큰 경로 전환도 pushState에 머물지 않고 새 문서로 강제된다.
     start = records.length;
     await page.goto(`${BASE}/`, { waitUntil: "domcontentloaded" });
     await page.locator(`script[src="${SCRIPT_URL}"]`).waitFor({ state: "attached" });
     await waitForStablePageView(records, start, "/", "token guard initial page");
+    const tokenGuardState = await assertAdvancedHeadState(page, "token guard initial page");
+    assertInitialPageViewState(tokenGuardState, "granted", "token guard initial page");
     const hardNavigationSentinel = `HARD_NAV_SENTINEL_${Date.now()}`;
     await page.evaluate((value) => { window.__ga4HardNavigationSentinel = value; }, hardNavigationSentinel);
     start = records.length;
@@ -905,6 +1175,11 @@ try {
     );
     await page.waitForTimeout(1000);
     await assertNoGoogleTag(page, "public to token hard navigation");
+    assert.equal(
+      records.slice(start).filter(isExactLoaderRecord).length,
+      0,
+      "public to token hard navigation: token document requested gtag.js",
+    );
     assert.equal(await page.evaluate((measurementId) => window[`ga-disable-${measurementId}`], ID), true);
     // gtag.js may finish a delayed tag-diagnostics request for the preceding public
     // document after navigation starts. It is safe only when the payload still names
@@ -946,7 +1221,7 @@ try {
   await verifyTokenHistoryHardNavigation(browser, edgeRuntime);
 
   console.log(
-    `PASS: GA4 server gate + Basic Consent browser checks (${PUBLIC_PATHS.length} public + ${TOKEN_PATHS.length} token paths)`,
+    `PASS: GA4 server gate + Advanced Consent browser checks (${PUBLIC_PATHS.length} public + ${TOKEN_PATHS.length} token paths)`,
   );
 } finally {
   await browser.close();

@@ -12,16 +12,16 @@
 ### 현재 상태
 - `src/app/layout.tsx`에 Cloudflare beacon 흔적 존재(정식화 필요).
 - google-site-verification 토큰 존재(GSC 연결 가능 상태).
-- GA4 `G-R2MDE3WDFY`는 Basic Consent와 함께 공통 삽입돼 있다. 운영자 승인에 따라 Cloudflare 서버 시각 기준 2026-09-03 09:30 KST부터 선택창이 활성 상태이며, 이용자가 허용하기 전에는 Google tag 자체를 불러오지 않는다. 인증 토큰 경로 4종은 GA4를 항상 제외하고 Pages middleware가 AdSense 및 조건부 Cloudflare Web Analytics의 head/Flight 태그를 제거하며 `Referrer-Policy: no-referrer`를 강제한다. 응답의 `Cache-Control: no-store, no-transform, max-age=0`은 캐시와 Cloudflare 후단 beacon·JavaScript Detection 재주입을 함께 막는다. 공개↔토큰 경계 이동은 새 문서로 전환하고, 토큰 URL에서 시작한 문서는 전환 직전까지 서드파티 차단 상태를 유지한다.
-- Google Analytics 국외 이전 수령자는 Google LLC(미국, 1600 Amphitheatre Parkway Mountain View CA 94043 USA)이며 공식 개인정보 문의 URL은 <https://support.google.com/policies/troubleshooter/7575787>이다. 분석 허용 후 접속·기기·페이지 이용 데이터가 방문 통계 및 콘텐츠 개선 목적으로 이용자의 기기에서 Google 서버로 인터넷 네트워크를 통해 수시 자동 전송된다. 사용자·이벤트 단위 데이터는 회사 정책상 수집일로부터 14개월 이내만 보유하며, 실제 속성 설정과 삭제 절차를 관리해 이를 초과하지 않도록 한다.
-- GA4 국외 이전은 분석 쿠키 선택창, 페이지 하단의 분석 쿠키 설정, 브라우저의 해당 사이트 쿠키·사이트 데이터(로컬 저장소 포함) 삭제 또는 개인정보보호책임자 요청으로 거부·철회할 수 있다. 사이트 데이터 삭제 시 선택값도 초기화되어 다시 허용하기 전에는 GA tag가 로드되지 않는다. 거부하면 분석 목적의 국외 이전과 통계 반영은 중단되지만 기사 열람 등 기본 서비스는 제한되지 않는다.
+- GA4 `G-R2MDE3WDFY`는 2026-09-03 09:30 KST부터 공개 페이지 `<head>`에 한 번 직접 설치되고 Consent Mode v2 고급 모드로 동작한다. 기본 분석 저장은 거부이며 허용 시에만 분석 쿠키를 사용한다. 허용 전·거부 후에도 tag는 로드되어 쿠키 없는 제한 측정값이 전송될 수 있다. 인증 토큰 경로 4종은 GA4를 항상 제외하고 Pages middleware가 GA4·AdSense 및 조건부 Cloudflare Web Analytics의 head/Flight 태그를 제거하며 `Referrer-Policy: no-referrer`를 강제한다. 응답의 `Cache-Control: no-store, no-transform, max-age=0`은 캐시와 Cloudflare 후단 beacon·JavaScript Detection 재주입을 함께 막는다. 공개↔토큰 경계 이동은 새 문서로 전환하고, 토큰 URL에서 시작한 문서는 전환 직전까지 서드파티 차단 상태를 유지한다.
+- Google Analytics 국외 이전 수령자는 Google LLC(미국, 1600 Amphitheatre Parkway Mountain View CA 94043 USA)이며 공식 개인정보 문의 URL은 <https://support.google.com/policies/troubleshooter/7575787>이다. 허용 전·거부 후에는 동의 상태와 접속·페이지·기기 관련 쿠키 없는 제한 측정값이, 분석 허용 후에는 쿠키·클라이언트 식별자와 페이지 이용 이벤트가 방문 통계 및 콘텐츠 개선 목적으로 이용자의 기기에서 Google 서버로 인터넷 네트워크를 통해 수시 자동 전송될 수 있다. 사용자·이벤트 단위 데이터는 회사 정책상 수집일로부터 14개월 이내만 보유하며, 실제 속성 설정과 삭제 절차를 관리해 이를 초과하지 않도록 한다.
+- GA4 분석 저장 동의는 분석 쿠키 선택창, 페이지 하단의 분석 쿠키 설정, 브라우저의 해당 사이트 쿠키·사이트 데이터(로컬 저장소 포함) 삭제 또는 개인정보보호책임자 요청으로 거부·철회할 수 있다. 사이트 데이터 삭제 시 선택값도 초기화되어 분석 저장 동의가 다시 거부된다. 철회는 이후 처리에 적용되며 철회 전에 허용 상태에서 생성되어 이미 전송 대기 중이던 이벤트에는 소급 적용되지 않을 수 있다. 거부하면 분석 쿠키와 식별자 저장은 중단되지만 쿠키 없는 제한 측정값은 전송될 수 있으며 기사 열람 등 기본 서비스는 제한되지 않는다.
 
 ### 정적 export 제약
 없음. 클라이언트 스크립트만 삽입.
 
 ### 구현 방향
 1. **Cloudflare Web Analytics**(쿠키리스·개인정보 친화) 또는 **GA4**. 한국 운영이면 GA4 + (선택) 네이버 애널리틱스.
-2. **삽입**: `next/script`(strategy="afterInteractive")로 layout에. 동의(쿠키배너)는 PIPA 고려.
+2. **삽입**: 공개 페이지 초기 `<head>`에 직접 한 번 설치하고 Consent Mode v2 기본값을 먼저 설정. 동의 선택창과 토큰 경로 edge 제거를 함께 유지.
 3. **GSC/네이버 서치어드바이저**: sitemap·news-sitemap 제출(→ [00-B](00-prerequisites.md)), Core Web Vitals·색인 커버리지 모니터.
 4. **이벤트**: 기사 스크롤뎁스·구독전환·공유 클릭 등 커스텀 이벤트.
 
@@ -29,7 +29,7 @@
 - [ ] 애널리틱스 라이브(실측 페이지뷰)
 - [ ] GSC·네이버 서치어드바이저 연결, sitemap 제출·색인 추적
 - [ ] CWV 대시보드(모바일 LCP/CLS/INP)
-- [x] GA4 분석 쿠키 허용·거부·철회 및 개인정보 고지 처리(Basic Consent)
+- [x] GA4 분석 쿠키 허용·거부·철회 및 개인정보 고지 처리(Advanced Consent)
 
 ### 위험
 - 동의 없는 추적·개인정보 수집은 PIPA 위반 — 쿠키리스 우선 또는 동의배너.

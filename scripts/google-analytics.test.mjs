@@ -88,7 +88,8 @@ test("GA4 configuration is fixed, server-gated after approval, and token paths s
   assert.equal(config.isThirdPartyTokenPath("/article/example/"), false);
 });
 
-test("one global Basic Consent implementation owns the only GA/GTM measurement ID", async () => {
+test("one global Advanced Consent implementation owns the only GA/GTM measurement ID", async () => {
+  const config = await loadAnalyticsConfig();
   const files = await walk(path.join(ROOT, "src"), new Set([".ts", ".tsx", ".js", ".jsx"]));
   const ids = [];
   for (const file of files) {
@@ -100,17 +101,43 @@ test("one global Basic Consent implementation owns the only GA/GTM measurement I
   }
   assert.deepEqual(ids, [{ file: "src/lib/google-analytics.ts", id: EXPECTED_ID }]);
 
+  const layout = await readFile(path.join(ROOT, "src/app/layout.tsx"), "utf8");
+  assert.equal(countMatches(layout, /id=\{GA4_BOOTSTRAP_ID\}/g), 1);
+  assert.equal(countMatches(layout, /id=\{GA4_LOADER_ID\}/g), 1);
+  assert.equal(countMatches(layout, /src=\{GA4_SCRIPT_URL\}/g), 1);
+  assert.ok(
+    layout.indexOf("id={GA4_BOOTSTRAP_ID}") < layout.indexOf("id={GA4_LOADER_ID}"),
+    "consent default must appear before the async loader",
+  );
+
+  const bootstrap = config.GA4_HEAD_BOOTSTRAP;
+  assert.equal(countMatches(bootstrap, /gtag\('consent', 'default'/g), 1);
+  assert.equal(countMatches(bootstrap, /gtag\('config', 'G-R2MDE3WDFY'/g), 1);
+  assert.ok(
+    bootstrap.indexOf("gtag('consent', 'default'") < bootstrap.indexOf("gtag('config'"),
+    "consent default must be queued before config",
+  );
+  for (const consentField of [
+    "ad_storage",
+    "ad_user_data",
+    "ad_personalization",
+    "analytics_storage",
+  ]) {
+    assert.match(bootstrap, new RegExp(`${consentField}: 'denied'`));
+  }
+  assert.match(bootstrap, /send_page_view:\s*false/);
+  assert.match(bootstrap, /allow_google_signals:\s*false/);
+  assert.match(bootstrap, /allow_ad_personalization_signals:\s*false/);
+  assert.match(bootstrap, /modooPageReferrer\s*=\s*document\.referrer/);
+  assert.match(bootstrap, /modooPageReferrer\s*=\s*['"]{2}/);
+  assert.match(bootstrap, /page_referrer:\s*modooPageReferrer/);
+
   const component = await readFile(path.join(ROOT, "src/components/GoogleAnalytics.tsx"), "utf8");
-  assert.equal(countMatches(component, /src=\{GA4_SCRIPT_URL\}/g), 1);
-  assert.equal(countMatches(component, /gtag\('config', '\$\{GA4_MEASUREMENT_ID\}'/g), 1);
-  assert.match(component, /analytics_storage:\s*["']denied["']/);
+  assert.doesNotMatch(component, /next\/script/);
+  assert.doesNotMatch(component, /GA4_SCRIPT_URL/);
   assert.match(component, /analytics_storage:\s*["']granted["']/);
-  assert.match(component, /active\s*&&\s*!blocked\s*&&\s*consent\s*===\s*"granted"/);
-  assert.match(component, /allow_google_signals:\s*false/);
-  assert.match(component, /allow_ad_personalization_signals:\s*false/);
-  assert.match(component, /modooPageReferrer\s*=\s*document\.referrer/);
-  assert.match(component, /modooPageReferrer\s*=\s*['"]{2}/);
-  assert.match(component, /page_referrer:\s*modooPageReferrer/);
+  assert.match(component, /window\.gtag\("event", "page_view"\)/);
+  assert.match(component, /consent === undefined/);
   assert.match(component, /fetch\(GA4_ACTIVATION_STATUS_URL/);
   assert.doesNotMatch(component, /Date\.now\(/, "client clock must not activate GA4");
   assert.match(component, /window\.location\.assign/, "token routes must force a fresh document");
@@ -133,7 +160,6 @@ test("one global Basic Consent implementation owns the only GA/GTM measurement I
     /documentStartedOnTokenPath\.current\s*\|\|\s*isThirdPartyTokenPath\(pathname\)/,
     "a document opened on a token path must remain blocked until unload",
   );
-  const layout = await readFile(path.join(ROOT, "src/app/layout.tsx"), "utf8");
   assert.equal(countMatches(layout, /<ThirdPartyScripts\s*\/>/g), 1);
 
   const tokenMiddleware = await readFile(
@@ -147,6 +173,13 @@ test("one global Basic Consent implementation owns the only GA/GTM measurement I
   assert.match(tokenMiddleware, /headers\.set\(\s*["']Cache-Control["']\s*,\s*["']no-store, no-transform, max-age=0["']/);
   assert.match(tokenMiddleware, /headers\.delete\(\s*["']ETag["']\s*\)/);
   assert.match(tokenMiddleware, /upstreamHeaders\.delete\(name\)/);
+  assert.match(tokenMiddleware, /script#ga4-consent-bootstrap/);
+  assert.match(tokenMiddleware, /script#ga4-loader/);
+  assert.match(tokenMiddleware, /GA4_BOOTSTRAP_FLIGHT_SCRIPT_PATTERN/);
+  assert.match(tokenMiddleware, /GA4_LOADER_FLIGHT_SCRIPT_PATTERN/);
+  assert.match(tokenMiddleware, /GA4_BOOTSTRAP_FLIGHT_TEXT_SCRIPT_PATTERN/);
+  assert.match(tokenMiddleware, /GA4_LOADER_FLIGHT_TEXT_SCRIPT_PATTERN/);
+  assert.match(tokenMiddleware, /normalizedContentType\.startsWith\("text\/plain"\)/);
   for (const requestHeader of [
     "If-Match",
     "If-None-Match",
@@ -170,7 +203,7 @@ test("one global Basic Consent implementation owns the only GA/GTM measurement I
   }
 });
 
-test("CSP and privacy notice cover GA4 while pre-consent export contains no active Google tag", async () => {
+test("CSP, privacy notice, and static output expose one detectable consent-safe Google tag", async () => {
   const headers = await readFile(path.join(ROOT, "public/_headers"), "utf8");
   const reportOnly = parseCspDirectives(headers, "Content-Security-Policy-Report-Only");
   assertCspSources(reportOnly, "script-src", [
@@ -193,6 +226,9 @@ test("CSP and privacy notice cover GA4 while pre-consent export contains no acti
   assert.match(privacy, /분석 쿠키 설정/);
   assert.match(privacy, /1600 Amphitheatre Parkway/);
   assert.match(privacy, /14개월을\s+초과해\s+보유하지\s+않도록/);
+  assert.match(privacy, /Consent Mode v2의 고급 동의 모드/);
+  assert.match(privacy, /쿠키 없는 제한 측정값/);
+  assert.doesNotMatch(privacy, /허용 전이나 거부 후에는 Google로 분석 데이터를 전송하지 않습니다/);
 
   for (const relativePath of [
     "docs/tracking.md",
@@ -209,14 +245,30 @@ test("CSP and privacy notice cover GA4 while pre-consent export contains no acti
   const violations = [];
   for (const file of htmlFiles) {
     const html = await readFile(file, "utf8");
-    if (/<script\b[^>]*src=["'][^"']*googletagmanager\.com\/gtag\/js/i.test(html)) {
-      violations.push(path.relative(ROOT, file));
+    const loaderTags = html.match(/<script\b[^>]*\bid=["']ga4-loader["'][^>]*><\/script>/gi) ?? [];
+    const bootstrapTags = html.match(/<script\b[^>]*\bid=["']ga4-consent-bootstrap["'][^>]*>/gi) ?? [];
+    const bootstrapIndex = html.indexOf('id="ga4-consent-bootstrap"');
+    const loaderIndex = html.indexOf('id="ga4-loader"');
+    if (
+      loaderTags.length !== 1 ||
+      bootstrapTags.length !== 1 ||
+      bootstrapIndex < 0 ||
+      loaderIndex < 0 ||
+      bootstrapIndex >= loaderIndex ||
+      !loaderTags[0].includes(EXPECTED_URL)
+    ) {
+      violations.push({
+        file: path.relative(ROOT, file),
+        loaderCount: loaderTags.length,
+        bootstrapCount: bootstrapTags.length,
+        ordered: bootstrapIndex >= 0 && bootstrapIndex < loaderIndex,
+      });
     }
   }
   assert.deepEqual(
     violations,
     [],
-    `Basic Consent violation: pre-consent Google tag found in ${violations.join(", ")}`,
+    `direct tag invariant failed: ${JSON.stringify(violations.slice(0, 10))}`,
   );
-  console.log(`checked ${htmlFiles.length} exported HTML files: pre-consent Google tag 0`);
+  console.log(`checked ${htmlFiles.length} exported HTML files: one direct Google tag each`);
 });

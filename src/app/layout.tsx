@@ -9,6 +9,12 @@ import { WeatherBackground } from "@/components/WeatherBackground";
 import { BackToTop } from "@/components/BackToTop";
 import { GlassFilters } from "@/components/GlassFilters";
 import { ThirdPartyScripts } from "@/components/ThirdPartyScripts";
+import {
+  GA4_BOOTSTRAP_ID,
+  GA4_HEAD_BOOTSTRAP,
+  GA4_LOADER_ID,
+  GA4_SCRIPT_URL,
+} from "@/lib/google-analytics";
 import { DEFAULT_OG_IMAGE, SITE, SITE_DESCRIPTION } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -103,6 +109,15 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <head>
+        {/* Google tag 직접 설치 + Consent Mode v2(고급). 공개 페이지의 초기 HTML에서
+            설치를 감지할 수 있게 하되 기본 저장 동의는 denied다. 순서가 중요하다:
+            consent default/config를 먼저 큐에 넣은 다음 defer loader를 실행한다.
+            인증 토큰 경로에서는 Pages middleware가 두 태그와 Flight 복제 노드를 제거한다. */}
+        <script
+          id={GA4_BOOTSTRAP_ID}
+          dangerouslySetInnerHTML={{ __html: GA4_HEAD_BOOTSTRAP }}
+        />
+        <script id={GA4_LOADER_ID} defer src={GA4_SCRIPT_URL} />
         {/* 헤드라인 폰트(자체호스팅 MaruBuri) 조기 로드 — 어터폴드 헤드라인 스왑 지연 방지.
             폴백(Noto Serif KR 등)은 웹폰트로 받지 않고 서브셋 밖 글리프만 기기 명조에 맡긴다(globals.css --font-serif). */}
         <link rel="preload" as="font" type="font/woff2" href="/fonts/MaruBuri-Bold.subset.woff2" crossOrigin="anonymous" />

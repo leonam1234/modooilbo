@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Script from "next/script";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   GA4_ACTIVATION_AT,
   GA4_ACTIVATION_STATUS_URL,
@@ -10,8 +9,6 @@ import {
   GA4_CONSENT_OPEN_EVENT,
   GA4_CONSENT_STORAGE_KEY,
   GA4_MEASUREMENT_ID,
-  GA4_SCRIPT_URL,
-  THIRD_PARTY_TOKEN_PATHS,
   isThirdPartyTokenPath,
   type AnalyticsConsent,
 } from "@/lib/google-analytics";
@@ -97,51 +94,18 @@ function eraseGoogleAnalyticsCookies() {
   }
 }
 
-const bootstrap = `
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-window.gtag = window.gtag || gtag;
-gtag('consent', 'default', {
-  ad_storage: 'denied',
-  ad_user_data: 'denied',
-  ad_personalization: 'denied',
-  analytics_storage: 'denied'
-});
-gtag('consent', 'update', {
-  ad_storage: 'denied',
-  ad_user_data: 'denied',
-  ad_personalization: 'denied',
-  analytics_storage: 'granted'
-});
-gtag('js', new Date());
-var modooPageReferrer = document.referrer;
-try {
-  var modooReferrerUrl = new URL(modooPageReferrer);
-  var modooTokenPaths = ${JSON.stringify(THIRD_PARTY_TOKEN_PATHS)};
-  if (modooReferrerUrl.origin === location.origin && modooTokenPaths.some(function(path) {
-    return modooReferrerUrl.pathname === path || modooReferrerUrl.pathname.indexOf(path + '/') === 0;
-  })) {
-    modooPageReferrer = '';
-  }
-} catch (error) {}
-gtag('config', '${GA4_MEASUREMENT_ID}', {
-  allow_google_signals: false,
-  allow_ad_personalization_signals: false,
-  page_referrer: modooPageReferrer
-});
-`;
-
 /**
- * Google Analytics 4 — Basic Consent Mode.
+ * Google Analytics 4 — Advanced Consent Mode의 선택 UI와 상태 동기화.
  *
- * 방침 시행 시각 전, 동의 전, 거부 후에는 gtag.js 자체를 렌더하지 않는다. 따라서
- * Advanced Consent Mode의 cookieless ping도 전송되지 않는다. 인증 토큰 경로에서는
- * blocked 상태로 유지해 저장된 허용값이 있어도 태그를 로드하지 않는다.
+ * 공개 페이지의 Google tag는 RootLayout head에 항상 한 번만 설치되고 기본 동의는
+ * denied다. 허용 전·거부 후에는 분석 쿠키 없이 제한 측정만 가능하며, 허용 시에만
+ * analytics_storage를 granted로 갱신한다. 인증 토큰 경로는 edge에서 태그 자체를 제거한다.
  */
 export function GoogleAnalytics({ blocked = false }: { blocked?: boolean }) {
   const [active, setActive] = useState(false);
-  const [consent, setConsent] = useState<AnalyticsConsent | null>(null);
+  const [consent, setConsent] = useState<AnalyticsConsent | null | undefined>(undefined);
   const [showChoice, setShowChoice] = useState(false);
+  const initialPageViewSent = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -181,7 +145,8 @@ export function GoogleAnalytics({ blocked = false }: { blocked?: boolean }) {
         stored === "granted" || stored === "denied" ? stored : null;
       setConsent(next);
       setShowChoice(next === null);
-      window[`ga-disable-${GA4_MEASUREMENT_ID}`] = next !== "granted";
+      // 공개 페이지의 Advanced Consent Mode는 denied 상태에서도 tag를 유지한다.
+      window[`ga-disable-${GA4_MEASUREMENT_ID}`] = blocked || !enabled;
     };
 
     void syncActivation();
@@ -189,7 +154,7 @@ export function GoogleAnalytics({ blocked = false }: { blocked?: boolean }) {
       cancelled = true;
       if (retryTimer !== undefined) window.clearTimeout(retryTimer);
     };
-  }, []);
+  }, [blocked]);
 
   useEffect(() => {
     // A document that originally loaded a reset/verification URL must never later enable
@@ -270,12 +235,16 @@ export function GoogleAnalytics({ blocked = false }: { blocked?: boolean }) {
   }, []);
 
   useEffect(() => {
-    const enabled = active && !blocked && consent === "granted";
-    window[`ga-disable-${GA4_MEASUREMENT_ID}`] = !enabled;
-    if (!window.gtag) return;
-    window.gtag("consent", "update", enabled
+    const analyticsGranted = active && !blocked && consent === "granted";
+    window[`ga-disable-${GA4_MEASUREMENT_ID}`] = blocked || !active;
+    if (!window.gtag || !active || blocked || consent === undefined) return;
+    window.gtag("consent", "update", analyticsGranted
       ? { ...CONSENT_DENIED, analytics_storage: "granted" }
       : CONSENT_DENIED);
+    if (!initialPageViewSent.current) {
+      window.gtag("event", "page_view");
+      initialPageViewSent.current = true;
+    }
   }, [active, blocked, consent]);
 
   useEffect(() => {
@@ -293,37 +262,35 @@ export function GoogleAnalytics({ blocked = false }: { blocked?: boolean }) {
     } catch {}
     setConsent(next);
     setShowChoice(false);
-    window[`ga-disable-${GA4_MEASUREMENT_ID}`] = next !== "granted";
 
     if (next === "denied") {
+      if (hadGrantedConsent) {
+        // 기존 granted 이벤트가 철회 명령 처리보다 먼저 flush되지 않도록 가장 먼저
+        // 전송 차단 플래그를 세운다. 이후 denied update와 쿠키 삭제를 적용한다.
+        window[`ga-disable-${GA4_MEASUREMENT_ID}`] = true;
+      }
+      // 먼저 현재 문서의 동의를 즉시 내린 뒤 쿠키를 지운다. 철회 직후 reload까지의
+      // 짧은 구간에도 기존 granted 상태로 이벤트가 나가지 않게 disable을 함께 건다.
+      window.gtag?.("consent", "update", CONSENT_DENIED);
       eraseGoogleAnalyticsCookies();
-      // 이미 로드된 tag에 consent update를 보내면 재로딩 직전 지연 이벤트가 전송될 수 있다.
-      // 철회값과 차단 플래그를 먼저 저장한 뒤 새 문서로 시작해 tag 자체를 제거한다.
+      // 철회값과 쿠키 제거를 먼저 반영한 뒤 새 문서에서 denied 기본값으로 시작한다.
       if (hadGrantedConsent) {
         window.location.reload();
         return;
       }
-      window.gtag?.("consent", "update", CONSENT_DENIED);
+      window[`ga-disable-${GA4_MEASUREMENT_ID}`] = blocked || !active;
+      return;
     }
-  };
 
-  const shouldLoad = active && !blocked && consent === "granted";
+    window[`ga-disable-${GA4_MEASUREMENT_ID}`] = blocked || !active;
+    window.gtag?.("consent", "update", {
+      ...CONSENT_DENIED,
+      analytics_storage: "granted",
+    });
+  };
 
   return (
     <>
-      {shouldLoad && (
-        <>
-          <Script id="ga4-consent-bootstrap" strategy="afterInteractive">
-            {bootstrap}
-          </Script>
-          <Script
-            id="ga4-loader"
-            src={GA4_SCRIPT_URL}
-            strategy="afterInteractive"
-          />
-        </>
-      )}
-
       {active && !blocked && showChoice && (
         <aside
           aria-label="분석 쿠키 선택"
@@ -331,10 +298,11 @@ export function GoogleAnalytics({ blocked = false }: { blocked?: boolean }) {
           className="no-print fixed inset-x-3 bottom-3 z-[120] mx-auto max-w-3xl rounded-xl border border-ink-200 bg-white/95 p-4 shadow-2xl backdrop-blur dark:border-ink-700 dark:bg-ink-950/95 sm:flex sm:items-center sm:gap-5 sm:p-5"
         >
           <p className="text-sm leading-relaxed text-ink-700 dark:text-ink-200 sm:flex-1">
-            국외이전·분석을 허용하면 방문 URL·유입 경로·브라우저/기기 정보와 IP·쿠키
+            분석 저장·쿠키를 허용하면 방문 URL·유입 경로·브라우저/기기 정보와 IP·쿠키
             식별자가 이용 중 네트워크로 미국 Google LLC에 수시 이전되어 통계·콘텐츠 개선에
-            이용되고, 사용자·이벤트 단위 데이터는 14개월 이내 보유됩니다. 거부해도 기사 열람
-            등 기본 서비스에는 제한이 없으며, 허용 전에는 Google tag를 불러오지 않습니다.{" "}
+            이용되고, 사용자·이벤트 단위 데이터는 14개월 이내 보유됩니다. 허용 전·거부 후에도
+            Google tag는 저장 동의가 거부된 상태로 로드되어 쿠키 없는 제한 측정값이 전송될 수
+            있습니다. 거부해도 기사 열람 등 기본 서비스에는 제한이 없습니다.{" "}
             <Link href="/privacy/#analytics-cookies" className="font-medium underline underline-offset-2">
               자세히 보기
             </Link>
@@ -352,7 +320,7 @@ export function GoogleAnalytics({ blocked = false }: { blocked?: boolean }) {
               onClick={() => choose("granted")}
               className="rounded-lg bg-signal-600 px-4 py-2 text-sm font-semibold text-white hover:bg-signal-700"
             >
-              국외이전·분석 허용
+              분석 저장·쿠키 허용
             </button>
           </div>
         </aside>

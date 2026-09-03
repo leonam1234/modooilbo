@@ -2,6 +2,9 @@ const ADSENSE_SCRIPT_SELECTOR =
   'script[src^="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]';
 const CLOUDFLARE_BEACON_SELECTOR =
   'script[src="https://static.cloudflareinsights.com/beacon.min.js"]';
+const GA4_BOOTSTRAP_SELECTOR = "script#ga4-consent-bootstrap";
+const GA4_LOADER_SELECTOR =
+  'script#ga4-loader[src^="https://www.googletagmanager.com/gtag/js?id="]';
 
 // Next.js static export serializes head elements into inline Flight data. Removing only
 // the rendered tag is insufficient because hydration recreates it. Keep each match
@@ -10,6 +13,30 @@ const ADSENSE_FLIGHT_SCRIPT_PATTERN =
   /\[\\"\$\\",\\"script\\",null,\{(?:(?!\}\])[\s\S])*?\\"src\\":\\"https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js(?:\?[^\\"]*)?\\"(?:(?!\}\])[\s\S])*?\}\]/g;
 const CLOUDFLARE_BEACON_FLIGHT_SCRIPT_PATTERN =
   /\[\\"\$\\",\\"script\\",null,\{(?:(?!\}\])[\s\S])*?\\"src\\":\\"https:\/\/static\.cloudflareinsights\.com\/beacon\.min\.js\\"(?:(?!\}\])[\s\S])*?\}\]/g;
+const GA4_BOOTSTRAP_FLIGHT_SCRIPT_PATTERN =
+  /\[\\"\$\\",\\"script\\",null,\{(?:(?!\}\])[\s\S])*?\\"id\\":\\"ga4-consent-bootstrap\\"(?:(?!\}\])[\s\S])*?\}\]/g;
+const GA4_LOADER_FLIGHT_SCRIPT_PATTERN =
+  /\[\\"\$\\",\\"script\\",null,\{(?:(?!\}\])[\s\S])*?\\"id\\":\\"ga4-loader\\"(?:(?!\}\])[\s\S])*?\}\]/g;
+const ADSENSE_FLIGHT_TEXT_SCRIPT_PATTERN =
+  /\["\$","script",null,\{(?:(?!\}\])[\s\S])*?"src":"https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js(?:\?[^\"]*)?"(?:(?!\}\])[\s\S])*?\}\]/g;
+const CLOUDFLARE_BEACON_FLIGHT_TEXT_SCRIPT_PATTERN =
+  /\["\$","script",null,\{(?:(?!\}\])[\s\S])*?"src":"https:\/\/static\.cloudflareinsights\.com\/beacon\.min\.js"(?:(?!\}\])[\s\S])*?\}\]/g;
+const GA4_BOOTSTRAP_FLIGHT_TEXT_SCRIPT_PATTERN =
+  /\["\$","script",null,\{(?:(?!\}\])[\s\S])*?"id":"ga4-consent-bootstrap"(?:(?!\}\])[\s\S])*?\}\]/g;
+const GA4_LOADER_FLIGHT_TEXT_SCRIPT_PATTERN =
+  /\["\$","script",null,\{(?:(?!\}\])[\s\S])*?"id":"ga4-loader"(?:(?!\}\])[\s\S])*?\}\]/g;
+
+function sanitizeFlightData(source: string): string {
+  return source
+    .replace(ADSENSE_FLIGHT_SCRIPT_PATTERN, "null")
+    .replace(CLOUDFLARE_BEACON_FLIGHT_SCRIPT_PATTERN, "null")
+    .replace(GA4_BOOTSTRAP_FLIGHT_SCRIPT_PATTERN, "null")
+    .replace(GA4_LOADER_FLIGHT_SCRIPT_PATTERN, "null")
+    .replace(ADSENSE_FLIGHT_TEXT_SCRIPT_PATTERN, "null")
+    .replace(CLOUDFLARE_BEACON_FLIGHT_TEXT_SCRIPT_PATTERN, "null")
+    .replace(GA4_BOOTSTRAP_FLIGHT_TEXT_SCRIPT_PATTERN, "null")
+    .replace(GA4_LOADER_FLIGHT_TEXT_SCRIPT_PATTERN, "null");
+}
 
 const removeScript: HTMLRewriterElementContentHandlers = {
   element(element) {
@@ -26,9 +53,7 @@ function createFlightDataHandler(): HTMLRewriterElementContentHandlers {
       chunk.remove();
 
       if (chunk.lastInTextNode) {
-        const sanitized = bufferedText
-          .replace(ADSENSE_FLIGHT_SCRIPT_PATTERN, "null")
-          .replace(CLOUDFLARE_BEACON_FLIGHT_SCRIPT_PATTERN, "null");
+        const sanitized = sanitizeFlightData(bufferedText);
         chunk.after(sanitized, { html: true });
         bufferedText = "";
       }
@@ -73,13 +98,28 @@ export const stripTokenPageThirdPartyScripts: PagesFunction = async (context) =>
     headers,
   });
 
-  if (!contentType.toLowerCase().startsWith("text/html")) {
+  const normalizedContentType = contentType.toLowerCase();
+  if (
+    normalizedContentType.startsWith("text/plain") ||
+    normalizedContentType.includes("text/x-component")
+  ) {
+    const sanitizedBody = sanitizeFlightData(await protectedResponse.text());
+    return new Response(sanitizedBody, {
+      status: protectedResponse.status,
+      statusText: protectedResponse.statusText,
+      headers,
+    });
+  }
+
+  if (!normalizedContentType.startsWith("text/html")) {
     return protectedResponse;
   }
 
   return new HTMLRewriter()
     .on(ADSENSE_SCRIPT_SELECTOR, removeScript)
     .on(CLOUDFLARE_BEACON_SELECTOR, removeScript)
+    .on(GA4_BOOTSTRAP_SELECTOR, removeScript)
+    .on(GA4_LOADER_SELECTOR, removeScript)
     .on("script:not([src])", createFlightDataHandler())
     .transform(protectedResponse);
 };
