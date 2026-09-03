@@ -3,12 +3,12 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { AdSenseLoader } from "@/components/AdSenseLoader";
-import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { isThirdPartyTokenPath } from "@/lib/google-analytics";
 
 /**
- * 이 컴포넌트가 관리하는 서드파티 도구(Clarity · AdSense 보조 로더 · GA4)를
- * **인증 착지 경로에서는 로드하지 않는다.**
+ * 이 컴포넌트가 관리하는 서드파티 도구(Clarity · AdSense 보조 로더)를
+ * **인증 착지 경로에서는 로드하지 않는다.** GA4 는 여기서 다루지 않는다 — RootLayout <head> 의
+ * 직접 설치 태그가 전부이고(동의 UI 없음), 토큰 경로 차단은 middleware + 부트스트랩 가드가 한다.
  *
  * [왜] 비밀번호 재설정·가입확인·이메일 인증 토큰이 URL 쿼리스트링에 실려 온다:
  *   /reset/?token=<64hex>          1시간 유효 · 쓰면 비밀번호 교체 + 자동 로그인
@@ -55,10 +55,6 @@ export function ThirdPartyScripts() {
     document.head.appendChild(t);
   }, [blocked]);
 
-  return (
-    <>
-      <GoogleAnalytics blocked={blocked} />
-      {!blocked && <AdSenseLoader />}
-    </>
-  );
+  if (blocked) return null;
+  return <AdSenseLoader />;
 }

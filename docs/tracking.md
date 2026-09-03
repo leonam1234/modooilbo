@@ -15,7 +15,7 @@
 | 사이트 구조 | Next.js **정적 export** + Cloudflare Pages. D1/KV 바인딩은 있으나 회원·뉴스레터·결제 기능은 데모 | 제품 지표는 실제 저장 여부를 따로 확인 |
 | Cloudflare 트래픽 | Zone Analytics GraphQL 어댑터가 Wrangler OAuth를 자동 재사용. 별도 beacon 없이 edge 요청·HTML 페이지뷰·visits·uniques 집계 | **실집계 가동** |
 | Web Analytics(beacon) | 선택 기능. `NEXT_PUBLIC_CF_BEACON_TOKEN`이 있으면 RUM을 삽입하며, 없으면 Zone Analytics를 사용 | AI referrer host까지 보려면 RUM 연결 권장 |
-| Google Analytics 4 | 2026-09-03 09:30 KST부터 `G-R2MDE3WDFY`를 공개 페이지 `<head>`에 직접 설치하고 Consent Mode v2 고급 모드 적용. 기본 분석 저장은 거부, 허용 시에만 분석 쿠키 사용 | **태그 활성화 완료. GA Realtime 수신은 별도 확인** |
+| Google Analytics 4 | **2026-09-03부터 가동.** 측정 ID `G-R2MDE3WDFY`(`src/lib/google-analytics.ts`). 구글 표준 스니펫을 모든 공개 페이지 `<head>` 첫 자리에 **조건 없이** 삽입(부트스트랩 인라인 → async 로더) — 구글 "태그 감지"가 초기 HTML·로드 직후 히트를 보므로 동의 게이트·시간 게이트·지연 주입은 금지(9/3 실측: 동의 후에만 page_view 를 보내는 구성은 배포 뒤에도 "감지되지 않았습니다"). 처리방침 고지 방식(/privacy §5·6·8), 동의창 없음. 인증 토큰 경로 4종은 middleware 가 태그를 제거하고 부트스트랩도 config 를 건너뛴다 | **실집계 가동** — 페이지뷰·세션·유입경로·referrer host는 GA4 보고서. edge 기준 수치는 CF와 병행(정의가 달라 서로 대체하지 않음) |
 | 검색·AI 가시성 | `scripts/search-visibility-report.mjs`: 라이브 정책, CF 트래픽, AI User-Agent, AI referrer, GSC, Bing을 한 리포트로 집계 | CF·정책은 즉시, GSC·Bing·referrer는 아래 권한 필요 |
 | Google Search Console | 읽기 전용 API 어댑터 구현. 현재 실행 계정에는 `modooilbo.com` 속성 권한/OAuth 없음 | 권한 부여 후 실집계 |
 | Bing Webmaster | API 키 및 사용자 지정 신규 REST URL 어댑터 구현. 현재 인증 없음 | Bing 로그인·API 인증 후 실집계 |
@@ -66,10 +66,11 @@
 - 리포트에는 **집계 수치만** 출력한다. 이메일·이름·전화·결제정보·토큰·chat id·고객 상세는 **절대 출력 금지**.
 - API 키/토큰은 코드·로그·리포트에 평문 저장 금지. 환경변수로만 주입한다(아래).
 - 리포트 산출물(파일)에도 PII가 들어가지 않도록, 소스 쿼리는 **COUNT/집계만** 수행한다.
-- GA4는 `/reset`, `/verify-signup`, `/verify-email`, `/forgot`에서 항상 제외한다. 공개 경로에서는 Google tag를 한 번 로드하되 Consent Mode v2의 `ad_storage`·`ad_user_data`·`ad_personalization`·`analytics_storage` 기본값을 `denied`로 둔다. 허용 전·거부 후에는 분석 쿠키 없이 동의 상태와 제한 측정값이 전송될 수 있으며, 광고 신호·광고 개인화 신호는 보내지 않는다. 네 토큰 경로에서는 Cloudflare Pages middleware가 정적 head와 Next Flight 데이터의 GA4·AdSense 및 조건부 Cloudflare Web Analytics 태그를 제거하고 `Referrer-Policy: no-referrer`를 강제한다. 응답의 `Cache-Control: no-store, no-transform, max-age=0`은 캐시를 금지하는 동시에 Cloudflare가 middleware 처리 뒤 Web Analytics beacon이나 JavaScript Detection 스크립트를 다시 주입하지 못하게 한다. 공개↔토큰 경계 이동은 새 문서로 전환하며, 토큰 URL에서 시작한 문서는 전환 직전의 렌더 구간까지 수명 전체를 서드파티 차단 상태로 유지한다.
-- GA4 국외 이전 수령자는 **Google LLC**, 이전 국가는 **미국**, 주소는 **1600 Amphitheatre Parkway Mountain View CA 94043 USA**, 공식 개인정보 문의 URL은 <https://support.google.com/policies/troubleshooter/7575787>이다. 허용 전·거부 후에는 접속 IP 주소와 동의 상태·접속 시각·페이지 및 기기 관련 쿠키 없는 제한 측정값이, 분석 허용 후에는 쿠키·클라이언트 식별자와 페이지 이용 이벤트가 방문·이용 통계 분석 및 콘텐츠 개선 목적으로 이용자의 기기에서 Google 서버로 인터넷 네트워크를 통해 수시 자동 전송될 수 있다.
-- Google Analytics 사용자·이벤트 단위 데이터는 **회사 정책상 수집일로부터 14개월 이내**만 보유한다. 현재 실행 환경은 Google Analytics 관리자에 로그인되지 않아 속성 화면의 2개월/14개월 설정값을 확인하지 못했지만, 이를 미확정 보유기간으로 두지 않는다. 회사는 실제 속성 설정과 삭제 절차를 관리하여 14개월을 초과해 보유하지 않도록 한다.
-- 이용자는 최초 분석 쿠키 선택창에서 거부하거나 페이지 하단의 **분석 쿠키 설정**에서 동의를 철회할 수 있고, 브라우저에서 이 사이트의 쿠키와 사이트 데이터(로컬 저장소 포함)를 삭제하거나 개인정보보호책임자에게 요청할 수도 있다. 사이트 데이터 삭제 시 선택값도 초기화되어 분석 저장 동의가 다시 거부된다. 철회는 이후 처리에 적용되며 철회 전에 허용 상태에서 생성되어 이미 전송 대기 중이던 이벤트에는 소급 적용되지 않을 수 있다. 거부·철회 시 분석 쿠키와 식별자 저장은 중단되지만 쿠키 없는 제한 측정값은 전송될 수 있으며, 기사 열람 등 기본 서비스는 제한되지 않는다.
+- GA4는 `/reset`, `/verify-signup`, `/verify-email`, `/forgot`에서 항상 제외한다. 두 겹이다: (1) Cloudflare Pages middleware(`functions/_lib/strip-token-third-party-scripts.ts`)가 정적 head와 Next Flight 데이터의 GA4·AdSense 및 조건부 Cloudflare Web Analytics 태그를 제거하고 `Referrer-Policy: no-referrer`를 강제한다. 응답의 `Cache-Control: no-store, no-transform, max-age=0`은 캐시를 금지하는 동시에 Cloudflare가 middleware 처리 뒤 Web Analytics beacon이나 JavaScript Detection 스크립트를 다시 주입하지 못하게 한다. 공개↔토큰 경계 이동은 새 문서로 전환하며, 토큰 URL에서 시작한 문서는 전환 직전의 렌더 구간까지 수명 전체를 서드파티 차단 상태로 유지한다. (2) 부트스트랩 스니펫도 같은 경로 목록에서 `gtag('config')`를 건너뛰고 `ga-disable`을 켠다 — middleware가 없는 로컬 정적 미리보기와 회귀 시의 안전판. 토큰 경로에서 넘어온 같은 오리진 referrer도 비운다.
+- 공개 경로에서는 구글 표준 스니펫대로 로드 즉시 page_view가 나간다(동의창·기본 거부 설정 없음). 광고 신호(`allow_google_signals`)·광고 개인화 신호는 끈다 — GA는 방문 통계 용도이고 광고는 AdSense 태그가 별도다. 한국 개인정보보호법상 분석 쿠키는 처리방침 고지로 충분하다(/privacy §1·§5·§6·§8에 항목·위탁·국외이전·쿠키·거부 방법 고지).
+- GA4 국외 이전 수령자는 **Google LLC**, 이전 국가는 **미국**, 주소는 **1600 Amphitheatre Parkway Mountain View CA 94043 USA**, 공식 개인정보 문의 URL은 <https://support.google.com/policies/troubleshooter/7575787>이다. 접속 IP 주소·쿠키·클라이언트 식별자·방문 페이지 URL·제목·유입 경로·접속 시각·기기 정보·페이지 이용 이벤트가 방문·이용 통계 분석 및 콘텐츠 개선 목적으로 이용자의 기기에서 Google 서버로 수시 자동 전송된다.
+- Google Analytics 이용자·이벤트 단위 데이터 보유 기간은 GA4 속성 설정값(2개월 또는 14개월)을 따르며 처리방침에는 **최대 14개월**로 고지했다. 현재 실행 환경은 GA 관리자에 로그인되지 않아 속성의 실제 설정값을 확인하지 못했다 — 오너가 GA 관리 → 데이터 설정 → 데이터 보관에서 확인·조정할 것.
+- 이용자의 거부 수단은 브라우저의 쿠키 차단·삭제, Google Analytics 차단 브라우저 부가기능(<https://tools.google.com/dlpage/gaoptout>), 개인정보보호책임자 요청이다. 거부해도 기사 열람 등 기본 서비스는 제한되지 않는다.
 
 ## 4. 검색·AI 가시성 정의
 

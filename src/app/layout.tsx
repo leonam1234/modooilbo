@@ -110,15 +110,19 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <head>
-        {/* Google tag 직접 설치 + Consent Mode v2(고급). 공개 페이지의 초기 HTML에서
-            설치를 감지할 수 있게 하되 기본 저장 동의는 denied다. 순서가 중요하다:
-            consent default/config를 먼저 큐에 넣은 다음 defer loader를 실행한다.
-            인증 토큰 경로에서는 Pages middleware가 두 태그와 Flight 복제 노드를 제거한다. */}
+        {/* Google 태그(gtag.js) — GA4(측정 ID 는 lib/google-analytics.ts 한 곳). 구글 안내대로 <head> 첫 자리에 **조건 없이**,
+            표준 스니펫 그대로(부트스트랩 인라인 → async 로더). 순서: dataLayer/gtag 정의가 먼저.
+            ⚠️ 동의 게이트·시간 게이트·지연 주입(Next 의 <Script afterInteractive> 포함)으로 바꾸지 말 것:
+               2026-09-03 실측 — 동의 후에만 page_view 를 보내는 Consent Mode 구성은 배포 뒤에도
+               구글 "태그 감지"가 "감지되지 않았습니다"였다. 표준 스니펫은 로드 즉시 히트가 난다.
+               한국 개인정보보호법상 분석 쿠키는 처리방침 고지로 충분하다(/privacy §5·§6·§8).
+            인증 토큰 경로 4종은 Pages middleware 가 두 태그와 Flight 복제 노드를 제거하고,
+            부트스트랩도 같은 경로에서 config 를 건너뛴다(lib/google-analytics.ts). 기준: docs/tracking.md */}
         <script
           id={GA4_BOOTSTRAP_ID}
           dangerouslySetInnerHTML={{ __html: GA4_HEAD_BOOTSTRAP }}
         />
-        <script id={GA4_LOADER_ID} defer src={GA4_SCRIPT_URL} />
+        <script id={GA4_LOADER_ID} async src={GA4_SCRIPT_URL} />
         {/* 헤드라인 폰트(자체호스팅 MaruBuri) 조기 로드 — 어터폴드 헤드라인 스왑 지연 방지.
             폴백(Noto Serif KR 등)은 웹폰트로 받지 않고 서브셋 밖 글리프만 기기 명조에 맡긴다(globals.css --font-serif). */}
         <link rel="preload" as="font" type="font/woff2" href="/fonts/MaruBuri-Bold.subset.woff2" crossOrigin="anonymous" />

@@ -25,7 +25,6 @@
     "test:email-obfuscation": "node --test scripts/email-obfuscation.test.mjs",
     "test:seo": "node --test scripts/seo-regression.test.mjs",
     "test:analytics": "node --test scripts/google-analytics.test.mjs",
-    "test:analytics:browser": "node scripts/google-analytics.browser.mjs",
     "check:preview-assets": "node scripts/check-preview-assets.mjs",
     "test:preview-assets": "node --test scripts/check-preview-assets.test.mjs",
     "fetch:stock": "node scripts/fetch-stock.mjs",

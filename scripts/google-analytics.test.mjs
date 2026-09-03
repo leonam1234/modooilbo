@@ -1,4 +1,15 @@
 #!/usr/bin/env node
+// GA4 직접 설치 불변식 — `npm run build` 의 postbuild 에서 실행된다.
+//
+// 지키는 것:
+//   1) 측정 ID 는 src/lib/google-analytics.ts 한 곳에만 있다.
+//   2) RootLayout <head> 에 부트스트랩 인라인과 async 로더가 각각 정확히 한 번 들어간다
+//      (구글 "태그 감지"는 초기 HTML 을 본다 — 동의 게이트·지연 주입 금지).
+//   3) 부트스트랩은 구글 표준 스니펫과 같이 로드 즉시 page_view 를 보낸다(consent default 없음,
+//      send_page_view:false 없음). 토큰 경로에서는 config 를 건너뛴다.
+//   4) 인증 토큰 경로 4종의 Pages middleware 가 두 태그와 Flight 복제 노드를 제거한다.
+//   5) CSP Report-Only·처리방침·운영 문서가 고지 방식(동의창 없음)과 일치한다.
+//   6) 빌드 산출물 전 HTML 에 로더(async)·부트스트랩이 각각 정확히 한 번 있다(순서는 React 가 정한다).
 
 import assert from "node:assert/strict";
 import { readdir, readFile } from "node:fs/promises";
@@ -67,29 +78,61 @@ function assertCspSources(directives, directive, expectedSources) {
   }
 }
 
-test("GA4 configuration is fixed, server-gated after approval, and token paths stay blocked", async () => {
+/** 부트스트랩 스니펫을 가짜 window 에서 실행해 실제로 큐에 무엇이 쌓이는지 본다. */
+function runBootstrap(bootstrap, { pathname, referrer, origin = "https://modooilbo.com" }) {
+  const win = {};
+  win.window = win;
+  win.location = { pathname, origin };
+  win.document = { referrer };
+  win.URL = URL;
+  vm.runInNewContext(bootstrap, win);
+  return win;
+}
+
+test("GA4 config is fixed, sends page_view like the stock snippet, and skips token paths", async () => {
   const config = await loadAnalyticsConfig();
   assert.equal(config.GA4_MEASUREMENT_ID, EXPECTED_ID);
   assert.equal(config.GA4_SCRIPT_URL, EXPECTED_URL);
-  assert.equal(config.GA4_ACTIVATION_AT, "2026-09-03T09:30:00+09:00");
-  assert.equal(config.GA4_ACTIVATION_STATUS_URL, "/api/analytics-status");
-  assert.equal(config.isGa4ActiveAt(Date.parse("2026-09-03T09:29:59+09:00")), false);
-  assert.equal(config.isGa4ActiveAt(Date.parse("2026-09-03T09:30:00+09:00")), true);
+  assert.equal(config.GA4_BOOTSTRAP_ID, "ga4-consent-bootstrap");
+  assert.equal(config.GA4_LOADER_ID, "ga4-loader");
+  assert.equal(config.GA4_ACTIVATION_AT, undefined, "no time gate");
+  assert.equal(config.GA4_CONSENT_STORAGE_KEY, undefined, "no consent storage");
 
-  for (const pathname of [
-    "/reset",
-    "/reset/",
-    "/verify-signup/",
-    "/verify-email/",
-    "/forgot/",
-  ]) {
+  for (const pathname of ["/reset", "/reset/", "/verify-signup/", "/verify-email/", "/forgot/"]) {
     assert.equal(config.isThirdPartyTokenPath(pathname), true, pathname);
   }
   assert.equal(config.isThirdPartyTokenPath("/article/example/"), false);
+
+  const bootstrap = config.GA4_HEAD_BOOTSTRAP;
+  assert.equal(countMatches(bootstrap, /gtag\('config', 'G-R2MDE3WDFY'/g), 1);
+  assert.doesNotMatch(bootstrap, /gtag\('consent'/, "no consent default — stock snippet semantics");
+  assert.doesNotMatch(bootstrap, /send_page_view/, "page_view must go out on load");
+  assert.match(bootstrap, /allow_google_signals:\s*false/);
+  assert.match(bootstrap, /allow_ad_personalization_signals:\s*false/);
+
+  // 공개 페이지: js + config 가 큐에 쌓이고 ga-disable 은 꺼져 있다.
+  // (vm 컨텍스트의 배열은 바깥 realm 과 프로토타입이 달라 strict deepEqual 이 실패한다 —
+  //  Array.from 으로 바깥 realm 배열로 옮겨 비교한다.)
+  const pub = runBootstrap(bootstrap, { pathname: "/economy/", referrer: "https://www.google.com/" });
+  const pubCalls = Array.from(pub.dataLayer, (args) => Array.from(args)[0]);
+  assert.deepEqual(pubCalls, ["js", "config"]);
+  assert.equal(pub[`ga-disable-${EXPECTED_ID}`], undefined);
+  assert.equal(Array.from(pub.dataLayer[1])[2].page_referrer, "https://www.google.com/");
+
+  // 토큰 경로: config 없음 + ga-disable.
+  const tok = runBootstrap(bootstrap, { pathname: "/reset/", referrer: "" });
+  assert.equal(tok.dataLayer.length, 0);
+  assert.equal(tok[`ga-disable-${EXPECTED_ID}`], true);
+
+  // 토큰 경로에서 넘어온 같은 오리진 referrer 는 비운다(그 URL 에 토큰이 있다).
+  const fromToken = runBootstrap(bootstrap, {
+    pathname: "/",
+    referrer: "https://modooilbo.com/reset/?token=abc",
+  });
+  assert.equal(Array.from(fromToken.dataLayer[1])[2].page_referrer, "");
 });
 
-test("one global Advanced Consent implementation owns the only GA/GTM measurement ID", async () => {
-  const config = await loadAnalyticsConfig();
+test("one direct Google tag owns the only GA/GTM measurement ID; consent UI is gone", async () => {
   const files = await walk(path.join(ROOT, "src"), new Set([".ts", ".tsx", ".js", ".jsx"]));
   const ids = [];
   for (const file of files) {
@@ -105,62 +148,33 @@ test("one global Advanced Consent implementation owns the only GA/GTM measuremen
   assert.equal(countMatches(layout, /id=\{GA4_BOOTSTRAP_ID\}/g), 1);
   assert.equal(countMatches(layout, /id=\{GA4_LOADER_ID\}/g), 1);
   assert.equal(countMatches(layout, /src=\{GA4_SCRIPT_URL\}/g), 1);
+  assert.match(layout, /<script id=\{GA4_LOADER_ID\} async src=\{GA4_SCRIPT_URL\} \/>/, "loader must be async like the stock snippet");
   assert.ok(
     layout.indexOf("id={GA4_BOOTSTRAP_ID}") < layout.indexOf("id={GA4_LOADER_ID}"),
-    "consent default must appear before the async loader",
+    "bootstrap (dataLayer/gtag definition) must precede the loader",
   );
+  // 애드센스는 hydration #418 회피용으로 next/script 를 쓴다(b81d94f) — GA 로더만 raw <script> 여야 한다.
+  assert.doesNotMatch(layout, /<Script[^>]*GA4_SCRIPT_URL/, "GA loader must not go through next/script");
+  assert.equal(countMatches(layout, /<ThirdPartyScripts\s*\/>/g), 1);
 
-  const bootstrap = config.GA4_HEAD_BOOTSTRAP;
-  assert.equal(countMatches(bootstrap, /gtag\('consent', 'default'/g), 1);
-  assert.equal(countMatches(bootstrap, /gtag\('config', 'G-R2MDE3WDFY'/g), 1);
-  assert.ok(
-    bootstrap.indexOf("gtag('consent', 'default'") < bootstrap.indexOf("gtag('config'"),
-    "consent default must be queued before config",
-  );
-  for (const consentField of [
-    "ad_storage",
-    "ad_user_data",
-    "ad_personalization",
-    "analytics_storage",
+  for (const removed of [
+    "src/components/GoogleAnalytics.tsx",
+    "src/components/AnalyticsConsentSettings.tsx",
+    "functions/api/analytics-status.ts",
+    "scripts/google-analytics.browser.mjs",
   ]) {
-    assert.match(bootstrap, new RegExp(`${consentField}: 'denied'`));
+    assert.equal(existsSync(path.join(ROOT, removed)), false, `${removed} must stay removed`);
   }
-  assert.match(bootstrap, /send_page_view:\s*false/);
-  assert.match(bootstrap, /allow_google_signals:\s*false/);
-  assert.match(bootstrap, /allow_ad_personalization_signals:\s*false/);
-  assert.match(bootstrap, /modooPageReferrer\s*=\s*document\.referrer/);
-  assert.match(bootstrap, /modooPageReferrer\s*=\s*['"]{2}/);
-  assert.match(bootstrap, /page_referrer:\s*modooPageReferrer/);
-
-  const component = await readFile(path.join(ROOT, "src/components/GoogleAnalytics.tsx"), "utf8");
-  assert.doesNotMatch(component, /next\/script/);
-  assert.doesNotMatch(component, /GA4_SCRIPT_URL/);
-  assert.match(component, /analytics_storage:\s*["']granted["']/);
-  assert.match(component, /window\.gtag\("event", "page_view"\)/);
-  assert.match(component, /consent === undefined/);
-  assert.match(component, /fetch\(GA4_ACTIVATION_STATUS_URL/);
-  assert.doesNotMatch(component, /Date\.now\(/, "client clock must not activate GA4");
-  assert.match(component, /window\.location\.assign/, "token routes must force a fresh document");
-
-  const activationFunction = await readFile(
-    path.join(ROOT, "functions/api/analytics-status.ts"),
-    "utf8",
-  );
-  assert.match(activationFunction, /const\s+serverNow\s*=\s*Date\.now\(\)/);
-  assert.match(activationFunction, /isGa4ActiveAt\(serverNow\)/);
-  assert.match(activationFunction, /new Date\(serverNow\)\.toISOString\(\)/);
-  assert.match(activationFunction, /cache-control["']?:\s*["']no-store/i);
-
   const thirdParty = await readFile(path.join(ROOT, "src/components/ThirdPartyScripts.tsx"), "utf8");
-  assert.equal(countMatches(thirdParty, /<GoogleAnalytics\b/g), 1);
-  assert.match(thirdParty, /<GoogleAnalytics blocked=\{blocked\}/);
+  assert.doesNotMatch(thirdParty, /GoogleAnalytics/);
   assert.match(thirdParty, /useRef\(isThirdPartyTokenPath\(pathname\)\)/);
   assert.match(
     thirdParty,
     /documentStartedOnTokenPath\.current\s*\|\|\s*isThirdPartyTokenPath\(pathname\)/,
     "a document opened on a token path must remain blocked until unload",
   );
-  assert.equal(countMatches(layout, /<ThirdPartyScripts\s*\/>/g), 1);
+  const footer = await readFile(path.join(ROOT, "src/components/Footer.tsx"), "utf8");
+  assert.doesNotMatch(footer, /AnalyticsConsentSettings/);
 
   const tokenMiddleware = await readFile(
     path.join(ROOT, "functions/_lib/strip-token-third-party-scripts.ts"),
@@ -203,12 +217,10 @@ test("one global Advanced Consent implementation owns the only GA/GTM measuremen
   }
 });
 
-test("CSP, privacy notice, and static output expose one detectable consent-safe Google tag", async () => {
+test("CSP, privacy notice, docs, and static output expose one detectable Google tag", async () => {
   const headers = await readFile(path.join(ROOT, "public/_headers"), "utf8");
   const reportOnly = parseCspDirectives(headers, "Content-Security-Policy-Report-Only");
-  assertCspSources(reportOnly, "script-src", [
-    "https://www.googletagmanager.com",
-  ]);
+  assertCspSources(reportOnly, "script-src", ["https://www.googletagmanager.com"]);
   assertCspSources(reportOnly, "img-src", [
     "https://*.google-analytics.com",
     "https://www.googletagmanager.com",
@@ -221,22 +233,19 @@ test("CSP, privacy notice, and static output expose one detectable consent-safe 
 
   const privacy = await readFile(path.join(ROOT, "src/app/privacy/page.tsx"), "utf8");
   assert.match(privacy, /Google Analytics/);
-  assert.match(privacy, /시행일: 2026-09-03 09:30 KST/);
-  assert.doesNotMatch(privacy, /2026-09-10 12:00 KST/);
-  assert.match(privacy, /분석 쿠키 설정/);
+  assert.match(privacy, /tools\.google\.com\/dlpage\/gaoptout/, "opt-out add-on must be disclosed");
+  assert.match(privacy, /시행일: 2026년 9월 10일 · 개정일: 2026년 9월 3일/, "7-day notice rule");
   assert.match(privacy, /1600 Amphitheatre Parkway/);
-  assert.match(privacy, /14개월을\s+초과해\s+보유하지\s+않도록/);
-  assert.match(privacy, /Consent Mode v2의 고급 동의 모드/);
-  assert.match(privacy, /쿠키 없는 제한 측정값/);
-  assert.doesNotMatch(privacy, /허용 전이나 거부 후에는 Google로 분석 데이터를 전송하지 않습니다/);
+  for (const stale of [/분석 쿠키 설정/, /Consent Mode/, /선택창/, /제한 측정값/, /2026-09-03 09:30 KST/]) {
+    assert.doesNotMatch(privacy, stale, `privacy must not describe the removed consent flow: ${stale}`);
+  }
 
-  for (const relativePath of [
-    "docs/tracking.md",
-    "wiki/operations/02-growth-and-revenue.md",
-  ]) {
-    const operationsDoc = await readFile(path.join(ROOT, relativePath), "utf8");
-    assert.match(operationsDoc, /2026-09-03 09:30 KST/, `${relativePath}: activation time`);
-    assert.doesNotMatch(operationsDoc, /2026-09-10 12:00 KST/, `${relativePath}: stale activation time`);
+  for (const relativePath of ["docs/tracking.md", "wiki/operations/02-growth-and-revenue.md"]) {
+    const doc = await readFile(path.join(ROOT, relativePath), "utf8");
+    assert.match(doc, /G-R2MDE3WDFY/, `${relativePath}: measurement id`);
+    for (const stale of [/Consent Mode/, /분석 쿠키 설정/, /선택창/, /2026-09-03 09:30 KST/]) {
+      assert.doesNotMatch(doc, stale, `${relativePath}: stale consent wording ${stale}`);
+    }
   }
 
   assert.ok(existsSync(OUT), "out/ is missing; run npm run build first");
@@ -247,21 +256,20 @@ test("CSP, privacy notice, and static output expose one detectable consent-safe 
     const html = await readFile(file, "utf8");
     const loaderTags = html.match(/<script\b[^>]*\bid=["']ga4-loader["'][^>]*><\/script>/gi) ?? [];
     const bootstrapTags = html.match(/<script\b[^>]*\bid=["']ga4-consent-bootstrap["'][^>]*>/gi) ?? [];
-    const bootstrapIndex = html.indexOf('id="ga4-consent-bootstrap"');
-    const loaderIndex = html.indexOf('id="ga4-loader"');
+    // 순서는 단언하지 않는다 — React 19 는 <script async src> 를 리소스로 head 앞쪽에 끌어올려
+    // 산출 HTML 에서 로더가 인라인보다 먼저 나온다. 이는 구글 표준 스니펫의 원래 순서
+    // (async 로더 → 인라인)와 같고, gtag.js 는 나중에 정의된 dataLayer 큐도 처리한다.
     if (
       loaderTags.length !== 1 ||
       bootstrapTags.length !== 1 ||
-      bootstrapIndex < 0 ||
-      loaderIndex < 0 ||
-      bootstrapIndex >= loaderIndex ||
-      !loaderTags[0].includes(EXPECTED_URL)
+      !loaderTags[0].includes(EXPECTED_URL) ||
+      !/\basync\b/.test(loaderTags[0])
     ) {
       violations.push({
         file: path.relative(ROOT, file),
         loaderCount: loaderTags.length,
         bootstrapCount: bootstrapTags.length,
-        ordered: bootstrapIndex >= 0 && bootstrapIndex < loaderIndex,
+        async: loaderTags[0] ? /\basync\b/.test(loaderTags[0]) : false,
       });
     }
   }
@@ -270,5 +278,5 @@ test("CSP, privacy notice, and static output expose one detectable consent-safe 
     [],
     `direct tag invariant failed: ${JSON.stringify(violations.slice(0, 10))}`,
   );
-  console.log(`checked ${htmlFiles.length} exported HTML files: one direct Google tag each`);
+  console.log(`checked ${htmlFiles.length} exported HTML files: one direct async Google tag each`);
 });
