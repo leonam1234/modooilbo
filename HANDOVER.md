@@ -1,6 +1,6 @@
 # 세션 인계서 — 모두일보
 
-> **새 세션은 이 파일부터 읽으십시오.** 마지막 갱신 2026-09-02.
+> **새 세션은 이 파일부터 읽으십시오.** 마지막 갱신 2026-09-03.
 > 역할명은 **`모두일보 개발 및 배포 담당자`**입니다. 종전 Claude 모두일보 총괄·개발담당
 > 업무와 사이트 코딩·유지보수도 이 역할이 이어받습니다.
 >
@@ -10,6 +10,9 @@
 > 지키고, PASS·HOLD 0이면 별도 승인 질문 없이 CMS 변환, `content/articles/` 반영, Git 커밋,
 > 빌드, Preview, Production, 라이브 검증까지 이어서 수행합니다. 리뷰·게이트가 HOLD이면 자동
 > 배포하지 않으며, 사용자의 현재 중지·보류 지시는 언제나 이 상시 승인보다 우선합니다.
+> ✅ **2026-09-03 운영 변경:** 일일 패키지는 09:00 KST에 독립 리뷰 4개 기사 shard와
+> 동적 원출처 4개 lane을 즉시 병렬 dispatch합니다. 독립 리뷰 담당 1명이 기사별 결과를
+> 합산하며, 늦게 열리는 원출처 기사만 후속 cohort로 분리해 이미 PASS인 기사를 기다리게 하지 않습니다.
 > 이 파일은 현재 세션 진입점과 실행 체크리스트입니다. 우선순위는 **유수화님의 현재 명시 지시 →
 > 발행 거버넌스 `wiki/09-publishing.md` → 배포·승급 `wiki/06-deployment.md` → 세부 사례
 > `wiki/operations/04-publishing-protocol.md`**입니다. 구현 사실은 현재 코드와 대조합니다.
@@ -234,6 +237,28 @@ culture·sports 남동균 | opinion·industry 박유주 | world·labor  최은�
 
 ## 5. 발행 절차
 
+### 5-A. 09:00 병렬 검수 시작
+
+- 08:50~08:59에는 패키지 원고·이미지·검수문서를 고정하고 slug 목록과 파일 해시를 남깁니다.
+- 09:00에 `모두일보 독립 리뷰 담당`이 기사 24편을 6편씩 4개 shard로 즉시 dispatch하고,
+  개발 및 배포 담당자는 같은 시각에 동적 원출처 4개 lane을 dispatch합니다. 한 shard를 끝낸 뒤
+  다음 shard를 여는 직렬 실행은 금지합니다.
+- 4개 리뷰 shard는 6명 기자의 기사 1편씩을 갖도록 균형 배정합니다. 카테고리별 두 기사는
+  패키지 목록 순서(없으면 slug 오름차순)를 `-1`·`-2`로 고정하고, 정확한 배정표는
+  [`wiki/09-publishing.md` §1](wiki/09-publishing.md)의 표를 따릅니다.
+- 독립 리뷰 하위 작업은 원고를 수정하지 않고 기사별 근거·PASS/HOLD·수정 요구만 반환합니다.
+  독립 리뷰 담당 1명이 slug를 키로 결과를 합산하고 `reviewedBy`·`reviewedAt`·`reporterInsight`와
+  최종 PASS/HOLD를 기사별로 확정합니다. 하위 작업의 묶음 PASS를 최종 판정으로 복사하지 않습니다.
+- 늦게 열리는 접수·지원·예매 화면은 해당 기사만 `WAIT_SOURCE_UNTIL=<KST>`로 분리합니다.
+  이는 PASS도 HOLD도 아니며 첫 release cohort에서 제외합니다. 나머지 기사는 독립 리뷰와 동적
+  게이트가 모두 PASS이면 ready cohort로 계속 진행하고, 늦은 기사는 원출처가 열린 뒤 별도
+  증분 cohort로 검수·배포합니다.
+- 각 release cohort에서 대상 전건 PASS·HOLD 0이면 상시 자동 배포 승인을 적용해 별도 승인
+  질문이나 대기 없이 아래 CMS·빌드·Preview·Production 단계로 진행합니다.
+- 아래 복사 명령의 `MODOO_PACKAGE_DIR`는 current cohort의 `READY` 기사와 대응 JPG만 담은
+  전용 staging 디렉터리여야 합니다. `WAIT_SOURCE_UNTIL` 기사가 남은 전체 원본 패키지를
+  그대로 가리켜 glob으로 함께 복사하지 않습니다.
+
 ```bash
 # 먼저 깨끗한 비-master 릴리스 worktree로 이동한 뒤 실행
 set -euo pipefail   # 아래 게이트 하나라도 실패하면 즉시 중단
@@ -241,16 +266,17 @@ MODOO_RELEASE_BRANCH="$(git branch --show-current)"
 [[ -n "$MODOO_RELEASE_BRANCH" && "$MODOO_RELEASE_BRANCH" != master ]]
 test -z "$(git status --porcelain)"
 # ── 상시 자동 배포 승인 적용: 아래 1~4의 검수·게이트는 생략하지 않음 ──
-# 1) 콘텐츠 제작 작업 인수 + 1차 정적·동적 게이트
-#    원고·JPG·PNG 수량, slug, 보류자료, 검수문서, 공식 원문·접수화면·동적 값
-# 2) `모두일보 독립 리뷰 담당`(Codex 작업 ID 01a05a60-a035-7921-8154-7aa4a7024f31)에 기사별 검수 요청
-# 3) 기사별 reviewedBy·reviewedAt·reporterInsight, PASS/HOLD, 수정 요구를 회수
-#    수정분 재검수 + §6 최종 게이트 완료
-# 4) PASS/HOLD·수정·미확인 근거를 기록. HOLD 0이면 별도 승인 질문 없이 5단계로 진행
+# 1) 콘텐츠 제작 작업 인수 + 1차 정적 게이트, 09:00 패키지 snapshot 고정
+#    원고·JPG·PNG 수량, slug, 보류자료, 검수문서, 파일 해시
+# 2) 독립 리뷰 담당은 4개 기사 shard, 개발 담당은 4개 동적 원출처 lane을 즉시 병렬 dispatch
+# 3) 독립 리뷰 담당 1명이 slug별 reviewedBy·reviewedAt·reporterInsight,
+#    PASS/HOLD·수정 요구를 합산하고 수정분 재검수 + §6 최종 게이트 완료
+# 4) 현재 release cohort 전건의 리뷰 PASS + 동적 PASS + HOLD 0을 기록.
+#    WAIT_SOURCE_UNTIL 기사는 cohort에서 제외하고 별도 승인 질문 없이 5단계로 진행
 
 # ── 독립 리뷰와 최종 게이트 PASS·HOLD 0이면 자동 수행 ──
 # 5) CMS 규약 검사·반영
-MODOO_PACKAGE_DIR="/absolute/path/to/approved-package"   # 실제 승인 패키지 경로로 교체
+MODOO_PACKAGE_DIR="/absolute/path/to/release-cohort"   # READY 기사·JPG만 있는 전용 staging 경로
 MODOO_COMMIT_MSG_FILE="/absolute/path/to/commit-message.txt"
 cp "$MODOO_PACKAGE_DIR"/articles/**/*.md content/articles/
 cp "$MODOO_PACKAGE_DIR"/images_1200x675_jpg/*.jpg public/stock/
@@ -312,6 +338,13 @@ npm run smoke -- https://modooilbo.com / /policy/ /newsroom/ "${MODOO_ARTICLE_PA
 ⚠️ **2026-09-02 상시 자동 배포 승인은 독립 리뷰·최종 게이트를 없애지 않습니다.** 검수 뒤 기사
 내용이 바뀌면 변경 기사를 독립 리뷰와 최종 게이트에 다시 보내고, 다시 PASS·HOLD 0일 때만
 자동 배포합니다. 사용자가 특정 릴리스를 중지·보류하면 그 지시를 우선합니다.
+
+⚠️ **병렬화는 검수 orchestration만 바꿉니다. 추적·보안 코드는 건드리지 마십시오.** 공개
+페이지의 GA4 `G-R2MDE3WDFY`는 `<head>`의 조건 없는 구글 표준 직접 스니펫 1개를 유지하고,
+인증 토큰 경로 4종은 Pages middleware가 GA4·AdSense·Cloudflare 태그와 Flight 복제 노드를
+제거해야 합니다. AdSense 실제 스크립트는 React hydration 뒤 `afterInteractive`로 1회 로드해야
+하며 raw async head 실행으로 되돌리지 않습니다. 기준과 회귀 검사는 `docs/tracking.md`와
+`npm run test:analytics`입니다.
 
 ⚠️ **발행 완료 보고 전에 색인 담당자 인계를 누락하지 마십시오.** 작업 메시지 전달은
 `handoff_sent` 증거일 뿐 `requested`·`submitted`·`indexed_current` 증거가 아닙니다.

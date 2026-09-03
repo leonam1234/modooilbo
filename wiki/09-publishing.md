@@ -9,10 +9,13 @@
 
 ```
 원고·이미지 패키지
-  → 개발 및 배포 담당자 1차 정적·동적 게이트
-  → 독립 리뷰 담당 기사별 검수
-  → 개발 및 배포 담당자 결과 회수·수정분 재검수·최종 게이트
-  → PASS·HOLD 0 확인(상시 자동 배포 승인 적용)
+  → 08:50~08:59 패키지 snapshot·1차 정적 게이트
+  → 09:00 동시 분기
+      ├─ 독립 리뷰 담당: 6편 × 4개 기사 shard 병렬 검수
+      └─ 개발 및 배포 담당: 6편 × 4개 동적 원출처 lane 병렬 재확인
+  → 독립 리뷰 담당 1명이 slug별 증거·PASS/HOLD를 합산
+  → 개발 및 배포 담당자 수정분 재검수·최종 게이트
+  → 현재 release cohort 전건 PASS·HOLD 0 확인(상시 자동 배포 승인 적용)
   → CMS·게이트·빌드·Git 커밋·Preview 전건 검증·Production·라이브 재검증
   → 신규 기사 canonical URL 전건을 색인 담당자에게 인계
 ```
@@ -25,6 +28,71 @@
 - **요약 도구 불신 원칙**: WebFetch류 요약이 "기성금 80%"라 한 것이 원문(EUC-KR)에선 "잔금 80%"였던 사례. 수치·시각·법적 효과는 반드시 원문 직접 확인·검산.
 - 문자열 매칭은 문맥으로 검증: '취소' 27회 매칭이 전부 메뉴명("예매·취소 안내")이던 사례 — 매칭 수가 아니라 실제 공지 패턴을 본다.
 - publishedAt은 출고 직전 시각으로 재배치하는 것이 관행. 허용 범위의 근거 문서 **`최종마감.md`는 리포 밖(총괄 보관)** 에 있다.
+
+### 09:00 병렬 검수·동적 게이트 편성 (2026-09-03 시행)
+
+| KST | 실행 | 완료 기준 |
+|---|---|---|
+| 08:50~08:59 | 패키지 원고·이미지·검수문서 동결, slug 목록과 파일 해시 snapshot | 이후 본문 변경은 새 해시로 재검수 대상 |
+| 09:00 | 독립 리뷰 4개 shard와 동적 원출처 4개 lane을 **동시에 dispatch** | 한 묶음 완료를 기다리지 않고 전부 실행·대기열 등록 |
+| 09:00~09:20 | 결과가 오는 즉시 slug별 판정표에 병합하고 수정 요청을 원 제작자에게 반환 | shard 단위가 아니라 기사 단위로 PASS/HOLD/WAIT_SOURCE 기록 |
+| 09:20 | 첫 ready cohort 마감 목표 | 이 시각은 품질 우회 마감이 아니다. 두 게이트가 끝난 기사만 포함 |
+| 각 원출처 개시시각 | `WAIT_SOURCE_UNTIL` 기사만 별도 micro-lane으로 재실행 | 열린 화면을 실제 확인한 뒤 PASS/HOLD 확정 |
+| 각 cohort PASS 직후 | 별도 승인 질문 없이 CMS·빌드·Preview·Production·라이브 검증 | cohort 대상 전건 PASS·HOLD 0 필수 |
+
+24편 패키지의 카테고리별 두 기사는 패키지 `기사목록_24건.md`의 순서를 `-1`·`-2`로
+고정한다. 목록에 순서가 없으면 slug 오름차순을 쓴다. 이 snapshot 뒤에는 shard 균형을 맞추려고
+번호를 다시 매기지 않는다.
+
+| 리뷰 shard | 6편 배정 | 균형 기준 |
+|---|---|---|
+| R-A | `economy-1` · `society-1` · `culture-1` · `opinion-1` · `bids-1` · `world-1` | 6명 기자별 1편 |
+| R-B | `economy-2` · `society-2` · `culture-2` · `opinion-2` · `bids-2` · `world-2` | 6명 기자별 1편 |
+| R-C | `deals-1` · `startup-1` · `sports-1` · `industry-1` · `grants-1` · `labor-1` | 6명 기자별 1편 |
+| R-D | `deals-2` · `startup-2` · `sports-2` · `industry-2` · `grants-2` · `labor-2` | 6명 기자별 1편 |
+
+네 하위 리뷰 작업은 원고를 수정하지 않고 `slug`, 확인한 원출처, 확인시각 KST, 핵심 대조값,
+PASS/HOLD, 수정 요구만 반환한다. **독립 리뷰 담당 1명이 유일한 합산 책임자**다. 하위 작업의
+묶음 결론을 그대로 복사하지 않고 기사별 근거를 읽은 뒤 `reviewedBy`·`reviewedAt`·
+`reporterInsight`와 최종 PASS/HOLD를 정본 검수표에 기록한다. 같은 기사에 판단 충돌이 있으면
+PASS로 다수결하지 않고 HOLD 또는 재검수로 보낸다.
+
+| 동적 lane | 6편 배정 | 발행 직전 확인 초점 |
+|---|---|---|
+| D-A 공고·접수 | `bids` 2 · `grants` 2 · `startup` 2 | 차수·정정·취소·첨부·마감·실제 신청 상태 |
+| D-B 시효·개시 | `labor` 2 · `culture` 2 · `society` 2 | 늦게 열리는 지원 화면·예매 회차·당일 공지·현재 상태 |
+| D-C 공시·통계 | `deals` 2 · `economy` 2 · `world` 2 | DART 정정·철회, 통계 정정표·기준·원시값 |
+| D-D 기록·정책 | `sports` 2 · `industry` 2 · `opinion` 2 | 공식 기록 수정, 정책 원문 변경·귀속·후속 공지 |
+
+동적 lane도 6편 전체가 끝날 때까지 결과를 쥐고 있지 않고 기사별 결과를 즉시 반환한다.
+09:00·10:00 등 뒤늦게 열리는 화면은 그 기사만 `WAIT_SOURCE_UNTIL=<YYYY-MM-DD HH:mm KST>`로
+분리한다. `WAIT_SOURCE`는 PASS도 HOLD도 아니므로 첫 release cohort에 넣지 않는다. 반대로
+두 게이트를 통과한 ready 기사는 늦은 기사 때문에 대기시키지 않고 먼저 release cohort를 닫는다.
+늦은 기사는 화면이 열린 뒤 micro-lane 재확인과 독립 리뷰 합산을 거쳐 증분 cohort로 발행한다.
+
+기사별 결합 조건은 다음과 같다.
+
+```text
+READY = independentReview == PASS
+     && dynamicGate == PASS
+     && correctionPending == false
+     && reviewedBy/reviewedAt/reporterInsight complete
+```
+
+release cohort에는 `READY` 기사만 넣는다. cohort 대상 전건이 PASS이고 HOLD 0이면 2026-09-02
+상시 자동 배포 승인에 따라 **별도 사용자 승인 질문·대기 없이** 다음 단계로 간다. HOLD 또는
+사용자의 현재 중지·보류 지시는 언제나 이를 중단한다.
+
+### 병렬화에서 바꾸지 않는 추적·보안 불변식
+
+- 공개 페이지 GA4 `G-R2MDE3WDFY`는 `<head>` 첫 부분의 조건 없는 구글 표준 직접 스니펫
+  1개다. 동의·시간 게이트나 `afterInteractive` 지연 주입으로 바꾸지 않는다.
+- 인증 토큰 경로 `/reset`·`/verify-signup`·`/verify-email`·`/forgot`는 Pages middleware가
+  GA4·AdSense·Cloudflare 태그와 Next Flight 복제 노드를 제거하고 no-referrer/no-store를 유지한다.
+- AdSense 실제 스크립트는 React hydration 뒤 `afterInteractive`로 1회 로드한다. raw async head
+  실행으로 되돌리면 WebKit hydration 오류가 재발할 수 있다.
+- 병렬 검수 변경은 위 코드에 손대지 않는다. 관련 변경이 별도로 필요하면 `docs/tracking.md`를
+  기준으로 `npm run test:analytics`까지 독립 회귀 검증한다.
 
 ### 편집 품질 8.5 게이트(2026-09-01 시행)
 

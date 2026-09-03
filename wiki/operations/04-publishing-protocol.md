@@ -1,7 +1,7 @@
 # 일일 기사 발행 규약
 
 원고 생산 ↔ `모두일보 개발 및 배포 담당자` ↔ `모두일보 독립 리뷰 담당` 사이의 운영 규약.
-2026-08-18 확정, 2026-09-02 승인·배포·색인 인계 흐름 정정.
+2026-08-18 확정, 2026-09-02 승인·배포·색인 인계 흐름 정정, 2026-09-03 병렬 검수 운영 확정.
 품질 통과분을 하루 최대 24편까지 인수·검수·발행하면서 실제 사고를 겪고 정리한 규칙이라,
 바꾸려면 사유를 남길 것.
 
@@ -10,12 +10,42 @@
 ## 0. 역할·독립 리뷰·상시 자동 배포 승인 (2026-09-02 정정)
 
 - 개발·발행 역할명은 **`모두일보 개발 및 배포 담당자`**다. 종전 모두일보 총괄·개발담당 업무와 사이트 코딩·유지보수도 이어받는다.
-- 패키지를 인수해 1차 정적·동적 게이트를 끝낸 뒤 `모두일보 독립 리뷰 담당`(Codex 작업 ID `01a05a60-a035-7921-8154-7aa4a7024f31`)에게 **기사별** 검수를 요청한다.
-- 기사별 `reviewedBy`·`reviewedAt`·`reporterInsight`, PASS/HOLD, 수정 요구를 회수하고 수정분 재검수와 최종 정적·동적 게이트까지 끝낸다.
+- 패키지는 08:50~08:59 KST에 snapshot을 고정하고 09:00 KST에 검수를 시작한다. `모두일보 독립 리뷰 담당`(Codex 작업 ID `01a05a60-a035-7921-8154-7aa4a7024f31`)은 6편씩 4개 기사 shard를 즉시 병렬 dispatch한다.
+- 개발 및 배포 담당자는 같은 09:00 KST에 6편씩 4개 동적 원출처 lane을 병렬 dispatch한다. 독립 리뷰 담당 1명이 하위 결과를 slug별로 합산해 기사별 `reviewedBy`·`reviewedAt`·`reporterInsight`, PASS/HOLD, 수정 요구를 확정한다.
 - **유수화님의 2026-09-02 상시 자동 배포 승인을 적용한다.** PASS·HOLD 0이면 별도 승인 질문 없이 CMS 변환, `content/articles/` 반영, Git, 빌드, Preview, Production, 라이브 검증까지 진행한다. HOLD 또는 사용자의 현재 중지 지시가 있으면 멈춘다.
 - 검수 뒤 기사 내용이 바뀌면 변경 기사를 독립 리뷰와 최종 게이트에 다시 보내고 다시 PASS·HOLD 0을 확인한다.
 - 개발 및 배포 담당자가 Preview·Production·라이브 재검증을 수행하고, 신규 기사
   canonical URL 전건을 `색인 담당자` 작업 `019ef3e0-e684-7be0-a164-3cdfacfeb6fa`로 인계한다.
+
+## 0-A. 09:00 병렬 실행 계약
+
+정확한 4개 리뷰 shard와 4개 동적 lane 배정은 [발행 정본 §1](../09-publishing.md)을 따른다.
+24편 기준 각 묶음은 6편이며, 패키지가 24편보다 적으면 실제 기사만 배정하고 숫자를 맞추려고
+저품질 기사나 중복 기사를 추가하지 않는다.
+
+1. **08:50~08:59 — snapshot:** 기사 목록, slug, 파일 SHA-256, 이미지 대응, 기존 HOLD를 고정한다.
+2. **09:00 — 동시 dispatch:** 독립 리뷰 담당은 R-A~R-D, 개발 및 배포 담당은 D-A~D-D를 한꺼번에 실행·대기열 등록한다. R-A 완료 뒤 R-B를 시작하는 식의 직렬 실행은 금지한다.
+3. **결과 즉시 반환:** 각 작업은 묶음 전체를 기다리지 않고 기사 한 편 검수를 끝낼 때마다 아래 행을 반환한다.
+4. **단일 합산:** 독립 리뷰 담당 1명만 정본 검수표를 갱신한다. 하위 작업은 원고·이미지·정본 검수표를 직접 수정하지 않는다.
+5. **기사별 join:** 개발 및 배포 담당자는 같은 slug의 독립 리뷰 PASS와 동적 게이트 PASS가 모두 있을 때만 `READY`로 올린다.
+6. **cohort release:** 현재 release cohort의 모든 기사가 READY이고 HOLD 0이면 별도 승인 질문 없이 자동 배포한다.
+
+```text
+slug | reviewShard | reviewedSource | reviewedAtKst | reviewDecision
+     | dynamicLane | dynamicSource | dynamicCheckedAtKst | dynamicDecision
+     | correctionPending | releaseCohort | finalDecision | notes
+```
+
+`reviewDecision`과 `dynamicDecision`의 허용 상태는 `PASS`, `HOLD`, `WAIT_SOURCE_UNTIL=<KST>`다.
+`WAIT_SOURCE_UNTIL`은 아직 확인하지 못했다는 뜻이지 PASS가 아니다. 원출처가 10:00에 열리는
+채용 기사라면 그 기사만 late micro-lane으로 떼고, 같은 review shard와 dynamic lane의 나머지
+기사는 즉시 반환한다. ready 기사들은 첫 cohort로 계속 진행하고 late 기사는 원출처 개시 뒤
+독립 리뷰와 동적 게이트를 완료한 후 증분 cohort로 발행한다. **늦은 기사 때문에 ready 기사를
+기다리게 하지 않되, 미확인 기사를 ready cohort에 섞지도 않는다.**
+
+결과 충돌은 독립 리뷰 담당이 다수결로 지우지 않는다. 원문 재확인 또는 교정 뒤 변경 기사만
+새 snapshot으로 재검수하며, 해결되지 않으면 HOLD다. 독립 리뷰 담당은 기사별 근거를 읽고
+최종 PASS/HOLD를 확정해야 하며 하위 작업의 묶음 PASS를 그대로 전재하지 않는다.
 
 ## 1. publishedAt
 
@@ -27,6 +57,9 @@
   이미 게재·색인된 기사의 시각을 사후에 과거로 당기면 기록이 사실과 어긋난다.
   보정 규약은 다음 패키지부터 적용된다.
 - 엠바고·예약 발행이 필요한 기사는 인수인계서에 **별도로 명시**한다(그때는 미래 시각이 정상).
+- ready·late 증분 cohort마다 `publishedAt`은 실제 배포 직전 KST로 새로 편성한다. 각 기사는
+  `reviewedAt`보다 최소 10분 뒤여야 하고 같은 분에는 최대 4편만 둔다. 첫 cohort 시각을 late
+  cohort에 소급 복사하지 않는다.
 
 ### 사고 이력
 
@@ -50,6 +83,9 @@ URL 변경이 불가피하면 독립 리뷰·최종 게이트와 기존 URL의 �
 
 인수 문서의 게이트 목록대로 **라이브 원출처를 실제로 열어** 재확인한 뒤 발행한다.
 원고 작성과 발행 사이 몇 시간 만에 원출처가 움직이는 일이 실제로 반복됐다.
+09:00에는 D-A(공고·접수), D-B(시효·개시), D-C(공시·통계), D-D(기록·정책)를 동시에
+dispatch하며, 각 lane은 기사별 결과를 즉시 반환한다. 원출처 개시 전 기사는 lane 전체를
+붙잡지 않고 `WAIT_SOURCE_UNTIL` micro-lane으로 분리한다.
 
 ### 검증에서 실제로 막아낸 오보
 
@@ -119,6 +155,12 @@ URL 변경이 불가피하면 독립 리뷰·최종 게이트와 기존 URL의 �
 5. HTTP 200·self-canonical·index/follow를 확인한 신규 기사 canonical URL 전건을 색인 담당자에게
    발행일·건수·사이트 커밋·IndexNow 결과와 함께 보낸다. `handoff_sent`·`requested`·
    `submitted`·`indexed_current`는 서로 다른 상태다.
+
+병렬 운영 변경은 추적·보안 구현을 변경할 권한이 아니다. 공개 페이지 GA4
+`G-R2MDE3WDFY`는 `<head>`의 조건 없는 구글 표준 직접 스니펫 1개를 유지하고, 인증 토큰
+경로 4종은 Pages middleware에서 GA4·AdSense·Cloudflare 태그와 Flight 복제 노드를 제거한다.
+AdSense 실제 스크립트는 React hydration 뒤 `afterInteractive`로 1회 로드한다. 이 세 불변식을
+건드리는 별도 변경은 `docs/tracking.md`와 `npm run test:analytics` 회귀 검증 없이는 배포하지 않는다.
 
 ---
 
