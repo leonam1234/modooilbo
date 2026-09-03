@@ -40,7 +40,9 @@ MODOO_ARTICLE_PATHS=(${(f)"$(git diff --diff-filter=AM --name-only \
   | sed -nE '/\/_/d; s#^content/articles/(.*)\.md$#/article/\1/#p')"})
 (( ${#MODOO_ARTICLE_PATHS[@]} > 0 ))
 print -l -- "${MODOO_ARTICLE_PATHS[@]}" # 승인 범위·건수와 전건 대조
-npm run deploy:preview
+npm run release:preview
+# 위 출력의 `release id`를 그대로 보관한다. deploy-log에도 같은 값이 기록된다.
+MODOO_RELEASE_ID="<release id>"
 MODOO_PREVIEW_URL="$(node -e '
 const fs = require("fs");
 const rows = fs.readFileSync("deployments/deploy-log.jsonl", "utf8").trim().split("\n").reverse();
@@ -59,14 +61,15 @@ MODOO_REMOTE_MASTER="$(git ls-remote origin refs/heads/master | awk '{print $1}'
 test "$MODOO_RELEASE_SHA" = "$MODOO_REMOTE_MASTER"
 test "$MODOO_RELEASE_SHA" = "$(git rev-parse origin/master)"
 test "$MODOO_RELEASE_SHA" = "$(git ls-remote origin refs/heads/master | awk '{print $1}')"
-npm run deploy:prod -- --force-branch
+npm run release:prod -- --reuse-artifact="$MODOO_RELEASE_ID" --smoke-approved --force-branch
 npm run smoke -- https://modooilbo.com / /policy/ /newsroom/ "${MODOO_ARTICLE_PATHS[@]}"
 ```
 
 스모크가 FAIL이거나 Chromium·WebKit 비교 이미지에서 레이아웃 차이가 확인되면
 Production 배포를 중단합니다. 운영 배포 뒤에는 같은 경로와 메타데이터를 다시 검사해 라이브
-반영을 증명합니다. Preview와 Production은 현재 각각 새로 빌드하므로 동일 소스 커밋을 쓰지만,
-하나의 빌드 산출물을 그대로 승급하는 구조는 아닙니다.
+반영을 증명합니다. `release:preview`는 빌드·R2 동기화·prune을 한 번만 실행하고 실제 Preview에
+올린 `out/`을 Git common dir에 봉인합니다. 스모크 PASS 뒤 `release:prod`는 그 산출물을 다시
+빌드하지 않고 그대로 승급합니다.
 
 현재 `mobile-smoke.mjs`는 Chromium·WebKit × 402×874·402×660을 돌리되 네 조합 모두
 iPhone Safari UA를 씁니다. `app`·`browser`는 높이 프리셋일 뿐 실제 Android·설치 PWA·주소창·
@@ -81,6 +84,8 @@ iPhone Safari UA를 씁니다. `app`·`browser`는 높이 프리셋일 뿐 실�
 | `npm run deploy:preview` | **Preview** | 비-master 브랜치에서만 격리된 미리보기 URL |
 | `npm run deploy:prod` | **Production** | **modooilbo.com** 반영 (`--branch master`) |
 | `npm run deploy:cf` | = `deploy:prod` | 레거시 별칭. 게이트·로그 동일 적용 |
+| `npm run release:preview` | **Preview** | 한 번 빌드한 `out/`을 SHA-256 manifest와 함께 봉인하고 배포 |
+| `npm run release:prod -- --reuse-artifact=<release-id> --smoke-approved` | **Production** | Preview에서 검증한 동일 산출물 승급(재빌드 없음) |
 | `node scripts/deploy.mjs prod --dry-run` | — | 빌드·배포 없이 **실행될 명령만** 출력 |
 
 정상 실행의 내부 동작: ① git SHA·브랜치·미커밋 확인 → ② Production이면 로컬 `master`
@@ -88,6 +93,23 @@ iPhone Safari UA를 씁니다. `app`·`browser`는 높이 프리셋일 뿐 실�
 ⑤ 신규 스톡 R2 동기화 → ⑥ `out/stock` 정리 → ⑦ Cloudflare Pages 2만 파일 게이트 →
 ⑧ `wrangler pages deploy out` → ⑨ `deployments/deploy-log.jsonl` 기록 →
 ⑩ Production에서만 IndexNow 통지. 스크립트는 fetch·push·승인 확인·라이브 검증을 대신하지 않습니다.
+
+### Build-once 산출물 안전장치
+
+봉인 산출물은 저장소 밖의 `git rev-parse --git-common-dir` 아래
+`modooilbo-release-artifacts/`에 저장되어 모든 worktree가 공유합니다. 승급은 다음 조건이 모두
+맞을 때만 가능합니다.
+
+- 워킹트리가 clean이고 현재 HEAD가 manifest의 전체 commit SHA와 같음
+- `index.html`, `404.html`, `_headers`, `_redirects`, Next.js JS 자산이 모두 존재함
+- 파일 목록·크기·파일별 SHA-256과 전체 artifact SHA-256이 manifest와 정확히 같음
+- 같은 Wrangler v4 버전을 사용하고, 성공한 Preview URL·commit·artifact hash 영수증이 있음
+- 생성 후 24시간 안이며 외부 스모크 PASS를 뜻하는 `--smoke-approved`를 명시함
+
+하나라도 다르면 Production 전에 즉시 중단합니다. manifest는 artifact 밖에 있어 Preview 영수증을
+기록해도 배포 바이트는 변하지 않습니다. Pages Functions는 기존처럼 같은 clean HEAD에서 Wrangler가
+배포 시 번들하며, GA4 직접 스니펫·토큰 경로 middleware·AdSense `afterInteractive` 경로도 바꾸지 않습니다.
+기존 `deploy:preview`·`deploy:prod`는 호환을 위해 종전처럼 매번 빌드합니다.
 
 R2 동기화의 확인 완료 목록은 기본적으로 `git rev-parse --git-common-dir` 아래
 `modooilbo-cache/r2-synced.json`에 저장합니다. linked worktree들이 같은 Git common dir를

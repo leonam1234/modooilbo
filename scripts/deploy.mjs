@@ -11,6 +11,8 @@
  * 사용법
  *   npm run deploy:preview        # Cloudflare Preview 배포 (미리보기 URL)
  *   npm run deploy:prod           # Cloudflare Production 배포 (modooilbo.com)
+ *   npm run release:preview       # 한 번 빌드하고 Preview에 올린 out/ 봉인
+ *   npm run release:prod -- --reuse-artifact=<release-id>  # 같은 out/ 승급
  *   node scripts/deploy.mjs prod --dry-run   # 빌드/배포 없이 실행될 내용만 확인
  *
  * 다른 프로젝트로 복제 시: 아래 상수 3개(PROJECT/PROD_BRANCH/OUT_DIR)만 바꾸면 됩니다.
@@ -18,8 +20,14 @@
 import { execFileSync } from "node:child_process";
 import { appendFileSync, mkdirSync, readdirSync } from "node:fs";
 import { hostname } from "node:os";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  recordReleaseDeployment,
+  releaseStorePath,
+  sealReleaseArtifact,
+  verifyReleaseArtifact,
+} from "./release-artifact.mjs";
 
 // ── 프로젝트 설정 ────────────────────────────────────────────
 const PROJECT = "modooilbo"; // Cloudflare Pages project name
@@ -32,8 +40,45 @@ const BIN = join(REPO, "node_modules", ".bin");
 const LOG_PATH = join(REPO, "deployments", "deploy-log.jsonl");
 
 const args = process.argv.slice(2);
-const env = args.find((a) => !a.startsWith("--"));
+const env = args.find((arg) => arg === "preview" || arg === "prod");
 const dryRun = args.includes("--dry-run");
+const buildOnce = args.includes("--build-once");
+const smokeApproved = args.includes("--smoke-approved");
+
+function optionValue(name) {
+  const exact = args.indexOf(name);
+  if (exact >= 0) return args[exact + 1];
+  const prefix = `${name}=`;
+  return args.find((arg) => arg.startsWith(prefix))?.slice(prefix.length);
+}
+const reuseArtifactId = optionValue("--reuse-artifact");
+const reuseArtifactRequested = args.some((arg) => arg === "--reuse-artifact" || arg.startsWith("--reuse-artifact="));
+
+if (reuseArtifactRequested && (!reuseArtifactId || reuseArtifactId.startsWith("--"))) {
+  console.error("\n✖ --reuse-artifact=<release-id> 값을 지정하세요.\n");
+  process.exit(1);
+}
+
+if (buildOnce && env !== "preview") {
+  console.error("\n✖ --build-once 는 preview에서만 사용할 수 있습니다.\n");
+  process.exit(1);
+}
+if (reuseArtifactId && env !== "prod") {
+  console.error("\n✖ --reuse-artifact 는 prod에서만 사용할 수 있습니다.\n");
+  process.exit(1);
+}
+if (buildOnce && reuseArtifactId) {
+  console.error("\n✖ --build-once 와 --reuse-artifact 를 함께 사용할 수 없습니다.\n");
+  process.exit(1);
+}
+if (reuseArtifactId && !smokeApproved) {
+  console.error("\n✖ 동일 산출물 승급에는 외부 스모크 PASS 뒤 --smoke-approved 가 필요합니다.\n");
+  process.exit(1);
+}
+if (smokeApproved && !reuseArtifactId) {
+  console.error("\n✖ --smoke-approved 는 --reuse-artifact 와 함께 사용하세요.\n");
+  process.exit(1);
+}
 
 function git(...a) {
   return execFileSync("git", a, { cwd: REPO, encoding: "utf8" }).trim();
@@ -49,6 +94,12 @@ function countFiles(dir) {
   }
   return n;
 }
+function localWranglerVersion() {
+  const raw = execFileSync(join(BIN, "wrangler"), ["--version"], { cwd: REPO, encoding: "utf8" }).trim();
+  const version = raw.match(/\b(\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?)\b/)?.[1];
+  if (!version || !version.startsWith("4.")) throw new Error(`Wrangler v4가 필요합니다 (현재 출력: ${raw})`);
+  return version;
+}
 
 if (env !== "preview" && env !== "prod") {
   console.error("\n✖ 환경을 지정하세요: node scripts/deploy.mjs <preview|prod> [--dry-run]\n");
@@ -61,6 +112,8 @@ const commit = git("rev-parse", "HEAD");
 const shortCommit = commit.slice(0, 7);
 const commitMsg = git("log", "-1", "--pretty=%s");
 const porcelain = git("status", "--porcelain");
+const gitCommonDir = git("rev-parse", "--git-common-dir");
+const releaseRoot = releaseStorePath(REPO, gitCommonDir);
 
 const isProd = env === "prod";
 const cfEnv = isProd ? "Production" : "Preview";
@@ -70,23 +123,33 @@ console.log(`\n■ 모두일보 배포 (${cfEnv}${dryRun ? " · DRY-RUN" : ""})`
 console.log(`  git 브랜치 : ${gitBranch}`);
 console.log(`  커밋       : ${shortCommit}  ${commitMsg}`);
 console.log(`  Cloudflare : ${cfEnv}  (--branch ${cfBranch})`);
+if (buildOnce) console.log("  릴리스     : build once → sealed Preview artifact");
+if (reuseArtifactId) console.log(`  릴리스     : sealed artifact ${reuseArtifactId} 재사용`);
 
-const deployArgs = [
-  "pages", "deploy", OUT_DIR,
-  "--project-name", PROJECT,
-  "--branch", cfBranch,
-  "--commit-hash", commit,
-  "--commit-message", commitMsg,
-];
+function makeDeployArgs(directory) {
+  return [
+    "pages", "deploy", directory,
+    "--project-name", PROJECT,
+    "--branch", cfBranch,
+    "--commit-hash", commit,
+    "--commit-message", commitMsg,
+  ];
+}
 
 if (dryRun) {
   if (porcelain) {
     console.log("\n⚠ 미커밋 변경이 있습니다 — 실제 실행 시엔 여기서 중단됩니다 (dry-run이라 계속 표시).");
   }
   console.log(`\n[DRY-RUN] 빌드/배포/로그 기록 안 함. 실행될 명령:`);
-  console.log(`  tsc -p tsconfig.functions.json   (서버 코드 타입 게이트)`);
-  console.log(`  npm run build                    (prebuild 체인 + next build)`);
-  console.log(`  wrangler ${deployArgs.join(" ")}\n`);
+  if (reuseArtifactId) {
+    console.log(`  release manifest/HEAD/age/all-file SHA-256 검증: ${reuseArtifactId}`);
+    console.log(`  wrangler ${makeDeployArgs("<sealed-artifact>/artifact").join(" ")}\n`);
+  } else {
+    console.log(`  tsc -p tsconfig.functions.json   (서버 코드 타입 게이트)`);
+    console.log(`  npm run build                    (prebuild 체인 + next build)`);
+    if (buildOnce) console.log("  out/ 필수 파일·전 파일 SHA-256 manifest 봉인");
+    console.log(`  wrangler ${makeDeployArgs(buildOnce ? "<sealed-artifact>/artifact" : OUT_DIR).join(" ")}\n`);
+  }
   process.exit(0);
 }
 
@@ -108,30 +171,79 @@ if (isProd && gitBranch !== PROD_BRANCH && !args.includes("--force-branch")) {
   process.exit(1);
 }
 
-// 1-b) 서버 코드 타입 게이트 ──────────────────────────────────
-// functions/는 next build가 타입체크하지 않는다(정적 export + Pages 런타임 로드).
-// esbuild가 타입을 벗겨 배포는 조용히 성공하므로, 여기가 유일한 방어선이다.
-console.log(`\n▶ functions 타입체크 (tsc -p tsconfig.functions.json) ...`);
-execFileSync(join(BIN, "tsc"), ["-p", "tsconfig.functions.json"], { cwd: REPO, stdio: "inherit" });
+if (buildOnce && gitBranch === PROD_BRANCH) {
+  console.error(`\n✖ build-once Preview는 ${PROD_BRANCH}가 아닌 격리 브랜치에서만 실행합니다.\n`);
+  process.exit(1);
+}
 
-// 2) 빌드 ─────────────────────────────────────────────────────
-// prebuild 체인(convert-webp → build-content → build-trending-data)은 package.json의
-// prebuild 스크립트가 정본이다. 여기 3단계를 따로 복사해 두면 한쪽에만 단계를 추가했을 때
-// `npm run build` 경로와 배포 경로가 조용히 어긋난다 → npm run build 하나로 위임한다.
-console.log(`\n▶ npm run build (prebuild 체인 + next build) ...`);
-execFileSync("npm", ["run", "build"], { cwd: REPO, stdio: "inherit" });
-// R2 롤백 경로: NEXT_PUBLIC_STOCK_BASE="" 로 빌드하면 이미지 URL이 로컬 /stock/ 을 가리킨다.
-// 이때 sync/prune을 그대로 돌리면 out/stock 이 지워져 전량 404가 된다(문서화된 롤백이
-// 실제로는 동작하지 않던 결함). 롤백 빌드에서는 두 단계를 건너뛰어 로컬 서빙을 살린다.
-const stockRollback = process.env.NEXT_PUBLIC_STOCK_BASE === "";
-if (stockRollback) {
-  console.log(`\n▶ R2 롤백 모드(NEXT_PUBLIC_STOCK_BASE="") — R2 업로드·스톡 제외 건너뜀, /stock 로컬 서빙`);
+let deployDirectory = join(REPO, OUT_DIR);
+let release = null;
+let stockRollback = null;
+const wranglerVersion = buildOnce || reuseArtifactId ? localWranglerVersion() : null;
+
+if (reuseArtifactId) {
+  release = verifyReleaseArtifact({
+    releaseRoot,
+    releaseId: reuseArtifactId,
+    expectedProject: PROJECT,
+    expectedCommit: commit,
+    expectedWranglerVersion: wranglerVersion,
+  });
+  deployDirectory = release.artifactDir;
+  stockRollback = release.manifest.seal.stockRollback;
+  console.log(`\n▶ 봉인 산출물 검증 PASS`);
+  console.log(`  release id : ${reuseArtifactId}`);
+  console.log(`  artifact   : ${release.actual.artifactHash}`);
+  console.log(`  Preview    : ${release.manifest.preview.url}`);
+  console.log("  build/R2/prune 생략 — Preview에 올린 동일 out/ 재사용");
 } else {
-  console.log(`\n▶ 신규 스톡 이미지 R2 업로드 ...`);
-  // prune 이전에 실행한다 — out/에서 지우기 전에 R2에 올려둬야 신규 기사 이미지가 404가 나지 않는다.
-  execFileSync("node", [join(REPO, "scripts", "sync-stock-r2.mjs")], { cwd: REPO, stdio: "inherit" });
-  console.log(`\n▶ 스톡 이미지 제외 (R2에서 서빙) ...`);
-  execFileSync("node", [join(REPO, "scripts", "prune-stock.mjs")], { cwd: REPO, stdio: "inherit" });
+  // functions/는 next build가 타입체크하지 않는다(정적 export + Pages 런타임 로드).
+  console.log(`\n▶ functions 타입체크 (tsc -p tsconfig.functions.json) ...`);
+  execFileSync(join(BIN, "tsc"), ["-p", "tsconfig.functions.json"], { cwd: REPO, stdio: "inherit" });
+
+  // prebuild 체인은 package.json의 npm run build 하나에 위임한다.
+  console.log(`\n▶ npm run build (prebuild 체인 + next build) ...`);
+  execFileSync("npm", ["run", "build"], { cwd: REPO, stdio: "inherit" });
+  stockRollback = process.env.NEXT_PUBLIC_STOCK_BASE === "";
+  if (stockRollback) {
+    console.log(`\n▶ R2 롤백 모드(NEXT_PUBLIC_STOCK_BASE="") — R2 업로드·스톡 제외 건너뜀, /stock 로컬 서빙`);
+  } else {
+    console.log(`\n▶ 신규 스톡 이미지 R2 업로드 ...`);
+    execFileSync("node", [join(REPO, "scripts", "sync-stock-r2.mjs")], { cwd: REPO, stdio: "inherit" });
+    console.log(`\n▶ 스톡 이미지 제외 (R2에서 서빙) ...`);
+    execFileSync("node", [join(REPO, "scripts", "prune-stock.mjs")], { cwd: REPO, stdio: "inherit" });
+  }
+
+  if (buildOnce) {
+    const afterHead = git("rev-parse", "HEAD");
+    const afterStatus = git("status", "--porcelain");
+    if (afterHead !== commit || afterStatus) {
+      console.error("\n✖ 빌드 중 HEAD 또는 워킹트리가 바뀌어 산출물을 봉인하지 않습니다.\n");
+      process.exit(1);
+    }
+    release = sealReleaseArtifact({
+      sourceDir: deployDirectory,
+      releaseRoot,
+      project: PROJECT,
+      commit,
+      branch: gitBranch,
+      commitMessage: commitMsg,
+      wranglerVersion,
+      stockRollback,
+    });
+    deployDirectory = release.artifactDir;
+    release = verifyReleaseArtifact({
+      releaseRoot,
+      releaseId: release.releaseId,
+      expectedProject: PROJECT,
+      expectedCommit: commit,
+      expectedWranglerVersion: wranglerVersion,
+      requirePreview: false,
+    });
+    console.log(`\n▶ Preview용 산출물 봉인 PASS`);
+    console.log(`  release id : ${release.manifest.seal.releaseId}`);
+    console.log(`  artifact   : ${release.actual.artifactHash}`);
+  }
 }
 
 // 2-b) 파일 수 한도 점검 ──────────────────────────────────────
@@ -141,7 +253,7 @@ if (stockRollback) {
 {
   const FILE_LIMIT = 20000;
   const WARN_AT = 0.8; // 80% 넘으면 경고, 95% 넘으면 중단
-  const count = countFiles(join(REPO, OUT_DIR));
+  const count = countFiles(deployDirectory);
   const pct = count / FILE_LIMIT;
   const perArticle = 4;
   const room = Math.max(0, Math.floor((FILE_LIMIT - count) / perArticle));
@@ -155,6 +267,11 @@ if (stockRollback) {
 }
 
 // 3) 배포 (출력 캡처 → URL 파싱) ──────────────────────────────
+if (release && (git("rev-parse", "HEAD") !== commit || git("status", "--porcelain"))) {
+  console.error("\n✖ 배포 직전 HEAD 또는 워킹트리가 바뀌어 봉인 산출물 배포를 중단합니다.\n");
+  process.exit(1);
+}
+const deployArgs = makeDeployArgs(deployDirectory);
 console.log(`\n▶ wrangler pages deploy ...`);
 let out = "";
 try {
@@ -170,6 +287,32 @@ try {
 const urls = [...out.matchAll(/https?:\/\/[^\s]*\.pages\.dev[^\s]*/g)].map((m) => m[0]);
 const url = urls[urls.length - 1] || null;
 
+if (release) {
+  if (git("rev-parse", "HEAD") !== commit || git("status", "--porcelain")) {
+    console.error("\n✖ 배포 중 HEAD 또는 워킹트리가 바뀌었습니다. 이 배포는 승급 영수증으로 기록하지 않습니다.\n");
+    process.exit(1);
+  }
+  const releaseId = release.manifest.seal.releaseId;
+  // Wrangler가 읽는 동안에도 파일이 바뀌지 않았는지 다시 전수 확인한다.
+  const verified = verifyReleaseArtifact({
+    releaseRoot,
+    releaseId,
+    expectedProject: PROJECT,
+    expectedCommit: commit,
+    expectedWranglerVersion: wranglerVersion,
+    requirePreview: Boolean(reuseArtifactId),
+  });
+  recordReleaseDeployment({
+    releaseRoot,
+    releaseId,
+    env: isProd ? "production" : "preview",
+    url,
+    branch: cfBranch,
+    commit,
+    artifactHash: verified.actual.artifactHash,
+  });
+}
+
 // 4) deploy-log 기록 ──────────────────────────────────────────
 const record = {
   time: new Date().toISOString(),
@@ -182,6 +325,9 @@ const record = {
   commitMessage: commitMsg,
   url,
   deployedFrom: hostname(),
+  releaseId: release?.manifest.seal.releaseId ?? null,
+  artifactHash: release?.actual.artifactHash ?? null,
+  reusedArtifact: Boolean(reuseArtifactId),
 };
 mkdirSync(dirname(LOG_PATH), { recursive: true });
 appendFileSync(LOG_PATH, JSON.stringify(record) + "\n");
@@ -189,6 +335,10 @@ appendFileSync(LOG_PATH, JSON.stringify(record) + "\n");
 console.log(`\n✔ 배포 완료 (${cfEnv})`);
 console.log(`  URL    : ${url ?? "(파싱 실패 — 위 wrangler 출력에서 확인)"}`);
 console.log(`  commit : ${shortCommit}`);
+if (release) {
+  console.log(`  release: ${release.manifest.seal.releaseId}`);
+  console.log(`  sha256 : ${release.actual.artifactHash}`);
+}
 console.log(`  기록   : deployments/deploy-log.jsonl`);
 if (isProd) console.log(`  운영   : https://modooilbo.com`);
 console.log("");
