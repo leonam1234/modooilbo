@@ -12,16 +12,28 @@
 // 사용:
 //     node smoke.mjs https://내사이트.com / /login /about
 //     (경로를 안 주면 / 한 장만. 결과는 smoke-shots/<시각>/ 폴더)
+//     기본은 환경 2개씩 병렬 실행. 직렬 디버깅은 --serial 또는 SMOKE_SERIAL=1,
+//     병렬 수 조절은 --concurrency=N 또는 SMOKE_CONCURRENCY=N (최대 4).
 // 종료코드: 문제가 하나라도 있으면 1 → CI나 배포 스크립트에 && 로 연결 가능
 // ============================================================
 import { mkdirSync, writeFileSync, existsSync, rmSync } from 'node:fs'
 import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import * as pw from 'playwright'
+import { mapWithConcurrency, parseSmokeCli } from './mobile-smoke-concurrency.mjs'
 
-const [base, ...paths] = process.argv.slice(2)
-if (!base) { console.error('사용: node smoke.mjs <baseUrl> [경로...]'); process.exit(1) }
-const PAGES = paths.length ? paths : ['/']
+let cli
+try {
+  cli = parseSmokeCli(process.argv.slice(2), process.env, 4)
+} catch (error) {
+  console.error(`옵션 오류: ${error.message}`)
+  process.exit(1)
+}
+const { base, pages: PAGES, concurrency } = cli
+if (!base) {
+  console.error('사용: node smoke.mjs <baseUrl> [경로...] [--serial|--concurrency=N]')
+  process.exit(1)
+}
 const out = join('smoke-shots', new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19))
 mkdirSync(out, { recursive: true })
 
@@ -40,39 +52,67 @@ const slug = p => p.replace(/[^a-z0-9가-힣]+/gi, '_').replace(/^_+|_+$/g, '') 
 // 이 목록에 없는 에러는 전부 FAIL 이다 — 의심스러우면 넓히지 말고 그대로 두라.
 const THIRD_PARTY = /doubleclick\.net|googlesyndication|googletagmanager|google-analytics|adservice\.google|googleads|pagead2|facebook\.net|connect\.facebook|hotjar|clarity\.ms|criteo|taboola|outbrain/i
 
-let fail = 0
-for (const m of MATRIX) {
-  const browser = await pw[m.engine].launch()
-  const ctx = await browser.newContext({
-    viewport: { width: m.w, height: m.h }, deviceScaleFactor: 2, hasTouch: true,
-    userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1',
-  })
-  for (const p of PAGES) {
-    const page = await ctx.newPage()
+const baseUrl = base.replace(/\/+$/, '')
+
+async function checkPage(ctx, matrixEntry, path) {
+  const name = `${matrixEntry.engine}-${matrixEntry.vp}-${slug(path)}`
+  let page
+  try {
+    page = await ctx.newPage()
     const errs = []      // 우리 책임 — FAIL
     const vendor = []    // 서드파티 — 알리기만 하고 통과
-    page.on('pageerror', e => {
-      const m = String(e?.message || e) + ' ' + String(e?.stack || '')
-      ;(THIRD_PARTY.test(m) ? vendor : errs).push(String(e?.message || e))
+    page.on('pageerror', error => {
+      const detail = String(error?.message || error) + ' ' + String(error?.stack || '')
+      ;(THIRD_PARTY.test(detail) ? vendor : errs).push(String(error?.message || error))
     })
-    const name = `${m.engine}-${m.vp}-${slug(p)}`
-    try {
-      await page.goto(base.replace(/\/+$/, '') + p, { waitUntil: 'load', timeout: 30000 })
-      await page.waitForTimeout(1200)   // 폰트·이미지·스크립트 정착 대기
-      const textLen = await page.evaluate(() => (document.body?.innerText || '').trim().length)
-      const blank = textLen < 100       // 빈 화면 휴리스틱: 본문 텍스트 100자 미만이면 의심
-      await page.screenshot({ path: join(out, name + '.png'), fullPage: true })
-        .catch(() => page.screenshot({ path: join(out, name + '.png') }))
-      const bad = errs.length > 0 || blank
-      if (bad) fail++
-      console.log(`${bad ? '❌' : '✓'} ${name} text=${textLen}자` +
-        (errs.length ? ' | JS에러: ' + errs[0].slice(0, 120) : '') + (blank ? ' | 빈 화면 의심' : '') +
-        (vendor.length ? ` | (서드파티 ${vendor.length}건 무시)` : ''))
-    } catch (e) { fail++; console.log(`❌ ${name} 접속 실패: ${e.message}`) }
-    await page.close()
+    await page.goto(baseUrl + path, { waitUntil: 'load', timeout: 30000 })
+    await page.waitForTimeout(1200)   // 폰트·이미지·스크립트 정착 대기
+    const textLen = await page.evaluate(() => (document.body?.innerText || '').trim().length)
+    const blank = textLen < 100       // 빈 화면 휴리스틱: 본문 텍스트 100자 미만이면 의심
+    await page.screenshot({ path: join(out, name + '.png'), fullPage: true })
+      .catch(() => page.screenshot({ path: join(out, name + '.png') }))
+    const bad = errs.length > 0 || blank
+    const line = `${bad ? '❌' : '✓'} ${name} text=${textLen}자` +
+      (errs.length ? ' | JS에러: ' + errs[0].slice(0, 120) : '') + (blank ? ' | 빈 화면 의심' : '') +
+      (vendor.length ? ` | (서드파티 ${vendor.length}건 무시)` : '')
+    console.log(line)
+    return { bad, line }
+  } catch (error) {
+    const line = `❌ ${name} 접속 실패: ${error.message}`
+    console.log(line)
+    return { bad: true, line }
+  } finally {
+    await page?.close().catch(() => {})
   }
-  await browser.close()
 }
+
+async function runEnvironment(matrixEntry) {
+  let browser
+  try {
+    browser = await pw[matrixEntry.engine].launch()
+    const ctx = await browser.newContext({
+      viewport: { width: matrixEntry.w, height: matrixEntry.h }, deviceScaleFactor: 2, hasTouch: true,
+      userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1',
+    })
+    const results = []
+    // 한 환경 안에서는 페이지를 직렬로 열어 24개 기사 검사도 동시 요청 수를 제한한다.
+    for (const path of PAGES) results.push(await checkPage(ctx, matrixEntry, path))
+    return results
+  } catch (error) {
+    return PAGES.map(path => {
+      const name = `${matrixEntry.engine}-${matrixEntry.vp}-${slug(path)}`
+      const line = `❌ ${name} 환경 시작 실패: ${error.message}`
+      console.log(line)
+      return { bad: true, line }
+    })
+  } finally {
+    await browser?.close().catch(() => {})
+  }
+}
+
+console.log(`실행 모드: ${concurrency === 1 ? '직렬 디버깅' : `환경 최대 ${concurrency}개 병렬`} (페이지는 환경별 직렬)`)
+const environmentResults = await mapWithConcurrency(MATRIX, concurrency, runEnvironment)
+const fail = environmentResults.flat().filter(result => result.bad).length
 
 // 안드↔iOS 대조 시트: 같은 페이지를 좌(크로뮴)·우(웹킷) 나란히 — 다르게 보이면 버그 후보
 const sheet = await pw.chromium.launch()
