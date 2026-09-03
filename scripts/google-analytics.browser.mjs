@@ -806,17 +806,17 @@ try {
     await page.getByRole("button", { name: "분석 쿠키 설정" }).click();
     await page.getByLabel("분석 쿠키 선택").waitFor({ state: "visible" });
     // Footer 버튼을 화면에 보이게 하는 자동 스크롤이 기존 허용 상태의 90% 이벤트를 만들 수
-    // 있으므로, 그 이벤트를 먼저 비운 뒤 실제 철회 이후의 전송만 분리해 검사한다.
-    await page.waitForTimeout(PAGE_VIEW_STABILITY_MS);
+    // 있으므로, Google의 지연 전송까지 먼저 비운 뒤 철회 클릭부터 새 요청이 없는지 검사한다.
+    await page.waitForTimeout(6000);
+    const withdrawalStart = records.length;
     await Promise.all([
       page.waitForEvent("load"),
       page.getByLabel("분석 쿠키 선택").getByRole("button", { name: "거부" }).click(),
     ]);
     await page.waitForFunction(() => document.documentElement.dataset.ga4Active === "true");
-    const afterWithdrawalReload = records.length;
     await page.waitForTimeout(250);
     await assertNoGoogleTag(page, "after consent withdrawal");
-    assertNoGa4Traffic(records, afterWithdrawalReload, "after consent withdrawal reload");
+    assertNoGa4Traffic(records, withdrawalStart, "after consent withdrawal");
     assert.equal(await page.evaluate((key) => localStorage.getItem(key), STORAGE_KEY), "denied");
     assert.equal(
       await page.evaluate(() => document.cookie
