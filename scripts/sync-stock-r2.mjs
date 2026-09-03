@@ -11,8 +11,9 @@
  * 독자가 받는 경로를 그대로 검사하므로, 버킷에는 있는데 도메인 라우팅이 깨진 경우도 잡힌다.
  * (wrangler 4.105 기준 `r2 object list` 서브커맨드가 없기도 하다)
  *
- * 이미 확인된 파일은 .r2-synced.json 에 적어두고 다음 배포에서 건너뛴다 —
- * 파일이 수천 개라 매번 전수 HEAD를 돌리면 배포가 느려진다.
+ * 이미 확인된 파일은 Git common dir의 공용 캐시에 적어 모든 worktree가 함께 쓴다.
+ * Git 밖에서는 scripts/.r2-synced.json으로 폴백한다. 파일이 수천 개라 새 worktree마다
+ * 전수 HEAD를 되풀이하면 배포가 느려지므로 캐시는 저장 전에 잠금·재병합·원자 교체한다.
  *
  *   node scripts/sync-stock-r2.mjs                       # 누락분만 업로드
  *   node scripts/sync-stock-r2.mjs --dry-run             # 업로드 대상만 표시
@@ -24,14 +25,19 @@
  */
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, readdirSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  discoverR2Cache,
+  readMergedR2Cache,
+  writeMergedR2Cache,
+} from "./r2-sync-cache.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const STOCK = join(ROOT, "public", "stock");
 const BIN = join(ROOT, "node_modules", ".bin");
-const CACHE = join(ROOT, "scripts", ".r2-synced.json");
+const CACHE_CONFIG = discoverR2Cache(ROOT);
 const BUCKET = "modooilbo-stock";
 const BASE = "https://img.modooilbo.com";
 const CONCURRENCY = 12;
@@ -65,10 +71,15 @@ if (!existsSync(STOCK)) {
 }
 
 const local = readdirSync(STOCK).filter((f) => CONTENT_TYPE[extOf(f)] && statSync(join(STOCK, f)).size > 0);
-const synced = new Set(verifyAll ? [] : readCache());
+const cached = readMergedR2Cache(CACHE_CONFIG);
+const synced = new Set(verifyAll ? [] : cached);
 const candidates = local.filter((f) => !synced.has(f));
 
+console.log(`[r2] 캐시 ${CACHE_CONFIG.mode === "git-common" ? "Git 공용(worktree 공유)" : "로컬 폴백"}: ${CACHE_CONFIG.cachePath}`);
+
 if (!candidates.length) {
+  // 첫 실행이 이미 완전한 레거시 캐시를 읽은 경우에도 공용 캐시로 즉시 이관한다.
+  if (!dryRun) writeCache(cached);
   console.log(`[r2] 동기화 완료 — 로컬 ${local.length}개 전부 확인됨(캐시)`);
   process.exit(0);
 }
@@ -141,16 +152,8 @@ if (stillMissing.length) {
 writeCache([...synced, ...candidates.filter((f) => !failed.includes(f))]);
 console.log(`[r2] 서빙 확인 완료 — 업로드분 ${missing.length - failed.length}개 200 응답`);
 
-// ── helpers ───────────────────────────────────────────────
-function readCache() {
-  try {
-    return JSON.parse(readFileSync(CACHE, "utf8"));
-  } catch {
-    return [];
-  }
-}
 function writeCache(list) {
-  writeFileSync(CACHE, JSON.stringify([...new Set(list)].sort(), null, 0) + "\n");
+  writeMergedR2Cache(CACHE_CONFIG, list);
 }
 
 /** 서빙 URL에 HEAD를 던져 404인 것만 골라낸다. 네트워크 오류는 '누락'으로 보아 재업로드한다. */

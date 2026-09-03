@@ -89,6 +89,13 @@ iPhone Safari UA를 씁니다. `app`·`browser`는 높이 프리셋일 뿐 실�
 ⑧ `wrangler pages deploy out` → ⑨ `deployments/deploy-log.jsonl` 기록 →
 ⑩ Production에서만 IndexNow 통지. 스크립트는 fetch·push·승인 확인·라이브 검증을 대신하지 않습니다.
 
+R2 동기화의 확인 완료 목록은 기본적으로 `git rev-parse --git-common-dir` 아래
+`modooilbo-cache/r2-synced.json`에 저장합니다. linked worktree들이 같은 Git common dir를
+공유하므로 새 릴리스 worktree도 기존 수천 개 이미지를 다시 HEAD 검사하지 않고 신규 파일만
+확인합니다. 저장할 때는 잠금을 잡은 뒤 공용·현재 worktree·기본 worktree의 레거시
+`scripts/.r2-synced.json`을 다시 합치고, 임시 파일을 원자적으로 교체해 동시 실행의 갱신 유실을
+막습니다. Git 밖에서 실행하거나 common dir에 쓸 수 없으면 기존 로컬 경로로 폴백합니다.
+
 ```bash
 npm run build            # → out/ (정적 페이지 + robots.txt + sitemap.xml + _headers)
 npm run preview:static   # 로컬 검증 (localhost:3001)
@@ -192,8 +199,11 @@ Actions처럼 Next 서버 런타임이 꼭 필요한 기능을 도입할 때만
 - 배포 직후 첫 요청이 엣지 캐시로 404 가 날 수 있습니다. 20초 뒤
   `Cache-Control: no-cache`로 재확인하십시오. UA 지정은 차단 증상을 재현·우회할 때만
   선택적으로 사용하며, 기본 UA가 항상 403이라고 가정하지 않습니다.
-- `scripts/.r2-synced.json`은 gitignore 된 **worktree별 로컬 캐시**입니다. 새 worktree에서는
-  캐시가 없어 기존 이미지까지 다시 확인할 수 있으며, 미커밋 게이트에는 걸리지 않습니다.
+- R2 확인 캐시의 정본은 Git common dir의 `modooilbo-cache/r2-synced.json`입니다. Git 메타데이터
+  안의 비추적 속도 캐시이므로 어느 worktree의 미커밋 게이트에도 걸리지 않습니다.
+  `scripts/.r2-synced.json`은 기존 캐시 병합과 비-Git 폴백을 위해 계속 gitignore 합니다.
+  캐시는 지워도 안전하며, 다음 실행이 실제 서빙 URL을 다시 HEAD 검사합니다. 캐시를 무시해
+  전수 확인하려면 `node scripts/sync-stock-r2.mjs --verify-all`을 사용합니다.
 
 ## 12. 운영 체크리스트
 - [x] 커스텀 도메인 연결

@@ -619,9 +619,10 @@ curl -sS -o /dev/null -w "%{http_code}\n" -H "Cache-Control: no-cache" \
 node scripts/check-bid.mjs R26BK0XXXXXXX
 curl -s -A "Mozilla/5.0" "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=<14자리>"
 
-# 배포 스크립트는 자기 실행 중 scripts/.r2-synced.json 을 갱신합니다.
-# gitignore 대상인 worktree별 로컬 캐시라 미커밋 게이트에는 걸리지 않습니다.
-# 새 worktree에는 캐시가 없어 기존 이미지까지 다시 확인할 수 있으므로 오류로 오해하지 마십시오.
+# R2 확인 캐시는 Git common dir의 modooilbo-cache/r2-synced.json을 모든 worktree가 공유합니다.
+# 쓰기 직전 공용·현재·기본 worktree 레거시 캐시를 잠금 안에서 재병합하고 원자 교체합니다.
+# Git 밖에서는 gitignore 된 scripts/.r2-synced.json으로 폴백하며, 어느 경로든 속도 캐시일 뿐입니다.
+# 지워도 다음 실행에서 HEAD 재검사하며, 강제 전수 확인은 --verify-all을 사용합니다.
 ```
 
 `scripts/ping-indexnow.mjs`의 **현재 정본 동작**은 RSS 최신 기사 최대 30개와 홈을 모아

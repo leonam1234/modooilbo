@@ -27,6 +27,7 @@
     "test:analytics": "node --test scripts/google-analytics.test.mjs",
     "check:preview-assets": "node scripts/check-preview-assets.mjs",
     "test:preview-assets": "node --test scripts/check-preview-assets.test.mjs",
+    "test:r2-cache": "node --test scripts/r2-sync-cache.test.mjs",
     "fetch:stock": "node scripts/fetch-stock.mjs",
     "smoke": "node scripts/mobile-smoke.mjs"
   },
