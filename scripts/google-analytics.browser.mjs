@@ -8,9 +8,9 @@ const BASE_ORIGIN = new URL(`${BASE}/`).origin;
 const ID = ["G", "R2MDE3WDFY"].join("-");
 const SCRIPT_URL = `https://www.googletagmanager.com/gtag/js?id=${ID}`;
 const ACTIVATION_URL = "/api/analytics-status";
-const ACTIVATION_AT = "2026-09-10T12:00:00+09:00";
+const ACTIVATION_AT = "2026-09-03T09:30:00+09:00";
 const STORAGE_KEY = "modoo-analytics-consent-v1";
-const CLIENT_CLOCK_AFTER_ACTIVATION = Date.parse("2026-09-10T12:01:00+09:00");
+const CLIENT_CLOCK_AFTER_ACTIVATION = Date.parse("2026-09-03T09:31:00+09:00");
 const PAGE_VIEW_STABILITY_MS = 2000;
 const PUBLIC_PATHS = [
   "/",
@@ -166,7 +166,7 @@ async function installLoaderExecutionProbe(context, storageKey) {
 }
 
 async function mockServerActivation(context, active) {
-  const serverNow = active ? "2026-09-10T03:01:00.000Z" : "2026-09-02T13:30:00.000Z";
+  const serverNow = active ? "2026-09-03T00:31:00.000Z" : "2026-09-03T00:29:59.000Z";
   await context.route(`**${ACTIVATION_URL}`, async (route) => {
     await route.fulfill({
       status: 200,
@@ -768,10 +768,13 @@ try {
     assertNoGa4Traffic(records, 0, "before consent");
     await banner.getByRole("button", { name: "거부" }).click();
     await banner.waitFor({ state: "hidden" });
+    assert.equal(await page.evaluate((key) => localStorage.getItem(key), STORAGE_KEY), "denied");
     const afterDenial = records.length;
     await page.reload({ waitUntil: "domcontentloaded" });
+    await page.waitForFunction(() => document.documentElement.dataset.ga4Active === "true");
     await page.waitForTimeout(200);
     await assertNoGoogleTag(page, "after denial");
+    assert.equal(await page.getByLabel("분석 쿠키 선택").count(), 0);
     assertNoGa4Traffic(records, afterDenial, "after denial");
     assertGoogleFirewall(records, "consent denied");
     await context.close();
@@ -790,6 +793,11 @@ try {
     await page.locator(`script[src="${SCRIPT_URL}"]`).waitFor({ state: "attached" });
     await waitForStablePageView(records, start, "/", "allow click");
     await assertSingleGoogleTag(page, "allow click");
+    const configs = await page.evaluate((measurementId) =>
+      (window.dataLayer || []).filter((entry) =>
+        entry?.[0] === "config" && entry?.[1] === measurementId).length,
+    ID);
+    assert.equal(configs, 1, "allow click: config count");
     assert.equal(
       records.slice(start).filter(isExactLoaderRecord).length,
       1,
@@ -797,12 +805,18 @@ try {
     );
     await page.getByRole("button", { name: "분석 쿠키 설정" }).click();
     await page.getByLabel("분석 쿠키 선택").waitFor({ state: "visible" });
+    // Footer 버튼을 화면에 보이게 하는 자동 스크롤이 기존 허용 상태의 90% 이벤트를 만들 수
+    // 있으므로, 그 이벤트를 먼저 비운 뒤 실제 철회 이후의 전송만 분리해 검사한다.
+    await page.waitForTimeout(PAGE_VIEW_STABILITY_MS);
     await Promise.all([
       page.waitForEvent("load"),
       page.getByLabel("분석 쿠키 선택").getByRole("button", { name: "거부" }).click(),
     ]);
+    await page.waitForFunction(() => document.documentElement.dataset.ga4Active === "true");
+    const afterWithdrawalReload = records.length;
     await page.waitForTimeout(250);
     await assertNoGoogleTag(page, "after consent withdrawal");
+    assertNoGa4Traffic(records, afterWithdrawalReload, "after consent withdrawal reload");
     assert.equal(await page.evaluate((key) => localStorage.getItem(key), STORAGE_KEY), "denied");
     assert.equal(
       await page.evaluate(() => document.cookie

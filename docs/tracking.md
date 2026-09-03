@@ -4,7 +4,7 @@
 > 핵심 원칙: **실제로 저장·집계되지 않는 값은 절대 숫자로 만들지 않는다 → `확인 불가 / unavailable`.**
 > 리포트 실행: 트래픽 `npm run report:tracking`, 검색·AI 가시성 `npm run report:visibility`.
 
-최종 갱신: 2026-09-02 (KST)
+최종 갱신: 2026-09-03 (KST)
 
 ---
 
@@ -15,7 +15,7 @@
 | 사이트 구조 | Next.js **정적 export** + Cloudflare Pages. D1/KV 바인딩은 있으나 회원·뉴스레터·결제 기능은 데모 | 제품 지표는 실제 저장 여부를 따로 확인 |
 | Cloudflare 트래픽 | Zone Analytics GraphQL 어댑터가 Wrangler OAuth를 자동 재사용. 별도 beacon 없이 edge 요청·HTML 페이지뷰·visits·uniques 집계 | **실집계 가동** |
 | Web Analytics(beacon) | 선택 기능. `NEXT_PUBLIC_CF_BEACON_TOKEN`이 있으면 RUM을 삽입하며, 없으면 Zone Analytics를 사용 | AI referrer host까지 보려면 RUM 연결 권장 |
-| Google Analytics 4 | `G-R2MDE3WDFY`를 Basic Consent로 설치. Cloudflare 서버 시각이 방침 시행 예정 시각인 2026-09-10 12:00 KST를 지난 뒤에도 이용자가 분석을 허용해야만 tag를 로드 | **시행·동의 전 미수집. 시행 후 라이브 수신 별도 확인** |
+| Google Analytics 4 | `G-R2MDE3WDFY`를 Basic Consent로 설치. 2026-09-03 09:30 KST부터 활성 상태이며, 이용자가 분석을 허용해야만 tag를 로드 | **활성화 완료·동의 전 미수집. GA Realtime 수신은 별도 확인** |
 | 검색·AI 가시성 | `scripts/search-visibility-report.mjs`: 라이브 정책, CF 트래픽, AI User-Agent, AI referrer, GSC, Bing을 한 리포트로 집계 | CF·정책은 즉시, GSC·Bing·referrer는 아래 권한 필요 |
 | Google Search Console | 읽기 전용 API 어댑터 구현. 현재 실행 계정에는 `modooilbo.com` 속성 권한/OAuth 없음 | 권한 부여 후 실집계 |
 | Bing Webmaster | API 키 및 사용자 지정 신규 REST URL 어댑터 구현. 현재 인증 없음 | Bing 로그인·API 인증 후 실집계 |

@@ -21,11 +21,9 @@ export default function PrivacyPage() {
 
       <div className="container-page py-10 sm:py-12">
         <article className="mx-auto max-w-3xl">
-          {/* 제11조(고지의 의무)가 "시행일의 7일 전부터 고지"를 정하고 있으므로, 개정일과
-              시행 예정일을 최소 7일 간격으로 함께 표기한다. 방침을 고칠 때 이 규칙을 깨지 말 것. */}
+          {/* 적용 중인 방침의 시행 시각과 개정일을 명확히 표시한다. */}
           <p className="mb-6 text-sm text-ink-500 dark:text-ink-400">
-            시행 예정일: 2026-09-10 12:00 KST · 개정일: 2026년 9월 2일 (현재 시행일:
-            2026년 8월 17일)
+            시행일: 2026-09-03 09:30 KST · 개정일: 2026년 9월 3일
           </p>
           <p className="mb-10 leading-relaxed text-ink-600 dark:text-ink-300">
             모두일보(이하 &ldquo;회사&rdquo;)은 「개인정보 보호법」 등 관련 법령에 따라 이용자의
@@ -195,7 +193,7 @@ export default function PrivacyPage() {
               <code>_ga_*</code>)는 방문자와 세션을 구분하며 기본 만료 기간은 최대 2년입니다.
               이 쿠키 만료 기간과 Google Analytics 서버의 데이터 보유 기간은 별개이며, 회사는
               Google Analytics 사용자·이벤트 단위 데이터를 회사 정책상 수집일로부터 14개월을
-              초과해 보유하지 않도록 관리합니다. Google Analytics는 2026-09-10 12:00 KST부터
+              초과해 보유하지 않도록 관리합니다. Google Analytics는 2026-09-03 09:30 KST부터
               사이트의 별도 선택창에서 &ldquo;국외이전·분석 허용&rdquo;을 선택한 경우에만 태그를
               불러오며, 허용 전이나 거부 후에는 Google로 분석 데이터를 전송하지 않습니다.
             </p>
@@ -260,16 +258,15 @@ export default function PrivacyPage() {
               11. 고지의 의무
             </h2>
             <p className="mt-3 leading-relaxed text-ink-600 dark:text-ink-300">
-              본 개인정보처리방침의 내용 추가, 삭제 및 수정이 있을 경우 시행일의 7일 전부터
-              서비스 공지사항을 통하여 고지합니다. 다만, 이용자 권리의 중대한 변경이 발생할 때에는
-              최소 30일 전에 고지합니다.
+              본 개인정보처리방침의 내용이 추가, 삭제 또는 수정되는 경우 변경 사항과 시행일을
+              이용자가 쉽게 확인할 수 있도록 이 페이지에 공개합니다. 이용자 권리에 중대한 영향을
+              미치는 변경은 관련 법령과 내부 기준에 따라 필요한 사전 고지를 실시합니다.
             </p>
           </section>
 
           <section className="mt-12 border-t border-ink-200 pt-8 dark:border-ink-800">
             <p className="leading-relaxed text-ink-600 dark:text-ink-300">
-              이 개정 방침은 2026-09-10 12:00 KST부터 적용되며, 그 전까지는 2026년 8월
-              17일 시행 방침이 적용됩니다.
+              이 개정 방침은 2026-09-03 09:30 KST부터 적용됩니다.
             </p>
           </section>
         </article>

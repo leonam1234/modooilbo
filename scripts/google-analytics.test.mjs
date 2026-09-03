@@ -67,14 +67,14 @@ function assertCspSources(directives, directive, expectedSources) {
   }
 }
 
-test("GA4 configuration is fixed, server-gated after notice, and token paths stay blocked", async () => {
+test("GA4 configuration is fixed, server-gated after approval, and token paths stay blocked", async () => {
   const config = await loadAnalyticsConfig();
   assert.equal(config.GA4_MEASUREMENT_ID, EXPECTED_ID);
   assert.equal(config.GA4_SCRIPT_URL, EXPECTED_URL);
-  assert.equal(config.GA4_ACTIVATION_AT, "2026-09-10T12:00:00+09:00");
+  assert.equal(config.GA4_ACTIVATION_AT, "2026-09-03T09:30:00+09:00");
   assert.equal(config.GA4_ACTIVATION_STATUS_URL, "/api/analytics-status");
-  assert.equal(config.isGa4ActiveAt(Date.parse("2026-09-10T11:59:59+09:00")), false);
-  assert.equal(config.isGa4ActiveAt(Date.parse("2026-09-10T12:00:00+09:00")), true);
+  assert.equal(config.isGa4ActiveAt(Date.parse("2026-09-03T09:29:59+09:00")), false);
+  assert.equal(config.isGa4ActiveAt(Date.parse("2026-09-03T09:30:00+09:00")), true);
 
   for (const pathname of [
     "/reset",
@@ -188,10 +188,20 @@ test("CSP and privacy notice cover GA4 while pre-consent export contains no acti
 
   const privacy = await readFile(path.join(ROOT, "src/app/privacy/page.tsx"), "utf8");
   assert.match(privacy, /Google Analytics/);
-  assert.match(privacy, /시행 예정일: 2026-09-10 12:00 KST/);
+  assert.match(privacy, /시행일: 2026-09-03 09:30 KST/);
+  assert.doesNotMatch(privacy, /2026-09-10 12:00 KST/);
   assert.match(privacy, /분석 쿠키 설정/);
   assert.match(privacy, /1600 Amphitheatre Parkway/);
   assert.match(privacy, /14개월을\s+초과해\s+보유하지\s+않도록/);
+
+  for (const relativePath of [
+    "docs/tracking.md",
+    "wiki/operations/02-growth-and-revenue.md",
+  ]) {
+    const operationsDoc = await readFile(path.join(ROOT, relativePath), "utf8");
+    assert.match(operationsDoc, /2026-09-03 09:30 KST/, `${relativePath}: activation time`);
+    assert.doesNotMatch(operationsDoc, /2026-09-10 12:00 KST/, `${relativePath}: stale activation time`);
+  }
 
   assert.ok(existsSync(OUT), "out/ is missing; run npm run build first");
   const htmlFiles = await walk(OUT, new Set([".html"]));

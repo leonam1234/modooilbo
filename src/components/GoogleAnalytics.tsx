@@ -296,10 +296,14 @@ export function GoogleAnalytics({ blocked = false }: { blocked?: boolean }) {
     window[`ga-disable-${GA4_MEASUREMENT_ID}`] = next !== "granted";
 
     if (next === "denied") {
-      window.gtag?.("consent", "update", CONSENT_DENIED);
       eraseGoogleAnalyticsCookies();
-      // 이미 로드된 tag를 완전히 제거하려면 새 문서로 다시 시작해야 한다.
-      if (hadGrantedConsent) window.location.reload();
+      // 이미 로드된 tag에 consent update를 보내면 재로딩 직전 지연 이벤트가 전송될 수 있다.
+      // 철회값과 차단 플래그를 먼저 저장한 뒤 새 문서로 시작해 tag 자체를 제거한다.
+      if (hadGrantedConsent) {
+        window.location.reload();
+        return;
+      }
+      window.gtag?.("consent", "update", CONSENT_DENIED);
     }
   };
 
