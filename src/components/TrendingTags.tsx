@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 
 type Trending = { tags: string[]; label: string };
@@ -110,14 +111,18 @@ export function TrendingTags() {
         <span className="hidden shrink-0 text-[11px] text-ink-500 dark:text-ink-400 sm:block">{data.label}</span>
       </div>
 
-      {/* 모바일 전체 순위 패널 (+투명 백드롭: 바깥 탭 닫기, 클릭 관통 차단) */}
-      {open && (
+      {/* 모바일 전체 순위 패널 (+투명 백드롭: 바깥 탭 닫기, 클릭 관통 차단)
+          ⚠️ 백드롭은 body 로 포털한다 — 통유리 래퍼(backdrop-filter)가 fixed 의 기준 상자가 되어
+          안에 두면 헤더 높이만 덮고 본문 탭으로는 닫히지 않는다(Header 드로어와 같은 함정).
+          z-30: 본문(z-10) 위, 통유리 래퍼(z-40) 아래 — 래퍼 안의 패널(z-50)과 링크는 계속 눌린다. */}
+      {open && typeof document !== "undefined" && createPortal(
         <button
           type="button"
           aria-label="실시간 인기 닫기"
           onClick={() => setOpen(false)}
-          className="fixed inset-0 z-40 cursor-default bg-transparent sm:hidden"
-        />
+          className="fixed inset-0 z-30 cursor-default bg-transparent sm:hidden"
+        />,
+        document.body,
       )}
       {open && (
         <div

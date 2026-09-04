@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { CATEGORIES, BIZ_CATEGORIES } from "@/lib/categories";
 import { DOW, cn, kstToday } from "@/lib/utils";
 import { useFocusTrap } from "./useFocusTrap";
@@ -207,8 +208,12 @@ export function Header() {
       {/* 검색 오버레이 — 자동완성 로직 포함(관심사 분리: SearchOverlay.tsx) */}
       <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
 
-      {/* 모바일 전체 메뉴 드로어 */}
-      {menuOpen && (
+      {/* 모바일 전체 메뉴 드로어 — ⚠️ 반드시 body 로 포털.
+          layout.tsx 의 통유리 래퍼(backdrop-filter)가 fixed 자손의 기준 상자(containing block)가 되어,
+          이 안에 그대로 두면 `fixed inset-0` 이 화면이 아니라 헤더 높이(~147px) 안에 갇힌다.
+          2026-08-21 통유리 도입 뒤 모든 폰에서 드로어가 147px 로 잘리고 카테고리가 두 줄만 보였다
+          (2026-09-04 오너 제보·Chromium/WebKit 재현). 데스크톱 스모크·빌드 게이트로는 안 잡힌다. */}
+      {menuOpen && typeof document !== "undefined" && createPortal(
         <div ref={drawerRef} className="fixed inset-0 z-50 md:hidden" role="dialog" aria-modal="true" aria-label="전체 메뉴">
           <div
             className="absolute inset-0 animate-[overlay-in_.2s_ease-out] bg-black/40 backdrop-blur-[2px]"
@@ -288,7 +293,8 @@ export function Header() {
               </Link>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
     </header>
   );
