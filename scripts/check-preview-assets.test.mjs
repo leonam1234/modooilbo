@@ -7,6 +7,7 @@ import {
   auditPreviewAssets,
   evenlySample,
   extractNextJsAssets,
+  normalizeBaseUrl,
   parseArgs,
 } from "./check-preview-assets.mjs";
 
@@ -93,6 +94,26 @@ after(async () => {
 
 test("evenlySample includes first, middle, and last entries", () => {
   assert.deepEqual(evenlySample(["a", "b", "c", "d", "e"], 3), ["a", "c", "e"]);
+});
+
+test("Preview asset target rejects production and unrelated external hosts", () => {
+  assert.equal(
+    normalizeBaseUrl("https://build-123.modooilbo.pages.dev/path?q=1").href,
+    "https://build-123.modooilbo.pages.dev/",
+  );
+  assert.equal(normalizeBaseUrl(baseUrl).href, `${baseUrl}/`);
+  assert.throws(
+    () => normalizeBaseUrl("https://modooilbo.com/"),
+    /운영 도메인을 사용할 수 없습니다/,
+  );
+  assert.throws(
+    () => normalizeBaseUrl("https://example.com/"),
+    /modooilbo\.pages\.dev 또는 loopback/,
+  );
+  assert.throws(
+    () => normalizeBaseUrl("https://other-project.pages.dev/"),
+    /modooilbo\.pages\.dev 또는 loopback/,
+  );
 });
 
 test("extractNextJsAssets remaps canonical assets to the Preview origin", () => {

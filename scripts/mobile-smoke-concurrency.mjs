@@ -1,3 +1,5 @@
+import { normalizeInspectionTarget } from "./lib/inspection-safety.mjs";
+
 export const DEFAULT_SMOKE_CONCURRENCY = 2;
 
 const TRUE_VALUES = new Set(["1", "true", "yes", "on"]);
@@ -12,6 +14,17 @@ function parseConcurrency(value, source) {
     throw new Error(`${source} 값은 1 이상의 정수여야 합니다: ${value}`);
   }
   return Number(normalized);
+}
+
+function normalizeSameOriginPath(rawPath, base) {
+  if (!rawPath.startsWith("/")) {
+    throw new Error(`검사 경로는 /로 시작해야 합니다: ${rawPath}`);
+  }
+  const resolved = new URL(rawPath, `${base}/`);
+  if (resolved.origin !== base) {
+    throw new Error(`검사 경로는 Preview와 같은 origin이어야 합니다: ${rawPath}`);
+  }
+  return `${resolved.pathname}${resolved.search}${resolved.hash}`;
 }
 
 export function parseSmokeCli(argv, env = process.env, matrixSize = 4) {
@@ -40,7 +53,10 @@ export function parseSmokeCli(argv, env = process.env, matrixSize = 4) {
     positional.push(arg);
   }
 
-  const [base, ...paths] = positional;
+  const [rawBase, ...paths] = positional;
+  const base = rawBase
+    ? normalizeInspectionTarget(rawBase, "모바일 스모크 대상 URL").origin
+    : undefined;
   const requestedConcurrency = flagConcurrency
     ?? (env.SMOKE_CONCURRENCY === undefined
       ? DEFAULT_SMOKE_CONCURRENCY
@@ -51,7 +67,7 @@ export function parseSmokeCli(argv, env = process.env, matrixSize = 4) {
 
   return {
     base,
-    pages: paths.length ? paths : ["/"],
+    pages: paths.length ? paths.map((path) => normalizeSameOriginPath(path, base)) : ["/"],
     concurrency,
   };
 }

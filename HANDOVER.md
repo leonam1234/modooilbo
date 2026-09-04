@@ -321,7 +321,7 @@ const rows = fs.readFileSync("deployments/deploy-log.jsonl", "utf8").trim().spli
 for (const line of rows) { try { const r = JSON.parse(line); if (r.env === "Preview" && r.commit === process.argv[1] && r.url) { process.stdout.write(r.url); process.exit(0); } } catch {} }
 process.exit(1);
 ' "$MODOO_RELEASE_SHA")"
-[[ "$MODOO_PREVIEW_URL" == https://*.pages.dev* ]]
+[[ "$MODOO_PREVIEW_URL" == https://*.modooilbo.pages.dev || "$MODOO_PREVIEW_URL" == https://*.modooilbo.pages.dev/* ]]
 npm run smoke -- "$MODOO_PREVIEW_URL" / /policy/ /newsroom/ "${MODOO_ARTICLE_PATHS[@]}"
 # smoke-shots/<실행시각>/compare-*.png를 눈으로 대조하고 FAIL이면 운영 배포 중단
 # 자동 FAIL 판정은 사이트 JS pageerror와 본문 100자 미만뿐이다.
@@ -338,9 +338,9 @@ test "$MODOO_RELEASE_SHA" = "$(git rev-parse origin/master)"
 test "$MODOO_RELEASE_SHA" = "$(git ls-remote origin refs/heads/master | awk '{print $1}')"
 # 검증한 release 브랜치 HEAD가 원격 master와 정확히 같을 때만 브랜치 가드를 통제 우회
 npm run deploy:prod -- --force-branch
-# 8) 운영 라이브 재검증 — 신규 기사 경로 전건까지 엔진·뷰포트 4조합으로 확인
-npm run smoke -- https://modooilbo.com / /policy/ /newsroom/ "${MODOO_ARTICLE_PATHS[@]}"
-# HTTP·XML·OG 직접 검사는 아래 §9의 curl 예시로 별도 확인한다.
+# 8) 운영 라이브 확인 — 브라우저 전수검사와 자산 크롤은 Preview에서 끝낸다.
+# Production에서는 신규 기사 URL마다 HTTP·canonical·index/follow·OG를 각 1회만 확인한다.
+# 아래 §9의 curl 예시를 사용하고 smoke·check:preview-assets를 운영 도메인에 실행하지 않는다.
 # 9) IndexNow 자동 통지 결과를 기록한다. 요청 접수와 실제 색인 완료를 구분한다.
 # 10) 필수 색인 인계 — 오늘 신규 발행 기사 전건의 운영 canonical URL을 추출한다.
 #    HTTP 200·self-canonical·index/follow를 확인한 URL만 아래 색인 담당자 작업으로 보낸다.
@@ -393,15 +393,22 @@ Safari UA를 쓰고 `app`·`browser`는 높이만 모사합니다. 따라서 이
 실제 Android UA, 설치 PWA 상태, 주소창·키보드·인앱브라우저 UI의 실기기 검증이 아닙니다.
 
 ```bash
-npm run smoke -- https://modooilbo.com / /policy/ /newsroom/
+npm run smoke -- "$MODOO_PREVIEW_URL" / /policy/ /newsroom/ "${MODOO_ARTICLE_PATHS[@]}"
 ```
 
-**스모크는 분석·광고 요청을 아예 보내지 않습니다(2026-09-03).** 운영을 치는 스모크가 Cloudflare
+**스모크는 Preview URL에서만 실행하고 분석·광고 요청을 보내지 않습니다(2026-09-03).** 운영을 치는 스모크가 Cloudflare
 RUM·GA4·Clarity 에 "사람 방문"으로 잡혀 8/28 도입 뒤 운영 RUM 페이지로드를 하루 수백 건
 부풀렸습니다(9/2 실측). 이제 cloudflareinsights·googletagmanager·google-analytics·clarity·
 googlesyndication 요청을 Playwright `route` 로 끊고 `modoo_internal=1` 쿠키를 심어 조회수 API 에서도
 빠집니다. 대표·코덱스 브라우저도 `?modoo-internal=1` 을 한 번 열어 같은 쿠키를 켜 두십시오
 (`docs/tracking.md` §3). 원본 `wlashvpel/mobile-smoke` 에는 아직 반영하지 않았습니다.
+
+`modooilbo.com`과 `www.modooilbo.com`은 검사 도구가 실행 전에 거부합니다. Production 배포 뒤에는
+신규 URL별 저요청 HTTP·메타 확인만 하고, 4환경 스모크·전체 사이트맵·자산 검사는 반복하지 않습니다.
+Preview에서 운영 도메인·그 하위 도메인·운영 alias `modooilbo.pages.dev`로 리디렉션되거나
+절대 자산 요청이 생겨도 route가 차단합니다.
+후속 개발은 최신 `master`에서 시작하며 폐기된 `codex/ga4-20260902` 브랜치·worktree를 merge하거나
+cherry-pick하지 않습니다.
 
 **서드파티(광고·분석) 에러는 세지 않습니다.** 애드센스가 사파리 교차출처 정책에
 걸려 webkit 전 페이지에서 에러를 내는데, 그걸 FAIL 로 세면 **광고를 붙인 우리 사이트는
@@ -420,9 +427,9 @@ googlesyndication 요청을 Playwright `route` 로 끊고 `modoo_internal=1` 쿠
 `compare-*.png`는 긴 뷰포트의 Chromium↔WebKit만 합성하므로 이를 눈으로 대조하고,
 짧은 660px 뷰포트는 조합별 원본 PNG도 따로 확인하십시오.
 
-⚠️ **prod URL 로 돌리면 "배포 후 검증"입니다.** 운영 배포 전에는 반드시
-`npm run deploy:preview` 로 먼저 올리고 그 URL을 검사한 뒤, PASS와 `compare-*.png`
-육안 대조를 모두 마친 경우에만 `npm run deploy:prod`로 승급하십시오.
+⚠️ **prod URL은 도구가 실행 전에 거부합니다.** `npm run deploy:preview`로 먼저 올리고
+배포 스크립트가 출력한 `https://*.modooilbo.pages.dev` URL을 검사한 뒤, PASS와
+`compare-*.png` 육안 대조를 모두 마친 경우에만 `npm run deploy:prod`로 승급하십시오.
 
 ⚠️ 브라우저 바이너리가 없거나 버전이 안 맞으면 `npx playwright install chromium webkit` 을
 먼저 돌리십시오.

@@ -178,6 +178,12 @@ test("one direct Google tag owns the only GA/GTM measurement ID; consent UI is g
   ]) {
     assert.equal(existsSync(path.join(ROOT, removed)), false, `${removed} must stay removed`);
   }
+  const packageJson = JSON.parse(await readFile(path.join(ROOT, "package.json"), "utf8"));
+  assert.equal(
+    packageJson.scripts?.["test:analytics:browser"],
+    undefined,
+    "removed consent browser test must not be reintroduced",
+  );
   const thirdParty = await readFile(path.join(ROOT, "src/components/ThirdPartyScripts.tsx"), "utf8");
   assert.doesNotMatch(thirdParty, /GoogleAnalytics/);
   assert.match(thirdParty, /useRef\(isThirdPartyTokenPath\(pathname\)\)/);
@@ -256,7 +262,14 @@ test("CSP, privacy notice, docs, and static output expose one detectable Google 
   for (const relativePath of ["docs/tracking.md", "wiki/operations/02-growth-and-revenue.md"]) {
     const doc = await readFile(path.join(ROOT, relativePath), "utf8");
     assert.match(doc, /G-R2MDE3WDFY/, `${relativePath}: measurement id`);
-    for (const stale of [/Consent Mode/, /분석 쿠키 설정/, /선택창/, /2026-09-03 09:30 KST/]) {
+    for (const stale of [
+      /Consent Mode/,
+      /Advanced Consent/,
+      /test:analytics:browser/,
+      /분석 쿠키 설정/,
+      /선택창/,
+      /2026-09-03 09:30 KST/,
+    ]) {
       assert.doesNotMatch(doc, stale, `${relativePath}: stale consent wording ${stale}`);
     }
   }

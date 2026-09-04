@@ -151,7 +151,8 @@ dispatch하며, 각 lane은 기사별 결과를 즉시 반환한다. 원출처 �
    이 항목을 별도 전수 확인한 뒤 검증한 SHA만 `master`에 push하고 원격 SHA를 대조한다.
 4. HEAD·`origin/master`·원격 `master`가 Preview 검증 SHA와 모두 같음을 재확인한다. 같은 릴리스
    worktree에서는 통제된 `--force-branch`, clean master에서는 일반 명령으로 Production 배포하고
-   같은 전건을 라이브 재검증한다.
+   신규 기사 URL의 HTTP·canonical·index/follow·OG를 각 1회만 라이브 확인한다. 브라우저 4환경과
+   사이트맵·자산 전수검사는 Preview에서 끝내며 운영 도메인에 반복하지 않는다.
 5. HTTP 200·self-canonical·index/follow를 확인한 신규 기사 canonical URL 전건을 색인 담당자에게
    발행일·건수·사이트 커밋·IndexNow 결과와 함께 보낸다. `handoff_sent`·`requested`·
    `submitted`·`indexed_current`는 서로 다른 상태다.

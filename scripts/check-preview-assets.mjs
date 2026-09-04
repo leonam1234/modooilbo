@@ -2,6 +2,7 @@
 
 import { setTimeout as delay } from "node:timers/promises";
 import { pathToFileURL } from "node:url";
+import { normalizeInspectionTarget } from "./lib/inspection-safety.mjs";
 
 const DEFAULTS = Object.freeze({
   articleSamples: 3,
@@ -95,22 +96,7 @@ export function parseArgs(argv) {
 }
 
 export function normalizeBaseUrl(raw) {
-  let parsed;
-  try {
-    parsed = new URL(raw);
-  } catch {
-    throw new Error(`Invalid Preview URL: ${raw}`);
-  }
-  if (!['http:', 'https:'].includes(parsed.protocol)) {
-    throw new Error("Preview URL must use http:// or https://.");
-  }
-  if (parsed.username || parsed.password) {
-    throw new Error("Preview URL must not include credentials.");
-  }
-  parsed.pathname = "/";
-  parsed.search = "";
-  parsed.hash = "";
-  return parsed;
+  return normalizeInspectionTarget(raw, "Preview URL");
 }
 
 function decodeEntities(value) {
@@ -462,12 +448,8 @@ async function main() {
     return;
   }
 
-  const base = normalizeBaseUrl(cli.baseUrl);
-  if (!base.hostname.endsWith(".pages.dev")) {
-    console.warn(`\n⚠ ${base.hostname} is not a pages.dev hostname; continuing as a read-only check.`);
-  }
-
   try {
+    const base = normalizeBaseUrl(cli.baseUrl);
     const report = await auditPreviewAssets(base.href, cli);
     printReport(report, cli);
     if (!report.pass) process.exitCode = 1;

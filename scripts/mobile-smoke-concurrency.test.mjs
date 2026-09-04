@@ -11,9 +11,9 @@ import {
 test("CLI remains compatible and defaults to bounded parallel environments", () => {
   assert.equal(DEFAULT_SMOKE_CONCURRENCY, 2);
   assert.deepEqual(
-    parseSmokeCli(["https://example.com", "/", "/login"], {}, 4),
+    parseSmokeCli(["https://preview.modooilbo.pages.dev", "/", "/login"], {}, 4),
     {
-      base: "https://example.com",
+      base: "https://preview.modooilbo.pages.dev",
       pages: ["/", "/login"],
       concurrency: 2,
     },
@@ -22,32 +22,62 @@ test("CLI remains compatible and defaults to bounded parallel environments", () 
 
 test("serial flag and environment escape hatches force one environment", () => {
   assert.equal(
-    parseSmokeCli(["https://example.com", "--serial", "/"], { SMOKE_CONCURRENCY: "4" }, 4).concurrency,
+    parseSmokeCli(["https://preview.modooilbo.pages.dev", "--serial", "/"], { SMOKE_CONCURRENCY: "4" }, 4).concurrency,
     1,
   );
   assert.equal(
-    parseSmokeCli(["https://example.com"], { SMOKE_SERIAL: "true", SMOKE_CONCURRENCY: "3" }, 4).concurrency,
+    parseSmokeCli(["https://preview.modooilbo.pages.dev"], { SMOKE_SERIAL: "true", SMOKE_CONCURRENCY: "3" }, 4).concurrency,
     1,
   );
   assert.equal(
-    parseSmokeCli(["https://example.com", "--concurrency=1"], {}, 4).concurrency,
+    parseSmokeCli(["https://preview.modooilbo.pages.dev", "--concurrency=1"], {}, 4).concurrency,
     1,
   );
 });
 
 test("CLI concurrency wins over the environment and never exceeds the matrix", () => {
   assert.equal(
-    parseSmokeCli(["https://example.com", "--concurrency", "3"], { SMOKE_CONCURRENCY: "1" }, 4).concurrency,
+    parseSmokeCli(["https://preview.modooilbo.pages.dev", "--concurrency", "3"], { SMOKE_CONCURRENCY: "1" }, 4).concurrency,
     3,
   );
   assert.equal(
-    parseSmokeCli(["https://example.com", "--concurrency=99"], {}, 4).concurrency,
+    parseSmokeCli(["https://preview.modooilbo.pages.dev", "--concurrency=99"], {}, 4).concurrency,
     4,
   );
   assert.throws(
-    () => parseSmokeCli(["https://example.com", "--concurrency=0"], {}, 4),
+    () => parseSmokeCli(["https://preview.modooilbo.pages.dev", "--concurrency=0"], {}, 4),
     /1 이상의 정수/,
   );
+});
+
+test("CLI rejects the Modooilbo production host and unrelated external hosts", () => {
+  assert.throws(
+    () => parseSmokeCli(["https://modooilbo.com", "/"], {}, 4),
+    /운영 도메인을 사용할 수 없습니다/,
+  );
+  assert.throws(
+    () => parseSmokeCli(["https://example.com", "/"], {}, 4),
+    /modooilbo\.pages\.dev 또는 loopback/,
+  );
+  assert.throws(
+    () => parseSmokeCli(["https://other-project.pages.dev", "/"], {}, 4),
+    /modooilbo\.pages\.dev 또는 loopback/,
+  );
+});
+
+test("CLI accepts only same-origin slash paths", () => {
+  const base = "http://localhost:3000";
+  assert.deepEqual(parseSmokeCli([base, "/article/a?q=1#top"], {}, 4).pages, [
+    "/article/a?q=1#top",
+  ]);
+  for (const path of [
+    "article/a",
+    "//169.254.169.254/latest/meta-data/",
+    "@169.254.169.254/latest/meta-data/",
+    "https://modooilbo.com/",
+  ]) {
+    assert.throws(() => parseSmokeCli([base, path], {}, 4), /검사 경로/);
+  }
 });
 
 test("bounded mapper caps active work and keeps result order", async () => {

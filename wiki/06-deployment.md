@@ -23,7 +23,7 @@
 않습니다. 안전한 기사 승급 순서는 다음과 같습니다.
 
 > **독립 리뷰·최종 게이트 PASS → CMS·코드 게이트 → 비-master 릴리스 브랜치 커밋 → Preview → 전건 검증 →
-> 검증한 SHA를 master에 push·3자 대조 → 통제된 Production → 라이브 재검증 → 색인 인계**
+> 검증한 SHA를 master에 push·3자 대조 → 통제된 Production → 저요청 라이브 확인 → 색인 인계**
 
 ```bash
 # zsh 기준. 원격이 현재 릴리스의 선조인지 확인하고 변경 기사 경로를 자동 생성한다.
@@ -49,7 +49,7 @@ const rows = fs.readFileSync("deployments/deploy-log.jsonl", "utf8").trim().spli
 for (const line of rows) { try { const r = JSON.parse(line); if (r.env === "Preview" && r.commit === process.argv[1] && r.url) { process.stdout.write(r.url); process.exit(0); } } catch {} }
 process.exit(1);
 ' "$MODOO_RELEASE_SHA")"
-[[ "$MODOO_PREVIEW_URL" == https://*.pages.dev* ]]
+[[ "$MODOO_PREVIEW_URL" == https://*.modooilbo.pages.dev || "$MODOO_PREVIEW_URL" == https://*.modooilbo.pages.dev/* ]]
 npm run smoke -- "$MODOO_PREVIEW_URL" / /policy/ /newsroom/ "${MODOO_ARTICLE_PATHS[@]}"
 npm run check:preview-assets -- "$MODOO_PREVIEW_URL"
 # PASS·비교 이미지·HTTP/canonical/index/follow/OG/이미지 전건 확인 뒤에만
@@ -62,12 +62,13 @@ test "$MODOO_RELEASE_SHA" = "$MODOO_REMOTE_MASTER"
 test "$MODOO_RELEASE_SHA" = "$(git rev-parse origin/master)"
 test "$MODOO_RELEASE_SHA" = "$(git ls-remote origin refs/heads/master | awk '{print $1}')"
 npm run release:prod -- --reuse-artifact="$MODOO_RELEASE_ID" --smoke-approved --force-branch
-npm run smoke -- https://modooilbo.com / /policy/ /newsroom/ "${MODOO_ARTICLE_PATHS[@]}"
+# Production에서는 smoke·preview-assets를 다시 돌리지 않는다.
+# 신규 기사 URL을 각 1회만 읽어 HTTP 200·self-canonical·index/follow·OG를 확인한다.
 ```
 
 스모크가 FAIL이거나 Chromium·WebKit 비교 이미지에서 레이아웃 차이가 확인되면
-Production 배포를 중단합니다. 운영 배포 뒤에는 같은 경로와 메타데이터를 다시 검사해 라이브
-반영을 증명합니다. `release:preview`는 빌드·R2 동기화·prune을 한 번만 실행하고 실제 Preview에
+Production 배포를 중단합니다. 운영 배포 뒤에는 신규 기사 URL별 저요청 HTTP·메타 확인으로 라이브
+반영을 증명합니다. 운영 도메인에 4환경 스모크나 사이트맵·자산 전수검사를 반복하지 않습니다. `release:preview`는 빌드·R2 동기화·prune을 한 번만 실행하고 실제 Preview에
 올린 `out/`을 Git common dir에 봉인합니다. 스모크 PASS 뒤 `release:prod`는 그 산출물을 다시
 빌드하지 않고 그대로 승급합니다.
 
@@ -76,6 +77,9 @@ iPhone Safari UA를 씁니다. `app`·`browser`는 높이 프리셋일 뿐 실�
 키보드·인앱브라우저를 재현하지 않습니다. 자동 FAIL은 접속 실패, 사이트 JS `pageerror`, 본문
 100자 미만만 잡습니다. HTTP 상태·canonical·robots·OG·이미지 응답은 별도 검사해야 하며,
 `compare-*.png`는 874px 조합만 합성하므로 660px 원본 PNG도 눈으로 확인합니다.
+모두일보 검사는 `https://*.modooilbo.pages.dev` Preview만 허용하며 `modooilbo.com` 운영 도메인은
+도구가 실행 전에 거부합니다. 분석·광고 호스트는 Playwright route로 차단하고 모든 검사 컨텍스트에
+`modoo_internal=1` 쿠키를 먼저 심습니다.
 
 ## 3. 명령어
 
@@ -145,9 +149,10 @@ Next.js 해시 자산은 배포마다 이름이 달라질 수 있습니다. 크�
 1. 상시 자동 배포 승인에 따라 Production 배포와 라이브 검증을 모두 끝낸다.
 2. 운영 SHA·배포 URL·시작 시각을 기록하고 **그 시각부터 최소 2시간 동안 Preview와 Production을
    포함한 모든 Pages 배포를 중단**한다. 기사 발행도 새 Production을 만들므로 같은 창에서 멈춘다.
-3. 창 시작 직전에 `npm run check:preview-assets -- https://modooilbo.com --all-articles`로 사이트맵
-   전 페이지가 현재 참조하는 JavaScript를 HTTP 200·무리디렉션으로 다시 확인한 뒤 Ahrefs 재크롤을
-   시작한다.
+3. Production과 같은 봉인 산출물의 Preview URL에서
+   `npm run check:preview-assets -- "$MODOO_PREVIEW_URL" --all-articles`로 사이트맵 전 페이지가
+   참조하는 JavaScript를 HTTP 200·무리디렉션으로 확인한다. 운영에서는 홈과 대표 기사 1건만
+   저요청 확인한 뒤 Ahrefs 재크롤을 시작한다.
 4. 크롤 완료 시각과 결과를 기록한 뒤 창을 해제한다. 긴급 배포가 필요하면 재크롤을 중단하고,
    배포·라이브 자산 검사 후 새 2시간 창에서 다시 시작한다.
 

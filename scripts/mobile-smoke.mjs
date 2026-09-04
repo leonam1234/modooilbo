@@ -1,5 +1,5 @@
 // ============================================================
-// smoke.mjs — 모바일 엔진×뷰포트 스모크 (아무 웹앱이나, 윈도우/맥 공통)
+// smoke.mjs — 모두일보 Preview/로컬 모바일 엔진×뷰포트 스모크 (윈도우/맥 공통)
 //
 // 왜: 아이폰은 크롬을 써도 내부 엔진이 사파리(웹킷) 강제라, 크롬에서만
 //     테스트하면 아이폰 버그를 통째로 놓친다. 그래서 엔진 2종 × 화면 2종
@@ -10,7 +10,7 @@
 //     npm i -D playwright
 //     npx playwright install chromium webkit
 // 사용:
-//     node smoke.mjs https://내사이트.com / /login /about
+//     node smoke.mjs https://<preview>.modooilbo.pages.dev / /login /about
 //     (경로를 안 주면 / 한 장만. 결과는 smoke-shots/<시각>/ 폴더)
 //     기본은 환경 2개씩 병렬 실행. 직렬 디버깅은 --serial 또는 SMOKE_SERIAL=1,
 //     병렬 수 조절은 --concurrency=N 또는 SMOKE_CONCURRENCY=N (최대 4).
@@ -21,6 +21,7 @@ import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import * as pw from 'playwright'
 import { mapWithConcurrency, parseSmokeCli } from './mobile-smoke-concurrency.mjs'
+import { protectPlaywrightInspectionContext } from './lib/inspection-safety.mjs'
 
 let cli
 try {
@@ -31,9 +32,10 @@ try {
 }
 const { base, pages: PAGES, concurrency } = cli
 if (!base) {
-  console.error('사용: node smoke.mjs <baseUrl> [경로...] [--serial|--concurrency=N]')
+  console.error('사용: node smoke.mjs <https://*.modooilbo.pages.dev|loopback> [경로...] [--serial|--concurrency=N]')
   process.exit(1)
 }
+const baseUrl = base
 const out = join('smoke-shots', new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19))
 mkdirSync(out, { recursive: true })
 
@@ -52,18 +54,11 @@ const slug = p => p.replace(/[^a-z0-9가-힣]+/gi, '_').replace(/^_+|_+$/g, '') 
 // 이 목록에 없는 에러는 전부 FAIL 이다 — 의심스러우면 넓히지 말고 그대로 두라.
 const THIRD_PARTY = /doubleclick\.net|googlesyndication|googletagmanager|google-analytics|adservice\.google|googleads|pagead2|facebook\.net|connect\.facebook|hotjar|clarity\.ms|criteo|taboola|outbrain/i
 
-const baseUrl = base.replace(/\/+$/, '')
-
 // 분석·광고 요청은 아예 보내지 않는다 (2026-09-03).
 // 스모크가 운영을 치면 Cloudflare Web Analytics·GA4·Clarity 에 "사람 방문"으로 잡혀 지표를 오염시킨다
 // (8/28 도입 뒤 운영 RUM 페이지로드가 하루 수백 건 늘어난 것이 실측으로 확인됐다). 서드파티는
 // route 로 끊고, 사이트 자체 집계(/api/view 등)는 modoo_internal=1 쿠키로 제외시킨다.
-// 위 THIRD_PARTY 에러 필터는 그대로 둔다 — 다른 사이트에 이 도구를 쓸 때 여전히 필요하다.
-const ANALYTICS_HOSTS = /cloudflareinsights\.com|googletagmanager\.com|google-analytics\.com|analytics\.google\.com|clarity\.ms|googlesyndication\.com|doubleclick\.net|adtrafficquality\.google/
-async function excludeFromAnalytics(ctx) {
-  await ctx.route(ANALYTICS_HOSTS, route => route.abort())
-  try { await ctx.addCookies([{ name: 'modoo_internal', value: '1', url: baseUrl + '/' }]) } catch { /* 로컬 file: 등 쿠키 불가 환경 */ }
-}
+// 위 THIRD_PARTY 에러 필터는 그대로 둔다 — 이미 큐에 들어온 공급자 오류를 사이트 오류로 세지 않는 2차 방어다.
 
 async function checkPage(ctx, matrixEntry, path) {
   const name = `${matrixEntry.engine}-${matrixEntry.vp}-${slug(path)}`
@@ -105,7 +100,7 @@ async function runEnvironment(matrixEntry) {
       viewport: { width: matrixEntry.w, height: matrixEntry.h }, deviceScaleFactor: 2, hasTouch: true,
       userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1',
     })
-    await excludeFromAnalytics(ctx)
+    await protectPlaywrightInspectionContext(ctx, baseUrl)
     const results = []
     // 한 환경 안에서는 페이지를 직렬로 열어 24개 기사 검사도 동시 요청 수를 제한한다.
     for (const path of PAGES) results.push(await checkPage(ctx, matrixEntry, path))
@@ -128,7 +123,9 @@ const fail = environmentResults.flat().filter(result => result.bad).length
 
 // 안드↔iOS 대조 시트: 같은 페이지를 좌(크로뮴)·우(웹킷) 나란히 — 다르게 보이면 버그 후보
 const sheet = await pw.chromium.launch()
-const sp = await (await sheet.newContext({ viewport: { width: 1660, height: 900 } })).newPage()
+const sheetContext = await sheet.newContext({ viewport: { width: 1660, height: 900 } })
+await protectPlaywrightInspectionContext(sheetContext, baseUrl)
+const sp = await sheetContext.newPage()
 for (const p of PAGES) {
   const n = slug(p)
   const a = join(process.cwd(), out, `chromium-app-${n}.png`)
@@ -143,6 +140,7 @@ for (const p of PAGES) {
   await sp.screenshot({ path: join(out, `compare-${n}.png`), fullPage: true })
   rmSync(tmp, { force: true })
 }
+await sheetContext.close()
 await sheet.close()
 
 console.log(fail

@@ -21,6 +21,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
+import { aggregateRumRows, RUM_HOSTS } from "./lib/tracking-rum.mjs";
 
 const args = process.argv.slice(2);
 const jsonOut = args.includes("--json");
@@ -178,17 +179,6 @@ async function getCfTraffic() {
 // 있어, 8/28 네이버 유입 붕괴 같은 사건이 당일 보고서에 드러난다. siteTag 없이 account 단위로
 // 호스트 필터 조회 — Wrangler OAuth 로 동작 확인(2026-09-03). 비콘은 Cloudflare 가 엣지에서
 // 자동 주입한다(빌드에 토큰이 없어도 운영 도메인에서는 수집된다).
-const RUM_HOSTS = ["modooilbo.com", "www.modooilbo.com"];
-function classifyReferer(host) {
-  const h = String(host || "").toLowerCase();
-  if (!h) return "direct";
-  if (h.includes("naver")) return "naver";
-  if (h.includes("google")) return "google";
-  if (h.includes("daum") || h.includes("kakao")) return "daum";
-  if (h.includes("bing")) return "bing";
-  if (RUM_HOSTS.includes(h)) return "internal";
-  return "other";
-}
 let _rumCache;
 async function getRum() {
   if (_rumCache) return _rumCache;
@@ -219,16 +209,7 @@ async function getRum() {
     });
     if (json.errors?.length) throw new Error(json.errors[0].message);
     const rows = json.data?.viewer?.accounts?.[0]?.rows ?? [];
-    const bySource = { naver: 0, google: 0, daum: 0, bing: 0, direct: 0, other: 0 };
-    let pageloads = 0;
-    let visits = 0;
-    for (const row of rows) {
-      pageloads += row.count ?? 0;
-      const v = row.sum?.visits ?? 0;
-      visits += v;
-      const src = classifyReferer(row.dimensions?.refererHost);
-      if (src !== "internal") bySource[src] += v;
-    }
+    const { pageloads, visits, bySource } = aggregateRumRows(rows);
     _rumCache = { ok: true, source: "Cloudflare Web Analytics(RUM)", pageloads, visits, bySource };
     return _rumCache;
   } catch (e) {
@@ -283,7 +264,7 @@ const METRICS = [
   { key: "daily_pageviews", label: "일일 페이지뷰", unit: "PV", resolve: cfPageviews },
   // RUM(사람 기준) — 위 3종은 봇·내부 자동화 포함, 아래는 브라우저 beacon 실행분만(bot:0).
   { key: "human_pageloads", label: "사람 페이지로드(RUM)", unit: "PL", resolve: rumMetric((r) => r.pageloads, "브라우저가 beacon을 실행한 페이지로드(bot:0). 내부 자동화가 브라우저면 포함될 수 있음") },
-  { key: "human_visits", label: "사람 유입 방문(외부·직접)", unit: "회", resolve: rumMetric((r) => r.visits, "리퍼러가 자기 호스트가 아닌 페이지로드 = 외부 사이트·직접 링크로 들어온 방문. 코덱스 일일 보고의 '유입수'와 같은 정의") },
+  { key: "human_visits", label: "외부 유입 방문(RUM visits)", unit: "회", resolve: rumMetric((r) => r.visits, "리퍼러가 자기 호스트가 아닌 페이지로드 = 외부 사이트·직접 링크로 들어온 방문. 가입자 일일 보고와 같은 정의") },
   { key: "naver_visits", label: "└ 네이버 검색 유입", unit: "회", resolve: rumMetric((r) => r.bySource.naver, "리퍼러 host에 naver 포함(m.search.naver.com·search.naver.com 등)") },
   { key: "google_visits", label: "└ 구글 유입", unit: "회", resolve: rumMetric((r) => r.bySource.google, "리퍼러 host에 google 포함") },
   { key: "direct_visits", label: "└ 직접 유입(리퍼러 없음)", unit: "회", resolve: rumMetric((r) => r.bySource.direct, "북마크·주소 직접 입력·앱 내 링크 등") },

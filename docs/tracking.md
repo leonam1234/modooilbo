@@ -14,7 +14,7 @@
 |---|---|---|
 | 사이트 구조 | Next.js **정적 export** + Cloudflare Pages. D1/KV 바인딩은 있으나 회원·뉴스레터·결제 기능은 데모 | 제품 지표는 실제 저장 여부를 따로 확인 |
 | Cloudflare 트래픽 | Zone Analytics GraphQL 어댑터가 Wrangler OAuth를 자동 재사용. 별도 beacon 없이 edge 요청·HTML 페이지뷰·visits·uniques 집계 | **실집계 가동** |
-| Web Analytics(beacon) | 운영 도메인에서는 Cloudflare가 엣지에서 비콘을 **자동 주입**한다(빌드의 `NEXT_PUBLIC_CF_BEACON_TOKEN`은 미설정, pages.dev 미리보기에는 없음). `report:tracking`이 account 단위 RUM 쿼리(bot:0)로 **사람 페이지로드·사람 유입 방문·리퍼러별(네이버/구글/직접/기타)**을 매일 찍는다(2026-09-03 추가) | **실집계 가동** — "유입"은 이 지표로 읽는다. edge uniques·pageViews는 크롤러·검사 도구가 섞여 실제 독자 수가 아니다(9/2: edge 유입자 2,088 vs RUM 사람 유입 방문 20). 코덱스 일일 보고의 '유입수'와 같은 정의 |
+| Web Analytics(beacon) | 운영 도메인에서는 Cloudflare가 엣지에서 비콘을 **자동 주입**한다(빌드의 `NEXT_PUBLIC_CF_BEACON_TOKEN`은 미설정, pages.dev 미리보기에는 없음). `report:tracking`이 account 단위 RUM 쿼리(bot:0)로 **사람 페이지로드·외부 유입 방문·리퍼러별(네이버/구글/직접/기타)**을 매일 찍는다(2026-09-03 추가) | **실집계 가동** — `외부 유입 방문(RUM visits)`은 자기 host 리퍼러를 제외한 외부·직접 진입 방문이다. edge uniques·pageViews는 크롤러·검사 도구가 섞여 실제 독자 수가 아니다. 코덱스 일일 보고도 같은 `human_visits` 정의를 사용한다. |
 | Google Analytics 4 | **2026-09-03부터 가동.** 측정 ID `G-R2MDE3WDFY`(`src/lib/google-analytics.ts`). 구글 표준 스니펫을 모든 공개 페이지 `<head>` 첫 자리에 **조건 없이** 삽입(부트스트랩 인라인 → async 로더) — 구글 "태그 감지"가 초기 HTML·로드 직후 히트를 보므로 동의 게이트·시간 게이트·지연 주입은 금지(9/3 실측: 동의 후에만 page_view 를 보내는 구성은 배포 뒤에도 "감지되지 않았습니다"). 처리방침 고지 방식(/privacy §5·6·8), 동의창 없음. 인증 토큰 경로 4종은 middleware 가 태그를 제거하고 부트스트랩도 config 를 건너뛴다 | **실집계 가동** — 페이지뷰·세션·유입경로·referrer host는 GA4 보고서. edge 기준 수치는 CF와 병행(정의가 달라 서로 대체하지 않음) |
 | 검색·AI 가시성 | `scripts/search-visibility-report.mjs`: 라이브 정책, CF 트래픽, AI User-Agent, AI referrer, GSC, Bing을 한 리포트로 집계 | CF·정책은 즉시, GSC·Bing·referrer는 아래 권한 필요 |
 | Google Search Console | 읽기 전용 API 어댑터 구현. 현재 실행 계정에는 `modooilbo.com` 속성 권한/OAuth 없음 | 권한 부여 후 실집계 |
@@ -75,7 +75,7 @@
 - 이용자의 거부 수단은 브라우저의 쿠키 차단·삭제, Google Analytics 차단 브라우저 부가기능(<https://tools.google.com/dlpage/gaoptout>), 개인정보보호책임자 요청이다. 거부해도 기사 열람 등 기본 서비스는 제한되지 않는다.
 - **내부 트래픽 제외(2026-09-03)**: 아무 페이지나 `?modoo-internal=1`을 붙여 한 번 열면 `modoo_internal=1` 쿠키(1년)가 생기고, 그 브라우저는 GA4(`ga-disable`)·Clarity·조회수 비콘에서 빠진다. 대표·코덱스·검사 담당의 브라우저에 켜 둘 것. GA 관리자의 IP 필터는 IP가 바뀌면 새기 때문에 쿠키를 정본으로 한다.
 - **조회수(`/api/view`)의 봇 제외(2026-09-03)**: 검색 크롤러(Yeti·Googlebot·bingbot·Daum·AdsBot)·헤드리스·CLI·`Modooilbo-*` 검사 UA·빈 UA·내부 쿠키는 서버가 집계하지 않고, 클라이언트도 `navigator.webdriver`면 보내지 않는다. 네이버 Yeti가 JS를 렌더하며 하루 ~190회 조회수를 올리던 것을 막는다. `robots.txt`도 `/api/`를 차단해 크롤러 렌더 중 D1 호출(하루 ~800회) 자체를 줄인다.
-- **스모크·검사 도구는 분석 호스트를 차단한다(2026-09-03)**: `scripts/mobile-smoke.mjs`가 cloudflareinsights·googletagmanager·google-analytics·clarity·googlesyndication·doubleclick 요청을 Playwright `route`로 끊고 `modoo_internal=1` 쿠키를 심는다. 8/28 도입 뒤 운영 RUM 페이지로드가 하루 수백 건 늘었던 오염을 막는다. 새 검사 도구를 만들 때도 같은 두 가지를 넣을 것.
+- **스모크·검사 도구는 Preview에서만 분석 호스트를 차단한다(2026-09-04)**: 공용 `scripts/lib/inspection-safety.mjs`를 `mobile-smoke.mjs`와 `shoot.mjs`의 모든 Playwright context에 적용해 cloudflareinsights·googletagmanager·google-analytics·clarity·googlesyndication·doubleclick 요청을 `route`로 끊고 `modoo_internal=1` 쿠키를 심는다. Preview의 리디렉션·절대 자산 URL이 `modooilbo.com`, 그 하위 도메인 또는 운영 alias `modooilbo.pages.dev`로 향해도 같은 route가 차단한다. `check-preview-assets.mjs`까지 `https://*.modooilbo.pages.dev`와 loopback만 허용하며 운영·기타 외부 host는 네트워크 전에 거부한다. 새 검사 도구도 이 공용 보호를 사용한다.
 
 ## 4. 검색·AI 가시성 정의
 
@@ -120,13 +120,13 @@ AI 답변 내부의 실제 인용 노출은 제공사별 공통 공식 API가 �
 |---|---|
 | `npm run build` | 정적 export 빌드(타입 포함) |
 | `npm run lint` | 비대화형 타입체크(`tsc --noEmit`). ESLint 설정 프롬프트 없이 pass/fail 반환 |
-| `npm run test:analytics` | GA4 ID·시행일·Advanced Consent·토큰 경로·CSP·정적 산출물 회귀 검사 |
-| `npm run test:analytics:browser -- <baseUrl>` | 시행 전/동의 전/허용/철회 및 공개·토큰 경로의 실제 브라우저 tag·요청 검사 |
+| `npm run test:analytics` | GA4 표준 스니펫·내부 트래픽 쿠키·동의 UI 부재·토큰 경로·CSP·정적 산출물 회귀 검사 |
 | `npm run report:tracking -- --date=2026-06-29` | 사람용 표 리포트(KST) |
 | `npm run report:tracking -- --date=2026-06-29 --json` | 기계용 JSON |
 | `npm run report:visibility -- --days=7` | 정책·CF·AI 크롤러·AI 유입·GSC·Bing 통합 리포트 |
 | `npm run --silent report:visibility -- --days=7 --json` | 자동화/저장용 JSON |
 
 - **JSON을 파이프할 때**는 `npm run` 배너(stdout)가 섞이므로 `npm run --silent report:tracking -- --json` 또는 `node scripts/tracking-report.mjs --json`을 쓴다.
+- 폐기된 GA 동의 브라우저 테스트와 동의 게이트를 다시 만들지 않는다. 브라우저 검사는 Preview에서 분석 호스트를 차단하고 `modoo_internal=1` 쿠키를 심은 상태로 수행한다.
 - API 키·OAuth·서비스 계정 JSON은 env/로컬 secret로만 주입하고 저장소나 리포트에 평문으로 남기지 않는다.
 - Cloudflare adaptive 요청 데이터는 User-Agent 관측치다. verified bot 판정이나 발신 IP 검증을 하지 않은 상태에서는 업체별 실제 크롤로 단정하지 않는다.

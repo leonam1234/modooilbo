@@ -2,8 +2,19 @@
 // 사용: node scripts/shoot.mjs <round> <theme:light|dark> <set:core|full>
 import { chromium } from "playwright";
 import { mkdirSync } from "node:fs";
+import {
+  normalizeInspectionTarget,
+  protectPlaywrightInspectionContext,
+} from "./lib/inspection-safety.mjs";
 
-const BASE = process.env.BASE || "http://localhost:3000";
+const RAW_BASE = process.env.BASE || "http://localhost:3000";
+let BASE;
+try {
+  BASE = normalizeInspectionTarget(RAW_BASE, "스크린샷 검사 대상 URL").origin;
+} catch (error) {
+  console.error(`대상 오류: ${error.message}`);
+  process.exit(1);
+}
 const round = process.argv[2] || "r1";
 const theme = process.argv[3] === "dark" ? "dark" : "light";
 const set = process.argv[4] || "full";
@@ -22,6 +33,7 @@ const browser = await chromium.launch();
 let articlePath = "/article/none";
 try {
   const ctx = await browser.newContext();
+  await protectPlaywrightInspectionContext(ctx, BASE);
   const page = await ctx.newPage();
   await page.goto(BASE + "/", { waitUntil: "domcontentloaded", timeout: 30000 });
   const href = await page.$$eval('a[href^="/article/"]', (as) =>
@@ -84,6 +96,7 @@ for (const dev of DEVICES) {
     deviceScaleFactor: 1,
     colorScheme: theme,
   });
+  await protectPlaywrightInspectionContext(ctx, BASE);
   const page = await ctx.newPage();
   for (const [name, path] of routes) {
     try {

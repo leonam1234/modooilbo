@@ -109,7 +109,7 @@ const rows = fs.readFileSync("deployments/deploy-log.jsonl", "utf8").trim().spli
 for (const line of rows) { try { const r = JSON.parse(line); if (r.env === "Preview" && r.commit === process.argv[1] && r.url) { process.stdout.write(r.url); process.exit(0); } } catch {} }
 process.exit(1);
 ' "$MODOO_RELEASE_SHA")"
-[[ "$MODOO_PREVIEW_URL" == https://*.pages.dev* ]]
+[[ "$MODOO_PREVIEW_URL" == https://*.modooilbo.pages.dev || "$MODOO_PREVIEW_URL" == https://*.modooilbo.pages.dev/* ]]
 npm run smoke -- "$MODOO_PREVIEW_URL" / /policy/ /newsroom/ "${MODOO_ARTICLE_PATHS[@]}"
 # PASS·비교 이미지·HTTP/canonical/index/follow/OG/이미지 확인 뒤에만
 test "$(git rev-parse HEAD)" = "$MODOO_RELEASE_SHA"
@@ -121,7 +121,8 @@ test "$MODOO_RELEASE_SHA" = "$MODOO_REMOTE_MASTER"
 test "$MODOO_RELEASE_SHA" = "$(git rev-parse origin/master)"
 test "$MODOO_RELEASE_SHA" = "$(git ls-remote origin refs/heads/master | awk '{print $1}')"
 npm run deploy:prod -- --force-branch
-npm run smoke -- https://modooilbo.com / /policy/ /newsroom/ "${MODOO_ARTICLE_PATHS[@]}"
+# Production에서는 smoke·preview-assets를 다시 실행하지 않는다.
+# 신규 기사 URL마다 HTTP 200·self-canonical·index/follow·OG를 각 1회만 확인한다.
 ```
 > 운영 규칙(2026-09-02): 유수화님의 **상시 자동 배포 승인**에 따라 독립 리뷰와 최종 게이트가
 > PASS·HOLD 0이면 CMS 변환·Git·빌드·Preview·Production·라이브 검증을 별도 승인 질문 없이

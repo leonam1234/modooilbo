@@ -116,7 +116,7 @@ release cohort에는 `READY` 기사만 넣는다. cohort 대상 전건이 PASS�
 6. 개발 및 배포 담당자가 수정 반영본의 최종 정적·동적 게이트를 끝내고 PASS/HOLD·수정·미확인을 기록한다.
 7. PASS·HOLD 0이면 2026-09-02 상시 자동 배포 승인에 따라 CMS 변환, 80점 코드 게이트와 빌드를 수행하고 생성물을 포함해 비-master 릴리스 브랜치에 Git 커밋한다.
 8. Preview에서 기본 3경로(`/`·`/policy/`·`/newsroom/`)와 신규 기사 전건을 엔진·뷰포트 4조합으로 검사한다. 24편이면 총 27경로다. 자동 PASS 외에도 비교 이미지, HTTP 상태, canonical, index/follow, OG, 대표 이미지 응답을 확인한다.
-9. PASS한 정확한 SHA를 `master`에 push하고 HEAD·`origin/master`·원격 `master`를 대조한다. 같은 릴리스 worktree에서 이 3자 일치를 재확인한 경우 `--force-branch`로, clean master를 쓸 수 있으면 일반 명령으로 Production 배포한 뒤 같은 전건을 라이브 재검증한다.
+9. PASS한 정확한 SHA를 `master`에 push하고 HEAD·`origin/master`·원격 `master`를 대조한다. 같은 릴리스 worktree에서 이 3자 일치를 재확인한 경우 `--force-branch`로, clean master를 쓸 수 있으면 일반 명령으로 Production 배포한다. 운영에서는 브라우저 4환경·자산 전수검사를 반복하지 않고 신규 기사 URL마다 HTTP·canonical·index/follow·OG를 각 1회만 확인한다.
 10. 라이브 HTTP 200·self-canonical·index/follow를 확인한 신규 기사 canonical URL 전건을 색인 담당자에게 발행일·건수·사이트 커밋·IndexNow 결과와 함께 보낸다.
 
 `reviewedBy`는 생성 에이전트가 초안 단계에서 미리 채우는 값이 아니다. 실제로 원문을 다시 본
