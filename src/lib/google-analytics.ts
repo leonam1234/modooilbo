@@ -39,7 +39,19 @@ export function isThirdPartyTokenPath(pathname: string): boolean {
   );
 }
 
-// 구글 표준 스니펫(dataLayer 초기화 → gtag('js') → gtag('config')) + 토큰 경로 안전판.
+/**
+ * 내부 트래픽 쿠키(2026-09-03). 대표·코덱스·검사 도구의 브라우저가 GA4·Clarity·조회수에 잡히지
+ * 않게 한다. GA 관리자의 IP 필터는 IP 가 바뀌면 새는데, 쿠키는 브라우저에 붙어 다닌다.
+ * 켜는 법: 아무 페이지나 `?modoo-internal=1` 을 붙여 한 번 열면 1년짜리 쿠키가 생긴다.
+ * 스모크 도구(scripts/mobile-smoke.mjs)는 컨텍스트에 이 쿠키를 직접 심는다.
+ * 서버(/api/view)도 같은 쿠키를 본다. 비밀값이 아니므로 Secure 없이 두어 로컬 미리보기에서도 동작한다.
+ */
+export const INTERNAL_TRAFFIC_COOKIE = "modoo_internal";
+export function hasInternalTrafficCookie(cookie: string): boolean {
+  return new RegExp(`(^|;\\s*)${INTERNAL_TRAFFIC_COOKIE}=1(;|$)`).test(cookie || "");
+}
+
+// 구글 표준 스니펫(dataLayer 초기화 → gtag('js') → gtag('config')) + 토큰 경로·내부 트래픽 안전판.
 // 광고 신호·광고 개인화 신호는 끈다(GA 는 방문 통계 용도이고 애드센스는 별도 태그다).
 // 토큰 경로에서 넘어온 같은 오리진 referrer 는 지운다 — 그 URL 에도 토큰이 붙어 있다.
 export const GA4_HEAD_BOOTSTRAP = `
@@ -52,7 +64,12 @@ function modooIsTokenPath(pathname) {
     return pathname === path || pathname.indexOf(path + '/') === 0;
   });
 }
-if (modooIsTokenPath(location.pathname)) {
+var modooInternal = /(^|;\\s*)${INTERNAL_TRAFFIC_COOKIE}=1(;|$)/.test(document.cookie || '');
+if (!modooInternal && /[?&]modoo-internal=1(&|$)/.test(location.search)) {
+  document.cookie = '${INTERNAL_TRAFFIC_COOKIE}=1; Max-Age=31536000; Path=/; SameSite=Lax';
+  modooInternal = true;
+}
+if (modooIsTokenPath(location.pathname) || modooInternal) {
   window['ga-disable-${GA4_MEASUREMENT_ID}'] = true;
 } else {
   gtag('js', new Date());

@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { AdSenseLoader } from "@/components/AdSenseLoader";
-import { isThirdPartyTokenPath } from "@/lib/google-analytics";
+import { hasInternalTrafficCookie, isThirdPartyTokenPath } from "@/lib/google-analytics";
 
 /**
  * 이 컴포넌트가 관리하는 서드파티 도구(Clarity · AdSense 보조 로더)를
@@ -40,6 +40,8 @@ export function ThirdPartyScripts() {
   useEffect(() => {
     if (blocked) return;
     if (typeof window === "undefined") return;
+    // 내부 트래픽(modoo_internal=1)은 세션 녹화(Clarity)에 남기지 않는다 — lib/google-analytics.ts 참조.
+    if (hasInternalTrafficCookie(document.cookie)) return;
     // 이미 붙었으면 다시 붙이지 않는다(라우트 이동마다 스크립트가 늘어나면 안 된다).
     if (document.getElementById("clarity-tag")) return;
     const w = window as any;

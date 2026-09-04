@@ -54,6 +54,17 @@ const THIRD_PARTY = /doubleclick\.net|googlesyndication|googletagmanager|google-
 
 const baseUrl = base.replace(/\/+$/, '')
 
+// 분석·광고 요청은 아예 보내지 않는다 (2026-09-03).
+// 스모크가 운영을 치면 Cloudflare Web Analytics·GA4·Clarity 에 "사람 방문"으로 잡혀 지표를 오염시킨다
+// (8/28 도입 뒤 운영 RUM 페이지로드가 하루 수백 건 늘어난 것이 실측으로 확인됐다). 서드파티는
+// route 로 끊고, 사이트 자체 집계(/api/view 등)는 modoo_internal=1 쿠키로 제외시킨다.
+// 위 THIRD_PARTY 에러 필터는 그대로 둔다 — 다른 사이트에 이 도구를 쓸 때 여전히 필요하다.
+const ANALYTICS_HOSTS = /cloudflareinsights\.com|googletagmanager\.com|google-analytics\.com|analytics\.google\.com|clarity\.ms|googlesyndication\.com|doubleclick\.net|adtrafficquality\.google/
+async function excludeFromAnalytics(ctx) {
+  await ctx.route(ANALYTICS_HOSTS, route => route.abort())
+  try { await ctx.addCookies([{ name: 'modoo_internal', value: '1', url: baseUrl + '/' }]) } catch { /* 로컬 file: 등 쿠키 불가 환경 */ }
+}
+
 async function checkPage(ctx, matrixEntry, path) {
   const name = `${matrixEntry.engine}-${matrixEntry.vp}-${slug(path)}`
   let page
@@ -94,6 +105,7 @@ async function runEnvironment(matrixEntry) {
       viewport: { width: matrixEntry.w, height: matrixEntry.h }, deviceScaleFactor: 2, hasTouch: true,
       userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1',
     })
+    await excludeFromAnalytics(ctx)
     const results = []
     // 한 환경 안에서는 페이지를 직렬로 열어 24개 기사 검사도 동시 요청 수를 제한한다.
     for (const path of PAGES) results.push(await checkPage(ctx, matrixEntry, path))

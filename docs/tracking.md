@@ -14,7 +14,7 @@
 |---|---|---|
 | 사이트 구조 | Next.js **정적 export** + Cloudflare Pages. D1/KV 바인딩은 있으나 회원·뉴스레터·결제 기능은 데모 | 제품 지표는 실제 저장 여부를 따로 확인 |
 | Cloudflare 트래픽 | Zone Analytics GraphQL 어댑터가 Wrangler OAuth를 자동 재사용. 별도 beacon 없이 edge 요청·HTML 페이지뷰·visits·uniques 집계 | **실집계 가동** |
-| Web Analytics(beacon) | 선택 기능. `NEXT_PUBLIC_CF_BEACON_TOKEN`이 있으면 RUM을 삽입하며, 없으면 Zone Analytics를 사용 | AI referrer host까지 보려면 RUM 연결 권장 |
+| Web Analytics(beacon) | 운영 도메인에서는 Cloudflare가 엣지에서 비콘을 **자동 주입**한다(빌드의 `NEXT_PUBLIC_CF_BEACON_TOKEN`은 미설정, pages.dev 미리보기에는 없음). `report:tracking`이 account 단위 RUM 쿼리(bot:0)로 **사람 페이지로드·사람 유입 방문·리퍼러별(네이버/구글/직접/기타)**을 매일 찍는다(2026-09-03 추가) | **실집계 가동** — "유입"은 이 지표로 읽는다. edge uniques·pageViews는 크롤러·검사 도구가 섞여 실제 독자 수가 아니다(9/2: edge 유입자 2,088 vs RUM 사람 유입 방문 20). 코덱스 일일 보고의 '유입수'와 같은 정의 |
 | Google Analytics 4 | **2026-09-03부터 가동.** 측정 ID `G-R2MDE3WDFY`(`src/lib/google-analytics.ts`). 구글 표준 스니펫을 모든 공개 페이지 `<head>` 첫 자리에 **조건 없이** 삽입(부트스트랩 인라인 → async 로더) — 구글 "태그 감지"가 초기 HTML·로드 직후 히트를 보므로 동의 게이트·시간 게이트·지연 주입은 금지(9/3 실측: 동의 후에만 page_view 를 보내는 구성은 배포 뒤에도 "감지되지 않았습니다"). 처리방침 고지 방식(/privacy §5·6·8), 동의창 없음. 인증 토큰 경로 4종은 middleware 가 태그를 제거하고 부트스트랩도 config 를 건너뛴다 | **실집계 가동** — 페이지뷰·세션·유입경로·referrer host는 GA4 보고서. edge 기준 수치는 CF와 병행(정의가 달라 서로 대체하지 않음) |
 | 검색·AI 가시성 | `scripts/search-visibility-report.mjs`: 라이브 정책, CF 트래픽, AI User-Agent, AI referrer, GSC, Bing을 한 리포트로 집계 | CF·정책은 즉시, GSC·Bing·referrer는 아래 권한 필요 |
 | Google Search Console | 읽기 전용 API 어댑터 구현. 현재 실행 계정에는 `modooilbo.com` 속성 권한/OAuth 없음 | 권한 부여 후 실집계 |
@@ -37,7 +37,9 @@
 |---|---|---|---|
 | 일일 유입자 (unique visitors) | KST 하루 동안 Cloudflare edge가 구분한 **고유 방문자 수** | Cloudflare Zone Analytics | 실집계 |
 | 일일 방문 세션 (sessions) | Cloudflare `visits`: 외부 referrer 또는 직접 링크에서 시작된 방문 | Cloudflare Zone Analytics | 실집계 |
-| 일일 페이지뷰 (pageviews) | 성공한 HTML 응답 수. 유입자·가입자와 **무관** | Cloudflare Zone Analytics | 실집계 |
+| 일일 페이지뷰 (pageviews) | 성공한 HTML 응답 수. 유입자·가입자와 **무관**. 크롤러·검사 도구 포함 | Cloudflare Zone Analytics | 실집계 |
+| 사람 페이지로드 (RUM) | 브라우저가 beacon을 실행한 페이지로드(bot:0). 자동 새로고침·내부 이동 포함 | Cloudflare Web Analytics | 실집계 |
+| 사람 유입 방문 (RUM visits) | 리퍼러가 자기 호스트가 아닌 페이지로드 = **외부 사이트·직접 링크로 들어온 방문**. 네이버/구글/직접/기타로 분해 | Cloudflare Web Analytics | 실집계 |
 
 ### 멤버 / 구독 (일일 신규 + 누적)
 | 지표 | 정의 | 데이터 출처(예정) | 현재 |
@@ -71,6 +73,9 @@
 - GA4 국외 이전 수령자는 **Google LLC**, 이전 국가는 **미국**, 주소는 **1600 Amphitheatre Parkway Mountain View CA 94043 USA**, 공식 개인정보 문의 URL은 <https://support.google.com/policies/troubleshooter/7575787>이다. 접속 IP 주소·쿠키·클라이언트 식별자·방문 페이지 URL·제목·유입 경로·접속 시각·기기 정보·페이지 이용 이벤트가 방문·이용 통계 분석 및 콘텐츠 개선 목적으로 이용자의 기기에서 Google 서버로 수시 자동 전송된다.
 - Google Analytics 이용자·이벤트 단위 데이터 보유 기간은 GA4 속성 설정값(2개월 또는 14개월)을 따르며 처리방침에는 **최대 14개월**로 고지했다. 현재 실행 환경은 GA 관리자에 로그인되지 않아 속성의 실제 설정값을 확인하지 못했다 — 오너가 GA 관리 → 데이터 설정 → 데이터 보관에서 확인·조정할 것.
 - 이용자의 거부 수단은 브라우저의 쿠키 차단·삭제, Google Analytics 차단 브라우저 부가기능(<https://tools.google.com/dlpage/gaoptout>), 개인정보보호책임자 요청이다. 거부해도 기사 열람 등 기본 서비스는 제한되지 않는다.
+- **내부 트래픽 제외(2026-09-03)**: 아무 페이지나 `?modoo-internal=1`을 붙여 한 번 열면 `modoo_internal=1` 쿠키(1년)가 생기고, 그 브라우저는 GA4(`ga-disable`)·Clarity·조회수 비콘에서 빠진다. 대표·코덱스·검사 담당의 브라우저에 켜 둘 것. GA 관리자의 IP 필터는 IP가 바뀌면 새기 때문에 쿠키를 정본으로 한다.
+- **조회수(`/api/view`)의 봇 제외(2026-09-03)**: 검색 크롤러(Yeti·Googlebot·bingbot·Daum·AdsBot)·헤드리스·CLI·`Modooilbo-*` 검사 UA·빈 UA·내부 쿠키는 서버가 집계하지 않고, 클라이언트도 `navigator.webdriver`면 보내지 않는다. 네이버 Yeti가 JS를 렌더하며 하루 ~190회 조회수를 올리던 것을 막는다. `robots.txt`도 `/api/`를 차단해 크롤러 렌더 중 D1 호출(하루 ~800회) 자체를 줄인다.
+- **스모크·검사 도구는 분석 호스트를 차단한다(2026-09-03)**: `scripts/mobile-smoke.mjs`가 cloudflareinsights·googletagmanager·google-analytics·clarity·googlesyndication·doubleclick 요청을 Playwright `route`로 끊고 `modoo_internal=1` 쿠키를 심는다. 8/28 도입 뒤 운영 RUM 페이지로드가 하루 수백 건 늘었던 오염을 막는다. 새 검사 도구를 만들 때도 같은 두 가지를 넣을 것.
 
 ## 4. 검색·AI 가시성 정의
 

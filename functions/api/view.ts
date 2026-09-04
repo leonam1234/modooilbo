@@ -32,6 +32,19 @@ async function sha256(s: string): Promise<string> {
   const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
   return [...new Uint8Array(b)].map((x) => x.toString(16).padStart(2, "0")).join("");
 }
+// 크롤러·자동화·내부 트래픽 제외 (2026-09-03).
+// 네이버 Yeti 가 JS 를 렌더하며 이 API 를 하루 ~190회 호출해 조회수와 '많이 본 뉴스'에 봇 뷰가
+// 섞였다(Cloudflare 실측: /api/view·comments·reactions·bookmarks 각 ~190/일). 검색 크롤러·
+// 헤드리스·CLI·내부 검사 UA 와 내부 트래픽 쿠키(modoo_internal=1)는 집계하지 않는다.
+// 빈 UA 도 사람이 아니다(브라우저는 항상 UA 를 보낸다). 응답은 200 으로 조용히 —
+// 클라이언트는 sendBeacon 이라 응답을 보지 않고, 봇에게 판정 근거를 알려줄 이유도 없다.
+const NON_HUMAN_UA =
+  /bot|crawl|spider|slurp|Yeti|Googlebot|bingbot|Daum|AdsBot|Mediapartners|HeadlessChrome|Playwright|Puppeteer|Lighthouse|PhantomJS|curl\/|wget\/|python-requests|python-urllib|axios\/|node-fetch|undici|^node$|Modooilbo-/i;
+function isNonHumanRequest(req: Request): boolean {
+  const ua = req.headers.get("user-agent") || "";
+  if (!ua || NON_HUMAN_UA.test(ua)) return true;
+  return /(^|;\s*)modoo_internal=1(;|$)/.test(req.headers.get("cookie") || "");
+}
 function pad(n: number) {
   return String(n).padStart(2, "0");
 }
@@ -61,6 +74,7 @@ export async function onRequestGet(ctx: any): Promise<Response> {
 export async function onRequestPost(ctx: any): Promise<Response> {
   const db = ctx.env.DB;
   if (!db) return json({ ok: false });
+  if (isNonHumanRequest(ctx.request)) return json({ ok: true, counted: false });
   let b: any;
   try {
     b = await ctx.request.json();

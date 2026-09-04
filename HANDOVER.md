@@ -101,6 +101,21 @@ ls content/articles/$(date +%Y-%m-%d)-*.md 2>/dev/null | wc -l             # 오
 
 ## 2. 열려 있는 작업
 
+- 🔴 **네이버 검색 유입이 2026-08-28부터 약 85% 급감 — 원인 미확정(네이버 쪽).**
+  Cloudflare Web Analytics(RUM, 봇 제외) 리퍼러 실측: 8/14~8/27 유입 방문 690회 중
+  네이버 520(하루 ~37) → 8/28~9/03 100회 중 네이버 40(하루 ~6). 코덱스 일일 보고의
+  "모두일보 유입수"가 이 지표(RUM visits)라 40~87명 → 2~14명으로 보인 것.
+  **사이트 쪽은 전부 정상 확인**: Yeti 하루 700~1,400회 크롤 전부 200(챌린지·403 없음),
+  robots 허용, 기사 index/follow·canonical, 사이트맵·RSS·IndexNow 정상, 유입 상위 기사
+  8/26 이후 무수정. 구글 유입은 원래 0에 가깝다(네이버 단일 의존).
+  → **오너가 네이버 서치어드바이저**(사이트 진단·알림, 수집/색인 현황, 검색 노출 그래프)를
+  확인해야 원인이 확정된다. 가설 1순위: 사이트 단위 노출 제한(전 기사 AI 고지·동일 틀 —
+  9/1 애드센스 감사와 같은 지점). 2순위: 8월 중순 이벤트성 검색 스파이크의 자연 소멸.
+  같은 날 도입된 모바일 스모크가 RUM 페이지로드를 부풀려 Cloudflare 대시보드에서는 안 보였다
+  — 9/3 부터 `report:tracking` 이 RUM 사람 지표를 찍는다(§9 참고, docs/tracking.md §0·§1).
+  ⚠️ 네이버 검색 페이지는 이 세션의 도구(브라우저 패널·WebFetch)로 열 수 없고 구글은 캡차가
+  걸린다 — 색인 상태는 오너 계정으로만 볼 수 있다.
+
 - ~~집필 지침이 본문에 인쇄된 기사~~ **완료(8/28) — 13편 수리 + 빌드 게이트 3층 신설.**
   감사가 지목한 2편이 아니라 **13편**이었다(감사의 grep 이 어미 두 개만 봤다).
   `scripts/build-content.mjs` 가 이제 현재형 규칙문을 잡아 빌드를 끊는다.
@@ -380,6 +395,13 @@ Safari UA를 쓰고 `app`·`browser`는 높이만 모사합니다. 따라서 이
 ```bash
 npm run smoke -- https://modooilbo.com / /policy/ /newsroom/
 ```
+
+**스모크는 분석·광고 요청을 아예 보내지 않습니다(2026-09-03).** 운영을 치는 스모크가 Cloudflare
+RUM·GA4·Clarity 에 "사람 방문"으로 잡혀 8/28 도입 뒤 운영 RUM 페이지로드를 하루 수백 건
+부풀렸습니다(9/2 실측). 이제 cloudflareinsights·googletagmanager·google-analytics·clarity·
+googlesyndication 요청을 Playwright `route` 로 끊고 `modoo_internal=1` 쿠키를 심어 조회수 API 에서도
+빠집니다. 대표·코덱스 브라우저도 `?modoo-internal=1` 을 한 번 열어 같은 쿠키를 켜 두십시오
+(`docs/tracking.md` §3). 원본 `wlashvpel/mobile-smoke` 에는 아직 반영하지 않았습니다.
 
 **서드파티(광고·분석) 에러는 세지 않습니다.** 애드센스가 사파리 교차출처 정책에
 걸려 webkit 전 페이지에서 에러를 내는데, 그걸 FAIL 로 세면 **광고를 붙인 우리 사이트는

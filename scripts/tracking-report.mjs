@@ -172,6 +172,77 @@ async function getCfTraffic() {
   }
 }
 
+// ── Cloudflare Web Analytics(RUM) — 사람 기준 지표 (2026-09-03 추가) ────────
+// 위 edge uniques·pageViews 는 봇·내부 자동화가 섞인다(9/2 실측: 유입자 2,088명 중 RUM 사람
+// 유입 방문은 20회). RUM 은 브라우저가 실행한 beacon 만 세고(bot:0) 리퍼러로 유입원을 나눌 수
+// 있어, 8/28 네이버 유입 붕괴 같은 사건이 당일 보고서에 드러난다. siteTag 없이 account 단위로
+// 호스트 필터 조회 — Wrangler OAuth 로 동작 확인(2026-09-03). 비콘은 Cloudflare 가 엣지에서
+// 자동 주입한다(빌드에 토큰이 없어도 운영 도메인에서는 수집된다).
+const RUM_HOSTS = ["modooilbo.com", "www.modooilbo.com"];
+function classifyReferer(host) {
+  const h = String(host || "").toLowerCase();
+  if (!h) return "direct";
+  if (h.includes("naver")) return "naver";
+  if (h.includes("google")) return "google";
+  if (h.includes("daum") || h.includes("kakao")) return "daum";
+  if (h.includes("bing")) return "bing";
+  if (RUM_HOSTS.includes(h)) return "internal";
+  return "other";
+}
+let _rumCache;
+async function getRum() {
+  if (_rumCache) return _rumCache;
+  const token = env.CLOUDFLARE_API_TOKEN || wranglerOAuthToken();
+  if (!token) {
+    _rumCache = { ok: false, reason: "미연동 (CLOUDFLARE_API_TOKEN도 Wrangler OAuth도 없음)" };
+    return _rumCache;
+  }
+  try {
+    let account = env.CF_ACCOUNT_ID;
+    if (!account) {
+      const zones = await cfApiJson("https://api.cloudflare.com/client/v4/zones?name=modooilbo.com", token);
+      account = zones.result?.[0]?.account?.id;
+    }
+    if (!account) throw new Error("modooilbo.com zone의 account를 찾지 못함");
+    const q = `{
+      viewer { accounts(filter: { accountTag: "${account}" }) {
+        rows: rumPageloadEventsAdaptiveGroups(
+          limit: 500
+          filter: { datetime_geq: "${startUTC}", datetime_lt: "${endUTC}", requestHost_in: ${JSON.stringify(RUM_HOSTS)}, bot: 0 }
+        ) { count sum { visits } dimensions { refererHost } }
+      } }
+    }`;
+    const json = await cfApiJson("https://api.cloudflare.com/client/v4/graphql", token, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: q }),
+    });
+    if (json.errors?.length) throw new Error(json.errors[0].message);
+    const rows = json.data?.viewer?.accounts?.[0]?.rows ?? [];
+    const bySource = { naver: 0, google: 0, daum: 0, bing: 0, direct: 0, other: 0 };
+    let pageloads = 0;
+    let visits = 0;
+    for (const row of rows) {
+      pageloads += row.count ?? 0;
+      const v = row.sum?.visits ?? 0;
+      visits += v;
+      const src = classifyReferer(row.dimensions?.refererHost);
+      if (src !== "internal") bySource[src] += v;
+    }
+    _rumCache = { ok: true, source: "Cloudflare Web Analytics(RUM)", pageloads, visits, bySource };
+    return _rumCache;
+  } catch (e) {
+    _rumCache = { ok: false, reason: `RUM 호출 실패: ${e.message}` };
+    return _rumCache;
+  }
+}
+const rumMetric = (pick, note) => async () => {
+  const r = await getRum();
+  return r.ok
+    ? { value: pick(r), source: r.source, note }
+    : { unavailable: true, source: "Cloudflare Web Analytics(RUM)", note: r.reason };
+};
+
 async function cfPageviews() {
   const t = await getCfTraffic();
   return t.ok
@@ -210,6 +281,13 @@ const METRICS = [
   { key: "daily_unique_visitors", label: "일일 유입자(고유 방문자)", unit: "명", resolve: cfUniqueVisitors },
   { key: "daily_sessions", label: "일일 방문 세션", unit: "세션", resolve: cfSessions },
   { key: "daily_pageviews", label: "일일 페이지뷰", unit: "PV", resolve: cfPageviews },
+  // RUM(사람 기준) — 위 3종은 봇·내부 자동화 포함, 아래는 브라우저 beacon 실행분만(bot:0).
+  { key: "human_pageloads", label: "사람 페이지로드(RUM)", unit: "PL", resolve: rumMetric((r) => r.pageloads, "브라우저가 beacon을 실행한 페이지로드(bot:0). 내부 자동화가 브라우저면 포함될 수 있음") },
+  { key: "human_visits", label: "사람 유입 방문(외부·직접)", unit: "회", resolve: rumMetric((r) => r.visits, "리퍼러가 자기 호스트가 아닌 페이지로드 = 외부 사이트·직접 링크로 들어온 방문. 코덱스 일일 보고의 '유입수'와 같은 정의") },
+  { key: "naver_visits", label: "└ 네이버 검색 유입", unit: "회", resolve: rumMetric((r) => r.bySource.naver, "리퍼러 host에 naver 포함(m.search.naver.com·search.naver.com 등)") },
+  { key: "google_visits", label: "└ 구글 유입", unit: "회", resolve: rumMetric((r) => r.bySource.google, "리퍼러 host에 google 포함") },
+  { key: "direct_visits", label: "└ 직접 유입(리퍼러 없음)", unit: "회", resolve: rumMetric((r) => r.bySource.direct, "북마크·주소 직접 입력·앱 내 링크 등") },
+  { key: "other_visits", label: "└ 기타 유입(다음·빙·SNS 등)", unit: "회", resolve: rumMetric((r) => r.bySource.daum + r.bySource.bing + r.bySource.other, "daum/kakao·bing·그 외 외부 host") },
   { key: "new_members", label: "신규 회원가입자", unit: "명", resolve: zeroMembers(DEMO_NOTE_DB) },
   { key: "new_newsletter_subs", label: "신규 뉴스레터 구독자", unit: "명", resolve: zeroEsp(DEMO_NOTE_ESP) },
   { key: "new_paid_or_donors", label: "신규 유료 구독/후원자", unit: "명", resolve: zeroPay(DEMO_NOTE_PAY) },
@@ -271,7 +349,10 @@ for (const r of rows) {
 const unavailable = rows.filter((r) => r.value === "unavailable").length;
 console.log(`\n  요약: ${rows.length}개 지표 중 ${unavailable}개 unavailable.`);
 console.log(
-  `  → 트래픽: Wrangler OAuth 또는 CLOUDFLARE_API_TOKEN으로 Cloudflare Zone Analytics를 자동 조회.`,
+  `  → 트래픽: Wrangler OAuth 또는 CLOUDFLARE_API_TOKEN으로 Cloudflare Zone Analytics(봇 포함)와 Web Analytics RUM(사람)을 자동 조회.`,
+);
+console.log(
+  `  → "유입"은 RUM 사람 유입 방문(외부·직접)으로 읽는다. edge 유입자·페이지뷰는 크롤러·검사 도구가 섞여 실제 독자 수가 아니다.`,
 );
 console.log(
   `  → 회원·뉴스레터·유료: 환경변수와 어댑터 구현이 모두 완료되면 실집계(현재 백엔드 없음 → 데모, 0). 기준: docs/tracking.md\n`,

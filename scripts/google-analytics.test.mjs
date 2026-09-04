@@ -79,11 +79,11 @@ function assertCspSources(directives, directive, expectedSources) {
 }
 
 /** 부트스트랩 스니펫을 가짜 window 에서 실행해 실제로 큐에 무엇이 쌓이는지 본다. */
-function runBootstrap(bootstrap, { pathname, referrer, origin = "https://modooilbo.com" }) {
+function runBootstrap(bootstrap, { pathname, referrer, origin = "https://modooilbo.com", cookie = "", search = "" }) {
   const win = {};
   win.window = win;
-  win.location = { pathname, origin };
-  win.document = { referrer };
+  win.location = { pathname, origin, search };
+  win.document = { referrer, cookie };
   win.URL = URL;
   vm.runInNewContext(bootstrap, win);
   return win;
@@ -130,6 +130,19 @@ test("GA4 config is fixed, sends page_view like the stock snippet, and skips tok
     referrer: "https://modooilbo.com/reset/?token=abc",
   });
   assert.equal(Array.from(fromToken.dataLayer[1])[2].page_referrer, "");
+
+  // 내부 트래픽: 쿠키가 있으면 config 없음 + ga-disable. ?modoo-internal=1 은 쿠키를 심고 같은 결과.
+  assert.equal(config.INTERNAL_TRAFFIC_COOKIE, "modoo_internal");
+  assert.equal(config.hasInternalTrafficCookie("a=1; modoo_internal=1; b=2"), true);
+  assert.equal(config.hasInternalTrafficCookie("modoo_internal=0"), false);
+  assert.equal(config.hasInternalTrafficCookie(""), false);
+  const internal = runBootstrap(bootstrap, { pathname: "/", referrer: "", cookie: "modoo_internal=1" });
+  assert.equal(internal.dataLayer.length, 0);
+  assert.equal(internal[`ga-disable-${EXPECTED_ID}`], true);
+  const optIn = runBootstrap(bootstrap, { pathname: "/economy/", referrer: "", search: "?modoo-internal=1" });
+  assert.match(String(optIn.document.cookie), /modoo_internal=1; Max-Age=31536000; Path=\/; SameSite=Lax/);
+  assert.equal(optIn.dataLayer.length, 0);
+  assert.equal(optIn[`ga-disable-${EXPECTED_ID}`], true);
 });
 
 test("one direct Google tag owns the only GA/GTM measurement ID; consent UI is gone", async () => {

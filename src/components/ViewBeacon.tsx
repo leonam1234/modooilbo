@@ -1,13 +1,24 @@
 "use client";
 
 import { useEffect } from "react";
+import { hasInternalTrafficCookie } from "@/lib/google-analytics";
 
 /**
  * 조회수 비콘 — 기사 열람 시 /api/view 로 1회 전송(같은 세션 중복 방지).
  * '실시간 많이 본 뉴스' 랭킹 집계용. 화면에는 아무것도 렌더하지 않음.
+ *
+ * 자동화(Playwright·Selenium·헤드리스 = navigator.webdriver)와 내부 트래픽(modoo_internal=1 쿠키)은
+ * 보내지 않는다(2026-09-03). 서버(/api/view)도 UA·쿠키로 같은 판정을 하지만 여기서 끊으면
+ * D1 요청 자체가 없다. 크롤러(Yeti·Googlebot)는 webdriver 를 켜지 않으므로 서버 UA 판정이 막는다.
  */
 export function ViewBeacon({ articleId }: { articleId: string }) {
   useEffect(() => {
+    try {
+      if ((navigator as Navigator & { webdriver?: boolean }).webdriver) return;
+      if (hasInternalTrafficCookie(document.cookie)) return;
+    } catch {
+      /* 판정 불가 시 정상 경로 */
+    }
     // 최근 본 기사(localStorage, 최대 10개) — RecentArticles 위젯용
     try {
       const KEY = "modoo_recent";
