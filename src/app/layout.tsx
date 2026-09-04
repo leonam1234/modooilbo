@@ -177,7 +177,11 @@ export default function RootLayout({
             ⚠️ 자식에 배경이나 backdrop-filter 를 도로 넣지 말 것 — 각자 제 백드롭을 따로
                필터링해 층이 갈리고, 경계마다 톤이 어긋나 '판 여러 장'으로 보인다.
             ⚠️ 기본값은 불투명(95%)이고 투명(30%)은 supports-[backdrop-filter] 안에서만 켠다.
-               블러가 없는 브라우저에서 30% 만 남으면 뒤 본문이 그대로 비쳐 헤더를 읽을 수 없다. */}
+               블러가 없는 브라우저에서 30% 만 남으면 뒤 본문이 그대로 비쳐 헤더를 읽을 수 없다.
+            ⚠️ 이 래퍼 안에서 position:fixed 를 쓰지 말 것 — backdrop-filter 가 fixed 자손의 기준 상자
+               (containing block)가 되어 `fixed inset-0` 이 화면이 아니라 이 래퍼(~147px)에 갇힌다.
+               8/21~9/4 모바일 드로어가 그래서 147px 로 잘렸다. 모달·드로어·백드롭은 body 로
+               포털한다(Header 드로어·TrendingTags 백드롭 참조). */}
         <div className="no-print sticky top-0 z-40 border-b border-ink-200/50 bg-white/95 backdrop-blur-md backdrop-saturate-150 supports-[backdrop-filter]:bg-white/30 dark:border-ink-800/50 dark:bg-ink-950/95 dark:supports-[backdrop-filter]:bg-ink-950/30">
           <Header />
           <BreakingTicker />
