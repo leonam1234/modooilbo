@@ -1,19 +1,21 @@
 # 일일 기사 발행 규약
 
 원고 생산 ↔ `모두일보 개발 및 배포 담당자` ↔ `모두일보 독립 리뷰 담당` 사이의 운영 규약.
-2026-08-18 확정, 2026-09-02 승인·배포·색인 인계 흐름 정정, 2026-09-03 병렬 검수 운영 확정.
+2026-08-18 확정, 2026-09-02 승인·배포·색인 인계 흐름 정정, 2026-09-03 병렬 검수 운영 확정,
+2026-09-05 기사별 자동 승인·실패 격리 확정.
 품질 통과분을 하루 최대 24편까지 인수·검수·발행하면서 실제 사고를 겪고 정리한 규칙이라,
 바꾸려면 사유를 남길 것.
 
 ---
 
-## 0. 역할·독립 리뷰·상시 자동 배포 승인 (2026-09-02 정정)
+## 0. 역할·독립 리뷰·기사별 상시 자동 배포 승인 (2026-09-05 정정)
 
 - 개발·발행 역할명은 **`모두일보 개발 및 배포 담당자`**다. 종전 모두일보 총괄·개발담당 업무와 사이트 코딩·유지보수도 이어받는다.
 - 패키지는 08:50~08:59 KST에 snapshot을 고정하고 09:00 KST에 검수를 시작한다. `모두일보 독립 리뷰 담당`(Codex 작업 ID `01a05a60-a035-7921-8154-7aa4a7024f31`)은 6편씩 4개 기사 shard를 즉시 병렬 dispatch한다.
 - 개발 및 배포 담당자는 같은 09:00 KST에 6편씩 4개 동적 원출처 lane을 병렬 dispatch한다. 독립 리뷰 담당 1명이 하위 결과를 slug별로 합산해 기사별 `reviewedBy`·`reviewedAt`·`reporterInsight`, PASS/HOLD, 수정 요구를 확정한다.
-- **유수화님의 2026-09-02 상시 자동 배포 승인을 적용한다.** PASS·HOLD 0이면 별도 승인 질문 없이 CMS 변환, `content/articles/` 반영, Git, 빌드, Preview, Production, 라이브 검증까지 진행한다. HOLD 또는 사용자의 현재 중지 지시가 있으면 멈춘다.
-- 검수 뒤 기사 내용이 바뀌면 변경 기사를 독립 리뷰와 최종 게이트에 다시 보내고 다시 PASS·HOLD 0을 확인한다.
+- **기사별 상시 자동 배포 승인을 적용한다.** 같은 slug의 독립 리뷰 PASS와 동적·최종 게이트 PASS가 확정되고 `reviewedBy`·`reviewedAt`·`reporterInsight`가 완성되면 별도 승인 질문 없이 즉시 CMS 변환, `content/articles/` 반영, Git, 빌드, Preview, Production, 라이브 검증까지 진행한다.
+- HOLD·`WAIT_SOURCE_UNTIL`·시간 제한·기사별 검증·빌드·Preview 실패는 해당 기사만 current release에서 제외한다. READY PASS 기사는 기다리지 않으며, 조건부 기사는 동적 확인 뒤 PASS 승격 즉시 자동 배포한다. 사용자의 현재 중지·보류 지시는 항상 우선한다.
+- 검수 뒤 기사 내용이 바뀌면 변경 기사만 독립 리뷰와 최종 게이트에 다시 보내고 해당 기사의 PASS를 다시 확인한다.
 - 개발 및 배포 담당자가 Preview·Production·라이브 재검증을 수행하고, 신규 기사
   canonical URL 전건을 `색인 담당자` 작업 `019ef3e0-e684-7be0-a164-3cdfacfeb6fa`로 인계한다.
 
@@ -27,8 +29,9 @@
 2. **09:00 — 동시 dispatch:** 독립 리뷰 담당은 R-A~R-D, 개발 및 배포 담당은 D-A~D-D를 한꺼번에 실행·대기열 등록한다. R-A 완료 뒤 R-B를 시작하는 식의 직렬 실행은 금지한다.
 3. **결과 즉시 반환:** 각 작업은 묶음 전체를 기다리지 않고 기사 한 편 검수를 끝낼 때마다 아래 행을 반환한다.
 4. **단일 합산:** 독립 리뷰 담당 1명만 정본 검수표를 갱신한다. 하위 작업은 원고·이미지·정본 검수표를 직접 수정하지 않는다.
-5. **기사별 join:** 개발 및 배포 담당자는 같은 slug의 독립 리뷰 PASS와 동적 게이트 PASS가 모두 있을 때만 `READY`로 올린다.
-6. **cohort release:** 현재 release cohort의 모든 기사가 READY이고 HOLD 0이면 별도 승인 질문 없이 자동 배포한다.
+5. **기사별 join:** 개발 및 배포 담당자는 같은 slug의 독립 리뷰 PASS, 동적·최종 게이트 PASS,
+   `correctionPending == false`, `reviewedBy`·`reviewedAt`·`reporterInsight` 완성을 모두 확인한 뒤에만 `READY`로 올린다.
+6. **article release:** 각 기사는 READY가 되는 즉시 별도 승인 질문 없이 자동 배포한다. 다른 기사의 HOLD·대기·실패를 기다리지 않는다.
 
 ```text
 slug | reviewShard | reviewedSource | reviewedAtKst | reviewDecision
@@ -39,9 +42,10 @@ slug | reviewShard | reviewedSource | reviewedAtKst | reviewDecision
 `reviewDecision`과 `dynamicDecision`의 허용 상태는 `PASS`, `HOLD`, `WAIT_SOURCE_UNTIL=<KST>`다.
 `WAIT_SOURCE_UNTIL`은 아직 확인하지 못했다는 뜻이지 PASS가 아니다. 원출처가 10:00에 열리는
 채용 기사라면 그 기사만 late micro-lane으로 떼고, 같은 review shard와 dynamic lane의 나머지
-기사는 즉시 반환한다. ready 기사들은 첫 cohort로 계속 진행하고 late 기사는 원출처 개시 뒤
-독립 리뷰와 동적 게이트를 완료한 후 증분 cohort로 발행한다. **늦은 기사 때문에 ready 기사를
-기다리게 하지 않되, 미확인 기사를 ready cohort에 섞지도 않는다.**
+기사는 즉시 반환한다. HOLD·시간 제한·기사별 검증·빌드·Preview 실패도 해당 기사만 current release에서 제외한다.
+READY 기사는 즉시 발행하고 late·조건부 기사는 원출처 개시 뒤 독립 리뷰와 동적 게이트를 완료해
+PASS로 승격되는 즉시 자동 발행한다. **늦거나 실패한 기사 때문에 READY 기사를 기다리게 하지 않되,
+미확인 기사를 current release에 섞지도 않는다.**
 
 결과 충돌은 독립 리뷰 담당이 다수결로 지우지 않는다. 원문 재확인 또는 교정 뒤 변경 기사만
 새 snapshot으로 재검수하며, 해결되지 않으면 HOLD다. 독립 리뷰 담당은 기사별 근거를 읽고
@@ -144,7 +148,7 @@ dispatch하며, 각 lane은 기사별 결과를 즉시 반환한다. 원출처 �
 
 ## 7. Preview·Production·라이브 검증·색인 인계
 
-1. 독립 리뷰와 최종 게이트가 PASS·HOLD 0이면 상시 자동 배포 승인에 따라 CMS 변환·코드 게이트·빌드를 마치고 비-master 릴리스 브랜치에 커밋한다.
+1. 기사별 독립 리뷰·동적·최종 게이트가 PASS이고 사람 검수 필드가 완성되면 즉시 상시 자동 배포 승인을 적용한다. 해당 READY 기사만 CMS 변환·코드 게이트·빌드를 마치고 비-master 릴리스 브랜치에 커밋한다. 기사별 실패는 그 기사만 제외하고 READY PASS release를 재개한다.
 2. Preview에서 `/`·`/policy/`·`/newsroom/`과 신규 기사 경로 전건을 엔진·뷰포트 4조합으로
    검사한다. 24편이면 총 27경로다. 비교 이미지와 660px 원본도 눈으로 확인한다.
 3. 스모크의 자동 PASS는 HTTP 상태·canonical·index/follow·OG·이미지를 보증하지 않는다.

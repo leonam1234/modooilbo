@@ -15,14 +15,17 @@
 배포해줘  = 현재 커밋을 Cloudflare 에 올린다 (wrangler)
 ```
 
-**GitHub = 코드 기록용, Cloudflare = 실배포.** 둘은 별개 동작입니다. 기사 패키지는 독립
-리뷰·최종 게이트가 PASS·HOLD 0이면 **2026-09-02 상시 자동 배포 승인**에 따라 별도 승인 질문
-없이 CMS·Git·빌드·Preview·Production·라이브 검증을 이어서 수행합니다.
+**GitHub = 코드 기록용, Cloudflare = 실배포.** 둘은 별개 동작입니다. 기사는 slug별 독립 리뷰
+PASS와 동적·최종 게이트 PASS가 확정되고 사람 검수 필드가 완성되는 즉시 상시 자동 승인에 따라
+별도 승인 질문 없이 CMS·Git·빌드·Preview·Production·라이브 검증을 이어서 수행합니다.
+HOLD·`WAIT_SOURCE_UNTIL`·시간 제한·기사별 검증·빌드·Preview 실패는 해당 기사만 current
+release에서 제외하며, READY PASS 기사는 다른 기사 때문에 기다리지 않습니다. 조건부 기사는
+동적 확인 뒤 PASS로 승격되는 즉시 같은 절차를 적용합니다. 사용자의 현재 중지·보류 지시는 우선합니다.
 
 배포 스크립트는 미커밋 변경을 막지만, 승인 여부·원격 `master` 최신성·라이브 응답은 검사하지
 않습니다. 안전한 기사 승급 순서는 다음과 같습니다.
 
-> **독립 리뷰·최종 게이트 PASS → CMS·코드 게이트 → 비-master 릴리스 브랜치 커밋 → Preview → 전건 검증 →
+> **독립 리뷰·동적·최종 게이트 PASS + 사람 검수 필드 완성 → CMS·코드 게이트 → 비-master 릴리스 브랜치 커밋 → Preview → 전건 검증 →
 > 검증한 SHA를 master에 push·3자 대조 → 통제된 Production → 저요청 라이브 확인 → 색인 인계**
 
 ```bash
@@ -39,7 +42,7 @@ MODOO_ARTICLE_PATHS=(${(f)"$(git diff --diff-filter=AM --name-only \
   "$MODOO_BASE_SHA" "$MODOO_RELEASE_SHA" -- 'content/articles/*.md' \
   | sed -nE '/\/_/d; s#^content/articles/(.*)\.md$#/article/\1/#p')"})
 (( ${#MODOO_ARTICLE_PATHS[@]} > 0 ))
-print -l -- "${MODOO_ARTICLE_PATHS[@]}" # 승인 범위·건수와 전건 대조
+print -l -- "${MODOO_ARTICLE_PATHS[@]}" # READY 범위·건수와 전건 대조
 npm run release:preview
 # 위 출력의 `release id`를 그대로 보관한다. deploy-log에도 같은 값이 기록된다.
 MODOO_RELEASE_ID="<release id>"
@@ -66,8 +69,9 @@ npm run release:prod -- --reuse-artifact="$MODOO_RELEASE_ID" --smoke-approved --
 # 신규 기사 URL을 각 1회만 읽어 HTTP 200·self-canonical·index/follow·OG를 확인한다.
 ```
 
-스모크가 FAIL이거나 Chromium·WebKit 비교 이미지에서 레이아웃 차이가 확인되면
-Production 배포를 중단합니다. 운영 배포 뒤에는 신규 기사 URL별 저요청 HTTP·메타 확인으로 라이브
+스모크 FAIL이나 Chromium·WebKit 비교 이미지 차이가 특정 기사에 귀속되면 해당 기사만 staging에서
+제외하고 남은 READY 세트를 다시 빌드·Preview 전건 검증합니다. 공통 경로나 사이트 전체에 귀속되거나
+원인을 기사별로 분리할 수 없는 실패이면 current release의 Production 배포를 중단합니다. 운영 배포 뒤에는 신규 기사 URL별 저요청 HTTP·메타 확인으로 라이브
 반영을 증명합니다. 운영 도메인에 4환경 스모크나 사이트맵·자산 전수검사를 반복하지 않습니다. `release:preview`는 빌드·R2 동기화·prune을 한 번만 실행하고 실제 Preview에
 올린 `out/`을 Git common dir에 봉인합니다. 스모크 PASS 뒤 `release:prod`는 그 산출물을 다시
 빌드하지 않고 그대로 승급합니다.

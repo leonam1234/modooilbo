@@ -5,9 +5,10 @@
 >
 > 🚫 따라서 패키지 단계 원고를 이 폴더에 미리 복사하지 않습니다. 1차 정적·동적 게이트,
 > `모두일보 독립 리뷰 담당`(작업 ID `01a05a60-a035-7921-8154-7aa4a7024f31`)의 기사별 검수,
-> `reviewedBy`·`reviewedAt`·`reporterInsight`와 PASS/HOLD·수정 요구 회수, 최종 게이트를 끝낸 뒤
-> PASS·HOLD 0이면 **2026-09-02 상시 자동 배포 승인**에 따라 별도 승인 질문 없이 이 폴더로
-> CMS 변환합니다. HOLD 또는 사용자의 현재 중지 지시가 있으면 진행하지 않습니다.
+> `reviewedBy`·`reviewedAt`·`reporterInsight`와 PASS/HOLD·수정 요구 회수, 동적·최종 게이트를 끝낸 뒤
+> 기사별 PASS 조건이 완성된 원고만 상시 자동 배포 승인에 따라 별도 승인 질문 없이 이 폴더로
+> CMS 변환합니다. HOLD·`WAIT_SOURCE_UNTIL`·시간 제한·기사별 실패 원고만 제외하며 READY 원고는
+> 기다리지 않습니다. 조건부 PASS는 동적 재확인 뒤 PASS로 승격돼야 합니다. 사용자의 현재 중지·보류 지시는 우선합니다.
 
 ## 1. 어디에 쓰나
 
@@ -77,9 +78,9 @@ set -euo pipefail   # 아래 게이트 하나라도 실패하면 즉시 중단
 MODOO_RELEASE_BRANCH="$(git branch --show-current)"
 [[ -n "$MODOO_RELEASE_BRANCH" && "$MODOO_RELEASE_BRANCH" != master ]]
 test -z "$(git status --porcelain)"
-# 필수 선행: 작업 인수 → 1차 정적·동적 게이트 → 독립 리뷰 요청·회수 → 최종 게이트
-# PASS·HOLD 0이면 상시 자동 배포 승인에 따라 별도 승인 질문 없이 계속:
-MODOO_PACKAGE_DIR="/absolute/path/to/approved-package"
+# 필수 선행: 작업 인수 → 기사별 1차 정적·동적 게이트 → 독립 리뷰 요청·회수 → 최종 게이트
+# READY 기사만 모은 staging으로 별도 승인 질문 없이 계속. 실패하면 해당 slug를 제외하고 처음부터 재검증:
+MODOO_PACKAGE_DIR="/absolute/path/to/ready-article-staging"
 MODOO_COMMIT_MSG_FILE="/absolute/path/to/commit-message.txt"
 cp "$MODOO_PACKAGE_DIR"/articles/**/*.md content/articles/
 cp "$MODOO_PACKAGE_DIR"/images_1200x675_jpg/*.jpg public/stock/
@@ -100,7 +101,7 @@ MODOO_ARTICLE_PATHS=(${(f)"$(git diff --diff-filter=AM --name-only \
   "$MODOO_BASE_SHA" "$MODOO_RELEASE_SHA" -- 'content/articles/*.md' \
   | sed -nE '/\/_/d; s#^content/articles/(.*)\.md$#/article/\1/#p')"})
 (( ${#MODOO_ARTICLE_PATHS[@]} > 0 ))
-print -l -- "${MODOO_ARTICLE_PATHS[@]}" # 승인 범위·건수와 전건 대조
+print -l -- "${MODOO_ARTICLE_PATHS[@]}" # READY 범위·건수와 전건 대조
 # Preview는 master가 아닌 깨끗한 릴리스 브랜치에서 실행
 npm run deploy:preview
 MODOO_PREVIEW_URL="$(node -e '
@@ -124,12 +125,15 @@ npm run deploy:prod -- --force-branch
 # Production에서는 smoke·preview-assets를 다시 실행하지 않는다.
 # 신규 기사 URL마다 HTTP 200·self-canonical·index/follow·OG를 각 1회만 확인한다.
 ```
-> 운영 규칙(2026-09-02): 유수화님의 **상시 자동 배포 승인**에 따라 독립 리뷰와 최종 게이트가
-> PASS·HOLD 0이면 CMS 변환·Git·빌드·Preview·Production·라이브 검증을 별도 승인 질문 없이
-> 진행한다. 검수 뒤 기사 내용이 바뀌면 변경 기사 재검수와 최종 게이트를 다시 통과해야 한다.
+> 운영 규칙(2026-09-05): 독립 리뷰 PASS, 동적·최종 게이트 PASS, 필수 사람 검수 필드 완성을
+> 충족한 각 기사는 **기사별 상시 자동 배포 승인**에 따라 CMS 변환·Git·빌드·Preview·Production·
+> 라이브 검증을 별도 승인 질문 없이 즉시 진행한다. 검수 뒤 기사 내용이 바뀌면 변경 기사만 재검수와
+> 최종 게이트를 다시 통과해야 한다.
 > 검수 흐름: 패키지 1차 정적·동적 게이트 → 독립 리뷰 기사별 검수 → 결과 회수·수정분 재검수 →
-> 발행 직전 동적 게이트 전수 확인 → PASS·HOLD 0 확인 → CMS 변환·게이트·빌드 → Git 커밋 → Preview·Production·라이브 검증.
-> HOLD 원고는 **파일을 커밋하지 않는** 방식으로 보류한다. `editorial/출고대기/`는 현재 페르소나 문서 보관소이며 스테이징 폴더로 쓰이지 않는다.
+> 발행 직전 동적 게이트 확인 → 기사별 READY 확정 → READY만 CMS 변환·게이트·빌드 → Git 커밋 → Preview·Production·라이브 검증.
+> HOLD·`WAIT_SOURCE_UNTIL`·엠바고·미래 `publishedAt`·기사별 검증 실패 원고는 **파일을 커밋하지 않는**
+> 방식으로 해당 원고만 보류한다. 조건부 PASS는 재확인 뒤 PASS 승격 시 자동 배포하고, 다른 READY 원고는
+> 기다리지 않는다. `editorial/출고대기/`는 현재 페르소나 문서 보관소이며 스테이징 폴더로 쓰이지 않는다.
 > publishedAt은 출고 직전 재배치가 관행이며 허용 범위 근거 문서(`최종마감.md`)는 **리포 밖**에 있다(총괄 보관). 상세: [wiki/09-publishing](../wiki/09-publishing.md)
 > 라이브 검증 뒤 신규 기사 canonical URL 전건을 HTTP 200·self-canonical·index/follow 확인 후
 > `색인 담당자`(작업 ID `019ef3e0-e684-7be0-a164-3cdfacfeb6fa`)에게 발행일·건수·사이트

@@ -10,7 +10,7 @@
 3. [01-trust-eeat](01-trust-eeat.md) — 2순위(신뢰·E-E-A-T)
 4. [02-growth-and-revenue](02-growth-and-revenue.md) — 3순위(측정·성장·수익)
 5. [03-supplementary](03-supplementary.md) — 보조(실시간성·GEO/AEO·이미지·접근성)
-6. [04-publishing-protocol](04-publishing-protocol.md) — **일일 기사 발행 규약**. 역할 분리·독립 리뷰·최종 게이트 뒤 상시 자동 배포 승인·publishedAt 정본·발행 후 수정·Preview/라이브 검증·색인 인계
+6. [04-publishing-protocol](04-publishing-protocol.md) — **일일 기사 발행 규약**. 역할 분리·기사별 PASS 즉시 자동 승인·HOLD/대기/기사별 실패 격리·publishedAt 정본·발행 후 수정·Preview/라이브 검증·색인 인계
 
 ## 📊 우선순위 매트릭스
 | 순위 | 항목 | 문서 | 정적export 내 가능? | 선행조건 |

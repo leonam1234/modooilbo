@@ -1,15 +1,17 @@
 # 세션 인계서 — 모두일보
 
-> **새 세션은 이 파일부터 읽으십시오.** 마지막 갱신 2026-09-03.
+> **새 세션은 이 파일부터 읽으십시오.** 마지막 갱신 2026-09-05.
 > 역할명은 **`모두일보 개발 및 배포 담당자`**입니다. 종전 Claude 모두일보 총괄·개발담당
 > 업무와 사이트 코딩·유지보수도 이 역할이 이어받습니다.
 >
-> ✅ **2026-09-02 최신 지시: 유수화님이 상시 자동 배포를 승인했습니다.** 2026-09-01의
-> 패키지별 명시 승인 대기 규칙은 이 지시로 대체합니다. 콘텐츠 제작 작업 인수 → 1차 정적·동적
-> 게이트 → `모두일보 독립 리뷰 담당` 기사별 검수 → 결과 회수·수정분 재검수 → 최종 게이트를
-> 지키고, PASS·HOLD 0이면 별도 승인 질문 없이 CMS 변환, `content/articles/` 반영, Git 커밋,
-> 빌드, Preview, Production, 라이브 검증까지 이어서 수행합니다. 리뷰·게이트가 HOLD이면 자동
-> 배포하지 않으며, 사용자의 현재 중지·보류 지시는 언제나 이 상시 승인보다 우선합니다.
+> ✅ **2026-09-05 최신 지시: 상시 자동 배포 승인은 기사별로 적용합니다.** 2026-09-01의
+> 패키지별 명시 승인 대기 규칙과 2026-09-02의 `PASS·HOLD 0` 일괄 조건은 이 지시로 대체합니다.
+> 독립 리뷰 PASS, 동적·최종 게이트 PASS, `reviewedBy`·`reviewedAt`·`reporterInsight` 완성을 모두
+> 충족한 기사는 별도 승인 질문 없이 즉시 CMS 변환, `content/articles/` 반영, Git 커밋, 빌드,
+> Preview, Production, 라이브 검증까지 이어서 수행합니다. HOLD, `WAIT_SOURCE_UNTIL`, 엠바고·
+> 미래 `publishedAt`, 기사별 검증·빌드·Preview 실패는 해당 기사만 제외하고, 준비된 PASS 기사를
+> 기다리게 하지 않습니다. 조건부 PASS는 동적 재확인 뒤 PASS로 승격될 때 자동 배포합니다.
+> 사용자의 현재 중지·보류 지시는 언제나 이 상시 승인보다 우선합니다.
 > ✅ **2026-09-03 운영 변경:** 일일 패키지는 09:00 KST에 독립 리뷰 4개 기사 shard와
 > 동적 원출처 4개 lane을 즉시 병렬 dispatch합니다. 독립 리뷰 담당 1명이 기사별 결과를
 > 합산하며, 늦게 열리는 원출처 기사만 후속 cohort로 분리해 이미 PASS인 기사를 기다리게 하지 않습니다.
@@ -264,15 +266,16 @@ culture·sports 남동균 | opinion·industry 박유주 | world·labor  최은�
 - 독립 리뷰 하위 작업은 원고를 수정하지 않고 기사별 근거·PASS/HOLD·수정 요구만 반환합니다.
   독립 리뷰 담당 1명이 slug를 키로 결과를 합산하고 `reviewedBy`·`reviewedAt`·`reporterInsight`와
   최종 PASS/HOLD를 기사별로 확정합니다. 하위 작업의 묶음 PASS를 최종 판정으로 복사하지 않습니다.
-- 늦게 열리는 접수·지원·예매 화면은 해당 기사만 `WAIT_SOURCE_UNTIL=<KST>`로 분리합니다.
-  이는 PASS도 HOLD도 아니며 첫 release cohort에서 제외합니다. 나머지 기사는 독립 리뷰와 동적
-  게이트가 모두 PASS이면 ready cohort로 계속 진행하고, 늦은 기사는 원출처가 열린 뒤 별도
-  증분 cohort로 검수·배포합니다.
-- 각 release cohort에서 대상 전건 PASS·HOLD 0이면 상시 자동 배포 승인을 적용해 별도 승인
-  질문이나 대기 없이 아래 CMS·빌드·Preview·Production 단계로 진행합니다.
-- 아래 복사 명령의 `MODOO_PACKAGE_DIR`는 current cohort의 `READY` 기사와 대응 JPG만 담은
-  전용 staging 디렉터리여야 합니다. `WAIT_SOURCE_UNTIL` 기사가 남은 전체 원본 패키지를
-  그대로 가리켜 glob으로 함께 복사하지 않습니다.
+- HOLD, 늦게 열리는 접수·지원·예매 화면의 `WAIT_SOURCE_UNTIL=<KST>`, 엠바고·미래
+  `publishedAt`은 해당 기사만 current release에서 제외합니다. 조건부 PASS는 동적 재확인을
+  통과해 PASS로 승격된 뒤 READY가 됩니다.
+- 독립 리뷰 PASS, 동적·최종 게이트 PASS, 필수 사람 검수 필드 완성을 모두 충족한 각 기사는
+  상시 자동 배포 승인에 따라 다른 기사의 판정을 기다리지 않고 아래 CMS·빌드·Preview·Production
+  단계로 진행합니다. 기사별 검증·빌드·Preview 실패도 실패한 기사만 제외하고 남은 READY 세트를
+  처음부터 다시 검증합니다.
+- 아래 복사 명령의 `MODOO_PACKAGE_DIR`는 현재 `READY` 기사와 대응 JPG만 담은 전용 staging
+  디렉터리여야 합니다. HOLD·`WAIT_SOURCE_UNTIL`·시간 제한·기사별 실패가 남은 전체 원본
+  패키지를 그대로 가리켜 glob으로 함께 복사하지 않습니다.
 
 ```bash
 # 먼저 깨끗한 비-master 릴리스 worktree로 이동한 뒤 실행
@@ -286,12 +289,12 @@ test -z "$(git status --porcelain)"
 # 2) 독립 리뷰 담당은 4개 기사 shard, 개발 담당은 4개 동적 원출처 lane을 즉시 병렬 dispatch
 # 3) 독립 리뷰 담당 1명이 slug별 reviewedBy·reviewedAt·reporterInsight,
 #    PASS/HOLD·수정 요구를 합산하고 수정분 재검수 + §6 최종 게이트 완료
-# 4) 현재 release cohort 전건의 리뷰 PASS + 동적 PASS + HOLD 0을 기록.
-#    WAIT_SOURCE_UNTIL 기사는 cohort에서 제외하고 별도 승인 질문 없이 5단계로 진행
+# 4) slug별 리뷰 PASS + 동적·최종 PASS + 사람 검수 필드 완성을 기록.
+#    HOLD·WAIT_SOURCE_UNTIL·시간 제한·기사별 실패는 staging에서 제외하고 READY만 5단계로 진행
 
-# ── 독립 리뷰와 최종 게이트 PASS·HOLD 0이면 자동 수행 ──
+# ── 위 조건을 충족해 READY가 된 기사별 자동 수행 ──
 # 5) CMS 규약 검사·반영
-MODOO_PACKAGE_DIR="/absolute/path/to/release-cohort"   # READY 기사·JPG만 있는 전용 staging 경로
+MODOO_PACKAGE_DIR="/absolute/path/to/ready-articles"   # READY 기사·JPG만 있는 전용 staging 경로
 MODOO_COMMIT_MSG_FILE="/absolute/path/to/commit-message.txt"
 cp "$MODOO_PACKAGE_DIR"/articles/**/*.md content/articles/
 cp "$MODOO_PACKAGE_DIR"/images_1200x675_jpg/*.jpg public/stock/
@@ -350,9 +353,10 @@ npm run deploy:prod -- --force-branch
 # 11) ⚠️ 오너에게도 오늘 기사 링크 전건을 목록으로 준다 — 매번 요구하신다.
 ```
 
-⚠️ **2026-09-02 상시 자동 배포 승인은 독립 리뷰·최종 게이트를 없애지 않습니다.** 검수 뒤 기사
-내용이 바뀌면 변경 기사를 독립 리뷰와 최종 게이트에 다시 보내고, 다시 PASS·HOLD 0일 때만
-자동 배포합니다. 사용자가 특정 릴리스를 중지·보류하면 그 지시를 우선합니다.
+⚠️ **상시 자동 배포 승인은 독립 리뷰·최종 게이트를 없애지 않습니다.** 검수 뒤 기사 내용이
+바뀌면 변경 기사만 독립 리뷰와 최종 게이트에 다시 보내고, 다시 기사별 READY 조건을 충족할 때
+자동 배포합니다. 그동안 다른 READY 기사는 기다리지 않습니다. 사용자가 특정 기사나 릴리스를
+중지·보류하면 그 지시를 우선합니다.
 
 ⚠️ **병렬화는 검수 orchestration만 바꿉니다. 추적·보안 코드는 건드리지 마십시오.** 공개
 페이지의 GA4 `G-R2MDE3WDFY`는 `<head>`의 조건 없는 구글 표준 직접 스니펫 1개를 유지하고,
