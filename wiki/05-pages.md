@@ -15,7 +15,7 @@ App Router. 전부 Static 또는 SSG. 2026-09-02 기준 기사 Markdown **1,277�
 | `/[category]` | [\[category\]](../src/app/[category]/page.tsx) | 종합뉴스 섹션 목록 | 7 |
 | `/[category]/page/[n]` | [+ page/\[page\]](../src/app/[category]/page/[page]/page.tsx) | 종합 페이지네이션 | 다수 |
 | `/grants` `/bids` `/startup` `/industry` `/labor` `/deals` | 각 디렉터리 | **사업 축 6종**(별도 라우트) | 6 + 각 `/page/[n]` |
-| `/reporter/[slug]` (+ `/page/[n]`) | [reporter/\[slug\]](../src/app/reporter/[slug]/page.tsx) | 기자 프로필 + 기사 목록 | 8명 |
+| `/reporter/[slug]` (+ `/page/[n]`) | [reporter/\[slug\]](../src/app/reporter/[slug]/page.tsx) | 기자 프로필 + 기사 목록 | 9명 |
 | `/search` | [search](../src/app/search/page.tsx) | 검색(클라 필터 + 인덱스 JSON) | 1 |
 
 ⚠️ **사업 축은 `[category]` 동적 라우트가 아니라 각자 디렉터리**를 가진다.
@@ -29,7 +29,7 @@ App Router. 전부 Static 또는 SSG. 2026-09-02 기준 기사 Markdown **1,277�
 
 | 경로 | 비고 |
 |---|---|
-| `/newsroom` | 편집국 소개 — 기자 6명(명단 제외 2명은 목록에서만 빠짐) |
+| `/newsroom` | 편집국 소개 — 기자 6명(김성우·유수화·박유주는 목록에서만 빠지고 기존 프로필은 유지) |
 | `/corrections` | 정정·반론 보도 모음 — `correction` 필드가 있는 기사만 |
 | `/ethics` | 윤리강령·청소년보호 |
 | `/policy` | 운영정책 — 허위조작정보·신고·이의신청·댓글·팩트체크·투명성 + **7절 AI 활용 고지** ([decisions/0001](decisions/0001-ai-disclosure-scope.md)) |
