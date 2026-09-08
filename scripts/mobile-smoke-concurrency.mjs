@@ -2,6 +2,10 @@ import { normalizeInspectionTarget } from "./lib/inspection-safety.mjs";
 
 export const DEFAULT_SMOKE_CONCURRENCY = 2;
 
+export function isBadHttpStatus(status) {
+  return !Number.isInteger(status) || status < 200 || status >= 400;
+}
+
 const TRUE_VALUES = new Set(["1", "true", "yes", "on"]);
 
 function isEnabled(value) {

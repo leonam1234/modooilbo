@@ -4,9 +4,22 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   DEFAULT_SMOKE_CONCURRENCY,
+  isBadHttpStatus,
   mapWithConcurrency,
   parseSmokeCli,
 } from "./mobile-smoke-concurrency.mjs";
+
+test("HTTP gate rejects missing, error, and redirect-only responses", () => {
+  assert.equal(isBadHttpStatus(undefined), true);
+  assert.equal(isBadHttpStatus(0), true);
+  assert.equal(isBadHttpStatus(199), true);
+  assert.equal(isBadHttpStatus(200), false);
+  assert.equal(isBadHttpStatus(304), false);
+  assert.equal(isBadHttpStatus(399), false);
+  assert.equal(isBadHttpStatus(400), true);
+  assert.equal(isBadHttpStatus(404), true);
+  assert.equal(isBadHttpStatus(500), true);
+});
 
 test("CLI remains compatible and defaults to bounded parallel environments", () => {
   assert.equal(DEFAULT_SMOKE_CONCURRENCY, 2);

@@ -20,7 +20,7 @@ import { mkdirSync, writeFileSync, existsSync, rmSync } from 'node:fs'
 import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import * as pw from 'playwright'
-import { mapWithConcurrency, parseSmokeCli } from './mobile-smoke-concurrency.mjs'
+import { isBadHttpStatus, mapWithConcurrency, parseSmokeCli } from './mobile-smoke-concurrency.mjs'
 import { protectPlaywrightInspectionContext } from './lib/inspection-safety.mjs'
 
 let cli
@@ -71,14 +71,17 @@ async function checkPage(ctx, matrixEntry, path) {
       const detail = String(error?.message || error) + ' ' + String(error?.stack || '')
       ;(THIRD_PARTY.test(detail) ? vendor : errs).push(String(error?.message || error))
     })
-    await page.goto(baseUrl + path, { waitUntil: 'load', timeout: 30000 })
+    const response = await page.goto(baseUrl + path, { waitUntil: 'load', timeout: 30000 })
+    const status = response?.status()
     await page.waitForTimeout(1200)   // 폰트·이미지·스크립트 정착 대기
     const textLen = await page.evaluate(() => (document.body?.innerText || '').trim().length)
     const blank = textLen < 100       // 빈 화면 휴리스틱: 본문 텍스트 100자 미만이면 의심
+    const httpBad = isBadHttpStatus(status)
     await page.screenshot({ path: join(out, name + '.png'), fullPage: true })
       .catch(() => page.screenshot({ path: join(out, name + '.png') }))
-    const bad = errs.length > 0 || blank
+    const bad = errs.length > 0 || blank || httpBad
     const line = `${bad ? '❌' : '✓'} ${name} text=${textLen}자` +
+      (httpBad ? ` | HTTP ${status ?? '응답없음'}` : '') +
       (errs.length ? ' | JS에러: ' + errs[0].slice(0, 120) : '') + (blank ? ' | 빈 화면 의심' : '') +
       (vendor.length ? ` | (서드파티 ${vendor.length}건 무시)` : '')
     console.log(line)
