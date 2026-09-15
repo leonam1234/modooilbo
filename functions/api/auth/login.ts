@@ -55,6 +55,7 @@
  */
 import { json, verifyPassword, createSession, sessionCookie, type AuthEnv } from "../../_lib/auth";
 import { clientIp, hitRateLimits, rateBucket, resetRateLimit } from "../../_lib/rate-limit";
+import { readJsonObject } from "../../_lib/request-body";
 
 const MAX_IP_TRIES = 8; // IP당 15분
 const MAX_ACCOUNT_TRIES = 10; // 이메일당 15분(분산 IP 대응). IP 한도보다 느슨하게 둬 정상 사용자 오탐 억제.
@@ -69,12 +70,14 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
   if (!env.DB) return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 500);
 
-  let b: any;
-  try {
-    b = await ctx.request.json();
-  } catch {
-    return json({ error: "요청 형식이 올바르지 않습니다." }, 400);
+  const parsed = await readJsonObject(ctx.request);
+  if (!parsed.ok) {
+    return json(
+      { error: parsed.status === 413 ? "요청 본문이 너무 큽니다." : "요청 형식이 올바르지 않습니다." },
+      parsed.status,
+    );
   }
+  const b = parsed.value;
   const email = String(b?.email ?? "").trim().toLowerCase();
   const password = String(b?.password ?? "");
   if (!email || !password) return json({ error: GENERIC }, 400);

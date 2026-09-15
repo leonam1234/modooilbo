@@ -128,7 +128,7 @@ test("every repository Playwright inspection context is paired with the shared p
     return /from ["']playwright["']/.test(source);
   });
 
-  assert.deepEqual(playwrightFiles.sort(), ["mobile-smoke.mjs", "shoot.mjs"]);
+  assert.deepEqual(playwrightFiles.sort(), ["audit-browser.mjs", "mobile-smoke.mjs", "shoot.mjs"]);
   for (const file of playwrightFiles) {
     const source = readFileSync(join(SCRIPTS_DIR, file), "utf8");
     const contexts = source.match(/\.newContext\s*\(/g) ?? [];

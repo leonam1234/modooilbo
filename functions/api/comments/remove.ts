@@ -3,6 +3,7 @@
  * 내용은 지우고 행은 남긴다(답글 스레드 유지). → { ok }
  */
 import { json, getUser, type AuthEnv } from "../../_lib/auth";
+import { readJsonObject } from "../../_lib/request-body";
 
 export async function onRequestPost(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
@@ -12,12 +13,11 @@ export async function onRequestPost(ctx: any): Promise<Response> {
     const me = await getUser(env, ctx.request);
     if (!me) return json({ error: "로그인이 필요합니다." }, 401);
 
-    let id = "";
-    try {
-      id = String((await ctx.request.json())?.id || "");
-    } catch {
-      /* noop */
+    const parsed = await readJsonObject(ctx.request);
+    if (!parsed.ok) {
+      return json({ error: parsed.status === 413 ? "요청 본문이 너무 큽니다." : "잘못된 요청입니다." }, parsed.status);
     }
+    const id = String(parsed.value.id || "");
     if (!id) return json({ error: "잘못된 요청입니다." }, 400);
 
     const r = await env.DB.prepare(

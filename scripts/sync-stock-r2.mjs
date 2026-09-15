@@ -20,17 +20,23 @@
  *   node scripts/sync-stock-r2.mjs --verify-all          # 캐시 무시하고 전수 검사
  *   node scripts/sync-stock-r2.mjs --verify-all --force  # 전량 재업로드(캐시 정책 백필)
  *
- * 주의: 같은 파일명으로 이미지를 "교체"하면 이 스크립트는 건너뛴다.
- *       교체 시에는 lib/stock.ts의 STOCK_VERSION을 올리고 해당 키를 직접 덮어쓸 것.
+ * 같은 파일명 교체도 SHA-256 캐시 차이로 자동 감지한다. 레거시 filename 캐시는
+ * 조용히 완료 처리하지 않고 실행당 12개씩 원격 바이트 해시를 점진 검증한다.
  */
-import { execFile } from "node:child_process";
+import { execFile, execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { promisify } from "node:util";
-import { existsSync, readdirSync, statSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
+  acquireR2SyncLease,
+  assertNoUnversionedStockReplacements,
+  assertStockVersionBump,
   discoverR2Cache,
+  planR2Sync,
   readMergedR2Cache,
+  selectLegacyProbe,
   writeMergedR2Cache,
 } from "./r2-sync-cache.mjs";
 
@@ -41,11 +47,18 @@ const CACHE_CONFIG = discoverR2Cache(ROOT);
 const BUCKET = "modooilbo-stock";
 const BASE = "https://img.modooilbo.com";
 const CONCURRENCY = 12;
+const LEGACY_HASH_PROBE_LIMIT = 12;
 const execFileAsync = promisify(execFile);
 
 const dryRun = process.argv.includes("--dry-run");
 const verifyAll = process.argv.includes("--verify-all");
 const force = process.argv.includes("--force");
+const preview = process.argv.includes("--preview");
+
+if (preview && force) {
+  console.error("✖ Preview에서는 공용 R2 기존 키를 덮어쓰는 --force를 사용할 수 없습니다.");
+  process.exit(1);
+}
 
 const CONTENT_TYPE = { ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp", ".png": "image/png" };
 const extOf = (f) => f.slice(f.lastIndexOf("."));
@@ -70,34 +83,88 @@ if (!existsSync(STOCK)) {
   process.exit(0);
 }
 
+let releaseSyncLease = () => {};
+if (!dryRun) {
+  try {
+    releaseSyncLease = acquireR2SyncLease(CACHE_CONFIG);
+    process.once("exit", releaseSyncLease);
+  } catch (error) {
+    console.error(`✖ ${error.message}`);
+    process.exit(1);
+  }
+}
+
 const local = readdirSync(STOCK).filter((f) => CONTENT_TYPE[extOf(f)] && statSync(join(STOCK, f)).size > 0);
 const cached = readMergedR2Cache(CACHE_CONFIG);
-const synced = new Set(verifyAll ? [] : cached);
-const candidates = local.filter((f) => !synced.has(f));
+const localFiles = Object.fromEntries(local.map((f) => [
+  f,
+  createHash("sha256").update(readFileSync(join(STOCK, f))).digest("hex"),
+]));
+const plan = planR2Sync({
+  localFiles,
+  cache: cached,
+  changedFiles: changedStockFilesInHead(),
+});
+const verifiedDelta = {};
+const expectedFiles = {};
+let pendingLegacy = [...plan.legacy];
+const upload = new Set(plan.candidates);
+const replacements = new Set(plan.replacements);
 
 console.log(`[r2] 캐시 ${CACHE_CONFIG.mode === "git-common" ? "Git 공용(worktree 공유)" : "로컬 폴백"}: ${CACHE_CONFIG.cachePath}`);
 
-if (!candidates.length) {
-  // 첫 실행이 이미 완전한 레거시 캐시를 읽은 경우에도 공용 캐시로 즉시 이관한다.
-  if (!dryRun) writeCache(cached);
-  console.log(`[r2] 동기화 완료 — 로컬 ${local.length}개 전부 확인됨(캐시)`);
-  process.exit(0);
+if (preview && replacements.size) failPreviewReplacement([...replacements]);
+
+if (!dryRun && pendingLegacy.length) {
+  const probe = selectLegacyProbe(pendingLegacy, LEGACY_HASH_PROBE_LIMIT);
+  const checked = await verifyRemoteContentHashes(probe, localFiles);
+  for (const name of checked.matched) promoteVerified(name);
+  for (const name of checked.mismatched) {
+    upload.add(name);
+    replacements.add(name);
+  }
+  for (const name of checked.missing) upload.add(name);
+  console.log(`[r2] 레거시 해시 점진 검증 ${probe.length}개 — 일치 ${checked.matched.length} · 교체 ${checked.mismatched.length} · 누락 ${checked.missing.length} · 보류 ${checked.unknown.length}`);
+} else if (pendingLegacy.length) {
+  console.log(`[r2] 레거시 filename 캐시 ${pendingLegacy.length}개는 해시 미검증 상태 유지(DRY-RUN)`);
 }
+
+const uncached = plan.candidates.filter((name) => !cached.files[name] && !cached.legacy.includes(name));
+if (!dryRun && uncached.length) {
+  const checked = await verifyRemoteContentHashes(uncached, localFiles);
+  for (const name of checked.matched) {
+    promoteVerified(name);
+    upload.delete(name);
+  }
+  for (const name of checked.mismatched) replacements.add(name);
+  if (checked.unknown.length) {
+    console.error(`✖ 신규 키 원격 바이트 확인 실패 ${checked.unknown.length}개: ${checked.unknown.slice(0, 5).join(", ")}`);
+    process.exit(1);
+  }
+  console.log(`[r2] 캐시 없는 키 원격 확인 ${uncached.length}개 — 동일 ${checked.matched.length} · 충돌 ${checked.mismatched.length} · 404 ${checked.missing.length}`);
+}
+
+if (preview && replacements.size) failPreviewReplacement([...replacements]);
 
 let missing;
 if (force) {
   // 캐시 정책 백필용. 서빙 여부와 무관하게 전부 다시 올려 메타데이터를 갱신한다
   // (Cache-Control은 업로드 시점에 오브젝트에 굳으므로 덮어쓰기 외엔 방법이 없다).
-  missing = candidates;
+  missing = verifyAll ? local : [...upload];
   console.log(`[r2] FORCE — HEAD 생략, ${missing.length}개 전량 재업로드(메타데이터 갱신)`);
+} else if (verifyAll) {
+  console.log(`[r2] 전체 ${local.length}개 서빙 HEAD 검사 + 해시 불일치 강제 업로드`);
+  missing = [...new Set([...(await filterMissing(local)), ...upload])];
 } else {
-  console.log(`[r2] 확인 대상 ${candidates.length}개 (전체 ${local.length}개) — ${BASE} HEAD 검사`);
-  missing = await filterMissing(candidates);
+  missing = [...upload];
+  console.log(`[r2] 신규·교체 ${missing.length}개 — SHA-256 차이로 업로드 대상 확정`);
 }
 
+assertReplacementVersionBump([...replacements]);
+
 if (!missing.length) {
-  writeCache([...synced, ...candidates]);
-  console.log(`[r2] 누락 0개 — 전부 서빙 중`);
+  if (!dryRun) writeCacheDelta();
+  console.log(`[r2] 업로드 대상 0개 — 이번 해시 확인 ${Object.keys(verifiedDelta).length} · 레거시 미확인 ${pendingLegacy.length}`);
   process.exit(0);
 }
 
@@ -143,20 +210,121 @@ if (failed.length) {
   process.exit(1);
 }
 // 업로드했다고 끝이 아니다 — 실제 서빙 URL에서 200이 나오는지 확인하고, 그것만 캐시에 남긴다.
-const stillMissing = await filterMissing(missing.filter((f) => !failed.includes(f)));
+const served = await verifyRemoteContentHashes(missing.filter((f) => !failed.includes(f)), localFiles);
+const stillMissing = [...served.mismatched, ...served.missing, ...served.unknown];
 if (stillMissing.length) {
-  console.error(`✖ 업로드했으나 서빙되지 않는 파일 ${stillMissing.length}개: ${stillMissing.slice(0, 5).join(", ")}`);
+  console.error(`✖ 업로드 뒤 원격 바이트가 일치하지 않는 파일 ${stillMissing.length}개: ${stillMissing.slice(0, 5).join(", ")}`);
   console.error("  엣지 캐시에 404가 남아 있을 수 있습니다. 몇 분 뒤 다시 실행하세요.\n");
   process.exit(1);
 }
-writeCache([...synced, ...candidates.filter((f) => !failed.includes(f))]);
+for (const name of served.matched) promoteVerified(name);
+writeCacheDelta();
 console.log(`[r2] 서빙 확인 완료 — 업로드분 ${missing.length - failed.length}개 200 응답`);
 
-function writeCache(list) {
-  writeMergedR2Cache(CACHE_CONFIG, list);
+function writeCacheDelta() {
+  if (!Object.keys(verifiedDelta).length) return;
+  const result = writeMergedR2Cache(
+    CACHE_CONFIG,
+    { files: verifiedDelta, legacy: pendingLegacy },
+    { expectedFiles },
+  );
+  if (result.conflicts.length) {
+    console.error(`✖ R2 캐시 동시 갱신 충돌 ${result.conflicts.length}개 — 해시 미검증으로 되돌렸습니다: ${result.conflicts.slice(0, 5).join(", ")}`);
+    process.exit(1);
+  }
 }
 
-/** 서빙 URL에 HEAD를 던져 404인 것만 골라낸다. 네트워크 오류는 '누락'으로 보아 재업로드한다. */
+function promoteVerified(name) {
+  verifiedDelta[name] = localFiles[name];
+  expectedFiles[name] = cached.files[name] ?? null;
+  pendingLegacy = pendingLegacy.filter((entry) => entry !== name);
+}
+
+function failPreviewReplacement(names) {
+  console.error(`✖ Preview는 공용 R2 기존 키를 덮어쓸 수 없습니다: ${names.slice(0, 5).join(", ")}`);
+  console.error("  이미지에 새 파일명을 사용한 뒤 Preview를 다시 만드세요.\n");
+  process.exit(1);
+}
+
+function changedStockFilesInHead() {
+  try {
+    const output = execFileSync(
+      "git",
+      ["diff-tree", "--no-commit-id", "--name-only", "-r", "HEAD", "--", "public/stock"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] },
+    ).trim();
+    return output
+      ? output.split(/\r?\n/).map((path) => path.replace(/^public\/stock\//, "")).filter((path) => !path.includes("/"))
+      : [];
+  } catch {
+    return local;
+  }
+}
+
+function assertReplacementVersionBump(names) {
+  if (!names.length) return;
+  assertNoUnversionedStockReplacements({
+    replacements: names,
+    unversionedNames: bodyStockReferences(),
+  });
+  let previousSource;
+  try {
+    previousSource = execFileSync("git", ["show", "HEAD^:src/lib/stock.ts"], {
+      cwd: ROOT,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    });
+  } catch {
+    previousSource = "";
+  }
+  assertStockVersionBump({
+    replacements: names,
+    currentSource: readFileSync(join(ROOT, "src", "lib", "stock.ts"), "utf8"),
+    previousSource,
+  });
+}
+
+function bodyStockReferences() {
+  const directory = join(ROOT, "content", "articles");
+  if (!existsSync(directory)) return [];
+  const names = new Set();
+  for (const file of readdirSync(directory).filter((name) => name.endsWith(".md"))) {
+    const source = readFileSync(join(directory, file), "utf8");
+    for (const match of source.matchAll(/\]\(\/stock\/([^)?]+)(?:\?[^)]*)?\)/g)) names.add(match[1]);
+  }
+  return [...names];
+}
+
+async function verifyRemoteContentHashes(files, expectedHashes) {
+  const result = { matched: [], mismatched: [], missing: [], unknown: [] };
+  let i = 0;
+  await Promise.all(Array.from({ length: Math.min(CONCURRENCY, files.length) }, async () => {
+    while (i < files.length) {
+      const name = files[i++];
+      try {
+        const response = await fetch(`${BASE}/${encodeURIComponent(name)}?hash-probe=${Date.now()}`, {
+          cache: "no-store",
+          signal: AbortSignal.timeout(15000),
+        });
+        if (response.status === 404) {
+          result.missing.push(name);
+          continue;
+        }
+        if (!response.ok) {
+          result.unknown.push(name);
+          continue;
+        }
+        const actual = createHash("sha256").update(Buffer.from(await response.arrayBuffer())).digest("hex");
+        result[actual === expectedHashes[name] ? "matched" : "mismatched"].push(name);
+      } catch {
+        result.unknown.push(name);
+      }
+    }
+  }));
+  return result;
+}
+
+/** 서빙 URL에 HEAD를 던져 확정 404만 골라낸다. 네트워크/기타 HTTP 오류는 덮어쓰지 않고 중단한다. */
 async function filterMissing(files) {
   const out = [];
   let i = 0;
@@ -173,9 +341,10 @@ async function filterMissing(files) {
             cache: "no-store",
             signal: AbortSignal.timeout(15000),
           });
-          if (!r.ok) out.push(f);
-        } catch {
-          out.push(f);
+          if (r.status === 404) out.push(f);
+          else if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        } catch (error) {
+          throw new Error(`R2 HEAD 확인 실패(${f}): ${error.message}`);
         }
       }
     }),

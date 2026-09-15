@@ -2,6 +2,31 @@ import { normalizeInspectionTarget } from "./lib/inspection-safety.mjs";
 
 export const DEFAULT_SMOKE_CONCURRENCY = 2;
 
+const MOBILE_USER_AGENTS = {
+  chromium: "Mozilla/5.0 (Linux; Android 15; Pixel 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36",
+  webkit: "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1",
+};
+
+export function mobileContextOptions({ engine, w, h }) {
+  const userAgent = MOBILE_USER_AGENTS[engine];
+  if (!userAgent) throw new Error(`지원하지 않는 모바일 엔진: ${engine}`);
+  return {
+    viewport: { width: w, height: h },
+    screen: { width: w, height: h },
+    deviceScaleFactor: 2,
+    hasTouch: true,
+    isMobile: true,
+    userAgent,
+  };
+}
+
+export function smokeScreenshotNames(name) {
+  return {
+    viewport: `${name}-viewport.png`,
+    fullPage: `${name}-full.png`,
+  };
+}
+
 export function isBadHttpStatus(status) {
   return !Number.isInteger(status) || status < 200 || status >= 400;
 }

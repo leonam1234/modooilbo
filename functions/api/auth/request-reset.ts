@@ -21,6 +21,7 @@ import { json, sha256Hex, type AuthEnv } from "../../_lib/auth";
 import { isReservedEmail } from "../../_lib/reserved-email";
 import { escapeHtml, mailButton, mailShell, randHex, sendMail, type MailerEnv } from "../../_lib/mailer";
 import { clientIp, hitRateLimits, rateBucket } from "../../_lib/rate-limit";
+import { readJsonObject } from "../../_lib/request-body";
 
 type MailEnv = AuthEnv & MailerEnv;
 
@@ -48,12 +49,14 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   const env = ctx.env as MailEnv;
   if (!env.DB) return json({ error: "unavailable" }, 503);
 
-  let email = "";
-  try {
-    email = String((await ctx.request.json())?.email || "").trim().toLowerCase();
-  } catch {
-    /* noop */
+  const parsed = await readJsonObject(ctx.request);
+  if (!parsed.ok) {
+    return json(
+      { error: parsed.status === 413 ? "요청 본문이 너무 큽니다." : "요청 형식이 올바르지 않습니다." },
+      parsed.status,
+    );
   }
+  const email = String(parsed.value.email || "").trim().toLowerCase();
   if (!email || !email.includes("@") || email.length > 200) {
     return json({ error: "이메일 주소를 확인해 주세요." }, 400);
   }

@@ -20,6 +20,7 @@ import { json, getUser, sha256Hex, type AuthEnv } from "../../_lib/auth";
 import { isReservedEmail } from "../../_lib/reserved-email";
 import { escapeHtml, mailButton, mailShell, randHex, sendMail, type MailerEnv } from "../../_lib/mailer";
 import { clientIp, hitRateLimits, rateBucket } from "../../_lib/rate-limit";
+import { readJsonObject } from "../../_lib/request-body";
 
 type MailEnv = AuthEnv & MailerEnv;
 
@@ -52,12 +53,14 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   const user = await getUser(env, ctx.request);
   if (!user) return json({ error: "로그인이 필요합니다." }, 401);
 
-  let email = "";
-  try {
-    email = String((await ctx.request.json())?.email || "").trim().toLowerCase();
-  } catch {
-    /* noop */
+  const parsed = await readJsonObject(ctx.request);
+  if (!parsed.ok) {
+    return json(
+      { error: parsed.status === 413 ? "요청 본문이 너무 큽니다." : "요청 형식이 올바르지 않습니다." },
+      parsed.status,
+    );
   }
+  const email = String(parsed.value.email || "").trim().toLowerCase();
   if (!EMAIL_RE.test(email) || email.length > 100) return json({ error: "이메일 주소를 확인해 주세요." }, 400);
   if (isReservedEmail(email)) return json({ error: "사용할 수 없는 이메일입니다." }, 400);
 

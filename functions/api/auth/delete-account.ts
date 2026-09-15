@@ -20,6 +20,7 @@
  */
 import { json, getUser, clearCookie, type AuthEnv } from "../../_lib/auth";
 import { RESERVED_EMAIL_DOMAIN } from "../../_lib/reserved-email";
+import { readJsonObject } from "../../_lib/request-body";
 
 // 로그인 불가 시스템 계정: 비밀번호 없음 + identities 없음. 탈퇴자 댓글의 FK 소유자.
 // 이메일은 예약 도메인(수신 불가) — 외부 가입으로 선점되지 않도록 signup이 차단한다.
@@ -33,12 +34,14 @@ export async function onRequestPost(ctx: any): Promise<Response> {
     const user = await getUser(env, ctx.request);
     if (!user) return json({ error: "로그인이 필요합니다." }, 401);
 
-    let b: any;
-    try {
-      b = await ctx.request.json();
-    } catch {
-      return json({ error: "요청 형식이 올바르지 않습니다." }, 400);
+    const parsed = await readJsonObject(ctx.request);
+    if (!parsed.ok) {
+      return json(
+        { error: parsed.status === 413 ? "요청 본문이 너무 큽니다." : "요청 형식이 올바르지 않습니다." },
+        parsed.status,
+      );
     }
+    const b = parsed.value;
     if (String(b?.confirm ?? "") !== "탈퇴")
       return json({ error: "확인 문구가 일치하지 않습니다. '탈퇴'를 입력해 주세요." }, 400);
 

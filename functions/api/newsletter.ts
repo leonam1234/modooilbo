@@ -23,6 +23,7 @@
 import { json, sha256Hex, type AuthEnv } from "../_lib/auth";
 import { clientIp, hitRateLimits, rateBucket } from "../_lib/rate-limit";
 import { escapeHtml, mailButton, mailShell, randHex, sendMail, type MailerEnv } from "../_lib/mailer";
+import { readJsonObject } from "../_lib/request-body";
 
 type Env = AuthEnv & MailerEnv & { MAILER_KEY?: string };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -76,12 +77,14 @@ function errorPage(): Response {
 
 // ── 구독 신청(확인 메일 발송) ────────────────────────────────────────────────
 async function requestSubscribe(ctx: any, env: Env): Promise<Response> {
-  let email = "";
-  try {
-    email = String((await ctx.request.json())?.email || "").trim().toLowerCase();
-  } catch {
-    /* noop */
+  const parsed = await readJsonObject(ctx.request);
+  if (!parsed.ok) {
+    return json(
+      { error: parsed.status === 413 ? "요청 본문이 너무 큽니다." : "요청 형식이 올바르지 않습니다." },
+      parsed.status,
+    );
   }
+  const email = String(parsed.value.email || "").trim().toLowerCase();
   if (!EMAIL_RE.test(email) || email.length > 100) {
     return json({ error: "이메일 주소를 확인해 주세요." }, 400);
   }

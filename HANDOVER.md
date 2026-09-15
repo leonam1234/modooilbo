@@ -398,9 +398,9 @@ npm run deploy:prod -- --force-branch
 ### 모바일 4조합 검증 — `npm run smoke`
 
 엔진 2종(Chromium·WebKit) × 뷰포트 2종(402×874·402×660). 2026-08-28 도입.
-도구 원본은 `wlashvpel/mobile-smoke`(공개)입니다. 현재 스크립트는 네 조합 모두 iPhone
-Safari UA를 쓰고 `app`·`browser`는 높이만 모사합니다. 따라서 이는 **엔진·뷰포트 비교**이며
-실제 Android UA, 설치 PWA 상태, 주소창·키보드·인앱브라우저 UI의 실기기 검증이 아닙니다.
+도구 원본은 `wlashvpel/mobile-smoke`(공개)입니다. 현재 스크립트는 Chromium에 Android UA,
+WebKit에 iPhone Safari UA를 쓰고 두 엔진 모두 `isMobile`·touch를 켭니다. `app`·`browser`는
+높이 프리셋이므로 설치 PWA 상태, 주소창·키보드·인앱브라우저 UI의 실기기 검증은 아닙니다.
 
 ```bash
 npm run smoke -- "$MODOO_PREVIEW_URL" / /policy/ /newsroom/ "${MODOO_ARTICLE_PATHS[@]}"
@@ -433,9 +433,9 @@ cherry-pick하지 않습니다.
 ⚠️ **무시 목록을 함부로 넓히지 마십시오.** 넓힐수록 진짜 버그가 빠져나갑니다.
 `TypeError`·`ReferenceError`·하이드레이션 오류는 지금도 전부 FAIL 입니다(역방향 시험 확인).
 
-⚠️ **`결론:` 줄만 믿지 마십시오.** 레이아웃 깨짐은 JS 에러를 안 냅니다.
-`compare-*.png`는 긴 뷰포트의 Chromium↔WebKit만 합성하므로 이를 눈으로 대조하고,
-짧은 660px 뷰포트는 조합별 원본 PNG도 따로 확인하십시오.
+⚠️ **`결론:` 줄만 믿지 마십시오.** 레이아웃 깨짐은 JS 에러를 안 냅니다. 조합별 필수 viewport
+캡처와 보조 full-page 캡처가 생기며, app/browser 각 높이의 Chromium↔WebKit
+`compare-{app|browser}-{viewport|full}-*.png`를 눈으로 대조하십시오.
 
 ⚠️ **prod URL은 도구가 실행 전에 거부합니다.** `npm run deploy:preview`로 먼저 올리고
 배포 스크립트가 출력한 `https://*.modooilbo.pages.dev` URL을 검사한 뒤, PASS와

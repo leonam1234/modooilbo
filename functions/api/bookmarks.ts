@@ -6,6 +6,7 @@
  */
 import { cleanArticleId } from "../_lib/article-ids";
 import { json, getUser, type AuthEnv } from "../_lib/auth";
+import { readJsonObject } from "../_lib/request-body";
 
 // 기사 id 검증은 공용 관문을 쓴다(_lib/article-ids.ts). 형식만 보면 실재하지 않는
 // id로도 bookmarks 에 영구 행을 만들 수 있어 화이트리스트까지 통과시킨다.
@@ -51,12 +52,11 @@ export async function onRequestPost(ctx: any): Promise<Response> {
     const me = await getUser(env, ctx.request);
     if (!me) return json({ error: "로그인이 필요합니다." }, 401);
 
-    let article = "";
-    try {
-      article = String((await ctx.request.json())?.article || "");
-    } catch {
-      /* noop */
+    const parsed = await readJsonObject(ctx.request);
+    if (!parsed.ok) {
+      return json({ error: parsed.status === 413 ? "요청 본문이 너무 큽니다." : "잘못된 요청입니다." }, parsed.status);
     }
+    const article = String(parsed.value.article || "");
     if (!cleanArticleId(article)) return json({ error: "잘못된 요청입니다." }, 400);
 
     const del = await env.DB.prepare(

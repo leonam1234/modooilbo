@@ -40,7 +40,9 @@ export function ProfileCard({
           <dd className="flex min-w-0 items-center gap-2">
             {editingName ? (
               <>
+                <label htmlFor="account-name" className="sr-only">닉네임</label>
                 <input
+                  id="account-name"
                   value={nameInput}
                   onChange={(e) => onNameInput(e.target.value)}
                   maxLength={20}
@@ -77,7 +79,9 @@ export function ProfileCard({
               이메일을 등록하면 인증 후 이메일 로그인·비밀번호 재설정을 쓸 수 있습니다.
             </p>
             <div className="mt-2.5 flex gap-2">
+              <label htmlFor="account-email" className="sr-only">등록할 이메일</label>
               <input
+                id="account-email"
                 type="email"
                 value={emailInput}
                 onChange={(e) => onEmailInput(e.target.value)}

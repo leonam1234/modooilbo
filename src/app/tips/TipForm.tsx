@@ -51,6 +51,7 @@ export function TipForm() {
           category,
           title,
           body: content,
+          anonymous,
           // 익명 제보를 선택하면 연락처를 서버로 보내지 않는다 — 안 받는 것이 가장 확실한 보호다.
           phone: anonymous ? "" : contact,
           attachmentName: fileName,

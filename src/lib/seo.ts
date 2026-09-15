@@ -9,7 +9,15 @@ export type ArticleContentBlock =
 // "이해관계자"처럼 기사 주제 자체인 일반 소제목은 건드리지 않는다.
 const EDITORIAL_DISCLOSURE_HEADING =
   /^#{2,3}\s*(취재[·\s]?이해관계\s*(?:안내|고지)|이해관계\s*(?:안내|고지)|관계사\s*고지)\s*$/;
+// 새 H2 형식을 도입하기 전 발행된 원고의 한 줄 고지. 대괄호 뒤 한 문장만 고지로
+// 분리하고 다음 일반 문단까지 삼키지 않는다.
+const LEGACY_EDITORIAL_DISCLOSURE =
+  /^\[(취재[·\s]?이해관계\s*(?:안내|고지)|이해관계\s*(?:안내|고지)|관계사\s*고지)\]\s*(.+)$/;
 const SECTION_HEADING = /^#{2,3}\s+/;
+// summary에 명확한 자사 이해관계 문장이 섞인 과거 원고만 메타 후보에서 분리한다.
+// 본문에 실제 고지 블록이 있을 때만 적용하므로 일반 기사에서 같은 단어가 나온 경우는 건드리지 않는다.
+const EDITORIAL_SUMMARY_SENTENCE =
+  /(?:모두일보\s*발행인.{0,40}관여|공정거래법상\s*계열회사\s*관계|모두일보가\s*서비스를\s*독립적으로\s*(?:시험|평가))/;
 
 /**
  * 본문 순서는 유지하면서 이해관계·관계사 고지 구간만 별도 의미 블록으로 묶는다.
@@ -19,6 +27,11 @@ export function articleContentBlocks(body: string[]): ArticleContentBlock[] {
   const blocks: ArticleContentBlock[] = [];
   for (let i = 0; i < body.length; i += 1) {
     const text = body[i];
+    const legacy = text.match(LEGACY_EDITORIAL_DISCLOSURE);
+    if (legacy) {
+      blocks.push({ kind: "disclosure", title: legacy[1], paragraphs: [legacy[2].trim()] });
+      continue;
+    }
     const heading = text.match(EDITORIAL_DISCLOSURE_HEADING);
     if (!heading) {
       blocks.push({ kind: "content", text });
@@ -51,6 +64,17 @@ export function bodyWithoutEditorialDisclosures(body: string[]): string[] {
     .map((block) => block.text);
 }
 
+/** 본문에서 고지 블록이 확인된 기사에 한해 summary의 명백한 자사 이해관계 문장만 제외한다. */
+function summaryWithoutEditorialDisclosure(summary: string, body: string[]): string {
+  const base = summary.trim();
+  if (!articleContentBlocks(body).some((block) => block.kind === "disclosure")) return base;
+  return base
+    .split(/(?<=[.!?])\s+/)
+    .filter((sentence) => !EDITORIAL_SUMMARY_SENTENCE.test(sentence))
+    .join(" ")
+    .trim();
+}
+
 /**
  * 검색 결과용 설명문 — summary 가 짧으면 본문 앞부분을 이어 붙인다.
  *
@@ -65,10 +89,11 @@ const TARGET = 155;
 const MIN = 120;
 
 export function metaDescription(article: Pick<Article, "summary" | "body">): string {
-  const base = (article.summary || "").trim();
+  const body = article.body ?? [];
+  const base = summaryWithoutEditorialDisclosure(article.summary || "", body);
   if (base.length >= MIN) return base.slice(0, TARGET + 20);
   let out = base;
-  for (const para of bodyWithoutEditorialDisclosures(article.body ?? [])) {
+  for (const para of bodyWithoutEditorialDisclosures(body)) {
     // 소제목·출처·편집상 고지 블록은 설명문에 넣지 않는다.
     const t = para.trim();
     if (!t || t.startsWith("#") || t.startsWith("- ")) continue;

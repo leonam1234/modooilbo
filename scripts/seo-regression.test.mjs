@@ -121,6 +121,30 @@ test("ordinary stakeholder headings stay in article content", async () => {
   ]);
 });
 
+test("legacy one-line disclosure is an aside and stays out of a long summary description", async () => {
+  const { articleContentBlocks, bodyWithoutEditorialDisclosures, metaDescription } = await loadSeoModule();
+  const disclosure =
+    "[이해관계 고지] 인사책을 운영하는 브리찌는 모두일보 발행인이 관여하는 회사입니다.";
+  const article = {
+    summary:
+      "중소기업용 서비스가 안드로이드와 웹에 이어 아이폰까지 지원 범위를 넓혔다. 운영사는 핵심 기능을 사용자 수 제한 없이 무료로 제공한다고 안내한다. 인사책 운영사는 모두일보 발행인이 관여하는 회사다.",
+    body: [disclosure, "아이폰용 앱은 앱스토어에서 무료로 내려받을 수 있다."],
+  };
+
+  assert.deepEqual(JSON.parse(JSON.stringify(articleContentBlocks(article.body))), [
+    {
+      kind: "disclosure",
+      title: "이해관계 고지",
+      paragraphs: ["인사책을 운영하는 브리찌는 모두일보 발행인이 관여하는 회사입니다."],
+    },
+    { kind: "content", text: article.body[1] },
+  ]);
+  assert.deepEqual(Array.from(bodyWithoutEditorialDisclosures(article.body)), [article.body[1]]);
+  const description = metaDescription(article);
+  assert.ok(description.includes("아이폰"));
+  assert.ok(!description.includes("모두일보 발행인"));
+});
+
 test("article disclosure is rendered as a secondary aside instead of a section heading", async () => {
   const source = await readFile(path.join(ROOT, "src/components/ArticleBody.tsx"), "utf8");
   assert.match(source, /<aside[\s\S]*?data-nosnippet=/);

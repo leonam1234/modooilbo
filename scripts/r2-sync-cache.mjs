@@ -1,4 +1,6 @@
 import { execFileSync } from "node:child_process";
+import { randomUUID } from "node:crypto";
+import { hostname } from "node:os";
 import {
   closeSync,
   existsSync,
@@ -40,22 +42,62 @@ function normalizeCacheEntries(values) {
   return [...new Set(values.filter(validCacheEntry))].sort();
 }
 
+function validContentHash(value) {
+  return typeof value === "string" && /^[0-9a-f]{64}$/.test(value);
+}
+
+function emptySnapshot() {
+  return { files: {}, legacy: [] };
+}
+
+function normalizeHashedFiles(value, onWarning, path) {
+  const files = {};
+  let ignored = 0;
+  if (!value || typeof value !== "object" || Array.isArray(value)) return { files, ignored: 1 };
+  for (const [name, hash] of Object.entries(value)) {
+    if (!validCacheEntry(name) || !validContentHash(hash)) {
+      ignored += 1;
+      continue;
+    }
+    files[name] = hash;
+  }
+  if (ignored) onWarning(`[r2] 캐시의 잘못된 해시 항목 ${ignored}개 무시: ${path}`);
+  return { files, ignored };
+}
+
+function mergeSnapshots(...snapshots) {
+  const legacy = new Set();
+  const files = {};
+  for (const snapshot of snapshots) {
+    for (const name of snapshot.legacy ?? []) legacy.add(name);
+    Object.assign(files, snapshot.files ?? {});
+  }
+  for (const name of Object.keys(files)) legacy.delete(name);
+  return { files, legacy: [...legacy].sort() };
+}
+
 function readCacheFile(path, onWarning) {
-  if (!existsSync(path)) return [];
+  if (!existsSync(path)) return emptySnapshot();
   try {
     const parsed = JSON.parse(readFileSync(path, "utf8"));
-    if (!Array.isArray(parsed)) {
-      onWarning(`[r2] 캐시 형식 무시(배열 아님): ${path}`);
-      return [];
+    if (Array.isArray(parsed)) {
+      const normalized = normalizeCacheEntries(parsed);
+      if (normalized.length !== parsed.length) {
+        onWarning(`[r2] 캐시의 잘못되었거나 중복된 항목 ${parsed.length - normalized.length}개 무시: ${path}`);
+      }
+      return { files: {}, legacy: normalized };
     }
-    const normalized = normalizeCacheEntries(parsed);
-    if (normalized.length !== parsed.length) {
-      onWarning(`[r2] 캐시의 잘못되었거나 중복된 항목 ${parsed.length - normalized.length}개 무시: ${path}`);
+    if (parsed?.schemaVersion !== 2) {
+      onWarning(`[r2] 지원하지 않는 캐시 형식 무시: ${path}`);
+      return emptySnapshot();
     }
-    return normalized;
+    const files = normalizeHashedFiles(parsed.files, onWarning, path).files;
+    const legacy = normalizeCacheEntries(Array.isArray(parsed.legacy) ? parsed.legacy : [])
+      .filter((name) => !files[name]);
+    return { files, legacy };
   } catch (error) {
     onWarning(`[r2] 읽을 수 없는 캐시 무시: ${path} (${error.message})`);
-    return [];
+    return emptySnapshot();
   }
 }
 
@@ -123,9 +165,106 @@ export function discoverR2Cache(repoRoot, { onWarning = console.warn } = {}) {
   }
 }
 
+/** 원격 PUT 전 구간을 한 프로세스만 수행하게 한다. 동시 배포는 기다리지 않고 즉시 거부한다. */
+export function acquireR2SyncLease(config) {
+  mkdirSync(dirname(config.cachePath), { recursive: true });
+  const lockPath = `${config.cachePath}.sync.lock`;
+  const owner = JSON.stringify({ pid: process.pid, host: hostname(), token: randomUUID() });
+  try {
+    if (existsSync(lockPath)) {
+      const previous = readFileSync(lockPath, "utf8").trim();
+      const parsed = JSON.parse(previous);
+      const holder = typeof parsed === "number" ? { pid: parsed, host: hostname() } : parsed;
+      // 시간만 지났다고 살아 있는 장기 업로드의 잠금을 빼앗지 않는다.
+      if (holder?.host === hostname() && Number.isInteger(holder.pid) && holder.pid > 0) {
+        try { process.kill(holder.pid, 0); }
+        catch (error) {
+          if (error.code === "ESRCH" && readFileSync(lockPath, "utf8").trim() === previous) {
+            unlinkSync(lockPath);
+          }
+        }
+      }
+    }
+    const fd = openSync(lockPath, "wx", 0o600);
+    try { writeFileSync(fd, owner, "utf8"); }
+    finally { closeSync(fd); }
+  } catch (error) {
+    if (error.code === "EEXIST") throw new Error(`다른 R2 동기화가 실행 중입니다: ${lockPath}`);
+    throw error;
+  }
+  let released = false;
+  return () => {
+    if (released) return;
+    released = true;
+    try {
+      if (readFileSync(lockPath, "utf8").trim() === owner) unlinkSync(lockPath);
+    } catch (error) {
+      if (error.code !== "ENOENT") throw error;
+    }
+  };
+}
+
 export function readMergedR2Cache(config, { onWarning = console.warn } = {}) {
-  const paths = uniquePaths([config.cachePath, ...config.legacyPaths]);
-  return normalizeCacheEntries(paths.flatMap((path) => readCacheFile(path, onWarning)));
+  const paths = uniquePaths([...config.legacyPaths, config.cachePath]);
+  return mergeSnapshots(...paths.map((path) => readCacheFile(path, onWarning)));
+}
+
+export function planR2Sync({ localFiles, cache, changedFiles = [] }) {
+  const changed = new Set(changedFiles);
+  const legacy = new Set(cache.legacy ?? []);
+  const files = {};
+  const candidates = [];
+  const replacements = [];
+  const pendingLegacy = [];
+
+  for (const [name, hash] of Object.entries(localFiles).sort(([a], [b]) => a.localeCompare(b))) {
+    if (!validCacheEntry(name) || !validContentHash(hash)) {
+      throw new Error(`유효하지 않은 R2 로컬 해시 항목: ${name}`);
+    }
+    if (cache.files?.[name] === hash) {
+      files[name] = hash;
+    } else if (cache.files?.[name]) {
+      candidates.push(name);
+      replacements.push(name);
+    } else if (legacy.has(name) && !changed.has(name)) {
+      // filename-only 캐시는 원격 바이트를 증명하지 못한다. 해시로 조용히 승격하지 않는다.
+      pendingLegacy.push(name);
+    } else {
+      candidates.push(name);
+      if (legacy.has(name)) replacements.push(name);
+    }
+  }
+  return { candidates, replacements, files, legacy: pendingLegacy };
+}
+
+export function selectLegacyProbe(entries, limit = 12) {
+  if (!Number.isInteger(limit) || limit < 0) throw new Error(`legacy probe limit 오류: ${limit}`);
+  return [...new Set(entries)].sort().slice(0, limit);
+}
+
+function stockVersion(source) {
+  return String(source ?? "").match(/\bSTOCK_VERSION\s*=\s*["']([^"']+)["']/)?.[1];
+}
+
+export function assertStockVersionBump({ replacements, currentSource, previousSource }) {
+  if (!replacements.length) return;
+  const current = stockVersion(currentSource);
+  const previous = stockVersion(previousSource);
+  if (!current || !previous || current === previous) {
+    throw new Error(
+      `같은 파일명 이미지 교체 ${replacements.length}개에는 src/lib/stock.ts STOCK_VERSION 변경이 필요합니다: ${replacements.slice(0, 5).join(", ")}`,
+    );
+  }
+}
+
+export function assertNoUnversionedStockReplacements({ replacements, unversionedNames }) {
+  const unversioned = new Set(unversionedNames);
+  const unsafe = replacements.filter((name) => unversioned.has(name));
+  if (unsafe.length) {
+    throw new Error(
+      `본문이 버전 쿼리 없이 참조하는 이미지 ${unsafe.length}개는 같은 파일명으로 교체할 수 없습니다. 새 파일명을 사용하세요: ${unsafe.slice(0, 5).join(", ")}`,
+    );
+  }
 }
 
 function wait(ms) {
@@ -169,13 +308,15 @@ function acquireLock(cachePath) {
   }
 }
 
-function atomicWrite(path, entries) {
+function atomicWrite(path, snapshot) {
   mkdirSync(dirname(path), { recursive: true });
   const tempPath = `${path}.${process.pid}.${Date.now()}.tmp`;
   let fd;
   try {
     fd = openSync(tempPath, "wx", 0o600);
-    writeFileSync(fd, `${JSON.stringify(entries)}\n`, "utf8");
+    const files = Object.fromEntries(Object.entries(snapshot.files).sort(([a], [b]) => a.localeCompare(b)));
+    const legacy = normalizeCacheEntries(snapshot.legacy ?? []).filter((name) => !files[name]);
+    writeFileSync(fd, `${JSON.stringify({ schemaVersion: 2, files, legacy })}\n`, "utf8");
     fsyncSync(fd);
     closeSync(fd);
     fd = undefined;
@@ -190,17 +331,32 @@ function atomicWrite(path, entries) {
   }
 }
 
-function writeWithLock(config, entries, onWarning) {
+function writeWithLock(config, entries, onWarning, expectedFiles) {
   mkdirSync(dirname(config.cachePath), { recursive: true });
   const lock = acquireLock(config.cachePath);
   try {
     // 다른 worktree가 먼저 쓴 값을 잃지 않도록 잠금 획득 후 모든 캐시를 다시 읽는다.
-    const merged = normalizeCacheEntries([
-      ...readMergedR2Cache(config, { onWarning }),
-      ...entries,
-    ]);
+    const current = readMergedR2Cache(config, { onWarning });
+    const incoming = entries?.files ? entries : { files: entries, legacy: [] };
+    const merged = mergeSnapshots(current, { files: {}, legacy: incoming.legacy ?? [] });
+    const conflicts = [];
+    for (const [name, hash] of Object.entries(incoming.files ?? {})) {
+      if (Object.hasOwn(expectedFiles, name)) {
+        const expected = expectedFiles[name];
+        const actual = current.files[name] ?? null;
+        if (actual !== expected && actual !== hash) {
+          conflicts.push(name);
+          delete merged.files[name];
+          if (!merged.legacy.includes(name)) merged.legacy.push(name);
+          continue;
+        }
+      }
+      merged.files[name] = hash;
+      merged.legacy = merged.legacy.filter((entry) => entry !== name);
+    }
+    merged.legacy.sort();
     atomicWrite(config.cachePath, merged);
-    return { cachePath: config.cachePath, count: merged.length, mode: config.mode };
+    return { cachePath: config.cachePath, count: Object.keys(merged.files).length, mode: config.mode, conflicts };
   } finally {
     try {
       closeSync(lock.fd);
@@ -215,13 +371,13 @@ function writeWithLock(config, entries, onWarning) {
 }
 
 /** 잠금 + 재병합 + 같은 디렉터리의 원자적 rename으로 worktree 간 갱신 유실을 막는다. */
-export function writeMergedR2Cache(config, entries, { onWarning = console.warn } = {}) {
+export function writeMergedR2Cache(config, entries, { onWarning = console.warn, expectedFiles = {} } = {}) {
   try {
-    return writeWithLock(config, entries, onWarning);
+    return writeWithLock(config, entries, onWarning, expectedFiles);
   } catch (error) {
     if (config.mode !== "git-common" || !FALLBACK_ERROR_CODES.has(error.code)) throw error;
     onWarning(`[r2] Git 공용 캐시에 쓸 수 없어 로컬 캐시로 폴백: ${error.message}`);
     const fallback = createR2CacheConfig({ repoRoot: config.repoRoot });
-    return writeWithLock(fallback, entries, onWarning);
+    return writeWithLock(fallback, entries, onWarning, expectedFiles);
   }
 }

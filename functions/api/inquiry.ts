@@ -16,6 +16,7 @@
 import { json } from "../_lib/auth";
 import { clientIp, hitRateLimits, rateBucket, type RateLimitEnv, type RateLimitRule } from "../_lib/rate-limit";
 import { escapeHtml, mailShell, sendMail, type MailerEnv } from "../_lib/mailer";
+import { readJsonObject } from "../_lib/request-body";
 
 type Env = MailerEnv & RateLimitEnv & { DB?: D1Database };
 
@@ -55,18 +56,23 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
   const env = ctx.env;
   if (!env.DB) return json({ error: "일시적인 오류입니다. 잠시 후 다시 시도해 주세요." }, 503);
 
-  let b: Record<string, unknown>;
-  try {
-    b = (await ctx.request.json()) as Record<string, unknown>;
-  } catch {
+  const parsed = await readJsonObject(ctx.request);
+  if (!parsed.ok) {
+    return json(
+      { error: parsed.status === 413 ? "요청 본문이 너무 큽니다." : "요청을 처리하지 못했습니다." },
+      parsed.status,
+    );
+  }
+  const b = parsed.value;
+
+  const kind = cutLine(b.kind, 20) as Kind;
+  if (!Object.prototype.hasOwnProperty.call(KINDS, kind)) {
     return json({ error: "요청을 처리하지 못했습니다." }, 400);
   }
 
-  const kind = cutLine(b.kind, 20) as Kind;
-  if (!(kind in KINDS)) return json({ error: "요청을 처리하지 못했습니다." }, 400);
-
   const body = cut(b.body, CAP.body);
   const agree = b.agree === true;
+  const anonymousTip = kind === "tip" && b.anonymous === true;
   if (!body) return json({ error: "내용을 입력해 주세요." }, 400);
   if (!agree) return json({ error: "개인정보 수집·이용에 동의해 주세요." }, 400);
 
@@ -96,12 +102,14 @@ export const onRequestPost: PagesFunction<Env> = async (ctx) => {
     category: cutLine(b.category, CAP.category) || null,
     title: cutLine(b.title, CAP.title) || null,
     body,
-    name: cutLine(b.name, CAP.name) || null,
-    email: email || null,
-    phone: cutLine(b.phone, CAP.phone) || null,
-    attachment_name: cutLine(b.attachmentName, CAP.attachment_name) || null,
-    client_ip: ip || null,
-    user_agent: cutLine(ctx.request.headers.get("user-agent"), 300) || null,
+    // 익명 제보는 본문·분류·제목만 보관한다. 사용자가 본문에 자발적으로 적은 내용은
+    // 손대지 않되, 서버가 덧붙이는 식별 메타는 기존 UI의 "신원을 특정하지 않습니다" 약속대로 제외한다.
+    name: anonymousTip ? null : cutLine(b.name, CAP.name) || null,
+    email: anonymousTip ? null : email || null,
+    phone: anonymousTip ? null : cutLine(b.phone, CAP.phone) || null,
+    attachment_name: anonymousTip ? null : cutLine(b.attachmentName, CAP.attachment_name) || null,
+    client_ip: anonymousTip ? null : ip || null,
+    user_agent: anonymousTip ? null : cutLine(ctx.request.headers.get("user-agent"), 300) || null,
   };
 
   // ── 저장이 먼저다. 여기서 실패하면 접수 실패로 알린다.

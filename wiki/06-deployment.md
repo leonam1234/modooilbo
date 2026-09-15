@@ -22,8 +22,8 @@ HOLD·`WAIT_SOURCE_UNTIL`·시간 제한·기사별 검증·빌드·Preview 실�
 release에서 제외하며, READY PASS 기사는 다른 기사 때문에 기다리지 않습니다. 조건부 기사는
 동적 확인 뒤 PASS로 승격되는 즉시 같은 절차를 적용합니다. 사용자의 현재 중지·보류 지시는 우선합니다.
 
-배포 스크립트는 미커밋 변경을 막지만, 승인 여부·원격 `master` 최신성·라이브 응답은 검사하지
-않습니다. 안전한 기사 승급 순서는 다음과 같습니다.
+배포 스크립트는 미커밋 변경과 Production의 `HEAD = origin/master = 원격 master`를 빌드 전·Wrangler
+직전에 검사합니다. 승인 여부·라이브 응답은 검사하지 않습니다. 안전한 기사 승급 순서는 다음과 같습니다.
 
 > **독립 리뷰·동적·최종 게이트 PASS + 사람 검수 필드 완성 → CMS·코드 게이트 → 비-master 릴리스 브랜치 커밋 → Preview → 전건 검증 →
 > 검증한 SHA를 master에 push·3자 대조 → 통제된 Production → 저요청 라이브 확인 → 색인 인계**
@@ -76,11 +76,12 @@ npm run release:prod -- --reuse-artifact="$MODOO_RELEASE_ID" --smoke-approved --
 올린 `out/`을 Git common dir에 봉인합니다. 스모크 PASS 뒤 `release:prod`는 그 산출물을 다시
 빌드하지 않고 그대로 승급합니다.
 
-현재 `mobile-smoke.mjs`는 Chromium·WebKit × 402×874·402×660을 돌리되 네 조합 모두
-iPhone Safari UA를 씁니다. `app`·`browser`는 높이 프리셋일 뿐 실제 Android·설치 PWA·주소창·
-키보드·인앱브라우저를 재현하지 않습니다. 자동 FAIL은 접속 실패, 사이트 JS `pageerror`, 본문
-100자 미만만 잡습니다. HTTP 상태·canonical·robots·OG·이미지 응답은 별도 검사해야 하며,
-`compare-*.png`는 874px 조합만 합성하므로 660px 원본 PNG도 눈으로 확인합니다.
+현재 `mobile-smoke.mjs`는 Chromium(Android UA)·WebKit(iPhone Safari UA) ×
+402×874·402×660을 `isMobile`·touch가 켜진 모바일 컨텍스트로 돌립니다. `app`·`browser`는 높이
+프리셋일 뿐 실제 설치 PWA·주소창·키보드·인앱브라우저 UI를 재현하지 않습니다. 자동 FAIL은 접속
+실패, 4xx·5xx/응답 없음, 사이트 JS `pageerror`, 본문 100자 미만을 잡습니다. canonical·robots·OG·
+이미지 응답은 별도 검사해야 합니다. 조합마다 뷰포트 PNG는 필수, full-page PNG는 보조로 저장하며,
+`compare-app-{viewport|full}-*.png`와 `compare-browser-{viewport|full}-*.png`로 가능한 쌍을 합성합니다.
 모두일보 검사는 `https://*.modooilbo.pages.dev` Preview만 허용하며 `modooilbo.com` 운영 도메인은
 도구가 실행 전에 거부합니다. 분석·광고 호스트는 Playwright route로 차단하고 모든 검사 컨텍스트에
 `modoo_internal=1` 쿠키를 먼저 심습니다.
@@ -96,11 +97,17 @@ iPhone Safari UA를 씁니다. `app`·`browser`는 높이 프리셋일 뿐 실�
 | `npm run release:prod -- --reuse-artifact=<release-id> --smoke-approved` | **Production** | Preview에서 검증한 동일 산출물 승급(재빌드 없음) |
 | `node scripts/deploy.mjs prod --dry-run` | — | 빌드·배포 없이 **실행될 명령만** 출력 |
 
+실행 환경은 `package.json#engines` 기준 **Node.js 22 이상**입니다. `npm run build`는 Next.js 정적
+빌드가 끝난 뒤 `postbuild`의 `npm test`를 호출하며, `scripts/*.test.mjs` 전체를 실행합니다.
+`google-analytics.test.mjs`와 `email-obfuscation.test.mjs`는 방금 생성된 `out/` HTML을 검사하므로
+깨끗한 전체 게이트는 `npm run build`로 실행합니다. `npm test`만 단독 실행할 때는 현재 `out/`이
+존재하고 검사하려는 HEAD에서 생성된 산출물인지 먼저 확인해야 합니다.
+
 정상 실행의 내부 동작: ① git SHA·브랜치·미커밋 확인 → ② Production이면 로컬 `master`
-브랜치 확인(`--force-branch`일 때만 생략) → ③ Functions TypeScript 검사 → ④ `npm run build`(prebuild 체인 포함) →
+브랜치 확인(`--force-branch`일 때만 생략)과 원격 SHA 3자 일치 → ③ Functions TypeScript 검사 → ④ `npm run build`(prebuild 체인 포함) →
 ⑤ 신규 스톡 R2 동기화 → ⑥ `out/stock` 정리 → ⑦ Cloudflare Pages 2만 파일 게이트 →
-⑧ `wrangler pages deploy out` → ⑨ `deployments/deploy-log.jsonl` 기록 →
-⑩ Production에서만 IndexNow 통지. 스크립트는 fetch·push·승인 확인·라이브 검증을 대신하지 않습니다.
+⑧ 원격 SHA 재확인 후 `wrangler pages deploy out` → ⑨ `deployments/deploy-log.jsonl` 기록 →
+⑩ Production에서만 IndexNow 통지. 스크립트는 push·승인 확인·라이브 검증을 대신하지 않습니다.
 
 ### Build-once 산출물 안전장치
 
@@ -119,10 +126,17 @@ iPhone Safari UA를 씁니다. `app`·`browser`는 높이 프리셋일 뿐 실�
 배포 시 번들하며, GA4 직접 스니펫·토큰 경로 middleware·AdSense `afterInteractive` 경로도 바꾸지 않습니다.
 기존 `deploy:preview`·`deploy:prod`는 호환을 위해 종전처럼 매번 빌드합니다.
 
-R2 동기화의 확인 완료 목록은 기본적으로 `git rev-parse --git-common-dir` 아래
+R2 동기화의 확인 완료 목록은 파일명별 SHA-256(v2)로 `git rev-parse --git-common-dir` 아래
 `modooilbo-cache/r2-synced.json`에 저장합니다. linked worktree들이 같은 Git common dir를
 공유하므로 새 릴리스 worktree도 기존 수천 개 이미지를 다시 HEAD 검사하지 않고 신규 파일만
-확인합니다. 저장할 때는 잠금을 잡은 뒤 공용·현재 worktree·기본 worktree의 레거시
+확인하며 같은 이름의 바이트 교체도 업로드 대상으로 잡습니다. filename-only 레거시는 완료로 승격하지
+않고 실행마다 최대 12개를 원격 바이트 SHA-256으로 점진 검증합니다. 교체는 immutable URL 무효화를 위해
+같은 커밋의 `STOCK_VERSION` 변경이 없으면 중단하며, 본문에서 버전 쿼리 없이 쓰는 이미지는 새 파일명을
+써야 합니다. Preview에서는 공용 R2의 기존 키를 절대 덮어쓰지 않습니다. 캐시에 없는 키도 원격 GET으로
+같은 바이트인지 먼저 확인해, 동일하면 해시만 기록하고 404일 때만 신규 업로드하며 다른 바이트·확인 불가는
+중단합니다. 동기화 전체에 공용 실행 잠금을 걸어 두 배포가 같은 키를 동시에 PUT하지 못하게 합니다.
+캐시는 이번 실행에서 원격 바이트가 확인된 해시 delta만 잠금 아래 병합하고, 동일 키 충돌은 미검증으로
+되돌립니다. 저장할 때는 공용·현재 worktree·기본 worktree의 레거시
 `scripts/.r2-synced.json`을 다시 합치고, 임시 파일을 원자적으로 교체해 동시 실행의 갱신 유실을
 막습니다. Git 밖에서 실행하거나 common dir에 쓸 수 없으면 기존 로컬 경로로 폴백합니다.
 
@@ -233,8 +247,8 @@ Actions처럼 Next 서버 런타임이 꼭 필요한 기능을 도입할 때만
 - R2 확인 캐시의 정본은 Git common dir의 `modooilbo-cache/r2-synced.json`입니다. Git 메타데이터
   안의 비추적 속도 캐시이므로 어느 worktree의 미커밋 게이트에도 걸리지 않습니다.
   `scripts/.r2-synced.json`은 기존 캐시 병합과 비-Git 폴백을 위해 계속 gitignore 합니다.
-  캐시는 지워도 안전하며, 다음 실행이 실제 서빙 URL을 다시 HEAD 검사합니다. 캐시를 무시해
-  전수 확인하려면 `node scripts/sync-stock-r2.mjs --verify-all`을 사용합니다.
+  캐시는 지워도 정합성은 안전하지만 해시 증거가 없어 다음 실행이 로컬 파일을 다시 업로드하므로
+  속도·요청 비용이 큽니다. 전수 서빙 확인은 `node scripts/sync-stock-r2.mjs --verify-all`을 사용합니다.
 
 ## 12. 운영 체크리스트
 - [x] 커스텀 도메인 연결

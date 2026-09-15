@@ -16,22 +16,25 @@
 import { json, sha256Hex, hashPassword, createSession, sessionCookie, type AuthEnv } from "../../_lib/auth";
 import { isReservedEmail } from "../../_lib/reserved-email";
 import { markEmailVerifiedStmt } from "../../_lib/email-verified";
+import { readJsonObject } from "../../_lib/request-body";
 
 export async function onRequestPost(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
   if (!env.DB) return json({ error: "unavailable" }, 503);
 
-  let token = "";
-  let password = "";
-  try {
-    const b = await ctx.request.json();
-    token = String(b?.token || "");
-    password = String(b?.password || "");
-  } catch {
-    /* noop */
+  const parsed = await readJsonObject(ctx.request);
+  if (!parsed.ok) {
+    return json(
+      { error: parsed.status === 413 ? "요청 본문이 너무 큽니다." : "요청 형식이 올바르지 않습니다." },
+      parsed.status,
+    );
   }
+  const token = String(parsed.value.token || "");
+  const password = String(parsed.value.password || "");
   if (!/^[a-f0-9]{64}$/.test(token)) return json({ error: "링크가 올바르지 않습니다. 메일의 링크를 다시 확인해 주세요." }, 400);
-  if (password.length < 8) return json({ error: "비밀번호는 8자 이상이어야 합니다." }, 400);
+  if (password.length < 8 || password.length > 72) {
+    return json({ error: "비밀번호는 8자 이상 72자 이하로 입력해 주세요." }, 400);
+  }
 
   const th = await sha256Hex(token);
   const row = (await env.DB.prepare(

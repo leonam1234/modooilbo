@@ -19,6 +19,7 @@
 import { json, getUser, type AuthEnv } from "../../_lib/auth";
 import { hitRateLimit } from "../../_lib/rate-limit";
 import { cleanArticleId } from "../../_lib/article-ids";
+import { readJsonObject } from "../../_lib/request-body";
 // 댓글 본문은 금칙어 자동 차단 없이 등록(대표님 방침 2026-07-04) — 안내문 + 사후 삭제로 운영. 닉네임 필터는 moderation.ts 유지.
 
 const MAX_BODY = 500;
@@ -267,12 +268,11 @@ export async function onRequestPost(ctx: any): Promise<Response> {
     const me = await getUser(env, ctx.request);
     if (!me) return json({ error: "로그인이 필요합니다." }, 401);
 
-    let payload: any = {};
-    try {
-      payload = await ctx.request.json();
-    } catch {
-      return json({ error: "잘못된 요청입니다." }, 400);
+    const parsed = await readJsonObject(ctx.request);
+    if (!parsed.ok) {
+      return json({ error: parsed.status === 413 ? "요청 본문이 너무 큽니다." : "잘못된 요청입니다." }, parsed.status);
     }
+    const payload = parsed.value;
     const article = cleanArticleId(payload?.article);
     const body = String(payload?.body || "").trim();
     const parent = payload?.parent ? String(payload.parent) : null;

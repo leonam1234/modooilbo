@@ -20,7 +20,13 @@ import { mkdirSync, writeFileSync, existsSync, rmSync } from 'node:fs'
 import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import * as pw from 'playwright'
-import { isBadHttpStatus, mapWithConcurrency, parseSmokeCli } from './mobile-smoke-concurrency.mjs'
+import {
+  isBadHttpStatus,
+  mapWithConcurrency,
+  mobileContextOptions,
+  parseSmokeCli,
+  smokeScreenshotNames,
+} from './mobile-smoke-concurrency.mjs'
 import { protectPlaywrightInspectionContext } from './lib/inspection-safety.mjs'
 
 let cli
@@ -77,8 +83,11 @@ async function checkPage(ctx, matrixEntry, path) {
     const textLen = await page.evaluate(() => (document.body?.innerText || '').trim().length)
     const blank = textLen < 100       // 빈 화면 휴리스틱: 본문 텍스트 100자 미만이면 의심
     const httpBad = isBadHttpStatus(status)
-    await page.screenshot({ path: join(out, name + '.png'), fullPage: true })
-      .catch(() => page.screenshot({ path: join(out, name + '.png') }))
+    const shots = smokeScreenshotNames(name)
+    // 짧은 브라우저 뷰포트에서 하단 UI가 잘리는지 확인하려면 viewport 캡처가 필수다.
+    // fullPage는 문서 전체 비교용 보조 증거이며 실패해도 viewport 판정을 가리지 않는다.
+    await page.screenshot({ path: join(out, shots.viewport) })
+    await page.screenshot({ path: join(out, shots.fullPage), fullPage: true }).catch(() => {})
     const bad = errs.length > 0 || blank || httpBad
     const line = `${bad ? '❌' : '✓'} ${name} text=${textLen}자` +
       (httpBad ? ` | HTTP ${status ?? '응답없음'}` : '') +
@@ -99,10 +108,7 @@ async function runEnvironment(matrixEntry) {
   let browser
   try {
     browser = await pw[matrixEntry.engine].launch()
-    const ctx = await browser.newContext({
-      viewport: { width: matrixEntry.w, height: matrixEntry.h }, deviceScaleFactor: 2, hasTouch: true,
-      userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1',
-    })
+    const ctx = await browser.newContext(mobileContextOptions(matrixEntry))
     await protectPlaywrightInspectionContext(ctx, baseUrl)
     const results = []
     // 한 환경 안에서는 페이지를 직렬로 열어 24개 기사 검사도 동시 요청 수를 제한한다.
@@ -124,29 +130,33 @@ console.log(`실행 모드: ${concurrency === 1 ? '직렬 디버깅' : `환경 �
 const environmentResults = await mapWithConcurrency(MATRIX, concurrency, runEnvironment)
 const fail = environmentResults.flat().filter(result => result.bad).length
 
-// 안드↔iOS 대조 시트: 같은 페이지를 좌(크로뮴)·우(웹킷) 나란히 — 다르게 보이면 버그 후보
+// 안드↔iOS 대조 시트: app/browser 두 높이와 viewport/fullPage를 모두 비교한다.
 const sheet = await pw.chromium.launch()
 const sheetContext = await sheet.newContext({ viewport: { width: 1660, height: 900 } })
 await protectPlaywrightInspectionContext(sheetContext, baseUrl)
 const sp = await sheetContext.newPage()
 for (const p of PAGES) {
   const n = slug(p)
-  const a = join(process.cwd(), out, `chromium-app-${n}.png`)
-  const b = join(process.cwd(), out, `webkit-app-${n}.png`)
-  if (!existsSync(a) || !existsSync(b)) continue
-  const tmp = join(process.cwd(), out, '_tmp.html')
-  writeFileSync(tmp, `<body style="margin:0;background:#222;display:flex;gap:20px;padding:20px;align-items:flex-start;font-family:sans-serif">
-    <div><div style="color:#fff;font-size:20px;padding:6px 0">chromium (안드로이드)</div><img src="${pathToFileURL(a).href}" style="width:790px"></div>
-    <div><div style="color:#fff;font-size:20px;padding:6px 0">webkit (아이폰)</div><img src="${pathToFileURL(b).href}" style="width:790px"></div></body>`)
-  await sp.goto(pathToFileURL(tmp).href)
-  await sp.waitForTimeout(300)
-  await sp.screenshot({ path: join(out, `compare-${n}.png`), fullPage: true })
-  rmSync(tmp, { force: true })
+  for (const vp of ['app', 'browser']) {
+    for (const kind of ['viewport', 'full']) {
+      const a = join(process.cwd(), out, `chromium-${vp}-${n}-${kind}.png`)
+      const b = join(process.cwd(), out, `webkit-${vp}-${n}-${kind}.png`)
+      if (!existsSync(a) || !existsSync(b)) continue
+      const tmp = join(process.cwd(), out, '_tmp.html')
+      writeFileSync(tmp, `<body style="margin:0;background:#222;display:flex;gap:20px;padding:20px;align-items:flex-start;font-family:sans-serif">
+        <div><div style="color:#fff;font-size:20px;padding:6px 0">chromium (안드로이드)</div><img src="${pathToFileURL(a).href}" style="width:790px"></div>
+        <div><div style="color:#fff;font-size:20px;padding:6px 0">webkit (아이폰)</div><img src="${pathToFileURL(b).href}" style="width:790px"></div></body>`)
+      await sp.goto(pathToFileURL(tmp).href)
+      await sp.waitForTimeout(300)
+      await sp.screenshot({ path: join(out, `compare-${vp}-${kind}-${n}.png`), fullPage: true })
+      rmSync(tmp, { force: true })
+    }
+  }
 }
 await sheetContext.close()
 await sheet.close()
 
 console.log(fail
   ? `\n결론: FAIL — ${fail}건. ${out}/ 스크린샷 확인 후 배포 중단 판단.`
-  : `\n결론: PASS — 4조합 이상 무. 안드↔iOS 비교: ${out}/compare-*.png`)
+  : `\n결론: PASS — 4조합 이상 무. 높이별 안드↔iOS 비교: ${out}/compare-*.png`)
 process.exit(fail ? 1 : 0)

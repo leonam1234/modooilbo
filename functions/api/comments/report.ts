@@ -23,6 +23,7 @@
  */
 import { json, getUser, type AuthEnv } from "../../_lib/auth";
 import { hitRateLimit } from "../../_lib/rate-limit";
+import { readJsonObject } from "../../_lib/request-body";
 
 const HIDE_THRESHOLD = 5;
 // 회원당 24시간 10건. 정상 이용자가 하루 10건 넘게 신고할 일은 없고(신고마다 확인창을 거친다),
@@ -38,12 +39,11 @@ export async function onRequestPost(ctx: any): Promise<Response> {
     const me = await getUser(env, ctx.request);
     if (!me) return json({ error: "로그인이 필요합니다." }, 401);
 
-    let id = "";
-    try {
-      id = String((await ctx.request.json())?.id || "");
-    } catch {
-      /* noop */
+    const parsed = await readJsonObject(ctx.request);
+    if (!parsed.ok) {
+      return json({ error: parsed.status === 413 ? "요청 본문이 너무 큽니다." : "잘못된 요청입니다." }, parsed.status);
     }
+    const id = String(parsed.value.id || "");
     if (!id) return json({ error: "잘못된 요청입니다." }, 400);
 
     const c = (await env.DB.prepare(

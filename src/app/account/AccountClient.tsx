@@ -308,7 +308,8 @@ export function AccountClient() {
             <p className="mt-1 text-xs leading-relaxed text-ink-500 dark:text-ink-400">
               계정과 로그인 정보가 즉시 삭제되며 되돌릴 수 없습니다. 계속하려면 아래에 <b>탈퇴</b>라고 입력하세요.
             </p>
-            <input value={confirmText} onChange={(e) => setConfirmText(e.target.value)} placeholder="탈퇴" className={`mt-3 ${inputCls}`} />
+            <label htmlFor="delete-account-confirm" className="sr-only">탈퇴 확인 문구</label>
+            <input id="delete-account-confirm" value={confirmText} onChange={(e) => setConfirmText(e.target.value)} placeholder="탈퇴" className={`mt-3 ${inputCls}`} />
             {delMsg && <p className="mt-2 text-xs text-signal-600 dark:text-signal-400">{delMsg}</p>}
             <div className="mt-3 flex gap-2">
               <button type="submit" disabled={busy || confirmText !== "탈퇴"} className="flex-1 rounded-md bg-ink-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-ink-700 disabled:opacity-40 dark:bg-white dark:text-ink-900">

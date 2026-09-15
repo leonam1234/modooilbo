@@ -6,6 +6,7 @@
  */
 import { json, getUser, type AuthEnv } from "../_lib/auth";
 import { REPORTERS } from "../../src/lib/reporters";
+import { readJsonObject } from "../_lib/request-body";
 
 // 화이트리스트는 로스터 정본(src/lib/reporters.ts)에서 직접 파생 — 손 복사 드리프트 방지.
 // 순수 데이터 모듈이라 함수 번들에 안전하게 들어간다(_lib/article-ids.ts의 src import 선례).
@@ -51,12 +52,11 @@ export async function onRequestPost(ctx: any): Promise<Response> {
     const me = await getUser(env, ctx.request);
     if (!me) return json({ error: "로그인이 필요합니다." }, 401);
 
-    let slug = "";
-    try {
-      slug = String((await ctx.request.json())?.slug || "");
-    } catch {
-      /* noop */
+    const parsed = await readJsonObject(ctx.request);
+    if (!parsed.ok) {
+      return json({ error: parsed.status === 413 ? "요청 본문이 너무 큽니다." : "잘못된 요청입니다." }, parsed.status);
     }
+    const slug = String(parsed.value.slug || "");
     if (!SLUGS.has(slug)) return json({ error: "존재하지 않는 기자입니다." }, 400);
 
     const del = await env.DB.prepare(

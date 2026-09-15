@@ -132,7 +132,6 @@ export function ArticleCard({
             )}
           >
             <Link prefetch={false} href={href} className="clamp-2 hover:text-signal-700 dark:hover:text-signal-400">
-            <BadgeSr article={article} />
               <BadgeSr article={article} />
               {article.title}
             </Link>

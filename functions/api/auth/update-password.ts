@@ -15,18 +15,21 @@ import {
   type AuthEnv,
 } from "../../_lib/auth";
 import { hitRateLimits, rateBucket } from "../../_lib/rate-limit";
+import { readJsonObject } from "../../_lib/request-body";
 
 export async function onRequestPost(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
   const user = await getUser(env, ctx.request);
   if (!user) return json({ error: "로그인이 필요합니다." }, 401);
 
-  let b: any;
-  try {
-    b = await ctx.request.json();
-  } catch {
-    return json({ error: "요청 형식이 올바르지 않습니다." }, 400);
+  const parsed = await readJsonObject(ctx.request);
+  if (!parsed.ok) {
+    return json(
+      { error: parsed.status === 413 ? "요청 본문이 너무 큽니다." : "요청 형식이 올바르지 않습니다." },
+      parsed.status,
+    );
   }
+  const b = parsed.value;
   const current = String(b?.current ?? "");
   const next = String(b?.next ?? "");
   if (next.length < 8 || next.length > 72)

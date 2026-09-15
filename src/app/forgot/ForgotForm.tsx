@@ -53,7 +53,9 @@ export function ForgotForm() {
 
   return (
     <form onSubmit={submit} className="space-y-4">
+      <label htmlFor="forgot-email" className="sr-only">가입한 이메일 주소</label>
       <input
+        id="forgot-email"
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}

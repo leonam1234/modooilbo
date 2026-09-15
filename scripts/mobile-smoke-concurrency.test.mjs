@@ -6,8 +6,25 @@ import {
   DEFAULT_SMOKE_CONCURRENCY,
   isBadHttpStatus,
   mapWithConcurrency,
+  mobileContextOptions,
   parseSmokeCli,
+  smokeScreenshotNames,
 } from "./mobile-smoke-concurrency.mjs";
+
+test("mobile contexts enable real mobile media features and engine-specific user agents", () => {
+  const chromium = mobileContextOptions({ engine: "chromium", w: 402, h: 660 });
+  const webkit = mobileContextOptions({ engine: "webkit", w: 402, h: 874 });
+
+  assert.equal(chromium.isMobile, true);
+  assert.equal(chromium.hasTouch, true);
+  assert.deepEqual(chromium.screen, chromium.viewport);
+  assert.match(chromium.userAgent, /Android/);
+  assert.match(webkit.userAgent, /iPhone/);
+  assert.deepEqual(smokeScreenshotNames("chromium-browser-home"), {
+    viewport: "chromium-browser-home-viewport.png",
+    fullPage: "chromium-browser-home-full.png",
+  });
+});
 
 test("HTTP gate rejects missing, error, and redirect-only responses", () => {
   assert.equal(isBadHttpStatus(undefined), true);

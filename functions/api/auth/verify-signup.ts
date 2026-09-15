@@ -17,6 +17,7 @@ import { json, createSession, sessionCookie, sha256Hex, type AuthEnv } from "../
 import { isReservedEmail } from "../../_lib/reserved-email";
 import { markEmailVerifiedStmt } from "../../_lib/email-verified";
 import { uniqueSignupName } from "../../_lib/names";
+import { readJsonObject } from "../../_lib/request-body";
 
 const GONE = "링크가 만료되었거나 이미 사용되었습니다. 회원가입을 다시 요청해 주세요.";
 const TEMP_ERROR = "일시적인 오류입니다. 잠시 후 다시 시도해 주세요.";
@@ -25,12 +26,14 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
   if (!env.DB) return json({ error: TEMP_ERROR }, 503);
 
-  let token = "";
-  try {
-    token = String((await ctx.request.json())?.token || "").trim();
-  } catch {
-    /* noop */
+  const parsed = await readJsonObject(ctx.request);
+  if (!parsed.ok) {
+    return json(
+      { error: parsed.status === 413 ? "요청 본문이 너무 큽니다." : "요청 형식이 올바르지 않습니다." },
+      parsed.status,
+    );
   }
+  const token = String(parsed.value.token || "").trim();
   if (!/^[a-f0-9]{64}$/.test(token)) return json({ error: "링크가 올바르지 않습니다." }, 400);
 
   // 원자적 소비: 삭제에 성공한 요청만 값을 받는다 → 같은 링크를 동시에 눌러도 계정은 하나.

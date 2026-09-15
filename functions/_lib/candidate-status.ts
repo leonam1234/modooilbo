@@ -119,21 +119,31 @@ export async function applyTransition(
     return { ok: false, from, to, error: "자동 전이는 수집→후보까지만 가능합니다(사람 검수 필요)." };
   }
 
-  // 발행완료 전이 시 published_slug 함께 기록(있으면).
-  if (to === "발행완료" && opts.publishedSlug) {
-    await env.DB.prepare(
-      "UPDATE article_candidates SET status = ?2, published_slug = ?3, updated_at = datetime('now','+9 hours') WHERE cand_id = ?1",
-    )
-      .bind(candId, to, opts.publishedSlug)
-      .run();
-  } else {
-    await env.DB.prepare(
-      "UPDATE article_candidates SET status = ?2, updated_at = datetime('now','+9 hours') WHERE cand_id = ?1",
-    )
-      .bind(candId, to)
-      .run();
-  }
+  // 현재 상태까지 WHERE에 넣는 낙관적 잠금. SELECT 뒤 다른 요청이 먼저 전이하면
+  // UPDATE 0행이 되어 stale 요청이 새 상태를 덮어쓰지 못한다.
+  const update = to === "발행완료" && opts.publishedSlug
+    ? env.DB.prepare(
+        `UPDATE article_candidates
+            SET status = ?2, published_slug = ?3, updated_at = datetime('now','+9 hours')
+          WHERE cand_id = ?1 AND status = ?4
+          RETURNING status`,
+      ).bind(candId, to, opts.publishedSlug, from)
+    : env.DB.prepare(
+        `UPDATE article_candidates
+            SET status = ?2, updated_at = datetime('now','+9 hours')
+          WHERE cand_id = ?1 AND status = ?3
+          RETURNING status`,
+      ).bind(candId, to, from);
 
-  await insertEvent(env, candId, from, to, actor, opts.note);
+  // D1 batch는 한 트랜잭션이다. 바로 앞 UPDATE가 1행을 바꿨을 때만 changes()=1이라
+  // 이벤트가 생기며, 이벤트 기록이 실패하면 상태 UPDATE도 함께 롤백된다.
+  const event = env.DB.prepare(
+    `INSERT INTO candidate_events (cand_id, from_status, to_status, actor, note)
+     SELECT ?1, ?2, ?3, ?4, ?5 WHERE changes() = 1`,
+  ).bind(candId, from, to, actor, opts.note ?? null);
+  const [updated] = await env.DB.batch([update, event]);
+  if (!updated?.meta?.changes) {
+    return { ok: false, from, to, error: "다른 요청이 먼저 상태를 변경했습니다. 새로고침 후 다시 시도해 주세요." };
+  }
   return { ok: true, from, to };
 }

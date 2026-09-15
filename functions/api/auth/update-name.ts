@@ -2,18 +2,21 @@
 import { json, getUser, type AuthEnv } from "../../_lib/auth";
 import { hasBanned } from "../../_lib/moderation";
 import { isReservedName, RESERVED_NAME_ERROR } from "../../_lib/reserved-names";
+import { readJsonObject } from "../../_lib/request-body";
 
 export async function onRequestPost(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
   const user = await getUser(env, ctx.request);
   if (!user) return json({ error: "로그인이 필요합니다." }, 401);
 
-  let b: any;
-  try {
-    b = await ctx.request.json();
-  } catch {
-    return json({ error: "요청 형식이 올바르지 않습니다." }, 400);
+  const parsed = await readJsonObject(ctx.request);
+  if (!parsed.ok) {
+    return json(
+      { error: parsed.status === 413 ? "요청 본문이 너무 큽니다." : "요청 형식이 올바르지 않습니다." },
+      parsed.status,
+    );
   }
+  const b = parsed.value;
   const name = String(b?.name ?? "").trim();
   if (name.length < 1 || name.length > 20) return json({ error: "닉네임은 1~20자로 입력해 주세요." }, 400);
   if (hasBanned(name)) return json({ error: "닉네임에 부적절한 표현이 포함되어 있습니다." }, 400);

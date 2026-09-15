@@ -29,6 +29,7 @@
 
 import { cleanArticleId } from "../_lib/article-ids";
 import { clientIp, hitRateLimits, rateBucket } from "../_lib/rate-limit";
+import { readJsonObject } from "../_lib/request-body";
 
 const TYPES = ["info", "interesting", "empathy", "insight", "followup"] as const;
 type ReactionType = (typeof TYPES)[number];
@@ -109,12 +110,9 @@ export async function onRequestPost(context: any): Promise<Response> {
   const db = context.env.DB;
   if (!db) return json({ error: "unavailable" }, 503);
 
-  let body: any;
-  try {
-    body = await context.request.json();
-  } catch {
-    return json({ error: "bad json" }, 400);
-  }
+  const parsed = await readJsonObject(context.request);
+  if (!parsed.ok) return json({ error: parsed.status === 413 ? "request too large" : "bad json" }, parsed.status);
+  const body = parsed.value;
   const article = cleanArticle(body?.article);
   const type = body?.type as ReactionType;
   if (!article || !TYPES.includes(type)) return json({ error: "bad request" }, 400);
@@ -145,7 +143,7 @@ export async function onRequestPost(context: any): Promise<Response> {
     // RETURNING으로 (옛 값, 새 값)을 함께 돌려받을 수 있다.
     //   같은 것 재클릭 → type = NULL(취소)  /  다른 것 → type = 새 값(갈아타기)
     // 행을 지우지 않고 NULL로 두는 이유: 지우면 "취소"를 한 문장으로 표현할 수 없다.
-    const claim = (await db
+    const choice = db
       .prepare(
         `INSERT INTO reaction_choices (article_id, ip_hash, day, type, prev_type)
          VALUES (?1, ?2, ?3, ?4, NULL)
@@ -155,36 +153,27 @@ export async function onRequestPost(context: any): Promise<Response> {
                updated_at = datetime('now','+9 hours')
          RETURNING prev_type AS prev, type AS next`,
       )
-      .bind(article, ipHash, day, type)
-      .first()) as { prev?: string | null; next?: string | null } | null;
+      .bind(article, ipHash, day, type);
 
-    const prev = claim?.prev ?? null;
+    // 선택 전이와 직전 선택 -1 / 새 선택 +1을 같은 D1 트랜잭션에서 처리한다.
+    // 뒤 카운터 문장 하나라도 실패하면 choice UPSERT까지 롤백되어 선택·집계가 갈라지지 않는다.
+    const decrement = db.prepare(
+      `UPDATE reaction_counts
+          SET n = MAX(0, n - 1), updated_at = datetime('now','+9 hours')
+        WHERE article_id = ?1
+          AND type = (SELECT prev_type FROM reaction_choices
+                       WHERE article_id = ?1 AND ip_hash = ?2 AND day = ?3)`,
+    ).bind(article, ipHash, day);
+    const increment = db.prepare(
+      `INSERT INTO reaction_counts (article_id, type, n)
+       SELECT ?1, type, 1 FROM reaction_choices
+        WHERE article_id = ?1 AND ip_hash = ?2 AND day = ?3 AND type IS NOT NULL
+       ON CONFLICT(article_id, type) DO UPDATE
+         SET n = n + 1, updated_at = datetime('now','+9 hours')`,
+    ).bind(article, ipHash, day);
+    const [choiceResult] = await db.batch([choice, decrement, increment]);
+    const claim = (choiceResult?.results?.[0] ?? null) as { prev?: string | null; next?: string | null } | null;
     const next = claim?.next ?? null;
-
-    // ── 카운트 반영(각 문이 원자 증감) ─────────────────────────────────────
-    const stmts: any[] = [];
-    if (prev && (TYPES as readonly string[]).includes(prev)) {
-      stmts.push(
-        db
-          .prepare(
-            `UPDATE reaction_counts SET n = MAX(0, n - 1), updated_at = datetime('now','+9 hours')
-             WHERE article_id = ?1 AND type = ?2`,
-          )
-          .bind(article, prev),
-      );
-    }
-    if (next && (TYPES as readonly string[]).includes(next)) {
-      stmts.push(
-        db
-          .prepare(
-            `INSERT INTO reaction_counts (article_id, type, n) VALUES (?1, ?2, 1)
-             ON CONFLICT(article_id, type) DO UPDATE
-               SET n = n + 1, updated_at = datetime('now','+9 hours')`,
-          )
-          .bind(article, next),
-      );
-    }
-    if (stmts.length) await db.batch(stmts);
 
     // 자정 지난 선택 행 청소(D1엔 TTL이 없다). 카운트는 누적이라 영향 없다.
     context.waitUntil?.(

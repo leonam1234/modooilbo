@@ -28,6 +28,7 @@ import {
   sealReleaseArtifact,
   verifyReleaseArtifact,
 } from "./release-artifact.mjs";
+import { assertProductionRemoteMatch, parseRemoteBranchHead, r2SyncArgs } from "./deploy-safety.mjs";
 
 // ── 프로젝트 설정 ────────────────────────────────────────────
 const PROJECT = "modooilbo"; // Cloudflare Pages project name
@@ -82,6 +83,15 @@ if (smokeApproved && !reuseArtifactId) {
 
 function git(...a) {
   return execFileSync("git", a, { cwd: REPO, encoding: "utf8" }).trim();
+}
+function verifyProductionRemoteHead(commit) {
+  execFileSync("git", ["fetch", "-q", "origin", PROD_BRANCH], { cwd: REPO, stdio: "inherit" });
+  const trackingHead = git("rev-parse", `origin/${PROD_BRANCH}`);
+  const remoteHead = parseRemoteBranchHead(
+    git("ls-remote", "origin", `refs/heads/${PROD_BRANCH}`),
+    PROD_BRANCH,
+  );
+  assertProductionRemoteMatch({ localHead: commit, trackingHead, remoteHead, branch: PROD_BRANCH });
 }
 function sanitizeBranch(b) {
   return b.replace(/[^a-zA-Z0-9._-]/g, "-").slice(0, 28) || "preview";
@@ -171,6 +181,18 @@ if (isProd && gitBranch !== PROD_BRANCH && !args.includes("--force-branch")) {
   process.exit(1);
 }
 
+if (isProd) {
+  console.log(`\n▶ 운영 원격 SHA 게이트 (HEAD = origin/${PROD_BRANCH} = remote) ...`);
+  // --force-branch는 브랜치 이름 예외일 뿐, 미푸시/뒤처진 SHA를 운영에 올리는 예외가 아니다.
+  try {
+    verifyProductionRemoteHead(commit);
+  } catch (error) {
+    console.error(`\n✖ ${error.message}`);
+    console.error(`  먼저 ${PROD_BRANCH} 최신 상태를 반영하고 push한 뒤 다시 배포하세요.\n`);
+    process.exit(1);
+  }
+}
+
 if (buildOnce && gitBranch === PROD_BRANCH) {
   console.error(`\n✖ build-once Preview는 ${PROD_BRANCH}가 아닌 격리 브랜치에서만 실행합니다.\n`);
   process.exit(1);
@@ -209,7 +231,11 @@ if (reuseArtifactId) {
     console.log(`\n▶ R2 롤백 모드(NEXT_PUBLIC_STOCK_BASE="") — R2 업로드·스톡 제외 건너뜀, /stock 로컬 서빙`);
   } else {
     console.log(`\n▶ 신규 스톡 이미지 R2 업로드 ...`);
-    execFileSync("node", [join(REPO, "scripts", "sync-stock-r2.mjs")], { cwd: REPO, stdio: "inherit" });
+    execFileSync(
+      "node",
+      r2SyncArgs(join(REPO, "scripts", "sync-stock-r2.mjs"), { isProd }),
+      { cwd: REPO, stdio: "inherit" },
+    );
     console.log(`\n▶ 스톡 이미지 제외 (R2에서 서빙) ...`);
     execFileSync("node", [join(REPO, "scripts", "prune-stock.mjs")], { cwd: REPO, stdio: "inherit" });
   }
@@ -270,6 +296,16 @@ if (reuseArtifactId) {
 if (release && (git("rev-parse", "HEAD") !== commit || git("status", "--porcelain"))) {
   console.error("\n✖ 배포 직전 HEAD 또는 워킹트리가 바뀌어 봉인 산출물 배포를 중단합니다.\n");
   process.exit(1);
+}
+if (isProd) {
+  try {
+    console.log(`\n▶ wrangler 직전 운영 원격 SHA 재확인 ...`);
+    verifyProductionRemoteHead(commit);
+  } catch (error) {
+    console.error(`\n✖ ${error.message}`);
+    console.error("  준비 중 origin/master가 이동했으므로 이 산출물을 운영에 올리지 않습니다.\n");
+    process.exit(1);
+  }
 }
 const deployArgs = makeDeployArgs(deployDirectory);
 console.log(`\n▶ wrangler pages deploy ...`);

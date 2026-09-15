@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { usePathname } from "next/navigation";
 import { useFocusTrap } from "./useFocusTrap";
 
 /**
@@ -10,6 +11,7 @@ import { useFocusTrap } from "./useFocusTrap";
  * 배경 클릭·ESC·닫기 버튼으로 닫힘. 열려 있는 동안 본문 스크롤 잠금.
  */
 export function ImageLightbox() {
+  const pathname = usePathname();
   const [img, setImg] = useState<{ src: string; alt: string } | null>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const close = useCallback(() => setImg(null), []);
@@ -21,22 +23,60 @@ export function ImageLightbox() {
     const roots = ["article-hero", "article-body"]
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[];
+    const images = roots.flatMap((root) => Array.from(root.querySelectorAll<HTMLImageElement>("img")));
+    const originalAttrs = images.map((el) => ({
+      el,
+      role: el.getAttribute("role"),
+      tabIndex: el.getAttribute("tabindex"),
+      ariaLabel: el.getAttribute("aria-label"),
+      ariaHasPopup: el.getAttribute("aria-haspopup"),
+      cursor: el.style.cursor,
+    }));
+    const openImage = (el: HTMLImageElement) => {
+      // 마우스로 연 경우에도 닫힐 때 이 이미지로 포커스를 복원할 수 있게 한다.
+      el.focus({ preventScroll: true });
+      setImg({ src: el.currentSrc || el.src, alt: el.alt || "" });
+    };
     const onClick = (e: MouseEvent) => {
       const t = e.target as HTMLElement;
       if (t.tagName !== "IMG") return;
-      const el = t as HTMLImageElement;
-      setImg({ src: el.currentSrc || el.src, alt: el.alt || "" });
+      openImage(t as HTMLImageElement);
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement;
+      if (t.tagName !== "IMG" || (e.key !== "Enter" && e.key !== " ")) return;
+      e.preventDefault();
+      openImage(t as HTMLImageElement);
     };
     roots.forEach((r) => {
       r.addEventListener("click", onClick);
-      r.querySelectorAll("img").forEach((i) => (i.style.cursor = "zoom-in"));
+      r.addEventListener("keydown", onKeyDown);
     });
-    return () =>
+    images.forEach((el) => {
+      el.style.cursor = "zoom-in";
+      if (!el.hasAttribute("role")) el.setAttribute("role", "button");
+      if (!el.hasAttribute("tabindex")) el.tabIndex = 0;
+      if (!el.hasAttribute("aria-label")) {
+        el.setAttribute("aria-label", `${el.alt || "기사 이미지"} 크게 보기`);
+      }
+      el.setAttribute("aria-haspopup", "dialog");
+    });
+    return () => {
       roots.forEach((r) => {
         r.removeEventListener("click", onClick);
-        r.querySelectorAll("img").forEach((i) => (i.style.cursor = ""));
+        r.removeEventListener("keydown", onKeyDown);
       });
-  }, []);
+      originalAttrs.forEach(({ el, role, tabIndex, ariaLabel, ariaHasPopup, cursor }) => {
+        el.style.cursor = cursor;
+        role === null ? el.removeAttribute("role") : el.setAttribute("role", role);
+        tabIndex === null ? el.removeAttribute("tabindex") : el.setAttribute("tabindex", tabIndex);
+        ariaLabel === null ? el.removeAttribute("aria-label") : el.setAttribute("aria-label", ariaLabel);
+        ariaHasPopup === null
+          ? el.removeAttribute("aria-haspopup")
+          : el.setAttribute("aria-haspopup", ariaHasPopup);
+      });
+    };
+  }, [pathname]);
 
   // 스크롤 잠금만 담당(포커스·ESC는 useFocusTrap이 처리)
   useEffect(() => {

@@ -78,7 +78,9 @@ export function ResetForm() {
 
   return (
     <form onSubmit={submit} className="space-y-4">
+      <label htmlFor="reset-new-password" className="sr-only">새 비밀번호 (8자 이상)</label>
       <input
+        id="reset-new-password"
         type="password"
         value={pw}
         onChange={(e) => setPw(e.target.value)}
@@ -88,7 +90,9 @@ export function ResetForm() {
         minLength={8}
         className={inputCls}
       />
+      <label htmlFor="reset-confirm-password" className="sr-only">새 비밀번호 확인</label>
       <input
+        id="reset-confirm-password"
         type="password"
         value={pw2}
         onChange={(e) => setPw2(e.target.value)}

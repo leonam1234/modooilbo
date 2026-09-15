@@ -16,6 +16,7 @@
  * (그래도 필요하면 scripts/migrate-views-kv-to-d1.mjs — 기본 dry-run, 아직 미실행.)
  */
 import { cleanArticleId } from "../_lib/article-ids";
+import { readJsonObject } from "../_lib/request-body";
 
 const SALT = "modooilbo-view-v1";
 
@@ -75,12 +76,9 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   const db = ctx.env.DB;
   if (!db) return json({ ok: false });
   if (isNonHumanRequest(ctx.request)) return json({ ok: true, counted: false });
-  let b: any;
-  try {
-    b = await ctx.request.json();
-  } catch {
-    return json({ ok: false });
-  }
+  const parsed = await readJsonObject(ctx.request);
+  if (!parsed.ok) return json({ ok: false }, parsed.status);
+  const b = parsed.value;
   // 형식 검사 + 실재 기사 화이트리스트를 한 번에 통과시킨다(_lib/article-ids.ts).
   // 실재하지 않는 id를 D1에 닿기 전에 거절해 영구 행 무한 증식을 막는다.
   // 400인 이유: 형식은 맞지만 대상이 없는 요청이라 클라이언트 오류다. ViewBeacon 은
@@ -92,26 +90,24 @@ export async function onRequestPost(ctx: any): Promise<Response> {
   const day = kstDate(Date.now());
 
   try {
-    // 하루 1회 판정 = 유니크 제약. 동시 요청이 몰려도 INSERT에 성공한(=RETURNING이 행을 돌려준)
-    // 정확히 하나만 통과한다. 나머지는 충돌 → DO NOTHING → 무반환.
-    const claimed = await db
-      .prepare(
-        `INSERT INTO view_dedup (article_id, ip_hash, day) VALUES (?1, ?2, ?3)
-         ON CONFLICT DO NOTHING RETURNING 1 AS ok`,
-      )
-      .bind(article, ip, day)
-      .first();
-    if (!claimed) return json({ ok: true, counted: false });
-
-    // 원자 증감 — 단일 문이라 lost update가 원리적으로 불가능하다.
-    await db
-      .prepare(
-        `INSERT INTO article_views (article_id, views) VALUES (?1, 1)
+    // 집계와 하루 1회 표시는 하나의 D1 트랜잭션으로 커밋한다. 별도 요청이면
+    // 집계 실패 뒤에도 중복 표시만 남아 당일 재시도가 영구 누락될 수 있다.
+    // D1 batch는 순서대로 실행하고 어느 문장이라도 실패하면 전체를 롤백한다.
+    const [, claim] = await db.batch([
+      db.prepare(
+        `INSERT INTO article_views (article_id, views)
+         SELECT ?1, 1 WHERE NOT EXISTS (
+           SELECT 1 FROM view_dedup WHERE article_id = ?1 AND ip_hash = ?2 AND day = ?3
+         )
          ON CONFLICT(article_id) DO UPDATE
            SET views = views + 1, updated_at = datetime('now','+9 hours')`,
-      )
-      .bind(article)
-      .run();
+      ).bind(article, ip, day),
+      db.prepare(
+        `INSERT INTO view_dedup (article_id, ip_hash, day) VALUES (?1, ?2, ?3)
+         ON CONFLICT DO NOTHING RETURNING 1 AS ok`,
+      ).bind(article, ip, day),
+    ]);
+    if (!claim.results?.length) return json({ ok: true, counted: false });
 
     // D1엔 KV 같은 TTL이 없다 → 이틀 지난 중복방지 행 청소(응답 경로 밖에서).
     ctx.waitUntil?.(

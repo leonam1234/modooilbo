@@ -50,10 +50,19 @@ export function PasswordCard({
       )}
       <form onSubmit={onSubmit} className="space-y-3">
         {hasPassword && (
-          <input type="password" value={curPw} onChange={(e) => onCurPw(e.target.value)} placeholder="현재 비밀번호" autoComplete="current-password" className={inputCls} />
+          <div>
+            <label htmlFor="account-current-password" className="sr-only">현재 비밀번호</label>
+            <input id="account-current-password" type="password" value={curPw} onChange={(e) => onCurPw(e.target.value)} placeholder="현재 비밀번호" autoComplete="current-password" className={inputCls} />
+          </div>
         )}
-        <input type="password" value={newPw} onChange={(e) => onNewPw(e.target.value)} placeholder="새 비밀번호 (8자 이상)" autoComplete="new-password" className={inputCls} />
-        <input type="password" value={newPw2} onChange={(e) => onNewPw2(e.target.value)} placeholder="새 비밀번호 확인" autoComplete="new-password" className={inputCls} />
+        <div>
+          <label htmlFor="account-new-password" className="sr-only">새 비밀번호 (8자 이상)</label>
+          <input id="account-new-password" type="password" value={newPw} onChange={(e) => onNewPw(e.target.value)} placeholder="새 비밀번호 (8자 이상)" autoComplete="new-password" className={inputCls} />
+        </div>
+        <div>
+          <label htmlFor="account-confirm-password" className="sr-only">새 비밀번호 확인</label>
+          <input id="account-confirm-password" type="password" value={newPw2} onChange={(e) => onNewPw2(e.target.value)} placeholder="새 비밀번호 확인" autoComplete="new-password" className={inputCls} />
+        </div>
         {pwMsg && <p className="text-xs text-signal-600 dark:text-signal-400">{pwMsg}</p>}
         <button type="submit" disabled={busy} className="w-full rounded-md bg-signal-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-signal-700 disabled:opacity-50">
           {hasPassword ? "비밀번호 변경" : "비밀번호 설정"}

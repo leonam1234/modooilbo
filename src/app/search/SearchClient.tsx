@@ -27,13 +27,27 @@ export function SearchClient() {
 
   // 검색어가 있을 때만 인덱스를 받는다 — 빈 검색 화면에서는 아무것도 내려받지 않는다.
   useEffect(() => {
-    if (!q || _index) return;
+    if (!q) return;
+    // 이전 요청은 라우트 변경으로 cleanup 됐지만 응답 자체는 모듈 캐시를 채울 수 있다.
+    // 그 경우 fetch를 건너뛰더라도 현재 컴포넌트 state는 반드시 캐시와 동기화한다.
+    if (_index) {
+      setIndex(_index);
+      setFailed(false);
+      return;
+    }
     let alive = true;
+    // 앞선 요청이 일시적으로 실패했더라도 검색어 변경 뒤 재시도할 수 있게
+    // 오류 상태를 요청 시작 시 해제한다. 성공 뒤에도 명시적으로 지워 stale 오류가
+    // 결과보다 우선 렌더되는 일을 막는다.
+    setFailed(false);
     fetch(ARTICLES_INDEX_URL)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((list: ArticleIndexItem[]) => {
         _index = list;
-        if (alive) setIndex(list);
+        if (alive) {
+          setIndex(list);
+          setFailed(false);
+        }
       })
       .catch(() => {
         if (alive) setFailed(true);

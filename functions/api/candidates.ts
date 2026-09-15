@@ -22,6 +22,7 @@ import {
   STATUSES,
   type CandidateStatus,
 } from "../_lib/candidate-status";
+import { readJsonObject } from "../_lib/request-body";
 
 // 원천 read-only 바인딩(env.RAW_DB = paseco-leads D1). 대시보드/래핑 바인딩은 그룹장이 등록.
 type Env = AdminEnv & { RAW_DB?: any };
@@ -131,12 +132,11 @@ export async function onRequestPost(ctx: any): Promise<Response> {
     if (gate instanceof Response) return gate;
     const admin = gate; // { id, email, name }
 
-    let payload: any = {};
-    try {
-      payload = await ctx.request.json();
-    } catch {
-      return json({ error: "잘못된 요청입니다." }, 400);
+    const parsed = await readJsonObject(ctx.request);
+    if (!parsed.ok) {
+      return json({ error: parsed.status === 413 ? "요청 본문이 너무 큽니다." : "잘못된 요청입니다." }, parsed.status);
     }
+    const payload = parsed.value;
 
     if (payload?.action === "ingest") {
       return await ingest(env, admin.email, payload);
