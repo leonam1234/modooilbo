@@ -1,6 +1,7 @@
 import { Fragment, type ReactNode } from "react";
 import Image from "next/image";
 import { stockUrl, webpSrc } from "@/lib/stock";
+import { articleContentBlocks, type ArticleContentBlock } from "@/lib/seo";
 import { PlainEmailText } from "@/components/PlainEmail";
 
 /**
@@ -408,10 +409,37 @@ function isPlainParagraph(p: string): boolean {
  * midSlot을 렌더할 '직후' 블록 인덱스(없으면 -1).
  * ⚠️ 문단 자체는 절대 쪼개지 않는다 — 블록과 블록 '사이'에만 끼운다(본문 훼손 방지).
  */
-function midSlotAfterIndex(main: string[]): number {
-  const paragraphIdx = main.map((p, i) => (isPlainParagraph(p) ? i : -1)).filter((i) => i >= 0);
+function midSlotAfterIndex(blocks: ArticleContentBlock[]): number {
+  // 이해관계 고지는 기사 본문 문단이나 광고 삽입 위치 계산에 포함하지 않는다.
+  const paragraphIdx = blocks
+    .map((block, i) => (block.kind === "content" && isPlainParagraph(block.text) ? i : -1))
+    .filter((i) => i >= 0);
   if (paragraphIdx.length < MID_MIN_PARAGRAPHS) return -1;
   return paragraphIdx[MID_AFTER_PARAGRAPHS - 1];
+}
+
+function EditorialDisclosure({
+  title,
+  paragraphs,
+}: {
+  title: string;
+  paragraphs: string[];
+}) {
+  return (
+    <aside
+      aria-label={title}
+      data-nosnippet=""
+      className="rounded-xl border border-ink-200 border-l-4 border-l-ink-500 bg-ink-50 px-5 py-4 dark:border-ink-700 dark:border-l-ink-400 dark:bg-ink-900/70"
+    >
+      {/* 일반 H2가 아니므로 포털이 기사 핵심 소제목 바로가기 칩으로 오인하지 않는다. */}
+      <p className="text-sm font-bold text-ink-900 dark:text-white">{title}</p>
+      <div className="mt-2 space-y-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+        {paragraphs.map((paragraph, index) => (
+          <BodyBlock key={index} p={paragraph} />
+        ))}
+      </div>
+    </aside>
+  );
 }
 
 /**
@@ -433,18 +461,23 @@ export function ArticleBody({
   sponsored?: boolean;
 }) {
   const [main, sourceLabel, sources] = splitSources(body);
+  const blocks = articleContentBlocks(main);
   // 일반 신문식 한 줄 출처: 기관명만 하이퍼링크. 링크가 하나도 없으면 출처 블록을 그리지 않는다.
   const links = sourceLabel ? sourceLinks(sources) : [];
-  const midAfter = midSlot ? midSlotAfterIndex(main) : -1;
+  const midAfter = midSlot ? midSlotAfterIndex(blocks) : -1;
   return (
     <div
       id="article-body"
       className="mt-8 space-y-5 text-[17px] leading-[1.9] text-ink-800 dark:text-ink-200"
     >
-      {main.map((p, i) => (
+      {blocks.map((block, i) => (
         // Fragment는 DOM 노드를 만들지 않으므로 space-y-5(직계 자식 간격)가 그대로 적용된다
         <Fragment key={i}>
-          <BodyBlock p={p} />
+          {block.kind === "disclosure" ? (
+            <EditorialDisclosure title={block.title} paragraphs={block.paragraphs} />
+          ) : (
+            <BodyBlock p={block.text} />
+          )}
           {i === midAfter && midSlot}
         </Fragment>
       ))}

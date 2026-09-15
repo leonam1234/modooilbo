@@ -1,6 +1,7 @@
 import type { Article, CategorySlug } from "./types";
 import { ALL_ARTICLES as ARTICLES } from "./news";
 import { isBizCategory } from "./categories";
+import { bodyWithoutEditorialDisclosures } from "./seo";
 
 // 종합뉴스 홈 히어로/서브리드/속보는 종합뉴스 축만 노출한다(사업 축=정부지원금 등이 대문
 // 톱기사·속보 티커를 점유해 종합뉴스 톤을 흐리지 않도록). 사업 축 기사는 홈의 별도 '기업 데이터'
@@ -152,7 +153,7 @@ function firstSentence(paragraph: string): string {
  */
 export function getThreeLineSummary(article: Article): string[] {
   const lines: string[] = [];
-  for (const p of article.body) {
+  for (const p of bodyWithoutEditorialDisclosures(article.body)) {
     if (lines.length >= 3) break;
     if (p.startsWith("![")) continue; // 인라인 이미지 문단 제외
     if (p.startsWith("#")) continue; // 소제목(## / ###) 문단 제외
