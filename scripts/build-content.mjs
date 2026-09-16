@@ -35,7 +35,7 @@ const STOCK_KEYWORD = {
 // frontmatter `status`에 이 말이 들어 있으면 발행 금지(데스크 보류 표시) → 빌드 중단.
 // 조용히 건너뛰면 보류 원고가 사라진 건지 발행된 건지 아무도 모른다 → 명시적 실패로 알린다.
 // 주의: 발행 완료 라벨 '인증전보관'에는 '보류'가 없다(보관 ≠ 보류) — 정상 기사는 걸리지 않는다.
-const BLOCKED_STATUS = ["발행보류", "보류"];
+const BLOCKED_STATUS = /보류|\b(?:HOLD|WAIT_SOURCE|WAIT_AUTH)(?:\b|_)/i;
 
 /**
  * 취재 유형 분류(2026-08-21 도입) — 포털 제휴 심사의 '자체기사 비율' 근거 데이터.
@@ -252,12 +252,11 @@ async function run() {
 
     // 데스크 보류 표시 원고는 발행하지 않는다 — 조용히 넘기지 말고 빌드를 끊는다.
     const status = (fm.status || "").trim();
-    const blocked = BLOCKED_STATUS.find((w) => status.includes(w));
-    if (blocked) {
+    if (BLOCKED_STATUS.test(status)) {
       errors.push(
         `${file}: status가 "${status}" — 발행 보류 원고입니다. ` +
-          `발행하려면 status를 발행 완료 상태(예: 인증전보관)로 바꾸거나 필드를 지우고, ` +
-          `보류를 유지하려면 파일명 앞에 "_"를 붙여 빌드에서 제외하세요.`,
+          `보류 사유를 해소하고 독립 리뷰·최종 게이트를 통과하기 전에는 발행할 수 없습니다. ` +
+          `미발행 원고는 출고대기 패키지에 보존하고 사이트 인수 대상에서 제외하세요.`,
       );
       continue;
     }
@@ -279,7 +278,13 @@ async function run() {
 
     // 발행 시각(KST). 미래글(예약)은 발행시각 전 빌드에선 게시하지 않는다.
     // (정적 사이트라 그 시각 이후 빌드/배포 때 자동으로 나타남)
-    const publishedAt = normDate(fm.publishedAt || fm.date);
+    // 공란·필드 누락은 미승인/미편성 상태다. date 또는 현재 시각으로 채우면 안 된다.
+    const publicationTime = fm.publishedAt;
+    if (!publicationTime?.trim()) {
+      errors.push(`${file}: publishedAt 발행시각이 비어 있습니다. 검수·출고 게이트를 통과한 시각을 명시하세요.`);
+      continue;
+    }
+    const publishedAt = normDate(publicationTime);
     // 비정형 날짜("2026-8-14" 등)는 normDate가 그대로 통과시켜 Invalid Date가 된다 —
     // 예약 판정(NaN 비교=false)을 조용히 지나 즉시 발행되고 정렬·표시가 깨지므로 여기서 끊는다.
     if (Number.isNaN(new Date(publishedAt).getTime())) {

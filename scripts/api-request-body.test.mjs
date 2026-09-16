@@ -50,6 +50,51 @@ test("readJsonObject accepts JSON from application/json and text/plain", async (
   }
 });
 
+test("JSON writes reject cross-origin browser requests before reading the body", async () => {
+  for (const headers of [
+    { origin: "https://untrusted.example" },
+    { origin: "https://modooilbo.com.untrusted.example" },
+    { origin: "https://preview.modooilbo.com" },
+    { origin: "null" },
+    { origin: "https://modooilbo.com/path" },
+    { "sec-fetch-site": "cross-site" },
+    { "sec-fetch-site": "same-site" },
+    { referer: "https://untrusted.example/form" },
+  ]) {
+    const request = new Request("https://modooilbo.com/api/auth/login", {
+      method: "POST", headers, body: JSON.stringify({ email: "test@example.com", password: "test" }),
+    });
+    assert.deepEqual(await readJsonObject(request), { ok: false, status: 403 }, JSON.stringify(headers));
+    assert.equal(request.bodyUsed, false);
+  }
+});
+
+test("same-origin JSON, Preview, local development and non-browser callers remain supported", async () => {
+  for (const [url, headers] of [
+    ["https://modooilbo.com/api/view", { origin: "https://modooilbo.com", "sec-fetch-site": "same-origin" }],
+    ["https://a123.modooilbo.pages.dev/api/auth/login", { origin: "https://a123.modooilbo.pages.dev" }],
+    ["http://localhost:8788/api/auth/login", { origin: "http://localhost:8788" }],
+    ["https://modooilbo.com/api/view", { referer: "https://modooilbo.com/article/example/" }],
+    ["https://modooilbo.com/api/view", {}],
+  ]) {
+    assert.deepEqual(await readJsonObject(new Request(url, { method: "POST", headers, body: '{"value":"ok"}' })),
+      { ok: true, value: { value: "ok" } });
+  }
+});
+
+test("login rejects a cross-origin text/plain submission without reaching D1", async () => {
+  let calls = 0;
+  const response = await loginPost({
+    request: new Request("https://modooilbo.com/api/auth/login", {
+      method: "POST", headers: { origin: "https://untrusted.example", "content-type": "text/plain" },
+      body: JSON.stringify({ email: "test@example.com", password: "test" }),
+    }),
+    env: { DB: { prepare() { calls++; throw new Error("rejected request reached DB"); } } },
+  });
+  assert.equal(response.status, 403);
+  assert.equal(calls, 0);
+});
+
 test("readJsonObject rejects malformed JSON, null, arrays and primitives", async () => {
   for (const body of ["{", "null", "[]", "true", "1", '"text"']) {
     const result = await readJsonObject(

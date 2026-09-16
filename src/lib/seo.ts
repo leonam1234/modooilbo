@@ -87,23 +87,33 @@ function summaryWithoutEditorialDisclosure(summary: string, body: string[]): str
  */
 const TARGET = 155;
 const MIN = 120;
+const MAX = TARGET + 20;
+const SOURCE_HEADING = /^#{2,3}\s*(출처(?:\s*메모)?|자료\s*출처|참고\s*자료)\s*(?:$|-\s)/;
+
+// 사이트 내부 길이 정책이다. 검색엔진의 순위·표시 길이를 보장하는 수치는 아니다.
+function boundedDescription(text: string): string {
+  const chars = Array.from(text);
+  if (chars.length <= MAX) return text;
+  return chars.slice(0, MAX - 1).join("").trimEnd() + "…";
+}
 
 export function metaDescription(article: Pick<Article, "summary" | "body">): string {
   const body = article.body ?? [];
   const base = summaryWithoutEditorialDisclosure(article.summary || "", body);
-  if (base.length >= MIN) return base.slice(0, TARGET + 20);
+  if (base.length >= MIN) return boundedDescription(base);
   let out = base;
   for (const para of bodyWithoutEditorialDisclosures(body)) {
     // 소제목·출처·편집상 고지 블록은 설명문에 넣지 않는다.
     const t = para.trim();
-    if (!t || t.startsWith("#") || t.startsWith("- ")) continue;
+    if (SOURCE_HEADING.test(t)) break;
+    if (!t || t.startsWith("#") || t.startsWith("- ") || /^!\[/.test(t) || /^https?:\/\//.test(t)) continue;
     for (const sent of t.split(/(?<=[.!?])\s+/)) {
       const s = sent.trim();
-      if (!s) continue;
-      if (out.length >= MIN) return out;
+      if (!s || out.includes(s)) continue;
+      if (out.length >= MIN) return boundedDescription(out);
       out = out ? `${out} ${s}` : s;
-      if (out.length >= TARGET) return out;
+      if (out.length >= TARGET) return boundedDescription(out);
     }
   }
-  return out;
+  return boundedDescription(out);
 }

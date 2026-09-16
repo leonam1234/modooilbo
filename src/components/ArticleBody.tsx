@@ -431,12 +431,15 @@ function EditorialDisclosure({
       data-nosnippet=""
       className="rounded-xl border border-ink-200 border-l-4 border-l-ink-500 bg-ink-50 px-5 py-4 dark:border-ink-700 dark:border-l-ink-400 dark:bg-ink-900/70"
     >
-      {/* 일반 H2가 아니므로 포털이 기사 핵심 소제목 바로가기 칩으로 오인하지 않는다. */}
-      <p className="text-sm font-bold text-ink-900 dark:text-white">{title}</p>
-      <div className="mt-2 space-y-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
-        {paragraphs.map((paragraph, index) => (
-          <BodyBlock key={index} p={paragraph} />
-        ))}
+      {/* Google의 data-nosnippet 지원 요소(div/span/section)로 제목과 고지문을 함께 감싼다.
+          aside 의미와 독자에게 보이는 고지는 유지한다. 네이버의 선택을 보장하지는 않는다. */}
+      <div data-nosnippet="">
+        <p className="text-sm font-bold text-ink-900 dark:text-white">{title}</p>
+        <div className="mt-2 space-y-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+          {paragraphs.map((paragraph, index) => (
+            <BodyBlock key={index} p={paragraph} />
+          ))}
+        </div>
       </div>
     </aside>
   );

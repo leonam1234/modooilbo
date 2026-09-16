@@ -210,7 +210,7 @@ export default async function ArticlePage({
       {/* 포털용 itemprop 계열(연합뉴스 관례) — 기사는 <title>과 동일한 제목·요약·대표(og) 이미지 */}
       <PortalMeta
         name={`${article.title} | 모두일보`}
-        description={article.summary}
+        description={metaDescription(article)}
         image={absoluteUrl(ogImageUrl(article))}
       />
       {/* article:publisher(연합뉴스 관례 — 발행 주체 URL). property= 메타는 Metadata API other로

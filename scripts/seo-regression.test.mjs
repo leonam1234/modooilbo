@@ -5,6 +5,11 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 import vm from "node:vm";
 import ts from "typescript";
+import { build } from "esbuild";
+import { createRequire } from "node:module";
+import { createElement } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { existsSync } from "node:fs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SOURCE_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".jsx", ".mjs", ".md", ".html"]);
@@ -145,9 +150,62 @@ test("legacy one-line disclosure is an aside and stays out of a long summary des
   assert.ok(!description.includes("모두일보 발행인"));
 });
 
-test("article disclosure is rendered as a secondary aside instead of a section heading", async () => {
-  const source = await readFile(path.join(ROOT, "src/components/ArticleBody.tsx"), "utf8");
-  assert.match(source, /<aside[\s\S]*?data-nosnippet=/);
-  assert.match(source, /<p className="text-sm font-bold[^>]*>\{title\}<\/p>/);
-  assert.doesNotMatch(source, /<h2[^>]*>\{title\}<\/h2>/);
+test("rendered editorial notice stays visible inside a supported snippet-exclusion element", async () => {
+  const result = await build({
+    entryPoints: [path.join(ROOT, "src/components/ArticleBody.tsx")],
+    absWorkingDir: ROOT, bundle: true, write: false, platform: "node", format: "cjs",
+    packages: "external", jsx: "automatic",
+  });
+  const module = { exports: {} };
+  new Function("require", "module", "exports", result.outputFiles[0].text)(createRequire(import.meta.url), module, module.exports);
+  const html = renderToStaticMarkup(createElement(module.exports.ArticleBody, { body: [
+    "독자에게 제공하는 본문이다.", "## 취재·이해관계 안내", "발행인이 관여한 회사임을 공개한다.",
+    "## 다음 본문", "고지 다음의 일반 본문은 검색 대상이다.",
+  ] }));
+  assert.match(html, /<aside\b/);
+  assert.match(html, /<(?:div|span|section)\b[^>]*data-nosnippet=""[^>]*>[\s\S]*취재·이해관계 안내[\s\S]*발행인이 관여한 회사/);
+  assert.doesNotMatch(html, /<h[1-6][^>]*>취재·이해관계 안내/);
+  assert.match(html, /<\/aside>[\s\S]*고지 다음의 일반 본문/);
+  assert.doesNotMatch(html, /hidden|display:none/);
+});
+
+test("short summaries cannot expand into unbounded or duplicate meta descriptions", async () => {
+  const { metaDescription } = await loadSeoModule();
+  const summary = "지원사업 신청을 접수한다.";
+  const result = metaDescription({ summary, body: [summary, "지원 자격과 신청 방법을 상세히 안내하며 ".repeat(40) + "마감 전에 확인해야 한다."] });
+  assert.equal(result.split(summary).length - 1, 1);
+  assert.ok(Array.from(result).length <= 175, `description length ${Array.from(result).length}`);
+  assert.ok(result.startsWith(summary));
+});
+
+test("meta description does not ingest images or unbulleted source notes", async () => {
+  const { metaDescription } = await loadSeoModule();
+  const result = metaDescription({ summary: "사업 안내다.", body: [
+    "![기사 이미지](/stock/example.jpg)", "## 출처 메모", "기관: https://example.com/source",
+  ] });
+  assert.equal(result, "사업 안내다.");
+});
+
+test("exported articles use one description across standard, portal and social metadata", {
+  skip: !existsSync(path.join(ROOT, "out/article")),
+}, async () => {
+  const failures = [];
+  let checked = 0;
+  for (const entry of await readdir(path.join(ROOT, "out/article"), { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const file = path.join(ROOT, "out/article", entry.name, "index.html");
+    if (!existsSync(file)) continue;
+    const html = await readFile(file, "utf8");
+    const tags = [...html.matchAll(/<meta\b[^>]*>/gi)].map(([tag]) => tag);
+    const content = (selector) => tags.find((tag) => selector.test(tag))?.match(/\bcontent="([^"]*)"/)?.[1];
+    const standard = content(/\bname="description"/);
+    const descriptions = [
+      content(/\bitemprop="description"/i), content(/\bproperty="og:description"/),
+      content(/\bname="twitter:description"/),
+    ];
+    if (!standard || descriptions.some((value) => value !== standard)) failures.push(entry.name);
+    checked++;
+  }
+  assert.ok(checked > 0, "article export must not be empty");
+  assert.equal(failures.length, 0, `${failures.length} inconsistent articles; examples: ${failures.slice(0, 3).join(", ")}`);
 });

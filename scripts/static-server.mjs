@@ -1,9 +1,9 @@
 // out/ 정적 사이트 서빙 (Cloudflare Pages 동작 근사) — 외부 의존성 없음
 import { createServer } from "node:http";
-import { readFile, stat } from "node:fs/promises";
-import { join, extname, normalize } from "node:path";
+import { readFile, stat, realpath } from "node:fs/promises";
+import { join, extname, normalize, relative, isAbsolute, sep } from "node:path";
 
-const ROOT = join(process.cwd(), "out");
+const ROOT = await realpath(join(process.cwd(), "out"));
 const PORT = process.env.PORT || 3001;
 
 const MIME = {
@@ -34,23 +34,37 @@ async function resolveFile(url) {
   }
   for (const c of candidates) {
     const fp = join(ROOT, normalize(c));
-    if (!fp.startsWith(ROOT)) continue; // 경로 탈출 방지
+    const inside = (file) => {
+      const rel = relative(ROOT, file);
+      return rel !== ".." && !rel.startsWith(`..${sep}`) && !isAbsolute(rel);
+    };
+    if (!inside(fp)) continue;
     try {
-      const s = await stat(fp);
-      if (s.isFile()) return fp;
+      const resolved = await realpath(fp);
+      if (!inside(resolved)) continue; // 출력 폴더 안 심볼릭 링크로 외부 파일 노출 금지
+      const s = await stat(resolved);
+      if (s.isFile()) return resolved;
     } catch {}
   }
   return null;
 }
 
 const server = createServer(async (req, res) => {
-  let fp = await resolveFile(req.url);
+  let fp;
+  try {
+    fp = await resolveFile(req.url);
+  } catch (error) {
+    res.writeHead(error instanceof URIError ? 400 : 500, { "Content-Type": "text/plain; charset=utf-8" });
+    res.end(error instanceof URIError ? "Bad request" : "Server error");
+    return;
+  }
   let status = 200;
   if (!fp) {
-    fp = join(ROOT, "404.html");
+    fp = await resolveFile("/404.html");
     status = 404;
   }
   try {
+    if (!fp) throw new Error("Not found");
     const data = await readFile(fp);
     res.writeHead(status, { "Content-Type": MIME[extname(fp)] || "application/octet-stream" });
     res.end(data);
@@ -60,4 +74,7 @@ const server = createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, () => console.log(`static server: http://localhost:${PORT} (root: ${ROOT})`));
+server.listen(PORT, "127.0.0.1", () => {
+  const address = server.address();
+  console.log(`static server: http://127.0.0.1:${address.port} (root: ${ROOT})`);
+});
