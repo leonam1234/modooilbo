@@ -124,7 +124,7 @@ const PARTNER_SLUGS = (() => {
   }
 })();
 
-/** 기자 검수 실명은 기자 로스터에 등록된 이름만 허용한다. 임의 이름으로 검수 기록을 꾸미는 것을 막는다. */
+/** 사람 검수는 기자 로스터, AI 독립 검수는 확정된 역할명을 사용한다. 둘을 혼동하거나 실명을 대신 기입하지 않는다. */
 const REPORTER_NAMES = (() => {
   try {
     const src = readFileSync(join(ROOT, "src", "lib", "reporters.ts"), "utf8");
@@ -133,6 +133,8 @@ const REPORTER_NAMES = (() => {
     return new Set();
   }
 })();
+
+const INDEPENDENT_REVIEW_ROLE = "모두일보 독립 리뷰 담당";
 
 /** 수집한 오류를 한 번에 보여주고 빌드를 실패시킨다(첫 오류에서 끊지 않아 한 번에 다 고칠 수 있음). */
 function failBuild(errors) {
@@ -390,8 +392,8 @@ async function run() {
       errors.push(`${file}: series "${series}"는 src/lib/editorial-series.ts에 등록되지 않았습니다.`);
       continue;
     }
-    if (reviewedBy && REPORTER_NAMES.size && !REPORTER_NAMES.has(reviewedBy)) {
-      errors.push(`${file}: reviewedBy "${reviewedBy}"는 src/lib/reporters.ts 기자 로스터에 없습니다.`);
+    if (reviewedBy && REPORTER_NAMES.size && !REPORTER_NAMES.has(reviewedBy) && reviewedBy !== INDEPENDENT_REVIEW_ROLE) {
+      errors.push(`${file}: reviewedBy "${reviewedBy}"는 등록된 기자 또는 독립 리뷰 역할이 아닙니다.`);
       continue;
     }
     const pubDay = publishedAt.slice(0, 10);

@@ -41,7 +41,7 @@ content/articles/<슬러그>.md
 | `contactStatus` | 조건부 | `inquiry`, `interview`, `follow-up` 직접취재는 `replied` 필수 |
 | `visualType` | ✅* | `original-photo`, `source-photo`, `editorial-illustration`, `ai-illustration`, `stock-photo` |
 | `aiRole` | ✅* | `research-assist`, `draft-assist`, `copyedit`, `image`, `none` 중 콤마 구분. `none`은 단독 사용 |
-| `reviewedBy` | ✅* | 배포 전 최종 검수 책임을 진 `src/lib/reporters.ts` 등록 기자 실명. 포괄 명칭·임의 이름 금지 |
+| `reviewedBy` | ✅* | 실제 검수한 등록 기자 실명 또는 승인된 AI 독립 검수 역할명 `모두일보 독립 리뷰 담당`. AI 검수를 사람 실명으로 대신 기록하지 않으며 임의 역할명은 금지 |
 | `reviewedAt` | ✅* | 검수 완료 KST 시각. `publishedAt`보다 늦으면 발행 차단 |
 | `reporterInsight` | ✅* | 사실과 분리해 공개할 근거 기반 기자 해설 40~350자. 감상·홍보·무근거 단정 금지 |
 | `series` | 선택 | `notice-check`, `data-crosscheck`, `on-the-record` 중 실제 기사 성격에 맞을 때만 사용 |
