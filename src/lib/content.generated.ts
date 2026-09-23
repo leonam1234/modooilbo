@@ -87397,7 +87397,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "name": "류주형",
       "role": "취재기자"
     },
-    "publishedAt": "2026-09-23T14:20:00Z",
+    "publishedAt": "2026-09-23T14:27:00Z",
     "reporting": "desk",
     "verificationNote": "2026년 9월 23일 오후 2시 KST 국가데이터처 공식 브리핑 게시물과 현재 첨부 속기 PDF를 다시 열어 제공 원본과 SHA-256 일치, 사망자·조사망률·연령표준화 사망률 및 원인별 수치를 대조했다.",
     "addedValue": "사망자 절대수·조사망률 증가와 인구구조를 보정한 사망률 감소를 한 기사에서 구분하고 전체 자살률 감소 속 10대 증가라는 반대 흐름도 함께 설명했다.",
@@ -87456,7 +87456,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "name": "류주형",
       "role": "취재기자"
     },
-    "publishedAt": "2026-09-23T14:19:00Z",
+    "publishedAt": "2026-09-23T14:26:00Z",
     "reporting": "desk",
     "verificationNote": "2026년 9월 23일 오후 2시 KST 국립수목원 정책브리핑 게시물과 현재 첨부 PDF를 다시 열어 제공 원본과 SHA-256 일치, 인지기능·삶의 질·불안·무감동 전후평가 수치를 대조했다.",
     "addedValue": "발표된 전후 변화와 입증되지 않은 치료효과·인과관계를 분리하고 표본 수·비교집단·측정도구·추적평가가 공개되지 않았다는 해석 한계를 앞부분에 명시했다.",
@@ -87515,7 +87515,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "name": "류주형",
       "role": "취재기자"
     },
-    "publishedAt": "2026-09-23T14:20:00Z",
+    "publishedAt": "2026-09-23T14:27:00Z",
     "reporting": "desk",
     "verificationNote": "2026년 9월 23일 오후 2시 KST 국립수목원 정책브리핑 게시물과 현재 첨부 PDF를 다시 열어 제공 원본과 SHA-256 일치, 발견 고도·기존 분포 하한·보전등급을 대조했다.",
     "addedValue": "새로운 종 발견과 이미 알려진 종의 분포 하한 확인을 구분하고 기후변화에 따른 이동이라는 미확인 인과 추론 및 정확한 자생지 노출을 배제했다.",
@@ -87574,7 +87574,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "name": "류주형",
       "role": "취재기자"
     },
-    "publishedAt": "2026-09-23T14:19:00Z",
+    "publishedAt": "2026-09-23T14:26:00Z",
     "eventEndsAt": "2026-10-11T23:59:00Z",
     "reporting": "desk",
     "verificationNote": "2026년 9월 23일 오후 2시 KST 법무부 정책브리핑 게시물과 현재 첨부 PDF를 다시 열어 제공 원본의 SHA-256 일치 및 승객 전망·출국장 시간·심사 인력 수치를 대조했다.",
@@ -87836,7 +87836,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "name": "류주형",
       "role": "취재기자"
     },
-    "publishedAt": "2026-09-23T14:19:00Z",
+    "publishedAt": "2026-09-23T14:26:00Z",
     "reporting": "desk",
     "verificationNote": "2026년 9월 23일 오후 2시 KST 보건복지부 정책브리핑 게시물과 현재 첨부 PDF를 다시 열어 제공 원본과 SHA-256 일치, 31개 시범사업·8개 선정 직무·기존 70개와 실적 수치를 대조했다.",
     "addedValue": "신규 직무 선정과 전국 시행·실제 채용을 분리하고 지원자에게 필요한 모집처·보수·규모가 아직 제시되지 않았다는 한계를 함께 안내했다.",
@@ -87896,7 +87896,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "name": "류주형",
       "role": "취재기자"
     },
-    "publishedAt": "2026-09-23T14:19:00Z",
+    "publishedAt": "2026-09-23T14:26:00Z",
     "reporting": "desk",
     "verificationNote": "2026년 9월 23일 오후 2시 KST 해양수산부 정책브리핑 게시물과 현재 첨부 PDF를 다시 열어 제공 원본과 SHA-256 일치, 철거 기간·위치·어구 규모·방류량을 대조했다.",
     "addedValue": "통발의 틀 수와 개수, 자망의 틀 수와 길이를 구분하고 이미 끝난 철거 실적과 9월 27일 이후 정부 계획을 시제로 나눴다.",

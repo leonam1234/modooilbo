@@ -3,7 +3,7 @@ title: 금강초롱꽃, 고성 해발 330m서 확인…국내 최저 고도 자�
 slug: geumgang-bellflower-low-altitude-330m
 category: society
 author: 류주형 / 취재기자
-publishedAt: 2026-09-23 14:20
+publishedAt: 2026-09-23 14:27
 reporting: desk
 verificationNote: 2026년 9월 23일 오후 2시 KST 국립수목원 정책브리핑 게시물과 현재 첨부 PDF를 다시 열어 제공 원본과 SHA-256 일치, 발견 고도·기존 분포 하한·보전등급을 대조했다.
 addedValue: 새로운 종 발견과 이미 알려진 종의 분포 하한 확인을 구분하고 기후변화에 따른 이동이라는 미확인 인과 추론 및 정확한 자생지 노출을 배제했다.

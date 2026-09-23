@@ -3,7 +3,7 @@ title: 정원치유 참여 뒤 인지기능 평가점수 21.7% 상승…국립�
 slug: garden-therapy-cognition-prepost-217
 category: society
 author: 류주형 / 취재기자
-publishedAt: 2026-09-23 14:19
+publishedAt: 2026-09-23 14:26
 reporting: desk
 verificationNote: 2026년 9월 23일 오후 2시 KST 국립수목원 정책브리핑 게시물과 현재 첨부 PDF를 다시 열어 제공 원본과 SHA-256 일치, 인지기능·삶의 질·불안·무감동 전후평가 수치를 대조했다.
 addedValue: 발표된 전후 변화와 입증되지 않은 치료효과·인과관계를 분리하고 표본 수·비교집단·측정도구·추적평가가 공개되지 않았다는 해석 한계를 앞부분에 명시했다.

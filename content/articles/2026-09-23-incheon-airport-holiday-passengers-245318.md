@@ -3,7 +3,7 @@ title: 연휴 인천공항 하루 최대 24만5천명 전망…일부 출국장 
 slug: incheon-airport-holiday-passengers-245318
 category: society
 author: 류주형 / 취재기자
-publishedAt: 2026-09-23 14:19
+publishedAt: 2026-09-23 14:26
 eventEndsAt: 2026-10-11 23:59
 reporting: desk
 verificationNote: 2026년 9월 23일 오후 2시 KST 법무부 정책브리핑 게시물과 현재 첨부 PDF를 다시 열어 제공 원본의 SHA-256 일치 및 승객 전망·출국장 시간·심사 인력 수치를 대조했다.

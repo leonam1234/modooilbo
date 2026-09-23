@@ -3,7 +3,7 @@ title: 서해 NLL 이남서 중국 통발 2,450개·자망 20㎞ 철거…꽃게
 slug: west-sea-illegal-gear-removal-2450
 category: society
 author: 류주형 / 취재기자
-publishedAt: 2026-09-23 14:19
+publishedAt: 2026-09-23 14:26
 reporting: desk
 verificationNote: 2026년 9월 23일 오후 2시 KST 해양수산부 정책브리핑 게시물과 현재 첨부 PDF를 다시 열어 제공 원본과 SHA-256 일치, 철거 기간·위치·어구 규모·방류량을 대조했다.
 addedValue: 통발의 틀 수와 개수, 자망의 틀 수와 길이를 구분하고 이미 끝난 철거 실적과 9월 27일 이후 정부 계획을 시제로 나눴다.

@@ -3,7 +3,7 @@ title: 정책금융 상담부터 드론 감시까지…신노년 일자리 신�
 slug: senior-jobs-eight-new-roles
 category: labor
 author: 류주형 / 취재기자
-publishedAt: 2026-09-23 14:19
+publishedAt: 2026-09-23 14:26
 reporting: desk
 verificationNote: 2026년 9월 23일 오후 2시 KST 보건복지부 정책브리핑 게시물과 현재 첨부 PDF를 다시 열어 제공 원본과 SHA-256 일치, 31개 시범사업·8개 선정 직무·기존 70개와 실적 수치를 대조했다.
 addedValue: 신규 직무 선정과 전국 시행·실제 채용을 분리하고 지원자에게 필요한 모집처·보수·규모가 아직 제시되지 않았다는 한계를 함께 안내했다.
