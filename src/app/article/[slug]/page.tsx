@@ -27,7 +27,7 @@ import { ReportingDisclosure } from "@/components/ReportingDisclosure";
 import { ReporterInsight } from "@/components/ReporterInsight";
 import { MethodologyNote, ReaderChecklist } from "@/components/EditorialEvidence";
 import { SponsorBadge, SponsorFooter } from "@/components/SponsorNotice";
-import { PARTNERS } from "@/lib/partners";
+import { sponsorName } from "@/lib/sponsors";
 import { ogImageUrl, displayImageUrl } from "@/lib/stock";
 import { getReporterByName } from "@/lib/reporters";
 import { SITE, absoluteUrl } from "@/lib/site";
@@ -135,7 +135,7 @@ export default async function ArticlePage({
       ? {
           sponsor: {
             "@type": "Organization",
-            name: PARTNERS.find((p) => p.slug === article.sponsor)?.name ?? article.sponsor,
+            name: sponsorName(article.sponsor),
           },
         }
       : {}),

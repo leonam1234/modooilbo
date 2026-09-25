@@ -52,7 +52,6 @@ export const STATIC_PATHS = [
   "/policy",
   "/committee",
   "/ombudsman",
-  "/partners",
   "/terms",
   "/privacy",
   "/series",

@@ -1,7 +1,7 @@
 # 01 · 아키텍처 (Architecture)
 
 > **2026-09-02 현행 노트** — 현재 구조는 **하이브리드**다:
-> 정적 export(`out/`) + **Pages Functions(`functions/api/*`: 인증·댓글·뉴스레터·조회수·시세) + D1(`modooilbo-members`) + KV + R2 이미지(`img.modooilbo.com` — Pages 2만 파일 한도 회피, `scripts/sync-stock-r2.mjs`)**.
+> 정적 export(`out/`) + **Pages Functions(`functions/api/*`: 인증·댓글·뉴스레터·조회수·시세 · `functions/partners/*`: 폐지된 `/partners` 를 410 으로 응답) + D1(`modooilbo-members`) + KV + R2 이미지(`img.modooilbo.com` — Pages 2만 파일 한도 회피, `scripts/sync-stock-r2.mjs`)**.
 > 콘텐츠는 `content/articles/*.md → scripts/build-content.mjs → src/lib/content.generated.ts`. 사이트맵은 인덱스 방식(`src/lib/sitemap-parts.ts`). 배포는 `scripts/deploy.mjs`(빌드 → R2 sync → prune → 파일수 게이트 → wrangler → Production에서 Bing/IndexNow·Naver 통지). 발행 파이프라인 상세: [09-publishing](09-publishing.md).
 
 ## 1. 기술 스택

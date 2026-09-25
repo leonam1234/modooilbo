@@ -37,7 +37,10 @@ App Router. 전부 Static 또는 SSG. 2026-09-02 기준 기사 Markdown **1,277�
 | `/committee` | 편집위원회 |
 | `/ombudsman` | 고충처리인 |
 | `/about` | 회사소개 — 미션·가치·연혁 |
-| `/partners` | 제휴·광고주 |
+
+> ⚠️ `/partners`(광고·후원 계약사 명단)는 **2026-09-25 폐지**. `functions/partners/[[path]].ts` 가
+> `410 Gone` 을 준다 — 되살리려면 그 파일부터 지운다. 이미 발행된 광고 기사 2편의 표시는
+> `src/lib/sponsors.ts` 로 유지. [decisions/0007](decisions/0007-partners-page-retirement.md) · HANDOVER §7-b.
 
 ## 3. 서비스 · 계정
 

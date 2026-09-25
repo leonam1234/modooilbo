@@ -64,7 +64,8 @@ export interface Article {
     note: string; // 무엇이 틀렸고 무엇을 바로잡았는지(정정 사실과 그 내용)
   };
   /**
-   * 광고성 콘텐츠일 때 광고주 slug(src/lib/partners.ts 의 Partner.slug).
+   * 광고성 콘텐츠일 때 광고주 slug(src/lib/sponsors.ts 의 SPONSOR_NAMES 키).
+   * 2026-09-25 이후 신규 광고는 받지 않는다 — 이미 발행된 광고 콘텐츠의 표시용으로만 남는다.
    *
    * ⚠️ 이 값이 있으면 기사가 아니라 **광고**다. 「인터넷신문위원회 광고자율규약」과
    *    「표시·광고의 공정화에 관한 법률」상 광고임을 독자가 오인하지 않게 표시해야 한다.

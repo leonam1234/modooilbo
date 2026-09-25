@@ -62,3 +62,4 @@
 | [0004](0004-editorial-evidence-system.md) | 기사별 취재·검증 증거와 편집 품질 8.5 게이트 | 2026-08-30 | 적용됨 |
 | [0005](0005-reporter-review-and-insight.md) | 공고 기사 배포 전 기자 검수와 근거 기반 해설 | 2026-08-30 | 적용됨 |
 | [0006](0006-email-obfuscation-crawl-safety.md) | 공개 이메일 링크와 Cloudflare 난독화의 크롤 안전성 | 2026-09-02 | 구현·로컬 검증 완료, 배포 대기 |
+| [0007](0007-partners-page-retirement.md) | 광고·후원 계약사 명단(/partners) 폐지와 기존 광고 표시 유지 | 2026-09-25 | 적용됨 |

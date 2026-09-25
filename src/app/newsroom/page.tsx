@@ -76,11 +76,7 @@ export default function NewsroomPage() {
         </p>
         <p>
           광고성 콘텐츠는 기사와 구분해 광고 표기와 함께 발행하며, 발행인이 관여하는 회사의
-          콘텐츠에는 이해관계를 함께 고지합니다(
-          <Link href="/partners" className="font-medium text-signal-600 hover:underline dark:text-signal-400">
-            광고·후원 계약사 공개
-          </Link>
-          ).
+          콘텐츠에는 이해관계를 함께 고지합니다.
         </p>
         <p>
           편집국 연락처:{" "}

@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { PARTNERS } from "@/lib/partners";
+import { sponsorName, sponsorRelation } from "@/lib/sponsors";
 
 /**
  * 광고성 콘텐츠 표시.
@@ -15,23 +14,20 @@ import { PARTNERS } from "@/lib/partners";
  * ⚠️ 이 컴포넌트를 조건부로 숨기지 마라. 표시를 뺄 상황이면 광고를 받지 말아야 한다.
  */
 
-function partnerName(slug: string): string {
-  return PARTNERS.find((p) => p.slug === slug)?.name ?? slug;
-}
-
 /** 기사 제목 위 — 클릭해 들어온 직후 가장 먼저 보이는 자리. */
 export function SponsorBadge({ sponsor }: { sponsor: string }) {
   return (
     <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-ink-900 px-3.5 py-1.5 text-xs font-bold text-white dark:bg-white dark:text-ink-900">
       <span>광고</span>
-      <span className="font-medium opacity-80">{partnerName(sponsor)} 제공</span>
+      <span className="font-medium opacity-80">{sponsorName(sponsor)} 제공</span>
     </p>
   );
 }
 
 /** 본문 끝 — 무엇을 읽었는지 다시 알린다. */
 export function SponsorFooter({ sponsor }: { sponsor: string }) {
-  const name = partnerName(sponsor);
+  const name = sponsorName(sponsor);
+  const relation = sponsorRelation(sponsor);
   return (
     <aside className="mt-10 rounded-xl border border-ink-300 bg-ink-50 p-5 dark:border-ink-700 dark:bg-ink-900/70">
       <p className="text-sm font-bold text-ink-900 dark:text-white">광고성 콘텐츠 고지</p>
@@ -40,14 +36,11 @@ export function SponsorFooter({ sponsor }: { sponsor: string }) {
         독립적으로 취재해 작성한 기사가 아닙니다. 광고 계약은 모두일보의 보도·논평에 관여하지
         않습니다.
       </p>
-      <p className="mt-3 text-sm">
-        <Link
-          href="/partners/"
-          className="font-medium underline underline-offset-4 hover:text-signal-600 dark:hover:text-signal-400"
-        >
-          광고·후원 계약사 전체 보기
-        </Link>
-      </p>
+      {relation && (
+        <p className="mt-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+          <b>이해관계 고지</b> — {relation}
+        </p>
+      )}
     </aside>
   );
 }
