@@ -104,8 +104,8 @@ type ArticleIndexItem = ArticleCardItem & { tags };  // /articles-index.json 한
 
 - `sponsor` — 값이 있으면 **광고**다. 광고자율규약·표시광고법상 표시 의무가 있고
   본문·카드·목록·JSON-LD 가 전부 이 필드로 분기한다. 표시를 뺄 수 있는 예외는 없다.
-  **2026-09-25 광고 계약 전부 해지 — 신규 기사에 넣지 않는다**(빌드가 기존 발행 2편 밖에서는 실패).
-  상호·이해관계는 `src/lib/sponsors.ts`(기존 발행분 표시용)에서만 읽는다. [decisions/0007](decisions/0007-partners-page-retirement.md)
+  광고주 등록부는 `src/lib/sponsors.ts`(2026-09-25 부터, 옛 `partners.ts`·`/partners` 폐지) — 계약서 서명한
+  회사만 올리고, 여기 없는 slug 는 빌드가 막는다. 상호·이해관계 고지도 여기서 읽는다. [decisions/0007](decisions/0007-partners-page-retirement.md)
 - `updatedAt` vs `correction` — 전자는 단순 수정, 후자만 공식 정정 보도다.
   언론중재법상 "정정 사실과 그 내용"을 밝혀야 하므로 빌드가 짝을 강제한다.
 - `reporting` — **2026-08-28 부터 신규 기사에 필수**(누락 시 빌드 실패).

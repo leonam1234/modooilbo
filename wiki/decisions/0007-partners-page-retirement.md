@@ -1,13 +1,15 @@
 # 0007 · 광고·후원 계약사 명단(/partners) 폐지와 기존 광고 표시 유지
 
 - **날짜**  2026-09-25
-- **상태**  적용됨
+- **상태**  적용됨 (09-26 보충: 광고 사업 자체는 유지, 게이트 잠금 해제)
 - **결정자**  오너
 - **관련**  `e3fa0a2`(2026-08-11 명단 신설) · `43f5ccd`(월간 리포트) · 이번 커밋 · HANDOVER §7-b · §3-E
 
 ## 배경
 
 오너 지시: "계약 다 해지했어 거래도 안하고 진짜 공평한 뉴스글 발행만 할거 같아".
+다음날 보충: **"광고 제휴 후원은 일단 킵해, 지금 저기랑만 계약이 해지된거야"** — 5사와의 계약 종료이지
+광고·제휴·후원 사업 중단이 아니다.
 2026-08-11 에 광고·후원 계약사 5사(비씨모빌리티·브리찌·제이크루·포어스바이크·한국모터사이클리스)의
 상호·사업 내용·발행인 이해관계를 `/partners/` 에 공개했다. 계약이 전부 끝났으니 "누가 모두일보에
 돈을 내는가"라는 이 페이지의 존재 이유가 사라졌고, 남겨 두면 오히려 거짓이 된다.
@@ -36,19 +38,24 @@ gh repo view --json visibility                          # PUBLIC
 `410 Gone` 을 준다. 광고 기사 2편은 그대로 두되 표시명·이해관계 한 줄만 `src/lib/sponsors.ts` 에
 남긴다 — 광고비를 받고 게재한 콘텐츠는 남아 있는 한 광고이고, 표시 의무(신문법 §6③·인터넷신문위
 광고자율규약·표시광고법)는 콘텐츠에 붙지 계약에 붙지 않는다.
-"신규 광고 안 받음"은 말로 두지 않고 `build-content.mjs` 가 기존 2편 밖의 `sponsor:` 를 빌드
-실패로 막는다.
+광고주 등록은 `sponsors.ts` 한 곳으로 옮기고, `build-content.mjs` 의 화이트리스트도 거기서 읽는다.
+새 광고주는 계약서 서명 뒤 추가한다.
 
-**버리는 안** — B·C 는 오너가 지시하지 않았다(§3-E). D 는 "완전 비공개"가 아니다.
+**되돌린 것(09-26)** — 처음엔 "거래도 안 하고"를 광고 중단으로 읽어 `sponsor:` 를 기존 2편으로
+잠갔다(`LEGACY_SPONSORED`). 오너가 광고 사업 유지를 확인해 하루 만에 풀었다. 오너의 부연을 정책으로
+넓혀 코드에 잠근 것이 잘못이었다.
+
+**버리는 안** — B 는 광고비 받은 콘텐츠를 지우는 별개 결정. C 는 오너가 광고 사업 유지를 확인해 기각.
+D 는 "완전 비공개"가 아니다.
 
 ## 구현
 
 - 삭제: `src/app/partners/`, `src/lib/partners.ts`, `public/partners/`, `scripts/partner-report.mjs`,
   `reports/snapshots.json`, 푸터·`/newsroom`·`sitemap-parts` 링크, SponsorFooter 「계약사 전체 보기」 링크
-- 추가: `src/lib/sponsors.ts`(SPONSOR_NAMES·SPONSOR_RELATIONS), `functions/partners/[[path]].ts`(410),
-  `build-content.mjs` `LEGACY_SPONSORED` 잠금
+- 추가: `src/lib/sponsors.ts`(SPONSOR_NAMES·SPONSOR_RELATIONS — 이제 광고주 등록부), `functions/partners/[[path]].ts`(410)
 - 수정: `/transparency` 메타 설명에서 "광고·후원 계약사" 삭제, wiki 01·03·05
-- 하지 않은 것: `/advertise`·`/subscribe` 정리, git 이력 재작성, 코덱스 정본의 광고 규약·계약서 서식 수정
+- 하지 않은 것: `/advertise`·`/subscribe` 정리(광고 사업 유지), git 이력 재작성, 코덱스 정본의 광고 규약 수정
+  (계약서 서식의 "후원사 페이지 게재" 항목만 새 계약 전에 손볼 것)
 
 ## 검증
 
@@ -62,6 +69,6 @@ gh repo view --json visibility                          # PUBLIC
 ## 되돌리는 법
 
 `functions/partners/[[path]].ts` 를 **먼저** 지운 뒤(남아 있으면 새 페이지가 410 에 가려진다)
-`git revert` 로 이 커밋을 되돌리면 페이지·데이터·로고가 돌아온다. `LEGACY_SPONSORED` 도 함께 풀어야
-새 광고 원고가 빌드된다. git 이력은 재작성하지 않았으므로 되돌릴 수 없는 부분은 없다 —
+`git revert` 로 이 커밋을 되돌리면 페이지·데이터·로고가 돌아온다. 새 광고주로 명단 페이지를 다시
+만들 때는 `sponsors.ts` 를 데이터 원천으로 쓰면 된다(옛 partners.ts 의 desc·url·logo 필드를 더하면 된다). git 이력은 재작성하지 않았으므로 되돌릴 수 없는 부분은 없다 —
 단, 저장소가 PUBLIC 이라 옛 명단은 이력에 계속 공개돼 있다.

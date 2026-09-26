@@ -112,21 +112,11 @@ function bodyText(paragraphs) {
 
 /**
  * 광고주 slug 화이트리스트 — src/lib/sponsors.ts 의 SPONSOR_NAMES 키를 읽어 만든다.
- * (계약사 명단 src/lib/partners.ts 는 2026-09-25 계약 전부 해지로 폐지. 남은 것은 이미 발행된
- *  광고 콘텐츠의 표시명뿐이다.)
+ * (공개 명단 페이지 /partners 와 src/lib/partners.ts 는 2026-09-25 폐지. 광고주 등록은 이제
+ *  sponsors.ts 한 곳이다 — 계약서에 서명한 회사만 올린다.)
  * 오타(bcmobilty 등)를 빌드에서 잡지 못하면 "광고인데 광고 표시가 안 붙은 기사"가
  * 그대로 나간다. 그건 표시 누락이라 광고자율규약 위반이다 → 반드시 실패시킨다.
  */
-/**
- * 2026-09-25 광고·후원 계약 전부 해지 — 신규 광고성 콘텐츠는 받지 않는다.
- * sponsor: 는 계약 기간에 발행된 아래 2편에만 허용한다(표시 의무 때문에 지우지 못하는 것들).
- * 여기에 slug 를 추가하는 것은 곧 광고를 다시 받는다는 결정이다.
- */
-const LEGACY_SPONSORED = new Set([
-  "2026-08-11-insacheck-ios-android-web-free-attendance-2026",
-  "2026-08-19-bridzzi-seo-aeo-geo-integrated-marketing-2026",
-]);
-
 const PARTNER_SLUGS = (() => {
   try {
     const src = readFileSync(join(ROOT, "src", "lib", "sponsors.ts"), "utf8");
@@ -377,17 +367,10 @@ async function run() {
 
     // 광고성 콘텐츠 — frontmatter `sponsor:`(광고주 slug). 없으면 일반 기사다.
     const sponsor = (fm.sponsor || "").trim();
-    if (sponsor && !LEGACY_SPONSORED.has(file.replace(/^.*\//, "").replace(/\.md$/, ""))) {
-      errors.push(
-        `${file}: sponsor "${sponsor}" — 2026-09-25 이후 신규 광고성 콘텐츠는 받지 않습니다. ` +
-          `광고가 아니면 sponsor: 를 지우세요. (허용 목록: scripts/build-content.mjs LEGACY_SPONSORED)`,
-      );
-      continue;
-    }
     if (sponsor && PARTNER_SLUGS.size && !PARTNER_SLUGS.has(sponsor)) {
       errors.push(
         `${file}: sponsor "${sponsor}" 가 src/lib/sponsors.ts 에 없습니다. ` +
-          `오타면 고치세요. 신규 광고는 받지 않습니다(2026-09-25 계약 전부 해지) ` +
+          `오타면 고치고, 신규 광고주면 계약서 서명 뒤 sponsors.ts 에 먼저 추가하세요 ` +
           `(광고주를 못 찾으면 광고 표시가 붙지 않은 채 발행됩니다).`,
       );
       continue;
