@@ -19,8 +19,9 @@
  * 기사에는 있다) 고지 박스(SponsorFooter)가 이 문장을 직접 출력한다. 발행인이 관여하는 회사는
  * 반드시 relation 을 채운다 — 비워 두면 "숨겼다"가 된다.
  *
- * ⚠️ scripts/build-content.mjs 가 이 파일에서 `slug: "…",` 꼴의 키를 정규식으로 읽는다(두 객체 모두).
- *    형식을 바꾸면 게이트가 조용히 비어 광고 표시가 빠진 채 발행될 수 있다.
+ * ⚠️ scripts/build-content.mjs 가 이 파일에서 `키: "값",` 꼴(따옴표 키 `"bc-mobility": "값",` 도 됨)을
+ *    한 줄 한 항목으로 정규식 읽기 한다(두 객체 모두). 형식이 깨져 목록이 비면 sponsor: 가 있는
+ *    원고는 전부 빌드 실패한다 — 조용히 통과하지 않는다.
  */
 export const SPONSOR_NAMES: Record<string, string> = {
   bridzzi: "(주)브리찌",

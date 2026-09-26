@@ -120,7 +120,8 @@ function bodyText(paragraphs) {
 const PARTNER_SLUGS = (() => {
   try {
     const src = readFileSync(join(ROOT, "src", "lib", "sponsors.ts"), "utf8");
-    return new Set([...src.matchAll(/^\s*([a-z][a-z0-9-]*):\s*"/gm)].map((m) => m[1]));
+    // 키는 따옴표 유무 둘 다 허용 — 하이픈 slug("bc-mobility")는 TS 객체 키에 따옴표가 필요하다.
+    return new Set([...src.matchAll(/^\s*"?([a-z][a-z0-9-]*)"?\s*:\s*"/gm)].map((m) => m[1]));
   } catch {
     return new Set();
   }
@@ -367,7 +368,10 @@ async function run() {
 
     // 광고성 콘텐츠 — frontmatter `sponsor:`(광고주 slug). 없으면 일반 기사다.
     const sponsor = (fm.sponsor || "").trim();
-    if (sponsor && PARTNER_SLUGS.size && !PARTNER_SLUGS.has(sponsor)) {
+    // 등록부가 비어 있으면 통과가 아니라 실패다 — sponsors.ts 는 컴포넌트가 import 하므로 파일 부재는
+    // next build 가 따로 잡고, 여기서 비었다는 건 형식이 깨져 정규식이 못 읽은 것이다(조용히 꺼지면
+    // 오타 slug 가 raw 문자열로 표시된 채 발행된다).
+    if (sponsor && !PARTNER_SLUGS.has(sponsor)) {
       errors.push(
         `${file}: sponsor "${sponsor}" 가 src/lib/sponsors.ts 에 없습니다. ` +
           `오타면 고치고, 신규 광고주면 계약서 서명 뒤 sponsors.ts 에 먼저 추가하세요 ` +
