@@ -1,4 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+/**
+ * robots: null — 루트 layout 의 robots(index, follow) 상속을 끊는다.
+ * Next 15 는 /404 렌더에 <meta name="robots" content="noindex"> 를 스스로 주입하므로
+ * (app-render NonIndex), 여기서 값을 또 내면 out/404.html 에 robots 메타가 2개(모순) 생긴다.
+ * null 이면 자동 noindex 하나만 남는다(bare noindex 는 follow 가 기본이라 종전 의도와 같다).
+ * index:false 로 덮어쓰는 안은 자동 noindex 와 합쳐 2개가 되어 버렸다.
+ * 같은 404.html 을 functions/partners/[[path]].ts 가 410 응답 본문으로도 쓴다.
+ */
+export const metadata: Metadata = { robots: null };
 
 export default function NotFound() {
   return (
