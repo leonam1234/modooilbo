@@ -2,6 +2,7 @@
 
 import assert from "node:assert/strict";
 import test from "node:test";
+import { readFileSync } from "node:fs";
 import {
   DEFAULT_SMOKE_CONCURRENCY,
   isBadHttpStatus,
@@ -10,6 +11,15 @@ import {
   parseSmokeCli,
   smokeScreenshotNames,
 } from "./mobile-smoke-concurrency.mjs";
+
+test("sticky header remains readable when WebKit reports blur support but does not paint it", () => {
+  const source = readFileSync(new URL("../src/app/layout.tsx", import.meta.url), "utf8");
+  const wrapper = source.match(/<div className="([^"]*sticky top-0 z-40[^"]*)"/)?.[1];
+  assert.ok(wrapper, "sticky header wrapper must exist");
+  assert.match(wrapper, /\bbg-white\/95\b/);
+  assert.match(wrapper, /\bdark:bg-ink-950\/95\b/);
+  assert.doesNotMatch(wrapper, /supports-\[backdrop-filter\]:bg-[^\s]+\/(?:[0-8]?\d)(?=\s|$)/);
+});
 
 test("mobile contexts enable real mobile media features and engine-specific user agents", () => {
   const chromium = mobileContextOptions({ engine: "chromium", w: 402, h: 660 });
