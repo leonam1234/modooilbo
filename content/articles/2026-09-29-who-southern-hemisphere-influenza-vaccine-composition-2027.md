@@ -1,5 +1,5 @@
 ---
-title: "WHO, 2027년 남반구 독감백신 구성 권고…제조방식별 목록 제시"
+title: WHO, 2027년 남반구 독감백신 구성 권고…제조방식별 목록 제시
 slug: who-southern-hemisphere-influenza-vaccine-composition-2027
 category: world
 author: 류주형 / 취재기자
@@ -15,8 +15,8 @@ reviewedBy: 모두일보 독립 리뷰 담당
 reviewedAt: 2026-09-29 11:34
 reporterInsight: AI 독립 검수 의견: WHO의 2027년 남반구 권고 보고서에서 제조방식별 여섯 항목을 대조했다. 달걀 기반과 세포배양·재조합·핵산 기반의 H3N2 및 B형 목록 차이를 원고가 구분하고 있다. 2026년 9월 25일 발표와 2027년 적용 절기를 섞지 않았으며 한국의 2026~2027년 접종 지침으로 확대하지 않았다. 국가별 승인과 공급 여부를 별개로 남긴 설명도 타당하며, 개인의 접종 처방을 제시한 기사가 아니다.
 readerChecklist: 남반구 2027절기 확인 | H3N2 1454와 1415 구분 | 국내 제품 허가 및 접종계획과 구분
-tags: ["WHO","인플루엔자","남반구","2027절기","백신구성","난배양","세포배양","바이러스명칭"]
-summary: "H1N1 명칭은 같고 H3N2·B형은 구분…국제 구성 권고와 국내 접종계획은 별개"
+tags: WHO, 인플루엔자, 남반구, 2027절기, 백신구성, 난배양, 세포배양, 바이러스명칭
+summary: H1N1 명칭은 같고 H3N2·B형은 구분…국제 구성 권고와 국내 접종계획은 별개
 image: /stock/2026-09-29-who-southern-hemisphere-influenza-vaccine-composition-2027.jpg
 imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 ---
