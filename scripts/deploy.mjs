@@ -34,6 +34,7 @@ import { assertProductionRemoteMatch, parseRemoteBranchHead, r2SyncArgs } from "
 const PROJECT = "modooilbo"; // Cloudflare Pages project name
 const PROD_BRANCH = "master"; // Cloudflare Pages production 브랜치
 const OUT_DIR = "out"; // 빌드 산출물 디렉터리
+const skipIndexNow = process.argv.includes("--skip-indexnow"); // 명시적 LIVE URL 인계 전용 실행
 // ────────────────────────────────────────────────────────────
 
 const REPO = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -297,7 +298,9 @@ if (release && (git("rev-parse", "HEAD") !== commit || git("status", "--porcelai
   console.error("\n✖ 배포 직전 HEAD 또는 워킹트리가 바뀌어 봉인 산출물 배포를 중단합니다.\n");
   process.exit(1);
 }
-if (isProd) {
+if (isProd && skipIndexNow) {
+  console.log("[indexnow] 명시적 요청에 따라 자동 통지를 생략합니다. LIVE URL 인계만 수행합니다.");
+} else if (isProd) {
   try {
     console.log(`\n▶ wrangler 직전 운영 원격 SHA 재확인 ...`);
     verifyProductionRemoteHead(commit);

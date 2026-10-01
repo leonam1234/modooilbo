@@ -53,8 +53,9 @@ test('독립 AI 검수 해설에는 기자 직함을 붙이지 않고 기존 사
   vm.runInNewContext(compiled,{module,exports:module.exports,require:(name)=>name==='@/lib/utils'?{formatKoreanDateTime:value=>value}:realRequire(name)});
   const render=reviewedBy=>renderToStaticMarkup(React.createElement(module.exports.ReporterInsight,{article:{reviewedBy,reviewedAt:'2026-09-16T09:32:00Z',reporterInsight:'검수에서 확인한 핵심 사항'}}));
   const ai=render('모두일보 독립 리뷰 담당');
-  assert.match(ai,/독립 검수 핵심/);
+  assert.match(ai,/AI 독립 검수 핵심/);
   assert.match(ai,/모두일보 독립 리뷰 담당/);
+  assert.match(ai,/모두일보 독립 리뷰 담당 \(AI\)/);
   assert.doesNotMatch(ai,/모두일보 독립 리뷰 담당 기자|기자가 본 핵심/);
   const human=render('김영환');
   assert.match(human,/김영환 기자/);
