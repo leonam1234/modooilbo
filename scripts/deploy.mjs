@@ -298,9 +298,7 @@ if (release && (git("rev-parse", "HEAD") !== commit || git("status", "--porcelai
   console.error("\n✖ 배포 직전 HEAD 또는 워킹트리가 바뀌어 봉인 산출물 배포를 중단합니다.\n");
   process.exit(1);
 }
-if (isProd && skipIndexNow) {
-  console.log("[indexnow] 명시적 요청에 따라 자동 통지를 생략합니다. LIVE URL 인계만 수행합니다.");
-} else if (isProd) {
+if (isProd) {
   try {
     console.log(`\n▶ wrangler 직전 운영 원격 SHA 재확인 ...`);
     verifyProductionRemoteHead(commit);
@@ -383,7 +381,9 @@ if (isProd) console.log(`  운영   : https://modooilbo.com`);
 console.log("");
 
 // 프로덕션 배포 후 IndexNow 핑(네이버·빙 색인 가속) — 실패해도 무해
-if (isProd) {
+if (isProd && skipIndexNow) {
+  console.log("[indexnow] 명시적 요청에 따라 자동 통지를 생략합니다. LIVE URL 인계만 수행합니다.");
+} else if (isProd) {
   try {
     execFileSync("node", [join(REPO, "scripts", "ping-indexnow.mjs")], { cwd: REPO, stdio: "inherit" });
   } catch {
