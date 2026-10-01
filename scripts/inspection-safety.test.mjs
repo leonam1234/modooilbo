@@ -9,6 +9,7 @@ import {
   BLOCKED_ANALYTICS_HOST_SUFFIXES,
   INTERNAL_TRAFFIC_COOKIE,
   isBlockedAnalyticsRequest,
+  isApprovedInspectionImage,
   isBlockedInspectionRequest,
   isModooProductionRequest,
   normalizeInspectionTarget,
@@ -84,6 +85,21 @@ test("inspection routing blocks production redirects and absolute production sub
   assert.equal(isBlockedInspectionRequest("https://www.googletagmanager.com/gtag/js"), true);
 });
 
+test("inspection permits only the exact HTTPS image CDN and image filenames", () => {
+  assert.equal(isApprovedInspectionImage("https://img.modooilbo.com/article.webp?v=1"), true);
+  assert.equal(isBlockedInspectionRequest("https://img.modooilbo.com/article.webp?v=1"), false);
+  for (const url of [
+    "http://img.modooilbo.com/article.webp",
+    "https://img.modooilbo.com:8443/article.webp",
+    "https://img.modooilbo.com/api/view",
+    "https://img.modooilbo.com/tracker.js",
+    "https://img.modooilbo.com/nested/article.webp",
+    "https://sub.img.modooilbo.com/article.webp",
+    "https://img.modooilbo.com.example.test/article.webp",
+    "https://user:secret@img.modooilbo.com/article.webp",
+  ]) assert.equal(isApprovedInspectionImage(url), false, url);
+});
+
 test("Playwright context protection installs the route before the internal cookie", async () => {
   const calls = [];
   let matcher;
@@ -116,8 +132,23 @@ test("Playwright context protection installs the route before the internal cooki
   assert.equal(matcher(new URL("https://build-123.modooilbo.pages.dev/_next/app.js")), false);
 
   let abortReason;
-  await handler({ abort: async (reason) => { abortReason = reason; } });
+  await handler({
+    request: () => ({ url: () => "https://modooilbo.com/article/a/", method: () => "GET", resourceType: () => "document" }),
+    abort: async (reason) => { abortReason = reason; },
+  });
   assert.equal(abortReason, "blockedbyclient");
+  for (const [method, resourceType, allowed] of [
+    ["GET", "image", true], ["POST", "image", false], ["GET", "script", false],
+    ["GET", "document", false], ["GET", "fetch", false],
+  ]) {
+    let action;
+    await handler({
+      request: () => ({ url: () => "https://img.modooilbo.com/article.webp", method: () => method, resourceType: () => resourceType }),
+      continue: async () => { action = "continue"; },
+      abort: async () => { action = "abort"; },
+    });
+    assert.equal(action, allowed ? "continue" : "abort");
+  }
 });
 
 test("every repository Playwright inspection context is paired with the shared protection", () => {

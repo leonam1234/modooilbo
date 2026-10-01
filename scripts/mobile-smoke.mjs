@@ -73,6 +73,12 @@ async function checkPage(ctx, matrixEntry, path) {
     page = await ctx.newPage()
     const errs = []      // 우리 책임 — FAIL
     const vendor = []    // 서드파티 — 알리기만 하고 통과
+    const imageResponses = []
+    page.on('response', response => {
+      if (response.request().resourceType() === 'image') {
+        imageResponses.push({ url: response.url(), status: response.status() })
+      }
+    })
     page.on('pageerror', error => {
       const detail = String(error?.message || error) + ' ' + String(error?.stack || '')
       ;(THIRD_PARTY.test(detail) ? vendor : errs).push(String(error?.message || error))
@@ -80,6 +86,20 @@ async function checkPage(ctx, matrixEntry, path) {
     const response = await page.goto(baseUrl + path, { waitUntil: 'load', timeout: 30000 })
     const status = response?.status()
     await page.waitForTimeout(1200)   // 폰트·이미지·스크립트 정착 대기
+    // 화면에 실제 나타나는 이미지가 깨져도 텍스트 휴리스틱은 통과하므로 별도 검사한다.
+    await page.waitForFunction(() => [...document.images].every(img => {
+      const rect = img.getBoundingClientRect()
+      return rect.width === 0 || rect.height === 0 || rect.bottom <= 0
+        || rect.top >= innerHeight || img.complete
+    }), null, { timeout: 10000 }).catch(() => {})
+    const images = await page.evaluate(() => [...document.images].filter(img => {
+      const rect = img.getBoundingClientRect()
+      return rect.width > 0 && rect.height > 0 && rect.bottom > 0 && rect.top < innerHeight
+    }).map(img => ({ src: img.currentSrc || img.src, complete: img.complete,
+      naturalWidth: img.naturalWidth, naturalHeight: img.naturalHeight })))
+    const imageBad = images.some(img => !img.complete || img.naturalWidth === 0 || img.naturalHeight === 0
+      || !imageResponses.some(response => response.url === img.src && response.status === 200))
+    writeFileSync(join(out, `${name}-images.json`), JSON.stringify({ images, imageResponses }, null, 2))
     const textLen = await page.evaluate(() => (document.body?.innerText || '').trim().length)
     const blank = textLen < 100       // 빈 화면 휴리스틱: 본문 텍스트 100자 미만이면 의심
     const httpBad = isBadHttpStatus(status)
@@ -88,9 +108,10 @@ async function checkPage(ctx, matrixEntry, path) {
     // fullPage는 문서 전체 비교용 보조 증거이며 실패해도 viewport 판정을 가리지 않는다.
     await page.screenshot({ path: join(out, shots.viewport) })
     await page.screenshot({ path: join(out, shots.fullPage), fullPage: true }).catch(() => {})
-    const bad = errs.length > 0 || blank || httpBad
+    const bad = errs.length > 0 || blank || httpBad || imageBad
     const line = `${bad ? '❌' : '✓'} ${name} text=${textLen}자` +
       (httpBad ? ` | HTTP ${status ?? '응답없음'}` : '') +
+      (imageBad ? ' | 화면 이미지 로딩 실패' : ` | 이미지 ${images.length}건 로딩 확인`) +
       (errs.length ? ' | JS에러: ' + errs[0].slice(0, 120) : '') + (blank ? ' | 빈 화면 의심' : '') +
       (vendor.length ? ` | (서드파티 ${vendor.length}건 무시)` : '')
     console.log(line)

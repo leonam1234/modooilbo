@@ -41,8 +41,17 @@ export function isBlockedAnalyticsRequest(value) {
   return BLOCKED_ANALYTICS_HOST_SUFFIXES.some((suffix) => hostnameMatches(url.hostname, suffix));
 }
 
+export function isApprovedInspectionImage(value) {
+  const url = parseUrl(value);
+  return Boolean(url && url.protocol === "https:"
+    && url.hostname === "img.modooilbo.com" && !url.port
+    && !url.username && !url.password
+    && /^\/[a-zA-Z0-9_-]+\.(?:webp|jpe?g|png|avif)$/i.test(url.pathname));
+}
+
 export function isBlockedInspectionRequest(value) {
-  return isBlockedAnalyticsRequest(value) || isModooProductionRequest(value);
+  return isBlockedAnalyticsRequest(value)
+    || (isModooProductionRequest(value) && !isApprovedInspectionImage(value));
 }
 
 export function normalizeInspectionTarget(raw, label = "검사 대상 URL") {
@@ -85,8 +94,15 @@ export function normalizeInspectionTarget(raw, label = "검사 대상 URL") {
 export async function protectPlaywrightInspectionContext(context, rawTarget) {
   const target = normalizeInspectionTarget(rawTarget);
   await context.route(
-    (url) => isBlockedInspectionRequest(url),
-    (route) => route.abort("blockedbyclient"),
+    (url) => isBlockedInspectionRequest(url) || isApprovedInspectionImage(url),
+    (route) => {
+      const request = route.request();
+      if (isApprovedInspectionImage(request.url())
+        && request.method() === "GET" && request.resourceType() === "image") {
+        return route.continue();
+      }
+      return route.abort("blockedbyclient");
+    },
   );
   await context.addCookies([{
     name: INTERNAL_TRAFFIC_COOKIE,
