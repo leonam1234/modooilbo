@@ -1,6 +1,8 @@
 /** Expire old news even when publishing/builds stop. ASSETS bypasses Functions. */
 export const onRequestGet: PagesFunction<{ ASSETS: Fetcher }> = async ({ request, env }) => {
-  const asset = await env.ASSETS.fetch(request);
+  // Revalidation/range headers apply to the original static bytes, not this filtered XML.
+  // Fetch a complete asset internally, even for conditional requests or HEAD requests.
+  const asset = await env.ASSETS.fetch(new Request(request.url, { method: "GET" }));
   if (!asset.ok || !asset.body) return new Response("Sitemap unavailable", { status: 503 });
   const reader = asset.body.getReader();
   const chunks: Uint8Array[] = [];

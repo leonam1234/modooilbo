@@ -84,6 +84,22 @@ export async function createSession(env: AuthEnv, userId: string): Promise<strin
   return token;
 }
 
+/** A password checked before a concurrent reset must not mint a session afterwards. */
+export async function createPasswordSession(
+  env: AuthEnv,
+  user: { id: string; email: string; password_hash: string; password_salt: string },
+): Promise<string | null> {
+  const { token, tokenHash } = await createSessionToken();
+  const result = await env.DB.batch([
+    env.DB.prepare("DELETE FROM sessions WHERE expires_at <= datetime('now','+9 hours')"),
+    env.DB.prepare(`INSERT INTO sessions (token_hash, user_id, expires_at)
+      SELECT ?1, id, datetime('now','+9 hours', ?6) FROM users
+      WHERE id = ?2 AND password_hash = ?3 AND password_salt = ?4 AND email = ?5`)
+      .bind(tokenHash, user.id, user.password_hash, user.password_salt, user.email, `+${SESSION_DAYS} days`),
+  ]);
+  return result[1]?.meta?.changes === 1 ? token : null;
+}
+
 /** 로컬(pages dev, http)에선 Secure를 빼야 쿠키가 동작한다. */
 export function sessionCookie(token: string, requestUrl: string): string {
   const secure = new URL(requestUrl).protocol === "https:" ? "; Secure" : "";

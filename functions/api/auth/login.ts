@@ -53,7 +53,7 @@
  *
  * ⚠️ 배포 전 db/migrations/0002_counters.sql 원격 적용 필요(rate_limits 테이블).
  */
-import { json, verifyPassword, createSession, sessionCookie, type AuthEnv } from "../../_lib/auth";
+import { json, verifyPassword, createPasswordSession, sessionCookie, type AuthEnv } from "../../_lib/auth";
 import { clientIp, hitRateLimits, rateBucket, resetRateLimit } from "../../_lib/rate-limit";
 import { readJsonObject } from "../../_lib/request-body";
 
@@ -124,7 +124,8 @@ export async function onRequestPost(ctx: any): Promise<Response> {
 
     // ⚠️ **계정축만** 리셋한다. IP축은 절대 리셋하지 않는다 — 아래 주석(2026-07-21) 참조.
     await resetRateLimit(env, [acctBucket]);
-    const token = await createSession(env, user.id);
+    const token = await createPasswordSession(env, user);
+    if (!token) return json({ error: GENERIC }, 401);
     return json(
       { user: { name: user.name, email: user.email } },
       200,

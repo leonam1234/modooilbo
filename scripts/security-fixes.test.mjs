@@ -123,6 +123,33 @@ test('Kakao invalid or masked emails never merge distinct provider identities', 
   assert.equal((await DB.prepare("SELECT COUNT(DISTINCT user_id) AS n FROM identities WHERE provider='kakao' AND provider_user_id IN ('104','105')").first()).n, 2);
 });
 
+test('a login verified before reset cannot mint a session after reset commits', async () => {
+  const value = token('delayed-login-reset');
+  await seed('delayed-login', [value]);
+  let prepared = false, resume, paused;
+  const pauseReached = new Promise(resolve => { paused = resolve; });
+  const pause = new Promise(resolve => { resume = resolve; });
+  const guardedDB = {
+    prepare(sql) { if (sql.includes('INSERT INTO sessions')) prepared = true; return DB.prepare(sql); },
+    async batch(statements) {
+      if (prepared) { paused(); await pause; }
+      return DB.batch(statements);
+    },
+  };
+  const { onRequestPost } = await load('functions/api/auth/login.ts');
+  const pending = onRequestPost({ env: { DB: guardedDB }, waitUntil() {}, request: new Request('https://fixture.invalid/api/auth/login', {
+    method: 'POST', headers: { 'content-type': 'application/json', 'cf-connecting-ip': '192.0.2.44' },
+    body: JSON.stringify({ email: 'delayed-login@example.invalid', password: initialPassword }),
+  }) });
+  await pauseReached;
+  assert.equal((await call('reset', { token: value, password: 'ChangedPassword1' })).status, 200);
+  resume();
+  const response = await pending;
+  assert.equal(response.status, 401);
+  assert.equal(response.headers.get('set-cookie'), null);
+  assert.equal(await count('sessions', 'delayed-login'), 1);
+});
+
 test('newsletter pages suppress referrers and GA strips newsletter token URLs', async () => {
   const { onRequestGet } = await load('functions/api/newsletter.ts');
   const email = 'newsletter@example.invalid', key = 'fixture-key';
@@ -163,8 +190,13 @@ test('news sitemap removes expired, future and invalid entries without requiring
   const now = Date.now();
   const source = '<?xml version="1.0"?><urlset>' + [now - 3600000, now - 49 * 3600000, now + 3600000]
     .map(time => entry(new Date(time).toISOString())).join('') + entry('invalid') + '</urlset>';
-  const response = await onRequestGet({ request: new Request('https://fixture.invalid/news-sitemap.xml'),
-    env: { ASSETS: { fetch: async () => new Response(source) } } });
+  const response = await onRequestGet({ request: new Request('https://fixture.invalid/news-sitemap.xml', {
+    headers: { 'if-none-match': 'old-etag', 'if-modified-since': new Date(now).toUTCString(), range: 'bytes=0-50' },
+  }), env: { ASSETS: { fetch: async request => {
+    assert.equal(request.method, 'GET');
+    for (const header of ['if-none-match', 'if-modified-since', 'range']) assert.equal(request.headers.get(header), null);
+    return new Response(source);
+  } } } });
   assert.equal((await response.text()).match(/<url>/g).length, 1);
   assert.equal(response.headers.get('cache-control'), 'no-store');
 });
