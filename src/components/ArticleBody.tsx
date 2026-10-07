@@ -3,6 +3,7 @@ import Image from "next/image";
 import { stockUrl, webpSrc } from "@/lib/stock";
 import { articleContentBlocks, type ArticleContentBlock } from "@/lib/seo";
 import { PlainEmailText } from "@/components/PlainEmail";
+import { cleanSourceUrl } from "@/lib/source-url";
 
 /**
  * 기사 본문 렌더러 — 문단 배열을 소제목(##/###)·이미지 마크다운·일반 문단으로 그린다.
@@ -320,7 +321,7 @@ export function sourceLinks(items: string[]): SourceLink[] {
   for (const s of splitSourceItems(items)) {
     const m = s.match(/https?:\/\/\S+/);
     if (!m) continue; // "최종 확인시각 …", 첨부 파일명 등 URL 없는 줄은 화면 제외
-    const url = m[0].replace(/["'.,]+$/, "");
+    const url = cleanSourceUrl(m[0]);
     const label = s.slice(0, m.index).replace(/[:：]\s*$/, "").trim();
     const org = orgFromLabel(label) ?? orgFromUrl(url);
     if (!org) continue;

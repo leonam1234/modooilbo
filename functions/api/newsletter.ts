@@ -43,7 +43,10 @@ function page(title: string, bodyHtml: string, status = 200): Response {
       status,
       headers: {
         "content-type": "text/html; charset=utf-8",
-        "cache-control": "no-store",
+        "cache-control": "no-store, no-transform",
+        "referrer-policy": "no-referrer",
+        "x-content-type-options": "nosniff",
+        "content-security-policy": "default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'",
         "x-robots-tag": "noindex, nofollow",
       },
     },

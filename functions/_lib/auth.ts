@@ -18,7 +18,7 @@ export interface AuthEnv {
 }
 
 export const COOKIE_NAME = "modoo_session";
-const SESSION_DAYS = 30;
+export const SESSION_DAYS = 30;
 const PBKDF2_ITER = 100_000;
 
 const enc = new TextEncoder();
@@ -65,9 +65,14 @@ export async function verifyPassword(password: string, salt: string, expectedHex
   return typeof subtle.timingSafeEqual === "function" ? subtle.timingSafeEqual(a, b) : hash === expectedHex;
 }
 
-export async function createSession(env: AuthEnv, userId: string): Promise<string> {
+export async function createSessionToken(): Promise<{ token: string; tokenHash: string }> {
   const token = randHex(32);
   const tokenHash = await sha256Hex(token);
+  return { token, tokenHash };
+}
+
+export async function createSession(env: AuthEnv, userId: string): Promise<string> {
+  const { token, tokenHash } = await createSessionToken();
   // 만료 세션 청소를 발급 시점에 함께 한다(batch라 왕복 1회). 다른 토큰 테이블은 전부
   // 발급 시 purge 규약이 있는데 sessions만 없어 만료 행이 무한 누적되고 있었다(2026-08-14).
   await env.DB.batch([

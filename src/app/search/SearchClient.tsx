@@ -19,6 +19,7 @@ export function SearchClient() {
   const [input, setInput] = useState(q);
   const [index, setIndex] = useState<ArticleIndexItem[] | null>(_index);
   const [failed, setFailed] = useState(false);
+  const [attempt, setAttempt] = useState(0);
 
   // URL ?q가 바뀌면(뒤로가기·링크 이동 등) 입력창도 동기화
   useEffect(() => {
@@ -55,7 +56,7 @@ export function SearchClient() {
     return () => {
       alive = false;
     };
-  }, [q]);
+  }, [q, attempt]);
 
   const loading = Boolean(q) && !index && !failed;
   const results =
@@ -72,6 +73,7 @@ export function SearchClient() {
   function submit(e: React.FormEvent) {
     e.preventDefault();
     const v = input.trim();
+    if (v === q && failed) { setAttempt(n => n + 1); return; }
     router.push(v ? `/search?q=${encodeURIComponent(v)}` : "/search");
   }
 
@@ -104,6 +106,8 @@ export function SearchClient() {
             &lsquo;<span className="font-semibold text-signal-600 dark:text-signal-400">{q}</span>&rsquo; 검색결과{" "}
             {loading ? (
               <span className="text-ink-500 dark:text-ink-400">불러오는 중…</span>
+            ) : failed ? (
+              <span>검색 결과 확인 불가</span>
             ) : (
               <>
                 <span className="font-semibold text-ink-800 dark:text-ink-100">{results.length}</span>건
@@ -113,6 +117,7 @@ export function SearchClient() {
           {failed ? (
             <p className="mt-16 text-center text-ink-500 dark:text-ink-400">
               검색 목록을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.
+              <button type="button" onClick={() => setAttempt(n => n + 1)} className="ml-2 underline">다시 시도</button>
             </p>
           ) : loading ? (
             <div className="mt-4 divide-y divide-ink-100 dark:divide-ink-800" aria-hidden>

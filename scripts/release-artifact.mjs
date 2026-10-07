@@ -12,6 +12,7 @@ import {
   writeFileSync,
 } from "node:fs";
 import { join, relative, resolve, sep } from "node:path";
+import { CORE_FILES, validateCoreFile } from "./lib/core-artifact.mjs";
 
 export const RELEASE_SCHEMA_VERSION = 1;
 export const RELEASE_MAX_AGE_MS = 24 * 60 * 60 * 1000;
@@ -64,6 +65,10 @@ export function inspectReleaseArtifact(artifactDir) {
   }
   for (const file of ["index.html", "404.html", "_headers", "_redirects"]) {
     requireNonEmpty(root, file);
+  }
+  for (const file of CORE_FILES) {
+    requireNonEmpty(root, file);
+    validateCoreFile(file, readFileSync(join(root, file), "utf8"));
   }
   const files = walkFiles(root);
   if (!files.some((file) => file.path.startsWith("_next/static/") && file.path.endsWith(".js") && file.size > 0)) {

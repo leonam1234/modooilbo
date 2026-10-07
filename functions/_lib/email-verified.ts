@@ -23,7 +23,7 @@ export type VerifyMethod =
   | "email-register" // 합성 이메일 계정의 실주소 등록 인증
   | "password-reset" // 재설정 메일 링크로 비밀번호 변경(= 수신함 통제 증명)
   | "oauth:google" // 구글이 email_verified=true로 단언
-  | "oauth:kakao"; // 카카오가 is_email_verified=true로 단언
+  | "oauth:kakao"; // 카카오가 is_email_verified=true 및 is_email_valid=true로 단언
 
 /**
  * 검증 사실 기록용 D1 문(배치에 넣어 쓴다 — 계정 생성과 같은 트랜잭션이어야 한다).

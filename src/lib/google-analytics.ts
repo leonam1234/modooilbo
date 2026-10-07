@@ -31,6 +31,7 @@ export const THIRD_PARTY_TOKEN_PATHS = [
   "/verify-signup",
   "/verify-email",
   "/forgot",
+  "/api/newsletter",
 ] as const;
 
 export function isThirdPartyTokenPath(pathname: string): boolean {

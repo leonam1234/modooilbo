@@ -14,6 +14,7 @@ import {
 let server;
 let baseUrl;
 let brokenAsset = false;
+let brokenIndex = false;
 const requests = [];
 
 function xml(body) {
@@ -33,6 +34,11 @@ before(async () => {
     const url = new URL(request.url, "http://localhost");
     requests.push(url.pathname);
     response.setHeader("content-type", "text/plain; charset=utf-8");
+    if (url.pathname === "/articles-index.json") {
+      response.setHeader("content-type", "application/json");
+      response.end(brokenIndex ? '{}' : JSON.stringify([{ slug: "a", title: "Fixture", tags: [], author: { name: "Fixture" } }]));
+      return;
+    }
 
     if (url.pathname === "/sitemap.xml") {
       response.setHeader("content-type", "application/xml");
@@ -90,6 +96,15 @@ before(async () => {
 
 after(async () => {
   await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
+});
+
+test("Preview validation fails when search index has an invalid schema", async () => {
+  brokenIndex = true;
+  try {
+    const report = await auditPreviewAssets(baseUrl, { retries: 0, articleSamples: 3 });
+    assert.equal(report.pass, false);
+    assert.equal(report.indexResult.ok, false);
+  } finally { brokenIndex = false; }
 });
 
 test("evenlySample includes first, middle, and last entries", () => {

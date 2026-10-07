@@ -345,6 +345,17 @@ export async function auditPreviewAssets(rawBaseUrl, options = {}) {
     timeoutMs: settings.timeoutMs,
   };
 
+  const indexUrl = new URL("/articles-index.json", previewBase).href;
+  const indexResponse = await request(indexUrl, { ...requestOptions, readBody: true, accept: "application/json" });
+  let indexError = indexResponse.ok ? null : indexResponse.error;
+  if (!indexError) {
+    try {
+      const { validateCoreFile } = await import("./lib/core-artifact.mjs");
+      validateCoreFile("articles-index.json", indexResponse.body);
+    } catch (error) { indexError = String(error); }
+  }
+  const indexResult = { url: indexUrl, ok: !indexError, error: indexError };
+
   const discovery = await discoverSitemapGroups(previewBase, requestOptions);
   const selection = selectPages(discovery.groups, settings);
   if (selection.pages.length === 0) throw new Error("Sitemaps did not contain any page URLs.");
@@ -390,7 +401,8 @@ export async function auditPreviewAssets(rawBaseUrl, options = {}) {
   const failedPages = pageResults.filter((result) => !result.ok);
   const failedAssets = assetResults.filter((result) => !result.ok);
   return {
-    pass: failedPages.length === 0 && failedAssets.length === 0 && assetResults.length > 0,
+    pass: indexResult.ok && failedPages.length === 0 && failedAssets.length === 0 && assetResults.length > 0,
+    indexResult,
     previewBase: previewBase.href,
     sitemapCount: discovery.sitemapCount,
     sitemapGroups: discovery.groups.length,
@@ -424,6 +436,7 @@ export function printReport(report, { allArticles }) {
   console.log(`  JS assets   : ${report.assetResults.length} unique references`);
   console.log(`  Page result : ${report.pageResults.length - report.failedPages.length}/${report.pageResults.length} inspectable`);
   console.log(`  Asset result: ${report.assetResults.length - report.failedAssets.length}/${report.assetResults.length} HTTP 200`);
+  console.log(`  Search index: ${report.indexResult.ok ? "PASS" : report.indexResult.error}`);
 
   printFailures("Page failures", report.failedPages, (failure) => `${failure.url} — ${failure.error}`);
   printFailures("JS asset failures", report.failedAssets, (failure) => {

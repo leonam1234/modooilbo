@@ -80,8 +80,10 @@ export async function onRequestGet(ctx: any): Promise<Response> {
 
     const nickname: string = me?.kakao_account?.profile?.nickname?.trim() || "카카오회원";
     const emailRaw: string | undefined = me?.kakao_account?.email;
-    const emailVerified: boolean = me?.kakao_account?.is_email_verified === true;
-    const email = emailRaw && emailVerified ? emailRaw.toLowerCase() : null;
+    const emailVerified = me?.kakao_account?.is_email_verified === true && me?.kakao_account?.is_email_valid === true;
+    const email = typeof emailRaw === "string" && emailVerified &&
+      emailRaw.length <= 254 && /^[^\s@*]+@[^\s@*]+\.[^\s@*]{2,}$/.test(emailRaw)
+      ? emailRaw.toLowerCase() : null;
 
     // 3) 기존 kakao identity → 로그인
     const ident = await env.DB.prepare(

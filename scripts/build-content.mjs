@@ -13,6 +13,8 @@ import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { assessEditorialQuality, list as qualityList } from "./lib/editorial-quality.mjs";
+import { normDate } from "./lib/content-date.mjs";
+import { indexFingerprintRow } from "./lib/content-fingerprint.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const CONTENT_DIR = join(ROOT, "content", "articles");
@@ -193,17 +195,6 @@ function parse(md) {
   return { fm, paragraphs };
 }
 
-// "YYYY-MM-DD HH:MM"(KST 벽시계) → 표시 일관성 위해 "...Z"로 저장(기존 데이터 규약과 동일)
-function normDate(s) {
-  // 기본값도 KST 벽시계-as-Z 규약을 따른다 (UTC 벽시계를 넣으면 9시간 이르게 표시됨)
-  if (!s) return new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 16) + ":00Z";
-  let v = s.trim().replace(" ", "T");
-  if (/^\d{4}-\d{2}-\d{2}$/.test(v)) v += "T09:00";
-  v = v.replace(/[zZ]|[+-]\d{2}:?\d{2}$/, ""); // TZ 제거(벽시계 취급)
-  if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(v)) v += ":00";
-  return v + "Z";
-}
-
 async function download(url, dest, tries = 3) {
   for (let t = 1; t <= tries; t++) {
     try {
@@ -357,6 +348,10 @@ async function run() {
         continue;
       }
       correction = { at: normDate(at), note: correctionNote };
+      if (Number.isNaN(new Date(correction.at).getTime())) {
+        errors.push(`${file}: correctionAt 형식 오류("${at}") — 실제 달력 날짜와 시각을 적어 주세요.`);
+        continue;
+      }
     } else if (correctionAtRaw) {
       errors.push(
         `${file}: correctionAt만 있고 정정 내용(correction)이 없습니다. ` +
@@ -562,7 +557,7 @@ function newestModule(articles) {
   //    없다"고 오판한 적 있다(2026-08-21). 런타임 값은 둘이 완전히 같다 — 지문도 안 바뀐다.
   for (const a of articles) {
     fingerprint.update(
-      [a.id, a.slug, a.title, a.summary, a.category, a.publishedAt, (a.tags ?? []).join("\u0001"), `${a.author.name}/${a.author.role}`, a.imageUrl, a.type, a.isBreaking].join("\u0000"),
+      indexFingerprintRow(a),
     );
   }
   // 하드코딩 배치(articles.ts·articles2.ts)도 후보에 포함 — 콘텐츠가 비어 있어도 값이 남게.

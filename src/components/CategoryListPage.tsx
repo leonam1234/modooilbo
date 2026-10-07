@@ -114,8 +114,8 @@ export function CategoryListPage({ slug, page = 1 }: { slug: CategorySlug; page?
               )}
               {rest.length > 0 && (
                 <div className={cn("grid gap-x-6 gap-y-9 sm:grid-cols-2 lg:grid-cols-3", lead && "mt-8")}>
-                  {rest.map((a) => (
-                    <ArticleCard key={a.id} article={a} variant="feature" priority={!lead} />
+                  {rest.map((a, index) => (
+                    <ArticleCard key={a.id} article={a} variant="feature" priority={!lead && index === 0} />
                   ))}
                 </div>
               )}

@@ -8,14 +8,15 @@
 import {
   json,
   getUser,
-  hashPassword,
   verifyPassword,
-  createSession,
+  readToken,
+  sha256Hex,
   sessionCookie,
   type AuthEnv,
 } from "../../_lib/auth";
 import { hitRateLimits, rateBucket } from "../../_lib/rate-limit";
 import { readJsonObject } from "../../_lib/request-body";
+import { changePassword } from "../../_lib/change-password";
 
 export async function onRequestPost(ctx: any): Promise<Response> {
   const env = ctx.env as AuthEnv;
@@ -61,24 +62,17 @@ export async function onRequestPost(ctx: any): Promise<Response> {
     if (!ok) return json({ error: "현재 비밀번호가 올바르지 않습니다." }, 401);
   }
 
-  const { hash, salt } = await hashPassword(next);
-  await env.DB.batch([
-    env.DB.prepare("UPDATE users SET password_hash = ?1, password_salt = ?2 WHERE id = ?3").bind(
-      hash,
-      salt,
-      user.id,
-    ),
-    // 전 기기 로그아웃 — 현재 세션 포함해 모두 지우고 아래에서 새로 발급(세션 토큰 교체 효과).
-    // 비밀번호 변경 후에도 탈취된 세션 쿠키가 그대로 살아 있는 구멍을 막는다.
-    env.DB.prepare("DELETE FROM sessions WHERE user_id = ?1").bind(user.id),
-    // 이메일 identity가 없던 소셜 전용 계정이면 이메일 로그인 경로도 열어준다
-    env.DB.prepare(
-      "INSERT OR IGNORE INTO identities (user_id, provider, provider_user_id) VALUES (?1, 'email', ?2)",
-    ).bind(user.id, user.email),
-  ]);
-
-  // 방금 비밀번호를 바꾼 본인은 로그아웃되지 않도록 새 세션 재발급
-  const session = await createSession(env, user.id);
+  let session: string | null;
+  try {
+    session = await changePassword(env, user, next, {
+      sessionTokenHash: await sha256Hex(readToken(ctx.request)!),
+      previousHash: row?.password_hash ?? null,
+      previousSalt: row?.password_salt ?? null,
+    });
+  } catch {
+    return json({ error: "일시적인 오류로 변경하지 못했습니다. 다시 시도해 주세요." }, 500);
+  }
+  if (!session) return json({ error: "로그인 정보가 변경되었습니다. 다시 로그인해 주세요." }, 409);
   return json({ ok: true, hadPassword: hasPassword }, 200, {
     "set-cookie": sessionCookie(session, ctx.request.url),
   });

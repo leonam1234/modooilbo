@@ -20,6 +20,22 @@ const SYMBOLS: { key: string; label: string; symbol: string }[] = [
 ];
 
 const UA = { "user-agent": "Mozilla/5.0 (compatible; modooilbo-widget/1.0)" };
+const UPSTREAM_TIMEOUT_MS = 1500;
+
+async function fetchJson(url: string): Promise<any> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), UPSTREAM_TIMEOUT_MS);
+  try {
+    const response = await fetch(url, { headers: UA, signal: controller.signal });
+    if (!response.ok) {
+      await response.body?.cancel();
+      return null;
+    }
+    return await response.json(); // Body reading also stays inside the deadline.
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
 function pad(n: number): string {
   return String(n).padStart(2, "0");
@@ -37,9 +53,7 @@ async function fromYahoo(symbol: string): Promise<{ value: number; prev: number 
 async function fromYahooHost(host: string, symbol: string): Promise<{ value: number; prev: number | null } | null> {
   try {
     const url = `https://${host}.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=2d`;
-    const res = await fetch(url, { headers: UA });
-    if (!res.ok) return null;
-    const d = (await res.json()) as any;
+    const d = await fetchJson(url);
     const meta = d?.chart?.result?.[0]?.meta;
     const value = Number(meta?.regularMarketPrice);
     const prev = Number(meta?.chartPreviousClose);
@@ -53,9 +67,7 @@ async function fromYahooHost(host: string, symbol: string): Promise<{ value: num
 /** 원/달러 폴백 — 공식성 높은 무키 환율(전일 대비는 제공 안 하므로 prev=null). */
 async function usdkrwFallback(): Promise<{ value: number; prev: number | null } | null> {
   try {
-    const res = await fetch("https://open.er-api.com/v6/latest/USD", { headers: UA });
-    if (!res.ok) return null;
-    const d = (await res.json()) as any;
+    const d = await fetchJson("https://open.er-api.com/v6/latest/USD");
     const v = Number(d?.rates?.KRW);
     return Number.isFinite(v) ? { value: v, prev: null } : null;
   } catch {

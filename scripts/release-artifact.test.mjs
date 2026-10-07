@@ -1,14 +1,27 @@
 import assert from "node:assert/strict";
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync, unlinkSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import test from "node:test";
 import {
   RELEASE_MAX_AGE_MS,
+  inspectReleaseArtifact,
   recordReleaseDeployment,
   sealReleaseArtifact,
   verifyReleaseArtifact,
 } from "./release-artifact.mjs";
+import { CORE_FILES } from "./lib/core-artifact.mjs";
+
+test("release sealing refuses each missing core search or discovery file", () => {
+  const root = mkdtempSync(join(tmpdir(), "modoo-missing-core-"));
+  try {
+    for (const file of CORE_FILES) {
+      fixture(root);
+      unlinkSync(join(root, file));
+      assert.throws(() => inspectReleaseArtifact(root), /missing or empty/);
+    }
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});
 
 const COMMIT = "a".repeat(40);
 const NOW = new Date("2026-09-03T03:00:00.000Z");
@@ -25,6 +38,12 @@ function fixture(root) {
   put(root, "_headers", "/*\n  X-Content-Type-Options: nosniff\n");
   put(root, "_redirects", "/old /new 301\n");
   put(root, "_next/static/chunks/app.js", "console.log('sealed');\n");
+  put(root, "articles-index.json", JSON.stringify([{ slug: "fixture", title: "Fixture", tags: [], author: { name: "Fixture" } }]));
+  put(root, "robots.txt", "User-agent: *\nSitemap: https://modooilbo.com/sitemap.xml\n");
+  for (const file of ["sitemap.xml", "sitemap-pages.xml", "news-sitemap.xml"]) {
+    put(root, file, '<?xml version="1.0"?><urlset></urlset>');
+  }
+  put(root, "rss.xml", '<?xml version="1.0"?><rss><channel></channel></rss>');
 }
 
 function setup() {
