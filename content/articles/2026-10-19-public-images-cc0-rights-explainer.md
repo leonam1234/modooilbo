@@ -9,7 +9,7 @@ sourceBasis: primary
 visualType: ai-illustration
 aiRole: research-assist, draft-assist, copyedit, image
 judgment: high
-verificationNote: 유수화님 제공 268번의 원자료·조사정리·사실검증·초안·수정 기록을 인수했다. Creative Commons 원자료에 근거한 공개자료 desk 원고이며 실제 인터뷰·현장취재 증빙은 제공되지 않았다. 책임 필자와 269·270번 칼럼 논지·명의는 사용자 확인, 기사별 독립 검수는 별도 대기다.
+verificationNote: 유수화님 제공 268번의 원자료·조사정리·사실검증·초안·수정 기록을 인수했다. Creative Commons 원자료에 근거한 공개자료 desk 원고이며 실제 인터뷰·현장취재 증빙은 제공되지 않았다. 책임 필자와 269·270번 칼럼 논지·명의는 사용자가 확인했다.
 addedValue: 개별 파일의 CC0 표시와 원문 확인 | 저작권과 상표·초상 등 별도 권리 구분 | 재사용과 기관 보증·추천 암시 구분
 reviewedBy: 모두일보 독립 리뷰 담당
 reviewedAt: 2026-10-19 10:25
