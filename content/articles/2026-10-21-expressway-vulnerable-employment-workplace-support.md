@@ -3,8 +3,8 @@ title: 도로공사 취약계층 고용기업 지원, 최대 3천만원도 개�
 slug: expressway-vulnerable-employment-workplace-support
 category: grants
 author: 최은영 / 국제부 기자
-publishedAt: 2026-10-21 09:13
-eventEndsAt: 2026-10-26 18:00 KST
+publishedAt: 2026-10-21 09:32
+eventEndsAt: 2026-10-26 18:00
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration
@@ -13,7 +13,7 @@ judgment: high
 verificationNote: 한국도로공사 현재 공지와 기업마당의 전체 공고 PDF·HWP 및 첨부 포스터를 확보해 채용기준일·고용유지·서류·사후지급 조건을 대조했다. 개별 이메일 수신과 기업별 지급액은 확인하지 않았다.
 addedValue: 신규채용 인정기간과 고용유지 확인일을 분리하고 두 개선영역·80점 이행평가·서류 준비와 선지출 부담을 함께 설명했다.
 reviewedBy: 모두일보 독립 리뷰 담당
-reviewedAt: 2026-10-21 09:02
+reviewedAt: 2026-10-21 09:21
 reporterInsight: 최대 3천만원은 신청만 하면 받는 금액이 아니다. 취약계층 채용·고용유지 조건을 갖추고 근로환경과 관리시스템을 모두 개선한 뒤 80점 이상 이행평가를 받아야 한다. 선지출 자금과 증빙, 선정 이후 협약 및 3년 설비 유지 의무까지 함께 살펴야 지원 한도와 실제 수령액을 혼동하지 않는다.
 readerChecklist: 채용일과 채용일 기준 취약계층 증빙 및 10월30일 고용유지를 점검하기 | 근로환경과 관리시스템을 모두 담은 개선계획 및 필수서류를 묶기 | 10월26일 18시 전 이메일을 제출하고 선지출·사후평가 자금을 준비하기
 tags: 한국도로공사,취약계층고용,중소기업,근로환경개선,관리시스템,사후지원,성과공유제,이메일신청,고용유지

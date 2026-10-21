@@ -3,8 +3,8 @@ title: IBK창공 2027년 상반기 모집…예비창업자 제외, 11월 13일 
 slug: ibk-changgong-2027-first-half-application
 category: startup
 author: 서영호 / 공공입찰 전담기자
-publishedAt: 2026-10-21 09:14
-eventEndsAt: 2026-11-13 14:00 KST
+publishedAt: 2026-10-21 09:33
+eventEndsAt: 2026-11-13 14:00
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration
@@ -13,7 +13,7 @@ judgment: high
 verificationNote: IBK창공 현재 공개 모집 화면과 다운로드한 수정 공고문·사업계획서 양식의 자격·제출서류·접수기한을 대조했다. 부산창업포털의 13시59분 표시와 원기관의 14시 마감 표기를 구분했으며 개인 로그인 이후 제출과 접수 결과는 확인하지 않았다.
 addedValue: 업력 기준과 법인·개인별 필수서류를 나누고 투자 검토·대출 연계를 자동 자금 지급과 구분했다.
 reviewedBy: 모두일보 독립 리뷰 담당
-reviewedAt: 2026-10-21 09:02
+reviewedAt: 2026-10-21 09:21
 reporterInsight: 업력은 신청일이 아니라 모집 마감일을 기준으로 계산하며 개인과 법인의 기산일도 다르다. 업력이 짧아도 창업 이후 재무제표를 준비해야 하고, 법인은 등기서류가 추가된다. 입소가 투자·대출 확약은 아니므로 지원 프로그램의 성격과 실제 온라인 제출 완료를 구분해 준비하는 편이 정확하다.
 readerChecklist: 마감일 기준 업력과 개인·법인 개업 기준을 확인하기 | 사업계획서·사업자등록증·재무제표와 법인 해당서류를 각각 PDF 10MB 이하로 준비하기 | 지원할 창공 한 곳을 정하고 11월 13일 오후 2시 전 PC 온라인 제출하기
 tags: IBK창공, 기업은행, 창업기업, 액셀러레이팅, 사업계획서, 업력7년, 투자유치, 창업공간, 2027상반기

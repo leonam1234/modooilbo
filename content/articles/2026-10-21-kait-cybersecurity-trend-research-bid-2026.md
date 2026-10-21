@@ -3,8 +3,8 @@ title: KAIT 보안동향 조사용역, 27일 15시까지 자체 전자계약 접
 slug: kait-cybersecurity-trend-research-bid-2026
 category: bids
 author: 유승현 / 사회부 기자
-publishedAt: 2026-10-21 09:13
-eventEndsAt: 2026-10-27 15:00 KST
+publishedAt: 2026-10-21 09:32
+eventEndsAt: 2026-10-27 15:00
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration
@@ -13,7 +13,7 @@ judgment: high
 verificationNote: 한국정보통신진흥협회 자체 전자계약시스템의 현재 진행 공고·필수 업로드 목록과 입찰유의서·제안요청서 전체를 대조했다. 12개월 과업·마감·보증방식은 확인했으며 로그인 후 개인별 신청·접수 결과는 확인하지 않았다.
 addedValue: 조달청 자격등록과 실제 KAIT 제출창구를 구별하고 온라인 서류·보증서·정기 산출물 및 지급단계를 함께 정리했다.
 reviewedBy: 모두일보 독립 리뷰 담당
-reviewedAt: 2026-10-21 09:02
+reviewedAt: 2026-10-21 09:21
 reporterInsight: 나라장터 자격등록과 실제 제안서 제출창구는 다르며 이번 접수는 KAIT 전자계약시스템이다. 응찰금액 기준 보증보험증권과 유효기간, 주관·협력사 서류를 함께 준비해야 한다. 12개월 정기 분석과 전문인력 운영, 착수·종료 지급단계를 나눠야 단발성 보고서 용역으로 비용을 과소평가하지 않는다.
 readerChecklist: KAIT 이용자등록·사업자 범용인증서와 조달청 자격등록을 준비하기 | 필수 업로드와 응찰금액 5% 이상 보증서·마감일 30일 이후까지의 보증기간을 대조하기 | 12개월 산출물·전문인력·부가세를 반영해 10월27일 15시 전 온라인 제출하기
 tags: 한국정보통신진흥협회,KAIT,용역입찰,보안동향,조사분석,전자계약,입찰보증보험,공동수급,제안서,정기보고서

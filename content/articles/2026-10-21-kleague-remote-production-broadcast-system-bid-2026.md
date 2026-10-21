@@ -3,8 +3,8 @@ title: K리그 원격제작 구축 입찰 7억5천만원, VAT 별도·30일 방�
 slug: kleague-remote-production-broadcast-system-bid-2026
 category: bids
 author: 김영환 / 경제부 기자
-publishedAt: 2026-10-21 09:13
-eventEndsAt: 2026-10-30 16:00 KST
+publishedAt: 2026-10-21 09:32
+eventEndsAt: 2026-10-30 16:00
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration
@@ -13,7 +13,7 @@ judgment: high
 verificationNote: 한국프로축구연맹의 현재 접수공고와 전체 공고문·제안요청서를 대조해 부가세 별도 예산·방문제출·고정 과업기간·분담이행·평가조건을 확인했다. 실제 방문접수·업체별 등록과 낙찰 결과는 확인하지 않았다.
 addedValue: 온라인 공고와 방문접수를 구별하고 공사업 분담·PM 자격과 상주·신용등급 및 별도 재무제표·통합시험과 무상유지보수를 투찰 준비조건으로 정리했다.
 reviewedBy: 모두일보 독립 리뷰 담당
-reviewedAt: 2026-10-21 09:02
+reviewedAt: 2026-10-21 09:21
 reporterInsight: 이 입찰은 장비 납품만이 아니라 통합시험·현장 운영과 유지보수를 포함한다. 특히 자사 PM의 10년 경력과 특급 이상 자격, 발표·상주 의무를 먼저 확보해야 한다. 신용등급확인서 외에 최근 3개년 재무제표도 별도로 필요하므로 인력과 제출서류를 가격 산정보다 앞서 점검할 필요가 있다.
 readerChecklist: 공사업 등록과 자사 PM의 10년 경력·특급 자격·발표·상주 및 증빙을 점검하기 | 3개사 이내 분담이행·신용등급확인서·별도 3개년 재무제표·제안서8부와 USB를 준비하기 | VAT 별도 예산·상주 인력·12개월 무상유지보수를 반영해 10월30일 16시 전 방문 제출하기
 tags: 한국프로축구연맹,K리그,방송시스템,원격제작,입찰공고,정보통신공사업,분담이행,방문접수,무상유지보수,제안평가

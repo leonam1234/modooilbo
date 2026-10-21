@@ -3,8 +3,8 @@ title: 청소년정책연구원 전문연구원 1명 채용…30일 17시 마감
 slug: nypi-school-violence-researcher-oct30-2026
 category: labor
 author: 서영호 / 공공입찰 전담기자
-publishedAt: 2026-10-21 09:15
-eventEndsAt: 2026-10-30 17:00 KST
+publishedAt: 2026-10-21 09:34
+eventEndsAt: 2026-10-30 17:00
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration
@@ -13,7 +13,7 @@ judgment: high
 verificationNote: 잡알리오와 연구원 채용엔진의 공고·접수기간·지원서 작성 경로를 확인하고 공고문·지원서·직무기술서·반환고지 전체를 대조했다. 개인 지원서 작성이나 제출, 개인별 자격 인정은 확인하지 않았다.
 addedValue: 입사지원과 면접 제출서류를 구분하고 연구직 블라인드 예외·1명 채용의 보훈가점 제한·최종 제출 조건을 함께 설명했다.
 reviewedBy: 모두일보 독립 리뷰 담당
-reviewedAt: 2026-10-21 09:02
+reviewedAt: 2026-10-21 09:21
 reporterInsight: 석사학위 외에 임용일 기준 만 60세 이하 조건이 있으며, 지원 때 내는 자료와 면접 때 내는 증빙이 다르다. 연구직 학력정보 수집 예외를 자기소개서의 학교명 노출 허용으로 넓혀서는 안 된다. 두 문서의 주의를 나눠 확인하고, 파일 업로드뿐 아니라 채용시스템의 최종 제출까지 완료해야 한다.
 readerChecklist: 관련 분야 석사학위·임용일 기준 만 60세 이하 요건과 직무기술서를 대조한다 | 학력정보 입력과 자기소개서의 별도 작성주의, 면접 증빙을 구분해 준비한다 | 10월 30일 17시 전에 채용엔진에서 최종 제출 완료 여부를 확인한다
 tags: [한국청소년정책연구원, 전문연구원, 학교폭력실태조사, 채용, 석사, 세종, 계약직, 잡알리오, 블라인드채용]

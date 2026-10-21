@@ -3,7 +3,7 @@ title: 엑셀리스 평택 AAOC 증설 착공…생산능력 확대는 향후 �
 slug: axcelis-pyeongtaek-aaoc-expansion-boundary-2026
 category: industry
 author: 김영환 / 경제부 기자
-publishedAt: 2026-10-21 09:14
+publishedAt: 2026-10-21 09:33
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration

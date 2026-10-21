@@ -3,7 +3,7 @@ title: M.AX 해외 공동 인증 2개사 발급…중복시험 생략은 상호�
 slug: max-certx-mutual-recognition-scope-2026
 category: industry
 author: 최은영 / 국제부 기자
-publishedAt: 2026-10-21 09:14
+publishedAt: 2026-10-21 09:33
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration

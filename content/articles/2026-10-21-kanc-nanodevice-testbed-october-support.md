@@ -3,8 +3,8 @@ title: 한국나노기술원 기업 기술지원 모집, 10월30일 18시 이메
 slug: kanc-nanodevice-testbed-october-support
 category: grants
 author: 남동균 / 문화·스포츠부 기자
-publishedAt: 2026-10-21 09:13
-eventEndsAt: 2026-10-30 18:00 KST
+publishedAt: 2026-10-21 09:32
+eventEndsAt: 2026-10-30 18:00
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration
@@ -13,7 +13,7 @@ judgment: high
 verificationNote: 한국나노기술원 현재 공지와 공고문·지원신청서 전체를 대조해 지원형태·대상·마감·제출처를 확인했다. 이메일 접수이며 개별 수신·선정 여부와 비용 약정은 확인하지 않았다.
 addedValue: 현금지원과 장비·기술지원의 차이를 구별하고 신청서의 공정·시편 조건을 실제 준비 항목으로 연결했다.
 reviewedBy: 모두일보 독립 리뷰 담당
-reviewedAt: 2026-10-21 09:02
+reviewedAt: 2026-10-21 09:21
 reporterInsight: 이번 모집은 일정액 현금을 지급하는 보조금이 아니라 보유 장비와 기술을 활용하는 지원이다. 필요한 공정과 시편 조건을 표지 포함 4쪽 안에 구체화해야 한다. 장비 이용료 전액 면제나 제품 성능 달성을 약속한 공고는 아니므로 선정 절차와 실제 지원 범위를 나눠 준비하는 것이 중요하다.
 readerChecklist: 필요한 공정과 웨이퍼 조건을 신청서에 구체화하기 | 표지 포함 4쪽 이내 신청서와 해당 시 소자 도면 준비하기 | 10월30일 18시 전 지정 이메일과 제목 표기를 확인하기
 tags: 한국나노기술원,기업지원,반도체,실증테스트베드,시제품,소재부품장비,기술지원,이메일접수,지원신청서

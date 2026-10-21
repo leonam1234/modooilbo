@@ -3,7 +3,7 @@ title: DS단석 SAF 자회사에 약 422억원 출자…현금은 10억원, 나�
 slug: dsdansuk-orbion-in-kind-cash-saf-2026
 category: deals
 author: 최은영 / 국제부 기자
-publishedAt: 2026-10-21 09:15
+publishedAt: 2026-10-21 09:34
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration

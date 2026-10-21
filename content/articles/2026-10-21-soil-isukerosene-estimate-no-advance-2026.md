@@ -3,7 +3,7 @@ title: 에쓰오일·이수화학 1조1,600억원 공급계약…확정매출 �
 slug: soil-isukerosene-estimate-no-advance-2026
 category: deals
 author: 남동균 / 문화·스포츠부 기자
-publishedAt: 2026-10-21 09:15
+publishedAt: 2026-10-21 09:34
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration

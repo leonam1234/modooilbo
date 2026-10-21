@@ -3,8 +3,8 @@ title: 홍릉 DHP 밋업 11월 3일까지 모집…협업 유형 고르는 1대1
 slug: hongneung-dhp-meetup-nov3-2026
 category: startup
 author: 남동균 / 문화·스포츠부 기자
-publishedAt: 2026-10-21 09:14
-eventEndsAt: 2026-11-03 23:59 KST
+publishedAt: 2026-10-21 09:33
+eventEndsAt: 2026-11-03 23:59
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration
@@ -13,7 +13,7 @@ judgment: high
 verificationNote: 서울홍릉강소특구의 현행 안내와 전체 첨부인 포스터 1개, 기관이 연결한 실제 Google Forms의 공개 문항·필수 표시·제출 버튼을 확인했다. 개인 신청은 하지 않았으며 마감일의 구체 시각·참가비·확정 매칭 수는 공개 근거에서 확인되지 않았다.
 addedValue: 기업 홍보와 1대1 밋업을 투자 확약과 구분하고 안내 요약이 아닌 실제 신청폼의 필수·선택 항목을 정리했다.
 reviewedBy: 모두일보 독립 리뷰 담당
-reviewedAt: 2026-10-21 09:02
+reviewedAt: 2026-10-21 09:21
 reporterInsight: 모집 마감일과 밋업 행사일은 다르다. 신청폼에서 고르는 PoC·공동연구·전략적 투자 등은 희망 협업 유형이지 계약이나 투자 확정이 아니다. 현재 폼의 필수 연락처·동의 항목을 준비하고 소개자료 비치 여부를 정하되, 공지되지 않은 첨부나 참가비·매칭 보장을 임의로 전제하지 않아야 한다.
 readerChecklist: PoC·공동연구개발·전략적 투자·글로벌 진출 중 필요한 협업 유형을 정하기 | 기업명·담당자명·직함·휴대폰과 소개자료 비치 여부를 준비하기 | 기관 연결 신청폼의 필수 동의와 최신 마감 안내를 확인해 11월 3일까지 신청하기
 tags: 홍릉강소특구, DHP2026, 오픈이노베이션, 스타트업, 디지털헬스케어, 바이오창업, 기술협업, PoC, 파트너링

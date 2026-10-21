@@ -3,8 +3,8 @@ title: 화재·폭발 위험 사업장 30일까지 자율점검…11월 감독 �
 slug: fire-explosion-self-check-before-nov-inspection-2026
 category: labor
 author: 유승현 / 사회부 기자
-publishedAt: 2026-10-21 09:15
-eventEndsAt: 2026-11-13 23:59 KST
+publishedAt: 2026-10-21 09:34
+eventEndsAt: 2026-11-13 23:59
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration
@@ -13,7 +13,7 @@ judgment: high
 verificationNote: 고용노동부의 10월 18일 본문과 HWPX·PDF 전체 첨부를 확보하고 이미지형 안전수칙·자율점검표를 열어 대조했다. 개별 사업장의 감독 대상 여부나 안전조치 이행 결과는 확인하지 않았다.
 addedValue: 자율점검과 감독관 현장점검의 기간을 분리하고 첨부 점검표의 작업별 확인항목을 개선 담당자가 정할 수 있도록 풀었다.
 reviewedBy: 모두일보 독립 리뷰 담당
-reviewedAt: 2026-10-21 09:02
+reviewedAt: 2026-10-21 09:21
 reporterInsight: 자율점검과 감독관 점검의 기간이 다르다고 개선 책임이 감독 때부터 생기는 것은 아니다. 작업 위치별 가연물·불티·가스·정전기와 대피시설을 각각 대조해야 한 조치로 모든 위험이 해결됐다고 오해하지 않는다. 미흡사항의 장소와 개선 담당을 기록하되 점검표 자체를 신규 제출 의무로 읽을 필요는 없다.
 readerChecklist: 화기작업 위치별 가연물·불티 차단조치를 확인한다 | 인화성 물질 취급구역의 가스측정·환기·정전기 대책을 대조한다 | 대피로와 소화설비의 사용 가능 상태 및 미흡사항 개선 담당자를 기록한다
 tags: [고용노동부, 산업안전, 화재예방, 폭발예방, 자율점검, 화기작업, 정전기, 비상대피로, 사업장]
