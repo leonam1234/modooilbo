@@ -3,7 +3,7 @@ title: 지방노동감독관, 36개 점검항목으로 실습…5개 지방정�
 slug: local-labor-inspector-practical-training-2026
 category: labor
 author: 류주형 / 취재기자
-publishedAt: 2026-10-26 11:56
+publishedAt: 2026-10-26 12:26
 reporting: desk
 verificationNote: 공식 발표와 기관 첨부 원본을 독립 검수 대상으로 인수했다. 제공 자료의 자체 검증 기록은 최종 독립 판정이 아니며 직접취재로 분류하지 않는다.
 addedValue: 교육과 기관의 감독 준비 점검을 구별하고 실제 위임 시행 전 절차를 설명한다.

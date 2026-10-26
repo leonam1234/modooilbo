@@ -3,7 +3,7 @@ title: 수목원 낙엽·잡초, 퇴비로 다시 쓴다…전국 기관 관리�
 slug: arboretum-garden-waste-compost-cooperation-2026
 category: society
 author: 류주형 / 취재기자
-publishedAt: 2026-10-26 11:59
+publishedAt: 2026-10-26 12:28
 reporting: desk
 verificationNote: 공식 발표와 기관 첨부 원본을 독립 검수 대상으로 인수했다. 제공 자료의 자체 검증 기록은 최종 독립 판정이 아니며 직접취재로 분류하지 않는다.
 addedValue: 연구성과의 공유와 개별 현장 적용의 차이를 설명한다.
@@ -13,10 +13,10 @@ aiRole: research-assist, draft-assist, copyedit, image
 judgment: high
 readerChecklist: 부산물 퇴비화 연구성과의 적용 범위를 확인한다 | 각 수목원의 관리 여건과 기술 적용을 대조한다 | 자원순환과 병해충 정보공유의 역할을 구별한다
 reviewedBy: 모두일보 독립 리뷰 담당
-reviewedAt: 2026-10-26 11:20
-reporterInsight: 수정된 공식 첨부에서10월22~23일 워크숍과 낙엽·잡초 퇴비화 성과 공유, 병해충 정보협력 및 규제 애로 청취를 확인했습니다. 전국 모든 기관에 기술이 이미 적용됐거나 동일 효과가 검증됐다는 주장으로 확대하지 않았습니다. 원뜻은 유지됐지만 따옴표·소제목 보정도 의미 변화 없이 반영됐습니다.
+reviewedAt: 2026-10-26 12:17
+reporterInsight: 새 요약의 22~23일 협력 워크숍, 낙엽·잡초 퇴비화 연구와 병해충 정보 공유, 기관별 적용 여건 논의가 제목·전체 본문과 기존 공식 첨부 검수 범위에 일치합니다. 전국 기관에 기술이 일괄 도입됐거나 같은 효과가 검증됐다는 주장을 추가하지 않았습니다. 이미지도 실제 연구 결과가 아닌 연출이라는 의미가 유지됩니다.
 tags: ["국립수목원","산림청","낙엽퇴비","자원순환","수목원","식물원","병해충","기후변화"]
-summary: 국립수목원 22~23일 워크숍…자원순환과 병해충 정보 공동 대응 논의
+summary: 국립수목원 22~23일 협력 워크숍…낙엽·잡초 퇴비화 연구와 병해충 정보를 공유하고 기관별 적용 여건 논의
 image: /stock/2026-10-26-arboretum-garden-waste-compost-cooperation-2026.jpg
 imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 ---

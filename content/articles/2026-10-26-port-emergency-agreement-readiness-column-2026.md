@@ -3,7 +3,7 @@ title: [칼럼] 항만 비상협약, 참여업체 수 다음에는 연결되는 
 slug: port-emergency-agreement-readiness-column-2026
 category: opinion
 author: 류주형 / 취재기자
-publishedAt: 2026-10-26 12:00
+publishedAt: 2026-10-26 12:28
 reporting: desk
 verificationNote: 공식 발표와 기관 첨부 원본을 독립 검수 대상으로 인수했다. 제공 자료의 자체 검증 기록은 최종 독립 판정이 아니며 직접취재로 분류하지 않는다.
 addedValue: 협약 계획과 실제 연속작업 및 훈련에 관한 필자 제언을 구별한다.

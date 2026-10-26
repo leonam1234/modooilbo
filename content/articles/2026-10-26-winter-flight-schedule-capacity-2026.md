@@ -3,7 +3,7 @@ title: 동계 국제선 44개국·264개 노선…주 최대 5353회 운항 예�
 slug: winter-flight-schedule-capacity-2026
 category: economy
 author: 류주형 / 취재기자
-publishedAt: 2026-10-26 11:59
+publishedAt: 2026-10-26 12:27
 reporting: desk
 verificationNote: 공식 발표와 기관 첨부 원본을 독립 검수 대상으로 인수했다. 제공 자료의 자체 검증 기록은 최종 독립 판정이 아니며 직접취재로 분류하지 않는다.
 addedValue: 인가된 계획과 운항 실적 및 공항별 집계 범위를 구별한다.

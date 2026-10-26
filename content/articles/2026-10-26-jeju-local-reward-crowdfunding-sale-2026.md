@@ -3,7 +3,7 @@ title: 제주 로컬 크라우드펀딩 26일 시작…온라인은 11월 24일�
 slug: jeju-local-reward-crowdfunding-sale-2026
 category: economy
 author: 류주형 / 취재기자
-publishedAt: 2026-10-26 11:59
+publishedAt: 2026-10-26 12:27
 eventEndsAt: 2026-11-24 23:59
 reporting: desk
 verificationNote: 공식 발표와 기관 첨부 원본을 독립 검수 대상으로 인수했다. 제공 자료의 자체 검증 기록은 최종 독립 판정이 아니며 직접취재로 분류하지 않는다.

@@ -3,7 +3,7 @@ title: [칼럼] 해양위성 지원, 사업 종료 뒤에도 현지에서 쓸 �
 slug: marine-satellite-oda-lasting-use-column-2026
 category: opinion
 author: 류주형 / 취재기자
-publishedAt: 2026-10-26 12:00
+publishedAt: 2026-10-26 12:27
 reporting: desk
 verificationNote: 공식 발표와 기관 첨부 원본을 독립 검수 대상으로 인수했다. 제공 자료의 자체 검증 기록은 최종 독립 판정이 아니며 직접취재로 분류하지 않는다.
 addedValue: 공식 사업 사실과 필자의 지속 활용 제언을 구별한다.

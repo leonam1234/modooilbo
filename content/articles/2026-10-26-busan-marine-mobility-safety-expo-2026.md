@@ -3,7 +3,7 @@ title: 해양모빌리티·안전 엑스포 26~28일 부산서…북항 체험�
 slug: busan-marine-mobility-safety-expo-2026
 category: industry
 author: 류주형 / 취재기자
-publishedAt: 2026-10-26 11:59
+publishedAt: 2026-10-26 12:27
 eventEndsAt: 2026-10-28 18:00
 reporting: desk
 verificationNote: 공식 발표와 기관 첨부 원본을 독립 검수 대상으로 인수했다. 제공 자료의 자체 검증 기록은 최종 독립 판정이 아니며 직접취재로 분류하지 않는다.

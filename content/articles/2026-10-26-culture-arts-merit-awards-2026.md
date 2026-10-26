@@ -3,7 +3,7 @@ title: 윤동주·김남조 시인 금관문화훈장 추서…문화예술 유�
 slug: culture-arts-merit-awards-2026
 category: culture
 author: 류주형 / 취재기자
-publishedAt: 2026-10-26 11:56
+publishedAt: 2026-10-26 12:26
 reporting: desk
 verificationNote: 공식 발표와 기관 첨부 원본을 독립 검수 대상으로 인수했다. 제공 자료의 자체 검증 기록은 최종 독립 판정이 아니며 직접취재로 분류하지 않는다.
 addedValue: 문화예술 유공 포상의 부문별 대상과 상훈을 구분한다.

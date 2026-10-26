@@ -3,7 +3,7 @@ title: 사회적기업 청년 일경험 수기 공모…참여기업·청년 총
 slug: social-enterprise-youth-experience-essay-2026
 category: society
 author: 류주형 / 취재기자
-publishedAt: 2026-10-26 11:56
+publishedAt: 2026-10-26 12:26
 eventEndsAt: 2026-11-06 23:59
 reporting: desk
 verificationNote: 공식 발표·기관 공고의 지정 서식 4종과 단일 PDF 제출, 생성형 AI 응모 제한·환수 및 선정작 활용 범위를 원문과 대조한 사실 QA 근거를 인수했다. 공개자료 기반 desk이며 실제 직접취재를 주장하지 않는다.
