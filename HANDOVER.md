@@ -28,6 +28,9 @@
 
 ```bash
 cd ~/GIT/modooilbo
+git branch --show-current       # master 여야 정상 — 코덱스 배포가 메인 체크아웃을 codex/* 브랜치에 두고 가는 일이 있다(10-28).
+                                #   아니면 `git branch -f master origin/master && git switch master`. 그 상태로 `push origin master` 하면
+                                #   낡은 로컬 master 가 밀려 non-fast-forward 로 거부된다(서버가 앞선 게 아니다).
 git log --oneline -3
 git status --porcelain          # 비어야 정상
 git fetch -q origin master && git rev-list --left-right --count HEAD...origin/master  # "0 0" 이어야 정상
