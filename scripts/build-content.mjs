@@ -15,12 +15,15 @@ import { fileURLToPath } from "node:url";
 import { assessEditorialQuality, list as qualityList } from "./lib/editorial-quality.mjs";
 import { normDate } from "./lib/content-date.mjs";
 import { indexFingerprintRow } from "./lib/content-fingerprint.mjs";
+import { scopedSponsoredRole, validateScopedSponsoredFields, sponsorNamesFromSource } from "./lib/sponsored-scope-policy.mjs";
+import {protectedBuildContext} from './lib/protected-build-runtime.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const CONTENT_DIR = join(ROOT, "content", "articles");
 const OUT_TS = join(ROOT, "src", "lib", "content.generated.ts");
 const OUT_NEWEST = join(ROOT, "src", "lib", "newest.generated.ts");
 const STOCK_DIR = join(ROOT, "public", "stock");
+const protectedContext=protectedBuildContext(ROOT);
 
 const VALID_CATEGORIES = [
   "economy", "society", "world", "culture", "sports", "tech", "opinion",
@@ -123,7 +126,7 @@ const PARTNER_SLUGS = (() => {
   try {
     const src = readFileSync(join(ROOT, "src", "lib", "sponsors.ts"), "utf8");
     // 키는 따옴표 유무 둘 다 허용 — 하이픈 slug("bc-mobility")는 TS 객체 키에 따옴표가 필요하다.
-    return new Set([...src.matchAll(/^\s*"?([a-z][a-z0-9-]*)"?\s*:\s*"/gm)].map((m) => m[1]));
+    return sponsorNamesFromSource(src);
   } catch {
     return new Set();
   }
@@ -243,6 +246,9 @@ async function run() {
       continue;
     }
     const { fm, paragraphs } = parse(readFileSync(join(CONTENT_DIR, file), "utf8"));
+    const scopeDay = file.match(/^(\d{4}-\d{2}-\d{2})-/)?.[1] || String(fm.publishedAt || "").slice(0, 10);
+    const scopedErrors = validateScopedSponsoredFields(fm, scopeDay, paragraphs.join("\n\n"));
+    if (scopedErrors.length) { errors.push(...scopedErrors.map(message => `${file}: ${message}`)); continue; }
 
     // 데스크 보류 표시 원고는 발행하지 않는다 — 조용히 넘기지 말고 빌드를 끊는다.
     const status = (fm.status || "").trim();
@@ -293,6 +299,7 @@ async function run() {
 
     // 이미지: image 지정 우선 → 없으면 스톡 다운로드 → 실패 시 카테고리 fallback
     let imageUrl = (fm.image || "").trim();
+    if(!imageUrl&&protectedContext){imageUrl=protectedContext.media.fallbackBySlug?.[slug]||'';if(!imageUrl){errors.push(`${file}: 보호 빌드의 기존 이미지 URL 메타 누락; stock 탐색/다운로드 fallback 금지`);continue;}}
     if (!imageUrl) {
       const dest = join(STOCK_DIR, `${slug}.jpg`);
       let ok = existsSync(dest) && statSync(dest).size > 1000;
@@ -308,7 +315,8 @@ async function run() {
       }
     }
 
-    const [name, role] = (fm.author || "모두일보 / 기자").split("/").map((s) => s.trim());
+    const [name, statedRole] = (fm.author || "모두일보 / 기자").split("/").map((s) => s.trim());
+    const role = scopedSponsoredRole(fm, scopeDay) || statedRole;
     // tags는 콤마 구분 문자열이 규약이지만, YAML 배열 표기(`[a, b]`)로 쓴 기사가 실제로
     // 들어와 첫/끝 태그에 대괄호가 섞인 채 발행됐다(2026-08-14 점검). 감싼 대괄호는 벗긴다.
     const tags = (fm.tags || "").replace(/^\[|\]$/g, "").split(",").map((s) => s.trim()).filter(Boolean);

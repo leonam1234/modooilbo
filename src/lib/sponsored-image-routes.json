@@ -1,0 +1,60 @@
+{
+  "schema": "modoo-sponsored-image-routes-v1",
+  "entries": [
+    {
+      "id": 321,
+      "slug": "rentalwiki-contract-comparison-guide",
+      "logicalPath": "/stock/2026-10-28-rentalwiki-contract-comparison-guide.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-SPONSORED-20261028-321-325/379a461a-9f82-491f-ba32-8d3e217547b9/6939542837858f905633d1eb893355b87e9afe2dacde29d10e10dd4603bfe68e/321.jpg",
+      "sha256": "6939542837858f905633d1eb893355b87e9afe2dacde29d10e10dd4603bfe68e",
+      "bytes": 78329,
+      "workId": "MOD-SPONSORED-20261028-321-325",
+      "uploadReceiptSHA256": "f297aa03423c58426eec40b1d2680bf98cb36875a950a5b748a6f169312450b1",
+      "nativeReceiptSHA256": "b4a20ec305e4b1fd34c5a00e0f84077d3dd9831c7060689790da3c309e604014"
+    },
+    {
+      "id": 322,
+      "slug": "dubomflower-flower-store-preview",
+      "logicalPath": "/stock/2026-10-28-dubomflower-flower-store-preview.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-SPONSORED-20261028-321-325/379a461a-9f82-491f-ba32-8d3e217547b9/89c0028be2db6e8af2adb2938d2afe7d70b6185203cbab4930dfdc97ae1532ad/322.jpg",
+      "sha256": "89c0028be2db6e8af2adb2938d2afe7d70b6185203cbab4930dfdc97ae1532ad",
+      "bytes": 114190,
+      "workId": "MOD-SPONSORED-20261028-321-325",
+      "uploadReceiptSHA256": "f297aa03423c58426eec40b1d2680bf98cb36875a950a5b748a6f169312450b1",
+      "nativeReceiptSHA256": "b4a20ec305e4b1fd34c5a00e0f84077d3dd9831c7060689790da3c309e604014"
+    },
+    {
+      "id": 323,
+      "slug": "brandmap-search-ai-observation-beta",
+      "logicalPath": "/stock/2026-10-28-brandmap-search-ai-observation-beta.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-SPONSORED-20261028-321-325/379a461a-9f82-491f-ba32-8d3e217547b9/d075cb2f98eb934f316e3cb739a4bfeae6a6d40339560f4ce39f58715ba09ade/323.jpg",
+      "sha256": "d075cb2f98eb934f316e3cb739a4bfeae6a6d40339560f4ce39f58715ba09ade",
+      "bytes": 87098,
+      "workId": "MOD-SPONSORED-20261028-321-325",
+      "uploadReceiptSHA256": "f297aa03423c58426eec40b1d2680bf98cb36875a950a5b748a6f169312450b1",
+      "nativeReceiptSHA256": "b4a20ec305e4b1fd34c5a00e0f84077d3dd9831c7060689790da3c309e604014"
+    },
+    {
+      "id": 324,
+      "slug": "grochi-pet-information-source-guide",
+      "logicalPath": "/stock/2026-10-28-grochi-pet-information-source-guide.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-SPONSORED-20261028-321-325/379a461a-9f82-491f-ba32-8d3e217547b9/c46bd1048b286905edb376a6eb0b5f4d17d5dbbb5072fa237ade89e8806f737d/324.jpg",
+      "sha256": "c46bd1048b286905edb376a6eb0b5f4d17d5dbbb5072fa237ade89e8806f737d",
+      "bytes": 95903,
+      "workId": "MOD-SPONSORED-20261028-321-325",
+      "uploadReceiptSHA256": "f297aa03423c58426eec40b1d2680bf98cb36875a950a5b748a6f169312450b1",
+      "nativeReceiptSHA256": "b4a20ec305e4b1fd34c5a00e0f84077d3dd9831c7060689790da3c309e604014"
+    },
+    {
+      "id": 325,
+      "slug": "worktool-business-software-comparison",
+      "logicalPath": "/stock/2026-10-28-worktool-business-software-comparison.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-SPONSORED-20261028-321-325/379a461a-9f82-491f-ba32-8d3e217547b9/3ae1af9122c7976d00b883fbaf570be3cc405bb87aa1019517508cab4c2b4820/325.jpg",
+      "sha256": "3ae1af9122c7976d00b883fbaf570be3cc405bb87aa1019517508cab4c2b4820",
+      "bytes": 85815,
+      "workId": "MOD-SPONSORED-20261028-321-325",
+      "uploadReceiptSHA256": "f297aa03423c58426eec40b1d2680bf98cb36875a950a5b748a6f169312450b1",
+      "nativeReceiptSHA256": "b4a20ec305e4b1fd34c5a00e0f84077d3dd9831c7060689790da3c309e604014"
+    }
+  ]
+}

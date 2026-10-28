@@ -1,5 +1,7 @@
 import type { ArticleCardItem } from "./types";
 import webpManifest from "./webp-manifest.generated.json";
+import { SPONSORED_SOURCE_IMAGE_KEYS } from "./sponsors";
+import { sponsoredImageRoute } from "./sponsored-image-routing";
 
 // prebuild(scripts/convert-webp.mjs)가 생성 — webp가 실존하는 스톡 jpg 목록
 const WEBP_SET = new Set<string>(webpManifest as string[]);
@@ -19,6 +21,7 @@ const STOCK_BASE = (process.env.NEXT_PUBLIC_STOCK_BASE ?? "https://img.modooilbo
 
 /** `/stock/foo.jpg?v=1` → `https://img.modooilbo.com/foo.jpg?v=1` (base가 비면 원본 경로 유지) */
 export function stockUrl(path: string): string {
+  const owned=sponsoredImageRoute(path);if(owned)return owned.publicURL;
   if (!STOCK_BASE || !path.startsWith("/stock/")) return path;
   return STOCK_BASE + path.slice("/stock".length);
 }
@@ -26,7 +29,7 @@ export function stockUrl(path: string): string {
 /** /stock/x.jpg → 같은 이름의 .webp (변환본이 있을 때만). 그 외 URL은 그대로. */
 export function webpSrc(url: string): string {
   const m = url.match(/^\/stock\/([^/?]+\.jpg)(\?.*)?$/);
-  if (m && WEBP_SET.has(m[1])) return `/stock/${m[1].replace(/\.jpg$/, ".webp")}${m[2] ?? ""}`;
+  if (m && !SPONSORED_SOURCE_IMAGE_KEYS.has(m[1]) && WEBP_SET.has(m[1])) return `/stock/${m[1].replace(/\.jpg$/, ".webp")}${m[2] ?? ""}`;
   return url;
 }
 
@@ -63,7 +66,7 @@ export function displayImageUrl(article: ArticleCardItem): string {
 export function thumbImageUrl(article: ArticleCardItem): string {
   const raw = isPlaceholderImage(article.imageUrl) ? `/stock/${article.id}.jpg` : article.imageUrl!;
   const m = raw.match(/^\/stock\/([^/?]+)\.jpg$/);
-  if (m && WEBP_SET.has(`${m[1]}.jpg`)) return stockUrl(`/stock/${m[1]}-640.webp?v=${STOCK_VERSION}`);
+  if (m && !SPONSORED_SOURCE_IMAGE_KEYS.has(`${m[1]}.jpg`) && WEBP_SET.has(`${m[1]}.jpg`)) return stockUrl(`/stock/${m[1]}-640.webp?v=${STOCK_VERSION}`);
   return displayImageUrl(article);
 }
 

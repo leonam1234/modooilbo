@@ -99,6 +99,7 @@ export function sealReleaseArtifact({
   commitMessage,
   wranglerVersion,
   stockRollback,
+  protectedBuild = null,
   now = new Date(),
 }) {
   if (!FULL_COMMIT_RE.test(commit)) throw new Error("release commit must be a full hexadecimal SHA");
@@ -127,7 +128,8 @@ export function sealReleaseArtifact({
       expiresAt,
       wranglerVersion,
       stockRollback: Boolean(stockRollback),
-      gates: { cleanTree: true, sameHead: true, functionsTypecheck: true, build: true, r2Prepared: true },
+      ...(protectedBuild ? { protectedBuild } : {}),
+      gates: { cleanTree: !protectedBuild, sourceAtPinnedCommitAttested: Boolean(protectedBuild), sameHead: true, functionsTypecheck: true, build: true, r2Prepared: true },
       ...source,
     };
     const manifest = { schemaVersion: RELEASE_SCHEMA_VERSION, seal, sealHash: sha256(stableJson(seal)), preview: null, production: null };

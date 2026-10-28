@@ -29,6 +29,8 @@ import {
   verifyReleaseArtifact,
 } from "./release-artifact.mjs";
 import { assertProductionRemoteMatch, parseRemoteBranchHead, r2SyncArgs } from "./deploy-safety.mjs";
+import { runProtectedBuild, validateProtectedBuild } from './protected-build.mjs';
+import {pinnedJSON,regularBytes} from './lib/protected-io.mjs';
 
 // ── 프로젝트 설정 ────────────────────────────────────────────
 const PROJECT = "modooilbo"; // Cloudflare Pages project name
@@ -54,6 +56,14 @@ function optionValue(name) {
   return args.find((arg) => arg.startsWith(prefix))?.slice(prefix.length);
 }
 const reuseArtifactId = optionValue("--reuse-artifact");
+const r2SelectedManifest = optionValue("--r2-selected-manifest");
+const r2SelectedManifestSHA256 = optionValue("--r2-selected-manifest-sha256");
+const protectedBuildFile = optionValue('--protected-build-manifest');
+const protectedBuildSHA256 = optionValue('--protected-build-manifest-sha256');
+const protectedRef = protectedBuildFile ? {file:protectedBuildFile,sha256:protectedBuildSHA256} : null;
+if ((protectedBuildFile || protectedBuildSHA256) && (!protectedBuildFile || !/^[a-f0-9]{64}$/.test(protectedBuildSHA256||'') || (!buildOnce&&!reuseArtifactId) || process.env.NEXT_PUBLIC_STOCK_BASE==='')) {
+ console.error('보호 빌드는 SHA 고정 명세와 build-once Preview 또는 same-artifact Production이 필요합니다.');process.exit(1);
+}
 const reuseArtifactRequested = args.some((arg) => arg === "--reuse-artifact" || arg.startsWith("--reuse-artifact="));
 
 if (reuseArtifactRequested && (!reuseArtifactId || reuseArtifactId.startsWith("--"))) {
@@ -80,6 +90,14 @@ if (reuseArtifactId && !smokeApproved) {
 if (smokeApproved && !reuseArtifactId) {
   console.error("\n✖ --smoke-approved 는 --reuse-artifact 와 함께 사용하세요.\n");
   process.exit(1);
+}
+
+// Fail before build/R2 side effects; same sealed-artifact promotion still skips R2.
+if (!reuseArtifactId && !protectedRef && process.env.NEXT_PUBLIC_STOCK_BASE !== "") {
+  try { r2SyncArgs("sync-stock-r2.mjs", { isProd: env === "prod", selectedManifest: r2SelectedManifest, selectedManifestSHA256: r2SelectedManifestSHA256 }); }
+  catch (error) { console.error(`\n✖ ${error.message}\n`); process.exit(1); }
+  const selected=pinnedJSON({file:r2SelectedManifest,sha256:r2SelectedManifestSHA256},dirname(r2SelectedManifest));
+  if(selected.workId==='MOD-SPONSORED-20261028-321-325')throw Error('광고321~325는 보호 빌드 명세 경로만 허용합니다. 원래 checkout의 일반 빌드로 진행하지 않습니다.');
 }
 
 function git(...a) {
@@ -122,9 +140,23 @@ const gitBranch = git("rev-parse", "--abbrev-ref", "HEAD");
 const commit = git("rev-parse", "HEAD");
 const shortCommit = commit.slice(0, 7);
 const commitMsg = git("log", "-1", "--pretty=%s");
-const porcelain = git("status", "--porcelain");
+// Protected mode uses an explicit publisher attestation and pinned tools/CMS
+// source boundary; broad git status can hash protected originals. It is NOT
+// reported as an independently measured clean tree.
+function sourceChanged() {
+ if(!protectedRef)return Boolean(git('status','--porcelain'));
+ const {p}=validateProtectedBuild(protectedRef,{siteRoot:resolve(REPO),targetRevision:commit});
+ const branch=git('rev-parse','--abbrev-ref','HEAD');
+ return p.targetBranch!==branch && !(env==='prod'&&reuseArtifactId&&branch===PROD_BRANCH);
+}
 const gitCommonDir = git("rev-parse", "--git-common-dir");
 const releaseRoot = releaseStorePath(REPO, gitCommonDir);
+if(reuseArtifactId&&!protectedRef){
+ if(!/^[A-Za-z0-9-]+$/.test(reuseArtifactId))throw Error('Invalid release id');
+ const previous=JSON.parse(regularBytes(join(releaseRoot,reuseArtifactId,'manifest.json')));
+ if(previous.seal?.protectedBuild)throw Error('보호 artifact 승급에도 같은 보호 빌드 명세가 필요합니다. 전체 git status는 실행하지 않았습니다.');
+}
+const porcelain = protectedRef ? (sourceChanged() ? '보호 source commit/branch 불일치' : '') : git("status", "--porcelain");
 
 const isProd = env === "prod";
 const cfEnv = isProd ? "Production" : "Preview";
@@ -213,6 +245,7 @@ if (reuseArtifactId) {
     expectedWranglerVersion: wranglerVersion,
   });
   deployDirectory = release.artifactDir;
+  if(Boolean(release.manifest.seal.protectedBuild)!==Boolean(protectedRef)||protectedRef&&(release.manifest.seal.protectedBuild.manifestSHA256!==protectedRef.sha256))throw Error('봉인 보호 빌드 명세 불일치');
   stockRollback = release.manifest.seal.stockRollback;
   console.log(`\n▶ 봉인 산출물 검증 PASS`);
   console.log(`  release id : ${reuseArtifactId}`);
@@ -220,6 +253,12 @@ if (reuseArtifactId) {
   console.log(`  Preview    : ${release.manifest.preview.url}`);
   console.log("  build/R2/prune 생략 — Preview에 올린 동일 out/ 재사용");
 } else {
+  let protectedResult;
+  if(protectedRef){
+    protectedResult=runProtectedBuild(protectedRef,{siteRoot:resolve(REPO),targetRevision:commit});
+    deployDirectory=protectedResult.artifactDir;stockRollback=false;
+    console.log('보호 source view 정상 build/postbuild 완료; 업로드 수령증 재사용, 추가 R2/prune 없음');
+  } else {
   // functions/는 next build가 타입체크하지 않는다(정적 export + Pages 런타임 로드).
   console.log(`\n▶ functions 타입체크 (tsc -p tsconfig.functions.json) ...`);
   execFileSync(join(BIN, "tsc"), ["-p", "tsconfig.functions.json"], { cwd: REPO, stdio: "inherit" });
@@ -234,16 +273,17 @@ if (reuseArtifactId) {
     console.log(`\n▶ 신규 스톡 이미지 R2 업로드 ...`);
     execFileSync(
       "node",
-      r2SyncArgs(join(REPO, "scripts", "sync-stock-r2.mjs"), { isProd }),
+      r2SyncArgs(join(REPO, "scripts", "sync-stock-r2.mjs"), { isProd, selectedManifest: r2SelectedManifest, selectedManifestSHA256: r2SelectedManifestSHA256, targetRevision: commit }),
       { cwd: REPO, stdio: "inherit" },
     );
     console.log(`\n▶ 스톡 이미지 제외 (R2에서 서빙) ...`);
     execFileSync("node", [join(REPO, "scripts", "prune-stock.mjs")], { cwd: REPO, stdio: "inherit" });
   }
 
+  }
   if (buildOnce) {
     const afterHead = git("rev-parse", "HEAD");
-    const afterStatus = git("status", "--porcelain");
+    const afterStatus = sourceChanged();
     if (afterHead !== commit || afterStatus) {
       console.error("\n✖ 빌드 중 HEAD 또는 워킹트리가 바뀌어 산출물을 봉인하지 않습니다.\n");
       process.exit(1);
@@ -257,6 +297,7 @@ if (reuseArtifactId) {
       commitMessage: commitMsg,
       wranglerVersion,
       stockRollback,
+      protectedBuild:protectedRef?{manifestSHA256:protectedRef.sha256,buildReceipt:protectedResult.buildReceipt,mappingSHA256:validateProtectedBuild(protectedRef,{siteRoot:resolve(REPO),targetRevision:commit}).p.mappingSHA256,model:'COOPERATIVE_PINNED_SOURCE_VIEW'}:null,
     });
     deployDirectory = release.artifactDir;
     release = verifyReleaseArtifact({
@@ -294,7 +335,7 @@ if (reuseArtifactId) {
 }
 
 // 3) 배포 (출력 캡처 → URL 파싱) ──────────────────────────────
-if (release && (git("rev-parse", "HEAD") !== commit || git("status", "--porcelain"))) {
+if (release && (git("rev-parse", "HEAD") !== commit || sourceChanged())) {
   console.error("\n✖ 배포 직전 HEAD 또는 워킹트리가 바뀌어 봉인 산출물 배포를 중단합니다.\n");
   process.exit(1);
 }
@@ -325,7 +366,7 @@ const urls = [...out.matchAll(/https?:\/\/[^\s]*\.pages\.dev[^\s]*/g)].map((m) =
 const url = urls[urls.length - 1] || null;
 
 if (release) {
-  if (git("rev-parse", "HEAD") !== commit || git("status", "--porcelain")) {
+  if (git("rev-parse", "HEAD") !== commit || sourceChanged()) {
     console.error("\n✖ 배포 중 HEAD 또는 워킹트리가 바뀌었습니다. 이 배포는 승급 영수증으로 기록하지 않습니다.\n");
     process.exit(1);
   }

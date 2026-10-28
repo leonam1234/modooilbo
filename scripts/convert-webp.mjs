@@ -12,10 +12,13 @@
 import { readdirSync, statSync, writeFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import {protectedBuildContext} from './lib/protected-build-runtime.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const STOCK = join(ROOT, "public", "stock");
 const MANIFEST = join(ROOT, "src", "lib", "webp-manifest.generated.json");
+const protectedContext=protectedBuildContext(ROOT);
+if(protectedContext){writeFileSync(MANIFEST,JSON.stringify(protectedContext.webpFiles)+'\n');console.log('[webp] 보호 빌드: 봉인된 기존 manifest 재사용; 기존/신규 stock 변환0');process.exit(0);}
 
 let sharp = null;
 try {

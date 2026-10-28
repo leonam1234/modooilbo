@@ -28,6 +28,11 @@ export function assertProductionRemoteMatch({ localHead, trackingHead, remoteHea
   return localHead;
 }
 
-export function r2SyncArgs(scriptPath, { isProd }) {
-  return [scriptPath, ...(isProd ? [] : ["--preview"])];
+export function r2SyncArgs(scriptPath, { isProd, selectedManifest, selectedManifestSHA256, targetRevision }) {
+  if (!selectedManifest || selectedManifest.startsWith("--") || !/^[a-f0-9]{64}$/.test(selectedManifestSHA256 || "")) {
+    throw new Error("정상 배포에는 --r2-selected-manifest와 --r2-selected-manifest-sha256가 필요합니다. 기존 전체 R2 동기화 fallback은 금지합니다.");
+  }
+  if (targetRevision && !/^[a-f0-9]{40}$/.test(targetRevision)) throw new Error("R2 현재 target revision 오류");
+  return [scriptPath, "--selected-manifest", selectedManifest, "--selected-manifest-sha256", selectedManifestSHA256,
+    ...(targetRevision ? ["--target-revision", targetRevision] : []), ...(isProd ? [] : ["--preview"])];
 }

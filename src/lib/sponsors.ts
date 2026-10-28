@@ -20,16 +20,28 @@
  * 반드시 relation 을 채운다 — 비워 두면 "숨겼다"가 된다.
  *
  * ⚠️ scripts/build-content.mjs 가 이 파일에서 `키: "값",` 꼴(따옴표 키 `"bc-mobility": "값",` 도 됨)을
- *    한 줄 한 항목으로 정규식 읽기 한다(두 객체 모두). 형식이 깨져 목록이 비면 sponsor: 가 있는
+ *    한 줄 한 항목으로 SPONSOR_NAMES 객체에서만 읽는다. 관계 고지 키는 광고주 등록을 대신하지 않는다. 형식이 깨져 목록이 비면 sponsor: 가 있는
  *    원고는 전부 빌드 실패한다 — 조용히 통과하지 않는다.
  */
 export const SPONSOR_NAMES: Record<string, string> = {
   bridzzi: "(주)브리찌",
+  // MOD-SPONSOR-BRAND-DISPLAY-20261028-v1: 승인5편의 확인된 유료 의뢰/브랜드 표시 한정 예외.
+  // 표시명이며 법인·서명계약 인증 또는 다른 원고의 포괄 광고주 승인이 아니다.
+  rentalwiki: "렌탈위키",
+  dubomflower: "두봄플라워",
+  brandmap: "브랜드맵",
+  grochi: "그로치",
+  worktool: "WorkTool",
 };
 
 /** 광고주와 모두일보의 이해관계. 있으면 고지 박스가 무조건 출력한다. */
 export const SPONSOR_RELATIONS: Record<string, string> = {
   bridzzi: "(주)브리찌는 모두일보 발행인이 관여하는 회사입니다.",
+  rentalwiki: "브랜드 담당자의 의뢰로 비용을 받아 제작한 광고 콘텐츠입니다.",
+  dubomflower: "사이트 운영사는 주식회사 브리찌이며, 주식회사 브리찌는 모두일보 발행인이 관여하는 회사입니다.",
+  brandmap: "브랜드 담당자의 의뢰로 비용을 받아 제작한 광고 콘텐츠입니다.",
+  grochi: "브랜드 담당자의 의뢰로 비용을 받아 제작한 광고 콘텐츠입니다.",
+  worktool: "브랜드 담당자의 의뢰로 비용을 받아 제작한 광고 콘텐츠입니다.",
 };
 
 /** 광고주 slug → 상호. 모르는 slug 는 그대로 돌려준다(표시 자체는 절대 생략하지 않는다). */
@@ -41,3 +53,12 @@ export function sponsorName(slug: string): string {
 export function sponsorRelation(slug: string): string | undefined {
   return SPONSOR_RELATIONS[slug];
 }
+
+// 이번 신규5 R2 계약은 검수된 JPG만 생성한다. 미업로드 파생 WebP를 참조하지 않는다.
+export const SPONSORED_SOURCE_IMAGE_KEYS = new Set([
+  "2026-10-28-rentalwiki-contract-comparison-guide.jpg",
+  "2026-10-28-dubomflower-flower-store-preview.jpg",
+  "2026-10-28-brandmap-search-ai-observation-beta.jpg",
+  "2026-10-28-grochi-pet-information-source-guide.jpg",
+  "2026-10-28-worktool-business-software-comparison.jpg",
+]);
