@@ -29,6 +29,7 @@ import { promisify } from "node:util";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { runSelectedR2CLI } from "./selected-r2-sync.mjs";
 import {
   acquireR2SyncLease,
   assertNoUnversionedStockReplacements,
@@ -41,6 +42,16 @@ import {
 } from "./r2-sync-cache.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+// Must branch before cache discovery, stock inventory, local hashes or legacy probes.
+if (process.argv.some(arg => arg === "--selected-manifest" || arg === "--selected-manifest-sha256")) {
+  try { process.exitCode = await runSelectedR2CLI(process.argv.slice(2), { siteRoot: ROOT }); }
+  catch (error) { console.error(String(error.message).slice(0, 1000)); process.exitCode = 1; }
+  process.exit(process.exitCode || 0);
+}
+if (!process.argv.includes("--legacy-full-scan")) {
+  console.error("✖ 정상 배포에는 고정된 선택 신규이미지 명세가 필요합니다. 전체 stock 스캔은 자동 실행하지 않습니다.");
+  process.exit(1);
+}
 const STOCK = join(ROOT, "public", "stock");
 const BIN = join(ROOT, "node_modules", ".bin");
 const CACHE_CONFIG = discoverR2Cache(ROOT);

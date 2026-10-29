@@ -17,6 +17,7 @@ import { normDate } from "./lib/content-date.mjs";
 import { indexFingerprintRow } from "./lib/content-fingerprint.mjs";
 import { scopedSponsoredRole, validateScopedSponsoredFields, sponsorNamesFromSource } from "./lib/sponsored-scope-policy.mjs";
 import {protectedBuildContext} from './lib/protected-build-runtime.mjs';
+import {mergeSelectedContent} from './lib/selected-content-merge.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const CONTENT_DIR = join(ROOT, "content", "articles");
@@ -219,6 +220,7 @@ async function download(url, dest, tries = 3) {
 async function run() {
   mkdirSync(STOCK_DIR, { recursive: true });
   if (!existsSync(CONTENT_DIR)) {
+    if(protectedContext?.selectedContent)throw Error('selected content merge: selected CMS directory missing');
     writeFileSync(OUT_TS, header() + "export const CONTENT_ARTICLES: Article[] = [];\n");
     console.log("content/articles 없음 → 빈 데이터 생성");
     return;
@@ -501,7 +503,8 @@ async function run() {
     console.log(`  ✓ ${slug} [${category}] "${fm.title.trim()}"`);
   }
 
-  const minuteCounts = qualityInputs.reduce((map, row) => {
+  const outputArticles=protectedContext?.selectedContent?mergeSelectedContent(protectedContext,ROOT,articles):articles;
+  const minuteCounts = outputArticles.reduce((map, row) => {
     const minute = row.publishedAt.slice(0, 16);
     map.set(minute, (map.get(minute) || 0) + 1);
     return map;
@@ -523,8 +526,8 @@ async function run() {
     for (const w of warnings) console.warn(`  • ${w}`);
   }
 
-  writeFileSync(OUT_TS, header() + `export const CONTENT_ARTICLES: Article[] = ${JSON.stringify(articles, null, 2)};\n`);
-  console.log(`완료: 콘텐츠 기사 ${articles.length}건 → src/lib/content.generated.ts`);
+  writeFileSync(OUT_TS, header() + `export const CONTENT_ARTICLES: Article[] = ${JSON.stringify(outputArticles, null, 2)};\n`);
+  console.log(`완료: 콘텐츠 기사 ${outputArticles.length}건 → src/lib/content.generated.ts`);
 
   // 예약 스킵은 정상 기능이지만 **조용히** 지나가면 안 된다. 발행 담당이 "24편 올렸다"고
   // 믿는 사이 실제로는 20편만 나가는 사고가 실제로 났다 → 끝에서 눈에 띄게 다시 알린다.
@@ -536,7 +539,7 @@ async function run() {
     );
   }
 
-  writeFileSync(OUT_NEWEST, newestModule(articles));
+  writeFileSync(OUT_NEWEST, newestModule(outputArticles));
   console.log(`완료: 최신 발행시각 → src/lib/newest.generated.ts`);
 }
 

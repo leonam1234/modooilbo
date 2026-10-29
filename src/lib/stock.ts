@@ -28,6 +28,7 @@ export function stockUrl(path: string): string {
 
 /** /stock/x.jpg → 같은 이름의 .webp (변환본이 있을 때만). 그 외 URL은 그대로. */
 export function webpSrc(url: string): string {
+  if(sponsoredImageRoute(url)) return url;
   const m = url.match(/^\/stock\/([^/?]+\.jpg)(\?.*)?$/);
   if (m && !SPONSORED_SOURCE_IMAGE_KEYS.has(m[1]) && WEBP_SET.has(m[1])) return `/stock/${m[1].replace(/\.jpg$/, ".webp")}${m[2] ?? ""}`;
   return url;
@@ -65,6 +66,7 @@ export function displayImageUrl(article: ArticleCardItem): string {
  *  큰 카드(feature)·히어로·상세는 displayImageUrl(원본)을 쓸 것. */
 export function thumbImageUrl(article: ArticleCardItem): string {
   const raw = isPlaceholderImage(article.imageUrl) ? `/stock/${article.id}.jpg` : article.imageUrl!;
+  if(sponsoredImageRoute(raw)) return displayImageUrl(article);
   const m = raw.match(/^\/stock\/([^/?]+)\.jpg$/);
   if (m && !SPONSORED_SOURCE_IMAGE_KEYS.has(`${m[1]}.jpg`) && WEBP_SET.has(`${m[1]}.jpg`)) return stockUrl(`/stock/${m[1]}-640.webp?v=${STOCK_VERSION}`);
   return displayImageUrl(article);
