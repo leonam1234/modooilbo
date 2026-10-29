@@ -55,6 +55,61 @@
       "workId": "MOD-SPONSORED-20261028-321-325",
       "uploadReceiptSHA256": "f297aa03423c58426eec40b1d2680bf98cb36875a950a5b748a6f169312450b1",
       "nativeReceiptSHA256": "b4a20ec305e4b1fd34c5a00e0f84077d3dd9831c7060689790da3c309e604014"
+    },
+    {
+      "id": "G1",
+      "slug": "gangjin-midcareer-hiring-retention-2026",
+      "logicalPath": "/stock/2026-10-29-gangjin-midcareer-hiring-retention-2026.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261029-RELEASE/0b41c270-c928-45d3-ac69-3e65e7dcedb9/93c1872ed1e76b996cbb1a90944175aa5befe6990fb7ea2afded102d4b7ab6c3/G1.jpg",
+      "sha256": "93c1872ed1e76b996cbb1a90944175aa5befe6990fb7ea2afded102d4b7ab6c3",
+      "bytes": 256168,
+      "workId": "MOD-DAILY-20261029-RELEASE",
+      "uploadReceiptSHA256": "4ee6e96221186bfe161a178cd6e460295206c71c4ba3e04c6c27c7b15b6c39de",
+      "nativeReceiptSHA256": "5a43baecfd5c1d2ebb7baecd31cb5619ffd46057fef92b173d2143c8cea91805"
+    },
+    {
+      "id": "G2",
+      "slug": "jeju-winter-vegetable-export-packaging-2026",
+      "logicalPath": "/stock/2026-10-29-jeju-winter-vegetable-export-packaging-2026.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261029-RELEASE/0b41c270-c928-45d3-ac69-3e65e7dcedb9/b76983f09ed0d1c01560644f3865301f87158c96e9dd34158ef4236279bc02ff/G2.jpg",
+      "sha256": "b76983f09ed0d1c01560644f3865301f87158c96e9dd34158ef4236279bc02ff",
+      "bytes": 328687,
+      "workId": "MOD-DAILY-20261029-RELEASE",
+      "uploadReceiptSHA256": "4ee6e96221186bfe161a178cd6e460295206c71c4ba3e04c6c27c7b15b6c39de",
+      "nativeReceiptSHA256": "5a43baecfd5c1d2ebb7baecd31cb5619ffd46057fef92b173d2143c8cea91805"
+    },
+    {
+      "id": "L1",
+      "slug": "ex-capital-snow-road-worker-recruitment",
+      "logicalPath": "/stock/2026-10-29-ex-capital-snow-road-worker-recruitment.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261029-RELEASE/0b41c270-c928-45d3-ac69-3e65e7dcedb9/55799ba27094deb7082c24aff4764488f83944947649cd92b4f4d26269715a8b/L1.jpg",
+      "sha256": "55799ba27094deb7082c24aff4764488f83944947649cd92b4f4d26269715a8b",
+      "bytes": 317390,
+      "workId": "MOD-DAILY-20261029-RELEASE",
+      "uploadReceiptSHA256": "4ee6e96221186bfe161a178cd6e460295206c71c4ba3e04c6c27c7b15b6c39de",
+      "nativeReceiptSHA256": "5a43baecfd5c1d2ebb7baecd31cb5619ffd46057fef92b173d2143c8cea91805"
+    },
+    {
+      "id": "D1",
+      "slug": "finetek-oled-vietnam-delivery-payment-contract",
+      "logicalPath": "/stock/2026-10-29-finetek-oled-vietnam-delivery-payment-contract.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261029-RELEASE/0b41c270-c928-45d3-ac69-3e65e7dcedb9/01988e874b0128442ad16d0bb1725c08cfd8ca342a94657d48ae032ce279b0af/D1.jpg",
+      "sha256": "01988e874b0128442ad16d0bb1725c08cfd8ca342a94657d48ae032ce279b0af",
+      "bytes": 269791,
+      "workId": "MOD-DAILY-20261029-RELEASE",
+      "uploadReceiptSHA256": "4ee6e96221186bfe161a178cd6e460295206c71c4ba3e04c6c27c7b15b6c39de",
+      "nativeReceiptSHA256": "5a43baecfd5c1d2ebb7baecd31cb5619ffd46057fef92b173d2143c8cea91805"
+    },
+    {
+      "id": "D2",
+      "slug": "namkwang-west-seoul-power-tunnel-contract-revision",
+      "logicalPath": "/stock/2026-10-29-namkwang-west-seoul-power-tunnel-contract-revision.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261029-RELEASE/0b41c270-c928-45d3-ac69-3e65e7dcedb9/6730b6a0e5287d614e60a56b8c5e55f82b9afa7e50021d172c7e2523884e87f7/D2.jpg",
+      "sha256": "6730b6a0e5287d614e60a56b8c5e55f82b9afa7e50021d172c7e2523884e87f7",
+      "bytes": 215010,
+      "workId": "MOD-DAILY-20261029-RELEASE",
+      "uploadReceiptSHA256": "4ee6e96221186bfe161a178cd6e460295206c71c4ba3e04c6c27c7b15b6c39de",
+      "nativeReceiptSHA256": "5a43baecfd5c1d2ebb7baecd31cb5619ffd46057fef92b173d2143c8cea91805"
     }
   ]
 }
