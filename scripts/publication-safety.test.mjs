@@ -17,6 +17,7 @@ function buildFixture(fields) {
     }
     fs.copyFileSync(path.join(root, 'scripts/build-content.mjs'), path.join(scratch, 'scripts/build-content.mjs'));
     fs.cpSync(path.join(root, 'scripts/lib'), path.join(scratch, 'scripts/lib'), { recursive: true });
+    fs.copyFileSync(path.join(root, 'scripts/selected-r2-sync.mjs'), path.join(scratch, 'scripts/selected-r2-sync.mjs'));
     fs.writeFileSync(path.join(scratch, 'src/lib/reporters.ts'), 'export const reporters = [];');
     fs.writeFileSync(path.join(scratch, 'content/articles/2026-08-01-safety-fixture.md'),
       `---\ntitle: 출고 안전장치 검증\ncategory: society\nauthor: 테스트 / 기자\nimage: /stock/test.jpg\nsummary: 발행 보류가 최종 빌드에서도 차단되는지 검증한다.\n${fields}\n---\n\n독자에게 전달할 기사 본문이다.\n`);

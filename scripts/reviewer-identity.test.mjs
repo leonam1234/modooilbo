@@ -18,6 +18,7 @@ function buildWithReviewer(reviewer) {
     for (const dir of ['scripts/lib','src/lib','content/articles']) fs.mkdirSync(path.join(scratch,dir),{recursive:true});
     fs.copyFileSync(path.join(root,'scripts/build-content.mjs'),path.join(scratch,'scripts/build-content.mjs'));
     fs.cpSync(path.join(root,'scripts/lib'),path.join(scratch,'scripts/lib'),{recursive:true});
+    fs.copyFileSync(path.join(root,'scripts/selected-r2-sync.mjs'),path.join(scratch,'scripts/selected-r2-sync.mjs'));
     fs.writeFileSync(path.join(scratch,'src/lib/reporters.ts'),'export const reporters = [{ name: "김영환" }];');
     fs.writeFileSync(path.join(scratch,'content/articles/2026-08-01-reviewer-fixture.md'),`---\ntitle: 검수 주체 보존 회귀\ncategory: society\nauthor: 테스트 기자 / 기자\npublishedAt: 2026-08-01 09:00\nimage: /stock/test.jpg\nsummary: 검수자 명칭이 실제 생성 데이터까지 보존되는지 확인한다.\nreviewedBy: ${reviewer}\nreviewedAt: 2026-08-01 08:40\n---\n\n검수 기록은 실제 검수 주체를 보존해야 한다.\n`);
     const result = spawnSync(process.execPath,['scripts/build-content.mjs'],{cwd:scratch,encoding:'utf8',timeout:15_000});
