@@ -4,7 +4,7 @@ import path from 'node:path';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {digest,isSHA,sameSet,safeDir,regularBytes,pinnedJSON,saveNewJSON} from './lib/protected-io.mjs';
-import {releaseMediaScope,registryEntries} from './lib/release-media-scope.mjs';
+import {releaseMediaScope,registryEntries,ownedUploadStatus} from './lib/release-media-scope.mjs';
 import {dailyBuildInputs,parseDerivedArticles} from './lib/selected-content-merge.mjs';
 export const PROTECTED_BUILD_TOOLS=['package.json','package-lock.json','next.config.mjs','tsconfig.json','tsconfig.functions.json','scripts/protected-build.mjs','scripts/protected-build-guard.cjs','scripts/lib/protected-io.mjs','scripts/lib/protected-build-runtime.mjs','scripts/lib/core-artifact.mjs','scripts/lib/sponsored-scope-policy.mjs','scripts/namespace-r2.mjs','scripts/selected-r2-sync.mjs','scripts/build-content.mjs','scripts/build-trending-data.mjs','scripts/convert-webp.mjs','scripts/deploy.mjs','scripts/deploy-safety.mjs','scripts/release-artifact.mjs','src/lib/stock.ts','src/lib/sponsors.ts','src/lib/sponsored-image-routing.ts','src/lib/protected-media-size.ts','src/app/rss.xml/route.ts'];
 const fail=m=>{throw Error('보호 빌드 차단: '+m);};
@@ -20,7 +20,7 @@ export function validateProtectedBuild(ref,{siteRoot,targetRevision}){
  for(const name of PROTECTED_BUILD_TOOLS)if(!isSHA(p.sourceToolHashes?.[name])||digest(regularBytes(path.join(siteRoot,name)))!==p.sourceToolHashes[name])fail('현재 source tool SHA: '+name);
  const upload=pinnedJSON(p.uploadReceipt,root),bridge=pinnedJSON(p.releaseBridge,root),routesBytes=regularBytes(path.join(siteRoot,'src/lib/sponsored-image-routes.json')),routes=JSON.parse(routesBytes);
  registryEntries(routes);const selectedRoutes=routes.entries.filter(e=>e.workId===S.workId);
- if(upload.status!=='OWNED_NEW5_UPLOADED_AND_SERVED'||upload.workId!==S.workId||upload.siteRoot!==siteRoot||upload.accountVerified!==true||upload.atomicCreateOnly!==false||upload.entries?.length!==5||digest(routesBytes)!==p.mappingSHA256||selectedRoutes.length!==5||(!p.releaseScope&&routes.entries.length!==5))fail('업로드/영속 매핑 성공 결속');
+ if(upload.status!==ownedUploadStatus(S.workId)||upload.workId!==S.workId||upload.siteRoot!==siteRoot||upload.accountVerified!==true||upload.atomicCreateOnly!==false||upload.entries?.length!==S.items.length||digest(routesBytes)!==p.mappingSHA256||selectedRoutes.length!==S.items.length||(!p.releaseScope&&routes.entries.length!==5))fail('업로드/영속 매핑 성공 결속');
  let daily=null;
  if(p.releaseScope){
   daily=dailyBuildInputs(p,S,upload,root);const prior=pinnedJSON(upload.registryBefore,root);registryEntries(prior);

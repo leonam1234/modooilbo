@@ -5,7 +5,7 @@ import path from 'node:path';
 import {randomUUID} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
-import {releaseMediaScope,assertScopeAssets,registryEntries} from './lib/release-media-scope.mjs';
+import {releaseMediaScope,assertScopeAssets,registryEntries,ownedUploadStatus} from './lib/release-media-scope.mjs';
 import {digest,isSHA,sameSet,safeDir,regularBytes,pinnedJSON,saveNewJSON,boundedResponse} from './lib/protected-io.mjs';
 import {loadSelectedR2Manifest,syncSelectedR2Assets} from './selected-r2-sync.mjs';
 const PROJECT='modooilbo',BUCKET='modooilbo-stock',PUBLIC='https://img.modooilbo.com';
@@ -69,9 +69,9 @@ async function existingAuth(p,command,fetchImpl){
  return {endpoint,request}; // token remains only in this request closure.
 }
 export function persistOwnedRoutes(uploadRef,{siteRoot,metadataRoot}={}){
- const u=pinnedJSON(uploadRef,metadataRoot);if(u.status!=='OWNED_NEW5_UPLOADED_AND_SERVED'||u.siteRoot!==siteRoot||u.entries?.length!==5||u.accountVerified!==true||u.atomicCreateOnly!==false)die('완료 업로드 수령증 필요');
+ const u=pinnedJSON(uploadRef,metadataRoot);if(u.status!==ownedUploadStatus(u.workId)||u.siteRoot!==siteRoot||u.accountVerified!==true||u.atomicCreateOnly!==false)die('완료 업로드 수령증 필요');
  const {p,base}=loadPlan(u.plan,{siteRoot,targetRevision:u.targetRevision});
- if(u.workId!==p.workId)die('업로드 작업 불일치');
+ if(u.workId!==p.workId||u.entries?.length!==p.assets.length)die('업로드 작업/편수 불일치');
  if(u.entries.some(r=>!Number.isSafeInteger(r.bytes)||r.bytes<=0)||!sameSet(u.entries.map(r=>r.id+':'+r.slug+':'+r.logicalPath+':'+r.publicURL+':'+r.sha256),p.assets.map(a=>a.id+':'+a.slug+':'+a.logicalPath+':'+PUBLIC+'/'+a.objectKey+':'+a.sha256)))die('업로드/영속 매핑 allowlist');
  const file=path.join(siteRoot,'src/lib/sponsored-image-routes.json'),before=regularBytes(file),existing=JSON.parse(before);
  registryEntries(existing);const prior=pinnedJSON(p.registryBefore,metadataRoot);registryEntries(prior);
@@ -110,10 +110,10 @@ export async function runOwnedNamespace(planRef,{siteRoot,targetRevision,readTar
    if(remote.length!==bytes.length||digest(remote)!==a.sha256)die('새 객체 서빙 SHA/크기 불일치');
    entries.push({id:a.id,slug:a.slug,logicalPath:a.logicalPath,publicURL:PUBLIC+'/'+a.objectKey,sha256:a.sha256,bytes:bytes.length});log({phase:'SERVED_VERIFIED',key:a.objectKey,sha256:a.sha256});
   }
-  uploadRef=saveNewJSON(path.join(p.runDir,'upload-receipt.json'),{schema:'modoo-owned-r2-upload-v1',status:'OWNED_NEW5_UPLOADED_AND_SERVED',workId:p.workId,releaseScope:p.releaseScope||null,registryBefore:p.registryBefore,siteRoot,targetRevision,plan:planRef,entries,accountVerified:true,accountId:p.accountId,atomicCreateOnly:false,ownershipModel:'COOPERATIVE_SINGLE_WRITER_FRESH_NAMESPACE',legacyProbes:0,existingObjectReplacementsAttempted:0});
+  uploadRef=saveNewJSON(path.join(p.runDir,'upload-receipt.json'),{schema:'modoo-owned-r2-upload-v1',status:ownedUploadStatus(p.workId),workId:p.workId,releaseScope:p.releaseScope||null,registryBefore:p.registryBefore,siteRoot,targetRevision,plan:planRef,entries,accountVerified:true,accountId:p.accountId,atomicCreateOnly:false,ownershipModel:'COOPERATIVE_SINGLE_WRITER_FRESH_NAMESPACE',legacyProbes:0,existingObjectReplacementsAttempted:0});
   if(persist)mapping=persistOwnedRoutes(uploadRef,{siteRoot,metadataRoot:root});log({phase:'COMPLETE',uploadReceiptSHA256:uploadRef.sha256,mappingSHA256:mapping?.sha256||null});
  }catch(e){failure=e?.code==='OWNED_NAMESPACE_BLOCK'?e.message:'신규 namespace 단계 실패; WAL 확인, 자동 덮기/삭제/재전송 없음';log({phase:'FAILED_NO_AUTORETRY',reason:failure,createdAcknowledgements:events.filter(e=>e.phase==='CREATED_ACK').length,verified:entries.length});}finally{fs.closeSync(fd);}
- const receipt=saveNewJSON(path.join(p.runDir,'run-result.json'),{workId:p.workId,status:failure?'FAILED_NOT_RELEASE_APPROVED':'OWNED_NEW5_READY',plan:planRef,uploadReceipt:uploadRef||null,mapping:mapping||null,createdAcknowledgements:events.filter(e=>e.phase==='CREATED_ACK').length,verified:entries.length,exception:failure||null,atomicCreateOnly:false,legacyProbes:0,remoteDeletes:0});
+ const receipt=saveNewJSON(path.join(p.runDir,'run-result.json'),{workId:p.workId,status:failure?'FAILED_NOT_RELEASE_APPROVED':(ownedUploadStatus(p.workId)==='OWNED_NEW5_UPLOADED_AND_SERVED'?'OWNED_NEW5_READY':'OWNED_SELECTED_READY'),plan:planRef,uploadReceipt:uploadRef||null,mapping:mapping||null,createdAcknowledgements:events.filter(e=>e.phase==='CREATED_ACK').length,verified:entries.length,exception:failure||null,atomicCreateOnly:false,legacyProbes:0,remoteDeletes:0});
  return {exitCode:failure?1:0,receipt,uploadReceipt:uploadRef,mapping,events};
 }
 export async function runOwnedNamespaceCLI(args,{siteRoot}={}){

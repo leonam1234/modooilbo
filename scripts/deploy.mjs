@@ -97,7 +97,7 @@ if (!reuseArtifactId && !protectedRef && process.env.NEXT_PUBLIC_STOCK_BASE !== 
   try { r2SyncArgs("sync-stock-r2.mjs", { isProd: env === "prod", selectedManifest: r2SelectedManifest, selectedManifestSHA256: r2SelectedManifestSHA256 }); }
   catch (error) { console.error(`\n✖ ${error.message}\n`); process.exit(1); }
   const selected=pinnedJSON({file:r2SelectedManifest,sha256:r2SelectedManifestSHA256},dirname(r2SelectedManifest));
-  if(selected.workId==='MOD-SPONSORED-20261028-321-325'||/^MOD-DAILY-\d{8}-RELEASE$/.test(selected.workId||''))throw Error('이 선택 범위는 보호 빌드 명세 경로만 허용합니다. 원래 checkout의 일반 빌드로 진행하지 않습니다.');
+  if(selected.workId==='MOD-SPONSORED-20261028-321-325'||selected.workId==='MOD-PROVIDED-20261029-326-335'||/^MOD-DAILY-\d{8}-RELEASE$/.test(selected.workId||''))throw Error('이 선택 범위는 보호 빌드 명세 경로만 허용합니다. 원래 checkout의 일반 빌드로 진행하지 않습니다.');
 }
 
 function git(...a) {
