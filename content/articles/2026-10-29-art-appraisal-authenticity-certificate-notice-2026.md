@@ -3,7 +3,7 @@ title: 미술품 감정서·진품증명서 서식 마련…문체부 29일 고�
 slug: art-appraisal-authenticity-certificate-notice-2026
 category: culture
 author: 류주형 / 취재기자
-publishedAt: 2026-10-30 10:34
+publishedAt: 2026-10-30 11:14
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration
@@ -12,11 +12,11 @@ judgment: high
 verificationNote: 감정서와 진품증명서의 구분 및 서식과 신고제 계도기간 관련 수치·대상·시점은 제공 원문과 공식 첨부의 독립 대조 항목이다.
 addedValue: 진위·가격 감정 구분…신고제 계도기간은 내년 7월 25일까지 안내 본문에서 서식과 신고제 계도기간에 필요한 구분과 주의점을 설명한다.
 reviewedBy: 모두일보 독립 리뷰 담당
-reviewedAt: 2026-10-29 17:23
+reviewedAt: 2026-10-30 11:03
 reporterInsight: 감정서 진위/가격2종·감정업자·진품증명 발급주체·판매전고지·대체3종 및 동반서류·2027/7/25계도·연말지침을 원문과 대조. 보도자료의 법제설명에 귀속하며 개별작품 진위보장 아님.
 readerChecklist: 진위와 가격 감정 구분 | 진품증명서 작성 항목 확인 | 신고제 계도기간 확인
 tags: 미술품,감정서,진품증명서,문화체육관광부,미술진흥법,진위감정,가격감정,계도기간
-summary: 진위·가격 감정 구분…신고제 계도기간은 내년 7월 25일까지 안내
+summary: 진위·가격 감정서와 진품증명서 서식 구분…신고제 계도기간은 2027년 7월 25일까지 안내
 image: /stock/2026-10-29-art-appraisal-authenticity-certificate-notice-2026.jpg
 imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 ---

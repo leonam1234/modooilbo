@@ -3,7 +3,7 @@ title: 해외서 분실한 전역증, 29일부터 재외공관서 재발급 신�
 slug: overseas-missions-discharge-certificate-reissue-2026
 category: society
 author: 류주형 / 취재기자
-publishedAt: 2026-10-30 10:34
+publishedAt: 2026-10-30 11:14
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration
@@ -12,11 +12,11 @@ judgment: high
 verificationNote: 재외공관 신청과 발급 절차 및 신청 대상과 교부 방식 관련 수치·대상·시점은 제공 원문과 공식 첨부의 독립 대조 항목이다.
 addedValue: 대리인 지정 없이 지방병무청 확인 거쳐 발급…우편 교부는 일부 공관 본문에서 신청 대상과 교부 방식에 필요한 구분과 주의점을 설명한다.
 reviewedBy: 모두일보 독립 리뷰 담당
-reviewedAt: 2026-10-29 17:23
+reviewedAt: 2026-10-30 11:03
 reporterInsight: 10/29시행·재외공관신청·지방병무청확인·국문/영문카드·대리인불필요·일부공관우편교부가 보도자료와 일치. 서류/수수료/처리기한을 임의 추가하지 않음.
 readerChecklist: 관할 재외공관 확인 | 신청 구비서류 확인 | 우편 교부 가능 공관 확인
 tags: 전역증,재외공관,병무청,재외동포청,재발급,지방병무청,대리인,우편교부
-summary: 대리인 지정 없이 지방병무청 확인 거쳐 발급…우편 교부는 일부 공관
+summary: 대리인 지정 없이 재외공관에 신청하고 지방병무청 확인 거쳐 발급…일부 공관은 우편 교부
 image: /stock/2026-10-29-overseas-missions-discharge-certificate-reissue-2026.jpg
 imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 ---
