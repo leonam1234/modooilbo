@@ -6,11 +6,18 @@ const fail=m=>{throw Error('release media scope: '+m);};
 export const PROVIDED_RELEASE_WORK='MOD-PROVIDED-20261029-326-335';
 const stagedArticleUpdates=new WeakMap();
 export const verifiedStagedArticleUpdates=scope=>stagedArticleUpdates.get(scope);
-export const ownedUploadStatus=work=>work===PROVIDED_RELEASE_WORK?'OWNED_SELECTED_UPLOADED_AND_SERVED':'OWNED_NEW5_UPLOADED_AND_SERVED';
+export function providedReleaseIdentity(work){
+ const m=/^MOD-PROVIDED-(\d{4})(\d{2})(\d{2})-([1-9]\d*)-([1-9]\d*)$/.exec(work||'');if(!m)return null;
+ const date=m.slice(1,4).join('-'),first=Number(m[4]),last=Number(m[5]);
+ if(!Number.isSafeInteger(first)||!Number.isSafeInteger(last)||last-first!==9||!Number.isFinite(Date.parse(date+'T00:00:00Z'))||new Date(date+'T00:00:00Z').toISOString().slice(0,10)!==date)return null;
+ return {date,ids:Array.from({length:10},(_,i)=>first+i)};
+}
+const PROVIDED_DESK_AUTHORS=new Set(['김영환 / 경제부 기자','유승현 / 사회부 기자','서영호 / 공공입찰 전담기자','남동균 / 문화·스포츠부 기자','최은영 / 국제부 기자','류주형 / 취재기자']);
+export const ownedUploadStatus=work=>providedReleaseIdentity(work)?'OWNED_SELECTED_UPLOADED_AND_SERVED':'OWNED_NEW5_UPLOADED_AND_SERVED';
 export function releaseMediaScope(owner,root){
  if(owner.workId===SPONSORED_SCOPE.workId&&!owner.releaseScope)return SPONSORED_SCOPE;
  const s=pinnedJSON(owner.releaseScope,root);
- if(s.workId===PROVIDED_RELEASE_WORK)return providedScope(s,owner,root);
+ if(providedReleaseIdentity(s.workId))return providedScope(s,owner,root);
  const match=/^MOD-DAILY-(\d{4})(\d{2})(\d{2})-RELEASE$/.exec(s.workId||'');
  if(s.schema!=='modoo-daily-release-media-scope-v1'||!match||s.workId!==owner.workId||s.siteRoot!==owner.siteRoot||s.date!==match.slice(1).join('-'))fail('daily work/date/site binding');
  const g=pinnedJSON(s.firstGate,root),r=pinnedJSON(s.formalReview,root);
@@ -50,11 +57,12 @@ function providedManifest(s,owner,root){
 }
 
 function providedScope(s,owner,root){
- const ids=Array.from({length:10},(_,i)=>326+i);
- if(s.schema!=='modoo-provided-release-media-scope-v1'||s.workId!==owner.workId||s.siteRoot!==owner.siteRoot||s.date!=='2026-10-29'||s.author!=='류주형 / 취재기자'||s.items?.length<8||s.items.length>10||!sameSet([...s.items.map(i=>i.id),...(s.excludedIds||[])],ids))fail('provided10 selected/excluded partition');
+ const {date,ids}=providedReleaseIdentity(s.workId);
+ if(s.schema!=='modoo-provided-release-media-scope-v1'||s.workId!==owner.workId||s.siteRoot!==owner.siteRoot||s.date!==date||!PROVIDED_DESK_AUTHORS.has(s.author)||s.items?.length<8||s.items.length>10||!sameSet([...s.items.map(i=>i.id),...(s.excludedIds||[])],ids))fail('provided10 selected/excluded partition');
  const m=providedManifest(s,owner,root),review=pinnedJSON(s.formalReview,root),approval=pinnedJSON(s.approval,root),first=pinnedJSON(s.firstGate,root);
+ const columns=s.workId===PROVIDED_RELEASE_WORK?[334,335]:m.items?.filter(r=>r.category==='opinion').map(r=>r.id);
  if(m.workId!==s.workId||m.outputRoot!==s.packagePath||m.date!==s.date||!Number.isInteger(m.revision)||!sameSet(m.items?.map(i=>i.id),ids)||review.workId!==s.workId||review.permanentIndependentReview!==true||review.humanReviewClaimed!==false||review.reviewerThreadId!=='01a05a60-a035-7921-8154-7aa4a7024f31'||!sameSet(review.articles?.map(r=>r.slug),m.items.map(i=>i.slug))||!review.inputBindings?.some(r=>(r.file||r.path)===s.fileManifest.file&&r.sha256===s.fileManifest.sha256)||!sameSet(review.articles.filter(r=>['PASS','CONDITIONAL_PASS'].includes(r.judgment)).map(r=>r.slug),s.items.map(i=>i.slug)))fail('current provided manifest / actual selected formal review');
- if(approval.workId!==s.workId||approval.author!==s.author||approval.reporting!=='desk'||approval.publicationApproved!==true||approval.preserveOriginalThesis!==true||!sameSet(approval.ids,ids)||!sameSet(approval.preservedColumnIds,[334,335])||!approval.sourceText?.file||digest(regularBytes(approval.sourceText.file))!==approval.sourceText.sha256||first.workId!==s.workId||first.manifest?.sha256!==s.fileManifest.sha256||first.bindingErrors?.length!==0||first.format?.errorCount!==0)fail('current author/column approval / first gate');
+ if(approval.workId!==s.workId||approval.author!==s.author||approval.reporting!=='desk'||approval.publicationApproved!==true||approval.preserveOriginalThesis!==true||!sameSet(approval.ids,ids)||!sameSet(approval.preservedColumnIds,columns)||!approval.sourceText?.file||digest(regularBytes(approval.sourceText.file))!==approval.sourceText.sha256||first.workId!==s.workId||first.manifest?.sha256!==s.fileManifest.sha256||first.bindingErrors?.length!==0||first.format?.errorCount!==0)fail('current author/column approval / first gate');
  for(const i of s.items){
   const a=m.items.find(x=>x.id===i.id),r=review.articles.find(x=>x.slug===i.slug),g=first.rows?.find(x=>x.id===i.id);
   if(!Number.isInteger(i.id)||!/^[-a-z0-9]+$/.test(i.slug)||!isSHA(i.sha256)||a?.slug!==i.slug||a.author!==s.author||a.reporting!=='desk'||a.images?.JPG?.sha256!==i.sha256||!r||r.staticFactsVerdict!=='PASS'||r.fullArticleChangeImpactReviewed!==true||r.mdSHA256!==a.mdSHA256||!r.images?.some(x=>x.path===a.jpg&&x.sha256===i.sha256)||g?.target?.articleAbsent!==true||g.target.imageAbsent!==true||g.target.article!==path.join(s.siteRoot,'content/articles',s.date+'-'+i.slug+'.md')||g.target.image!==path.join(s.siteRoot,'public/stock',s.date+'-'+i.slug+'.jpg'))fail('provided selected item / actual absent destination / review SHA');
