@@ -1,7 +1,7 @@
 import path from 'node:path';
 import {digest,isSHA,sameSet,pinnedJSON,regularBytes} from './protected-io.mjs';
 import {loadSelectedR2Manifest} from '../selected-r2-sync.mjs';
-import {assertScopeAssets} from './release-media-scope.mjs';
+import {assertScopeAssets,verifiedStagedArticleUpdates} from './release-media-scope.mjs';
 const fail=m=>{throw Error('selected content merge: '+m);};
 export function dailyBuildInputs(p,scope,upload,root){
  if(!p.releaseScope||upload.releaseScope?.sha256!==p.releaseScope.sha256||upload.releaseScope?.file!==p.releaseScope.file)fail('upload/scope binding');
@@ -13,7 +13,9 @@ export function dailyBuildInputs(p,scope,upload,root){
  if(!sameSet(articles.map(a=>a.destination),expected)||articles.some(a=>!isSHA(a.digest)))fail('exact newly intaken article destinations');
  const c=p.cachedDerivedContent;
  if(c?.file!==path.join(p.siteRoot,'src/lib/content.generated.ts')||!isSHA(c.sha256)||!Number.isSafeInteger(c.articleCount)||c.articleCount<0||c.issuer!=='모두일보 배포 담당자'||c.validMetadataReuse!==true||c.selectedSlugsAbsent!==true||!isSHA(c.priorRegistrySHA256)||upload.registryBefore?.sha256!==c.priorRegistrySHA256||plan.registryBefore?.sha256!==c.priorRegistrySHA256)fail('pinned previous derived corpus / registry metadata');
- return {articles,cached:c};
+ const amendments=verifiedStagedArticleUpdates(scope);
+ const selected=amendments?articles.map(a=>{const change=amendments.find(r=>r.destination===a.destination);if(!change)return a;if(change.beforeSHA256!==a.digest)fail('verified CAS before/native digest binding');return {...a,digest:change.afterSHA256};}):articles;
+ return {articles:selected,cached:c};
 }
 export function parseDerivedArticles(bytes){
  const match=bytes.toString('utf8').match(/export const CONTENT_ARTICLES: Article\[\] = (\[[\s\S]*\]);\s*$/);

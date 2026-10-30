@@ -4,6 +4,8 @@ import {SPONSORED_SCOPE} from './sponsored-scope-policy.mjs';
 import {digest,isSHA,sameSet,pinnedJSON,regularBytes} from './protected-io.mjs';
 const fail=m=>{throw Error('release media scope: '+m);};
 export const PROVIDED_RELEASE_WORK='MOD-PROVIDED-20261029-326-335';
+const stagedArticleUpdates=new WeakMap();
+export const verifiedStagedArticleUpdates=scope=>stagedArticleUpdates.get(scope);
 export const ownedUploadStatus=work=>work===PROVIDED_RELEASE_WORK?'OWNED_SELECTED_UPLOADED_AND_SERVED':'OWNED_NEW5_UPLOADED_AND_SERVED';
 export function releaseMediaScope(owner,root){
  if(owner.workId===SPONSORED_SCOPE.workId&&!owner.releaseScope)return SPONSORED_SCOPE;
@@ -22,10 +24,35 @@ export function releaseMediaScope(owner,root){
  }
  return s;
 }
+function providedManifest(s,owner,root){
+ if(!owner.historicalProvidedManifest)return pinnedJSON(s.fileManifest,root);
+ const ref=owner.historicalProvidedManifest;
+ if(s.workId!==PROVIDED_RELEASE_WORK||s.items.length!==10||s.excludedIds?.length!==0||ref.sha256!==s.fileManifest.sha256||(ref.file||ref.path)===(s.fileManifest.file||s.fileManifest.path)||owner.writersFrozen!==true||owner.sourceCodeAndCMSAtPinnedCommit!==true)fail('historical provided manifest exact original SHA / protected build');
+ const old=pinnedJSON(ref,root),cas=pinnedJSON(owner.stagedDraftRemedy,root);
+ if(old.revision!==3||cas.schema!=='modoo-staged-draft-remedy-v1'||cas.policy!=='MOD-STAGED-DRAFT-REMEDY-20261026-v1'||cas.workId!==s.workId||cas.status!=='UNPUBLISHED_CMS_SUMMARY2_CAS_APPLIED_NOT_REBUILT_OR_PUBLISHED'||!sameSet(cas.rows?.map(r=>r.id),[331,332])||cas.unchangedOtherArticleCount!==8||cas.imagesChanged!==0||cas.originalPackageWrites!==0||cas.old1123FieldReads!==0||cas.nativeIntakeRepeated!==0||cas.uploadRepeated!==0||cas.Production!==0||cas.sourceAndCMSComparedBeforeWrite!==true||cas.atomicRenameUsed!==true||cas.atomicCASClaimed!==false)fail('historical manifest requires actual exact summary2 staged CAS');
+ const current=pinnedJSON(cas.manifest,root),review=pinnedJSON(cas.review,root),remedy=pinnedJSON(cas.remedy,root),native=pinnedJSON(cas.nativeIntakeReceipt,root),upload=pinnedJSON(owner.uploadReceipt,root),plan=pinnedJSON(upload.plan,root),base=pinnedJSON(plan.baseManifest,root);
+ const exactRef=(a,b)=>(a?.file||a?.path)===(b?.file||b?.path)&&a?.sha256===b?.sha256;
+ if(!exactRef(base.nativeReceipt,cas.nativeIntakeReceipt)||!exactRef(upload.releaseScope,owner.releaseScope)||!exactRef(plan.releaseScope,owner.releaseScope)||current.workId!==s.workId||current.revision!==4||current.date!==old.date||current.outputRoot!==old.outputRoot||!sameSet(current.items?.map(r=>r.id),old.items?.map(r=>r.id))||native.workId!==s.workId||native.status!=='CMS_INTAKEN_NOT_BUILT_OR_DEPLOYED'||native.sameNativeObject!==true||native.JSONRehydration!==false||native.selectedCount!==10||native.target?.siteRoot!==s.siteRoot||native.target.revision!==upload.targetRevision||native.applied?.mode!=='applied')fail('historical upload/native unchanged and current r4 manifest binding');
+ if(review.workId!==s.workId||review.permanentReviewClaimed!==true||review.humanReviewClaimed!==false||review.reviewer!=='모두일보 독립 리뷰 담당'||review.manifest?.sha256!==cas.manifest.sha256||review.manifest.revision!==4||!sameSet(review.articles?.map(r=>r.id),old.items.map(r=>r.id))||remedy.workId!==s.workId||remedy.revision!==4||!sameSet(remedy.rows?.map(r=>r.id),[331,332]))fail('current r4 same-artifact formal review / summary2 remedy');
+ const articles=native.applied.operations.filter(r=>r.type==='article');
+ if(articles.length!==10||!sameSet(articles.map(r=>r.destination),old.items.map(r=>path.join(s.siteRoot,'content/articles',s.date+'-'+r.slug+'.md'))))fail('historical exact native10 destinations');
+ const without=(row,keys)=>JSON.stringify(Object.fromEntries(Object.entries(row).filter(([k])=>!keys.includes(k)).sort(([a],[b])=>a.localeCompare(b))));
+ for(const before of old.items){
+  const after=current.items.find(r=>r.id===before.id),rr=review.articles.find(r=>r.id===before.id),op=articles.find(r=>r.source===before.article),change=cas.rows.find(r=>r.id===before.id),summary=remedy.rows.find(r=>r.id===before.id);
+  const omitted=change?['mdSHA256','summary','summaryRemedy']:['mdSHA256','reviewedManuscriptSHA256','admittedMetadataWriterReceipt'];
+  if(!op||!isSHA(op.digest)||without(before,omitted)!==without(after,omitted)||rr.slug!==after.slug||rr.articlePath!==after.article||rr.articleSHA256!==after.mdSHA256||rr.manuscriptSHA256!==after.mdSHA256||rr.bodySHA256!==after.bodySHA256||rr.pngSHA256!==after.images?.PNG?.sha256||rr.jpgSHA256!==after.images?.JPG?.sha256||rr.formalReview!==true||rr.humanReviewClaimed!==false||rr.reviewedBy!==review.reviewer||!['PASS','CONDITIONAL_PASS'].includes(rr.verdict)||rr.staticFactVerdict!=='PASS'||!/^PASS/.test(rr.editorialVerdict||'')||rr.imageVerdict!=='PASS')fail('r3→r4 identity/body/image preservation and actual final review');
+  if(change){
+   if(change.type!=='article'||change.source!==before.article||change.destination!==op.destination||change.beforeSHA256!==op.digest||change.reviewedDraftSHA256!==after.mdSHA256||!isSHA(change.afterSHA256)||change.afterSHA256!==change.digest||change.afterSHA256===change.beforeSHA256||change.reviewedAt!==rr.reviewedAt||!Number.isFinite(Date.parse(change.reviewedAt))||!sameSet(change.allowedFields,['summary','reviewedBy','reviewedAt','reporterInsight','publishedAt'])||summary.article!==before.article||summary.before.mdSHA256!==op.digest||summary.before.reviewedManuscriptSHA256!==before.mdSHA256||summary.before.summary!==before.summary||summary.before.bodySHA256!==before.bodySHA256||summary.after.mdSHA256!==after.mdSHA256||summary.after.summary!==after.summary||summary.after.bodySHA256!==after.bodySHA256||after.summary===before.summary)fail('exact summary2 prior native→reviewed draft→CAS binding');
+  }else if(after.mdSHA256!==op.digest||after.reviewedManuscriptSHA256!==before.mdSHA256||after.admittedMetadataWriterReceipt!==(cas.nativeIntakeReceipt.file||cas.nativeIntakeReceipt.path))fail('unchanged other8 native metadata lineage');
+ }
+ stagedArticleUpdates.set(s,Object.freeze(cas.rows.map(r=>Object.freeze({destination:r.destination,beforeSHA256:r.beforeSHA256,afterSHA256:r.afterSHA256}))));
+ return old;
+}
+
 function providedScope(s,owner,root){
  const ids=Array.from({length:10},(_,i)=>326+i);
  if(s.schema!=='modoo-provided-release-media-scope-v1'||s.workId!==owner.workId||s.siteRoot!==owner.siteRoot||s.date!=='2026-10-29'||s.author!=='류주형 / 취재기자'||s.items?.length<8||s.items.length>10||!sameSet([...s.items.map(i=>i.id),...(s.excludedIds||[])],ids))fail('provided10 selected/excluded partition');
- const m=pinnedJSON(s.fileManifest,root),review=pinnedJSON(s.formalReview,root),approval=pinnedJSON(s.approval,root),first=pinnedJSON(s.firstGate,root);
+ const m=providedManifest(s,owner,root),review=pinnedJSON(s.formalReview,root),approval=pinnedJSON(s.approval,root),first=pinnedJSON(s.firstGate,root);
  if(m.workId!==s.workId||m.outputRoot!==s.packagePath||m.date!==s.date||!Number.isInteger(m.revision)||!sameSet(m.items?.map(i=>i.id),ids)||review.workId!==s.workId||review.permanentIndependentReview!==true||review.humanReviewClaimed!==false||review.reviewerThreadId!=='01a05a60-a035-7921-8154-7aa4a7024f31'||!sameSet(review.articles?.map(r=>r.slug),m.items.map(i=>i.slug))||!review.inputBindings?.some(r=>(r.file||r.path)===s.fileManifest.file&&r.sha256===s.fileManifest.sha256)||!sameSet(review.articles.filter(r=>['PASS','CONDITIONAL_PASS'].includes(r.judgment)).map(r=>r.slug),s.items.map(i=>i.slug)))fail('current provided manifest / actual selected formal review');
  if(approval.workId!==s.workId||approval.author!==s.author||approval.reporting!=='desk'||approval.publicationApproved!==true||approval.preserveOriginalThesis!==true||!sameSet(approval.ids,ids)||!sameSet(approval.preservedColumnIds,[334,335])||!approval.sourceText?.file||digest(regularBytes(approval.sourceText.file))!==approval.sourceText.sha256||first.workId!==s.workId||first.manifest?.sha256!==s.fileManifest.sha256||first.bindingErrors?.length!==0||first.format?.errorCount!==0)fail('current author/column approval / first gate');
  for(const i of s.items){
