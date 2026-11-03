@@ -495,6 +495,83 @@
       "workId": "MOD-PROVIDED-20261102-346-360",
       "uploadReceiptSHA256": "cdfc45db187a66fbc9ceca5eadee24ddd2804d705819a95dbe8fadcee8cfcb65",
       "nativeReceiptSHA256": "2789245b43e24e80b6e0e8b1b889e31eec96e0b5020565edef0c5a046bc4a5d4"
+    },
+    {
+      "id": "G1",
+      "slug": "donghae-card-fee-evidence-2026",
+      "logicalPath": "/stock/2026-11-03-donghae-card-fee-evidence-2026.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261103-RELEASE/e782552a-2fa2-4fef-8787-3108810633d1/f5ddf16e0686ee0b029de67059ec70933c157dd88b77897ce1e24118bc97ea23/G1.jpg",
+      "sha256": "f5ddf16e0686ee0b029de67059ec70933c157dd88b77897ce1e24118bc97ea23",
+      "bytes": 148630,
+      "workId": "MOD-DAILY-20261103-RELEASE",
+      "uploadReceiptSHA256": "bedf58915d44820f1297134f60ccee91a9734a785074a765a157f10b0c341345",
+      "nativeReceiptSHA256": "71a5cd2c10f38a225660a6f1f42f5fd3813e145831ac2b0c69379c78faff522a"
+    },
+    {
+      "id": "G2",
+      "slug": "seosan-aquaculture-certification-fees-2026",
+      "logicalPath": "/stock/2026-11-03-seosan-aquaculture-certification-fees-2026.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261103-RELEASE/e782552a-2fa2-4fef-8787-3108810633d1/b2277c511b38141dba0cba3c977666aaf36079f0fc7351a48df0bd87a6f79a4e/G2.jpg",
+      "sha256": "b2277c511b38141dba0cba3c977666aaf36079f0fc7351a48df0bd87a6f79a4e",
+      "bytes": 154642,
+      "workId": "MOD-DAILY-20261103-RELEASE",
+      "uploadReceiptSHA256": "bedf58915d44820f1297134f60ccee91a9734a785074a765a157f10b0c341345",
+      "nativeReceiptSHA256": "71a5cd2c10f38a225660a6f1f42f5fd3813e145831ac2b0c69379c78faff522a"
+    },
+    {
+      "id": "B2",
+      "slug": "koti-monthly-transport-publication-bid-2026",
+      "logicalPath": "/stock/2026-11-03-koti-monthly-transport-publication-bid-2026.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261103-RELEASE/e782552a-2fa2-4fef-8787-3108810633d1/bf63f8341c5c971639855f21fc145a8890af65e1b122c380336c6c139ee77fed/B2.jpg",
+      "sha256": "bf63f8341c5c971639855f21fc145a8890af65e1b122c380336c6c139ee77fed",
+      "bytes": 160186,
+      "workId": "MOD-DAILY-20261103-RELEASE",
+      "uploadReceiptSHA256": "bedf58915d44820f1297134f60ccee91a9734a785074a765a157f10b0c341345",
+      "nativeReceiptSHA256": "71a5cd2c10f38a225660a6f1f42f5fd3813e145831ac2b0c69379c78faff522a"
+    },
+    {
+      "id": "I2",
+      "slug": "jeonbuk-myoffice-selected-exporters-fee-support-2026",
+      "logicalPath": "/stock/2026-11-03-jeonbuk-myoffice-selected-exporters-fee-support-2026.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261103-RELEASE/e782552a-2fa2-4fef-8787-3108810633d1/bd90f87a7205e129674f2b5883eebf630192743fe67fbd6fc2862f40727c18b9/I2.jpg",
+      "sha256": "bd90f87a7205e129674f2b5883eebf630192743fe67fbd6fc2862f40727c18b9",
+      "bytes": 159565,
+      "workId": "MOD-DAILY-20261103-RELEASE",
+      "uploadReceiptSHA256": "bedf58915d44820f1297134f60ccee91a9734a785074a765a157f10b0c341345",
+      "nativeReceiptSHA256": "71a5cd2c10f38a225660a6f1f42f5fd3813e145831ac2b0c69379c78faff522a"
+    },
+    {
+      "id": "L1",
+      "slug": "kopo-changwon-one-month-intern-email-2026",
+      "logicalPath": "/stock/2026-11-03-kopo-changwon-one-month-intern-email-2026.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261103-RELEASE/e782552a-2fa2-4fef-8787-3108810633d1/58936d53e81deba652fc13ce4ff6958011219a260c1bb3cc3f9d01e980059503/L1.jpg",
+      "sha256": "58936d53e81deba652fc13ce4ff6958011219a260c1bb3cc3f9d01e980059503",
+      "bytes": 199351,
+      "workId": "MOD-DAILY-20261103-RELEASE",
+      "uploadReceiptSHA256": "bedf58915d44820f1297134f60ccee91a9734a785074a765a157f10b0c341345",
+      "nativeReceiptSHA256": "71a5cd2c10f38a225660a6f1f42f5fd3813e145831ac2b0c69379c78faff522a"
+    },
+    {
+      "id": "D1",
+      "slug": "sundo-rail-switchgear-staged-purchase-2026",
+      "logicalPath": "/stock/2026-11-03-sundo-rail-switchgear-staged-purchase-2026.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261103-RELEASE/e782552a-2fa2-4fef-8787-3108810633d1/80409a4658a331e5f21390b00511a1871c529af676c37fb19b35a6568ee85f7a/D1.jpg",
+      "sha256": "80409a4658a331e5f21390b00511a1871c529af676c37fb19b35a6568ee85f7a",
+      "bytes": 164950,
+      "workId": "MOD-DAILY-20261103-RELEASE",
+      "uploadReceiptSHA256": "bedf58915d44820f1297134f60ccee91a9734a785074a765a157f10b0c341345",
+      "nativeReceiptSHA256": "71a5cd2c10f38a225660a6f1f42f5fd3813e145831ac2b0c69379c78faff522a"
+    },
+    {
+      "id": "D2",
+      "slug": "nature-cheonan-pc-monthly-progress-payment-2026",
+      "logicalPath": "/stock/2026-11-03-nature-cheonan-pc-monthly-progress-payment-2026.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261103-RELEASE/e782552a-2fa2-4fef-8787-3108810633d1/6386fa8be55e9aed4e3e1ff6a6e30f2872f599a7ab43e5c261eb760bf055a71d/D2.jpg",
+      "sha256": "6386fa8be55e9aed4e3e1ff6a6e30f2872f599a7ab43e5c261eb760bf055a71d",
+      "bytes": 202710,
+      "workId": "MOD-DAILY-20261103-RELEASE",
+      "uploadReceiptSHA256": "bedf58915d44820f1297134f60ccee91a9734a785074a765a157f10b0c341345",
+      "nativeReceiptSHA256": "71a5cd2c10f38a225660a6f1f42f5fd3813e145831ac2b0c69379c78faff522a"
     }
   ]
 }
