@@ -3,7 +3,7 @@ title: 국립공원 탐방로 148구간, 15일부터 산불 예방 통제
 slug: national-parks-autumn-fire-trail-closure-2026
 category: society
 author: 류주형 / 취재기자
-publishedAt: 2026-11-02 16:10
+publishedAt: 2026-11-03 10:08
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration

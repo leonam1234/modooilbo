@@ -3,7 +3,7 @@ title: 유물 옆에 실습수첩·도면도…경주 공동발굴 성과, 대�
 slug: silla-joint-excavation-gyeongju-exhibition-2026
 category: culture
 author: 류주형 / 취재기자
-publishedAt: 2026-11-02 16:09
+publishedAt: 2026-11-03 10:07
 eventEndsAt: 2027-05-30 23:59
 reporting: desk
 sourceBasis: primary

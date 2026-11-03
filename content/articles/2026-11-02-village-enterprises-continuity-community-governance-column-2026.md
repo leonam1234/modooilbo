@@ -3,7 +3,7 @@ title: [오피니언] 마을기업의 다음 성과표, 매출 옆에 주민의 
 slug: village-enterprises-continuity-community-governance-column-2026
 category: opinion
 author: 류주형 / 취재기자
-publishedAt: 2026-11-02 16:10
+publishedAt: 2026-11-03 10:08
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration

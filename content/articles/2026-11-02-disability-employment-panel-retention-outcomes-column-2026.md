@@ -3,7 +3,7 @@ title: [오피니언] 장애인고용의 성과, 취업 다음 장면까지 물�
 slug: disability-employment-panel-retention-outcomes-column-2026
 category: opinion
 author: 류주형 / 취재기자
-publishedAt: 2026-11-02 16:11
+publishedAt: 2026-11-03 10:09
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration

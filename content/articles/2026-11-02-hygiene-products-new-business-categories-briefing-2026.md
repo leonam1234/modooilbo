@@ -3,7 +3,7 @@ title: 세척제 리필판매·위생용품 소분업 신설 앞두고 11일 설
 slug: hygiene-products-new-business-categories-briefing-2026
 category: industry
 author: 류주형 / 취재기자
-publishedAt: 2026-11-02 16:10
+publishedAt: 2026-11-03 10:08
 eventEndsAt: 2026-11-11 15:30
 reporting: desk
 sourceBasis: primary

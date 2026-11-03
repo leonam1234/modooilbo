@@ -3,7 +3,7 @@ title: 해외직구 악용 8주 특별단속…명의도용·판매용 반입 �
 slug: crossborder-shopping-customs-special-crackdown-2026
 category: society
 author: 류주형 / 취재기자
-publishedAt: 2026-11-02 16:09
+publishedAt: 2026-11-03 10:07
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration

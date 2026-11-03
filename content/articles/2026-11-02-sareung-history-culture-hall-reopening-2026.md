@@ -3,7 +3,7 @@ title: 사릉 역사문화관 3일 재개관…정순왕후의 삶과 왕릉의 
 slug: sareung-history-culture-hall-reopening-2026
 category: culture
 author: 류주형 / 취재기자
-publishedAt: 2026-11-02 16:08
+publishedAt: 2026-11-03 10:06
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration

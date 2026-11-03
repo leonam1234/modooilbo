@@ -3,7 +3,7 @@ title: [오피니언] 샘플에서 알아낸 기술, 손에 넣었다고 마음�
 slug: technical-information-subcontract-protection-column-2026
 category: opinion
 author: 류주형 / 취재기자
-publishedAt: 2026-11-02 16:11
+publishedAt: 2026-11-03 10:09
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration

@@ -3,7 +3,7 @@ title: 청년창업 특허 초고속심사 확대…만 39세 이하·예비창�
 slug: young-startup-patent-fast-examination-2026
 category: startup
 author: 류주형 / 취재기자
-publishedAt: 2026-11-02 16:08
+publishedAt: 2026-11-03 10:06
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration

@@ -3,7 +3,7 @@ title: 이름은 저작권 주간, 행사는 한 달…AI 학습부터 가족 �
 slug: november-copyright-week-events-2026
 category: culture
 author: 류주형 / 취재기자
-publishedAt: 2026-11-02 16:09
+publishedAt: 2026-11-03 10:07
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration

@@ -3,7 +3,7 @@ title: 우수 어린이놀이시설 9곳 선정…자연놀이와 사고기록 �
 slug: excellent-childrens-playgrounds-nine-selected-2026
 category: society
 author: 류주형 / 취재기자
-publishedAt: 2026-11-02 16:09
+publishedAt: 2026-11-03 10:07
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration

@@ -3,7 +3,7 @@ title: [오피니언] 공공 AI 보고서, 답변을 넘길 때 근거도 함께
 slug: public-ai-search-source-handoff-accountability-column-2026
 category: opinion
 author: 류주형 / 취재기자
-publishedAt: 2026-11-02 16:11
+publishedAt: 2026-11-03 10:09
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration

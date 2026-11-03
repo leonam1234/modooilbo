@@ -4,7 +4,7 @@ import path from 'node:path';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {digest,isSHA,sameSet,safeDir,regularBytes,pinnedJSON,saveNewJSON} from './lib/protected-io.mjs';
-import {releaseMediaScope,registryEntries,ownedUploadStatus} from './lib/release-media-scope.mjs';
+import {releaseMediaScope,registryEntries,ownedUploadStatus,verifiedStagedRegistryBaseline} from './lib/release-media-scope.mjs';
 import {dailyBuildInputs,parseDerivedArticles} from './lib/selected-content-merge.mjs';
 export const PROTECTED_BUILD_TOOLS=['package.json','package-lock.json','next.config.mjs','tsconfig.json','tsconfig.functions.json','scripts/protected-build.mjs','scripts/protected-build-guard.cjs','scripts/lib/protected-io.mjs','scripts/lib/protected-build-runtime.mjs','scripts/lib/core-artifact.mjs','scripts/lib/sponsored-scope-policy.mjs','scripts/namespace-r2.mjs','scripts/selected-r2-sync.mjs','scripts/build-content.mjs','scripts/build-trending-data.mjs','scripts/convert-webp.mjs','scripts/deploy.mjs','scripts/deploy-safety.mjs','scripts/release-artifact.mjs','src/lib/stock.ts','src/lib/sponsors.ts','src/lib/sponsored-image-routing.ts','src/lib/protected-media-size.ts','src/app/rss.xml/route.ts'];
 const fail=m=>{throw Error('보호 빌드 차단: '+m);};
@@ -24,7 +24,7 @@ export function validateProtectedBuild(ref,{siteRoot,targetRevision}){
  let daily=null;
  if(p.releaseScope){
   daily=dailyBuildInputs(p,S,upload,root);const prior=pinnedJSON(upload.registryBefore,root);registryEntries(prior);
-  if(JSON.stringify(routes.entries.filter(e=>e.workId!==S.workId))!==JSON.stringify(prior.entries))fail('기존 매핑 보존 불일치');
+  if(JSON.stringify(routes.entries.filter(e=>e.workId!==S.workId))!==JSON.stringify(verifiedStagedRegistryBaseline(S)||prior.entries))fail('기존 매핑 보존 불일치');
  }
  const binding=a=>a.id+':'+a.logicalPath+':'+a.publicURL+':'+a.sha256+':'+a.bytes;
  if(!sameSet(selectedRoutes.map(binding),upload.entries.map(binding))||selectedRoutes.some(e=>e.uploadReceiptSHA256!==p.uploadReceipt.sha256))fail('정확5 매핑 SHA/URL/size');

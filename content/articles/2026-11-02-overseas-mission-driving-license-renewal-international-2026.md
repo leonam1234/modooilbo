@@ -3,7 +3,7 @@ title: 해외에서도 1종 보통면허 갱신 접수…국내 검진기록 2�
 slug: overseas-mission-driving-license-renewal-international-2026
 category: society
 author: 류주형 / 취재기자
-publishedAt: 2026-11-02 16:08
+publishedAt: 2026-11-03 10:06
 reporting: desk
 sourceBasis: primary
 visualType: ai-illustration

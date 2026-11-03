@@ -3,7 +3,7 @@ title: 식재료 고르면 접시 위에 영상 만찬…덕수궁 돈덕전 AI 
 slug: deoksugung-imperial-dinner-interactive-exhibition-2026
 category: culture
 author: 류주형 / 취재기자
-publishedAt: 2026-11-02 16:08
+publishedAt: 2026-11-03 10:06
 eventEndsAt: 2027-03-28 23:59
 reporting: desk
 sourceBasis: primary
