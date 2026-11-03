@@ -9,7 +9,7 @@ for(const workId of new Set(entries.map(r=>r.workId))){
  if(workId==='MOD-SPONSORED-20261028-321-325'){
   if(group.length!==5||group.some(r=>typeof r.id!=='number'||r.id<321||r.id>325||r.slug!==slugs[r.id-321]||r.logicalPath!=='/stock/2026-10-28-'+r.slug+'.jpg'||!SPONSORED_SOURCE_IMAGE_KEYS.has(r.logicalPath.slice('/stock/'.length))))throw Error('광고5 ID/slug 매핑 오류');
  }else if(provided){
-  const date=provided.slice(1,4).join('-'),first=Number(provided[4]),last=Number(provided[5]),count=workId==='MOD-PROVIDED-20261102-346-360'?15:10,at=Date.parse(date+'T00:00:00Z');
+  const date=provided.slice(1,4).join('-'),first=Number(provided[4]),last=Number(provided[5]),count=['MOD-PROVIDED-20261102-346-360','MOD-PROVIDED-20261103-361-375'].includes(workId)?15:10,at=Date.parse(date+'T00:00:00Z');
   if(!Number.isSafeInteger(first)||!Number.isSafeInteger(last)||last-first!==count-1||!Number.isFinite(at)||new Date(at).toISOString().slice(0,10)!==date)throw Error('제공 원10 날짜/번호 범위 오류');
   if(group.length<Math.ceil(count*0.8)||group.length>count||group.some(r=>typeof r.id!=='number'||!Number.isInteger(r.id)||r.id<first||r.id>last||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(r.slug)||r.logicalPath!=='/stock/'+date+'-'+r.slug+'.jpg'||!isSHA(r.uploadReceiptSHA256)||!isSHA(r.nativeReceiptSHA256)))throw Error('현재 제공10 실제 선택 이미지 매핑 오류');
  }else if(!daily||(![5,6].includes(group.length)&&!exactSeven)||group.some(r=>typeof r.id!=='string'||!/^[A-Z][1-9]\d*$/.test(r.id)||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(r.slug)||r.logicalPath!=='/stock/'+daily.slice(1).join('-')+'-'+r.slug+'.jpg'||!isSHA(r.uploadReceiptSHA256)||!isSHA(r.nativeReceiptSHA256)))throw Error('일일 선택5 영속 이미지 매핑 오류');
