@@ -11,7 +11,7 @@ visualType: ai-illustration
 aiRole: research-assist, draft-assist, copyedit, image
 judgment: high
 humanReviewClaimed: false
-verificationNote: 공식 상세와 첨부·접수 경로의 확인 범위 및 미해결 조건은 기사별 research에 기록했다. 영구 독립 검수와 발행은 수행하지 않았다.
+verificationNote: 공식 공고·전체 첨부와 실제 접수 시스템의 공개 상세를 대조했습니다. 접수중 표시와 대상·지원한도·제출조건을 확인했으며 실제 신청서를 제출하지 않았습니다.
 addedValue: 해외지사화 신규 신청과 참가비 보조를 분리하고 지원비율·지역별 상한·선행 납부·평가서류 발급조건을 연결했다.
 reviewedBy: 모두일보 독립 리뷰 담당
 reviewedAt: 2026-11-03 09:05
