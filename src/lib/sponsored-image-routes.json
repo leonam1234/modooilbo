@@ -737,6 +737,83 @@
       "workId": "MOD-PROVIDED-20261103-361-375",
       "uploadReceiptSHA256": "3b3c4fbe7b869763db26820f673de417779cd93d7acccb84e4e8cd892bdfe784",
       "nativeReceiptSHA256": "ff91e7520973ad6731f994eb4d153b182f6d0446fecbaebeba03bda5081e9793"
+    },
+    {
+      "id": "G1",
+      "slug": "jeongeup-card-fee-unapplied-nov20-2026",
+      "logicalPath": "/stock/2026-11-04-jeongeup-card-fee-unapplied-nov20-2026.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261104-RELEASE/eaeed7f0-446b-41f5-ab0a-9631ef9889f2/3f09480a9c412f51da70af6c5bb05776364627925ccf745cb450c13628b6a7c1/G1.jpg",
+      "sha256": "3f09480a9c412f51da70af6c5bb05776364627925ccf745cb450c13628b6a7c1",
+      "bytes": 160551,
+      "workId": "MOD-DAILY-20261104-RELEASE",
+      "uploadReceiptSHA256": "90f5567aebda082406154c20dd2c28e1871d5128087b927de0ac6bd17e301326",
+      "nativeReceiptSHA256": "2e138ff491260879a81cfaec27f2bb78a879c5dae6842c6409d7deb8617c0c52"
+    },
+    {
+      "id": "G2",
+      "slug": "jeonbuk-design-ip-followup-copayment-2026",
+      "logicalPath": "/stock/2026-11-04-jeonbuk-design-ip-followup-copayment-2026.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261104-RELEASE/eaeed7f0-446b-41f5-ab0a-9631ef9889f2/9a78a3db0662a685bbe613050cfe831861ab11a95b284bb7a16d9628d700db02/G2.jpg",
+      "sha256": "9a78a3db0662a685bbe613050cfe831861ab11a95b284bb7a16d9628d700db02",
+      "bytes": 124864,
+      "workId": "MOD-DAILY-20261104-RELEASE",
+      "uploadReceiptSHA256": "90f5567aebda082406154c20dd2c28e1871d5128087b927de0ac6bd17e301326",
+      "nativeReceiptSHA256": "2e138ff491260879a81cfaec27f2bb78a879c5dae6842c6409d7deb8617c0c52"
+    },
+    {
+      "id": "B1",
+      "slug": "hana-token-publicity-dual-deadline-2026",
+      "logicalPath": "/stock/2026-11-04-hana-token-publicity-dual-deadline-2026.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261104-RELEASE/eaeed7f0-446b-41f5-ab0a-9631ef9889f2/e42eec564b75fc9594cd1e01c94d4ba28a939dad90150a40a7ecf66ee25a3f7a/B1.jpg",
+      "sha256": "e42eec564b75fc9594cd1e01c94d4ba28a939dad90150a40a7ecf66ee25a3f7a",
+      "bytes": 98186,
+      "workId": "MOD-DAILY-20261104-RELEASE",
+      "uploadReceiptSHA256": "90f5567aebda082406154c20dd2c28e1871d5128087b927de0ac6bd17e301326",
+      "nativeReceiptSHA256": "2e138ff491260879a81cfaec27f2bb78a879c5dae6842c6409d7deb8617c0c52"
+    },
+    {
+      "id": "I1",
+      "slug": "boho-nov17-maintenance-email-incident-report-2026",
+      "logicalPath": "/stock/2026-11-04-boho-nov17-maintenance-email-incident-report-2026.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261104-RELEASE/eaeed7f0-446b-41f5-ab0a-9631ef9889f2/0c55abb847a843b62ae06c31fa82a89bb4361b80832d137aa4ea51023041d56b/I1.jpg",
+      "sha256": "0c55abb847a843b62ae06c31fa82a89bb4361b80832d137aa4ea51023041d56b",
+      "bytes": 82972,
+      "workId": "MOD-DAILY-20261104-RELEASE",
+      "uploadReceiptSHA256": "90f5567aebda082406154c20dd2c28e1871d5128087b927de0ac6bd17e301326",
+      "nativeReceiptSHA256": "2e138ff491260879a81cfaec27f2bb78a879c5dae6842c6409d7deb8617c0c52"
+    },
+    {
+      "id": "I2",
+      "slug": "fire-material-ks-gypsum19-panel-steel-2026",
+      "logicalPath": "/stock/2026-11-04-fire-material-ks-gypsum19-panel-steel-2026.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261104-RELEASE/eaeed7f0-446b-41f5-ab0a-9631ef9889f2/704946b10537d3b02c7214d1253d61093dc9cc7d981e714142dff95966199a99/I2.jpg",
+      "sha256": "704946b10537d3b02c7214d1253d61093dc9cc7d981e714142dff95966199a99",
+      "bytes": 176745,
+      "workId": "MOD-DAILY-20261104-RELEASE",
+      "uploadReceiptSHA256": "90f5567aebda082406154c20dd2c28e1871d5128087b927de0ac6bd17e301326",
+      "nativeReceiptSHA256": "2e138ff491260879a81cfaec27f2bb78a879c5dae6842c6409d7deb8617c0c52"
+    },
+    {
+      "id": "L1",
+      "slug": "kopo-namdaegu-cook-license-email-nov11-2026",
+      "logicalPath": "/stock/2026-11-04-kopo-namdaegu-cook-license-email-nov11-2026.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261104-RELEASE/eaeed7f0-446b-41f5-ab0a-9631ef9889f2/701a1edb9769a0bb3df6bf62e4a44408bb27d931f25b7f1fedecc283e35562fb/L1.jpg",
+      "sha256": "701a1edb9769a0bb3df6bf62e4a44408bb27d931f25b7f1fedecc283e35562fb",
+      "bytes": 246991,
+      "workId": "MOD-DAILY-20261104-RELEASE",
+      "uploadReceiptSHA256": "90f5567aebda082406154c20dd2c28e1871d5128087b927de0ac6bd17e301326",
+      "nativeReceiptSHA256": "2e138ff491260879a81cfaec27f2bb78a879c5dae6842c6409d7deb8617c0c52"
+    },
+    {
+      "id": "L2",
+      "slug": "kopo-namdaegu-admin-replacement-email-nov11-2026",
+      "logicalPath": "/stock/2026-11-04-kopo-namdaegu-admin-replacement-email-nov11-2026.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261104-RELEASE/eaeed7f0-446b-41f5-ab0a-9631ef9889f2/c6fb74519d936821a98f094b3b6a22962ac0279c8af00d6300419b2c5d36c369/L2.jpg",
+      "sha256": "c6fb74519d936821a98f094b3b6a22962ac0279c8af00d6300419b2c5d36c369",
+      "bytes": 161076,
+      "workId": "MOD-DAILY-20261104-RELEASE",
+      "uploadReceiptSHA256": "90f5567aebda082406154c20dd2c28e1871d5128087b927de0ac6bd17e301326",
+      "nativeReceiptSHA256": "2e138ff491260879a81cfaec27f2bb78a879c5dae6842c6409d7deb8617c0c52"
     }
   ]
 }
