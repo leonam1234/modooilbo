@@ -1,6 +1,6 @@
 /** Preserve the existing KST-wall-clock-as-Z convention; reject calendar rollover. */
 export function normDate(input) {
-  let value = String(input ?? "").trim().replace(" ", "T");
+  let value = String(input ?? "").trim().replace(/^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}) KST$/, "$1").replace(" ", "T");
   if (/^\d{4}-\d{2}-\d{2}$/.test(value)) value += "T09:00";
   value = value.replace(/(?:[zZ]|[+-]\d{2}:?\d{2})$/, "");
   if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(value)) value += ":00";
