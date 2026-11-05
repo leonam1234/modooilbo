@@ -25,7 +25,14 @@ export function releaseMediaScope(owner,root){
  const g=pinnedJSON(s.firstGate,root),r=pinnedJSON(s.formalReview,root);
  const exactSeven=s.workId==='MOD-DAILY-20261103-RELEASE'&&g.selectedCount===7&&sameSet(g.selectedIds,['G1','G2','B2','I2','L1','D1','D2'])&&sameSet(g.protectedIds,['B1','S1','S2','I1','L2']);
  const currentSeven=s.workId==='MOD-DAILY-20261104-RELEASE'&&g.selectedCount===7&&sameSet(g.selectedIds,['G1','G2','B1','I1','I2','L1','L2'])&&sameSet(g.protectedIds,['B2','S1','S2','D1','D2']);
- if(g.releaseWorkId!==s.workId||g.status!=='FIRST_GATE_PASS_WAIT_FORMAL_REVIEW'||g.site?.siteRoot!==s.siteRoot||(![5,6].includes(g.selectedCount)&&!exactSeven&&!currentSeven)||!sameSet(g.selectedIds,s.items?.map(i=>i.id))||!sameSet(g.selectedSlugs,s.items?.map(i=>i.slug))||g.protectedIds?.length!==12-g.selectedCount||g.protectedIds.some(id=>g.selectedIds.includes(id))||new Set([...g.selectedIds,...g.protectedIds]).size!==12||g.approval?.publicationApproved!==true||!sameSet(g.approval.scope,g.selectedIds))fail('approved selected5/protected7 first gate');
+ // New counts require a pinned actual job selection; a count alone grants nothing.
+ let jobSelected=false;
+ if(s.job){
+  const j=pinnedJSON(s.job,root),universe=['G1','G2','B1','B2','S1','S2','I1','I2','L1','L2','D1','D2'];
+  jobSelected=j.schemaVersion===1&&j.type==='daily'&&j.workId+'-RELEASE'===s.workId&&j.date===s.date&&j.expectedCount===12&&sameSet(j.articleIds,universe)&&sameSet(j.articles?.map(a=>a.id),universe)&&Number.isSafeInteger(g.selectedCount)&&g.selectedCount>=5&&g.selectedCount===j.selection?.included?.length&&sameSet(j.selection.included,g.selectedIds)&&sameSet(j.selection.excluded,g.protectedIds)&&sameSet([...j.selection.included,...j.selection.excluded],universe)&&s.items?.every(i=>j.articles.some(a=>a.id===i.id&&a.slug===i.slug&&a.status==='CMS_IN'&&a.images?.some(im=>im.role==='main'&&im.sha256===i.sha256)));
+  if(!jobSelected)fail('pinned daily job selection / CMS image binding');
+ }
+ if(g.releaseWorkId!==s.workId||g.status!=='FIRST_GATE_PASS_WAIT_FORMAL_REVIEW'||g.site?.siteRoot!==s.siteRoot||(![5,6].includes(g.selectedCount)&&!exactSeven&&!currentSeven&&!jobSelected)||!sameSet(g.selectedIds,s.items?.map(i=>i.id))||!sameSet(g.selectedSlugs,s.items?.map(i=>i.slug))||g.protectedIds?.length!==12-g.selectedCount||g.protectedIds.some(id=>g.selectedIds.includes(id))||new Set([...g.selectedIds,...g.protectedIds]).size!==12||g.approval?.publicationApproved!==true||!sameSet(g.approval.scope,g.selectedIds))fail('approved selected5/protected7 first gate');
  const approval=s.approval?.file||s.approval?.path;
  if(approval!==(g.approval.file||g.approval.path)||s.approval.sha256!==g.approval.sha256||!path.isAbsolute(approval)||!approval.startsWith(root+path.sep)||digest(regularBytes(approval))!==s.approval.sha256)fail('approval SHA');
  if(r.workId!==s.workId||r.selectedCount!==g.selectedCount||!sameSet(r.scope,g.selectedIds)||r.counts?.HOLD!==0||r.counts?.staticUnresolved!==0||r.articles?.length!==g.selectedCount)fail('actual selected formal review');

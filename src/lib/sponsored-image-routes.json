@@ -924,6 +924,152 @@
       "workId": "MOD-PROVIDED-20261104-376-385",
       "uploadReceiptSHA256": "f507af09cce2cccddeb31d3a24bf9a3e4b98ccd94f65bfacb67e6a03c2cbdc28",
       "nativeReceiptSHA256": "a048b079c4cac0cc96b38f55a9f2b39c45ea2ae19bec0ab244287c83607b7b53"
+    },
+    {
+      "id": "G2",
+      "slug": "idea-challenge-company-cost-deadline",
+      "logicalPath": "/stock/2026-11-05-idea-challenge-company-cost-deadline.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261105-RELEASE/cef1b5cb-7288-4e3d-84ea-3c3f6651297c/730ed2c2f721a3d3296ea5062e19eaaa02e4b97c40128f83e49e19082349bf0e/G2.jpg",
+      "sha256": "730ed2c2f721a3d3296ea5062e19eaaa02e4b97c40128f83e49e19082349bf0e",
+      "bytes": 250791,
+      "workId": "MOD-DAILY-20261105-RELEASE",
+      "uploadReceiptSHA256": "1d7d28f95c1a5879ca27a99403d40b708b5e9b2e77d7693810c3892520af21a2",
+      "nativeReceiptSHA256": "60ecf54b63394947bed56443243befb6a84cd0efa91084487c7d3f13c19dc032"
+    },
+    {
+      "id": "B1",
+      "slug": "mas-recovery-rules-opinion-nov10",
+      "logicalPath": "/stock/2026-11-05-mas-recovery-rules-opinion-nov10.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261105-RELEASE/cef1b5cb-7288-4e3d-84ea-3c3f6651297c/c8f471c9e3bcdc6b0841fc0292b7aa7776e34abf3dc58f77a297cdab33548f0e/B1.jpg",
+      "sha256": "c8f471c9e3bcdc6b0841fc0292b7aa7776e34abf3dc58f77a297cdab33548f0e",
+      "bytes": 251384,
+      "workId": "MOD-DAILY-20261105-RELEASE",
+      "uploadReceiptSHA256": "1d7d28f95c1a5879ca27a99403d40b708b5e9b2e77d7693810c3892520af21a2",
+      "nativeReceiptSHA256": "60ecf54b63394947bed56443243befb6a84cd0efa91084487c7d3f13c19dc032"
+    },
+    {
+      "id": "B2",
+      "slug": "foreign-procurement-process-fee-plan",
+      "logicalPath": "/stock/2026-11-05-foreign-procurement-process-fee-plan.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261105-RELEASE/cef1b5cb-7288-4e3d-84ea-3c3f6651297c/050ad5bd472cba1ba4d18bc5be4eea7f807056dc247a59e6acd26be16472ada0/B2.jpg",
+      "sha256": "050ad5bd472cba1ba4d18bc5be4eea7f807056dc247a59e6acd26be16472ada0",
+      "bytes": 228200,
+      "workId": "MOD-DAILY-20261105-RELEASE",
+      "uploadReceiptSHA256": "1d7d28f95c1a5879ca27a99403d40b708b5e9b2e77d7693810c3892520af21a2",
+      "nativeReceiptSHA256": "60ecf54b63394947bed56443243befb6a84cd0efa91084487c7d3f13c19dc032"
+    },
+    {
+      "id": "S1",
+      "slug": "venture-reconfirmation-submission-payment-clock",
+      "logicalPath": "/stock/2026-11-05-venture-reconfirmation-submission-payment-clock.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261105-RELEASE/cef1b5cb-7288-4e3d-84ea-3c3f6651297c/9a1333b9bb8cd82d47236474628ef3866dc437b12efeb4dadc9557aa8e391da2/S1.jpg",
+      "sha256": "9a1333b9bb8cd82d47236474628ef3866dc437b12efeb4dadc9557aa8e391da2",
+      "bytes": 132038,
+      "workId": "MOD-DAILY-20261105-RELEASE",
+      "uploadReceiptSHA256": "1d7d28f95c1a5879ca27a99403d40b708b5e9b2e77d7693810c3892520af21a2",
+      "nativeReceiptSHA256": "60ecf54b63394947bed56443243befb6a84cd0efa91084487c7d3f13c19dc032"
+    },
+    {
+      "id": "S2",
+      "slug": "rsu-contract-notification-document-separation",
+      "logicalPath": "/stock/2026-11-05-rsu-contract-notification-document-separation.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261105-RELEASE/cef1b5cb-7288-4e3d-84ea-3c3f6651297c/973f7dc838d6138d5763227dce338c2824e3099cfb79f7575264e028c7ed8816/S2.jpg",
+      "sha256": "973f7dc838d6138d5763227dce338c2824e3099cfb79f7575264e028c7ed8816",
+      "bytes": 195895,
+      "workId": "MOD-DAILY-20261105-RELEASE",
+      "uploadReceiptSHA256": "1d7d28f95c1a5879ca27a99403d40b708b5e9b2e77d7693810c3892520af21a2",
+      "nativeReceiptSHA256": "60ecf54b63394947bed56443243befb6a84cd0efa91084487c7d3f13c19dc032"
+    },
+    {
+      "id": "I1",
+      "slug": "sme-goods-award-floor-notice-date-scope",
+      "logicalPath": "/stock/2026-11-05-sme-goods-award-floor-notice-date-scope.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261105-RELEASE/cef1b5cb-7288-4e3d-84ea-3c3f6651297c/14595fd0ab87ecb96cae4b7630d8f2b41f41c7bb55da71cb3902adbafa9f498d/I1.jpg",
+      "sha256": "14595fd0ab87ecb96cae4b7630d8f2b41f41c7bb55da71cb3902adbafa9f498d",
+      "bytes": 247098,
+      "workId": "MOD-DAILY-20261105-RELEASE",
+      "uploadReceiptSHA256": "1d7d28f95c1a5879ca27a99403d40b708b5e9b2e77d7693810c3892520af21a2",
+      "nativeReceiptSHA256": "60ecf54b63394947bed56443243befb6a84cd0efa91084487c7d3f13c19dc032"
+    },
+    {
+      "id": "I2",
+      "slug": "security-products-venture-nara-recommendation",
+      "logicalPath": "/stock/2026-11-05-security-products-venture-nara-recommendation.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261105-RELEASE/cef1b5cb-7288-4e3d-84ea-3c3f6651297c/4555898ffca5e1aa64feac214e10f46533fd706825be05b58f688f1b7c08a797/I2.jpg",
+      "sha256": "4555898ffca5e1aa64feac214e10f46533fd706825be05b58f688f1b7c08a797",
+      "bytes": 126440,
+      "workId": "MOD-DAILY-20261105-RELEASE",
+      "uploadReceiptSHA256": "1d7d28f95c1a5879ca27a99403d40b708b5e9b2e77d7693810c3892520af21a2",
+      "nativeReceiptSHA256": "60ecf54b63394947bed56443243befb6a84cd0efa91084487c7d3f13c19dc032"
+    },
+    {
+      "id": "L1",
+      "slug": "minimum-wage-2027-hourly-monthly-basis",
+      "logicalPath": "/stock/2026-11-05-minimum-wage-2027-hourly-monthly-basis.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261105-RELEASE/cef1b5cb-7288-4e3d-84ea-3c3f6651297c/774f582f66f000aa8339da824116417698c559e7dbbd83744c4d050d22d0110f/L1.jpg",
+      "sha256": "774f582f66f000aa8339da824116417698c559e7dbbd83744c4d050d22d0110f",
+      "bytes": 142230,
+      "workId": "MOD-DAILY-20261105-RELEASE",
+      "uploadReceiptSHA256": "1d7d28f95c1a5879ca27a99403d40b708b5e9b2e77d7693810c3892520af21a2",
+      "nativeReceiptSHA256": "60ecf54b63394947bed56443243befb6a84cd0efa91084487c7d3f13c19dc032"
+    },
+    {
+      "id": "L2",
+      "slug": "habitual-wage-arrears-credit-sanctions",
+      "logicalPath": "/stock/2026-11-05-habitual-wage-arrears-credit-sanctions.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261105-RELEASE/cef1b5cb-7288-4e3d-84ea-3c3f6651297c/95cb5d1ecf9dd382112cdf264942b5941ee8eac1fb24f89a388f8425a0a1ff7f/L2.jpg",
+      "sha256": "95cb5d1ecf9dd382112cdf264942b5941ee8eac1fb24f89a388f8425a0a1ff7f",
+      "bytes": 124695,
+      "workId": "MOD-DAILY-20261105-RELEASE",
+      "uploadReceiptSHA256": "1d7d28f95c1a5879ca27a99403d40b708b5e9b2e77d7693810c3892520af21a2",
+      "nativeReceiptSHA256": "60ecf54b63394947bed56443243befb6a84cd0efa91084487c7d3f13c19dc032"
+    },
+    {
+      "id": "D1",
+      "slug": "energy-cost-linkage-december-contract-preparation",
+      "logicalPath": "/stock/2026-11-05-energy-cost-linkage-december-contract-preparation.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261105-RELEASE/cef1b5cb-7288-4e3d-84ea-3c3f6651297c/b184e2532f0293b04175e4c372a00fd57d5c58602343e40c19cb6135c2f2e42e/D1.jpg",
+      "sha256": "b184e2532f0293b04175e4c372a00fd57d5c58602343e40c19cb6135c2f2e42e",
+      "bytes": 201450,
+      "workId": "MOD-DAILY-20261105-RELEASE",
+      "uploadReceiptSHA256": "1d7d28f95c1a5879ca27a99403d40b708b5e9b2e77d7693810c3892520af21a2",
+      "nativeReceiptSHA256": "60ecf54b63394947bed56443243befb6a84cd0efa91084487c7d3f13c19dc032"
+    },
+    {
+      "id": "D2",
+      "slug": "non-linkage-agreement-pressure-contract-splitting",
+      "logicalPath": "/stock/2026-11-05-non-linkage-agreement-pressure-contract-splitting.jpg",
+      "publicURL": "https://img.modooilbo.com/release-media/MOD-DAILY-20261105-RELEASE/cef1b5cb-7288-4e3d-84ea-3c3f6651297c/2504eedee669297c914f5165eac21f7f24054d28f652d7fca6864025b7aa19bb/D2.jpg",
+      "sha256": "2504eedee669297c914f5165eac21f7f24054d28f652d7fca6864025b7aa19bb",
+      "bytes": 114103,
+      "workId": "MOD-DAILY-20261105-RELEASE",
+      "uploadReceiptSHA256": "1d7d28f95c1a5879ca27a99403d40b708b5e9b2e77d7693810c3892520af21a2",
+      "nativeReceiptSHA256": "60ecf54b63394947bed56443243befb6a84cd0efa91084487c7d3f13c19dc032"
+    }
+  ],
+  "dailySelections": [
+    {
+      "workId": "MOD-DAILY-20261105-RELEASE",
+      "jobSHA256": "a131860a67eb0ed3ba63c6a35bf6d39eafe2d75f3aea6d1a99e834bd33306db0",
+      "selectedIds": [
+        "G2",
+        "B1",
+        "B2",
+        "S1",
+        "S2",
+        "I1",
+        "I2",
+        "L1",
+        "L2",
+        "D1",
+        "D2"
+      ],
+      "protectedIds": [
+        "G1"
+      ],
+      "firstGateSHA256": "eed5717a6fd7e0b5187bed6412d634ab2d26f58272c9e67a0921d61919a7826f",
+      "formalReviewSHA256": "73ff64dde5a5ce78ba078945b779da66b244d80b5f1890fad00ca979fe3fa11c",
+      "approvalSHA256": "02106bb9e78bde640904bd78020c3511cab13c40d1bd6540d8c3d99510f8781e"
     }
   ]
 }
