@@ -15,6 +15,10 @@ function fixture(t){
  const root=fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(),'modoo-protected-build-test-'))),siteRoot=path.join(root,'site'),metadataRoot=path.join(root,'meta'),blocked=path.join(siteRoot,'public/stock');
  fs.mkdirSync(blocked,{recursive:true});fs.mkdirSync(metadataRoot);fs.writeFileSync(path.join(blocked,'OLD.jpg'),'DO NOT READ OR HASH');fs.writeFileSync(path.join(siteRoot,'.env'),'DO NOT COPY');fs.mkdirSync(path.join(siteRoot,'.git'));fs.mkdirSync(path.join(siteRoot,'content/articles'),{recursive:true});
  for(const name of new Set([...PROTECTED_BUILD_TOOLS,'src/lib/sponsors.ts','scripts/lib/editorial-quality.mjs','scripts/lib/content-date.mjs','scripts/lib/content-fingerprint.mjs'])){const file=path.join(siteRoot,name);fs.mkdirSync(path.dirname(file),{recursive:true});fs.copyFileSync(path.join(sourceRoot,name),file);}
+ // Functions 입력 봉인(protected-functions-input.mjs)이 읽는 실제 경계: functions/·보조 입력·Pages 설정.
+ for(const name of ['src/lib/reporters.ts','wrangler.jsonc']){const file=path.join(siteRoot,name);fs.mkdirSync(path.dirname(file),{recursive:true});fs.copyFileSync(path.join(sourceRoot,name),file);}
+ fs.mkdirSync(path.join(siteRoot,'functions'),{recursive:true});fs.writeFileSync(path.join(siteRoot,'functions/_middleware.ts'),'export const onRequest=(c)=>c.next();\n');
+ fs.writeFileSync(path.join(siteRoot,'src/lib/trending-data.generated.json'),JSON.stringify({articles:S.items.map(i=>({id:S.date+'-'+i.slug}))}));
  fs.symlinkSync(fs.realpathSync(path.join(sourceRoot,'node_modules')),path.join(siteRoot,'node_modules'),'dir');
  const pin=(name,value)=>saveNewJSON(path.join(metadataRoot,name+'.json'),value),entries=S.items.map(i=>({id:i.id,slug:i.slug,logicalPath:'/stock/'+S.date+'-'+i.slug+'.jpg',publicURL:'https://img.modooilbo.com/release-media/'+S.workId+'/11111111-2222-4333-8444-555555555555/'+'f'.repeat(64)+'/'+i.id+'.jpg',sha256:'f'.repeat(64),bytes:100+i.id}));
  const uploadReceipt=pin('upload',{schema:'modoo-owned-r2-upload-v1',workId:S.workId,siteRoot,targetRevision:'a'.repeat(40),status:'OWNED_NEW5_UPLOADED_AND_SERVED',accountVerified:true,atomicCreateOnly:false,entries});

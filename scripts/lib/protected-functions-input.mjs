@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {digest,regularBytes,pinnedJSON,safeDir} from './protected-io.mjs';
 import {sealReleaseArtifact,verifyReleaseArtifact} from '../release-artifact.mjs';
+import {releaseMediaScope} from './release-media-scope.mjs';
 const fail=m=>{throw Error('protected Functions input: '+m);};
 const stable=v=>JSON.stringify(v);
 const AUX=['src/lib/trending-data.generated.json','src/lib/reporters.ts','tsconfig.json','tsconfig.functions.json','package.json','package-lock.json'];
@@ -19,9 +20,10 @@ function snapshot(root){
 }
 export function captureProtectedFunctionsInput(buildReceipt){
  const r=pinnedJSON(buildReceipt,path.dirname(buildReceipt.file)),p=pinnedJSON(r.manifest,path.dirname(r.manifest.file));
- if(r.schema!=='modoo-protected-build-result-v1'||r.status!=='NORMAL_BUILD_AND_POSTBUILD_SUCCEEDED'||r.targetRevision!==p.targetRevision||r.sourceRoot!==p.siteRoot||r.artifactDir!==path.join(r.stageRoot,'out')||!p.releaseScope)fail('actual protected build receipt/source binding');
- const scope=pinnedJSON(p.releaseScope,p.metadataRoot);
- if(scope.workId!==r.workId||scope.siteRoot!==r.sourceRoot||!Array.isArray(scope.items)||!scope.items.length)fail('selected release scope');
+ if(r.schema!=='modoo-protected-build-result-v1'||r.status!=='NORMAL_BUILD_AND_POSTBUILD_SUCCEEDED'||r.targetRevision!==p.targetRevision||r.sourceRoot!==p.siteRoot||r.artifactDir!==path.join(r.stageRoot,'out'))fail('actual protected build receipt/source binding');
+ // releaseScope가 없는 보호 빌드(승인 광고 고정 범위)도 protected-build.mjs와 같은 규칙으로 범위를 읽는다.
+ const scope=p.releaseScope?pinnedJSON(p.releaseScope,p.metadataRoot):releaseMediaScope(p,p.metadataRoot);
+ if(scope.workId!==r.workId||(p.releaseScope&&scope.siteRoot!==r.sourceRoot)||!Array.isArray(scope.items)||!scope.items.length)fail('selected release scope');
  const files=snapshot(r.stageRoot),data=JSON.parse(regularBytes(path.join(r.stageRoot,AUX[0]))),ids=data.articles?.map(a=>a.id),selectedIds=scope.items.map(i=>scope.date+'-'+i.slug);
  if(!Array.isArray(ids)||ids.some(id=>typeof id!=='string'||!id)||new Set(ids).size!==ids.length||selectedIds.some(id=>!ids.includes(id)))fail('built whitelist must cover exact static selected IDs');
  return {schema:'modoo-protected-functions-input-v1',model:'SHA_PINNED_SOURCE_VIEW_WRANGLER_BUNDLES_AT_DEPLOY',cwd:r.stageRoot,sourceCommit:r.targetRevision,buildReceipt,sourceManifestSHA256:r.manifest.sha256,files,inputSHA256:digest(Buffer.from(stable(files))),whitelistCount:ids.length,selectedIds};
