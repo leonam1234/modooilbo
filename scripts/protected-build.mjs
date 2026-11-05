@@ -11,6 +11,7 @@ const fail=m=>{throw Error('보호 빌드 차단: '+m);};
 const under=(p,r)=>p===r||p.startsWith(r+path.sep);
 const stable=v=>JSON.stringify(Object.fromEntries(Object.entries(v).sort(([a],[b])=>a.localeCompare(b))));
 PROTECTED_BUILD_TOOLS.push('scripts/lib/release-media-scope.mjs','scripts/lib/selected-content-merge.mjs');
+PROTECTED_BUILD_TOOLS.push('scripts/lib/protected-functions-input.mjs');
 export function protectedBuildToolHashes(siteRoot){return Object.fromEntries(PROTECTED_BUILD_TOOLS.map(n=>[n,digest(regularBytes(path.join(siteRoot,n)))]));}
 export function validateProtectedBuild(ref,{siteRoot,targetRevision}){
  const p=pinnedJSON(ref,path.dirname(ref.file)),root=p.metadataRoot;

@@ -31,6 +31,7 @@ import {
 import { assertProductionRemoteMatch, parseRemoteBranchHead, r2SyncArgs } from "./deploy-safety.mjs";
 import { runProtectedBuild, validateProtectedBuild } from './protected-build.mjs';
 import {pinnedJSON,regularBytes} from './lib/protected-io.mjs';
+import {captureProtectedFunctionsInput,protectedFunctionsDeploymentCwd} from './lib/protected-functions-input.mjs';
 
 // ── 프로젝트 설정 ────────────────────────────────────────────
 const PROJECT = "modooilbo"; // Cloudflare Pages project name
@@ -55,12 +56,17 @@ function optionValue(name) {
   const prefix = `${name}=`;
   return args.find((arg) => arg.startsWith(prefix))?.slice(prefix.length);
 }
-const reuseArtifactId = optionValue("--reuse-artifact");
+const reusePreviewId = optionValue('--reuse-preview-artifact');
+const reusePreviewRequested=args.some(arg=>arg==='--reuse-preview-artifact'||arg.startsWith('--reuse-preview-artifact='));
+if(reusePreviewRequested&&(!reusePreviewId||reusePreviewId.startsWith('--')))throw Error('--reuse-preview-artifact 값이 필요합니다.');
+const reuseArtifactId = optionValue("--reuse-artifact") || reusePreviewId;
+if(reusePreviewId&&(optionValue('--reuse-artifact')||env!=='preview'))throw Error('재봉인 Preview는 별도 --reuse-preview-artifact만 허용합니다.');
 const r2SelectedManifest = optionValue("--r2-selected-manifest");
 const r2SelectedManifestSHA256 = optionValue("--r2-selected-manifest-sha256");
 const protectedBuildFile = optionValue('--protected-build-manifest');
 const protectedBuildSHA256 = optionValue('--protected-build-manifest-sha256');
 const protectedRef = protectedBuildFile ? {file:protectedBuildFile,sha256:protectedBuildSHA256} : null;
+if(reusePreviewId&&!protectedRef)throw Error('재봉인 Preview에도 현재 보호 빌드 명세가 필요합니다.');
 if ((protectedBuildFile || protectedBuildSHA256) && (!protectedBuildFile || !/^[a-f0-9]{64}$/.test(protectedBuildSHA256||'') || (!buildOnce&&!reuseArtifactId) || process.env.NEXT_PUBLIC_STOCK_BASE==='')) {
  console.error('보호 빌드는 SHA 고정 명세와 build-once Preview 또는 same-artifact Production이 필요합니다.');process.exit(1);
 }
@@ -75,7 +81,7 @@ if (buildOnce && env !== "preview") {
   console.error("\n✖ --build-once 는 preview에서만 사용할 수 있습니다.\n");
   process.exit(1);
 }
-if (reuseArtifactId && env !== "prod") {
+if (reuseArtifactId && env !== "prod" && !reusePreviewId) {
   console.error("\n✖ --reuse-artifact 는 prod에서만 사용할 수 있습니다.\n");
   process.exit(1);
 }
@@ -83,11 +89,11 @@ if (buildOnce && reuseArtifactId) {
   console.error("\n✖ --build-once 와 --reuse-artifact 를 함께 사용할 수 없습니다.\n");
   process.exit(1);
 }
-if (reuseArtifactId && !smokeApproved) {
+if (reuseArtifactId && !reusePreviewId && !smokeApproved) {
   console.error("\n✖ 동일 산출물 승급에는 외부 스모크 PASS 뒤 --smoke-approved 가 필요합니다.\n");
   process.exit(1);
 }
-if (smokeApproved && !reuseArtifactId) {
+if (smokeApproved && (!reuseArtifactId || reusePreviewId)) {
   console.error("\n✖ --smoke-approved 는 --reuse-artifact 와 함께 사용하세요.\n");
   process.exit(1);
 }
@@ -243,14 +249,16 @@ if (reuseArtifactId) {
     expectedProject: PROJECT,
     expectedCommit: commit,
     expectedWranglerVersion: wranglerVersion,
+    requirePreview: !reusePreviewId,
   });
+  if(reusePreviewId&&(!release.manifest.seal.protectedBuild?.staticParent||release.manifest.preview))throw Error('원봉인물 계보가 있는 미배포 재봉인 Preview만 허용합니다.');
   deployDirectory = release.artifactDir;
   if(Boolean(release.manifest.seal.protectedBuild)!==Boolean(protectedRef)||protectedRef&&(release.manifest.seal.protectedBuild.manifestSHA256!==protectedRef.sha256))throw Error('봉인 보호 빌드 명세 불일치');
   stockRollback = release.manifest.seal.stockRollback;
   console.log(`\n▶ 봉인 산출물 검증 PASS`);
   console.log(`  release id : ${reuseArtifactId}`);
   console.log(`  artifact   : ${release.actual.artifactHash}`);
-  console.log(`  Preview    : ${release.manifest.preview.url}`);
+  console.log(`  Preview    : ${release.manifest.preview?.url || '재봉인물 최초 Preview 대기'}`);
   console.log("  build/R2/prune 생략 — Preview에 올린 동일 out/ 재사용");
 } else {
   let protectedResult;
@@ -297,7 +305,7 @@ if (reuseArtifactId) {
       commitMessage: commitMsg,
       wranglerVersion,
       stockRollback,
-      protectedBuild:protectedRef?{manifestSHA256:protectedRef.sha256,buildReceipt:protectedResult.buildReceipt,mappingSHA256:validateProtectedBuild(protectedRef,{siteRoot:resolve(REPO),targetRevision:commit}).p.mappingSHA256,model:'COOPERATIVE_PINNED_SOURCE_VIEW'}:null,
+      protectedBuild:protectedRef?{manifestSHA256:protectedRef.sha256,buildReceipt:protectedResult.buildReceipt,mappingSHA256:validateProtectedBuild(protectedRef,{siteRoot:resolve(REPO),targetRevision:commit}).p.mappingSHA256,model:'COOPERATIVE_PINNED_SOURCE_VIEW',functionsInput:captureProtectedFunctionsInput(protectedResult.buildReceipt)}:null,
     });
     deployDirectory = release.artifactDir;
     release = verifyReleaseArtifact({
@@ -350,10 +358,11 @@ if (isProd) {
   }
 }
 const deployArgs = makeDeployArgs(deployDirectory);
+const functionsCwd=protectedRef?protectedFunctionsDeploymentCwd(release,{releaseRoot}):REPO;
 console.log(`\n▶ wrangler pages deploy ...`);
 let out = "";
 try {
-  out = execFileSync(join(BIN, "wrangler"), deployArgs, { cwd: REPO, encoding: "utf8" });
+  out = execFileSync(join(BIN, "wrangler"), deployArgs, { cwd: functionsCwd, encoding: "utf8" });
   process.stdout.write(out);
 } catch (e) {
   process.stdout.write(e.stdout || "");
@@ -378,8 +387,9 @@ if (release) {
     expectedProject: PROJECT,
     expectedCommit: commit,
     expectedWranglerVersion: wranglerVersion,
-    requirePreview: Boolean(reuseArtifactId),
+    requirePreview: Boolean(reuseArtifactId) && !reusePreviewId,
   });
+  if(protectedRef)protectedFunctionsDeploymentCwd(verified,{releaseRoot});
   recordReleaseDeployment({
     releaseRoot,
     releaseId,
