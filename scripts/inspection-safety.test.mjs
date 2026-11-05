@@ -88,12 +88,18 @@ test("inspection routing blocks production redirects and absolute production sub
 test("inspection permits only the exact HTTPS image CDN and image filenames", () => {
   assert.equal(isApprovedInspectionImage("https://img.modooilbo.com/article.webp?v=1"), true);
   assert.equal(isBlockedInspectionRequest("https://img.modooilbo.com/article.webp?v=1"), false);
+  const releaseImage = "https://img.modooilbo.com/release-media/MOD-DAILY-20261105-RELEASE/cef1b5cb-7288-4e3d-84ea-3c3f6651297c/730ed2c2f721a3d3296ea5062e19eaaa02e4b97c40128f83e49e19082349bf0e/G2.jpg";
+  assert.equal(isApprovedInspectionImage(releaseImage), true);
+  assert.equal(isBlockedInspectionRequest(releaseImage), false);
   for (const url of [
     "http://img.modooilbo.com/article.webp",
     "https://img.modooilbo.com:8443/article.webp",
     "https://img.modooilbo.com/api/view",
     "https://img.modooilbo.com/tracker.js",
     "https://img.modooilbo.com/nested/article.webp",
+    "https://img.modooilbo.com/release-media/article.js",
+    "https://img.modooilbo.com/release-media/../api/view.jpg",
+    "https://img.modooilbo.com/release-media//article.jpg",
     "https://sub.img.modooilbo.com/article.webp",
     "https://img.modooilbo.com.example.test/article.webp",
     "https://user:secret@img.modooilbo.com/article.webp",

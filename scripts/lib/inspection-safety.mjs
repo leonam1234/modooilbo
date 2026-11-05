@@ -46,7 +46,9 @@ export function isApprovedInspectionImage(value) {
   return Boolean(url && url.protocol === "https:"
     && url.hostname === "img.modooilbo.com" && !url.port
     && !url.username && !url.password
-    && /^\/[a-zA-Z0-9_-]+\.(?:webp|jpe?g|png|avif)$/i.test(url.pathname));
+    // 루트 이미지(/name.jpg)와 발행 이미지(/release-media/<업무ID>/<id>/.../name.jpg)만 허용한다.
+    // 2026-10 이후 기사 이미지는 release-media 하위 경로라 루트만 허용하면 스모크가 정상 이미지를 차단해 FAIL을 낸다.
+    && /^\/(?:release-media(?:\/[A-Za-z0-9_-]+)+\/)?[a-zA-Z0-9_-]+\.(?:webp|jpe?g|png|avif)$/i.test(url.pathname));
 }
 
 export function isBlockedInspectionRequest(value) {
