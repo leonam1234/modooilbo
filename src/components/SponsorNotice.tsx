@@ -1,4 +1,7 @@
 import { sponsorName, sponsorRelation } from "@/lib/sponsors";
+import type { SponsorDisclosure } from "@/lib/types";
+
+type SponsorNoticeProps = { sponsor: string; disclosure?: SponsorDisclosure };
 
 /**
  * 광고성 콘텐츠 표시.
@@ -15,7 +18,14 @@ import { sponsorName, sponsorRelation } from "@/lib/sponsors";
  */
 
 /** 기사 제목 위 — 클릭해 들어온 직후 가장 먼저 보이는 자리. */
-export function SponsorBadge({ sponsor }: { sponsor: string }) {
+export function SponsorBadge({ sponsor, disclosure }: SponsorNoticeProps) {
+  if (disclosure?.mode === "unpaid-brand-support") {
+    return (
+      <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-ink-900 px-3.5 py-1.5 text-xs font-bold text-white dark:bg-white dark:text-ink-900">
+        광고 | 신생 브랜드 홍보 지원
+      </p>
+    );
+  }
   return (
     <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-ink-900 px-3.5 py-1.5 text-xs font-bold text-white dark:bg-white dark:text-ink-900">
       <span>광고</span>
@@ -25,7 +35,21 @@ export function SponsorBadge({ sponsor }: { sponsor: string }) {
 }
 
 /** 본문 끝 — 무엇을 읽었는지 다시 알린다. */
-export function SponsorFooter({ sponsor }: { sponsor: string }) {
+export function SponsorFooter({ sponsor, disclosure }: SponsorNoticeProps) {
+  if (disclosure?.mode === "unpaid-brand-support") {
+    return (
+      <aside className="mt-10 rounded-xl border border-ink-300 bg-ink-50 p-5 dark:border-ink-700 dark:bg-ink-900/70">
+        <p className="text-sm font-bold text-ink-900 dark:text-white">광고성 콘텐츠 고지</p>
+        <p className="mt-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+          이 콘텐츠는 <b>{disclosure.name}</b>의 신생 브랜드 홍보를 지원하기 위해 게재한 광고입니다.
+          모두일보는 이 콘텐츠의 게재료, 제품 제공, 제휴 수수료를 받지 않았습니다.
+        </p>
+        <p className="mt-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+          <b>이해관계 고지</b> — {disclosure.publisherRelation}
+        </p>
+      </aside>
+    );
+  }
   const name = sponsorName(sponsor);
   const relation = sponsorRelation(sponsor);
   return (

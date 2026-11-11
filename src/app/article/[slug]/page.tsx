@@ -131,7 +131,7 @@ export default async function ArticlePage({
     //    명시한다. 종전의 "Advertisement"는 schema.org에 없는 타입이라 구글이 블록 전체를
     //    무시했다(2026-08-14 점검에서 발견).
     "@type": article.sponsor ? "AdvertiserContentArticle" : isOpinion ? "OpinionNewsArticle" : "NewsArticle",
-    ...(article.sponsor
+    ...(article.sponsor && !article.sponsorDisclosure
       ? {
           sponsor: {
             "@type": "Organization",
@@ -231,7 +231,7 @@ export default async function ArticlePage({
           </nav>
 
           {/* 광고성 콘텐츠는 제목보다 먼저 알린다 — 읽기 시작한 뒤 알면 늦다. */}
-          {article.sponsor && <SponsorBadge sponsor={article.sponsor} />}
+          {article.sponsor && <SponsorBadge sponsor={article.sponsor} disclosure={article.sponsorDisclosure} />}
           <div className="flex flex-wrap items-center gap-2 text-sm font-bold">
             <Link
               href={`/${article.category}`}
@@ -345,7 +345,7 @@ export default async function ArticlePage({
 
           {/* 본문 끝 고지 — 위 배지를 못 본 독자(본문부터 읽기 시작)를 위한 두 번째 표시.
               태그·댓글보다 앞에 둔다. 다 읽자마자 무엇을 읽었는지 알아야 한다. */}
-          {article.sponsor && <SponsorFooter sponsor={article.sponsor} />}
+          {article.sponsor && <SponsorFooter sponsor={article.sponsor} disclosure={article.sponsorDisclosure} />}
 
           <div className="mt-8 flex flex-wrap gap-2">
             {article.tags.map((t) => (

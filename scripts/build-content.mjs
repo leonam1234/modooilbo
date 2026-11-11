@@ -15,7 +15,7 @@ import { fileURLToPath } from "node:url";
 import { assessEditorialQuality, list as qualityList } from "./lib/editorial-quality.mjs";
 import { normDate } from "./lib/content-date.mjs";
 import { indexFingerprintRow } from "./lib/content-fingerprint.mjs";
-import { scopedSponsoredRole, validateScopedSponsoredFields, sponsorNamesFromSource } from "./lib/sponsored-scope-policy.mjs";
+import { scopedSponsoredRole, validateScopedSponsoredFields, sponsorNamesFromSource, validateBrandSupport } from "./lib/sponsored-scope-policy.mjs";
 import {protectedBuildContext} from './lib/protected-build-runtime.mjs';
 import {mergeSelectedContent} from './lib/selected-content-merge.mjs';
 
@@ -180,6 +180,7 @@ function existingStockByCategory() {
 function parse(md) {
   const t = md.replace(/^﻿/, "").trim();
   const fm = {};
+  const duplicateKeys = [];
   let body = t;
   if (t.startsWith("---")) {
     const end = t.indexOf("\n---", 3);
@@ -191,12 +192,13 @@ function parse(md) {
         if (i === -1) continue;
         const k = line.slice(0, i).trim();
         const v = line.slice(i + 1).trim();
+        if (Object.hasOwn(fm, k)) duplicateKeys.push(k);
         fm[k] = v;
       }
     }
   }
   const paragraphs = body.split(/\n\s*\n+/).map((p) => p.replace(/\s+/g, " ").trim()).filter(Boolean);
-  return { fm, paragraphs };
+  return { fm, paragraphs, duplicateKeys };
 }
 
 async function download(url, dest, tries = 3) {
@@ -247,8 +249,13 @@ async function run() {
       errors.push(`${file}: 슬러그 중복("${slug}") — 같은 이름의 기사가 이미 있습니다.`);
       continue;
     }
-    const { fm, paragraphs } = parse(readFileSync(join(CONTENT_DIR, file), "utf8"));
+    const { fm, paragraphs, duplicateKeys } = parse(readFileSync(join(CONTENT_DIR, file), "utf8"));
     const scopeDay = file.match(/^(\d{4}-\d{2}-\d{2})-/)?.[1] || String(fm.publishedAt || "").slice(0, 10);
+    const brandSupport = validateBrandSupport(fm, scopeDay, file, duplicateKeys);
+    if (brandSupport.errors.length) {
+      errors.push(...brandSupport.errors.map(message => `${file}: ${message}`));
+      continue;
+    }
     const scopedErrors = validateScopedSponsoredFields(fm, scopeDay, paragraphs.join("\n\n"));
     if (scopedErrors.length) { errors.push(...scopedErrors.map(message => `${file}: ${message}`)); continue; }
 
@@ -376,7 +383,7 @@ async function run() {
     // 등록부가 비어 있으면 통과가 아니라 실패다 — sponsors.ts 는 컴포넌트가 import 하므로 파일 부재는
     // next build 가 따로 잡고, 여기서 비었다는 건 형식이 깨져 정규식이 못 읽은 것이다(조용히 꺼지면
     // 오타 slug 가 raw 문자열로 표시된 채 발행된다).
-    if (sponsor && !PARTNER_SLUGS.has(sponsor)) {
+    if (sponsor && !brandSupport.disclosure && !PARTNER_SLUGS.has(sponsor)) {
       errors.push(
         `${file}: sponsor "${sponsor}" 가 src/lib/sponsors.ts 에 없습니다. ` +
           `오타면 고치고, 신규 광고주면 계약서 서명 뒤 sponsors.ts 에 먼저 추가하세요 ` +
@@ -476,6 +483,7 @@ async function run() {
       ...(eventEndsAt ? { eventEndsAt } : {}),
       ...(correction ? { correction } : {}),
       ...(sponsor ? { sponsor } : {}),
+      ...(brandSupport.disclosure ? { sponsorDisclosure: brandSupport.disclosure } : {}),
       ...(reporting ? { reporting } : {}),
       ...(reportingType ? { reportingType } : {}),
       ...(verificationNote ? { verificationNote } : {}),

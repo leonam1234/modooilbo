@@ -55,3 +55,68 @@ export function packageImageFolders(rows) {
   const scoped=rows.length===5&&SPONSORED_SCOPE.items.every(i=>rows.filter(r=>r.fm?.slug===i.slug&&r.fm?.sponsor===i.sponsor&&scopedSponsoredRole(r.fm,SPONSORED_SCOPE.date)).length===1);
   return scoped ? [['images','.jpg'],['images','.png']] : [['images_1200x675_jpg','.jpg'],['images_png_source','.png']];
 }
+
+// MOD-SPONSORED-20261111-BRAND20: NOW.md의 DOCX 원본 순번, 대상 도메인과 SHA.
+// 배열의 앞 10개와 뒤 10개는 각각 KST 11월 11일과 12일 발행 후보입니다.
+const BRAND_SUPPORT_SOURCES = [
+  ["aisubclub.com", "AI구독클럽", "5d78bcccf895ebe49b980f212e2ea6582e12552e75b466aa107f080925e5137f"],
+  ["smarttvrental.com", "TV렌탈", "2b485c78b6366d2505658794098644d4d7855a25f44055f6442af94ab22ef61e"],
+  ["appliancesubscription.com", "가전구독", "6fd2d52b748071302c5861286c66ee4aa2f0057a7c0f62f258540b803a1277ba"],
+  ["appliancerentalhub.com", "가전렌탈", "aca062ba2c72854f07e8d649ff275a003a14c37e93473ce7f1c756f54cc970e6"],
+  ["airpurifierrental.com", "공기청정기렌탈", "340d3b93218fb2ac59ba8b3e856a112184712a635d50e59fa8e87c44ed841817"],
+  ["grochi.wiki", "그로치", "b1fcea29325a73ef3d2edf05408f0d5e5f87489819460c5d7564fea46a81560f"],
+  ["kimchifridgerental.com", "김치냉장고렌탈", "367efa0d2eb624b9b782c08174f79de8367c36ea832882d136ea70e99445ee17"],
+  ["fridgesubscription.com", "냉장고렌탈", "77e6fb3b00db01559669167be4bf36c3bb41718fff22f6c57c2a97e07d78af78"],
+  ["laptopsubscription.com", "노트북컴퓨터렌탈", "6fcc876b7dea7f7f4c3b2fef4aa355e9d74ae8af3095181a93d4d50ab5714193"],
+  ["dubomflower.com", "두봄플라워", "d709ecaefb7b120abf841ee9ad21d47156f62470a8ffa9bb1778ec09416f223f"],
+  ["rental.wiki", "렌탈위키", "bd0f0227f21352a33b6c7876f7293ef1d3db6aef492bfc815920f69152334302"],
+  ["robotvacuumrental.com", "로봇청소기렌탈", "76705d95939197c24462ca176c9ee6fb1a9228c324cd49df1814b7786cc44b88"],
+  ["brandmap.co.kr", "브랜드맵", "6fa31f4ab6b716b230c45d237e5c983536e1a3d1111db7f6ae325d32594ae801"],
+  ["washersubscription.com", "세탁기렌탈", "e0004d65637ef330cad009c2229f948881f404c82ecea936add4ac7d3e131c1a"],
+  ["dishwasherrent.com", "식기세척기렌탈", "a1f1ebd0b0ddccabe2a38e2402c21a272fdbbf91d4faec11230a6ac5ab663d3e"],
+  ["icepurifier.com", "얼음정수기렌탈", "1be824d019e4ef89a3e0b989c423e65774ef20834ae85e27ec7afc429ec874b1"],
+  ["airconsubscription.com", "에어컨렌탈", "883b72f25c7f51c62e36bfb009ccedad8f2f9bdb63676da330388d916f05015d"],
+  ["worktool.wiki", "워크툴", "b71e5157b01c75d2201bfad4234d195a1c99ff2cda75adcc51fb3f32980915f0"],
+  ["purifierrental.com", "정수기렌탈", "5b14016d275c1f7d2dd593f4eb766b8a55ef77b95939ac66d51bcc15b3ea7b21"],
+  ["cleanerrentals.com", "청소기렌탈", "f49157c217772bf1afc9cd95ff025720705772b43644da28107124353d0b257f"],
+];
+const BRAND_SUPPORT_WORK = "MOD-SPONSORED-20261111-BRAND20";
+export const BRAND_SUPPORT_FIELDS = [
+  "sponsorMode", "sponsorSourceSHA256", "sponsorPublisherRelation", "sponsorRelationEvidence",
+];
+
+export function validateBrandSupport(fm, day, filename, duplicateKeys = []) {
+  const index = BRAND_SUPPORT_SOURCES.findIndex(([domain]) => domain === fm.sponsor);
+  if (index === -1 && !BRAND_SUPPORT_FIELDS.some(key => Object.hasOwn(fm, key))) return { errors: [] };
+
+  const errors = [];
+  const source = BRAND_SUPPORT_SOURCES[index];
+  if (fm.sponsorMode !== BRAND_SUPPORT_WORK || !source || source[2] !== fm.sponsorSourceSHA256) {
+    errors.push("무상 광고 업무 ID·대상 도메인·승인 DOCX SHA가 일치해야 합니다");
+  }
+
+  if (source) {
+    const expectedDate = index < 10 ? "2026-11-11" : "2026-11-12";
+    const expectedSlug = "brand20-" + source[0].replaceAll(".", "-");
+    if (day !== expectedDate || fm.slug !== expectedSlug || filename !== expectedDate + "-" + expectedSlug + ".md") {
+      errors.push("무상 광고의 승인 후보 날짜·slug·CMS 파일명이 일치해야 합니다");
+    }
+    if (fm.publishedAt && !fm.publishedAt.startsWith(expectedDate + " ")) {
+      errors.push("무상 광고 발행 시각은 해당 승인 후보일의 KST 시각이어야 합니다");
+    }
+  }
+  if (duplicateKeys.some(key => [...BRAND_SUPPORT_FIELDS, "sponsor", "slug", "reporting", "author", "title", "publishedAt"].includes(key))) {
+    errors.push("무상 광고 고지 또는 식별 필드가 중복되었습니다");
+  }
+  if (fm.reporting !== "sponsored" || fm.author !== "김영환 / 경제부 기자" || !fm.title?.startsWith("[광고] ")) {
+    errors.push("무상 광고는 reporting: sponsored, 김영환 / 경제부 기자, [광고] 제목을 사용해야 합니다");
+  }
+
+  const relation = fm.sponsorPublisherRelation?.trim();
+  const evidence = fm.sponsorRelationEvidence?.trim();
+  if (!relation || !relation.includes("발행인") || /미확인|미정|확인되지 않|확인 중|확인할 수 없/.test(relation) || !evidence || /^(?:없음|미정|미확인|TODO|TBD|N\/?A|-)$/i.test(evidence)) {
+    errors.push("무상 광고는 기사별로 확인한 발행인 관계 고지와 검수 근거 참조가 필요합니다");
+  }
+  if (errors.length) return { errors };
+  return { errors, disclosure: { mode: "unpaid-brand-support", name: source[1], publisherRelation: relation } };
+}

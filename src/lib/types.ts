@@ -18,6 +18,12 @@ export type CategorySlug =
 
 export type ArticleType = "article" | "opinion" | "video";
 
+export type SponsorDisclosure = {
+  mode: "unpaid-brand-support";
+  name: string;
+  publisherRelation: string;
+};
+
 export interface Category {
   slug: CategorySlug;
   name: string; // 한글 표기 (화면 표시용 — 변경 금지)
@@ -75,6 +81,7 @@ export interface Article {
    * 광고계약서 제6조 ③(광고성 콘텐츠에 "광고" 표기)의 이행 수단이다.
    */
   sponsor?: string;
+  sponsorDisclosure?: SponsorDisclosure;
 
   /**
    * 제작 출처(2026-08-21 도입) — 포털 제휴 심사의 '자체기사 비율' 근거.

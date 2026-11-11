@@ -7,7 +7,7 @@ import vm from 'node:vm';
 import {createRequire} from 'node:module';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
-import {SPONSORED_SCOPE as S,scopedSponsoredRole,validateScopedSponsoredFields,validateScopedSponsoredManifest,sponsorNamesFromSource} from './lib/sponsored-scope-policy.mjs';
+import {SPONSORED_SCOPE as S,scopedSponsoredRole,validateScopedSponsoredFields,validateScopedSponsoredManifest,sponsorNamesFromSource,validateBrandSupport} from './lib/sponsored-scope-policy.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const require=createRequire(import.meta.url),ts=require('typescript'),React=require('react'),{renderToStaticMarkup}=require('react-dom/server');
 const body='브랜드 담당자의 의뢰로 비용을 받아 제작한 광고 콘텐츠입니다.';
@@ -74,15 +74,91 @@ test('actual metadata function retains advertising in title, OG, Twitter and por
     for(const title of [m.title,m.openGraph.title,m.twitter.title,m.other.title])assert(title.startsWith('[광고] '));assert.equal(m.authors[0].name,S.author);
   }
 });
-function builderFixture(t,mutate=()=>{}){
+function builderFixture(t,mutate=()=>{},extra){
   const scratch=fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(),'modoo-ad-builder-')));t.after(()=>fs.rmSync(scratch,{recursive:true,force:true}));
   for(const d of ['scripts/lib','src/lib','content/articles'])fs.mkdirSync(path.join(scratch,d),{recursive:true});
   fs.copyFileSync(path.join(root,'scripts/build-content.mjs'),path.join(scratch,'scripts/build-content.mjs'));fs.cpSync(path.join(root,'scripts/lib'),path.join(scratch,'scripts/lib'),{recursive:true});
   fs.copyFileSync(path.join(root,'scripts/selected-r2-sync.mjs'),path.join(scratch,'scripts/selected-r2-sync.mjs'));
   fs.copyFileSync(path.join(root,'src/lib/sponsors.ts'),path.join(scratch,'src/lib/sponsors.ts'));fs.writeFileSync(path.join(scratch,'src/lib/reporters.ts'),'export const reporters = [];');
   for(const i of S.items){const fields={...fm(i),category:'industry',publishedAt:S.date+' 09:0'+(i.id-321),image:'/stock/'+S.date+'-'+i.slug+'.jpg',summary:'[광고] '+i.sponsor+' 확인 안내',verificationNote:'공식 사이트의 현재 안내 화면과 제공 자료의 조건을 대조했습니다.',addedValue:'독자가 이용 조건과 예외를 구분할 수 있도록 핵심 확인 사항을 정리했습니다.',sourceBasis:'primary',aiRole:'none',reviewedBy:'김영환',reviewedAt:S.date+' 08:30',reporterInsight:'합성 검수에서는 제공된 화면의 기준시각과 서비스 조건을 확인하고 독자가 구분해야 할 조건을 다시 정리했습니다.',tags:'광고, 서비스, 조건, 안내, 화면, 비교, 검증, 기준'};mutate(fields,i);fs.writeFileSync(path.join(scratch,'content/articles',S.date+'-'+i.slug+'.md'),'---\n'+Object.entries(fields).map(([k,v])=>k+': '+v).join('\n')+'\n---\n\n'+body+'\n\n'+('독자가 확인할 수 있는 서비스 조건과 예외를 설명하는 합성 본문입니다. '.repeat(50))+'\n\n## 이용 조건\n\n서비스별 이용 조건과 기준시각을 확인하세요.\n\n## 독자가 볼 차이\n\n브랜드별 제공 범위를 비교하세요.\n\n## 출처 메모\n\n- 공식 자료: https://example.com/a\n- 조건 안내: https://example.com/b\n');}
+  if (extra) {
+    const fields = {
+      ...extra, category: 'industry', publishedAt: '2026-11-11 09:00',
+      image: '/stock/2026-11-11-' + extra.slug + '.jpg',
+      summary: '서비스 이용 전 확인할 조건과 약정에 따른 예외를 항목별로 비교할 수 있도록 정리한 합성 광고입니다.',
+      verificationNote: '공식 사이트의 현재 안내 화면과 제공 자료의 조건을 대조했습니다.',
+      addedValue: '독자가 이용 조건과 예외를 구분할 수 있도록 핵심 확인 사항을 정리했습니다.',
+      sourceBasis: 'primary', aiRole: 'none', visualType: 'source-photo',
+      reviewedBy: '모두일보 독립 리뷰 담당', reviewedAt: '2026-11-11 08:30',
+      reporterInsight: '합성 검수에서는 제공된 화면의 기준시각과 서비스 조건을 확인하고 독자가 구분해야 할 조건을 다시 정리했습니다.',
+      imageCaption: '합성 테스트 이미지입니다.', tags: '광고, 서비스, 조건, 안내, 화면, 비교, 검증, 기준',
+    };
+    fs.writeFileSync(
+      path.join(scratch,'content/articles','2026-11-11-'+extra.slug+'.md'),
+      '---\n'+Object.entries(fields).map(([k,v])=>k+': '+v).join('\n')+
+      '\n---\n\n신생 브랜드 홍보를 위한 합성 광고입니다.\n\n'+
+      '독자가 확인할 수 있는 서비스 조건과 예외를 설명하는 합성 본문입니다. '.repeat(50)+
+      '\n\n## 이용 조건\n\n서비스별 이용 조건과 기준시각을 확인하세요.\n\n## 독자가 볼 차이\n\n브랜드별 제공 범위를 비교하세요.\n\n## 출처 메모\n\n- 공식 자료: https://example.com/a\n- 조건 안내: https://example.com/b\n',
+    );
+  }
   const run=spawnSync(process.execPath,['scripts/build-content.mjs'],{cwd:scratch,encoding:'utf8',timeout:15000});return {scratch,run};
 }
 test('real builder on synthetic corpus serializes responsible author, source-photo, sponsor and advertising titles',t=>{const f=builderFixture(t);assert.equal(f.run.status,0,f.run.stdout+f.run.stderr);const generated=fs.readFileSync(path.join(f.scratch,'src/lib/content.generated.ts'),'utf8');for(const i of S.items)assert(generated.includes(i.sponsor));assert(generated.includes(S.authorRole));assert(generated.includes('source-photo'));assert(generated.includes('[광고]'));assert(generated.includes(REVIEWED_GROCHI_CAPTION));assert(!generated.includes('AI 생성 이미지. 실제 사진이 아닙니다.'));});
 test('real builder rejects unknown sponsor before any image fallback',t=>{const f=builderFixture(t,(fm,i)=>{if(i.id===321){fm.sponsor='unknown';delete fm.image;}});assert.equal(f.run.status,1);assert.match(f.run.stderr+f.run.stdout,/scope|범위|광고321/);});
 test('real builder rejects324 disclosure deletion before image fallback',t=>{const f=builderFixture(t,(fields,i)=>{if(i.id===324){fields.imageCaption='그로치 홈페이지 제공화면. 2026년 10월 28일 확인.';delete fields.image;}});assert.equal(f.run.status,1);assert.match(f.run.stderr+f.run.stdout,/AI 이미지 고지를 유지/);});
+
+const brandSupportFields = {
+  slug: 'brand20-grochi-wiki', sponsor: 'grochi.wiki',
+  sponsorMode: 'MOD-SPONSORED-20261111-BRAND20',
+  sponsorSourceSHA256: 'b1fcea29325a73ef3d2edf05408f0d5e5f87489819460c5d7564fea46a81560f',
+  sponsorPublisherRelation: '합성 검수에서 확인한 발행인 관계입니다.',
+  sponsorRelationEvidence: 'synthetic-review-row-06',
+  author: '김영환 / 경제부 기자', reporting: 'sponsored', title: '[광고] 합성 서비스 안내',
+};
+const brandSupportDate = '2026-11-11';
+const brandSupportFile = '2026-11-11-brand20-grochi-wiki.md';
+
+test('brand support: rejects source, schedule, label and relationship mismatches', () => {
+  const fields = brandSupportFields;
+  assert.deepEqual(validateBrandSupport(fields, brandSupportDate, brandSupportFile).errors, []);
+  for (const change of [
+    { sponsorMode: '' }, { sponsorSourceSHA256: '0'.repeat(64) }, { sponsor: 'example.com' },
+    { slug: 'other' }, { publishedAt: '2026-11-12 09:00' }, { reporting: 'desk' },
+    { title: '일반 제목' }, { author: '다른 기자' }, { sponsorRelationEvidence: '' },
+    { sponsorPublisherRelation: '발행인 관계 미확인' },
+  ]) assert(validateBrandSupport({ ...fields, ...change }, brandSupportDate, brandSupportFile).errors.length);
+  assert(validateBrandSupport(fields, '2026-11-12', brandSupportFile).errors.length);
+  assert(validateBrandSupport(fields, brandSupportDate, '2026-11-11-other.md').errors.length);
+  assert(validateBrandSupport(fields, brandSupportDate, brandSupportFile, ['sponsorMode']).errors.length);
+  assert.deepEqual(validateBrandSupport(fm(S.items[3]), S.date, S.date+'-'+S.items[3].slug+'.md'), { errors: [] });
+});
+
+test('brand support: normal builder emits article disclosure and preserves paid rows', t => {
+  const prior = builderFixture(t), next = builderFixture(t, undefined, brandSupportFields);
+  const generated = fixture => {
+    assert.equal(fixture.run.status, 0, fixture.run.stdout + fixture.run.stderr);
+    return fs.readFileSync(path.join(fixture.scratch, 'src/lib/content.generated.ts'), 'utf8');
+  };
+  const rows = text => JSON.parse(text.match(/export const CONTENT_ARTICLES: Article\[\] = (\[[\s\S]*\]);/)[1]);
+  const before = rows(generated(prior)), after = rows(generated(next));
+  const current = after.find(a => a.slug === brandSupportFile.slice(0, -3));
+  assert.equal(current.sponsor, brandSupportFields.sponsor);
+  assert.deepEqual(current.sponsorDisclosure, {
+    mode: 'unpaid-brand-support', name: '그로치', publisherRelation: brandSupportFields.sponsorPublisherRelation,
+  });
+  assert.deepEqual(current.author, { name: '김영환', role: '경제부 기자' });
+  assert(!JSON.stringify(current).includes(brandSupportFields.sponsorRelationEvidence));
+  assert.deepEqual(after.filter(a => a !== current), before);
+});
+
+test('brand support: actual disclosure renders without changing legacy paid text', () => {
+  const { disclosure } = validateBrandSupport(brandSupportFields, brandSupportDate, brandSupportFile);
+  const render = (Component, props) => renderToStaticMarkup(React.createElement(Component, props));
+  const props = { sponsor: 'grochi.wiki', disclosure };
+  assert.match(render(notice.SponsorBadge, props), /광고 \| 신생 브랜드 홍보 지원/);
+  const html = render(notice.SponsorFooter, props);
+  assert.match(html, /게재료, 제품 제공, 제휴 수수료를 받지 않았습니다/);
+  assert(html.includes(brandSupportFields.sponsorPublisherRelation));
+  assert.doesNotMatch(html, /광고비를 받아|담당자의 의뢰로 비용/);
+  assert.match(render(notice.SponsorFooter, { sponsor: 'grochi' }), /담당자의 의뢰로 비용을 받아/);
+});
