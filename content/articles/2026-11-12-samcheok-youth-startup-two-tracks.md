@@ -1,24 +1,24 @@
 ---
-title: "삼척 청년창업 10명 모집…보조금 1000만원에 자부담 200만원"
+title: 삼척 청년창업 10명 모집…보조금 1000만원에 자부담 200만원
 slug: samcheok-youth-startup-two-tracks
 category: startup
 author: 김영환 / 경제부 기자
 reporting: desk
-summary: "삼척시가 일반전형과 청년몰전형으로 청년 창업자 10명을 모집한다. 고용보험과 사업자등록 요건, 재료비·임차료 한도를 확인해 12월 11일 오후 6시까지 서류를 내면 된다."
+summary: 삼척시가 일반전형과 청년몰전형으로 청년 창업자 10명을 모집한다. 고용보험과 사업자등록 요건, 재료비·임차료 한도를 확인해 12월 11일 오후 6시까지 서류를 내면 된다.
 tags: [삼척시, 청년창업, 예비창업, 청년몰, 사업화자금, 자부담, 고용보험, 창업지원]
 eventEndsAt: 2026-12-11 18:00
-verificationNote: "삼척시 공고 제2026-1707호 원첨부의 사업 개요, 신청 자격, 지원비목, 신청방법과 서식을 확인했다."
-addedValue: "주민등록과 고용보험 기준일, 청년몰 미달 인원 전환, 월별 집행 한도와 도착분 마감을 함께 정리했다."
+verificationNote: 삼척시 공고 제2026-1707호 원첨부의 사업 개요, 신청 자격, 지원비목, 신청방법과 서식을 확인했다.
+addedValue: 주민등록과 고용보험 기준일, 청년몰 미달 인원 전환, 월별 집행 한도와 도착분 마감을 함께 정리했다.
 sourceBasis: primary
 visualType: ai-illustration
 aiRole: research-assist, draft-assist
 humanReviewClaimed: false
-readerChecklist: "공고일 주민등록·고용보험 상태 확인 | 신청 전형과 자부담 200만원을 사업계획에 반영 | 서명과 증빙을 갖춰 12월 11일 오후 6시까지 도착하도록 제출"
+readerChecklist: 공고일 주민등록·고용보험 상태 확인 | 신청 전형과 자부담 200만원을 사업계획에 반영 | 서명과 증빙을 갖춰 12월 11일 오후 6시까지 도착하도록 제출
 image: /stock/2026-11-12-samcheok-youth-startup-two-tracks.jpg
 imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 reviewedBy: 모두일보 독립 리뷰 담당
 reviewedAt: 2026-11-12 06:17
-reporterInsight: "삼척시가 일반전형과 청년몰전형으로 청년 창업자 10명을 모집한다. 고용보험과 사업자등록 요건, 재료비·임차료 한도를 확인해 12월 11일 오후 6시까지 서류를 내면 된다."
+reporterInsight: 삼척시가 일반전형과 청년몰전형으로 청년 창업자 10명을 모집한다. 고용보험과 사업자등록 요건, 재료비·임차료 한도를 확인해 12월 11일 오후 6시까지 서류를 내면 된다.
 publishedAt: 2026-11-12 06:28
 ---
 

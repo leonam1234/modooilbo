@@ -1,24 +1,24 @@
 ---
-title: "국립중앙의료원 AI 연산장비 입찰, 20일 오전 11시까지 서류와 투찰 모두"
+title: 국립중앙의료원 AI 연산장비 입찰, 20일 오전 11시까지 서류와 투찰 모두
 slug: nmc-ax-ready-computer-bid
 category: industry
 author: 서영호 / 공공입찰 전담기자
 reporting: desk
-summary: "국립중앙의료원이 예산 7000만원으로 AI 실증용 연산장비를 구매한다. 컴퓨터서버 직접생산확인증명서와 GPU 제조사 확약서를 준비해 방문 제출하고, 나라장터 가격입찰도 별도로 마쳐야 한다."
+summary: 국립중앙의료원이 예산 7000만원으로 AI 실증용 연산장비를 구매한다. 컴퓨터서버 직접생산확인증명서와 GPU 제조사 확약서를 준비해 방문 제출하고, 나라장터 가격입찰도 별도로 마쳐야 한다.
 tags: [국립중앙의료원, 공공입찰, 나라장터, 컴퓨터서버, 워크스테이션, 직접생산확인, 적격심사, GPU]
 eventEndsAt: 2026-11-20 11:00
-verificationNote: "국립중앙의료원 제2026-220호 입찰공고문 PDF와 과업지시서 HWP를 열어 접수 이중 요건, 증빙, 규격과 설치 범위를 확인했다."
-addedValue: "서버 품목 등록과 직접생산확인 서류를 분리하고, 방문 접수 확인과 전자문서함 확인을 따로 안내했다."
+verificationNote: 국립중앙의료원 제2026-220호 입찰공고문 PDF와 과업지시서 HWP를 열어 접수 이중 요건, 증빙, 규격과 설치 범위를 확인했다.
+addedValue: 서버 품목 등록과 직접생산확인 서류를 분리하고, 방문 접수 확인과 전자문서함 확인을 따로 안내했다.
 sourceBasis: primary
 visualType: ai-illustration
 aiRole: research-assist, draft-assist
 humanReviewClaimed: false
-readerChecklist: "나라장터 서버 품목 등록과 직접생산확인증명서 보유 여부 확인 | 과업지시서에 맞춰 규격입찰서·GPU 제조사 확약서를 준비해 총무팀에 직접 제출하고 접수 확인 | 20일 오전 11시 전에 전자 가격입찰을 보내고 보낸문서함 확인"
+readerChecklist: 나라장터 서버 품목 등록과 직접생산확인증명서 보유 여부 확인 | 과업지시서에 맞춰 규격입찰서·GPU 제조사 확약서를 준비해 총무팀에 직접 제출하고 접수 확인 | 20일 오전 11시 전에 전자 가격입찰을 보내고 보낸문서함 확인
 image: /stock/2026-11-12-nmc-ax-ready-computer-bid.jpg
 imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 reviewedBy: 모두일보 독립 리뷰 담당
 reviewedAt: 2026-11-12 06:17
-reporterInsight: "국립중앙의료원이 예산 7000만원으로 AI 실증용 연산장비를 구매한다. 컴퓨터서버 직접생산확인증명서와 GPU 제조사 확약서를 준비해 방문 제출하고, 나라장터 가격입찰도 별도로 마쳐야 한다."
+reporterInsight: 국립중앙의료원이 예산 7000만원으로 AI 실증용 연산장비를 구매한다. 컴퓨터서버 직접생산확인증명서와 GPU 제조사 확약서를 준비해 방문 제출하고, 나라장터 가격입찰도 별도로 마쳐야 한다.
 publishedAt: 2026-11-12 06:29
 ---
 

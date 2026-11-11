@@ -1,24 +1,24 @@
 ---
-title: "중동행 냉장·냉동 공동물류, 28일 출항편 서류는 19일 오후 3시까지"
+title: 중동행 냉장·냉동 공동물류, 28일 출항편 서류는 19일 오후 3시까지
 slug: at-middle-east-cold-pooling
 category: industry
 author: 최은영 / 국제부 기자
 reporting: desk
-summary: "aT가 컨테이너 한 대를 채우기 어려운 국내 농식품 수출업체를 대상으로 UAE행 공동물류 이용 신청을 받는다. 모집 종료일은 20일이지만, 28일 출항편의 서류 마감은 19일이며 현지 내륙운송은 전액 자부담이다."
+summary: aT가 컨테이너 한 대를 채우기 어려운 국내 농식품 수출업체를 대상으로 UAE행 공동물류 이용 신청을 받는다. 모집 종료일은 20일이지만, 28일 출항편의 서류 마감은 19일이며 현지 내륙운송은 전액 자부담이다.
 tags: [한국농수산식품유통공사, 콜드풀링, 냉장물류, 냉동물류, 농식품수출, UAE, 제벨알리, 혼적, 수출통관]
 eventEndsAt: 2026-11-20 23:59
-verificationNote: "aT 공고 원첨부와 운항·단가 자료, 신청서 서식을 확인했다. 11월 20일 23:59는 종료일의 명목 표시이며 실제 모집 종료 시각은 공고에 없다."
-addedValue: "모집 종료일과 회차별 선적 마감, 해상 보조 구간과 현지 자부담, 신규 수출업체의 예외를 분리했다."
+verificationNote: aT 공고 원첨부와 운항·단가 자료, 신청서 서식을 확인했다. 11월 20일 23:59는 종료일의 명목 표시이며 실제 모집 종료 시각은 공고에 없다.
+addedValue: 모집 종료일과 회차별 선적 마감, 해상 보조 구간과 현지 자부담, 신규 수출업체의 예외를 분리했다.
 sourceBasis: primary
 visualType: ai-illustration
 aiRole: research-assist, draft-assist
 humanReviewClaimed: false
-readerChecklist: "지정 물류사와 희망 회차·온도·출고 가능일 협의 | 수입자에게 도착지 통관 책임과 현지 운송비 확인 | 포장 제원과 중량을 채운 공식 양식을 aT 이메일로 제출"
+readerChecklist: 지정 물류사와 희망 회차·온도·출고 가능일 협의 | 수입자에게 도착지 통관 책임과 현지 운송비 확인 | 포장 제원과 중량을 채운 공식 양식을 aT 이메일로 제출
 image: /stock/2026-11-12-at-middle-east-cold-pooling.jpg
 imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 reviewedBy: 모두일보 독립 리뷰 담당
 reviewedAt: 2026-11-12 06:17
-reporterInsight: "aT가 컨테이너 한 대를 채우기 어려운 국내 농식품 수출업체를 대상으로 UAE행 공동물류 이용 신청을 받는다. 모집 종료일은 20일이지만, 28일 출항편의 서류 마감은 19일이며 현지 내륙운송은 전액 자부담이다."
+reporterInsight: aT가 컨테이너 한 대를 채우기 어려운 국내 농식품 수출업체를 대상으로 UAE행 공동물류 이용 신청을 받는다. 모집 종료일은 20일이지만, 28일 출항편의 서류 마감은 19일이며 현지 내륙운송은 전액 자부담이다.
 publishedAt: 2026-11-12 06:29
 ---
 

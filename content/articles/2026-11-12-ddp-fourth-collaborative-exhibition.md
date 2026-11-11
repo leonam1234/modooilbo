@@ -1,5 +1,5 @@
 ---
-title: "DDP 협력전시 16일 밤 12시 마감…공간 지원, 운영·원상복구는 신청기관 몫"
+title: DDP 협력전시 16일 밤 12시 마감…공간 지원, 운영·원상복구는 신청기관 몫
 slug: ddp-fourth-collaborative-exhibition
 category: grants
 author: 남동균 / 문화·스포츠부 기자
@@ -7,19 +7,19 @@ publishedAt: 2026-11-12 06:28
 eventEndsAt: 2026-11-17T00:00:00+09:00
 reporting: desk
 tags: [DDP, 서울디자인재단, 협력전시, 전시공모, 문화예술, 디자인, 전시공간, 갤러리문, 전시기획]
-summary: "서울디자인재단이 16일 밤 12시까지 DDP 협력전시를 모집한다. 공간과 홍보를 지원하지만 운영인력 상주, 설치와 철수 및 원상복구는 신청기관이 맡는다."
+summary: 서울디자인재단이 16일 밤 12시까지 DDP 협력전시를 모집한다. 공간과 홍보를 지원하지만 운영인력 상주, 설치와 철수 및 원상복구는 신청기관이 맡는다.
 image: /stock/2026-11-12-ddp-fourth-collaborative-exhibition.jpg
 imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
-verificationNote: "서울디자인재단 공식 게시물과 공고문을 대조했다. 둘레길 B구간 종료일은 달력과 맞지 않아 별도 확인이 필요하다."
-addedValue: "전시공간 지원과 신청기관의 운영 부담을 나누고, 24시 이메일 마감 및 별도 첨부할 서류를 안내했다."
+verificationNote: 서울디자인재단 공식 게시물과 공고문을 대조했다. 둘레길 B구간 종료일은 달력과 맞지 않아 별도 확인이 필요하다.
+addedValue: 전시공간 지원과 신청기관의 운영 부담을 나누고, 24시 이메일 마감 및 별도 첨부할 서류를 안내했다.
 sourceBasis: primary
 visualType: ai-illustration
 aiRole: research-assist, draft-assist
 humanReviewClaimed: false
 reviewedBy: 모두일보 독립 리뷰 담당
 reviewedAt: 2026-11-12 06:17
-reporterInsight: "서울디자인재단이 16일 밤 12시까지 DDP 협력전시를 모집한다. 공간과 홍보를 지원하지만 운영인력 상주, 설치와 철수 및 원상복구는 신청기관이 맡는다."
-readerChecklist: "재단 공고에서 희망 공간의 사용 가능일 확인 | 상주 인력과 설치·철수 일정을 제안서에 반영 | 서명한 신청서와 동의서를 분리해 16일 24시까지 이메일 제출"
+reporterInsight: 서울디자인재단이 16일 밤 12시까지 DDP 협력전시를 모집한다. 공간과 홍보를 지원하지만 운영인력 상주, 설치와 철수 및 원상복구는 신청기관이 맡는다.
+readerChecklist: 재단 공고에서 희망 공간의 사용 가능일 확인 | 상주 인력과 설치·철수 일정을 제안서에 반영 | 서명한 신청서와 동의서를 분리해 16일 24시까지 이메일 제출
 ---
 
 서울디자인재단이 동대문디자인플라자(DDP)에서 열 협력전시를 16일 밤 12시까지 모집한다. 재단이 전시공간을 제공하지만 전시를 직접 운영할 인력이 필요하다. 철수 뒤 원상복구와 결과보고서 제출도 협력기관의 책임이다.
