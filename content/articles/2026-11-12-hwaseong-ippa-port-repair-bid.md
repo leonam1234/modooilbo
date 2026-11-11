@@ -4,7 +4,7 @@ slug: hwaseong-ippa-port-repair-bid
 category: bids
 author: 서영호 / 공공입찰 전담기자
 publishedAt: 2026-11-12 06:30
-eventEndsAt: "2026-11-17T10:00:00+09:00"
+eventEndsAt: 2026-11-17T10:00:00+09:00
 reporting: desk
 tags: [화성시, 입파항, 어항시설, 세굴보수, 시설공사, 철근콘크리트공사업, 지역제한, 적격심사, 나라장터]
 summary: "화성시가 입파항 어항시설 보수공사를 17일 오전 10시까지 전자입찰에 부친다. 경기 본점 유지 기간과 철근·콘크리트공사업 면허가 참가 조건이며 공동도급은 불가하다."

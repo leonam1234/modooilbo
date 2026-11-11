@@ -4,7 +4,7 @@ slug: jeongeup-bio-hiring-support
 category: grants
 author: 김영환 / 경제부 기자
 publishedAt: 2026-11-12 06:28
-eventEndsAt: "2026-11-13T18:00:00+09:00"
+eventEndsAt: 2026-11-13T18:00:00+09:00
 reporting: desk
 tags: [정읍시, 바이오기업, 산업단지, 신규채용, 일자리지원센터, 시제품제작, 판로확대, 컨설팅, 지방보조금]
 summary: "정읍시가 산업단지 바이오기업 2곳을 지원한다. 센터를 통한 신규채용이 조건이며, 시제품 제작을 신청하면 자부담 10%를 편성해야 한다. 우편은 13일 오후 6시 도착분까지다."

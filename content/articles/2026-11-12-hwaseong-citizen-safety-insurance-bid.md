@@ -4,7 +4,7 @@ slug: hwaseong-citizen-safety-insurance-bid
 category: bids
 author: 서영호 / 공공입찰 전담기자
 publishedAt: 2026-11-12 06:28
-eventEndsAt: "2026-11-17T10:00:00+09:00"
+eventEndsAt: 2026-11-17T10:00:00+09:00
 reporting: desk
 tags: [화성시, 시민안전보험, 손해보험, 공동수급, 공동이행, 경영개선명령, 적격심사, 전자입찰, 나라장터]
 summary: "화성시의 2027년 시민안전보험 용역은 17일 오전 10시 투찰을 마감한다. 공동수급 협정과 해당 보험사의 경영개선 통과안 제출은 전날 오후 6시까지다."

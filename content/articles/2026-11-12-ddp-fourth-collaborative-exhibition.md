@@ -4,7 +4,7 @@ slug: ddp-fourth-collaborative-exhibition
 category: grants
 author: 남동균 / 문화·스포츠부 기자
 publishedAt: 2026-11-12 06:28
-eventEndsAt: "2026-11-17T00:00:00+09:00"
+eventEndsAt: 2026-11-17T00:00:00+09:00
 reporting: desk
 tags: [DDP, 서울디자인재단, 협력전시, 전시공모, 문화예술, 디자인, 전시공간, 갤러리문, 전시기획]
 summary: "서울디자인재단이 16일 밤 12시까지 DDP 협력전시를 모집한다. 공간과 홍보를 지원하지만 운영인력 상주, 설치와 철수 및 원상복구는 신청기관이 맡는다."
