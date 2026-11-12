@@ -134604,6 +134604,447 @@ export const CONTENT_ARTICLES: Article[] = [
     "type": "article"
   },
   {
+    "id": "2026-11-12-brand20-airconsubscription-com",
+    "slug": "2026-11-12-brand20-airconsubscription-com",
+    "title": "[광고] 벽걸이 에어컨 렌탈 전 실외기 자리와 배관 견적을 확인하세요",
+    "summary": "벽걸이 에어컨은 월 납부액에 적힌 조건과 현장 설치 견적을 분리해 비교해야 합니다. 실외기 놓을 자리와 실내기까지의 배관 경로가 달라지면 같은 모델이라도 필요한 작업이 달라집니다.",
+    "body": [
+      "벽걸이 에어컨은 월 납부액에 적힌 조건과 현장 설치 견적을 분리해 비교해야 합니다. 실외기 놓을 자리와 실내기까지의 배관 경로가 달라지면 같은 모델이라도 필요한 작업이 달라집니다.",
+      "## 배관 연결함과 실외기 자리를 먼저 확인",
+      "벽면에 배관 연결함이 있는지, 기존 관의 재사용이나 세척이 필요한지 설치 기사에게 확인합니다. 배관이 외벽을 지나는 길이, 받침대 필요 여부, 응축수가 흐르는 방향을 사진과 실측으로 전달하세요. 정확한 작업 단가를 확인하기 전에는 추가 설치비를 확정하지 않습니다.",
+      "## 약정 납부액과 추가 작업을 다른 항목으로",
+      "11월 11일 열람한 AR80H07D21WT 지정 옵션은 24.4㎡ 모델에 월 31,460원·72개월이었으며, 단순 합계는 2,265,120원입니다. 이는 해당 옵션의 표시 월 납부액만 계산한 것이며 실외기 받침대나 기본 범위를 넘는 배관 작업 비용은 현장 견적에서 확인해야 합니다.",
+      "## 현장 견적은 기본과 추가 작업을 나눠 받기",
+      "견적을 요청할 때는 실외기 위치와 실내기까지의 예상 배관 경로를 함께 보냅니다. 견적서에는 기본 작업에 포함되는 범위와 추가 배관·받침대·기존 관 작업의 비용을 따로 표시해 달라고 요청합니다. 현장에서 작업이 바뀌는 경우에는 작업을 시작하기 전에 추가비를 먼저 확인하세요.",
+      "## 출처 메모",
+      "- airconsubscription.com: https://airconsubscription.com/p/aircon-ar80h07d21wt?period=6&care=free&svcCode=EW - samsung.com: https://www.samsung.com/sec/air-conditioners/package-ar80h07d21wt-d2c/AR80H07D21WT/ - samsungsvc.co.kr: https://www.samsungsvc.co.kr/solution/40690"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-12T12:29:00Z",
+    "sponsor": "airconsubscription.com",
+    "sponsorDisclosure": {
+      "mode": "unpaid-brand-support",
+      "name": "에어컨렌탈",
+      "publisherRelation": "모두일보 발행인과 해당 운영사 사이에 별도 이해관계가 없습니다."
+    },
+    "reporting": "sponsored",
+    "verificationNote": "본문에 표시한 원출처를 기준으로 해당 사례의 조건을 정리했습니다. 표시 금액이 있는 경우 확인 날짜와 지정 옵션에 한정했습니다.",
+    "addedValue": "실외기 위치, 기존 관 재사용과 추가 배관 비용을 약정 납부액과 나눠 확인하게 정리했습니다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "draft-assist"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-12T12:06:00Z",
+    "reporterInsight": "벽걸이 에어컨은 월 납부액에 적힌 조건과 현장 설치 견적을 분리해 비교해야 합니다. 실외기 놓을 자리와 실내기까지의 배관 경로가 달라지면 같은 모델이라도 필요한 작업이 달라집니다.",
+    "imageUrl": "/stock/2026-11-12-brand20-airconsubscription-com.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "에어컨",
+      "실외기",
+      "배관",
+      "가전렌탈",
+      "계약기간",
+      "소비자정보",
+      "계약조건",
+      "렌탈비교"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-12-brand20-cleanerrentals-com",
+    "slug": "2026-11-12-brand20-cleanerrentals-com",
+    "title": "[광고] 청소기 렌탈의 실제 구독 대상과 계약 옵션을 확인하세요",
+    "summary": "청소기 소개 페이지에 여러 방식의 제품이 나온다고 해서 모두 같은 조건으로 렌탈할 수 있는 것은 아닙니다. 계약 전에 해당 판매처에서 주문할 수 있는 모델과 실제 결제 옵션을 먼저 확인해야 합니다.",
+    "body": [
+      "청소기 소개 페이지에 여러 방식의 제품이 나온다고 해서 모두 같은 조건으로 렌탈할 수 있는 것은 아닙니다. 계약 전에 해당 판매처에서 주문할 수 있는 모델과 실제 결제 옵션을 먼저 확인해야 합니다.",
+      "## 청소 방식 안내와 상품 주문 가능 여부를 분리",
+      "로봇형과 무선 스틱형을 설명하는 페이지와 실제 구독 신청이 가능한 상품 페이지는 역할이 다릅니다. 어느 한 사이트에 특정 유형이 보이지 않았다고 해서 다른 판매처에서도 구독할 수 없다고 일반화하지 않습니다. 모델번호, 재고·주문 가능 여부와 관리 범위를 견적에서 확인하세요.",
+      "## 표시액은 지정 모델과 옵션에만 적용",
+      "11월 11일 열람한 물통형 VR80F01ADG98C 지정 옵션은 월 41,580원·60개월이었으며 월 납부액 단순 합계는 2,494,800원입니다. 카드 할인, 부가 작업, 해지 정산은 그 합계에 포함됐다고 보지 않습니다. 사례에 든 모델이 사진 속 제품과 동일하다는 뜻도 아닙니다.",
+      "## 신청 전에 같은 옵션의 견적을 저장하기",
+      "상품 상세 화면과 결제 직전 화면에서 모델번호와 계약기간이 같은지 대조합니다. 관리 항목과 회수·반납 조건도 함께 저장해 두면 단순 제품 소개 화면과 실제 신청 조건이 다를 때 어떤 항목이 바뀌었는지 판매처에 구체적으로 물을 수 있습니다.",
+      "## 출처 메모",
+      "- cleanerrentals.com: https://cleanerrentals.com/ - samsung.com: https://www.samsung.com/sec/vacuum-cleaners/package-vr80f01adg98c-d2c/VR80F01ADG98C/ - cleanerrentals.com: https://cleanerrentals.com/item/robot-vacuum-vr80f01adg98c?period=5&care=free&svcCode=EW - samsung.com: https://www.samsung.com/sec/ai-subs/guide/ - news.samsung.com: https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-2026%EB%85%84%ED%98%95-%EB%B9%84%EC%8A%A4%ED%8F%AC%ED%81%AC-ai-%EC%8A%A4%ED%8C%80-%EB%A1%9C%EB%B4%87%EC%B2%AD%EC%86%8C%EA%B8%B0-%EC%B6%9C%EC%8B%9C - news.samsung.com: https://news.samsung.com/kr/삼성전자-뉴스룸-콘텐츠-이용에-대한-안내"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-12T12:29:00Z",
+    "sponsor": "cleanerrentals.com",
+    "sponsorDisclosure": {
+      "mode": "unpaid-brand-support",
+      "name": "청소기렌탈",
+      "publisherRelation": "모두일보 발행인과 해당 운영사 사이에 별도 이해관계가 없습니다."
+    },
+    "reporting": "sponsored",
+    "verificationNote": "본문에 표시한 원출처를 기준으로 해당 사례의 조건을 정리했습니다. 표시 금액이 있는 경우 확인 날짜와 지정 옵션에 한정했습니다.",
+    "addedValue": "사이트의 청소 방식 설명과 주문 가능한 모델 및 약정 옵션을 구분했습니다.",
+    "sourceBasis": "primary",
+    "visualType": "source-photo",
+    "aiRole": [
+      "draft-assist"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-12T12:06:00Z",
+    "reporterInsight": "청소기 소개 페이지에 여러 방식의 제품이 나온다고 해서 모두 같은 조건으로 렌탈할 수 있는 것은 아닙니다. 계약 전에 해당 판매처에서 주문할 수 있는 모델과 실제 결제 옵션을 먼저 확인해야 합니다.",
+    "imageUrl": "/stock/2026-11-12-brand20-cleanerrentals-com.jpg",
+    "imageCaption": "삼성전자 뉴스룸의 로봇청소기 전시 자료사진. 모델 번호는 확인되지 않았으며 본문 요금 사례 모델과 동일하다고 볼 수 없습니다.",
+    "tags": [
+      "청소기",
+      "로봇청소기",
+      "무선스틱",
+      "가전렌탈",
+      "계약기간",
+      "소비자정보",
+      "계약조건",
+      "렌탈비교"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-12-brand20-dishwasherrent-com",
+    "slug": "2026-11-12-brand20-dishwasherrent-com",
+    "title": "[광고] 카운터탑 식기세척기 렌탈 전 상판 가공 조건을 확인하세요",
+    "summary": "카운터탑 식기세척기를 들일 때는 본체가 놓일 자리가 있는지뿐 아니라 급수·배수 호스가 안전하게 지나갈 수 있는지 확인해야 합니다. 상판에 구멍을 새로 내는지와 상판 재질에 따라 설치 견적이 달라질 수 있습니다.",
+    "body": [
+      "카운터탑 식기세척기를 들일 때는 본체가 놓일 자리가 있는지뿐 아니라 급수·배수 호스가 안전하게 지나갈 수 있는지 확인해야 합니다. 상판에 구멍을 새로 내는지와 상판 재질에 따라 설치 견적이 달라질 수 있습니다.",
+      "## 기존 구멍 재사용과 신규 타공은 별도 확인",
+      "고정되고 수평인 상판을 기준으로 싱크볼, 급수 밸브, 콘센트와 호스 경로를 함께 찍어 전달합니다. 기존 구멍을 재사용할 수 있는지, 일반 신규 타공인지, 특수 재질에 새로 작업하는지 구분해 견적을 받으세요. 제조사 안내의 10만원은 특수 재질의 신규 타공 조건에 대한 사례이지 모든 설치에 붙는 비용이 아닙니다.",
+      "## 월 납부와 설치비는 항목을 분리",
+      "11월 11일 확인 시점의 DW30FB305CW0 지정 옵션은 월 19,470원·72개월이었습니다. 단순 월 납부액 합계 1,401,840원에 해당 특수 재질 신규 타공 10만원을 가정하면 1,501,840원입니다. 개인별 실제 계약이나 타공비를 확정한 금액은 아닙니다.",
+      "## 견적서에서 현장 조건을 확인하기",
+      "설치 접수 때 상판 재질과 기존 구멍의 위치, 급수·배수 경로를 함께 전달합니다. 상판 작업이 필요하다는 답을 받으면 해당 작업의 이름과 단가, 렌탈료와 별도로 납부하는지를 적어 달라고 요청하세요. 견적과 현장 조건이 다르면 시공 전에 변경 내용을 먼저 확인합니다.",
+      "## 출처 메모",
+      "- dishwasherrent.com: https://dishwasherrent.com/prd/dishwasher-dw30fb305cw0?period=6&care=free&svcCode=EW - samsung.com: https://www.samsung.com/sec/dishwashers/countertop-dw30fb305cw0-d2c/DW30FB305CW0/ - news.samsung.com: https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-%EC%97%90%EB%84%88%EC%A7%80-%ED%9A%A8%EC%9C%A8-%EA%B0%95%ED%99%94%ED%95%9C-%EB%B9%84%EC%8A%A4%ED%8F%AC%ED%81%AC-%EC%8B%9D%EA%B8%B0%EC%84%B8%EC%B2%99%EA%B8%B0 - news.samsung.com: https://news.samsung.com/kr/삼성전자-뉴스룸-콘텐츠-이용에-대한-안내"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-12T12:28:00Z",
+    "sponsor": "dishwasherrent.com",
+    "sponsorDisclosure": {
+      "mode": "unpaid-brand-support",
+      "name": "식기세척기렌탈",
+      "publisherRelation": "모두일보 발행인과 해당 운영사 사이에 별도 이해관계가 없습니다."
+    },
+    "reporting": "sponsored",
+    "verificationNote": "본문에 표시한 원출처를 기준으로 해당 사례의 조건을 정리했습니다. 표시 금액이 있는 경우 확인 날짜와 지정 옵션에 한정했습니다.",
+    "addedValue": "기존 구멍 재사용과 특수 재질 신규 타공, 약정 납부액을 나눠 확인하게 정리했습니다.",
+    "sourceBasis": "primary",
+    "visualType": "source-photo",
+    "aiRole": [
+      "draft-assist"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-12T12:06:00Z",
+    "reporterInsight": "카운터탑 식기세척기를 들일 때는 본체가 놓일 자리가 있는지뿐 아니라 급수·배수 호스가 안전하게 지나갈 수 있는지 확인해야 합니다. 상판에 구멍을 새로 내는지와 상판 재질에 따라 설치 견적이 달라질 수 있습니다.",
+    "imageUrl": "/stock/2026-11-12-brand20-dishwasherrent-com.jpg",
+    "imageCaption": "삼성전자 뉴스룸의 카운터탑 식기세척기 출시 자료사진. 사진 속 모델 번호는 확인되지 않았습니다.",
+    "tags": [
+      "식기세척기",
+      "상판타공",
+      "급수",
+      "가전렌탈",
+      "계약기간",
+      "소비자정보",
+      "계약조건",
+      "렌탈비교"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-12-brand20-icepurifier-com",
+    "slug": "2026-11-12-brand20-icepurifier-com",
+    "title": "[광고] 얼음정수기 하루 제빙량과 얼음통 저장량은 다른 수치입니다",
+    "summary": "얼음정수기로 음료를 연달아 만들 때는 하루 제빙량보다 한 번에 꺼낼 수 있는 저장량이 먼저 문제가 될 수 있습니다. 구매·렌탈 전 두 수치가 어떤 시험 조건과 사용 상황을 가리키는지 따로 확인하세요.",
+    "body": [
+      "얼음정수기로 음료를 연달아 만들 때는 하루 제빙량보다 한 번에 꺼낼 수 있는 저장량이 먼저 문제가 될 수 있습니다.",
+      "구매·렌탈 전 두 수치가 어떤 시험 조건과 사용 상황을 가리키는지 따로 확인하세요.",
+      "## 하루 생산량은 한 번에 쓸 수 있는 양이 아니다",
+      "삼성전자 고객지원의 RWP90H15ANW 사례는 하루 제빙량 8kg과 얼음통 저장량 800g을 구분합니다. 하루 제빙량은 제조사 시험 조건에서 얻은 값이며 실제 사용 환경에 따라 달라집니다. 예를 들어 900g을 한꺼번에 쓸 계획이라면 800g 저장량보다 많다는 뜻일 뿐, 부족한 양을 몇 분 만에 다시 만들 수 있다는 뜻은 아닙니다.",
+      "## 설치와 관리도 같은 모델 기준으로 확인",
+      "급수·배수 가능 여부와 상판 깊이, 이동 동선을 확인해 설치 견적을 받습니다. 렌탈 조건은 필터 교체, 얼음통 청소, 방문관리와 약정 종료 후 소유권을 같은 모델·같은 요금제의 문서에서 확인하세요.",
+      "## 얼음을 많이 쓰는 시간대를 기준으로 비교하기",
+      "하루 평균뿐 아니라 얼음이 몰리는 시간대와 한 번에 필요한 양을 적어 보세요. 손님이 많은 시간에 한 번에 꺼낼 양이 중요하다면 저장량을 먼저 비교합니다. 다시 채워지는 속도가 구매를 결정할 조건이라면 판매처에 시험 조건과 실제 사용 환경의 차이를 따로 확인합니다.",
+      "## 출처 메모",
+      "- icepurifier.com: https://icepurifier.com/ - samsung.com: https://www.samsung.com/sec/support/model/RWP90H15ANW/ - samsung.com: https://www.samsung.com/sec/water-purifier/water-purifier-rwp90h15anw-d2c/RWP90H15ANW/ - samsung.com: https://www.samsung.com/sec/ai-subs/guide/ - news.samsung.com: https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-%ED%95%98%EB%A3%A8-%EC%B5%9C%EB%8C%80-8kg%EC%9D%98-%EA%B0%95%EB%A0%A5%ED%95%9C-%EC%A0%9C%EB%B9%99-%EC%84%B1%EB%8A%A5-%EA%B0%96%EC%B6%98-%EB%B9%84%EC%8A%A4 - news.samsung.com: https://news.samsung.com/kr/삼성전자-뉴스룸-콘텐츠-이용에-대한-안내"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-12T12:29:00Z",
+    "sponsor": "icepurifier.com",
+    "sponsorDisclosure": {
+      "mode": "unpaid-brand-support",
+      "name": "얼음정수기렌탈",
+      "publisherRelation": "모두일보 발행인과 해당 운영사 사이에 별도 이해관계가 없습니다."
+    },
+    "reporting": "sponsored",
+    "verificationNote": "본문에 표시한 원출처를 기준으로 해당 사례의 조건을 정리했습니다. 표시 금액이 있는 경우 확인 날짜와 지정 옵션에 한정했습니다.",
+    "addedValue": "하루 제빙량과 한 번에 꺼낼 수 있는 저장량을 나누고 설치 전 확인 사항을 정리했습니다.",
+    "sourceBasis": "primary",
+    "visualType": "source-photo",
+    "aiRole": [
+      "draft-assist"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-12T12:06:00Z",
+    "reporterInsight": "얼음정수기로 음료를 연달아 만들 때는 하루 제빙량보다 한 번에 꺼낼 수 있는 저장량이 먼저 문제가 될 수 있습니다. 구매·렌탈 전 두 수치가 어떤 시험 조건과 사용 상황을 가리키는지 따로 확인하세요.",
+    "imageUrl": "/stock/2026-11-12-brand20-icepurifier-com.jpg",
+    "imageCaption": "삼성전자 뉴스룸의 비스포크 AI 얼음정수기 시연 자료사진입니다.",
+    "tags": [
+      "얼음정수기",
+      "제빙량",
+      "저장량",
+      "가전렌탈",
+      "계약기간",
+      "소비자정보",
+      "계약조건",
+      "렌탈비교"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-12-brand20-purifierrental-com",
+    "slug": "2026-11-12-brand20-purifierrental-com",
+    "title": "[광고] 정수기 렌탈 전 계약 상대와 관리 비용을 확인하세요",
+    "summary": "정수기 렌탈은 동일한 제품이라도 관리 주기, 설치 조건과 계약 상대에 따라 비교 결과가 달라집니다. 광고 화면의 월 요금만으로 총 납부액이나 중도 해지액을 알 수는 없습니다.",
+    "body": [
+      "정수기 렌탈은 동일한 제품이라도 관리 주기, 설치 조건과 계약 상대에 따라 비교 결과가 달라집니다. 광고 화면의 월 요금만으로 총 납부액이나 중도 해지액을 알 수는 없습니다.",
+      "## 제품 기능과 계약 조건을 별도로 비교",
+      "삼성전자 고객지원의 RWP70F15ANW 모델 사양처럼 모델번호가 특정된 자료로 정수·냉수·온수 등 필요한 기능과 설치 방식부터 확인합니다. 제품 사양이 같아도 필터 교체 주기, 방문관리 범위, 이전 설치 비용은 계약 문서에서 확인해야 합니다.",
+      "## 계약 문서의 사업자와 정산 조건을 확인",
+      "가령 월 3만원과 3만5000원을 각각 60개월 동안 낸다고 가정하면 월 납부액 단순 합계는 180만원과 210만원입니다. 실제 상품의 총 구독료나 해지 정산액은 아닙니다. 결제 화면과 계약서에서 계약 상대의 법인명, 의무사용기간, 잔여 할인 반환과 회수비를 확인하세요.",
+      "## 계약서를 받기 전에 같은 기준으로 비교하기",
+      "비교표에는 제품 모델과 관리 방식, 월 납부액을 같은 행에 적고 설치·이전·회수에 드는 비용은 다른 칸에 둡니다. 결제 단계에서 안내받은 회사가 계약서에 적힌 회사와 다르게 보이면 어느 회사가 관리와 해지 정산을 맡는지 확인한 뒤 진행하세요.",
+      "## 출처 메모",
+      "- purifierrental.com: https://purifierrental.com/ - samsung.com: https://www.samsung.com/sec/support/model/RWP70F15ANW/ - kca.go.kr: https://www.kca.go.kr/home/sub.do?menukey=4005&mode=view&no=1003878293 - samsung.com: https://www.samsung.com/sec/water-purifier/water-purifier-rwp70f15anw-d2c/RWP70F15ANW/ - samsung.com: https://www.samsung.com/sec/ai-subs/guide/ - news.samsung.com: https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-82%EC%A2%85%EC%9D%98-%EC%9C%A0%ED%95%B4%EB%AC%BC%EC%A7%88-%EA%B1%B8%EB%9F%AC%EB%82%B4%EB%8A%94-%EB%B9%84%EC%8A%A4%ED%8F%AC%ED%81%AC-ai-%EC%A0%95%EC%88%98 - news.samsung.com: https://news.samsung.com/kr/삼성전자-뉴스룸-콘텐츠-이용에-대한-안내"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-12T12:29:00Z",
+    "sponsor": "purifierrental.com",
+    "sponsorDisclosure": {
+      "mode": "unpaid-brand-support",
+      "name": "정수기렌탈",
+      "publisherRelation": "모두일보 발행인과 해당 운영사 사이에 별도 이해관계가 없습니다."
+    },
+    "reporting": "sponsored",
+    "verificationNote": "본문에 표시한 원출처를 기준으로 해당 사례의 조건을 정리했습니다. 표시 금액이 있는 경우 확인 날짜와 지정 옵션에 한정했습니다.",
+    "addedValue": "계약 상대방, 의무사용기간, 월 요금의 단순 합계와 실제 정산액을 구분했습니다.",
+    "sourceBasis": "primary",
+    "visualType": "source-photo",
+    "aiRole": [
+      "draft-assist"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-12T12:06:00Z",
+    "reporterInsight": "정수기 렌탈은 동일한 제품이라도 관리 주기, 설치 조건과 계약 상대에 따라 비교 결과가 달라집니다. 광고 화면의 월 요금만으로 총 납부액이나 중도 해지액을 알 수는 없습니다.",
+    "imageUrl": "/stock/2026-11-12-brand20-purifierrental-com.jpg",
+    "imageCaption": "삼성전자 뉴스룸의 비스포크 AI 카운터탑 정수기 제품군 소개 자료사진입니다.",
+    "tags": [
+      "정수기",
+      "계약상대",
+      "방문관리",
+      "가전렌탈",
+      "계약기간",
+      "소비자정보",
+      "계약조건",
+      "렌탈비교"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-12-brand20-rental-wiki",
+    "slug": "2026-11-12-brand20-rental-wiki",
+    "title": "[광고] 가전 렌탈 계약 전 계약기간과 의무사용기간을 따로 확인하세요",
+    "summary": "한국소비자원이 공개한 사례에서 소비자는 정수기 60개월 렌탈 계약을 맺고 의무사용기간 36개월을 채운 뒤 47개월 차에 해지했습니다. 사업자는 할인받은 렌탈료와 철거비 등을 청구했습니다. 의무사용기간을 지났더라도 남은 계약기간의 정산이 자동으로 0원이 되지는 않는다는 사례입니다.",
+    "body": [
+      "한국소비자원이 공개한 사례에서 소비자는 정수기 60개월 렌탈 계약을 맺고 의무사용기간 36개월을 채운 뒤 47개월 차에 해지했습니다.",
+      "사업자는 할인받은 렌탈료와 철거비 등을 청구했습니다. 의무사용기간을 지났더라도 남은 계약기간의 정산이 자동으로 0원이 되지는 않는다는 사례입니다.",
+      "## 두 종료일과 해지 비용을 따로 묻기",
+      "계약서에서 전체 계약기간과 의무사용기간의 종료일을 각각 표시합니다. 의무사용기간 직전과 직후, 계약 종료 시점에 각각 해지한다고 가정해 남은 렌탈료, 할인 반환, 철거·회수 비용이 어떤 항목으로 청구되는지 서면으로 받는 것이 좋습니다.",
+      "## 분쟁 사례의 수치를 내 계약에 그대로 적용하지 않기",
+      "한국소비자원의 공개 사례는 계약기간과 해지 시점에 따라 정산 항목이 달라질 수 있다는 참고 자료입니다. 렌탈위키의 용어 안내는 두 기간을 구분하는 데 활용하고, 최종 정산은 서명한 계약서와 사업자가 제시한 산식으로 확인해야 합니다.",
+      "## 사업자에게 요청할 정산 내역",
+      "중도 해지를 검토할 때는 계약 시작일과 해지 희망일을 먼저 알려줍니다. 남은 요금, 할인 반환, 철거·회수비가 하나의 금액으로 제시되면 각 항목의 적용 조항과 산식을 나눠 달라고 요청하세요. 처음 안내받은 조건과 다른 항목은 계약서의 해당 조항과 대조할 수 있습니다.",
+      "## 출처 메모",
+      "- kca.go.kr: https://www.kca.go.kr/home/sub.do?menukey=4005&mode=view&no=1003878293 - rental.wiki: https://rental.wiki/wiki/mandatory-period - kca.go.kr: https://www.kca.go.kr/upload/ckeditor/2025/05/1748570203794_PpKq225fPKbtdjNXgWCg.png"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-12T12:28:00Z",
+    "sponsor": "rental.wiki",
+    "sponsorDisclosure": {
+      "mode": "unpaid-brand-support",
+      "name": "렌탈위키",
+      "publisherRelation": "모두일보 발행인과 해당 운영사 사이에 별도 이해관계가 없습니다."
+    },
+    "reporting": "sponsored",
+    "verificationNote": "본문에 표시한 원출처를 기준으로 해당 사례의 조건을 정리했습니다. 표시 금액이 있는 경우 확인 날짜와 지정 옵션에 한정했습니다.",
+    "addedValue": "두 종료일을 표시하고 해지 시점별 정산액을 서면으로 비교하는 방법을 정리했습니다.",
+    "sourceBasis": "primary",
+    "visualType": "source-photo",
+    "aiRole": [
+      "draft-assist"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-12T12:06:00Z",
+    "reporterInsight": "한국소비자원이 공개한 사례에서 소비자는 정수기 60개월 렌탈 계약을 맺고 의무사용기간 36개월을 채운 뒤 47개월 차에 해지했습니다. 사업자는 할인받은 렌탈료와 철거비 등을 청구했습니다. 의무사용기간을 지났더라도 남은 계약기간의 정산이 자동으로 0원이 되지는 않는다는 사례입니다.",
+    "imageUrl": "/stock/2026-11-12-brand20-rental-wiki.jpg",
+    "imageCaption": "한국소비자원이 공개한 전체 계약기간 5년·의무사용기간 3년의 사례 도식입니다.",
+    "tags": [
+      "렌탈위키",
+      "의무사용기간",
+      "철거비",
+      "가전렌탈",
+      "계약기간",
+      "소비자정보",
+      "계약조건",
+      "렌탈비교"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-12-brand20-robotvacuumrental-com",
+    "slug": "2026-11-12-brand20-robotvacuumrental-com",
+    "title": "[광고] 로봇청소기 구독 전 관리 범위와 해지 산식을 확인하세요",
+    "summary": "로봇청소기 구독을 비교할 때는 월 납부액뿐 아니라 누가 어떤 부품을 관리하는지, 중도 해지 후 기기를 반납하는지 함께 확인해야 합니다. 제조사 안내에서도 구독 유형에 따라 소유권과 정산 구조가 달라집니다.",
+    "body": [
+      "로봇청소기 구독을 비교할 때는 월 납부액뿐 아니라 누가 어떤 부품을 관리하는지, 중도 해지 후 기기를 반납하는지 함께 확인해야 합니다. 제조사 안내에서도 구독 유형에 따라 소유권과 정산 구조가 달라집니다.",
+      "## 같은 모델과 관리 옵션을 기준으로 비교",
+      "VR70F00AGG98C의 원고 확인 시점(11월 11일) 표시 사례는 60개월 월 33,660원으로, 단순 합계는 2,019,600원입니다. 지정 옵션의 월 납부액 합계이며 현재 가입 가격이나 다른 판매처 가격을 보장하지 않습니다. 먼지봉투·필터·물걸레의 제공 주기와 방문 점검 범위는 같은 옵션의 견적에서 확인하세요.",
+      "## 월 납부 할인과 해지 정산을 분리",
+      "가입 시 표시된 할인·등록비 면제는 해지 때 정산되는 항목과 별개입니다. 현재 계약의 요금 기준액, 남은 기간, 회수비, 소유권 이전 여부를 계약서에서 확인하세요. 삼성닷컴 구독 안내의 산식을 다른 판매처나 계약의 확정 금액으로 적용하지 않습니다.",
+      "## 관리 혜택은 제공 주기와 비용까지 확인하기",
+      "필터나 먼지봉투가 포함된다는 설명만으로 모든 교체 비용을 포함한다고 판단하지 않습니다. 견적서에서 각 소모품의 제공 주기, 추가 주문 비용과 방문 관리에 포함되는 작업을 분리해 확인하세요. 구독 종료 때 기기를 반납한다면 반납 방법과 비용도 함께 적어 두는 편이 좋습니다.",
+      "## 출처 메모",
+      "- samsungsvc.co.kr: https://www.samsungsvc.co.kr/solution/4603560 - robotvacuumrental.com: https://robotvacuumrental.com/p/robot-vacuum-vr70f00agg98c?period=5&care=free&svcCode=EW - samsung.com: https://www.samsung.com/sec/ai-subs/guide/ - news.samsung.com: https://news.samsung.com/kr/삼성전자-2026년형-비스포크-ai-스팀-로봇청소기-출시 - samsung.com: https://www.samsung.com/sec/vacuum-cleaners/package-vr70f00agg98c-d2c/VR70F00AGG98C/ - news.samsung.com: https://news.samsung.com/kr/삼성전자-뉴스룸-콘텐츠-이용에-대한-안내"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-12T12:28:00Z",
+    "sponsor": "robotvacuumrental.com",
+    "sponsorDisclosure": {
+      "mode": "unpaid-brand-support",
+      "name": "로봇청소기렌탈",
+      "publisherRelation": "모두일보 발행인과 해당 운영사 사이에 별도 이해관계가 없습니다."
+    },
+    "reporting": "sponsored",
+    "verificationNote": "본문에 표시한 원출처를 기준으로 해당 사례의 조건을 정리했습니다. 표시 금액이 있는 경우 확인 날짜와 지정 옵션에 한정했습니다.",
+    "addedValue": "관리 옵션과 월 납부 할인, 중도해지 때 실제 정산되는 항목을 구분했습니다.",
+    "sourceBasis": "primary",
+    "visualType": "source-photo",
+    "aiRole": [
+      "draft-assist"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-12T12:06:00Z",
+    "reporterInsight": "로봇청소기 구독을 비교할 때는 월 납부액뿐 아니라 누가 어떤 부품을 관리하는지, 중도 해지 후 기기를 반납하는지 함께 확인해야 합니다. 제조사 안내에서도 구독 유형에 따라 소유권과 정산 구조가 달라집니다.",
+    "imageUrl": "/stock/2026-11-12-brand20-robotvacuumrental-com.jpg",
+    "imageCaption": "삼성전자 뉴스룸의 로봇청소기 행사 시연 자료사진. 일반 가정의 성능 시험이나 요금 사례 모델을 보여주는 사진이 아닙니다.",
+    "tags": [
+      "로봇청소기",
+      "필터",
+      "소유권",
+      "가전렌탈",
+      "계약기간",
+      "소비자정보",
+      "계약조건",
+      "렌탈비교"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-12-brand20-washersubscription-com",
+    "slug": "2026-11-12-brand20-washersubscription-com",
+    "title": "[광고] 세탁기 렌탈 전 통과 폭과 문 열림 공간을 확인하세요",
+    "summary": "드럼 세탁기는 본체가 설치 자리에 들어가도 문을 끝까지 열지 못하거나 급수·배수 연결에 필요한 공간이 부족할 수 있습니다. 세탁 용량과 월 요금은 설치 동선과 별도로 비교해야 합니다.",
+    "body": [
+      "드럼 세탁기는 본체가 설치 자리에 들어가도 문을 끝까지 열지 못하거나 급수·배수 연결에 필요한 공간이 부족할 수 있습니다.",
+      "세탁 용량과 월 요금은 설치 동선과 별도로 비교해야 합니다.",
+      "## 현관부터 세탁실까지 가장 좁은 구간을 재기",
+      "문틀의 실제 통과 폭, 손잡이가 튀어나온 위치, 방향을 바꿔야 하는 모서리를 기록합니다. 설치 자리에서는 수도꼭지·배수구·콘센트 위치와 바닥 수평을 확인합니다. 문 열림 공간은 제품별 도면의 조건을 설치 기사와 대조하고, 가상의 치수만으로 설치 가능 여부를 판단하지 않습니다.",
+      "## 13kg·21kg 사례는 옵션을 맞춰 비교",
+      "11월 11일 원고 확인 시점에 두 지정 72개월 옵션의 표시 월 납부액은 13kg WW13BB844DGH 20,900원, 21kg WF21CB6650BW 19,910원이었습니다. 이 표시액만 적용한 72개월 합계 차이는 71,280원이며, 설치 작업이나 다른 관리 조건의 비용은 포함하지 않습니다. 현재 판매 가능 여부와 실제 설치비는 모델명과 실측 정보를 기준으로 견적에서 확인하세요.",
+      "## 출처 메모",
+      "- washersubscription.com: https://washersubscription.com/sku/washer-ww13bb844dgh?period=6&care=free&svcCode=EW - washersubscription.com: https://washersubscription.com/sku/washer-wf21cb6650bw?period=6&care=free&svcCode=EW - samsung.com: https://www.samsung.com/sec/washing-machines/ww13bb844dgh-d2c/WW13BB844DGH/ - samsung.com: https://www.samsung.com/sec/washing-machines/wf21cb6650bw-d2c/WF21CB6650BW/ - samsungsvc.co.kr: https://www.samsungsvc.co.kr/solution/40265 - news.samsung.com: https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-%EA%B7%B8%EB%9E%91%EB%8D%B0-ai-%EC%84%B8%ED%83%81%EA%B8%B0%C2%B7%EA%B1%B4%EC%A1%B0%EA%B8%B0-%EC%B6%9C%EC%8B%9C - news.samsung.com: https://news.samsung.com/kr/삼성전자-뉴스룸-콘텐츠-이용에-대한-안내"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-12T12:28:00Z",
+    "sponsor": "washersubscription.com",
+    "sponsorDisclosure": {
+      "mode": "unpaid-brand-support",
+      "name": "세탁기렌탈",
+      "publisherRelation": "모두일보 발행인과 해당 운영사 사이에 별도 이해관계가 없습니다."
+    },
+    "reporting": "sponsored",
+    "verificationNote": "본문에 표시한 원출처를 기준으로 해당 사례의 조건을 정리했습니다. 표시 금액이 있는 경우 확인 날짜와 지정 옵션에 한정했습니다.",
+    "addedValue": "설치 동선의 좁은 지점과 문 열림 공간을 제품 요금과 나눠 확인하게 정리했습니다.",
+    "sourceBasis": "primary",
+    "visualType": "source-photo",
+    "aiRole": [
+      "draft-assist"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-12T11:50:00Z",
+    "reporterInsight": "드럼 세탁기는 본체가 설치 자리에 들어가도 문을 끝까지 열지 못하거나 급수·배수 연결에 필요한 공간이 부족할 수 있습니다. 세탁 용량과 월 요금은 설치 동선과 별도로 비교해야 합니다.",
+    "imageUrl": "/stock/2026-11-12-brand20-washersubscription-com.jpg",
+    "imageCaption": "삼성전자 뉴스룸의 세탁기·건조기 직렬 설치 자료사진. 본문에서 비교한 13kg·21kg 세탁기 두 모델의 실물이 아닙니다.",
+    "tags": [
+      "세탁기",
+      "설치동선",
+      "문열림",
+      "가전렌탈",
+      "계약기간",
+      "소비자정보",
+      "계약조건",
+      "렌탈비교"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
     "id": "2026-11-12-ddp-fourth-collaborative-exhibition",
     "slug": "2026-11-12-ddp-fourth-collaborative-exhibition",
     "title": "DDP 협력전시 16일 밤 12시 마감…공간 지원, 운영·원상복구는 신청기관 몫",
