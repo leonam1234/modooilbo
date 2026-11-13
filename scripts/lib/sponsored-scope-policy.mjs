@@ -148,6 +148,17 @@ export function validateBrandOriginalImages(fm, day, filename, body, duplicateKe
   if (!expected.length && !usesOriginals && !hasBlock) return { errors: [], assets: [] };
   const errors = [];
   const brand = validateBrandSupport(fm, day, filename, duplicateKeys);
+  if (fm.sponsorOriginalImages === "single-approved-representative") {
+    const representative = "/stock/" + day + "-" + slug + ".jpg";
+    if (!expected.length || !brand.disclosure || fm.image !== representative ||
+        fm.visualType !== "source-photo" || !fm.imageCaption?.trim() ||
+        fm.inlineImages || fm.inlineImagesApprovedBy ||
+        duplicateKeys.some(key => ["sponsorOriginalImages", "image", "imageCaption", "visualType", "inlineImages", "inlineImagesApprovedBy"].includes(key)) ||
+        /:::brand-images\b|!\[|<\/?(?:img|picture|source)\b|\/stock\/[^\s)]+-original-\d+\.(?:jpg|png)/i.test(body)) {
+      return { errors: ["승인 무상 광고 단일 대표 이미지 범위 또는 본문 이미지 혼용"], assets: [] };
+    }
+    return { errors: [], assets: [] };
+  }
   if (!expected.length || fm.sponsorOriginalImages !== "docx-originals" || !brand.disclosure ||
       duplicateKeys.includes("sponsorOriginalImages") || duplicateKeys.includes("image")) {
     return { errors: ["승인된 무상 광고 원본 이미지 범위 불일치"], assets: [] };
