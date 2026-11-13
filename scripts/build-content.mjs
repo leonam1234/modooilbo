@@ -15,9 +15,10 @@ import { fileURLToPath } from "node:url";
 import { assessEditorialQuality, list as qualityList } from "./lib/editorial-quality.mjs";
 import { normDate } from "./lib/content-date.mjs";
 import { indexFingerprintRow } from "./lib/content-fingerprint.mjs";
-import { scopedSponsoredRole, validateScopedSponsoredFields, sponsorNamesFromSource, validateBrandSupport } from "./lib/sponsored-scope-policy.mjs";
+import { scopedSponsoredRole, validateScopedSponsoredFields, sponsorNamesFromSource, validateBrandSupport, validateBrandOriginalImages } from "./lib/sponsored-scope-policy.mjs";
 import {protectedBuildContext} from './lib/protected-build-runtime.mjs';
 import {mergeSelectedContent} from './lib/selected-content-merge.mjs';
+import {regularBytes} from './lib/protected-io.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const CONTENT_DIR = join(ROOT, "content", "articles");
@@ -198,7 +199,7 @@ function parse(md) {
     }
   }
   const paragraphs = body.split(/\n\s*\n+/).map((p) => p.replace(/\s+/g, " ").trim()).filter(Boolean);
-  return { fm, paragraphs, duplicateKeys };
+  return { fm, paragraphs, duplicateKeys, body };
 }
 
 async function download(url, dest, tries = 3) {
@@ -249,12 +250,25 @@ async function run() {
       errors.push(`${file}: 슬러그 중복("${slug}") — 같은 이름의 기사가 이미 있습니다.`);
       continue;
     }
-    const { fm, paragraphs, duplicateKeys } = parse(readFileSync(join(CONTENT_DIR, file), "utf8"));
+    const { fm, paragraphs, duplicateKeys, body } = parse(readFileSync(join(CONTENT_DIR, file), "utf8"));
     const scopeDay = file.match(/^(\d{4}-\d{2}-\d{2})-/)?.[1] || String(fm.publishedAt || "").slice(0, 10);
     const brandSupport = validateBrandSupport(fm, scopeDay, file, duplicateKeys);
     if (brandSupport.errors.length) {
       errors.push(...brandSupport.errors.map(message => `${file}: ${message}`));
       continue;
+    }
+    const originals = validateBrandOriginalImages(fm, scopeDay, file, body, duplicateKeys);
+    if (originals.errors.length) {
+      errors.push(...originals.errors.map(message => `${file}: ${message}`));
+      continue;
+    }
+    if (originals.assets.length) {
+      for (const asset of originals.assets) {
+        const bytes = regularBytes(join(STOCK_DIR, asset.objectKey), 1024 * 1024);
+        if (createHash("sha256").update(bytes).digest("hex") !== asset.sha256) {
+          errors.push(`${file}: DOCX 원본 이미지 SHA 불일치 (${asset.objectKey})`);
+        }
+      }
     }
     const scopedErrors = validateScopedSponsoredFields(fm, scopeDay, paragraphs.join("\n\n"));
     if (scopedErrors.length) { errors.push(...scopedErrors.map(message => `${file}: ${message}`)); continue; }
@@ -475,7 +489,8 @@ async function run() {
       slug,
       title: fm.title.trim(),
       summary: (fm.summary || paragraphs[0] || "").trim(),
-      body: paragraphs,
+      body: originals.assets.length ? body.split(/\n\s*\n+/).map(p => p.trim()) : paragraphs,
+      ...(originals.assets.length ? { brandOriginalImages: true } : {}),
       category,
       author: { name: name || "모두일보", role: role || "기자" },
       publishedAt,
@@ -507,7 +522,7 @@ async function run() {
       ...(youtubeId ? { youtubeId } : {}),
       type: youtubeId ? "video" : (["opinion", "video"].includes(fm.type) ? fm.type : (category === "opinion" ? "opinion" : "article")),
     });
-    qualityInputs.push({ file, fm, paragraphs, publishedAt });
+    qualityInputs.push({ file, fm, paragraphs: originals.assets.length ? paragraphs.filter(p => !p.startsWith(":::brand-images ")) : paragraphs, publishedAt });
     console.log(`  ✓ ${slug} [${category}] "${fm.title.trim()}"`);
   }
 

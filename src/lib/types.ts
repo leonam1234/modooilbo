@@ -82,6 +82,7 @@ export interface Article {
    */
   sponsor?: string;
   sponsorDisclosure?: SponsorDisclosure;
+  brandOriginalImages?: true;
 
   /**
    * 제작 출처(2026-08-21 도입) — 포털 제휴 심사의 '자체기사 비율' 근거.

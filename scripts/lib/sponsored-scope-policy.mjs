@@ -96,7 +96,9 @@ export function validateBrandSupport(fm, day, filename, duplicateKeys = []) {
   }
 
   if (source) {
-    const expectedDate = index < 10 ? "2026-11-11" : "2026-11-12";
+    const originalDate = index < 10 ? "2026-11-11" : "2026-11-12";
+    const resumed = day === "2026-11-13" && (index < 9 || index === 12 || index === 17);
+    const expectedDate = resumed ? day : originalDate;
     const expectedSlug = "brand20-" + source[0].replaceAll(".", "-");
     if (day !== expectedDate || fm.slug !== expectedSlug || filename !== expectedDate + "-" + expectedSlug + ".md") {
       errors.push("무상 광고의 승인 후보 날짜·slug·CMS 파일명이 일치해야 합니다");
@@ -119,4 +121,65 @@ export function validateBrandSupport(fm, day, filename, duplicateKeys = []) {
   }
   if (errors.length) return { errors };
   return { errors, disclosure: { mode: "unpaid-brand-support", name: source[1], publisherRelation: relation } };
+}
+
+// DOCX source members and visible captions from the three approved manuscripts.
+const BRAND_ORIGINAL_IMAGES = {
+  "brand20-appliancerentalhub-com": {"groups":[[["3","jpg","e7f80189eca413fa6c3a6bec03a16f22073d4e21de0efdb1510143f256106841"],["4","jpg","ff1e1d68134f8d36da7000127c98c2362c24f6c2fc27c93248935451746dc355"]]],"captions":["왼쪽은 식기세척기, 오른쪽은 로봇청소기 출시 자료사진. 본문의 DW30FB305CW0·VR70F00AGG98C는 요금 사례이며 사진 속 모델 번호는 확인되지 않았다. 사진 삼성전자 뉴스룸."],"representativeCaption":"식기세척기 출시 자료사진. 본문의 요금 사례 모델과 동일한지는 확인되지 않았다. 사진 삼성전자 뉴스룸."},
+  "brand20-brandmap-co-kr": {"groups":[[["1","png","1d6c401fc4b904be1aaca89ec83936f17fb5ccd3a6fe123971f0622383d73746"]],[["2","png","19dc2a63e6d6cb790045922d8f3065b94bf87c812e7fda1b111efb9e0093b6db"]]],"captions":["브랜드맵 삼성 저장 결과. 91.58은 추천 빈도와 순서 등으로 계산한 브랜드맵 지수다. 11월 11일 캡처. [1]","제공 원고에 포함된 퍼플렉시티 답변의 비교표 일부. 표에 표시된 인용은 이 답변 화면의 일부이며 제조사가 답변 전체를 확인했다는 뜻은 아니다."]},
+  "brand20-worktool-wiki": {"groups":[[["3","png","02089bbab1597d6f60613650642412174e0fd104de1b28b0a5557b45b1646024"]],[["5","png","8734c1bd532955be0ebbf1ed028a0d1e0acb253eeccb3539aef46a32905d7e04"]],[["1","png","3e82b2b6367100deb288e7862a76965b84ad46ec25ce041d3404e15ed8010fb0"]],[["2","png","cacd8d830952794e1b3c5a550777c90c7713bef38aea307fb87aeb76ea24584e"]]],"captions":["Zoom 공식 도움말의 PC 녹화 메뉴 안내. 11월 11일 화면 캡처.","Google Meet 회의 중 녹화 시작 버튼. 말레이시아 정부 MyGovUC 이용 안내서 32쪽 그림 41 발췌."]},
+};
+
+export function brandOriginalAssets(slug, date) {
+  const original = Object.hasOwn(BRAND_ORIGINAL_IMAGES, slug) && BRAND_ORIGINAL_IMAGES[slug];
+  if (date !== "2026-11-13" || !original) return [];
+  return original.groups.flatMap(group => group.map(([member, ext, sha256]) => ({
+    objectKey: date + "-" + slug + "-original-" + member + "." + ext,
+    sha256,
+  })));
+}
+
+// One block per source paragraph. The last WorkTool block is editorial reference material.
+export function validateBrandOriginalImages(fm, day, filename, body, duplicateKeys = []) {
+  const slug = fm.slug;
+  const expected = brandOriginalAssets(slug, day);
+  const usesOriginals = Object.hasOwn(fm, "sponsorOriginalImages");
+  const hasBlock = /(?:^|\n):::brand-images\b/.test(body);
+  if (!expected.length && !usesOriginals && !hasBlock) return { errors: [], assets: [] };
+  const errors = [];
+  const brand = validateBrandSupport(fm, day, filename, duplicateKeys);
+  if (!expected.length || fm.sponsorOriginalImages !== "docx-originals" || !brand.disclosure ||
+      duplicateKeys.includes("sponsorOriginalImages") || duplicateKeys.includes("image")) {
+    return { errors: ["승인된 무상 광고 원본 이미지 범위 불일치"], assets: [] };
+  }
+  const original = BRAND_ORIGINAL_IMAGES[slug];
+  const blocks = body.split(/\n\s*\n+/).map(part => part.trim());
+  const sourceIndex = blocks.indexOf("## 출처 메모");
+  const images = blocks.map((block, index) => ({ block, index })).filter(({block}) => block.startsWith(":::brand-images"));
+  if (images.length !== original.groups.length || sourceIndex < 0 || images.some(({index}) => index >= sourceIndex)) {
+    errors.push("DOCX 본문 이미지 묶음과 배치 누락");
+  }
+  let offset = 0;
+  images.forEach(({block}, index) => {
+    const group = original.groups[index];
+    if (!group) return;
+    const keys = expected.slice(offset, offset + group.length).map(asset => "/stock/" + asset.objectKey);
+    offset += group.length;
+    const match = block.match(/^:::brand-images (\/stock\/[^\s]+(?: \/stock\/[^\s]+)*)\n([^\n]+)\n:::$/);
+    if (!match || match[1] !== keys.join(" ")) {
+      errors.push("DOCX 이미지 순서 또는 원본 파일명 불일치");
+      return;
+    }
+    if (index < original.captions.length) {
+      if (match[2] !== original.captions[index]) errors.push("검수 고정 캡션 불일치");
+    } else if (!match[2].startsWith("참고 이미지. ") || match[2].length <= "참고 이미지. ".length) {
+      errors.push("원 DOCX 미참조 이미지는 검수한 참고 이미지 캡션 필요");
+    }
+  });
+  if (fm.image !== "/stock/" + expected[0].objectKey || fm.imageCaption !== (original.representativeCaption ?? original.captions[0]) ||
+      fm.visualType !== "source-photo" || fm.inlineImages || fm.inlineImagesApprovedBy ||
+      /!\[[^\]]*\]\(/.test(body) || (body.match(/:::brand-images\b/g) || []).length !== images.length) {
+    errors.push("DOCX 대표 메타 또는 원본 이외 이미지 참조 불일치");
+  }
+  return { errors, assets: errors.length ? [] : expected };
 }

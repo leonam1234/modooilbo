@@ -74,7 +74,7 @@ export async function generateMetadata({
       locale: "ko_KR",
       siteName: "모두일보",
       url: `/article/${a.slug}/`,
-      images: [{ url: imageUrl, width: ARTICLE_IMAGE_WIDTH, height: ARTICLE_IMAGE_HEIGHT, alt: a.title }],
+      images: [{ url: imageUrl, ...(a.brandOriginalImages ? {} : { width: ARTICLE_IMAGE_WIDTH, height: ARTICLE_IMAGE_HEIGHT }), alt: a.title }],
       // KST 벽시계-as-Z 저장값을 그대로 내보내면 9시간 미래가 된다(JSON-LD와도 모순).
       // 같은 페이지의 datePublished와 동일하게 +09:00 오프셋으로 표기.
       publishedTime: toKstIso(a.publishedAt),
@@ -142,7 +142,7 @@ export default async function ArticlePage({
     mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
     headline: article.title.slice(0, 110),
     description: metaDescription(article),
-    image: [{ "@type": "ImageObject", url: imageUrl, width: ARTICLE_IMAGE_WIDTH, height: ARTICLE_IMAGE_HEIGHT }],
+    image: [{ "@type": "ImageObject", url: imageUrl, ...(article.brandOriginalImages ? {} : { width: ARTICLE_IMAGE_WIDTH, height: ARTICLE_IMAGE_HEIGHT }) }],
     thumbnailUrl: imageUrl,
     datePublished: toKstIso(article.publishedAt),
     dateModified: toKstIso(article.updatedAt ?? article.publishedAt),
@@ -302,7 +302,7 @@ export default async function ArticlePage({
                 <p className="mt-2 text-center text-xs text-ink-500 dark:text-ink-400">{article.imageCaption}</p>
               )}
             </div>
-          ) : (
+          ) : !article.brandOriginalImages && (
           <figure id="article-hero" className="mt-6">
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg bg-ink-100 dark:bg-ink-800">
               <Image
@@ -337,7 +337,7 @@ export default async function ArticlePage({
 
           {/* 광고(AdSense 수동 슬롯) — 본문 중간(일반 문단 3개 뒤, 뉴스 관행). 기사당 이 1개만.
               삽입 위치 판단은 본문 구조를 아는 ArticleBody가 한다(짧은 기사는 자동 제외). */}
-          <ArticleBody body={article.body} sponsored={!!article.sponsor} midSlot={<AdSlot placement="article" className="!my-9" />} />
+          <ArticleBody body={article.body} sponsored={!!article.sponsor} brandOriginalImages={article.brandOriginalImages} midSlot={<AdSlot placement="article" className="!my-9" />} />
 
           <ReporterInsight article={article} />
           <MethodologyNote note={article.methodologyNote} />

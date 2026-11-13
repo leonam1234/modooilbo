@@ -13,6 +13,7 @@ import { readdirSync, statSync, writeFileSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import {protectedBuildContext} from './lib/protected-build-runtime.mjs';
+import {brandOriginalAssets} from './lib/sponsored-scope-policy.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const STOCK = join(ROOT, "public", "stock");
@@ -27,7 +28,8 @@ try {
   console.warn("[webp] sharp 미설치 — 변환 생략(기존 webp만 매니페스트에 반영)");
 }
 
-const jpgs = readdirSync(STOCK).filter((f) => f.endsWith(".jpg"));
+const originalKeys = new Set(brandOriginalAssets("brand20-appliancerentalhub-com", "2026-11-13").map(asset => asset.objectKey));
+const jpgs = readdirSync(STOCK).filter((f) => f.endsWith(".jpg") && !originalKeys.has(f));
 let made = 0;
 let skipped = 0;
 let failed = 0;

@@ -339,7 +339,23 @@ export function sourceLinks(items: string[]): SourceLink[] {
 }
 
 /** 본문 블록 하나 — 소제목(##/###) · 유튜브 단독 문단 · 이미지 마크다운 · 일반 문단. */
-function BodyBlock({ p }: { p: string }) {
+function BodyBlock({ p, brandOriginalImages }: { p: string; brandOriginalImages?: boolean }) {
+  const originals = brandOriginalImages && p.match(/^:::brand-images (\/stock\/[^\s]+(?: \/stock\/[^\s]+)*)\n([^\n]+)\n:::$/);
+  if (originals) {
+    const paths = originals[1].split(" ");
+    return (
+      <figure className="my-2">
+        <div className={paths.length === 2 ? "grid grid-cols-2 items-start gap-2" : undefined}>
+          {paths.map((path) => (
+            // Exact source bytes and natural aspect ratio for DOCX photographs and screenshots.
+            // eslint-disable-next-line @next/next/no-img-element
+            <img key={path} src={stockUrl(path)} alt={originals[2]} loading="lazy" className="h-auto w-full rounded-lg" />
+          ))}
+        </div>
+        <figcaption className="mt-2 text-xs text-ink-500 dark:text-ink-400">{originals[2]}</figcaption>
+      </figure>
+    );
+  }
   // "## 소제목" / "### 소제목" — 기사 중간 소제목
   const heading = p.match(/^(#{2,3})\s+(.+)$/);
   if (heading) {
@@ -454,6 +470,7 @@ export function ArticleBody({
   body,
   midSlot,
   sponsored = false,
+  brandOriginalImages,
 }: {
   body: string[];
   midSlot?: ReactNode;
@@ -463,6 +480,7 @@ export function ArticleBody({
    *    사실과 다른 신고이고 해당 기관 링크의 신뢰도를 깎는다.
    */
   sponsored?: boolean;
+  brandOriginalImages?: boolean;
 }) {
   const [main, sourceLabel, sources] = splitSources(body);
   const blocks = articleContentBlocks(main);
@@ -480,7 +498,7 @@ export function ArticleBody({
           {block.kind === "disclosure" ? (
             <EditorialDisclosure title={block.title} paragraphs={block.paragraphs} />
           ) : (
-            <BodyBlock p={block.text} />
+            <BodyBlock p={block.text} brandOriginalImages={brandOriginalImages} />
           )}
           {i === midAfter && midSlot}
         </Fragment>

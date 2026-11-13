@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {createHash,createHmac} from 'node:crypto';
-import {SPONSORED_SCOPE} from './lib/sponsored-scope-policy.mjs';
+import {SPONSORED_SCOPE,brandOriginalAssets} from './lib/sponsored-scope-policy.mjs';
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const validSHA=v=>typeof v==='string'&&/^[a-f0-9]{64}$/.test(v);
 const fail=m=>{throw Error('선택 R2 차단: '+m);};
@@ -35,7 +35,11 @@ export function loadSelectedR2Manifest(ref,{siteRoot,targetRevision,metadataRoot
   safeDirectory(metadataRoot);
   if(!/^[a-f0-9]{40}$/.test(targetRevision||''))fail('현재 target revision 필요');
   const m=json(ref,metadataRoot);
-  if(m.schema!=='modoo-selected-r2-assets-v1'||m.siteRoot!==siteRoot||m.targetRevision!==targetRevision||typeof m.workId!=='string'||!/^MOD-[A-Z0-9-]+$/.test(m.workId)||!Array.isArray(m.assets)||m.assets.length>100||!sameSet(m.assets.map(a=>String(a.id)),m.selectedIds?.map(String)))fail('명세/대상/정확 선택집합');
+  const originals=m.schema==='modoo-brand20-docx-original-r2-v1';
+  if(originals&&(!Array.isArray(m.assets)||m.assets.length===0))fail('DOCX 원본 이미지 명세는 비어 있을 수 없습니다');
+  if((!originals&&m.schema!=='modoo-selected-r2-assets-v1')||m.siteRoot!==siteRoot||m.targetRevision!==targetRevision||typeof m.workId!=='string'||!/^MOD-[A-Z0-9-]+$/.test(m.workId)||!Array.isArray(m.assets)||m.assets.length>100)fail('명세/대상/정확 선택집합');
+  const articleIds=m.assets.map(a=>String(a.id));
+  if(!sameSet(originals?[...new Set(articleIds)]:articleIds,m.selectedIds?.map(String)))fail('명세/대상/정확 선택집합');
   if(m.bucket!=='modooilbo-stock'||m.publicBase!=='https://img.modooilbo.com')fail('승인된 기존 R2 대상만 허용');
   if(m.workId===SPONSORED_SCOPE.workId && (m.assets.length!==5 || SPONSORED_SCOPE.items.some(i=>m.assets.filter(a=>String(a.id)===String(i.id)&&a.slug===i.slug&&a.objectKey===SPONSORED_SCOPE.date+'-'+i.slug+'.jpg').length!==1)))fail('광고321~325 정확 신규5 이미지 필요');
   const n=json(m.nativeReceipt,metadataRoot),t=n.target;
@@ -48,15 +52,32 @@ export function loadSelectedR2Manifest(ref,{siteRoot,targetRevision,metadataRoot
     admitted.set(m,{digest:sha(JSON.stringify(m)),ref,metadataRoot});return m;
   }
   if(m.assets.length===0)fail('빈 명세에는 명시적 신규이미지 없음 수령증 필요');
-  if(n.workId!==m.workId||n.status!=='CMS_INTAKEN_NOT_BUILT_OR_DEPLOYED'||n.sameNativeObject!==true||n.JSONRehydration!==false||n.selectedCount!==m.assets.length||(t?.siteRoot||t?.repo)!==siteRoot||n.applied?.mode!=='applied')fail('선택 신규이미지 소유/실제 native 인수 수령증');
+  if(n.workId!==m.workId||n.status!=='CMS_INTAKEN_NOT_BUILT_OR_DEPLOYED'||n.sameNativeObject!==true||n.JSONRehydration!==false||n.selectedCount!==(originals?m.selectedIds.length:m.assets.length)||(t?.siteRoot||t?.repo)!==siteRoot||n.applied?.mode!=='applied')fail('선택 신규이미지 소유/실제 native 인수 수령증');
   const images=n.applied.operations.filter(a=>a.type==='image');
   if(images.length!==m.assets.length||new Set(images.map(i=>i.destination)).size!==images.length||new Set(m.assets.map(a=>a.objectKey)).size!==m.assets.length)fail('신규 이미지 완전 커버리지');
   const approved=images.map(i=>i.destination);
+  if(originals)assertBrandOriginalManifest(m,n,siteRoot);
   // Validate every path before the first filesystem call on any asset.
   for(const a of m.assets) {
-    if(typeof a.slug!=='string'||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(a.slug)||!/^\d{4}-\d{2}-\d{2}-[a-z0-9]+(?:-[a-z0-9]+)*\.jpg$/.test(a.objectKey||'')||!a.objectKey.endsWith('-'+a.slug+'.jpg')||a.sourcePath!==path.join(siteRoot,'public','stock',a.objectKey)||!approved.includes(a.sourcePath)||!validSHA(a.sha256)||images.filter(i=>i.destination===a.sourcePath&&i.digest===a.sha256).length!==1)fail('이미지 allowlist/경로/소유 SHA 불일치');
+    const legacyKey=typeof a.slug==='string'&&/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(a.slug)&&/^\d{4}-\d{2}-\d{2}-[a-z0-9]+(?:-[a-z0-9]+)*\.jpg$/.test(a.objectKey||'')&&a.objectKey.endsWith('-'+a.slug+'.jpg');
+    if((!originals&&!legacyKey)||a.sourcePath!==path.join(siteRoot,'public','stock',a.objectKey)||!approved.includes(a.sourcePath)||!validSHA(a.sha256)||images.filter(i=>i.destination===a.sourcePath&&i.digest===a.sha256).length!==1)fail('이미지 allowlist/경로/소유 SHA 불일치');
   }
   admitted.set(m,{digest:sha(JSON.stringify(m)),ref,metadataRoot});return m;
+}
+
+function assertBrandOriginalManifest(m,n,siteRoot) {
+  const slugs={'04':'brand20-appliancerentalhub-com','13':'brand20-brandmap-co-kr','18':'brand20-worktool-wiki'};
+  if(m.workId!=='MOD-SPONSORED-20261111-BRAND20'||m.date!=='2026-11-13'||m.selectedIds.some(id=>!Object.hasOwn(slugs,id))||
+     !sameSet(n.selectedIds?.map(String),m.selectedIds.map(String))||n.dry?.mode!=='dry-run'||
+     n.applied.articleCount!==m.selectedIds.length||n.applied.fileCount!==m.selectedIds.length+m.assets.length||
+     n.applied.operations.length!==n.applied.fileCount||JSON.stringify(n.dry.operations)!==JSON.stringify(n.applied.operations))fail('원본 이미지의 정확한 업무·선택·같은 native 인수 근거');
+  for(const id of m.selectedIds){
+    const slug=slugs[id],expected=brandOriginalAssets(slug,m.date);
+    const assets=m.assets.filter(asset=>String(asset.id)===String(id));
+    if(assets.some(asset=>asset.slug!==slug)||!sameSet(assets.map(asset=>asset.objectKey+':'+asset.sha256),expected.map(asset=>asset.objectKey+':'+asset.sha256)))fail('DOCX 원본 이미지 전집합/SHA 불일치');
+    const destination=path.join(siteRoot,'content','articles',m.date+'-'+slug+'.md');
+    if(n.applied.operations.filter(op=>op.type==='article'&&op.destination===destination&&validSHA(op.digest)).length!==1)fail('DOCX 원본 이미지의 기사 인수 연결 누락');
+  }
 }
 const hmac=(key,data)=>createHmac('sha256',key).update(data).digest();
 export function signV4({method,url,headers,body,accessKeyId,secretAccessKey,region='auto',service='s3',now=new Date()}) {
@@ -76,7 +97,7 @@ export function conditionalS3Transport({env=process.env,fetchImpl=fetch,now=()=>
   if(!/^[a-f0-9]{32}$/.test(accountId||'')||!accessKeyId||!secretAccessKey)fail('기존 승인된 R2_ACCOUNT_ID/R2_ACCESS_KEY_ID/R2_SECRET_ACCESS_KEY 필요; 인증 설정 변경·전체동기화 fallback 금지');
   return async ({bucket,objectKey,bytes,digest})=>{
     const url='https://'+accountId+'.r2.cloudflarestorage.com/'+bucket+'/'+encodeURIComponent(objectKey);
-    const headers=signV4({method:'PUT',url,body:bytes,accessKeyId,secretAccessKey,now:now(),headers:{'content-type':'image/jpeg','cache-control':'public, max-age=31536000, immutable','if-none-match':'*','x-amz-meta-sha256':digest}});
+    const headers=signV4({method:'PUT',url,body:bytes,accessKeyId,secretAccessKey,now:now(),headers:{'content-type':objectKey.endsWith('.png')?'image/png':'image/jpeg','cache-control':'public, max-age=31536000, immutable','if-none-match':'*','x-amz-meta-sha256':digest}});
     let response;try{response=await fetchImpl(url,{method:'PUT',headers,body:bytes,redirect:'error',signal:AbortSignal.timeout(30000)});}catch{fail('선택 신규 PUT 결과 불명; 자동 재전송/기존원격 비교 금지');}
     if(response.status===412)fail('원격 키가 이미 존재; 기존 이미지 덮어쓰기 금지');
     if(!response.ok)fail('선택 신규 PUT HTTP '+response.status);
