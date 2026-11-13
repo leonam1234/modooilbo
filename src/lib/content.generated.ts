@@ -135851,6 +135851,63 @@ export const CONTENT_ARTICLES: Article[] = [
     "type": "article"
   },
   {
+    "id": "2026-11-13-brand20-appliancerentalhub-com",
+    "slug": "2026-11-13-brand20-appliancerentalhub-com",
+    "title": "[광고] 72개월 식기세척기와 60개월 로봇청소기의 계약 종료일은 다르다",
+    "summary": "주식회사 현성전자가 운영하는 가전렌탈의 별도 표시 사례에서 식기세척기 DW30FB305CW0는 월 1만9470원에 72개월, 로봇청소기 VR70F00AGG98C는 월 3만3660원에 60개월이었다.",
+    "body": [
+      "주식회사 현성전자가 운영하는 가전렌탈의 별도 표시 사례에서 식기세척기 DW30FB305CW0는 월 1만9470원에 72개월, 로봇청소기 VR70F00AGG98C는 월 3만3660원에 60개월이었다.",
+      "월요금이 그대로라면 각각 140만1840원과 201만9600원이다. 두 금액을 더한 342만1440원은 개별 약정의 단순합이며 두 상품을 동시에 신청하는 견적이나 묶음 할인이 아니다.",
+      "## 60회가 지나도 남는 계약을 확인",
+      "같은 달에 두 약정을 시작해 매월 한 번씩 낸다는 가정이라면 첫 60회에는 두 월요금이 겹치고 이후 12회에는 식기세척기 월요금만 남는다. 실제 납부 개시일, 카드 혜택이나 설치비는 각 계약에서 따로 확인한다. 품목마다 관리 대상과 종료일을 적어 두면 약정 하나가 끝날 때 전체 청구가 끝난다는 오해를 피할 수 있다.",
+      "## 신청하거나 적용하기 전에 확인할 사항",
+      "설치 견적서도 품목별로 나눈다. 식기세척기는 싱크대 위치와 급수 연결에 따른 설치 조건을 보고, 로봇청소기는 도크를 둘 공간과 소모품 공급 범위를 살핀다. 같은 곳에서 주문하더라도 한 품목의 설치 일정이나 관리 방문을 다른 품목과 같이 확정된 것으로 보지 않는다. 해지 예정이 있다면 어느 계약이 남는지 먼저 확인하고, 품목별 위약금과 제품 회수 비용은 각 계약 상대방에게 따로 요청한다.",
+      "## 출처 메모",
+      "- 삼성전자 뉴스룸 사진 이용 안내: https://news.samsung.com/kr/삼성전자-뉴스룸-콘텐츠-이용에-대한-안내",
+      "- 식기세척기 표시 옵션: https://appliancerentalhub.com/goods/dishwasher-dw30fb305cw0?period=6&care=free&svcCode=EW - 삼성 구독 가이드: https://www.samsung.com/sec/ai-subs/guide/ - 삼성전자 뉴스룸 자료사진: https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-%EC%97%90%EB%84%88%EC%A7%80-%ED%9A%A8%EC%9C%A8-%EA%B0%95%ED%99%94%ED%95%9C-%EB%B9%84%EC%8A%A4%ED%8F%AC%ED%81%AC-%EC%8B%9D%EA%B8%B0%EC%84%B8%EC%B2%99%EA%B8%B0 - 삼성전자 뉴스룸 자료사진: https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-2026%EB%85%84%ED%98%95-%EB%B9%84%EC%8A%A4%ED%8F%AC%ED%81%AC-ai-%EC%8A%A4%ED%8C%80-%EB%A1%9C%EB%B4%87%EC%B2%AD%EC%86%8C%EA%B8%B0-%EC%B6%9C%EC%8B%9C - 가전렌탈 표시 옵션: https://appliancerentalhub.com/goods/robot-vacuum-vr70f00agg98c?period=5&care=free&svcCode=EW - 가전렌탈 표시 옵션: https://appliancerentalhub.com/"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-13T15:39:00Z",
+    "sponsor": "appliancerentalhub.com",
+    "sponsorDisclosure": {
+      "mode": "unpaid-brand-support",
+      "name": "가전렌탈",
+      "publisherRelation": "해당 운영사와 모두일보 발행인 사이에 별도 이해관계는 없습니다."
+    },
+    "reporting": "sponsored",
+    "verificationNote": "두 제품의 지정 기간 공개 옵션과 서로 다른 약정의 납부 합계를 대조했습니다.",
+    "addedValue": "가전별 약정이 다른 경우 한 계약이 끝난 뒤에 남는 납부 횟수를 구분합니다.",
+    "sourceBasis": "primary",
+    "visualType": "source-photo",
+    "aiRole": [
+      "research-assist",
+      "copyedit"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-13T15:27:00Z",
+    "reporterInsight": "주식회사 현성전자가 운영하는 가전렌탈의 별도 표시 사례에서 식기세척기 DW30FB305CW0는 월 1만9470원에 72개월, 로봇청소기 VR70F00AGG98C는 월 3만3660원에 60개월이었다.",
+    "imageUrl": "/stock/2026-11-13-brand20-appliancerentalhub-com.jpg",
+    "imageCaption": "식기세척기 출시 자료사진. 본문의 요금 사례 모델과 동일한지는 확인되지 않았다. 사진 삼성전자 뉴스룸. 게재용 크기 조정 및 여백 추가.",
+    "tags": [
+      "가전렌탈",
+      "신생 브랜드 홍보 지원",
+      "식기세척기",
+      "로봇청소기",
+      "72개월",
+      "60개월",
+      "설치 견적",
+      "약정 종료",
+      "월요금"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
     "id": "2026-11-13-brand20-appliancesubscription-com",
     "slug": "2026-11-13-brand20-appliancesubscription-com",
     "title": "[광고] 제품 구독과 구매 후 관리 서비스의 해지는 다르다",
@@ -135902,6 +135959,64 @@ export const CONTENT_ARTICLES: Article[] = [
       "환불",
       "72개월",
       "KU27LSFM7AXXKR"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-13-brand20-brandmap-co-kr",
+    "slug": "2026-11-13-brand20-brandmap-co-kr",
+    "title": "[광고] AI 답변에서 브랜드 언급과 인용 링크를 구분한다",
+    "summary": "AI 답변에 브랜드 이름이 나왔다고 해서 그 브랜드가 추천 1위이거나, 답변이 제조사 자료를 인용했다는 뜻은 아니다.",
+    "body": [
+      "AI 답변에 브랜드 이름이 나왔다고 해서 그 브랜드가 추천 1위이거나, 답변이 제조사 자료를 인용했다는 뜻은 아니다.",
+      "브랜드맵의 저장 화면과 별도 답변 예시는 언급 위치와 인용 링크를 서로 다른 항목으로 살피는 방법을 보여준다.",
+      "## 분석 화면의 값은 서비스 내부 지표",
+      "첫 화면의 숫자는 브랜드맵 저장 화면에 표시된 자체 지표다. 일반 검색 순위나 다른 이용자에게 노출된 횟수, 구매 추천 우위를 입증하지 않는다. 같은 질문의 원문, 실행 날짜, 모델과 조건을 함께 기록하지 않았다면 여러 실행의 횟수와 순서를 서로 비교하지 않는다. 이 글에는 독립 재현하지 못한 집계 수치를 넣지 않았다.",
+      "## 별도 답변 예시는 제조사 자료와 구분",
+      "제공 원고에는 냉장고 비교 질문에 대한 퍼플렉시티 답변 예시도 포함돼 있었다. 답변의 비교표에 모델명이 보이면 제조사 페이지와 모델이 같은지 확인하고, 사양마다 실제로 뒷받침하는 링크가 있는지 따로 본다. 한 번의 답변을 일반적인 추천이나 성능 우위로 해석하지 않는다.",
+      "## 신청하거나 적용하기 전에 확인할 사항",
+      "여러 답변을 비교할 때는 같은 질문을 쓰고, 날짜와 실행 환경을 남긴다. 답변 본문에 브랜드가 언급된 위치와 실제 인용 링크를 다른 열에 적어 두면 링크를 열어 검증할 때 편하다. 답변에서 판매처 링크가 보이더라도 제조사의 사양표와 같은 증거는 아니다. 모델명이 다른 제품은 비교 표에서 분리하고, 출처에 없는 기능이나 추천 이유는 확인되지 않은 설명으로 남겨 둔다.",
+      "## 출처 메모",
+      "- [1] 브랜드맵 서비스: https://brandmap.co.kr/ - LG 공식 제품 자료: https://www.lge.co.kr/product/refrigerators/m516sgs012s - 삼성 공식 제품 자료: https://www.samsung.com/sec/support/model/RQ33DB74B1AP/"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-13T15:40:00Z",
+    "sponsor": "brandmap.co.kr",
+    "sponsorDisclosure": {
+      "mode": "unpaid-brand-support",
+      "name": "브랜드맵",
+      "publisherRelation": "해당 운영사와 모두일보 발행인 사이에 별도 이해관계는 없습니다."
+    },
+    "reporting": "sponsored",
+    "verificationNote": "제공된 저장 화면과 별도 답변 예시를 구분하고 제조사 자료의 모델 정보를 대조했습니다.",
+    "addedValue": "AI 답변에서 브랜드 이름이 언급된 것과 외부 자료가 실제 인용된 것을 분리해 읽도록 돕습니다.",
+    "sourceBasis": "primary",
+    "visualType": "source-photo",
+    "aiRole": [
+      "research-assist",
+      "copyedit"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-13T15:28:00Z",
+    "reporterInsight": "AI 답변에 브랜드 이름이 나왔다고 해서 그 브랜드가 추천 1위이거나, 답변이 제조사 자료를 인용했다는 뜻은 아니다.",
+    "imageUrl": "/stock/2026-11-13-brand20-brandmap-co-kr.jpg",
+    "imageCaption": "브랜드맵 서비스의 저장 화면 예시. 화면의 숫자는 자체 지표이며 일반 검색 순위나 노출을 뜻하지 않는다. 제공 자료. 게재용 크기 조정 및 여백 추가.",
+    "tags": [
+      "브랜드맵",
+      "신생 브랜드 홍보 지원",
+      "AI 답변",
+      "브랜드 언급",
+      "인용 링크",
+      "퍼플렉시티",
+      "검색 노출",
+      "냉장고 비교",
+      "출처 검증"
     ],
     "isBreaking": false,
     "readCount": 0,
@@ -136187,6 +136302,63 @@ export const CONTENT_ARTICLES: Article[] = [
       "계약기간",
       "중도해지",
       "소유권"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-13-brand20-worktool-wiki",
+    "slug": "2026-11-13-brand20-worktool-wiki",
+    "title": "[광고] Zoom과 Google Meet 녹화는 권한과 저장 위치부터 확인한다",
+    "summary": "화상회의에서 녹화를 시작할 수 있는 권한과 회의가 끝난 뒤 녹화 파일을 볼 수 있는 권한은 별개다.",
+    "body": [
+      "화상회의에서 녹화를 시작할 수 있는 권한과 회의가 끝난 뒤 녹화 파일을 볼 수 있는 권한은 별개다. 주식회사 뉴웨이브코퍼레이션이 운영하는 워크툴의 예시를 바탕으로 Zoom과 Google Meet에서 회의 전에 확인할 항목을 정리했다.",
+      "## Zoom은 컴퓨터와 클라우드 녹화를 구분",
+      "컴퓨터 녹화 파일은 녹화한 기기에 남고, 클라우드 녹화는 지원 요금제와 설정에서 Zoom 계정에 저장된다. 컴퓨터 녹화 기능이 켜져 있는지, 참석자에게 녹화 권한을 줄 수 있는지, 클라우드 녹화본의 공유 범위는 어디까지인지 각각 확인한다.",
+      "## Meet는 요금제, 관리자 설정, 호스트 권한을 확인",
+      "Google Meet에서 녹화하려면 지원되는 계정과 관리자 설정, 회의 역할에 따른 권한이 필요하다. Google Workspace Business Starter를 Standard·Plus와 동일한 녹화 지원으로 보지 않는다. 주최자의 Google Drive 저장 위치와 실제 공유 설정은 녹화를 시작할 수 있는지와 별개로 확인한다.",
+      "## 신청하거나 적용하기 전에 확인할 사항",
+      "파일을 나중에 다시 찾을 수 있도록 회의 전에 저장 주체와 담당자를 정하고, 외부 참석자에게는 녹화 여부와 공유 범위를 안내한다. 회의가 끝나면 생성된 링크가 열리는 사람과 파일을 다운로드할 수 있는 사람을 별도로 확인한다. 조직 계정이 바뀌거나 보관 정책이 적용될 경우에는 담당자가 해당 조직의 설정에서 실제 보관 기간과 파일 이전 가능 여부를 확인한다.",
+      "## 출처 메모",
+      "- 워크툴: https://worktool.wiki/situations/meeting-recording-archive - Zoom 컴퓨터 녹화 도움말: https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0076922 - Zoom 클라우드 녹화 도움말: https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0062627 - Google Meet 녹화: https://support.google.com/meet/answer/9308681?hl=en - Workspace 요금제별 기능: https://knowledge.workspace.google.com/admin/meet/compare-meet-features-across-google-workspace-editions - MyGovUC 교육자료: https://www.mygovuc.gov.my/uploads/content-downloads/file_20250722085445.pdf#page=32 - Google Workspace 공식 화면 안내: https://workspaceupdates.googleblog.com/2024/07/pre-configure-google-meet-artifacts.html"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-13T15:39:00Z",
+    "sponsor": "worktool.wiki",
+    "sponsorDisclosure": {
+      "mode": "unpaid-brand-support",
+      "name": "워크툴",
+      "publisherRelation": "해당 운영사와 모두일보 발행인 사이에 별도 이해관계는 없습니다."
+    },
+    "reporting": "sponsored",
+    "verificationNote": "Zoom과 Google의 녹화 도움말 및 제공된 참고 이미지의 화면과 출처를 대조했습니다.",
+    "addedValue": "회의 전에 녹화 시작 권한과 저장 위치를 확인하고 파일 공유 권한도 구분하도록 돕습니다.",
+    "sourceBasis": "primary",
+    "visualType": "source-photo",
+    "aiRole": [
+      "research-assist",
+      "copyedit"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-13T15:27:00Z",
+    "reporterInsight": "화상회의에서 녹화를 시작할 수 있는 권한과 회의가 끝난 뒤 녹화 파일을 볼 수 있는 권한은 별개다.",
+    "imageUrl": "/stock/2026-11-13-brand20-worktool-wiki.jpg",
+    "imageCaption": "Zoom 공식 도움말의 컴퓨터 녹화 메뉴 안내 발췌. 계정과 설정에 따라 화면이 다를 수 있다. 게재용 크기 조정 및 여백 추가.",
+    "tags": [
+      "워크툴",
+      "신생 브랜드 홍보 지원",
+      "Zoom",
+      "Google Meet",
+      "회의 녹화",
+      "컴퓨터 녹화",
+      "클라우드 녹화",
+      "Google Drive",
+      "공유 권한"
     ],
     "isBreaking": false,
     "readCount": 0,
