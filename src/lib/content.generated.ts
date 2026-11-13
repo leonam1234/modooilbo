@@ -135737,6 +135737,462 @@ export const CONTENT_ARTICLES: Article[] = [
     "type": "article"
   },
   {
+    "id": "2026-11-13-brand20-airpurifierrental-com",
+    "slug": "2026-11-13-brand20-airpurifierrental-com",
+    "title": "[광고] 필터 배송형과 기사 방문형은 관리 범위부터 비교한다",
+    "summary": "주식회사 현성전자가 운영하는 공기청정기렌탈에서 확인한 AP90H03163UGD 무상수리형 72개월 옵션은 월 1만5070원이었다.",
+    "body": [
+      "주식회사 현성전자가 운영하는 공기청정기렌탈에서 확인한 AP90H03163UGD 무상수리형 72개월 옵션은 월 1만5070원이었다.",
+      "같은 월요금을 72회 내는 단순합은 108만5040원이다. 이 금액에 필터 배송이나 기사의 정기 방문이 포함된 것으로 읽지 않는다.",
+      "## 필터를 누가 구입하고 교체하는지 확인",
+      "필터를 별도로 구매하는 방식과 배송받아 직접 교체하는 방식, 기사가 방문해 관리하는 방식은 서비스 범위가 다르다. 방문·셀프케어 가격은 같은 모델이라도 약정과 교체 주기가 같아야 비교할 수 있다. 현재 확인된 가격 한 건을 바탕으로 다른 관리 방식의 차액을 계산하지 않았다. 주문 전에 필터 품번·배송 주기, 방문 때 포함되는 작업과 별도 청구 항목을 확인한다.",
+      "## 신청하거나 적용하기 전에 확인할 사항",
+      "필터를 직접 사는 조건이라면 먼저 제조사가 안내한 호환 필터의 품번을 적어 두고, 교체용 필터와 배송비가 견적에 포함되는지 확인한다. 배송형은 필터만 오는지, 이전 필터를 회수하는지도 조건표에서 구분한다. 방문형은 기사 방문이 없는 달에 이용자가 해야 하는 청소와 점검 범위를 물어본다. 33㎡ 표기는 해당 모델의 사용 면적 안내로, 문을 닫은 여러 방을 한 대가 동시에 관리한다는 뜻은 아니다. 구매 전에는 실제로 둘 방과 제품의 공기 흡입구 주변 공간도 함께 살펴본다.",
+      "## 출처 메모",
+      "- 공기청정기렌탈 모델 안내: https://airpurifierrental.com/view/air-purifier-ap90h03163ugd - 삼성 공식 제품 안내: https://www.samsung.com/sec/air-cleaner/air-purifier-ap90h03163gd-d2c/AP90H03163UGD/ - 삼성 관리 옵션: https://www.samsung.com/sec/ai-subs-living/AP90H03163UGD-subscribe2-d2c/AP90H03163UGD/ - 삼성전자 뉴스룸 자료사진: https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-ai-%EA%B8%B0%EB%8A%A5-%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84-%EA%B3%B5%EA%B8%B0%EC%B2%AD%EC%A0%95%EA%B8%B0-%EB%B9%84%EC%8A%A4%ED%8F%AC%ED%81%AC-%ED%81%90%EB%B8%8C"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-13T12:55:00Z",
+    "sponsor": "airpurifierrental.com",
+    "sponsorDisclosure": {
+      "mode": "unpaid-brand-support",
+      "name": "공기청정기렌탈",
+      "publisherRelation": "해당 운영사와 모두일보 발행인 사이에 별도 이해관계는 없습니다."
+    },
+    "reporting": "sponsored",
+    "verificationNote": "판매처 무상수리 옵션과 제조사의 제품 사양 및 관리 유형 안내를 대조했습니다.",
+    "addedValue": "필터를 직접 구매하거나 배송받는 방식과 기사 방문형을 가격 조건과 구분합니다.",
+    "sourceBasis": "primary",
+    "visualType": "source-photo",
+    "aiRole": [
+      "research-assist",
+      "copyedit"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-13T12:42:00Z",
+    "reporterInsight": "주식회사 현성전자가 운영하는 공기청정기렌탈에서 확인한 AP90H03163UGD 무상수리형 72개월 옵션은 월 1만5070원이었다.",
+    "imageUrl": "/stock/2026-11-13-brand20-airpurifierrental-com.jpg",
+    "imageCaption": "공기청정기를 실내에 둔 자료사진. 가격 사례의 모델 실물로 특정하지 않습니다. 사진 삼성전자 뉴스룸.",
+    "tags": [
+      "공기청정기렌탈",
+      "신생 브랜드 홍보 지원",
+      "공기청정기",
+      "무상수리",
+      "필터 배송",
+      "방문관리",
+      "72개월",
+      "AP90H03163UGD",
+      "사용 면적"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-13-brand20-aisubclub-com",
+    "slug": "2026-11-13-brand20-aisubclub-com",
+    "title": "[광고] 구독 후기 포인트는 계약 할인과 다르다",
+    "summary": "삼성전자의 2026년 11월 1~30일 AI 구독 리뷰 행사는 정해진 요건을 충족한 응모 1건당 삼성전자 멤버십 2만 포인트를 적립한다.",
+    "body": [
+      "삼성전자의 2026년 11월 1~30일 AI 구독 리뷰 행사는 정해진 요건을 충족한 응모 1건당 삼성전자 멤버십 2만 포인트를 적립한다.",
+      "최대 10만 포인트는 적격 응모 5건 기준이다. 같은 모델코드 제품을 여러 대 구매해도 해당 모델로는 한 번만 응모할 수 있다. 가입만으로 지급되는 현금 할인은 아니다. 가전과 구독케어를 함께 구독한 대상 고객이어야 하고, 제품을 일반 구매한 뒤 케어만 추가한 경우는 제외된다.",
+      "## 월 납부액과 포인트를 나누어 보기",
+      "AI구독클럽에 표시된 DV10BB8440GBR 사례는 72개월 옵션에서 월 2만1780원이었다. 이 금액이 72회 동일하다면 월 납부액 단순합은 156만8160원이다. 포인트를 실제로 적립하고 이 계약에서 한 회차 납부에 2만 포인트 전부를 사용할 수 있을 때만 그 회차의 차액이 1780원이 된다. 첫 달에 자동으로 그 금액이 청구된다는 뜻은 아니다. 계약서의 월요금, 적립 내역과 사용 대상 회차를 각각 확인할 필요가 있다.",
+      "## 계약 주체와 행사 주체 구분",
+      "AI구독클럽의 운영사는 주식회사 현성전자이고 리뷰 행사는 삼성전자가 운영한다. 사이트의 공개 옵션과 실제 계약 상대방·결제 조건은 신청 전에 구분한다. 행사 종료 뒤 동일한 적립이나 자동 차감이 이어진다고 가정하지 않는다.",
+      "## 신청하거나 적용하기 전에 확인할 사항",
+      "삼성 행사 안내에 따르면 상품평은 100자 이상으로, 구독 관련 문구와 필수 해시태그를 넣고 사진이나 동영상을 첨부한다. 참여 계정과 게시물은 행사 검수와 혜택 지급이 끝날 때까지 전체 공개 상태로 유지하는 조건이다. 적립된 포인트는 멤버십 내역에서 따로 확인하고, 월 납부액에 반영하기 전에는 적용 방법과 잔액을 확인한다.",
+      "## 출처 메모",
+      "- 삼성전자 리뷰 행사: https://www.samsung.com/sec/ai-subs/event/ai_best_review/ - AI구독클럽 표시 옵션: https://aisubclub.com/detail/dryer-dv10bb8440gbr?period=6&care=free&svcCode=EW - 삼성 구독 가이드: https://www.samsung.com/sec/ai-subs/guide/ - 삼성전자 뉴스룸 자료사진: https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-%EC%97%90%EB%84%88%EC%A7%80-%EC%86%8C%EB%B9%84%ED%9A%A8%EC%9C%A8-1%EB%93%B1%EA%B8%89-%EA%B1%B4%EC%A1%B0%EA%B8%B0-%EB%9D%BC%EC%9D%B8%EC%97%85-%ED%99%95%EB%8C%80"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-13T12:55:00Z",
+    "sponsor": "aisubclub.com",
+    "sponsorDisclosure": {
+      "mode": "unpaid-brand-support",
+      "name": "AI구독클럽",
+      "publisherRelation": "해당 운영사와 모두일보 발행인 사이에 별도 이해관계는 없습니다."
+    },
+    "reporting": "sponsored",
+    "verificationNote": "삼성전자 행사 페이지의 참여 조건과 판매처의 지정 건조기 표시 옵션을 대조했습니다.",
+    "addedValue": "응모 적립과 구독료 납부를 구분해 포인트가 실제 월요금에 반영되는 조건을 설명합니다.",
+    "sourceBasis": "primary",
+    "visualType": "source-photo",
+    "aiRole": [
+      "research-assist",
+      "copyedit"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-13T12:42:00Z",
+    "reporterInsight": "삼성전자의 2026년 11월 1~30일 AI 구독 리뷰 행사는 정해진 요건을 충족한 응모 1건당 삼성전자 멤버십 2만 포인트를 적립한다.",
+    "imageUrl": "/stock/2026-11-13-brand20-aisubclub-com.jpg",
+    "imageCaption": "건조기 사용 자료사진. 요금 사례의 모델 실물로 특정하지 않습니다. 사진 삼성전자 뉴스룸.",
+    "tags": [
+      "AI구독클럽",
+      "신생 브랜드 홍보 지원",
+      "삼성 AI 구독",
+      "리뷰 행사",
+      "멤버십 포인트",
+      "건조기",
+      "DV10BB8440GBR",
+      "72개월",
+      "월 납부액"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-13-brand20-appliancesubscription-com",
+    "slug": "2026-11-13-brand20-appliancesubscription-com",
+    "title": "[광고] 제품 구독과 구매 후 관리 서비스의 해지는 다르다",
+    "summary": "가전 구독료가 제품 대금과 관리 서비스를 함께 포함하는지, 이미 산 가전의 서비스 비용만 뜻하는지 먼저 확인한다.",
+    "body": [
+      "가전 구독료가 제품 대금과 관리 서비스를 함께 포함하는지, 이미 산 가전의 서비스 비용만 뜻하는지 먼저 확인한다. 제품을 이미 구매한 경우 관리 계약을 끝낸다고 제품 구매까지 취소되는 것은 아니다.",
+      "## 72개월 요금은 특정 옵션의 사례",
+      "주식회사 현성전자가 운영하는 가전구독의 KU27LSFM7AXXKR 지정 72개월 옵션에서 월 2만4640원이 표시됐다. 같은 금액을 72회 낸다는 전제의 합계는 177만4080원이다. 같은 제조사 제품이라도 다른 기간, 관리 방식이나 판매처 조건에는 이 금액을 적용할 수 없다.",
+      "## 취소·환불과 중도해지를 구분",
+      "제품을 받기 전 취소, 설치하거나 사용한 뒤의 청약철회, 사용 중 구독 중도해지는 같은 절차가 아니다. 반품·회수비와 이미 제공된 서비스 정산, 위약금 여부는 상품과 계약 시점의 약관 및 실제 설치·사용 상태에 따라 별도로 확인한다. 특정 환불률이나 위약금 면제를 모든 구독에 적용하지 않는다.",
+      "## 신청하거나 적용하기 전에 확인할 사항",
+      "계약서나 견적서에는 제품을 받는 계약의 상대방과 케어를 제공하는 상대방, 월별로 청구되는 항목을 각각 적어 비교할 수 있다. 사용 중 이사를 계획한다면 이전 설치와 중도해지 중 어느 절차가 필요한지도 구분한다. 이미 소유한 제품에 케어만 추가하는 경우에는 가입 대상 모델, 가입 가능한 시점, 기존 고장의 제외 여부를 서비스 약관에서 살펴본다.",
+      "## 출처 메모",
+      "- 삼성전자 뉴스룸: https://news.samsung.com/kr/464529-2 - 가전구독 표시 옵션: https://appliancesubscription.com/item/movingstyle-ku27lsfm7axxkr?period=6&care=free&svcCode=EW - 삼성 구독 가이드: https://www.samsung.com/sec/ai-subs/guide/ - 스마트 구독케어 약관: https://www.samsung.com/sec/aisc/terms/291/100/"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-13T12:55:00Z",
+    "sponsor": "appliancesubscription.com",
+    "sponsorDisclosure": {
+      "mode": "unpaid-brand-support",
+      "name": "가전구독",
+      "publisherRelation": "해당 운영사와 모두일보 발행인 사이에 별도 이해관계는 없습니다."
+    },
+    "reporting": "sponsored",
+    "verificationNote": "판매처 공개 옵션과 삼성전자의 제품 및 구독케어 약관을 대조했습니다.",
+    "addedValue": "제품을 받는 계약과 별도 관리 서비스 계약의 해지와 반품을 구분해 비교합니다.",
+    "sourceBasis": "primary",
+    "visualType": "source-photo",
+    "aiRole": [
+      "research-assist",
+      "copyedit"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-13T12:42:00Z",
+    "reporterInsight": "가전 구독료가 제품 대금과 관리 서비스를 함께 포함하는지, 이미 산 가전의 서비스 비용만 뜻하는지 먼저 확인한다.",
+    "imageUrl": "/stock/2026-11-13-brand20-appliancesubscription-com.jpg",
+    "imageCaption": "이동식 스탠드가 있는 무빙스타일 제품군 자료사진. 사진 삼성전자 뉴스룸.",
+    "tags": [
+      "가전구독",
+      "신생 브랜드 홍보 지원",
+      "제품 구독",
+      "구독케어",
+      "소유권",
+      "청약철회",
+      "환불",
+      "72개월",
+      "KU27LSFM7AXXKR"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-13-brand20-fridgesubscription-com",
+    "slug": "2026-11-13-brand20-fridgesubscription-com",
+    "title": "[광고] 양문형 냉장고의 수납 배분과 납부 기간을 함께 본다",
+    "summary": "주식회사 현성전자가 운영하는 냉장고렌탈의 RS84DB5002CW 지정 72개월 옵션에는 월 2만4750원이 표시됐다.",
+    "body": [
+      "주식회사 현성전자가 운영하는 냉장고렌탈의 RS84DB5002CW 지정 72개월 옵션에는 월 2만4750원이 표시됐다.",
+      "월요금이 일정하다는 전제의 단순합은 178만2000원이다. 제휴카드 혜택, 이전 설치비, 중도해지 비용을 합친 견적은 아니다.",
+      "## 전체 용량과 실제 사용할 칸은 다르다",
+      "삼성전자가 안내한 RS84DB5002CW는 전체 852L로, 냉장실 532L와 냉동실 320L다. 총용량이 같더라도 자주 넣는 식재료와 용기 형태에 따라 사용감은 달라진다. 설치를 검토할 때는 주방 자리의 폭뿐 아니라 배송 경로, 문을 여는 공간과 서랍이 나오는 거리도 확인한다.",
+      "## 회수비는 계약서 기준",
+      "제조사 안내에 있는 다른 약정의 회수비를 이 옵션의 확정 비용으로 보지 않는다. 실제 해지 비용을 비교할 때는 계약 상대방에게 해지일 기준 위약금, 회수비, 반환할 혜택과 이전 설치비를 구분해 요청한다.",
+      "## 신청하거나 적용하기 전에 확인할 사항",
+      "견적을 받을 때는 같은 제품이라도 색상이나 유통 모델에 따라 표기가 달라질 수 있으므로 모델 번호 전체를 남긴다. 줄자로 잰 주방 폭과 현관 통과 폭을 구분해 전달하면 설치를 검토하기 쉽다. 선반 높이를 바꿀 수 있는지, 냉동실 서랍이 문을 완전히 열어야 빠지는지도 자주 쓰는 용기를 기준으로 확인한다. 소유권 이전 조건이나 남은 납부 횟수는 수납 사양과 별개로 계약서에서 확인한다.",
+      "## 출처 메모",
+      "- 삼성 공식 사양: https://www.samsung.com/sec/support/model/RS84DB5002CW/ - 냉장고렌탈 표시 옵션: https://fridgesubscription.com/model/refrigerator-rs84db5002cw?period=6&care=free&svcCode=EW - 삼성 구독 가이드: https://www.samsung.com/sec/ai-subs/guide/ - 삼성전자 뉴스룸 자료사진: https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-%EC%A0%95%EC%88%98%EA%B8%B0-%ED%83%91%EC%9E%AC-%EB%83%89%EC%9E%A5%EA%B3%A0-%EC%B6%9C%EC%8B%9C"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-13T12:56:00Z",
+    "sponsor": "fridgesubscription.com",
+    "sponsorDisclosure": {
+      "mode": "unpaid-brand-support",
+      "name": "냉장고렌탈",
+      "publisherRelation": "해당 운영사와 모두일보 발행인 사이에 별도 이해관계는 없습니다."
+    },
+    "reporting": "sponsored",
+    "verificationNote": "제조사 모델 사양의 용량과 판매처에 표시된 해당 모델의 약정 옵션을 대조했습니다.",
+    "addedValue": "전체 용량과 두 수납칸의 크기를 구분하고 납부 합계를 회수비와 분리해 비교합니다.",
+    "sourceBasis": "primary",
+    "visualType": "source-photo",
+    "aiRole": [
+      "research-assist",
+      "copyedit"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-13T12:42:00Z",
+    "reporterInsight": "주식회사 현성전자가 운영하는 냉장고렌탈의 RS84DB5002CW 지정 72개월 옵션에는 월 2만4750원이 표시됐다.",
+    "imageUrl": "/stock/2026-11-13-brand20-fridgesubscription-com.jpg",
+    "imageCaption": "양문형 냉장고 자료사진. 가격 사례 모델과 동일 여부는 확인되지 않았습니다. 사진 삼성전자 뉴스룸.",
+    "tags": [
+      "냉장고렌탈",
+      "신생 브랜드 홍보 지원",
+      "양문형 냉장고",
+      "852L",
+      "냉장실",
+      "냉동실",
+      "72개월",
+      "회수비",
+      "RS84DB5002CW"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-13-brand20-grochi-wiki",
+    "slug": "2026-11-13-brand20-grochi-wiki",
+    "title": "[광고] 사료 등록성분량과 원료 목록을 구분해 읽는다",
+    "summary": "반려동물 사료 포장에서 등록성분량의 하한·상한과 원료 목록을 구분하고, 제품명·중량이 같은 포장을 대조하는 방법을 살핀다.",
+    "body": [
+      "등록성분량의 ‘이상’과 ‘이하’는 표시 기준의 하한과 상한이다. 포장에 표시된 수치만으로 지금 개봉한 봉지에서 측정한 실제 함량을 알 수는 없다. 원료 목록도 등록성분량과 별개다. 급여 대상과 성장 단계가 맞는지 먼저 보고, 제품명과 포장 중량이 같은 자료를 대조한다.",
+      "## 상품 기록과 실제 포장을 함께 확인",
+      "그로치에 올라온 하림펫푸드 사례 상품은 공식 제조사 상품 페이지에서 동일 제품을 찾는 출발점으로 쓸 수 있다. 온라인 자료의 일부 수치를 다른 포장 단위나 다른 제품에 그대로 적용하지 않는다. 판매 페이지와 실제 포장의 제품명이 일치하는지, 원료 목록과 유통기한을 각각 확인하는 편이 좋다. 이 글은 사례 사료의 효능이나 미확인 규정 시행일을 제시하지 않는다.",
+      "## 신청하거나 적용하기 전에 확인할 사항",
+      "자료를 비교하려면 먼저 포장 정면의 이름과 뒷면 표시의 대상 동물, 급여 단계, 중량을 함께 적는다. 예를 들어 온라인에서 같은 이름으로 보이는 제품이라도 포장 단위나 버전이 다르면 실제 포장을 우선 대조한다. 성분 항목은 같은 단위로 비교하고, 최솟값과 최댓값을 실제 배합 비율처럼 더하거나 빼지 않는다. 제품 성분이나 급여 방식에 궁금한 점이 있으면 제조사에 현재 포장 표시를 확인하고, 개별 반려동물에게 적합한지에 대한 판단은 일반 상품 소개와 구분한다.",
+      "등록성분량과 원료 목록만으로 치료 효과를 판단하지 않습니다.",
+      "## 출처 메모",
+      "- Wikimedia Commons: https://commons.wikimedia.org/wiki/File:Dog_food_in_a_bowl.jpg - CC BY-SA 2.0: https://creativecommons.org/licenses/by-sa/2.0/ - 그로치 사례 기록: https://grochi.wiki/products/harim-1292 - 하림펫푸드 상품 페이지: https://harimpetfood.com/product/detail.html?product_no=1292 - 국가법령정보센터 표시 기준 자료: https://www.law.go.kr/LSW/flDownload.do?bylClsCd=110201&flSeq=146046703&gubun="
+    ],
+    "category": "economy",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-13T12:56:00Z",
+    "sponsor": "grochi.wiki",
+    "sponsorDisclosure": {
+      "mode": "unpaid-brand-support",
+      "name": "그로치",
+      "publisherRelation": "해당 운영사와 모두일보 발행인 사이에 별도 이해관계는 없습니다."
+    },
+    "reporting": "sponsored",
+    "verificationNote": "하림펫푸드 상품 안내와 공개 사료 표시 기준의 등록성분량 항목을 확인했습니다.",
+    "addedValue": "같은 제품과 포장 단위를 찾아 등록성분량과 원료 목록을 각각 비교하도록 돕습니다.",
+    "sourceBasis": "primary",
+    "visualType": "source-photo",
+    "aiRole": [
+      "research-assist",
+      "copyedit"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-13T12:42:00Z",
+    "reporterInsight": "반려동물 사료 포장에서 등록성분량의 하한·상한과 원료 목록을 구분하고, 제품명·중량이 같은 포장을 대조하는 방법을 살핀다.",
+    "imageUrl": "/stock/2026-11-13-brand20-grochi-wiki.jpg",
+    "imageCaption": "그릇에 담긴 건사료 예시. 하림 제품 실물이 아닙니다. 사진 James Redekop / Wikimedia Commons / CC BY-SA 2.0. 게재용 크기 조정 및 좌우 여백 추가.",
+    "tags": [
+      "그로치",
+      "신생 브랜드 홍보 지원",
+      "반려동물 사료",
+      "등록성분량",
+      "원료 목록",
+      "하림펫푸드",
+      "포장 표시",
+      "급여 단계",
+      "사료 중량"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-13-brand20-kimchifridgerental-com",
+    "slug": "2026-11-13-brand20-kimchifridgerental-com",
+    "title": "[광고] 313L 키친핏의 설치 공간과 관리 범위를 따로 본다",
+    "summary": "주식회사 현성전자가 운영하는 김치냉장고렌탈에서 RQ33DB74B1EW의 72개월 무상수리형에 월 3만9270원이 표시됐다.",
+    "body": [
+      "주식회사 현성전자가 운영하는 김치냉장고렌탈에서 RQ33DB74B1EW의 72개월 무상수리형에 월 3만9270원이 표시됐다. 월요금이 일정하면 72회 단순합은 282만7440원이다. 이 요금은 해당 옵션의 표시 사례이며 방문관리 옵션 가격이나 해지 정산액이 아니다.",
+      "## 나란히 설치할 때는 정확한 제품 조합 확인",
+      "삼성 안내의 4도어 냉장고와 3도어 키친핏 김치냉장고 배치 예시는 해당 제품 조합의 예시다. 다른 모델이나 다른 주방에 그대로 대입할 수 없다. 제품 폭과 통풍 공간뿐 아니라 문과 서랍을 열 때 가구장·식탁에 닿지 않는지 확인한다. 이사나 조기 해지를 고려한다면 이전 설치비와 해지 시점의 실제 정산액을 구분해서 요청한다.",
+      "## 신청하거나 적용하기 전에 확인할 사항",
+      "설치 기사에게 확인할 정보는 가구장의 내부 폭과 높이뿐 아니라 바닥 수평, 전원 위치, 제품 문이 열리는 방향이다. 옆에 다른 가전을 놓을 경우에는 두 제품의 모델 번호를 함께 제시하고 문과 서랍이 서로 간섭하는지도 확인한다. 무상수리는 고장 때 제공되는 범위이고 방문관리는 정기 점검이나 청소 범위에 관한 서비스다. 견적서에는 두 범위와 별도 청구가 가능한 항목을 구분해 적어 달라고 요청하고, 방문 관리 가격은 같은 모델의 같은 약정끼리 비교한다.",
+      "두 제품 사이에 필요한 간격은 해당 조합의 설치 안내로 확인한다.",
+      "## 출처 메모",
+      "- 삼성 RQ33DB74B1EW 제품 안내: https://www.samsung.com/sec/kimchi-refrigerators/kimchi-stand-rq33db74b1ew-d2c/RQ33DB74B1EW/ - 삼성 관리 안내: https://www.samsung.com/sec/ai-subs-kitchen/RQ33DB74B1EW-subscribe2-d2c/RQ33DB74B1EW/ - 삼성전자 뉴스룸 자료사진: https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-%EB%B9%84%EC%8A%A4%ED%8F%AC%ED%81%AC-%EA%B9%80%EC%B9%98%EB%83%89%EC%9E%A5%EA%B3%A0-%EC%8B%A0%EC%A0%9C%ED%92%88-%EC%B6%9C%EC%8B%9C - 김치냉장고렌탈 표시 옵션: https://kimchifridgerental.com/goods/kimchi-fridge-rq33db74b1ew?period=6&care=free&svcCode=EW"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-13T12:56:00Z",
+    "sponsor": "kimchifridgerental.com",
+    "sponsorDisclosure": {
+      "mode": "unpaid-brand-support",
+      "name": "김치냉장고렌탈",
+      "publisherRelation": "해당 운영사와 모두일보 발행인 사이에 별도 이해관계는 없습니다."
+    },
+    "reporting": "sponsored",
+    "verificationNote": "판매처 지정 무상수리 옵션과 삼성전자의 3도어 제품 및 관리 자료를 대조했습니다.",
+    "addedValue": "가구 배치와 문이 열리는 공간을 구분하고 관리 범위를 계약서에서 확인하도록 돕습니다.",
+    "sourceBasis": "primary",
+    "visualType": "source-photo",
+    "aiRole": [
+      "research-assist",
+      "copyedit"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-13T12:42:00Z",
+    "reporterInsight": "주식회사 현성전자가 운영하는 김치냉장고렌탈에서 RQ33DB74B1EW의 72개월 무상수리형에 월 3만9270원이 표시됐다.",
+    "imageUrl": "/stock/2026-11-13-brand20-kimchifridgerental-com.jpg",
+    "imageCaption": "4도어 김치냉장고 자료사진. 가격 사례는 다른 3도어 모델입니다. 사진 삼성전자 뉴스룸.",
+    "tags": [
+      "김치냉장고렌탈",
+      "신생 브랜드 홍보 지원",
+      "김치냉장고",
+      "키친핏",
+      "313L",
+      "72개월",
+      "설치 공간",
+      "방문관리",
+      "RQ33DB74B1EW"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-13-brand20-laptopsubscription-com",
+    "slug": "2026-11-13-brand20-laptopsubscription-com",
+    "title": "[광고] 월 납부액과 파손·반납 조건은 따로 확인한다",
+    "summary": "주식회사 현성전자가 운영하는 노트북컴퓨터렌탈에서 NT740VJK-KC38G 48개월 옵션은 월 4만4570원으로 표시됐다.",
+    "body": [
+      "주식회사 현성전자가 운영하는 노트북컴퓨터렌탈에서 NT740VJK-KC38G 48개월 옵션은 월 4만4570원으로 표시됐다. 월요금이 바뀌지 않으면 단순합은 213만9360원이다. 이 금액은 표시 월요금의 합계일 뿐 중도해지 위약금의 산정 기준이 아니다.",
+      "## 가입하는 상품의 서류에서 파손 범위를 확인",
+      "일반 고장에 적용되는 수리 서비스와 낙하·침수 등 사고 파손 특약은 별개다. 가입 전에 해당 모델과 약정의 파손 적용 범위, 제외 사유, 자기부담금 및 한도를 계약 문서에서 확인한다. 다른 판매 조건이나 다른 상품 약관의 보장 비율을 이 요금에 그대로 붙이지 않는다.",
+      "## 반납 전에 비용과 데이터 처리 확인",
+      "중도 반납을 검토할 때는 계약 상대방에게 해지 예정일 기준의 위약금, 회수비, 할인 반환과 파손 여부 판단을 구분한 내역을 요청한다. 기기 반납 전에는 회사나 서비스 제공자가 안내하는 초기화 범위를 확인하고 필요한 자료를 백업한다.",
+      "## 신청하거나 적용하기 전에 확인할 사항",
+      "짧은 프로젝트 때문에 빌리는 경우에는 필요한 개월 수와 약정 기간이 같은지부터 본다. 월요금에 포함됐다는 서비스 이름만으로 실제 수리 청구가 면제되는 것은 아니다. 결제 전에는 모델·기간·서비스가 적힌 견적과 계약서가 같은지 대조하고, 약정 만료 반납과 중도 반납에 필요한 구성품이나 상태 기준이 다른지 확인한다. 해당 조건을 받기 전에는 이 글의 월 납부 합계로 실제 반납 비용을 계산하지 않는다.",
+      "## 출처 메모",
+      "- 노트북컴퓨터렌탈 표시 옵션: https://laptopsubscription.com/view/galaxy-book-nt740vjk-kc38g - 삼성 상품 안내: https://www.samsung.com/sec/subscribe_sss_product/NT740VJK-KC38G-subscribe2-sss/NT740VJK-KC38G/ - 삼성 PC·태블릿 약관: https://www.samsung.com/sec/aisc/terms/610/760/ - 삼성전자 뉴스룸 자료사진: https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-new-%EA%B0%A4%EB%9F%AD%EC%8B%9C-%EB%B6%816-%EA%B5%AD%EB%82%B4-%EC%B6%9C%EC%8B%9C"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-13T12:56:00Z",
+    "sponsor": "laptopsubscription.com",
+    "sponsorDisclosure": {
+      "mode": "unpaid-brand-support",
+      "name": "노트북컴퓨터렌탈",
+      "publisherRelation": "해당 운영사와 모두일보 발행인 사이에 별도 이해관계는 없습니다."
+    },
+    "reporting": "sponsored",
+    "verificationNote": "지정 노트북의 판매처 표시와 제조사 상품 자료 및 PC 약관을 대조했습니다.",
+    "addedValue": "표시 월요금의 합계와 계약별 해지 및 파손 정산 기준을 구분하도록 돕습니다.",
+    "sourceBasis": "primary",
+    "visualType": "source-photo",
+    "aiRole": [
+      "research-assist",
+      "copyedit"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-13T12:45:00Z",
+    "reporterInsight": "주식회사 현성전자가 운영하는 노트북컴퓨터렌탈에서 NT740VJK-KC38G 48개월 옵션은 월 4만4570원으로 표시됐다.",
+    "imageUrl": "/stock/2026-11-13-brand20-laptopsubscription-com.jpg",
+    "imageCaption": "갤럭시 북6 제품군 자료사진. 가격 사례 모델과 동일 여부는 확인되지 않았습니다. 사진 삼성전자 뉴스룸.",
+    "tags": [
+      "노트북컴퓨터렌탈",
+      "신생 브랜드 홍보 지원",
+      "갤럭시 북6",
+      "노트북 렌탈",
+      "48개월",
+      "파손 특약",
+      "반납 비용",
+      "데이터 백업",
+      "NT740VJK-KC38G"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-13-brand20-smarttvrental-com",
+    "slug": "2026-11-13-brand20-smarttvrental-com",
+    "title": "[광고] 카드 할인 전 월요금과 약정 전체 비용을 비교한다",
+    "summary": "월 4만원을 60개월 내는 가상 예시로 계약 전체 비용을 살피고, 실제 견적에서는 카드 할인과 설치비를 따로 비교한다.",
+    "body": [
+      "월 4만원으로 60개월을 낸다면 240만원이다.",
+      "이 금액은 약정 비용을 비교하는 가상 예시이며 TV렌탈이나 삼성전자의 실제 견적이 아니다. 실제 비용을 계산할 때는 같은 모델과 설치 방식, 계약기간을 먼저 맞춘 뒤 카드 할인 전 월요금부터 적는다.",
+      "## 할인은 적용되는 달에만 반영",
+      "카드 혜택은 카드사와 전월 이용실적, 제외 항목, 적용 기간에 따라 달라진다. 특정 월에 적용받을 수 있다는 안내만으로 계약 전체에서 매달 같은 금액을 빼지 않는다. 설치비와 추가 부품비, 약정 만료 뒤 소유권, 중도 해지 때 발생할 수 있는 비용도 월 구독료와 나누어 비교한다.",
+      "## 운영사와 계약 상대방",
+      "TV렌탈은 주식회사 현성전자가 운영하며 삼성전자 직영몰이 아니다. 삼성전자 제품을 안내한다는 사실만으로 판매 계약이나 요금 청구 주체가 삼성전자라고 볼 수 없다. 신청 전에 견적서와 계약서의 업체명, 청구 내역과 보장 범위를 확인한다.",
+      "## 신청하거나 적용하기 전에 확인할 사항",
+      "같은 화면 크기라도 모델이 다르면 월요금과 설치 항목이 달라질 수 있다. 벽걸이라면 벽 재질과 기존 브래킷 사용 여부를 확인하고, 스탠드 설치와 같은 조건으로 비용을 비교하지 않는다. 예산표에는 월요금, 납부 횟수, 설치비와 카드 혜택을 서로 다른 항목에 적는다. 할인이 끝나는 달 이후에도 계약을 유지할 수 있는지 보려면 카드 할인을 받지 않는 경우의 납부액도 함께 계산한다.",
+      "## 출처 메모",
+      "- TV렌탈 운영 사이트: https://smarttvrental.com/ - 삼성 구독 가이드: https://www.samsung.com/sec/ai-subs/guide/ - 삼성전자 뉴스룸 자료사진: https://news.samsung.com/kr/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-2026%EB%85%84%ED%98%95-tv-%EC%8B%A0%EC%A0%9C%ED%92%88-%EC%B6%9C%EC%8B%9Cai-tv-%EB%8C%80%EC%A4%91%ED%99%94-%EC%8B%9C%EB%8C%80-%EC%97%B0%EB%8B%A4"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-13T12:55:00Z",
+    "sponsor": "smarttvrental.com",
+    "sponsorDisclosure": {
+      "mode": "unpaid-brand-support",
+      "name": "TV렌탈",
+      "publisherRelation": "해당 운영사와 모두일보 발행인 사이에 별도 이해관계는 없습니다."
+    },
+    "reporting": "sponsored",
+    "verificationNote": "운영사 공개 표기와 삼성전자의 구독 안내에서 설치와 계약 확인 항목을 확인했습니다.",
+    "addedValue": "월 납부액과 카드 혜택을 나눠 같은 기간과 설치 조건에서 견적을 비교하도록 돕습니다.",
+    "sourceBasis": "primary",
+    "visualType": "source-photo",
+    "aiRole": [
+      "research-assist",
+      "copyedit"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-13T12:42:00Z",
+    "reporterInsight": "월 4만원을 60개월 내는 가상 예시로 계약 전체 비용을 살피고, 실제 견적에서는 카드 할인과 설치비를 따로 비교한다.",
+    "imageUrl": "/stock/2026-11-13-brand20-smarttvrental-com.jpg",
+    "imageCaption": "벽걸이 TV 전시 자료사진. 본문 비용은 가상 비교입니다. 사진 삼성전자 뉴스룸.",
+    "tags": [
+      "TV렌탈",
+      "신생 브랜드 홍보 지원",
+      "TV 구독",
+      "제휴카드",
+      "설치비",
+      "벽걸이 TV",
+      "계약기간",
+      "중도해지",
+      "소유권"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
     "id": "2026-11-13-chungnam-tourism-startup-2026",
     "slug": "2026-11-13-chungnam-tourism-startup-2026",
     "title": "충남 관광스타트업 9곳 모집…16일 오후 6시 마감, 사업화자금은 최대 3000만원",
