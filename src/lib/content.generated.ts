@@ -141522,6 +141522,58 @@ export const CONTENT_ARTICLES: Article[] = [
     "type": "article"
   },
   {
+    "id": "2026-11-20-bangkok-korean-cultural-center-building-opening-stages-2026",
+    "slug": "2026-11-20-bangkok-korean-cultural-center-building-opening-stages-2026",
+    "title": "방콕 한국문화원 신청사, 6월 임시 운영 시작…140석 공연장 마련",
+    "summary": "주태국한국문화원이 6월 26일 신청사로 옮겨 임시 운영을 시작했다. 문체부가 알린 11월 19일 재개원식 일정과 신청사의 상설 공간을 나눠 살폈다.",
+    "body": [
+      "주태국한국문화원이 방콕 수쿰윗대로의 지상 5층 신청사에 140석 공연장과 분야별 맞춤형 강의실을 마련했다.",
+      "문화원은 2026년 6월 26일 이전해 임시 운영에 들어갔다. 문화체육관광부가 11월 19일 발표한 재개원식 일정은 태국 현지 시각으로 19일 오후 5시였다.",
+      "이전일과 재개원식 예정일 사이의 날짜 차이는 146일이다. 2013년 개원한 문화원이 이번에 국유 건물로 옮겼지만 시설을 사용하기 시작한 시점과 이를 기념하는 행사의 날짜는 구분된다.",
+      "## 한식 체험은 2층, 공연은 5층",
+      "신청사는 방콕 수쿰윗대로 1077에 자리한다. 문체부 자료에 따르면 연면적은 1,906㎡다. 1층에는 전통문화실, 2층에는 한식체험관, 3층에는 무용실과 강의실, 4층에는 도서관, 5층에는 공연장과 전시실을 배치했다. 문화원은 한식·국악·무용·미술 등을 위한 맞춤형 강의실 4곳을 갖췄다.",
+      "## 기념 공연과 상설 공간을 구분",
+      "문체부는 재개원식에 한국과 태국의 전통 민요 협연과 미디어아트 관람 일정을 넣었다. 발표문에는 개별 프로그램의 일반 관람 가능 시간과 신청 조건이 제시되지 않았다. 새 공연장이나 강의실을 이용하려면 프로그램별 운영 안내가 필요하다.",
+      "## 출처 메모",
+      "- 문화체육관광부: https://www.mcst.go.kr/kor/s_notice/press/pressView.jsp?pSeq=22861 - 문화체육관광부 공식 첨부: https://www.mcst.go.kr/servlets/eduport/front/upload/UplDownloadFile?pFileName=%5B1119%5D%EB%AC%B8%EC%B2%B4%EB%B6%80%EB%B3%B4%EB%8F%84%EC%9E%90%EB%A3%8C-%EC%A3%BC%ED%83%9C%EA%B5%AD%ED%95%9C%EA%B5%AD%EB%AC%B8%ED%99%94%EC%9B%90+%EC%9E%AC%EA%B0%9C%EC%9B%90%EC%8B%9D+%EA%B0%9C%EC%B5%9C.pdf&pRealName=20261119081041372321711837_PRESS20261119081041757231.pdf&pPath=0302000000"
+    ],
+    "category": "world",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-20T12:36:00Z",
+    "reporting": "desk",
+    "verificationNote": "기관 공식 발표와 관련 공개 원자료를 바탕으로 정리했다.",
+    "addedValue": "주태국한국문화원이 6월 26일 신청사로 옮겨 임시 운영을 시작했다. 문체부가 알린 11월 19일 재개원식 일정과 신청사의 상설 공간을 나눠 살폈다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "copyedit",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-20T12:24:00Z",
+    "reporterInsight": "주태국한국문화원이 6월 26일 신청사로 옮겨 임시 운영을 시작했다. 문체부가 알린 11월 19일 재개원식 일정과 신청사의 상설 공간을 나눠 살폈다.",
+    "imageUrl": "/stock/2026-11-20-bangkok-korean-cultural-center-building-opening-stages-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "주태국한국문화원",
+      "방콕",
+      "신청사",
+      "수쿰윗",
+      "문화체육관광부",
+      "한식체험",
+      "공연장",
+      "문화교류"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
     "id": "2026-11-20-busan-seogu-seafood-equipment-cost-share",
     "slug": "2026-11-20-busan-seogu-seafood-equipment-cost-share",
     "title": "부산 서구 수산가공 설비비 60% 지원…냉장창고는 제외",
@@ -141571,6 +141623,58 @@ export const CONTENT_ARTICLES: Article[] = [
       "자부담",
       "수산가공",
       "방문접수"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-20-busan-un-ocean-conference-chile-host-unep-intent-2026",
+    "slug": "2026-11-20-busan-un-ocean-conference-chile-host-unep-intent-2026",
+    "title": "2028년 부산 유엔해양총회는 한·칠레 공동 개최…UNEP와는 준비 협력",
+    "summary": "해양수산부가 유엔환경계획과 11월 18일 협력의향서에 서명했다. 2025년 유엔총회 결의가 다룬 개최 결정과 이번 협력의향서의 역할을 짚었다.",
+    "body": [
+      "2028년 6월 부산에서 열릴 제4차 유엔해양총회는 한국과 칠레가 공동 개최한다.",
+      "해양수산부는 유엔환경계획(UNEP)과 총회 준비를 위한 협력의향서에 현지 시각 2026년 11월 18일 서명했다고 19일 발표했다.",
+      "개최와 준비 협력은 근거 문서가 다르다. 2025년 12월 유엔총회가 채택한 결의 80/108은 2028년 6월 한국에서 총회를 열기로 하고, 한국과 칠레 정부가 공동 주최와 비용 부담을 맡겠다고 제안한 것을 환영했다. 부산은 해양수산부 발표에 명시된 개최 도시다.",
+      "## UNEP가 협력할 분야",
+      "이번 서명은 튀르키예 안탈리아에서 열린 제31차 유엔기후변화협약 당사국총회에서 이뤄졌다. 해양수산부는 UNEP 지역해 프로그램을 통한 참가 확대, 부대행사 공동 개최, 해양환경 의제를 연계하는 논의 등을 협력 분야로 제시했다.",
+      "## 총회 재원은 결의문에, 구체 사업은 후속 논의에",
+      "유엔총회 결의는 총회와 준비에 드는 비용을 유엔 정규예산 외 재원으로 충당하도록 정했다. 이번 발표에는 기관별 분담액이나 공동사업의 최종 일정이 제시되지 않았다. 해양수산부는 후속 양해각서와 구체 사업을 계속 논의한다고 밝혔다.",
+      "## 출처 메모",
+      "- 해양수산부: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156789869 - 유엔총회: https://documents.un.org/api/symbol/access?l=en&s=A%2FRES%2F80%2F108&t=pdf - 해양수산부 공식 첨부: https://www.korea.kr/common/download.do?fileId=198592788&tblKey=GMN"
+    ],
+    "category": "world",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-20T12:35:00Z",
+    "reporting": "desk",
+    "verificationNote": "기관 공식 발표와 관련 공개 원자료를 바탕으로 정리했다.",
+    "addedValue": "해양수산부가 유엔환경계획과 11월 18일 협력의향서에 서명했다. 2025년 유엔총회 결의가 다룬 개최 결정과 이번 협력의향서의 역할을 짚었다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "copyedit",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-20T12:24:00Z",
+    "reporterInsight": "해양수산부가 유엔환경계획과 11월 18일 협력의향서에 서명했다. 2025년 유엔총회 결의가 다룬 개최 결정과 이번 협력의향서의 역할을 짚었다.",
+    "imageUrl": "/stock/2026-11-20-busan-un-ocean-conference-chile-host-unep-intent-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "유엔해양총회",
+      "해양수산부",
+      "부산",
+      "칠레",
+      "UNEP",
+      "국제협력",
+      "유엔총회",
+      "해양보전"
     ],
     "isBreaking": false,
     "readCount": 0,
@@ -141627,6 +141731,57 @@ export const CONTENT_ARTICLES: Article[] = [
       "매출액",
       "기술평가",
       "한국자동차연구원"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-20-garorim-bay-mandae-tidal-flat-restoration-funding-2026",
+    "slug": "2026-11-20-garorim-bay-mandae-tidal-flat-restoration-funding-2026",
+    "title": "태안 가로림만 폐양식 시설 약 40㏊ 철거 추진…복원 재원은 민간 후원",
+    "summary": "해양수산부가 태안 만대항 일원 갯벌 복원에 2027~2029년 300만 유로의 민간 후원을 투입할 계획을 밝혔다. 40㏊는 폐양식 시설 철거 예정 규모다.",
+    "body": [
+      "충남 태안군 이원면 만대항 일원 가로림만에서 폐양식 시설 약 40㏊를 철거하는 사업이 추진된다. 해양수산부가 2026년 11월 19일 공개한 사업 개요의 40㏊는 약 40만㎡로, 철거 예정 시설의 범위를 가리킨다. 염생식물 서식지 조성 면적은 발표문에 따로 제시되지 않았다.",
+      "해양수산부는 11월 20일 충청남도, 태안군, 한국세계자연기금(한국WWF), 한국어촌어항공단과 업무협약을 체결할 예정이라고 밝혔다. 사업 계획 기간은 2027년부터 2029년까지다.",
+      "## 후원은 인디텍스, 조사·설계·시공은 어촌어항공단",
+      "해양수산부 자료에서 사업비 300만 유로는 인디텍스가 한국WWF와 협약을 맺고 지원하는 재원이다. 부처는 이를 약 45억 원으로 환산했다. 5자 협약 이후 한국WWF가 한국어촌어항공단에 위탁하면 공단이 조사와 설계, 시공, 정산을 맡는 구조다.",
+      "## 철거와 서식지 조성을 따로 봐야",
+      "사업은 오래 방치된 폐양식 시설을 제거한 뒤 염생식물 서식지를 조성하는 방식이다. 해양수산부는 사업 여건에 따라 규모가 달라질 수 있다고 밝혔다. 이후 사업 진행을 볼 때는 실제 철거 면적과 서식지 조성 면적을 각각 확인해야 한다.",
+      "## 출처 메모",
+      "- 해양수산부: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156789870 - 해양수산부 공식 첨부: https://www.korea.kr/common/download.do?fileId=198592815&tblKey=GMN"
+    ],
+    "category": "society",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-20T12:35:00Z",
+    "reporting": "desk",
+    "verificationNote": "기관 공식 발표와 관련 공개 원자료를 바탕으로 정리했다.",
+    "addedValue": "해양수산부가 태안 만대항 일원 갯벌 복원에 2027~2029년 300만 유로의 민간 후원을 투입할 계획을 밝혔다. 40㏊는 폐양식 시설 철거 예정 규모다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "copyedit",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-20T12:24:00Z",
+    "reporterInsight": "해양수산부가 태안 만대항 일원 갯벌 복원에 2027~2029년 300만 유로의 민간 후원을 투입할 계획을 밝혔다. 40㏊는 폐양식 시설 철거 예정 규모다.",
+    "imageUrl": "/stock/2026-11-20-garorim-bay-mandae-tidal-flat-restoration-funding-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "태안",
+      "가로림만",
+      "갯벌복원",
+      "해양수산부",
+      "만대항",
+      "폐양식시설",
+      "염생식물",
+      "민간후원"
     ],
     "isBreaking": false,
     "readCount": 0,
@@ -141965,6 +142120,58 @@ export const CONTENT_ARTICLES: Article[] = [
     "type": "article"
   },
   {
+    "id": "2026-11-20-kma-sea-surface-outlook-three-month-probability-2026",
+    "slug": "2026-11-20-kma-sea-surface-outlook-three-month-probability-2026",
+    "title": "기상청 해수면 3개월 전망 23일 정식 시작…세 해역의 월별 확률 공개",
+    "summary": "첫 정식 전망은 2026년 12월부터 2027년 2월까지 서해·남해·동해의 월평균 해수면 온도를 다룬다. 평년 대비 낮음·비슷·높음의 확률과 그 근거를 별도로 제공한다.",
+    "body": [
+      "기상청이 2026년 11월 23일부터 서해·남해·동해의 해수면 온도 3개월 전망을 정식 발표한다.",
+      "첫 발표의 대상은 2026년 12월과 2027년 1·2월이다. 해역 세 곳과 대상 월 세 개를 조합하면 월별 전망을 읽는 단위는 아홉 개다.",
+      "기상청은 11월 19일 발표에서 각 해역의 월평균 해수면 온도가 1991~2020년 평년 자료와 비교해 낮음·비슷·높음에 속할 확률을 제시한다고 설명했다. 양식장 한 곳의 수온이 궁금하다면 해역 평균 확률과 현장 관측을 구분해 읽어야 한다.",
+      "## 결과는 통보문, 전망이 달라진 이유는 해설서",
+      "월별 확률은 기온·강수량과 함께 나오는 3개월 전망 통보문에 실린다. 별도로 제공되는 해양기후 3개월전망 해설서에는 앞선 달과 달라진 전망과 그 이유를 담는다. 기상청은 해류, 해양 열용량, 바람 등도 분석에 활용할 계획이다.",
+      "## 수온 예측값과 범위는 내년 추가 계획",
+      "월별 발표는 매월 23일경이며 날씨누리와 해양기상기후정보포털, 기후정보포털에서 제공할 예정이다. 해수면 온도의 예측값과 범위를 지도에서 더 세밀하게 보여주는 서비스는 기상청이 2027년 제공을 예고한 별도 단계다.",
+      "## 출처 메모",
+      "- 기상청: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156789874 - 기상청 해양기상기후정보포털: https://marine.kma.go.kr/ - 기상청 공식 첨부: https://www.korea.kr/common/download.do?fileId=198592799&tblKey=GMN"
+    ],
+    "category": "society",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-20T12:35:00Z",
+    "reporting": "desk",
+    "verificationNote": "기관 공식 발표와 관련 공개 원자료를 바탕으로 정리했다.",
+    "addedValue": "첫 정식 전망은 2026년 12월부터 2027년 2월까지 서해·남해·동해의 월평균 해수면 온도를 다룬다. 평년 대비 낮음·비슷·높음의 확률과 그 근거를 별도로 제공한다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "copyedit",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-20T12:24:00Z",
+    "reporterInsight": "첫 정식 전망은 2026년 12월부터 2027년 2월까지 서해·남해·동해의 월평균 해수면 온도를 다룬다. 평년 대비 낮음·비슷·높음의 확률과 그 근거를 별도로 제공한다.",
+    "imageUrl": "/stock/2026-11-20-kma-sea-surface-outlook-three-month-probability-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "기상청",
+      "해수면온도",
+      "확률전망",
+      "서해",
+      "남해",
+      "동해",
+      "통보문",
+      "해설서"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
     "id": "2026-11-20-kosha-suwon-information-desk-contract",
     "slug": "2026-11-20-kosha-suwon-information-desk-contract",
     "title": "안전보건공단 수원 안내원 1명…고용24 화면에서 직접 접수 안 돼",
@@ -142014,6 +142221,210 @@ export const CONTENT_ARTICLES: Article[] = [
       "고용24",
       "직무수행계획",
       "일급"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-20-manufacturing-ai-partnership-three-targets-smart-factory-2026",
+    "slug": "2026-11-20-manufacturing-ai-partnership-three-targets-smart-factory-2026",
+    "title": "제조 AI 상생협약 세 갈래…100곳 목표도 주관기관과 지원기업으로 나뉜다",
+    "summary": "중소벤처기업부의 협약에는 개방형혁신, 상생형 스마트공장, 동반사업전환이 담겼다. 기업을 셀 때도 사업을 주관하는 곳과 지원을 받는 곳을 나눠 봐야 한다.",
+    "body": [
+      "중소벤처기업부가 2026년 11월 18일 대기업·유관기관과 체결한 제조 AI 상생협약에는 서로 다른 두 개의 100곳 목표가 담겼다. 개방형혁신의 100곳은 2031년까지 참여를 확대할 주관기관 규모이고, 피지컬 AI 동반사업전환의 100곳은 2027년에 지원할 기업 규모다.",
+      "협약 기관들은 개방형혁신, 상생형 스마트공장, 동반사업전환 가운데 하나 이상에서 협력하기로 했다. 중기부 발표를 보면 사업마다 정부와 대기업이 맡는 역할, 기업을 세는 기준이 다르다.",
+      "## 창업 기술 연결과 공장 구축의 지원 단위",
+      "개방형혁신에서 대기업은 제조 AI 과제와 기술 수요를 찾고 창업기업의 협업을 위한 인프라를 제공한다. 상생형 스마트공장은 공장 구축과 현장 노하우 공유가 중심이다. 중기부는 2027년부터 2031년까지 민간과 2조 원을 조성해 중소기업 2,000곳 이상의 스마트공장 구축을 지원한다는 목표를 제시했다.",
+      "## 사업전환 예산은 기업별 지급액과 구분",
+      "동반사업전환은 협력사의 사업전환 계획 수립과 이행, 후속 지원을 잇는 분야다. 중기부는 이 중 피지컬 AI 동반사업전환에 2027년 신규 예산 300억 원을 반영해 기업 100곳을 지원할 계획이라고 밝혔다. 발표문에는 개별 기업 지원금과 최종 모집 조건이 제시되지 않았다. 사업별 수치를 합쳐 전체 수혜 기업 수를 계산할 수도 없다.",
+      "## 출처 메모",
+      "- 중소벤처기업부: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156789845 - 중소벤처기업부 공식 첨부: https://www.korea.kr/common/download.do?fileId=198592714&tblKey=GMN"
+    ],
+    "category": "industry",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-20T12:36:00Z",
+    "reporting": "desk",
+    "verificationNote": "기관 공식 발표와 관련 공개 원자료를 바탕으로 정리했다.",
+    "addedValue": "중소벤처기업부의 협약에는 개방형혁신, 상생형 스마트공장, 동반사업전환이 담겼다. 기업을 셀 때도 사업을 주관하는 곳과 지원을 받는 곳을 나눠 봐야 한다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "copyedit",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-20T12:24:00Z",
+    "reporterInsight": "중소벤처기업부의 협약에는 개방형혁신, 상생형 스마트공장, 동반사업전환이 담겼다. 기업을 셀 때도 사업을 주관하는 곳과 지원을 받는 곳을 나눠 봐야 한다.",
+    "imageUrl": "/stock/2026-11-20-manufacturing-ai-partnership-three-targets-smart-factory-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "제조AI",
+      "중소벤처기업부",
+      "스마트공장",
+      "개방형혁신",
+      "동반사업전환",
+      "피지컬AI",
+      "상생협약",
+      "협력사"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-20-mfds-medical-device-usability-formative-summative-2026",
+    "slug": "2026-11-20-mfds-medical-device-usability-formative-summative-2026",
+    "title": "식약처 의료기기 사용적합성 안내 2종…설계 중 평가와 최종 평가 구분",
+    "summary": "식품의약품안전처가 심혈관용 기계 기구와 의료용 경의 제조 품질관리 안내서를 공개했다. 두 원문의 4개 사례를 대조하면 같은 평가 절차를 서로 다른 품목에 적용한 방식을 볼 수 있다.",
+    "body": [
+      "식품의약품안전처가 2026년 11월 18일 의료기기 사용적합성 안내서 두 권을 공개했다. 두 권에 실린 네 품목의 목차를 대조한 결과, 모두 설계 중 개선점을 찾는 형성 평가와 구현된 설계를 확인하는 총괄 평가를 각각 제시했다.",
+      "안내 대상은 제조 및 품질관리 기준(GMP)의 설계·개발 과정이다. 식약처는 사용 중에 일어날 수 있는 오류를 줄이기 위해 어떤 사용자를 상정했는지, 어떤 위험 상황을 평가했는지, 결과를 어떻게 기록하는지 제조사가 참고하도록 사례를 구성했다.",
+      "## 품목이 달라도 평가 순서는 같다",
+      "심혈관용 기계 기구 안내서에는 전동식 심폐 인공 소생기와 펄스 옥시미터가, 의료용 경 안내서에는 일회용 내시경 투관침과 일회용 내시경 생검용 기구가 실렸다. 네 사례 모두 사용자 인터페이스의 평가 계획을 세운 뒤 형성 평가와 총괄 평가를 차례로 설명한다.",
+      "## 첨부를 받으면 표지의 등록번호를 확인",
+      "의료용 경 안내서 PDF 표지의 등록번호는 1548-01이다. 심혈관용 기계 기구는 1547-01이다. 제조업체는 저장한 PDF의 품목군과 등록번호를 함께 확인할 수 있다.",
+      "## 출처 메모",
+      "- 식품의약품안전처: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156789834 - 식품의약품안전처: https://www.mfds.go.kr/brd/m_1060/view.do?seq=15996 - 식품의약품안전처: https://www.mfds.go.kr/brd/m_1060/view.do?seq=15997 - 식품의약품안전처 공식 첨부: https://www.korea.kr/common/download.do?fileId=198592693&tblKey=GMN"
+    ],
+    "category": "industry",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-20T12:37:00Z",
+    "reporting": "desk",
+    "verificationNote": "기관 공식 발표와 관련 공개 원자료를 바탕으로 정리했다.",
+    "addedValue": "식품의약품안전처가 심혈관용 기계 기구와 의료용 경의 제조 품질관리 안내서를 공개했다. 두 원문의 4개 사례를 대조하면 같은 평가 절차를 서로 다른 품목에 적용한 방식을 볼 수 있다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "copyedit",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-20T12:26:00Z",
+    "reporterInsight": "식품의약품안전처가 심혈관용 기계 기구와 의료용 경의 제조 품질관리 안내서를 공개했다. 두 원문의 4개 사례를 대조하면 같은 평가 절차를 서로 다른 품목에 적용한 방식을 볼 수 있다.",
+    "imageUrl": "/stock/2026-11-20-mfds-medical-device-usability-formative-summative-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "식품의약품안전처",
+      "의료기기",
+      "사용적합성",
+      "형성평가",
+      "총괄평가",
+      "품질관리",
+      "민원인안내서",
+      "의료기기설계"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-20-minimum-housing-standard-public-rental-policy-two-decisions-2026",
+    "slug": "2026-11-20-minimum-housing-standard-public-rental-policy-two-decisions-2026",
+    "title": "최저주거기준 개정 논의…면적·필수설비와 공공임대 입주 조건은 별개",
+    "summary": "국토교통부가 11월 20일 토론회에서 주거의 최소 기준과 새 공공임대 유형의 자격·임대료·거주기간을 두 의제로 다룰 예정이다.",
+    "body": [
+      "국토교통부가 2026년 11월 20일 주거복지정책 토론회에서 최저주거기준 개정과 보편형 공공임대 설계를 논의할 예정이다. 최저주거기준은 어떤 집이 최소한의 주거 요건을 갖추는지 판단하는 기준이다. 보편형 공공임대의 입주기준은 누가 어느 조건으로 임대주택에 살 수 있는지를 결정한다.",
+      "국토교통부는 11월 19일 공개한 토론회 계획에서 두 의제를 별도 세션으로 나눴다. 새 면적이나 임대료 수치 등은 이번 발표에서 확정되지 않았다.",
+      "## 2011년 공고에 이미 면적·설비·환경 세 축",
+      "2011년 최저주거기준 공고 제2조는 가구 구성에 따른 최소 면적과 방 수를, 제3조는 전용 입식부엌과 수세식화장실 등 필수설비를 다룬다. 제4조는 환기·채광·난방과 재해 위험, 화재 피난 등 구조·성능·환경 요건을 담고 있다. 국토교통부는 기후재난과 안전을 고려해 이번에 이 기준 전반의 개선을 논의할 계획이다.",
+      "## 공급 계획은 발표, 임대 조건은 논의 단계",
+      "국토교통부는 9월 21일 주거안정플랜에서 2030년까지 보편형 공공임대 약 19만 호 공급 계획을 제시했다. 문서에 적힌 건설형 17만5,000호는 착공, 매입형 1만8,000호는 약정 등을 기준으로 한 목표다. 두 숫자를 합하면 19만3,000호다. 이번 토론회의 두 번째 세션은 그 유형의 입주기준, 임대료 산정방식과 거주기간을 다룬다. 개별 가구가 적용받을 조건을 판단하려면 토론 결과에 이어 공개될 확정 제도와 실제 모집 공고를 확인해야 한다.",
+      "## 출처 메모",
+      "- 국토교통부: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156789871 - 국가법령정보센터: https://www.law.go.kr/admRulLsInfoP.do?admRulSeq=2000000059613 - 국토교통부: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156782726 - 국토교통부 공식 첨부: https://www.korea.kr/common/download.do?fileId=198592791&tblKey=GMN"
+    ],
+    "category": "deals",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-20T12:35:00Z",
+    "reporting": "desk",
+    "verificationNote": "기관 공식 발표와 관련 공개 원자료를 바탕으로 정리했다.",
+    "addedValue": "국토교통부가 11월 20일 토론회에서 주거의 최소 기준과 새 공공임대 유형의 자격·임대료·거주기간을 두 의제로 다룰 예정이다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "copyedit",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-20T12:24:00Z",
+    "reporterInsight": "국토교통부가 11월 20일 토론회에서 주거의 최소 기준과 새 공공임대 유형의 자격·임대료·거주기간을 두 의제로 다룰 예정이다.",
+    "imageUrl": "/stock/2026-11-20-minimum-housing-standard-public-rental-policy-two-decisions-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "국토교통부",
+      "최저주거기준",
+      "보편형공공임대",
+      "주거복지",
+      "전용면적",
+      "임대료",
+      "거주기간",
+      "정책토론회"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-20-open-tourism-30-sites-gyeongbuk-connected-access-2027",
+    "slug": "2026-11-20-open-tourism-30-sites-gyeongbuk-connected-access-2027",
+    "title": "2027년 열린 관광지 30곳 중 경북 9곳…경주·포항 연계사업은 별도",
+    "summary": "문화체육관광부의 선정 목록을 합산하면 경북이 9곳, 충남과 경남이 5곳씩이다. 경주·포항은 개별 지점 개선과 별도로 교통부터 관광 서비스를 잇는 3년 사업을 맡는다.",
+    "body": [
+      "문화체육관광부와 한국관광공사가 2026년 11월 19일 공개한 2027년 열린 관광지 조성 대상지 30곳 중 경북이 9곳으로 가장 많았다. 김천 4곳, 청송 3곳, 의성 2곳을 합한 수로 전체의 30%다. 충남과 경남이 5곳씩 뒤를 이었다.",
+      "같은 발표에서 경주와 포항도 이름을 올렸다. 두 도시는 개별 관광지 30곳 명단에 들어 있지 않다. 관광지에 도착하기까지의 교통과 도착 뒤 관광 서비스를 함께 개선하는 별도 사업에 공동 선정됐다.",
+      "## 개별 관광지에는 보행로와 화장실 등을 개선",
+      "열린 관광지 조성은 한 해 단위로 개별 지점의 물리적·정보 접근성을 높이는 사업이다. 경기 4곳, 전북 3곳, 강원 2곳, 전남과 부산이 각 1곳 선정됐다. 문체부가 제시한 전국 누적 242곳은 이번 30곳까지 공사를 마쳤을 때의 수다.",
+      "## 경주와 포항은 지점 사이 이동까지 다룬다",
+      "무장애 관광 연계 사업은 1차 연도에 교통, 2차 연도에 관광 기반, 3차 연도에 종합 관광 서비스를 개선하는 구조다. 문체부는 경주와 포항을 2022년 연계 사업 시작 이후 복수 지자체가 공동계획을 세운 첫 사례로 설명했다. 방문을 준비한다면 선정 여부와 별개로 해당 관광지의 현재 보행로와 편의시설 운영 상태를 확인할 필요가 있다.",
+      "## 출처 메모",
+      "- 문화체육관광부: https://www.mcst.go.kr/kor/s_notice/press/pressView.jsp?pSeq=22860 - 문화체육관광부 공식 첨부: https://www.mcst.go.kr/servlets/eduport/front/upload/UplDownloadFile?pFileName=%5B1119%5D%EB%AC%B8%EC%B2%B4%EB%B6%80%EB%B3%B4%EB%8F%84%EC%9E%90%EB%A3%8C-2027%EB%85%84+%EC%97%B4%EB%A6%B0+%EA%B4%80%EA%B4%91%EC%A7%80+%EC%A1%B0%EC%84%B1+%EC%82%AC%EC%97%85+%EB%8C%80%EC%83%81%EC%A7%80+%EC%84%A0%EC%A0%95.pdf&pRealName=20261119081009765881059945_PRESS20261119081009062211.pdf&pPath=0302000000"
+    ],
+    "category": "society",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-20T12:36:00Z",
+    "reporting": "desk",
+    "verificationNote": "기관 공식 발표와 관련 공개 원자료를 바탕으로 정리했다.",
+    "addedValue": "문화체육관광부의 선정 목록을 합산하면 경북이 9곳, 충남과 경남이 5곳씩이다. 경주·포항은 개별 지점 개선과 별도로 교통부터 관광 서비스를 잇는 3년 사업을 맡는다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "copyedit",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-20T12:24:00Z",
+    "reporterInsight": "문화체육관광부의 선정 목록을 합산하면 경북이 9곳, 충남과 경남이 5곳씩이다. 경주·포항은 개별 지점 개선과 별도로 교통부터 관광 서비스를 잇는 3년 사업을 맡는다.",
+    "imageUrl": "/stock/2026-11-20-open-tourism-30-sites-gyeongbuk-connected-access-2027.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "열린관광지",
+      "무장애관광",
+      "문화체육관광부",
+      "경상북도",
+      "경주",
+      "포항",
+      "보행로",
+      "관광교통"
     ],
     "isBreaking": false,
     "readCount": 0,
@@ -142070,6 +142481,109 @@ export const CONTENT_ARTICLES: Article[] = [
       "임상경력",
       "공인영어",
       "공개채용"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-20-regional-cardio-centers-redesignation-network-metrics-2026",
+    "slug": "2026-11-20-regional-cardio-centers-redesignation-network-metrics-2026",
+    "title": "권역심뇌혈관센터 14곳 재지정…강원대·제주대·안동병원은 매년 점검",
+    "summary": "보건복지부가 운영 중인 15곳 가운데 지정 3년 이상인 14곳을 평가해 모두 재지정했다. 이 중 3곳은 고난도 심혈관 수술 실적을 별도로 점검받는다.",
+    "body": [
+      "보건복지부 심뇌혈관질환 관리위원회가 2026년 11월 19일 권역심뇌혈관질환센터 평가 대상 14곳의 재지정을 의결했다.",
+      "강원대병원·제주대병원·안동병원 3곳은 조건부로 재지정돼 고난도 심혈관 수술 실적을 해마다 점검받는다.",
+      "운영센터는 모두 15곳이다. 올해 2월 지정된 성가롤로병원은 지정 3년이 지나지 않아 이번 평가에서 빠졌다. 평가받은 14곳 가운데 별도 조건이 붙은 세 곳을 빼면 11곳이다.",
+      "## 조건부 세 곳은 어떤 실적을 점검하나",
+      "평가는 2022년 7월부터 2025년 12월까지의 진료실적과 운영성과를 바탕으로 했다. 14곳은 기본요건과 시설·인력 등 재지정 기준을 충족했다. 세 곳에는 관상동맥 우회술이나 대동맥 수술과 같은 고난도 수술 실적을 높이기 위한 별도 성과관리 절차가 적용된다.",
+      "## 치료율과 의뢰 수락률은 다른 지표",
+      "같은 위원회에 보고된 진료협력 시범사업에서 구급대와 병원을 잇는 기관 간 네트워크의 적정시간 내 최종치료율은 73.7%에서 76.5%로 2.8%포인트 올랐다. 병원 간 전원을 지원하는 전문의 인적 네트워크에서는 의뢰 2,137건 가운데 2,037건이 수락돼 수락률이 95.3%였다. 앞 지표는 치료가 적정시간에 이뤄졌는지를, 뒤 지표는 전문의에게 접수된 의뢰가 수락됐는지를 보여준다.",
+      "## 출처 메모",
+      "- 보건복지부: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156789883 - 보건복지부 공식 첨부 PDF: https://www.korea.kr/common/download.do?fileId=198592942&tblKey=GMN"
+    ],
+    "category": "society",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-20T12:37:00Z",
+    "reporting": "desk",
+    "verificationNote": "기관 공식 발표와 관련 공개 원자료를 바탕으로 정리했다.",
+    "addedValue": "보건복지부가 운영 중인 15곳 가운데 지정 3년 이상인 14곳을 평가해 모두 재지정했다. 이 중 3곳은 고난도 심혈관 수술 실적을 별도로 점검받는다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "copyedit",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-20T12:26:00Z",
+    "reporterInsight": "보건복지부가 운영 중인 15곳 가운데 지정 3년 이상인 14곳을 평가해 모두 재지정했다. 이 중 3곳은 고난도 심혈관 수술 실적을 별도로 점검받는다.",
+    "imageUrl": "/stock/2026-11-20-regional-cardio-centers-redesignation-network-metrics-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "보건복지부",
+      "권역심뇌혈관센터",
+      "재지정",
+      "안동병원",
+      "제주대병원",
+      "강원대병원",
+      "전원",
+      "진료협력"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-20-sodam-seoul-forest-local-shop-online-channel-2026",
+    "slug": "2026-11-20-sodam-seoul-forest-local-shop-online-channel-2026",
+    "title": "서울숲 소담상회 2호점은 식품·지역상품 중심…온라인 판매도 연계",
+    "summary": "중소벤처기업부는 서울숲 소담상회 2호점에 179개 소상공인이 입점했다고 밝혔다. 9월 30일 가오픈과 11월 18일 개소식은 49일 차이가 난다.",
+    "body": [
+      "서울 성동구 서울숲 인근 소담상회 2호점이 소상공인의 식품과 지역 특화 상품을 매장과 온라인에서 함께 소개한다. 중소벤처기업부는 2026년 11월 18일을 개소식 일정으로 안내하면서, 9월 30일 가오픈 이후 발표 시점까지 179개사가 입점했다고 밝혔다.",
+      "가오픈과 개소식 사이 날짜 차이는 49일이다. 179개사는 그 시점의 입점 규모다. 중소벤처기업부는 온·오프라인 연계를 통해 9억 원 이상의 매출을 올렸다고 밝혔다. 집계 기간과 개소식 당일·채널별·업체별 성과는 공개하지 않았다.",
+      "## 1호점은 패션·뷰티, 2호점은 먹거리와 지역 상품",
+      "중소벤처기업부는 무신사와 연계한 1호점이 패션·뷰티를 중심으로 지원한다고 설명했다. 오엠인터랙티브와 롯데쇼핑이 운영하는 2호점은 서울숲 인근 언더스탠드에비뉴 1·2층에 있으며, 면적은 약 350㎡다. 오프라인 매장 1층의 지역 특화 팝업은 일정 주기로 주제를 바꿀 예정이다.",
+      "## 매장에서 본 상품을 온라인으로 연결",
+      "온라인 판매는 롯데온 전용관과 기획전을 이용하는 구조다. 매장을 둘러본 뒤 온라인에서 주문하도록 연결한 방식이다. 49일은 두 일정 사이의 간격이므로, 발표된 합계를 이 기간으로 나눠 일평균을 산출할 수는 없다.",
+      "## 출처 메모",
+      "- 중소벤처기업부: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156789830 - 중소벤처기업부 공식 첨부: https://www.korea.kr/common/download.do?fileId=198592681&tblKey=GMN"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-20T12:37:00Z",
+    "reporting": "desk",
+    "verificationNote": "기관 공식 발표와 관련 공개 원자료를 바탕으로 정리했다.",
+    "addedValue": "중소벤처기업부는 서울숲 소담상회 2호점에 179개 소상공인이 입점했다고 밝혔다. 9월 30일 가오픈과 11월 18일 개소식은 49일 차이가 난다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "copyedit",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-20T12:26:00Z",
+    "reporterInsight": "중소벤처기업부는 서울숲 소담상회 2호점에 179개 소상공인이 입점했다고 밝혔다. 9월 30일 가오픈과 11월 18일 개소식은 49일 차이가 난다.",
+    "imageUrl": "/stock/2026-11-20-sodam-seoul-forest-local-shop-online-channel-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "서울숲",
+      "소담상회",
+      "소상공인",
+      "판로지원",
+      "롯데온",
+      "지역상품",
+      "오프라인매장",
+      "중소벤처기업부"
     ],
     "isBreaking": false,
     "readCount": 0,
