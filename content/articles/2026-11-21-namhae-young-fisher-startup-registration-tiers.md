@@ -1,0 +1,37 @@
+---
+title: 남해 청년어업인 지원 월 90만~110만원…경영체 등록연도가 기준
+slug: namhae-young-fisher-startup-registration-tiers
+category: startup
+author: 남동균 / 문화·스포츠부 기자
+publishedAt: 2026-11-21 06:32
+reporting: desk
+tags: [남해군, 청년어업인, 어촌정착, 수산업, 독립경영, 양식업, 창업, 경영체]
+summary: 12월 10일까지 남해군청 수산자원과에서 방문 접수한다.
+image: /stock/2026-11-21-namhae-young-fisher-startup-registration-tiers.jpg
+imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
+verificationNote: 공식 공고 또는 발표 원문과 공개 첨부에서 적용 조건과 확인 범위를 대조했다.
+addedValue: 경영체 등록 시점별 월 지급액과 예정자의 업종별 예외를 비교했다.
+sourceBasis: primary
+visualType: ai-illustration
+aiRole: research-assist, draft-assist, image
+judgment: routine
+reviewedBy: 모두일보 독립 리뷰 담당
+reviewedAt: 2026-11-21 06:16
+humanReviewClaimed: false
+reporterInsight: 경영체 등록 시점별 월 지급액과 예정자의 업종별 예외를 비교했다. 12월 10일까지 남해군청 수산자원과에서 방문 접수한다.
+readerChecklist: 경영체 등록연도 확인 | 예정자 교육 및 업종 요건 확인 | 군청에 방문 접수
+---
+
+남해군은 청년 수산업 경영인에게 매달 90만~110만원을 지급하는 2027년 어촌정착 사업 신청을 12월 10일까지 받는다. 군에 주민등록과 실제 거주지, 수산업 경영기반을 둔 청년이 대상이다.
+
+군 공고에 따르면 2026년 1월 1일 이후 경영체를 등록했거나 2027년 창업할 예정인 1년차는 월 110만원, 2025년 등록자는 월 100만원, 2024년 등록자는 월 90만원을 받는 기준이다. 올해 1년차로 이미 지원받았다면 다음 해에는 2년차 기준을 적용한다. 지급은 예산 범위에서 이뤄진다.
+
+## 창업을 준비 중인 청년도 신청할 수 있는 업종
+
+어업·양식업과 수산물 가공·유통업은 독립경영 3년 이하인 창업자 또는 예정자에게 열려 있다. 예정자는 관련 교육 8시간을 이수해야 한다. 해양레저관광업은 같은 경력 제한을 두지만 예정자는 제외된다. 연령은 원칙적으로 만 18세 이상 40세 미만이며 군 복무에 따른 상한 연장 규정이 있다.
+
+신청은 군청 수산자원과에 방문해 제출한다. 공고는 매년 의무교육과 재해보험 가입, 경영계획 이행 조건을 두고 있으므로 신청 전에 지원금 사용 범위와 지급 중단 기준도 확인할 필요가 있다.
+
+## 출처 메모
+
+- 기관 공식 공고 및 첨부: https://bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000128060
