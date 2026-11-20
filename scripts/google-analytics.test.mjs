@@ -9,7 +9,7 @@
 //      send_page_view:false 없음). 토큰 경로에서는 config 를 건너뛴다.
 //   4) 인증 토큰 경로 4종의 Pages middleware 가 두 태그와 Flight 복제 노드를 제거한다.
 //   5) CSP Report-Only·처리방침·운영 문서가 고지 방식(동의창 없음)과 일치한다.
-//   6) 빌드 산출물 전 HTML 에 로더(async)·부트스트랩이 각각 정확히 한 번 있다(순서는 React 가 정한다).
+//   6) 빌드 산출물 HTML 페이지에 로더(async)·부트스트랩이 각각 정확히 한 번 있다.
 
 import assert from "node:assert/strict";
 import { readdir, readFile } from "node:fs/promises";
@@ -278,8 +278,16 @@ test("CSP, privacy notice, docs, and static output expose one detectable Google 
   const htmlFiles = await walk(OUT, new Set([".html"]));
   assert.ok(htmlFiles.length > 0, "out/ contains no HTML");
   const violations = [];
+  let pageCount = 0;
   for (const file of htmlFiles) {
     const html = await readFile(file, "utf8");
+    const exportedPath = path.relative(OUT, file);
+    // Naver serves a plain verification payload under a root-level .html name.
+    if (/^naver[0-9a-f]{32}\.html$/.test(exportedPath)) {
+      assert.equal(html.trimEnd(), `naver-site-verification: ${exportedPath}`, exportedPath);
+      continue;
+    }
+    pageCount++;
     const loaderTags = html.match(/<script\b[^>]*\bid=["']ga4-loader["'][^>]*><\/script>/gi) ?? [];
     const bootstrapTags = html.match(/<script\b[^>]*\bid=["']ga4-consent-bootstrap["'][^>]*>/gi) ?? [];
     // 순서는 단언하지 않는다 — React 19 는 <script async src> 를 리소스로 head 앞쪽에 끌어올려
@@ -304,5 +312,6 @@ test("CSP, privacy notice, docs, and static output expose one detectable Google 
     [],
     `direct tag invariant failed: ${JSON.stringify(violations.slice(0, 10))}`,
   );
-  console.log(`checked ${htmlFiles.length} exported HTML files: one direct async Google tag each`);
+  assert.ok(pageCount > 0, "out/ contains no HTML pages");
+  console.log(`checked ${pageCount} exported HTML pages: one direct async Google tag each`);
 });

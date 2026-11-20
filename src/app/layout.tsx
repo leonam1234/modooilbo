@@ -56,7 +56,6 @@ export const metadata: Metadata = {
   //    verification은 선언하지 않아 전 페이지에 그대로 상속된다(라이브 실측 확인).
   //    other에 넣으면 기사 페이지에서만 조용히 사라져 검토가 반려된다.
   verification: {
-    google: "CskNi9Cx1aINJrfcM020I8qjTFUDFaUS6jrGxcn6nbY",
     other: {
       "naver-site-verification": "9fa5ad35d86ef9d80fc2a12bc20f8a57d5512de7",
       // 애드센스 사이트 소유권 확인. ads.txt의 pub-1741876528103024와 동일 계정.
