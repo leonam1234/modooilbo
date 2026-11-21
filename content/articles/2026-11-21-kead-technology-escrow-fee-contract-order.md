@@ -3,7 +3,7 @@ title: 중소기업 기술자료 임치 수수료 지원…선정 뒤 임치센�
 slug: kead-technology-escrow-fee-contract-order
 category: deals
 author: 서영호 / 공공입찰 전담기자
-publishedAt: 2026-11-21 06:33
+publishedAt: 2026-11-21 15:35
 reporting: desk
 tags: [한국장애인고용공단, 기술자료, 기술임치, 중소기업, 영업비밀, 계약, 기술보호, 수수료]
 summary: 한국장애인고용공단은 12월 10일까지 신청을 받고 최대 5년 양자간 임치계약 수수료를 지원한다.

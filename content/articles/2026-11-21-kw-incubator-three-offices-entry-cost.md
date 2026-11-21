@@ -3,7 +3,7 @@ title: 광운창업지원센터 3실 모집…월세 외 보증금·성공부담
 slug: kw-incubator-three-offices-entry-cost
 category: startup
 author: 남동균 / 문화·스포츠부 기자
-publishedAt: 2026-11-21 06:32
+publishedAt: 2026-11-21 15:34
 reporting: desk
 tags: [광운대학교, 창업보육, 입주기업, 노원구, 창업지원, 보증금, 성공부담금, 사업자등록]
 summary: 12월 7일까지 이메일 신청을 받는다. 기존 기업은 계약 체결 후 15일 안에 본사 주소를 옮길 수 있어야 한다.

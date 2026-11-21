@@ -3,7 +3,7 @@ title: 하도급 모범업체 2곳 선정…현금결제와 지급기한은 별�
 slug: ftc-subcontract-model-cash-criteria
 category: deals
 author: 김영환 / 경제부 기자
-publishedAt: 2026-11-21 06:33
+publishedAt: 2026-11-21 15:35
 reporting: desk
 tags: [공정거래위원회, 하도급, 표준계약서, 현금결제, 건설업, 상생협력, 공공입찰, 대금지급]
 summary: 공정위는 진보건설과 가온을 선정했다. 협력업체 결제·계약 관리에서 확인해야 할 항목을 정리했다.

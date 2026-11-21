@@ -3,7 +3,7 @@ title: 강진군 음식점 청소비 지원 6곳 모집…비용 절반, 최대 
 slug: gangjin-restaurant-kitchen-cleaning-cap
 category: grants
 author: 김영환 / 경제부 기자
-publishedAt: 2026-11-21 06:31
+publishedAt: 2026-11-21 15:33
 reporting: desk
 tags: [강진군, 음식점, 제과점, 위생, 소상공인, 청소비, 냉난방기, 보조금]
 summary: 11월 27일까지 접수한다. 장비 교체비는 제외하고 사업자가 먼저 비용을 낸 뒤 청구하는 방식이다.

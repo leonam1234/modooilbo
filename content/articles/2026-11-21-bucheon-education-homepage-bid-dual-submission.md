@@ -3,7 +3,7 @@ title: 부천교육지원청 홈페이지 유지관리 입찰…제안서 방문
 slug: bucheon-education-homepage-bid-dual-submission
 category: bids
 author: 서영호 / 공공입찰 전담기자
-publishedAt: 2026-11-21 06:31
+publishedAt: 2026-11-21 15:33
 reporting: desk
 tags: [부천교육지원청, 홈페이지, 유지관리, 공공입찰, 나라장터, 제안서, 공동수급, 직접생산확인]
 summary: 제안서와 가격입찰서는 23일 오전 10시 마감이다. 두 서류를 같은 창구에서 내지 않는다.

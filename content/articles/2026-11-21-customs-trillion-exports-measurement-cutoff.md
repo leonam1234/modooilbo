@@ -3,7 +3,7 @@ title: 수출 1조달러 돌파…관세청 집계는 11월 19일 통관 누계
 slug: customs-trillion-exports-measurement-cutoff
 category: industry
 author: 최은영 / 국제부 기자
-publishedAt: 2026-11-21 06:32
+publishedAt: 2026-11-21 15:34
 reporting: desk
 tags: [관세청, 수출통계, 반도체, 수출통관, 무역, 수출누계, 인천공항, 산업]
 summary: 19일 기준 누계 1조15억달러다. 통관 실적과 연간 확정치의 집계 범위를 짚었다.

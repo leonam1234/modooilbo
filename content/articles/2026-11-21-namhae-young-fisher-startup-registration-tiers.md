@@ -3,7 +3,7 @@ title: 남해 청년어업인 지원 월 90만~110만원…경영체 등록연�
 slug: namhae-young-fisher-startup-registration-tiers
 category: startup
 author: 남동균 / 문화·스포츠부 기자
-publishedAt: 2026-11-21 06:32
+publishedAt: 2026-11-21 15:34
 reporting: desk
 tags: [남해군, 청년어업인, 어촌정착, 수산업, 독립경영, 양식업, 창업, 경영체]
 summary: 12월 10일까지 남해군청 수산자원과에서 방문 접수한다.
