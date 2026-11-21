@@ -143300,6 +143300,675 @@ export const CONTENT_ARTICLES: Article[] = [
     "type": "article"
   },
   {
+    "id": "2026-11-22-cheonan-one-person-startup-office-visit",
+    "slug": "2026-11-22-cheonan-one-person-startup-office-visit",
+    "title": "천안 1인 창조기업 지원센터, 입주 신청은 방문 접수",
+    "summary": "현 공고는 월 임대료와 관리비를 받지 않는다고 안내한다. 향후 센터 전환 시에는 비용이 발생할 수 있다.",
+    "body": [
+      "충남테크노파크가 천안 1인 창조기업 지원센터의 입주기업을 모집한다. 천안의 1인 창조기업과 예비창업자를 대상으로 하며 다른 지역 기업도 신청할 수 있다.",
+      "## 무료 제공 범위와 입주 뒤 주소 조건",
+      "개인 사무공간과 회의실, 공동장비실 등 공용시설을 지원한다. 다만 향후 창업보육센터로 전환되면 임대료와 관리비가 발생할 수 있다. 다른 지역 기업은 입주 후 3개월 안에 본사 주소를 센터로 옮겨야 하므로 주소 유지가 필요한 사업과 충돌하지 않는지 확인할 필요가 있다.",
+      "## 방문 접수와 신규 창업 교육은 다르다",
+      "입주 신청은 12월 4일 18시까지 충남테크노파크 종합지원관 1101호에서 방문 접수한다. 제출 서류 6부는 미리 출력해야 한다. 11월 30일 신규 창업 역량강화 교육 참가 신청은 입주 신청과 별개다. 신청서 양식과 개인정보 동의서는 공고의 첨부에서 받을 수 있다.",
+      "## 출처 메모",
+      "- 충남테크노파크 공식 상세: https://www.ctp.or.kr/business/datadetail.do?seq=2709679 - 충남테크노파크 첨부 공고문: https://www.ctp.or.kr/boardfiledownload.do?seq=1871943"
+    ],
+    "category": "startup",
+    "author": {
+      "name": "최은영",
+      "role": "국제부 기자"
+    },
+    "publishedAt": "2026-11-22T06:25:00Z",
+    "eventEndsAt": "2026-12-04T18:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "충남테크노파크 공식 게시물과 첨부의 방문 접수 및 공간 이용 조건을 확인했다.",
+    "addedValue": "무료 사무공간과 향후 비용, 주소 조건과 방문 신청을 분리했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-22T06:14:00Z",
+    "reporterInsight": "현 공고는 월 임대료와 관리비를 받지 않는다고 안내한다. 향후 센터 전환 시에는 비용이 발생할 수 있다.",
+    "readerChecklist": [
+      "1인 창조기업 기준 점검",
+      "본사 주소 이전 조건 확인",
+      "방문 제출 서류 출력"
+    ],
+    "imageUrl": "/stock/2026-11-22-cheonan-one-person-startup-office-visit.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "천안",
+      "1인창조기업",
+      "예비창업",
+      "충남테크노파크",
+      "입주신청",
+      "임대료",
+      "관리비",
+      "방문접수"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-22-cheongsong-road-maintenance-recruitment-dec4",
+    "slug": "2026-11-22-cheongsong-road-maintenance-recruitment-dec4",
+    "title": "청송군 도로보수원 1명 모집, 거주지와 국민체력100 3등급 확인",
+    "summary": "첨부 공고문은 원서접수를 12월 2일 9시부터 4일 18시까지로 안내한다. 등기우편은 사전 연락이 필요하며 도착과 소인 기준이 공고문 안에서 다르다.",
+    "body": [
+      "청송군이 2027년 공무직 도로보수원 한 명을 채용한다. 주민등록 주소가 공고일부터 최종 면접일까지 계속 청송군이어야 하는 조건과 국민체력100 인증 3등급 이상 요건을 둔다.",
+      "## 거주와 체력은 별도 증빙",
+      "거주기간에는 주민등록 말소나 거주불명 등록 사실이 없어야 한다. 필수 운전 자격은 1종 보통 면허이며, 체력심사는 국민체력100 인증으로 대체한다. 최근 3개월 이내 발급된 체력인증서를 제출해야 한다.",
+      "## 나라일터 요약과 첨부의 접수 시작일 차이",
+      "나라일터 상단 요약은 접수 시작일을 12월 1일로 표시하지만 같은 페이지 본문과 군 첨부는 12월 2일로 적었다. 군 첨부의 접수 기간은 2일 9시부터 4일 18시까지다. 등기우편은 사전 연락이 필요하다. 같은 첨부의 일반 안내에는 4일 18시까지 도착, 우편 안내에는 4일 소인분까지 유효하다고 적혀 있다. 어느 기준이 적용되는지 군에 확인하기 전에는 4일 18시 전 도착을 기준으로 준비하는 편이 안전하다.",
+      "## 출처 메모",
+      "- 나라일터 공식 상세: https://www.gojobs.go.kr/apmView.do?empmnsn=400070 - 청송군 첨부 공고문: https://www.gojobs.go.kr/downFile.do?filenm=2027%EB%85%84%20%EC%B2%AD%EC%86%A1%EA%B5%B0%20%EA%B3%B5%EB%AC%B4%EC%A7%81%20%EA%B7%BC%EB%A1%9C%EC%9E%90(%EB%8F%84%EB%A1%9C%EB%B3%B4%EC%88%98%EC%9B%90)%20%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0.hwpx&uuid=1324032190711099&saveGbn=employ%2F%EC%B2%AD%EC%86%A1%EA%B5%B0%EC%B2%AD"
+    ],
+    "category": "labor",
+    "author": {
+      "name": "유승현",
+      "role": "사회부 기자"
+    },
+    "publishedAt": "2026-11-22T06:26:00Z",
+    "eventEndsAt": "2026-12-04T18:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "나라일터 상세와 청송군 공고문을 비교했다. 접수 시작일 표기 차이를 본문에 남겼다.",
+    "addedValue": "거주·체력 자격과 안내 화면·원문 사이 시작일 차이를 밝혔다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-22T06:14:00Z",
+    "reporterInsight": "첨부 공고문은 원서접수를 12월 2일 9시부터 4일 18시까지로 안내한다. 등기우편은 사전 연락이 필요하며 도착과 소인 기준이 공고문 안에서 다르다.",
+    "readerChecklist": [
+      "주민등록 거주기간 확인",
+      "면허와 체력인증 증빙 확인",
+      "우편 도착과 소인 기준 확인"
+    ],
+    "imageUrl": "/stock/2026-11-22-cheongsong-road-maintenance-recruitment-dec4.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "청송군",
+      "도로보수원",
+      "공무직",
+      "나라일터",
+      "국민체력100",
+      "거주제한",
+      "등기우편",
+      "원서접수"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-22-chungnam-local-food-fair-booth-support",
+    "slug": "2026-11-22-chungnam-local-food-fair-booth-support",
+    "title": "충남 제조기업 박람회 지원, 기본부스는 무료·추가 설비와 주차는 기업 부담",
+    "summary": "충남에 본사나 공장을 둔 중소제조기업 8곳 안팎을 모집한다. 통합지원시스템 접수는 11월 26일 18시까지다.",
+    "body": [
+      "충남경제진흥원이 12월 대전컨벤션센터에서 열리는 충청권 우수중소기업·로컬푸드 박람회 참가기업을 모집한다. 모집 대상은 유통업체가 아닌 충남 중소제조기업이다.",
+      "## 기본부스와 현장 추가비를 나눠 계산",
+      "지원에는 기본부스 임차와 기본 장치, 단체관 공동 홍보가 포함된다. 추가 부대시설 이용료와 주차비, 추가물품 임차비는 기업이 부담한다. 개별기업의 방송 출연 여부는 방송사 사정과 협의에 따라 달라질 수 있다.",
+      "## 공장과 인력 증빙은 기업 형태에 따라 달라진다",
+      "공장 면적이 500㎡ 미만인 곳은 공장등록증 대신 건축물관리대장을, 1인기업은 4대보험 사업장 가입자명부 대신 건강보험득실확인서를 제출하도록 공고했다. 신청서와 동의서에는 기업 인감을 날인한 뒤 PDF로 변환해야 한다.",
+      "## 출처 메모",
+      "- 충남경제진흥원 공식 상세: https://www.cnsp.or.kr/project/view.do?pn=1&projectType=31&seq=1003 - 기업마당 공고문 게재 페이지: https://bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000128051"
+    ],
+    "category": "grants",
+    "author": {
+      "name": "최은영",
+      "role": "국제부 기자"
+    },
+    "publishedAt": "2026-11-22T06:23:00Z",
+    "eventEndsAt": "2026-11-26T18:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "충남경제진흥원 공고와 기업마당이 게재한 같은 공고 첨부에서 비용 및 증빙 조건을 확인했다.",
+    "addedValue": "지원되는 기본부스와 기업이 내는 추가비 및 기업별 증빙을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-22T06:12:00Z",
+    "reporterInsight": "충남에 본사나 공장을 둔 중소제조기업 8곳 안팎을 모집한다. 통합지원시스템 접수는 11월 26일 18시까지다.",
+    "readerChecklist": [
+      "제조기업 자격 확인",
+      "부스 추가비 추산",
+      "기업 형태별 증빙 준비"
+    ],
+    "imageUrl": "/stock/2026-11-22-chungnam-local-food-fair-booth-support.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "충남",
+      "중소제조기업",
+      "로컬푸드",
+      "박람회부스",
+      "판로지원",
+      "공장등록",
+      "기업부담",
+      "대전컨벤션센터"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-22-daejeon-junggu-sand-spreader-mixer-sale",
+    "slug": "2026-11-22-daejeon-junggu-sand-spreader-mixer-sale",
+    "title": "대전 중구 모래살포기·교반기 일괄매각, 두 건 이상 유효 입찰 필요",
+    "summary": "예정가격 698만원의 묶음 매각이다. 11월 23일 10시부터 30일 16시까지 온비드에서 접수한다.",
+    "body": [
+      "대전 중구가 사용하던 모래살포기 17대와 교반기 1대를 한 묶음으로 매각한다. 차량은 매각 목록에 없다. 대표 이미지는 장비의 종류를 설명하기 위한 연출이며 실제 매각 물품이나 구성을 찍은 사진이 아니다.",
+      "한 종류만 골라 입찰하는 방식이 아니어서 구매자는 보관·해체·운반 비용을 전체 물량 기준으로 산정해야 한다.",
+      "## 한 명만 넣으면 낙찰 요건에 못 미친다",
+      "입찰은 11월 23일 10시 시작해 30일 16시 마감하고, 개찰은 12월 1일 11시다. 공고상 유효한 입찰이 둘 이상 있어야 하고 예정가격 698만원 이상 가운데 최고가 입찰자가 낙찰된다. 입찰금액의 5% 이상 보증금도 마감까지 입금해야 한다.",
+      "## 현품 확인과 인수 시계",
+      "물품은 현재 상태 그대로 팔며 별도 정비나 수리는 없다고 공고했다. 낙찰자는 계약과 동시에 대금을 완납하고, 계약일로부터 주말과 공휴일을 제외한 30일 안에 담당자와 일정을 조율해 직접 인수한다. 해체·철거와 운반에 드는 비용은 낙찰자가 부담한다.",
+      "## 출처 메모",
+      "- 대전 중구 공식 상세: https://www.djjunggu.go.kr/prog/saeolGosi/GOSI_02/sub03_05/view.do?notAncmtMgtNo=48828 - 대전 중구 첨부 공고문: https://eminwon.djjunggu.go.kr/emwp/jsp/ofr/FileDown.jsp?user_file_nm=%EB%B6%88%EC%9A%A9%EB%AC%BC%ED%92%88%20%EB%A7%A4%EA%B0%81%20%EA%B3%B5%EA%B3%A0%EB%AC%B8(%EB%AA%A8%EB%9E%98%EC%82%B4%ED%8F%AC%EA%B8%B0%20%EB%B0%8F%20%EA%B5%90%EB%B0%98%EA%B8%B0).hwpx&sys_file_nm=%EB%B6%88%EC%9A%A9%EB%AC%BC%ED%92%88%20%EB%A7%A4%EA%B0%81%20%EA%B3%B5%EA%B3%A0%EB%AC%B8(%EB%AA%A8%EB%9E%98%EC%82%B4%ED%8F%AC%EA%B8%B0%20%EB%B0%8F%20%EA%B5%90%EB%B0%98%EA%B8%B0)_ofr_ofr_EIz0JapM93nmyQAY_20261120144203721_1.hwpx&file_path=%2Fntishome%2Ffile%2Fupload%2Fofr%2Fofr%2F20261120"
+    ],
+    "category": "deals",
+    "author": {
+      "name": "최은영",
+      "role": "국제부 기자"
+    },
+    "publishedAt": "2026-11-22T06:26:00Z",
+    "eventEndsAt": "2026-11-30T16:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "대전 중구의 공식 공고와 첨부에 적힌 주요 조건 및 절차를 확인했다.",
+    "addedValue": "일괄 가격과 성립 요건, 계약 뒤 장비 인수 기한을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-22T06:14:00Z",
+    "reporterInsight": "예정가격 698만원의 묶음 매각이다. 11월 23일 10시부터 30일 16시까지 온비드에서 접수한다.",
+    "readerChecklist": [
+      "전체 장비 현품 확인",
+      "보증금 납부 확인",
+      "해체·운반비 산정"
+    ],
+    "imageUrl": "/stock/2026-11-22-daejeon-junggu-sand-spreader-mixer-sale.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "대전중구",
+      "모래살포기",
+      "교반기",
+      "온비드",
+      "일괄매각",
+      "예정가격",
+      "입찰보증금",
+      "불용물품"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-22-daejeon-overseas-certification-sixth-proof-cost",
+    "slug": "2026-11-22-daejeon-overseas-certification-sixth-proof-cost",
+    "title": "대전 해외규격인증 6차, 취득을 마친 제조기업에 비용 80% 이내 지원",
+    "summary": "12월 3일 18시까지 신청을 받는다. 부가세를 뺀 직접 비용을 기준으로 기업당 최대 1,400만원, 인증 최대 3건을 지원한다.",
+    "body": [
+      "대전일자리경제진흥원이 해외규격인증 획득지원사업 6차 참여기업을 모집한다.",
+      "대전 관내에 본사나 제조시설이 있는 중소제조기업이 대상이다. 공고는 사업개요에 4개사 안팎, 신청방법에 3개사 안팎이라고 각각 적었다. 모집 규모는 어느 한쪽으로 단정하기 어렵다.",
+      "## 인증을 아직 준비 중이라면",
+      "2025년 12월부터 2026년 11월 사이에 인증을 취득했고 신청일에도 취득을 완료한 상태여야 한다. 2024년이나 2025년에 이 사업의 지원을 받은 기업은 제외된다. 인증 종류가 공식 붙임의 목록에 들어가는지도 먼저 살펴야 한다.",
+      "## 견적 전체를 지원비로 볼 수 없다",
+      "인증비·시험비·컨설팅비처럼 취득에 직접 든 비용이 대상이며 여비는 빠진다. 부가세 제외 직접 비용의 80% 이내에서 기업별 한도가 적용된다. 접수 순으로 적격성을 검토하며, 서류가 미비한 신청의 순번은 보완을 마친 시각을 기준으로 정한다. 인증서와 지출증빙을 건별로 짝지어 두면 빠뜨린 서류가 있는지 확인하기 쉽다.",
+      "## 출처 메모",
+      "- 대전일자리경제진흥원 공식 상세: https://www.djbea.or.kr/mps/bizTskPbnc/view?menuId=MENU002040101000000&menuKey=TOfnnvp207&tsk_pbnc_id=2026-0175 - 대전일자리경제진흥원 첨부 공고문: https://www.djbea.or.kr/pmsdownload?ahfl_grup_id=25a177a9-c9e8-41bd-9e74-cdc01a200eca&ahfl_seq=3"
+    ],
+    "category": "grants",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-22T06:25:00Z",
+    "eventEndsAt": "2026-12-03T18:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "대전일자리경제진흥원의 공식 공고와 첨부에 적힌 주요 조건 및 절차를 확인했다.",
+    "addedValue": "취득 시점, 대상 인증 목록과 부가세를 제외한 실제 지출을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-22T06:14:00Z",
+    "reporterInsight": "12월 3일 18시까지 신청을 받는다. 부가세를 뺀 직접 비용을 기준으로 기업당 최대 1,400만원, 인증 최대 3건을 지원한다.",
+    "readerChecklist": [
+      "인증서 발급일 확인",
+      "대상 인증 목록 대조",
+      "직접 지출 증빙 정리"
+    ],
+    "imageUrl": "/stock/2026-11-22-daejeon-overseas-certification-sixth-proof-cost.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "대전",
+      "해외규격인증",
+      "중소제조기업",
+      "인증비",
+      "시험비",
+      "컨설팅",
+      "부가가치세",
+      "수출준비"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-22-hanam-health-container-onbid-removal",
+    "slug": "2026-11-22-hanam-health-container-onbid-removal",
+    "title": "하남시 보건소 컨테이너 온비드 매각, 운반비는 낙찰자가 부담",
+    "summary": "감정가격은 130만원이고 11월 30일 18시까지 전자입찰을 받는다. 매각대금 완납과 소유권 이전 뒤 직접 인수한다.",
+    "body": [
+      "하남시 보건소가 사용하던 컨테이너하우스를 온비드로 매각한다. 물건값과 별도로 운반과 처리 비용을 낙찰자가 부담하므로 반출까지 포함한 비용으로 입찰가를 판단해야 한다.",
+      "## 마감까지 보증금도 입금",
+      "감정가격은 130만원이다. 전자입찰은 11월 30일 18시까지며, 입찰금액의 5% 이상을 보증금으로 납부해야 한다. 개찰은 12월 1일 10시다. 예정가격 이상으로 유효하게 입찰한 사람이 한 명 이상이면 최고가 입찰자를 낙찰자로 결정한다.",
+      "## 현 상태 매각과 인수 책임",
+      "공고는 사전 현장 확인을 안내하고 있다. 낙찰자는 낙찰통지일부터 주말과 공휴일을 포함한 10일 안에 계약하고 동시에 대금을 납부한다. 완납과 소유권 이전 뒤 보관 장소에서 직접 인수하며, 운반이나 인수 과정의 비용과 사고 위험은 낙찰자 부담이다.",
+      "## 출처 메모",
+      "- 하남시 보건소 공식 상세: https://www.hanam.go.kr/sosik/selectGosiData.do?key=10056&not_ancmt_mgt_no=53304&not_ancmt_se_code=02 - 하남시 보건소 첨부 공고문: https://eminwon.hanam.gyeonggi.kr/emwp/jsp/ofr/FileDown.jsp?user_file_nm=%EA%B3%B5%EA%B3%A0%EB%AC%B8(%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%ED%95%98%EC%9A%B0%EC%8A%A4).hwpx&sys_file_nm=%EA%B3%B5%EA%B3%A0%EB%AC%B8(%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%ED%95%98%EC%9A%B0%EC%8A%A4)_ofr_ofr_4eCu2WOI8pfUyQFp_20261119155639113_2.hwpx&file_path=%2Fntishome%2Ffile%2Fupload%2Fofr%2Fofr%2F20261119"
+    ],
+    "category": "deals",
+    "author": {
+      "name": "유승현",
+      "role": "사회부 기자"
+    },
+    "publishedAt": "2026-11-22T06:23:00Z",
+    "eventEndsAt": "2026-11-30T18:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "하남시 보건소의 공식 공고와 첨부에 적힌 주요 조건 및 절차를 확인했다.",
+    "addedValue": "감정가격과 보증금, 매각대금 이외의 인수 비용을 나눴다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-22T06:12:00Z",
+    "reporterInsight": "감정가격은 130만원이고 11월 30일 18시까지 전자입찰을 받는다. 매각대금 완납과 소유권 이전 뒤 직접 인수한다.",
+    "readerChecklist": [
+      "현품 상태 확인",
+      "보증금 납부 확인",
+      "반출 비용 산정"
+    ],
+    "imageUrl": "/stock/2026-11-22-hanam-health-container-onbid-removal.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "하남시보건소",
+      "컨테이너하우스",
+      "온비드",
+      "전자입찰",
+      "공유재산",
+      "감정가격",
+      "보증금",
+      "운반비"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-22-jeonbuk-smart-manufacturing-ai-consortium",
+    "slug": "2026-11-22-jeonbuk-smart-manufacturing-ai-consortium",
+    "title": "전북 제조AI 시범공장, 도입기업·공급기업·기획기관이 한 팀으로 신청",
+    "summary": "자동차·모빌리티 부품과 식품에서 각 한 과제를 선정한다. 전북테크노파크 모집 상세와 첨부의 마감 시각 표기가 다르다.",
+    "body": [
+      "전북테크노파크가 전북형 스마트 제조AI 시범공장 과제를 공모한다.",
+      "자동차·모빌리티 부품과 식품에서 분야별 한 과제를 선정하며 과제당 2년간 도비 최대 6억원을 지원한다.",
+      "## 공장 소재지와 구축 수준을 먼저 확인",
+      "도입기업은 전북에 구축 대상 사업장이 있는 제조 중소·중견기업이어야 한다. 스마트공장 중간1 이상 구축·확인 기업이나 해당 수준 이상이라고 판단되는 기업이 대상이다. 제조AI 역량을 갖춘 등록 공급기업 및 기획기관과 컨소시엄을 꾸려 핵심 공정의 예측·탐지나 최적화 기능을 구축하고 실증하는 방식이다.",
+      "## 같은 마감일에 서로 다른 시각",
+      "수행기관 모집 상세에는 12월 11일 17시, 첨부 공고문에는 같은 날 18시로 적혀 있다. 접수는 스마트공장 사업관리시스템에서 한다. 로그인 후 실제 접수가 어느 시각에 닫히는지는 확인하지 못했다. 신청팀은 수행기관 안내와 접수 화면을 확인하고, 표기가 정리되기 전에는 앞선 시각인 17시 전에 제출하는 편이 안전하다.",
+      "## 출처 메모",
+      "- 스마트공장 사업관리시스템: https://www.smart-factory.kr/",
+      "- 전북테크노파크 공식 상세: https://www.jbtp.or.kr/board/view.jbtp?menuCd=DOM_000000102001000000&boardId=BBS_0000006&dataSid=21231 - 전북테크노파크 첨부 공고문: https://www.jbtp.or.kr/board/download.jbtp?boardId=BBS_0000006&menuCd=DOM_000000102001000000&paging=ok&startPage=1&dataSid=21231&command=update&fileSid=40276"
+    ],
+    "category": "industry",
+    "author": {
+      "name": "남동균",
+      "role": "문화·스포츠부 기자"
+    },
+    "publishedAt": "2026-11-22T06:26:00Z",
+    "eventEndsAt": "2026-12-11T17:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "수행기관 상세의 17시와 첨부 공고문의 18시를 병기했다. 안내 종료 시각은 앞선 공식 표기를 따랐으며, 로그인 후 실제 접수 창구 종료 시각은 확인하지 못했다.",
+    "addedValue": "컨소시엄 자격과 서로 다른 마감 시각을 나눠 신청 판단 기준을 밝혔다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-22T06:14:00Z",
+    "reporterInsight": "자동차·모빌리티 부품과 식품에서 각 한 과제를 선정한다. 전북테크노파크 모집 상세와 첨부의 마감 시각 표기가 다르다.",
+    "readerChecklist": [
+      "전북 구축 사업장 확인",
+      "참여기관 역할 구분",
+      "상이한 접수 시각 확인"
+    ],
+    "imageUrl": "/stock/2026-11-22-jeonbuk-smart-manufacturing-ai-consortium.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "전북테크노파크",
+      "제조AI",
+      "스마트공장",
+      "자동차부품",
+      "식품제조",
+      "컨소시엄",
+      "사업비",
+      "모집마감"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-22-ksa-dormitory-wallpaper-bid-busan",
+    "slug": "2026-11-22-ksa-dormitory-wallpaper-bid-busan",
+    "title": "한국과학영재학교 숙소 보수 5억7275만9000원 입찰, 부산 소재 건축업체 대상",
+    "summary": "직녀관·견우관·교사숙소 도배와 기타공사다. 나라장터 투찰은 11월 27일 10시에 끝나고 개찰은 같은 날 11시다.",
+    "body": [
+      "한국과학영재학교가 직녀관·견우관·교사숙소의 도배 및 기타공사를 발주했다. 추정금액 5억7275만9000원은 부가가치세를 포함하며, 공고는 지역 제한 총액입찰과 적격심사를 적용한다.",
+      "## 지역 제한을 충족하는 기간",
+      "건축공사업 등록이 필요하다. 공고일 전날부터 계약 체결일까지 법인의 본점이 부산에 계속 있어야 한다. 개인사업자는 사업자등록증이나 해당 등록서류에 기재된 사업장 소재지를 기준으로 본다. 공동계약은 허용하지 않는다.",
+      "## 투찰과 개찰은 한 시간 차이",
+      "투찰은 나라장터에서 11월 27일 10시까지이며 개찰은 같은 날 11시다. 공고는 참가 전 공사 관련 서류를 발주부서에서 열람하도록 안내한다. 조달 참가 등록이 없는 업체는 개찰일 전일까지 등록해야 하므로 투찰 마감과 같은 일정으로 잡으면 안 된다.",
+      "## 출처 메모",
+      "- 나라장터 공식 상세: https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01842153&bidPbancOrd=000 - 한국과학영재학교 첨부 공고문: https://www.g2b.go.kr/pn/pnp/pnpe/UntyAtchFile/downloadFile.do?bidPbancNo=R26BK01842153&bidPbancOrd=000&fileSeq=2&fileType=&prcmBsneSeCd=07"
+    ],
+    "category": "bids",
+    "author": {
+      "name": "서영호",
+      "role": "공공입찰 전담기자"
+    },
+    "publishedAt": "2026-11-22T06:23:00Z",
+    "eventEndsAt": "2026-11-27T10:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "한국과학영재학교의 공식 공고와 첨부에 적힌 주요 조건 및 절차를 확인했다.",
+    "addedValue": "부산 소재 유지, 등록일, 투찰과 개찰을 별개 단계로 정리했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-22T06:12:00Z",
+    "reporterInsight": "직녀관·견우관·교사숙소 도배와 기타공사다. 나라장터 투찰은 11월 27일 10시에 끝나고 개찰은 같은 날 11시다.",
+    "readerChecklist": [
+      "본점 유지 기간 확인",
+      "설계서 열람",
+      "투찰과 개찰 시각 구분"
+    ],
+    "imageUrl": "/stock/2026-11-22-ksa-dormitory-wallpaper-bid-busan.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "한국과학영재학교",
+      "나라장터",
+      "부산",
+      "건축공사업",
+      "적격심사",
+      "총액입찰",
+      "도배공사",
+      "지역제한"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-22-ksif-youth-intern-application-dec7",
+    "slug": "2026-11-22-ksif-youth-intern-application-dec7",
+    "title": "세종학당재단 청년인턴 6명 모집…일반 5명·장애인 제한경쟁 1명",
+    "summary": "12월 7일 14시까지 채용 전용 사이트에서 접수한다. 계약은 2027년 6월 30일까지다.",
+    "body": [
+      "세종학당재단이 2027년 상반기 체험형 청년인턴 6명을 공개 모집한다.",
+      "일반 공개경쟁은 5명, 장애인 제한경쟁은 1명이다. 임용일 기준 15~34세이며 세종학당재단 청년인턴 근무 경험이 없어야 한다. 해당하는 제대군인은 공고의 복무기간별 연령 연장을 적용받는다. 제한경쟁 지원자는 해당 자격과 증빙 조건도 확인해야 한다.",
+      "## 기간과 이후 채용은 구분",
+      "근무지는 서울 서초구 재단 사무실이며 주 5일, 하루 8시간 근무한다. 월 급여는 224만원이다. 재단은 계약기간 만료 시 고용관계가 끝난다고 안내했다. 정해진 재직·만료 조건을 충족한 인턴의 신입 공개채용 서류심사 1회 면제는 채용 보장이 아니다.",
+      "## 온라인 접수와 후속 증빙",
+      "공고문상 접수처는 세종학당재단 채용 사이트이며 마감은 12월 7일 14시다. 공개 화면에서는 해당 채용 항목을 확인하지 못해 실제 접수 가능 여부는 단정하지 않는다. 우편·이메일·방문으로 낸 원서는 인정하지 않는다. 최초 지원서 제출 마감과 후속 증빙서류 제출 일정을 나눠 확인하면 접수 단계를 혼동하지 않는다.",
+      "## 출처 메모",
+      "- 세종학당재단 채용 사이트: https://ksif.fairyhr.com/",
+      "- JOB-ALIO 공식 상세: https://job.alio.go.kr/recruitview.do?idx=307297 - 세종학당재단 첨부 공고문: https://www.alio.go.kr/download/download.json?fileNo=3089171"
+    ],
+    "category": "labor",
+    "author": {
+      "name": "유승현",
+      "role": "사회부 기자"
+    },
+    "publishedAt": "2026-11-22T06:26:00Z",
+    "eventEndsAt": "2026-12-07T14:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "세종학당재단의 공식 공고와 첨부에 적힌 주요 조건 및 절차를 확인했다.",
+    "addedValue": "선발 유형, 계약 종료, 서류 면제의 적용 범위를 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-22T06:14:00Z",
+    "reporterInsight": "12월 7일 14시까지 채용 전용 사이트에서 접수한다. 계약은 2027년 6월 30일까지다.",
+    "readerChecklist": [
+      "지원 분야 선택",
+      "온라인 마감 확인",
+      "후속 증빙 일정 구분"
+    ],
+    "imageUrl": "/stock/2026-11-22-ksif-youth-intern-application-dec7.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "세종학당재단",
+      "JOBALIO",
+      "청년인턴",
+      "장애인채용",
+      "공공기관",
+      "서류심사",
+      "온라인접수",
+      "기간제"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-22-nipa-b300-beta-allocation-application",
+    "slug": "2026-11-22-nipa-b300-beta-allocation-application",
+    "title": "첨단 GPU 베타, B300 서버 2~8대 단위 배정…24일 15시 접수 마감",
+    "summary": "산업계와 학계·연구계에 별도 물량을 배정한다. 12월 1~21일 무상 사용이지만 신청 목적을 벗어난 사용은 제한한다.",
+    "body": [
+      "과학기술정보통신부와 정보통신산업진흥원이 B300 서버 62대, GPU 496장을 활용하는 베타 참여자를 모집한다. 12월 1일부터 21일까지 실제로 사용할 수 있는 과제가 대상이다.",
+      "## 서버 수와 GPU 수는 같은 단위가 아니다",
+      "산업계에 B300 서버 44대, 학계·연구계에 18대를 배정한다. 과제에는 각 트랙 물량 안에서 서버 2~8대를 배분한다. 산업계는 중소기업 이하 규모를 대상으로 한다. 서면평가 70점 이상 과제 가운데 높은 점수 순으로 배정한다.",
+      "## 자부담은 없지만 활용 조건이 있다",
+      "국가 AI컴퓨팅자원 지원포털에서 총괄책임자 이메일을 사용해 11월 24일 15시까지 온라인 제출을 마쳐야 한다. 별도 이메일 제출은 인정되지 않는다. 참여기관은 운영 주체가 실시하는 조사에 응하고 신청 목적에 맞게 사용해야 한다. 팀은 필요한 서버 수와 21일 내 수행 가능한 작업을 구분해 산정할 수 있다.",
+      "## 출처 메모",
+      "- 국가 AI컴퓨팅자원 지원포털: https://aiinfrahub.kr/",
+      "- 정보통신산업진흥원 공식 상세: https://www.nipa.kr/home/2-2/17006 - 정보통신산업진흥원 첨부 공고문: https://www.nipa.kr/comm/getFile?srvcId=BBSTY1&upperNo=KddbEscsIOt5H5woiVnbJg==&fileTy=ATTACH&fileNo=izzTZiKorFU9PMlGimEP2w=="
+    ],
+    "category": "industry",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-22T06:25:00Z",
+    "eventEndsAt": "2026-11-24T15:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "정보통신산업진흥원의 공식 공고와 첨부에 적힌 주요 조건 및 절차를 확인했다.",
+    "addedValue": "트랙 물량과 과제 단위 배정, 무상 사용에 따르는 조건을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-22T06:14:00Z",
+    "reporterInsight": "산업계와 학계·연구계에 별도 물량을 배정한다. 12월 1~21일 무상 사용이지만 신청 목적을 벗어난 사용은 제한한다.",
+    "readerChecklist": [
+      "트랙별 자격 확인",
+      "실제 필요한 서버 수 산정",
+      "21일 사용계획 정리"
+    ],
+    "imageUrl": "/stock/2026-11-22-nipa-b300-beta-allocation-application.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "정보통신산업진흥원",
+      "과학기술정보통신부",
+      "GPU지원",
+      "B300",
+      "베타서비스",
+      "연구기관",
+      "중소기업",
+      "자원배정"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-22-songpa-ict-startup-office-application",
+    "slug": "2026-11-22-songpa-ict-startup-office-application",
+    "title": "송파 ICT 창업공간, 개별석 월 6만원·공유석 4만원을 반기 단위 납부",
+    "summary": "대표자 만 39세 이하의 ICT 예비창업자 또는 창업 3년 이내 기업이 대상이다. 12월 13일 23시까지 온라인 접수한다.",
+    "body": [
+      "송파ICT청년창업지원센터가 2027년 입주자를 모집한다.",
+      "입주를 검토하는 팀은 사무실 형태뿐 아니라 인원에 따라 달라지는 반기 사용료를 비교해야 한다.",
+      "## 월 단가와 실제 납부 주기는 다르다",
+      "개별 사무실은 1인당 월 6만원, 개방 사무실은 1인당 월 4만원이다. 사용료는 반기마다 한꺼번에 낸다. 개방 사무실은 공고상 팀당 1~5인으로 구성할 수 있다. 기본 입주 예정 기간은 2027년 1월부터 12월까지이며 연장은 심사 대상이다.",
+      "## 기창업자와 예비창업자의 서류가 다르다",
+      "대표자 연령과 창업기간은 공고일 기준으로 확인한다. K-Startup 공고에는 입주신청서와 개인정보 동의서 외에도 주민등록등본과 납세증명서 등이 제시돼 있다. 사업자등록증이나 부가가치세 자료처럼 기창업자에게 해당하는 서류가 따로 있다. 온라인 접수 뒤 서면과 대면 평가를 진행한다.",
+      "## 출처 메모",
+      "- K-Startup 공식 상세: https://www.k-startup.go.kr/web/contents/bizpbanc-ongoing.do?pbancSn=179824&schM=view - K-Startup 첨부 공고문: https://www.k-startup.go.kr/afile/fileDownload/v19v6tsey71OLnopU8wE3j1IHyDRNDrpVgLYp3jOll6b8OgA"
+    ],
+    "category": "startup",
+    "author": {
+      "name": "남동균",
+      "role": "문화·스포츠부 기자"
+    },
+    "publishedAt": "2026-11-22T06:23:00Z",
+    "eventEndsAt": "2026-12-13T23:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "K-Startup의 공식 공고와 첨부에 적힌 주요 조건 및 절차를 확인했다.",
+    "addedValue": "인원별 월 단가와 반기 납부, 창업 상태별 서류 차이를 나눴다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-22T06:12:00Z",
+    "reporterInsight": "대표자 만 39세 이하의 ICT 예비창업자 또는 창업 3년 이내 기업이 대상이다. 12월 13일 23시까지 온라인 접수한다.",
+    "readerChecklist": [
+      "대표자 연령과 업력 확인",
+      "인원별 반기비용 계산",
+      "기업 상태별 서류 준비"
+    ],
+    "imageUrl": "/stock/2026-11-22-songpa-ict-startup-office-application.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "송파",
+      "ICT",
+      "청년창업",
+      "입주기업",
+      "공유오피스",
+      "사용료",
+      "예비창업자",
+      "서울테크노파크"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-22-wanju-samrye-school-bus-rental-bid",
+    "slug": "2026-11-22-wanju-samrye-school-bus-rental-bid",
+    "title": "완주 삼례중 통학버스 4대 임차, 전북 전세버스 업체 25일 투찰 마감",
+    "summary": "완주교육지원청은 2027년 1~12월 운행 용역을 기초금액 2억6826만4000원으로 공고했다.",
+    "body": [
+      "완주교육지원청이 2027년 9권역 삼례중 통학버스 임차용역 입찰을 공고했다.",
+      "차량은 45인승형 대형승합차 4대로, 공고는 차량당 40석 이상을 요구한다. 기초금액에는 부가가치세가 포함돼 있다.",
+      "## 등록과 차량 조건 확인",
+      "전세버스운송사업 등록과 나라장터 업종코드 5805가 필요하다. 원칙적으로 공고일 180일 전부터 개찰일까지 전북 소재를 유지해야 하며, 계약상대자는 계약 체결일까지 유지해야 한다. 신규사업자는 법인 등기일 또는 사업자등록일을 기준으로 공고일 이후도 포함하는 예외가 있다. 유효한 중기업·소기업·소상공인 확인서와 통학운송서비스 직접생산확인증명서도 필요하다. 공동이행은 허용하지 않으며 계약 기간은 2027년 1월 1일부터 12월 31일까지다.",
+      "## 정규 마감과 재입찰은 별개",
+      "나라장터 투찰은 11월 25일 10시까지이고 개찰은 11시다. 공고가 안내한 15시 재입찰 마감과 16시 개찰은 재입찰이 진행될 때의 시각이다. 업체는 가격을 정하기 전에 공고와 연결된 특수조건·노선표를 함께 확인해야 한다.",
+      "## 출처 메모",
+      "- 나라장터 공식 상세: https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01836926&bidPbancOrd=000 - 완주교육지원청 첨부 공고문: https://www.g2b.go.kr/pn/pnp/pnpe/UntyAtchFile/downloadFile.do?bidPbancNo=R26BK01836926&bidPbancOrd=000&fileSeq=2&fileType=&prcmBsneSeCd=03"
+    ],
+    "category": "bids",
+    "author": {
+      "name": "서영호",
+      "role": "공공입찰 전담기자"
+    },
+    "publishedAt": "2026-11-22T06:25:00Z",
+    "eventEndsAt": "2026-11-25T10:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "완주교육지원청의 공식 공고와 첨부에 적힌 주요 조건 및 절차를 확인했다.",
+    "addedValue": "차량 형태와 좌석, 업종 등록, 정규 투찰과 재입찰 일정을 분리했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-22T06:14:00Z",
+    "reporterInsight": "완주교육지원청은 2027년 1~12월 운행 용역을 기초금액 2억6826만4000원으로 공고했다.",
+    "readerChecklist": [
+      "전세버스 업종 등록 확인",
+      "노선과 차량 조건 확인",
+      "정규 투찰 마감 확인"
+    ],
+    "imageUrl": "/stock/2026-11-22-wanju-samrye-school-bus-rental-bid.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "완주교육지원청",
+      "삼례중",
+      "전세버스",
+      "통학버스",
+      "나라장터",
+      "전북",
+      "용역입찰",
+      "차량규격"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
     "id": "keco-small-business-esg-support-2026",
     "slug": "keco-small-business-esg-support-2026",
     "title": "한국환경공단 ESG 지원 5개사 내외…400만원 이내 컨설팅·평가, 물기업 가점",
