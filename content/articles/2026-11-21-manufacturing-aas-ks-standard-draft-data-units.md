@@ -3,10 +3,10 @@ title: 제조설비 데이터 국가표준안 공개…식별자·단위부터 �
 slug: manufacturing-aas-ks-standard-draft-data-units
 category: industry
 author: 최은영 / 국제부 기자
-publishedAt: 2026-11-21 15:34
+publishedAt: 2026-11-21 21:54
 reporting: desk
 tags: [국가기술표준원, 제조AI, 자산관리셸, 데이터표준, 산업용로봇, 센서, 제조설비, KS]
-summary: 국가기술표준원은 자산관리셸 활용 표준안을 의견 수렴 및 심의에 부친다.
+summary: 국가기술표준원이 자산관리셸 활용 표준안을 공개했다. 제조설비 식별자와 데이터의 단위·제약조건, 양식 버전 관리 기준을 제시한다.
 image: /stock/2026-11-21-manufacturing-aas-ks-standard-draft-data-units.jpg
 imageCaption: AI 생성 이미지. 실제 사진이 아닙니다.
 verificationNote: 공식 공고 또는 발표 원문과 공개 첨부에서 적용 조건과 확인 범위를 대조했다.
@@ -16,9 +16,9 @@ visualType: ai-illustration
 aiRole: research-assist, draft-assist, image
 judgment: routine
 reviewedBy: 모두일보 독립 리뷰 담당
-reviewedAt: 2026-11-21 06:20
+reviewedAt: 2026-11-21 21:42
 humanReviewClaimed: false
-reporterInsight: 동일한 설비값이 서로 다른 단위와 버전으로 기록될 때의 실무 확인 항목을 정리했다. 국가기술표준원은 자산관리셸 활용 표준안을 의견 수렴 및 심의에 부친다.
+reporterInsight: 동일한 설비값이 서로 다른 단위와 버전으로 기록될 때의 실무 확인 항목을 정리했다. 국가기술표준원이 자산관리셸 활용 표준안을 공개했다. 제조설비 식별자와 데이터의 단위·제약조건, 양식 버전 관리 기준을 제시한다.
 readerChecklist: 설비 식별자 중복 확인 | 데이터 단위·제약조건 정리 | 템플릿 버전과 파일 형식 기록
 ---
 

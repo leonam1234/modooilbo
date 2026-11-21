@@ -3,7 +3,7 @@ title: 코레일테크 현장 기간제 565명 모집…12월 4일 정오 마감
 slug: korailtech-field-hiring-565-noon-deadline
 category: labor
 author: 유승현 / 사회부 기자
-publishedAt: 2026-11-21 15:35
+publishedAt: 2026-11-21 21:55
 reporting: desk
 tags: [코레일테크, 철도채용, 기간제, 환경직, 차량정비, 공공기관채용, 잡알리오, 입사지원]
 summary: 기술 76명과 환경 489명을 모집한다. 모집 분야·지역별 자격이 다르고 공고 내 복수 지원은 불가하다.

@@ -3,7 +3,7 @@ title: 근로복지공단 충주 보험가입조사원 1명…서류 5배수 선
 slug: chungju-comwel-insurance-investigator-selection
 category: labor
 author: 유승현 / 사회부 기자
-publishedAt: 2026-11-21 15:35
+publishedAt: 2026-11-21 21:55
 reporting: desk
 tags: [근로복지공단, 충주, 공무직, 보험가입조사원, 무기계약직, 잡알리오, 서류전형, 면접]
 summary: 11월 27일 오후 6시까지 도착한 공무직 지원서를 받는다. 학력·경력 제한과 가점 적용 요건을 구분했다.

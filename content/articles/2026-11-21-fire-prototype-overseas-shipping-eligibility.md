@@ -3,7 +3,7 @@ title: 소방 시제품 해외 운송비 최대 300만원…인정 종료일 공
 slug: fire-prototype-overseas-shipping-eligibility
 category: grants
 author: 김영환 / 경제부 기자
-publishedAt: 2026-11-21 15:33
+publishedAt: 2026-11-21 21:53
 reporting: desk
 tags: [소방산업, 소방청, 한국소방산업기술원, 수출지원, 운송비, 시제품, 해외인증, 통관]
 summary: 신청은 11월 23일부터 12월 11일까지다. 비용 인정 종료일 표기와 80% 산정 방식, 제출 증빙을 확인했다.

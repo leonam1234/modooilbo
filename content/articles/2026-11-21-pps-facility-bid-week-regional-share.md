@@ -3,7 +3,7 @@ title: 다음 주 시설공사 입찰 96건…충남·경기 추정가격 합계
 slug: pps-facility-bid-week-regional-share
 category: bids
 author: 서영호 / 공공입찰 전담기자
-publishedAt: 2026-11-21 15:33
+publishedAt: 2026-11-21 21:53
 reporting: desk
 tags: [조달청, 나라장터, 시설공사, 공공입찰, 충남, 경기, 추정가격, 입찰동향]
 summary: 조달청이 11월 23~27일 입찰 예정표를 공개했다. 지역별 금액과 건수의 집중도를 비교했다.
