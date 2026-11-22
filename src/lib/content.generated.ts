@@ -143969,6 +143969,674 @@ export const CONTENT_ARTICLES: Article[] = [
     "type": "article"
   },
   {
+    "id": "2026-11-23-daejeon-indie-game-marketing-reimbursement",
+    "slug": "2026-11-23-daejeon-indie-game-marketing-reimbursement",
+    "title": "대전 인디게임 마케팅 지원, 기업당 500만원…먼저 집행한 뒤 정산",
+    "summary": "대전 사업장 기업 3곳 안팎을 뽑고, 전시 홍보물과 굿즈 제작을 지원한다. 12월 3일 오전 10시까지 신청한다.",
+    "body": [
+      "대전정보문화산업진흥원이 자체 게임 지식재산을 활용하는 인디게임 마케팅 지원사업 참여기업을 모집한다.",
+      "선정 규모는 3개사 안팎으로, 기업당 지원금은 500만원이다.",
+      "## 돈을 먼저 쓰고 증빙을 제출하는 구조",
+      "제작비를 먼저 집행한 뒤 결과보고서와 적격 증빙을 제출하고 검토를 거쳐 지급받는 사후정산 방식이다. 공고는 협약 체결 뒤 12월 24일까지 제작·납품과 비용 집행을 끝내도록 했다. 지원금 500만원을 기준으로 자부담은 50만원 이상이다. 완제품이 아닌 재료 구매비, 인건비, 수수료, 부가세와 배송료는 지원하지 않으며 게임이 아닌 회사 자체를 홍보하는 물품도 대상이 아니다.",
+      "## 마감이 오후가 아닌 오전",
+      "공고일 기준 사업장이 대전에 있어야 한다. 올해 진흥원의 국내외 게임 전시회 참가 지원사업 1·2차 수행기업은 제외 대상이다. 12월 3일 오전 10시까지 진흥원 사업관리시스템에 신청서와 게임 영상 등 공고 지정 서류를 제출한다.",
+      "## 출처 메모",
+      "- 대전정보문화산업진흥원 사업관리시스템: https://pms.dicia.or.kr/comm/main/main.do",
+      "- 기업마당 공식 상세: https://bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000128045 - 대전정보문화산업진흥원 첨부 공고문: https://www.bizinfo.go.kr/DG_viewer/viewer/document/docviewer.do?filepath=/bizinfo/file/2026/11//202611201004100336.pdf&viewerSelect=image&fileext=pdf&filename=202611201004100336.pdf - 한국콘텐츠진흥원 웰콘 공고: https://welcon.kocca.kr/ko/info/business/1959412"
+    ],
+    "category": "industry",
+    "author": {
+      "name": "남동균",
+      "role": "문화·스포츠부 기자"
+    },
+    "publishedAt": "2026-11-23T06:27:00Z",
+    "eventEndsAt": "2026-12-03T10:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "대전정보문화산업진흥원의 공식 상세와 첨부에서 자격·기한·조건을 확인했다.",
+    "addedValue": "사후정산 구조와 최소 자부담, 불인정 비용을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T06:16:00Z",
+    "reporterInsight": "대전 사업장 기업 3곳 안팎을 뽑고, 전시 홍보물과 굿즈 제작을 지원한다. 12월 3일 오전 10시까지 신청한다.",
+    "readerChecklist": [
+      "최근 지원사업 수행 이력 확인",
+      "선집행 자금과 자부담 확보",
+      "오전 10시 접수 마감 확인"
+    ],
+    "imageUrl": "/stock/2026-11-23-daejeon-indie-game-marketing-reimbursement.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "대전",
+      "인디게임",
+      "게임지식재산",
+      "홍보물",
+      "굿즈",
+      "사후정산",
+      "자부담",
+      "사업관리시스템"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-23-gimhae-clean-air-retrofit-cost-share",
+    "slug": "2026-11-23-gimhae-clean-air-retrofit-cost-share",
+    "title": "김해 맑은공기 시설 지원, 설치비 90% 이내…부가세와 한도 초과분은 별도",
+    "summary": "김해시가 지정 공업지역 중소기업의 방지시설 개선을 지원한다. 12월 8일까지 방문 또는 등기우편으로 접수하되 예산이 소진되면 일찍 마감할 수 있다.",
+    "body": [
+      "김해시가 우리동네 맑은공기 패키지 지원사업 3차에 참여할 사업장을 모집한다. 공고상 진영·본산리, 부곡·유하동, 지내·안동의 지정 공업지역에 있는 중소기업 대기배출 1~5종 사업장이 기본 대상이다.",
+      "## 지원율과 실제 자부담은 다르다",
+      "설치비 한도 안에서 부가가치세를 제외한 실제 비용의 90%를 지원한다. 지원 한도를 넘는 비용이나 기존 용량을 초과해 설계한 부분은 사업자가 부담한다. 최근 5년 안에 설치한 방지시설과 최근 5년 안에 정부 지원을 받은 방지시설은 제외 대상에 들어간다.",
+      "## 설치 뒤 운영 조건까지 확인",
+      "지원받은 방지시설은 3년 이상 운영해야 한다. 공고에서 지정한 시설에는 사물인터넷 측정기기를 부착하고 관리시스템에 자료를 전송해야 한다. 등기우편은 접수기간 안에 도착한 서류를 인정하므로 발송일과 도착일을 구분해야 한다.",
+      "## 출처 메모",
+      "- 기업마당 공식 상세: https://bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000128057 - 김해시 첨부 공고문: https://www.bizinfo.go.kr/DG_viewer/viewer/document/docviewer.do?filepath=/bizinfo/file/2026/11//202611201127210697.hwpx&viewerSelect=image&fileext=hwpx&filename=202611201127210697.hwpx - 김해시 공고: https://www.gimhae.go.kr/03360/00023/00029.web?amode=view&not_ancmt_mgt_no=111369&cpage=3&section=01"
+    ],
+    "category": "grants",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-23T06:24:00Z",
+    "eventEndsAt": "2026-12-08T23:59:00Z",
+    "reporting": "desk",
+    "verificationNote": "김해시의 공식 상세와 첨부에서 자격·기한·조건을 확인했다. 공고에는 접수 종료의 별도 시각이 적혀 있지 않다.",
+    "addedValue": "장비 개선 보조율과 사업장 부담 비용·운영 의무를 나눴다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T06:13:00Z",
+    "reporterInsight": "김해시가 지정 공업지역 중소기업의 방지시설 개선을 지원한다. 12월 8일까지 방문 또는 등기우편으로 접수하되 예산이 소진되면 일찍 마감할 수 있다.",
+    "readerChecklist": [
+      "지정 공업지역 확인",
+      "기존 시설 지원 이력 점검",
+      "한도 초과 비용과 운영 의무 확인"
+    ],
+    "imageUrl": "/stock/2026-11-23-gimhae-clean-air-retrofit-cost-share.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "김해",
+      "맑은공기패키지",
+      "대기배출시설",
+      "방지시설",
+      "중소기업",
+      "설치비",
+      "자부담",
+      "우편접수"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-23-goyang-drone-anchor-office-fees",
+    "slug": "2026-11-23-goyang-drone-anchor-office-fees",
+    "title": "고양드론앵커센터 사무실 3개 모집, 연 사용료 406만~492만원에 부대비 별도",
+    "summary": "12월 7~8일 현장 방문 접수만 받는다. 창고는 희망 기업만 별도로 신청한다.",
+    "body": [
+      "고양시가 고양드론앵커센터의 사무실 3개와 창고 2개에 입주할 기업 등을 모집한다. 공고상 입주 예정일 전에 사업자등록이 가능한 항공 관련 기업·연구소·기관 등이 대상이다.",
+      "## 사무실 사용료와 부대비",
+      "사무실은 304호 406만원, 307호 492만원, 308호 447만원으로 연간 사용료가 다르다. 공고에는 보험료와 부가가치세가 별도라고 적혀 있다. 관리비와 공과금도 입주자 부담 항목에 들어가므로 연간 사용료만으로 총비용을 판단하면 안 된다.",
+      "## 이틀 동안 방문 접수",
+      "12월 7일과 8일 각각 오전 9시부터 오후 5시까지 화전동 고양드론앵커센터 2층 운영사무국을 방문해 신청한다. 온라인과 우편 접수는 불가능하다. 기본 입주 기간과 사용료 부과는 2027년 2월 1일부터 시작된다.",
+      "## 출처 메모",
+      "- 기업마당 공식 상세: https://bizinfo.go.kr/biz/bizb/selectBIZB200Detail.do?mvnEntrprsRcritPblancId=MVNP_000000000000824 - 고양시 첨부 공고문: https://www.bizinfo.go.kr/DG_viewer/viewer/document/docviewer.do?filepath=/bizinfo/file/2026/11//202611191451570000.hwpx&viewerSelect=image&fileext=hwpx&filename=202611191451570000.hwpx"
+    ],
+    "category": "startup",
+    "author": {
+      "name": "최은영",
+      "role": "국제부 기자"
+    },
+    "publishedAt": "2026-11-23T06:24:00Z",
+    "eventEndsAt": "2026-12-08T17:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "고양시의 공식 상세와 첨부에서 자격·기한·조건을 확인했다.",
+    "addedValue": "호실별 연 사용료와 별도로 드는 비용, 이틀 방문 접수를 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T06:13:00Z",
+    "reporterInsight": "12월 7~8일 현장 방문 접수만 받는다. 창고는 희망 기업만 별도로 신청한다.",
+    "readerChecklist": [
+      "호실별 연 사용료 비교",
+      "부대비와 창고 확인",
+      "방문 접수 이틀 확인"
+    ],
+    "imageUrl": "/stock/2026-11-23-goyang-drone-anchor-office-fees.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "고양",
+      "드론앵커센터",
+      "입주기업",
+      "항공산업",
+      "사무실",
+      "사용료",
+      "관리비",
+      "방문접수"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-23-jinan-dongchon-standing-timber-onbid-documents",
+    "slug": "2026-11-23-jinan-dongchon-standing-timber-onbid-documents",
+    "title": "진안 동촌리 국유임산물 매각, 온비드 투찰 외 자격서류도 30일 16시까지",
+    "summary": "입목과 미이용 산림바이오매스를 합친 예정가격은 4,030만원이다. 온비드 제출과 자격 입증 서류 제출 경로가 다르다.",
+    "body": [
+      "무주국유림관리소가 진안군 마령면 동촌리의 국유임산물을 매각한다.",
+      "공고에는 입목 3,192.45㎥와 미이용 산림바이오매스 예정 수량 1,611.77톤, 합산 예정가격 4,030만원이 명시돼 있다. 대표 이미지는 임산물 종류를 설명하기 위한 연출로, 현장이나 벌채 상태를 보여주는 사진이 아니다.",
+      "## 마감은 같지만 제출 경로는 다르다",
+      "입찰서와 보증금은 온비드에서 11월 30일 오후 4시까지 처리한다. 자격 증명 서류는 같은 시각까지 무주국유림관리소에 우편 또는 팩스로 내며, 우편은 기한 내 도착분만 유효하고 팩스는 전화로 도착 여부를 확인해야 한다. 공고는 벌채실적, 산림기능사 이상 자격, 임업인, 지정 교육 이수, 원목생산업 등록의 다섯 유형 가운데 하나 이상을 서류로 입증하도록 했다. 개찰은 12월 1일 10시다.",
+      "## 미이용 물량은 실제 계측을 바탕으로 정산",
+      "공고는 11월 25일 오전 11시 30분에 진안군 마령면 동촌리 산91-1에서 열리는 현장설명에 참석한 뒤 응찰하도록 안내한다. 참석자는 관리소 경영자원팀에 사전 연락해야 한다. 유효 입찰 두 건 이상이 있어야 예정가격 이상 최고가 입찰자를 선정한다. 미이용 산림바이오매스는 매수자가 계측 수량 등 정산 근거를 제출해야 하며 실제 측량에 따라 정산한다. 공고의 예정 수량을 확정 인수량으로 보면 안 된다.",
+      "## 출처 메모",
+      "- 온비드 공식 상세: https://www.onbid.co.kr/op/cltrpbancinf/pbanc/pbancdtlinf/PbancDtlInqController/mvmnPbancDtl.do?onbidPbancNo=914970&pbctNo=10122305 - 무주국유림관리소 첨부 공고문: https://www.onbid.co.kr/op/cm/syc/filemng/filemngprcs/FileMngPrcsController/dnldFile.do?atchFileLstNo=17132075&atchSn=1&hashCrpsNo=HMLJPBMJINMAEAKICLEBKIEMBONNAJLEGKGKIJOLMCHFFABLMKDPHDMNEFEMHHKC"
+    ],
+    "category": "deals",
+    "author": {
+      "name": "서영호",
+      "role": "공공입찰 전담기자"
+    },
+    "publishedAt": "2026-11-23T06:28:00Z",
+    "eventEndsAt": "2026-11-30T16:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "무주국유림관리소의 공식 상세와 첨부에서 자격·기한·조건을 확인했다.",
+    "addedValue": "온라인 투찰과 별도 자격 서류, 예정 수량과 실제 정산을 분리했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T06:16:00Z",
+    "reporterInsight": "입목과 미이용 산림바이오매스를 합친 예정가격은 4,030만원이다. 온비드 제출과 자격 입증 서류 제출 경로가 다르다.",
+    "readerChecklist": [
+      "벌채 관련 자격 증빙 확인",
+      "온비드와 별도 서류 제출",
+      "예정 수량과 실제 정산 구분"
+    ],
+    "imageUrl": "/stock/2026-11-23-jinan-dongchon-standing-timber-onbid-documents.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "진안",
+      "무주국유림관리소",
+      "국유임산물",
+      "입목매각",
+      "산림바이오매스",
+      "온비드",
+      "자격서류",
+      "계측정산"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-23-khnp-high-school-recruit-school-recommendation",
+    "slug": "2026-11-23-khnp-high-school-recruit-school-recommendation",
+    "title": "한수원 고졸수준 신입 40명, 지정 학교 관련학과 2학년 추천받아야",
+    "summary": "마이스터고 또는 원전 소재 기초자치단체의 특성화고 관련학과 2학년이 대상이다. 추천 이후 개인 원서 마감은 12월 8일 15시다.",
+    "body": [
+      "한국수력원자력이 고졸수준 신입사원 40명을 선발한다.",
+      "고졸자 일반 모집이 아니라 마이스터고 또는 원전 소재 기초자치단체 내 특성화고의 관련학과 2학년 재학생이 대상이다. 2학년 1학기까지 학과 성적이 상위 30% 이내이거나 공고가 인정한 관련 직종 기능경기대회 입상 요건을 충족하고 학교장 추천을 받아야 한다.",
+      "## 학교가 먼저 추천서를 제출",
+      "학교는 11월 23일까지 정부유통 전자문서로 추천 서류를 제출한다. 회사가 학교별 추천 서류를 기준으로 지원자 정보를 등록한 뒤 추천받은 지원자가 채용사이트에서 원서를 작성할 수 있다. 학교별 추천 가능 인원은 별도 안내 대상이다.",
+      "## 해당자 지역 가점은 개인 접수보다 먼저 확인",
+      "공고상 개인 온라인 원서 접수는 11월 23일부터 12월 8일 15시까지며, 학교 추천 정보가 등록된 뒤에 작성할 수 있다. 원자력발전소 주변 지역이나 방폐장 유치지역 주민 가점을 신청할 해당자는 12월 7일 17시까지 해당 지역 원자력본부의 확인이 필요하다. 해당하지 않는 지원자에게 적용되는 공통 절차는 아니다.",
+      "## 출처 메모",
+      "- JOB-ALIO 공식 상세: https://job.alio.go.kr/recruitview.do?idx=307284 - 한국수력원자력 첨부 공고문: https://www.alio.go.kr/download/download.json?fileNo=3089063 - 한국수력원자력 채용 안내: https://www.khnp.co.kr/recruit"
+    ],
+    "category": "labor",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-23T06:28:00Z",
+    "eventEndsAt": "2026-12-08T15:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "한국수력원자력의 공식 상세와 첨부에서 자격·기한·조건을 확인했다.",
+    "addedValue": "학교 추천과 개인 지원, 해당자 지역 확인 기한을 분리했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T06:16:00Z",
+    "reporterInsight": "마이스터고 또는 원전 소재 기초자치단체의 특성화고 관련학과 2학년이 대상이다. 추천 이후 개인 원서 마감은 12월 8일 15시다.",
+    "readerChecklist": [
+      "학교 추천 여부 확인",
+      "개인 원서 마감 확인",
+      "지역 가점 대상만 사전 확인"
+    ],
+    "imageUrl": "/stock/2026-11-23-khnp-high-school-recruit-school-recommendation.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "한국수력원자력",
+      "고졸채용",
+      "학교장추천",
+      "학교추천서",
+      "신입사원",
+      "지역가점",
+      "원서접수",
+      "JOBALIO"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-23-koica-training-monitoring-intern-documents",
+    "slug": "2026-11-23-koica-training-monitoring-intern-documents",
+    "title": "KOICA 글로벌연수 인턴 8명, 어학 증빙은 12월 8일 오전 11시까지 함께 제출",
+    "summary": "2027년 2월 15일부터 7월 15일까지 활동한다. 서류 심사에서 가점 대상 증빙은 접수 단계에 내야 한다.",
+    "body": [
+      "한국국제협력단의 글로벌연수사업 모니터링 체험형 청년인턴 모집은 8명 규모다. 연수 모니터링과 보고서 작성, 홍보 콘텐츠 제작, 자료 정리와 행사 지원을 맡는다.",
+      "## 누가 지원할 수 있나",
+      "공고상 청년 기준은 만 15~34세이며 해당 제대군인은 복무기간에 따른 상한 연장이 적용된다. 공고가 인정한 공인영어성적 기준 중 하나를 충족해야 한다. 예를 들어 TOEIC 750점 또는 New TEPS 285점 이상이 해당한다. 활동기간은 2027년 2월 15일부터 7월 15일까지이고, 근무 시작일을 미루는 것은 허용되지 않는다.",
+      "## 가점 자료와 후속 경력 증빙은 시점이 다르다",
+      "공고상 접수는 11월 23일 오전 9시에 시작해 12월 8일 오전 11시에 끝난다. 접수처는 KOICA 인턴십 사이트로 안내됐으나 실제 접수 화면은 확인하지 못했다. 어학점수와 가점 대상 자격·우대 증빙은 같은 마감까지 PDF로 올려야 한다. 가점 대상이 아닌 경력 등 증빙은 서류 합격자가 발표 뒤 1주일 이내 별도 안내에 따라 제출한다.",
+      "## 출처 메모",
+      "- JOB-ALIO 공식 상세: https://job.alio.go.kr/recruitview.do?idx=307272 - 한국국제협력단 첨부 공고문: https://www.alio.go.kr/download/download.json?fileNo=3088963 - 한국국제협력단 인턴십 사이트: https://www.koica.go.kr/sites/internship_kr/index.do"
+    ],
+    "category": "labor",
+    "author": {
+      "name": "유승현",
+      "role": "사회부 기자"
+    },
+    "publishedAt": "2026-11-23T06:28:00Z",
+    "eventEndsAt": "2026-12-08T11:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "한국국제협력단의 공식 상세와 첨부에서 자격·기한·조건을 확인했다.",
+    "addedValue": "접수 때 제출할 어학·가점 자료와 합격 후 증빙을 나눴다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T06:16:00Z",
+    "reporterInsight": "2027년 2월 15일부터 7월 15일까지 활동한다. 서류 심사에서 가점 대상 증빙은 접수 단계에 내야 한다.",
+    "readerChecklist": [
+      "청년 연령 조건 확인",
+      "접수 때 낼 증빙 구분",
+      "오전 11시 전 최종 제출"
+    ],
+    "imageUrl": "/stock/2026-11-23-koica-training-monitoring-intern-documents.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "KOICA",
+      "글로벌연수",
+      "청년인턴",
+      "직무모니터링",
+      "어학증빙",
+      "가점서류",
+      "온라인접수",
+      "체험형인턴"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-23-namyangju-xray-surplus-auction-removal",
+    "slug": "2026-11-23-namyangju-xray-surplus-auction-removal",
+    "title": "남양주풍양보건소 중고 엑스선 장비 재매각, 철거·반출 비용은 낙찰자 부담",
+    "summary": "예정가격은 135만원이고 11월 24일 16시까지 온비드에 입찰한다. 일부만 반출할 수 없다.",
+    "body": [
+      "남양주시가 남양주풍양보건소의 의료용 방사선 촬영장비 매각을 재공고했다. 2012년에 취득한 노후 장비다. 공고 상태표에는 정상 작동으로 기재됐으나, 같은 공고는 11월 2일까지 사용한 뒤 3일 철거·분리해 별도 보관 중이라고 설명했다. 현재 설치되거나 작동 중이라는 뜻은 아니다. 대표 이미지는 실제 매각 장비를 촬영한 사진이 아니다.",
+      "## 예정가격 외에 철거·운반을 계산",
+      "예정가격은 135만원이다. 입찰서 제출과 보증금 납부는 11월 24일 16시까지이고 개찰은 25일 10시다. 장비 상태는 직접 확인해야 하며 인수 후 운반과 처리 비용은 낙찰자가 부담한다.",
+      "## 낙찰 뒤 계약·대금과 반출",
+      "낙찰일부터 7일 이내 계약하고 계약과 동시에 대금을 납부한다. 반출은 평일 9시부터 18시 사이에 해야 하며 매각 물품 가운데 일부만 가져가는 것은 불가능하다. 구매 가격과 실제 반출에 드는 작업 비용은 별도로 산정할 필요가 있다.",
+      "## 출처 메모",
+      "- 남양주시 공식 상세: https://www.nyj.go.kr/main/selectEminwonWebView.do?cpn=9&key=2492&pk=90132&sa1Join=01%3B02%3B04%3B05 - 남양주시 첨부 공고문: https://eminwon.nyj.go.kr/emwp/jsp/ofr/FileDownNew.jsp?user_file_nm=%EB%82%A8%EC%96%91%EC%A3%BC%ED%92%8D%EC%96%91%EB%B3%B4%EA%B1%B4%EC%86%8C%20%EB%A7%A4%EA%B0%81%EC%9E%85%EC%B0%B0%EC%9E%AC%EA%B3%B5%EA%B3%A0(3%EC%B0%A8).hwpx&sys_file_nm=%EB%82%A8%EC%96%91%EC%A3%BC%ED%92%8D%EC%96%91%EB%B3%B4%EA%B1%B4%EC%86%8C%20%EB%A7%A4%EA%B0%81%EC%9E%85%EC%B0%B0%EC%9E%AC%EA%B3%B5%EA%B3%A0(3%EC%B0%A8)_ofr_ofr_QuFfjyBs5xKLMgE9_20261117101514609_1.hwpx&file_path=%2Fntishome%2Ffile%2Fupload%2Fofr%2Fofr%2F20261117"
+    ],
+    "category": "deals",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-23T06:28:00Z",
+    "eventEndsAt": "2026-11-24T16:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "남양주시의 공식 상세와 첨부에서 자격·기한·조건을 확인했다.",
+    "addedValue": "장비 예정가격과 철거·이전 비용, 전부 반출 조건을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T06:16:00Z",
+    "reporterInsight": "예정가격은 135만원이고 11월 24일 16시까지 온비드에 입찰한다. 일부만 반출할 수 없다.",
+    "readerChecklist": [
+      "노후 장비 현품 확인",
+      "입찰서와 보증금 마감 확인",
+      "전체 반출 비용 계산"
+    ],
+    "imageUrl": "/stock/2026-11-23-namyangju-xray-surplus-auction-removal.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "남양주",
+      "풍양보건소",
+      "의료장비",
+      "엑스선촬영장비",
+      "불용물품",
+      "온비드",
+      "철거비",
+      "매각재공고"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-23-seongnam-yangyeong-school-interior-quote",
+    "slug": "2026-11-23-seongnam-yangyeong-school-interior-quote",
+    "title": "성남 양영중 다목적실 공사, 실내건축업체 전자견적 27일 10시 마감",
+    "summary": "기초금액은 1억6229만4000원이며, 공사는 착공일부터 29일이다. 성남 소재 조건을 적용한다.",
+    "body": [
+      "양영중학교가 본관동 1층 다목적실 환경개선 공사의 견적 제출 안내를 냈다. 기초금액 1억6229만4000원에는 부가가치세가 포함된다.",
+      "## 업종과 소재지 조건은 함께 본다",
+      "전문건설업의 실내건축공사업 등록이 필요하고 상호시장 진출은 허용하지 않는다. 원칙적으로 공고 전날부터 견적 제출일까지 성남에 법인은 등기부상 본점, 개인사업자는 사업자등록증이나 관계 인허가 서류에 기재된 사업장이 있어야 하며 낙찰자는 계약 체결일까지 유지한다. 신규사업자의 소재 기준은 공고의 예외 규정을 적용한다.",
+      "## 착공 이후 기간과 견적 일정을 구분",
+      "견적은 나라장터에서 11월 27일 10시까지 제출하고 개찰은 당일 11시다. 참가자격과 전자입찰 이용자등록은 개찰집행일 전일까지 마쳐야 한다. 공사기간 29일은 공고일이나 견적 제출일이 아니라 착공일을 기준으로 한다.",
+      "## 출처 메모",
+      "- 나라장터 공식 상세: https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01838740&bidPbancOrd=000 - 양영중학교 첨부 공고문: https://www.g2b.go.kr/pn/pnp/pnpe/UntyAtchFile/downloadFile.do?bidPbancNo=R26BK01838740&bidPbancOrd=000&fileSeq=2&fileType=&prcmBsneSeCd=07"
+    ],
+    "category": "bids",
+    "author": {
+      "name": "서영호",
+      "role": "공공입찰 전담기자"
+    },
+    "publishedAt": "2026-11-23T06:27:00Z",
+    "eventEndsAt": "2026-11-27T10:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "양영중학교의 공식 상세와 첨부에서 자격·기한·조건을 확인했다.",
+    "addedValue": "실내건축 등록과 성남 소재 기준 및 제출 일정을 분리했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T06:16:00Z",
+    "reporterInsight": "기초금액은 1억6229만4000원이며, 공사는 착공일부터 29일이다. 성남 소재 조건을 적용한다.",
+    "readerChecklist": [
+      "업종 등록 확인",
+      "성남 소재 기간 확인",
+      "견적과 개찰 시각 구분"
+    ],
+    "imageUrl": "/stock/2026-11-23-seongnam-yangyeong-school-interior-quote.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "성남",
+      "양영중학교",
+      "실내건축공사업",
+      "전자견적",
+      "나라장터",
+      "기초금액",
+      "다목적실",
+      "착공"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-23-shanghai-environment-exhibition-korea-booth-cost",
+    "slug": "2026-11-23-shanghai-environment-exhibition-korea-booth-cost",
+    "title": "상하이 환경 전시 한국관, 부스·통역은 지원하고 항공·기타 여비는 기업 부담",
+    "summary": "수처리와 소각발전·폐기물 처리 분야 국내 기업 8곳 안팎을 모집한다. 11월 29일까지 신청서를 보낸다.",
+    "body": [
+      "한국환경산업기술원이 12월 9~11일 상하이에서 열리는 수처리 및 소각발전·폐기물 처리 전시 한국관 참가기업을 모집한다. 지원 범위는 전시 운영에 집중돼 있어 출장 비용은 별도로 계산해야 한다.",
+      "## 한국관 지원과 기업 부담",
+      "전시부스 임차·설치, 한국관 통합 안내자료 제작과 배포, 상담 통역을 지원한다. 현지 이동편과 숙박은 예약 등을 지원하지만 항공편 및 기타 여비는 개별 부담이다. 포럼 기술 발표는 중국 측 수요에 맞춰 별도로 조율한다.",
+      "## 신청을 행사 등록과 혼동하지 않으려면",
+      "11월 29일까지 참가신청서, 참가자명단과 전시자료를 공고에 적힌 중국사무소 이메일로 제출한다. 기업은 기술 설명자료와 현지 상담 인력을 준비하면서 행사의 지원 범위에 들지 않는 출장 예산을 별도로 검토할 수 있다.",
+      "## 출처 메모",
+      "- 기업마당 공식 상세: https://bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000128050 - 한국환경산업기술원 첨부 공고문: https://www.bizinfo.go.kr/DG_viewer/viewer/document/docviewer.do?filepath=/bizinfo/file/2026/11//202611201028040465.hwpx&viewerSelect=image&fileext=hwpx&filename=202611201028040465.hwpx - 한국환경산업기술원 원 공고: https://keiti.re.kr/site/keiti/ex/board/View.do?cbIdx=277&bcIdx=41594"
+    ],
+    "category": "industry",
+    "author": {
+      "name": "최은영",
+      "role": "국제부 기자"
+    },
+    "publishedAt": "2026-11-23T06:24:00Z",
+    "eventEndsAt": "2026-11-29T23:59:00Z",
+    "reporting": "desk",
+    "verificationNote": "한국환경산업기술원의 공식 상세와 첨부에서 자격·기한·조건을 확인했다. 공고에는 접수 종료의 별도 시각이 적혀 있지 않다.",
+    "addedValue": "부스·통역 지원과 항공 등 업체 부담 비용을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T06:13:00Z",
+    "reporterInsight": "수처리와 소각발전·폐기물 처리 분야 국내 기업 8곳 안팎을 모집한다. 11월 29일까지 신청서를 보낸다.",
+    "readerChecklist": [
+      "지원되는 부스 비용 확인",
+      "여비 예산 별도 산정",
+      "접수 파일 준비"
+    ],
+    "imageUrl": "/stock/2026-11-23-shanghai-environment-exhibition-korea-booth-cost.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "한국환경산업기술원",
+      "상하이",
+      "환경산업",
+      "수처리",
+      "폐기물처리",
+      "전시한국관",
+      "상담통역",
+      "출장비"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-23-yangsan-gspace-east-office-relocation",
+    "slug": "2026-11-23-yangsan-gspace-east-office-relocation",
+    "title": "양산 G-Space@East 입주, 신청 때 소재지 제한 없지만 선정 뒤 주소 이전",
+    "summary": "온라인 접수는 12월 4일 15시까지다. 기존 기업과 예비창업자는 입주 뒤 이행할 요건이 다르다.",
+    "body": [
+      "경남창조경제혁신센터가 양산 G-Space@East에 입주할 예비창업자와 업력 7년 미만 창업기업 15곳 안팎을 모집한다.",
+      "기존 기업의 신청 당시 사업장 소재지는 제한하지 않지만 선정 뒤에는 입주 공간으로 주소를 옮기는 조건이 붙는다.",
+      "## 신청 자격과 입주 때 의무를 나눠 확인",
+      "공고는 선정 기업이 입주 개시 후 한 달 이내인 2027년 1월 31일까지 본점, 지점 또는 연구소 중 하나 이상을 센터로 이전하도록 안내한다. 주소 이전을 이행하지 않으면 계약이 해지될 수 있다. 예비창업자는 협약 체결 뒤 3개월 안에 사업자등록을 마쳐야 한다.",
+      "## 마감 뒤 파일 변경 불가",
+      "센터 공고문 기준 접수 기간은 2026년 11월 9일부터 12월 4일 오후 3시까지다. 경남창업포털에서 온라인으로 신청한다. 양산시 게시물 요약에는 시작 연도가 2025년으로 적혀 있어 센터 공고문의 2026년을 기준으로 안내한다. 공고는 접수 마감 이후 사업계획서 등의 변경·추가·삭제가 불가능하다고 밝혔다. 다른 곳의 주소 유지 의무가 있는 기업은 입주 신청 전에 이전 가능한 사업장 형태를 확인해야 한다.",
+      "## 출처 메모",
+      "- 경남창업포털 접수 안내: https://www.gnstartup.kr/",
+      "- 기업마당 공식 상세: https://bizinfo.go.kr/biz/bizb/selectBIZB200Detail.do?mvnEntrprsRcritPblancId=MVNP_000000000000822 - 경남창조경제혁신센터 첨부 공고문: https://www.bizinfo.go.kr/DG_viewer/viewer/document/docviewer.do?filepath=/bizinfo/file/2026/11//202611181514460615.pdf&viewerSelect=image&fileext=pdf&filename=202611181514460615.pdf - 양산시 게재 공고: https://www.yangsan.go.kr/portal/board/post/view.do?bcIdx=293&mid=0101010000&idx=1028829"
+    ],
+    "category": "startup",
+    "author": {
+      "name": "남동균",
+      "role": "문화·스포츠부 기자"
+    },
+    "publishedAt": "2026-11-23T06:27:00Z",
+    "eventEndsAt": "2026-12-04T15:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "경남창조경제혁신센터의 공식 상세와 첨부에서 자격·기한·조건을 확인했다.",
+    "addedValue": "신청할 때 소재지와 선정 후 주소 이전 및 예비창업자의 등록 조건을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T06:16:00Z",
+    "reporterInsight": "온라인 접수는 12월 4일 15시까지다. 기존 기업과 예비창업자는 입주 뒤 이행할 요건이 다르다.",
+    "readerChecklist": [
+      "이전 가능한 사업장 확인",
+      "예비창업 등록 일정 계산",
+      "마감 전 제출 완료 확인"
+    ],
+    "imageUrl": "/stock/2026-11-23-yangsan-gspace-east-office-relocation.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "양산",
+      "경남창조경제혁신센터",
+      "GSpaceEast",
+      "입주공간",
+      "스타트업",
+      "주소이전",
+      "예비창업",
+      "사업계획서"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-23-yeosu-seafood-cold-storage-land-proof",
+    "slug": "2026-11-23-yeosu-seafood-cold-storage-land-proof",
+    "title": "여수 수산물 저온저장고 4곳 모집…1,500만원은 보조금 아닌 총사업비 한도",
+    "summary": "자부담은 총사업비의 50%이며, 부지 확보 또는 사용 승낙이 필요하다. 12월 7일까지 접수한다.",
+    "body": [
+      "여수시가 2027년 수산물 소형저온저장시설 신청자를 모집한다.",
+      "계획 물량은 4곳이며 어업인, 수산물가공업자, 어업경영체, 식품사업자 등이 신청 대상에 포함된다.",
+      "## 저온저장고 비용과 부지 증명",
+      "공고상 총사업비 상한은 한 곳당 1,500만원이고 자부담 비율은 50%다. 지원 시설은 10평 이하의 컨테이너·패널식 저온저장시설이다. 신청서와 사업계획서 외에 대상자 증빙, 부지확보 증명서 또는 부지사용 승낙서가 필요하다.",
+      "## 예산과 건축신고가 남아 있다",
+      "여수시 수산경영과 수산유통팀 또는 관할 읍·면·동 사무소가 12월 7일까지 접수한다. 건축신고나 가설건축신고를 이행하지 못하면 제외될 수 있다. 시는 2027년 예산 확보에 따라 사업량이 바뀌거나 추진하지 못할 수 있다고 안내했다.",
+      "## 출처 메모",
+      "- 기업마당 공식 상세: https://bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000128053 - 여수시 첨부 공고문: https://www.bizinfo.go.kr/DG_viewer/viewer/document/docviewer.do?filepath=/bizinfo/file/2026/11//202611201059180096.hwpx&viewerSelect=image&fileext=hwpx&filename=202611201059180096.hwpx - 여수시 공고: https://www.yeosu.go.kr/www/govt/news/notify/new_notifys/new_notify?idx=81231&mode=view"
+    ],
+    "category": "grants",
+    "author": {
+      "name": "유승현",
+      "role": "사회부 기자"
+    },
+    "publishedAt": "2026-11-23T06:24:00Z",
+    "eventEndsAt": "2026-12-07T23:59:00Z",
+    "reporting": "desk",
+    "verificationNote": "여수시의 공식 상세와 첨부에서 자격·기한·조건을 확인했다. 공고에는 접수 종료의 별도 시각이 적혀 있지 않다.",
+    "addedValue": "한 곳당 총사업비와 자부담을 분리하고 부지 증빙 및 예산 조건을 정리했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T06:13:00Z",
+    "reporterInsight": "자부담은 총사업비의 50%이며, 부지 확보 또는 사용 승낙이 필요하다. 12월 7일까지 접수한다.",
+    "readerChecklist": [
+      "자부담과 사업비 구분",
+      "부지 증빙 확보",
+      "건축신고 가능 여부 확인"
+    ],
+    "imageUrl": "/stock/2026-11-23-yeosu-seafood-cold-storage-land-proof.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "여수",
+      "수산물",
+      "저온저장시설",
+      "어업인",
+      "수산물가공",
+      "부지사용승낙",
+      "자부담",
+      "가설건축신고"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-23-yongin-jukjeon-electrical-supervisor-bid",
+    "slug": "2026-11-23-yongin-jukjeon-electrical-supervisor-bid",
+    "title": "용인 죽전 공동주택 전기감리, 종합평점 예비 상위 5곳은 증빙 방문 제출",
+    "summary": "기초금액은 7억9650만5285원이다. 전자입찰은 11월 24일 11시 마감이며 증빙 제출은 별도다.",
+    "body": [
+      "용인시가 수지구 죽전동 공동주택 신축공사의 전기 감리업자를 모집한다.",
+      "공고에 적힌 감리대가는 8억2113만9469원이고 기초금액은 7억9650만5285원이다.",
+      "## 전자입찰에 붙이는 서류",
+      "공고는 연면적 88,704.1776㎡의 공사로 종합감리업만 수행할 수 있다고 명시했다. 참가 업체는 해당 감리업 등록 요건을 갖춰야 한다. 나라장터 접수는 11월 24일 11시까지다. 최초 입찰에는 감리업자 선정신청서, 자기평가 총괄표, 감리원 배치계획표 등 공고가 지정한 서류를 함께 제출한다. 개찰은 이날 14시 이후로 예정됐으며, 나라장터 개찰 순위가 종합평가 우선순위를 뜻하지는 않는다.",
+      "## 사실확인 서류는 별도 창구로",
+      "종합평점 예비 상위 5개 업체는 11월 25일 9시부터 27일 18시까지 근무시간에 용인시청 공동주택과 별관 1층을 방문해 사실확인 서류를 낸다. 기한 내 제출하지 않으면 감리자 선정에서 제외될 수 있어 최초 전자 첨부와 후속 방문 서류를 나눠 준비할 필요가 있다.",
+      "## 출처 메모",
+      "- 나라장터 공식 상세: https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01828563&bidPbancOrd=000 - 용인시 첨부 공고문: https://www.g2b.go.kr/pn/pnp/pnpe/UntyAtchFile/downloadFile.do?bidPbancNo=R26BK01828563&bidPbancOrd=000&fileSeq=2&fileType=&prcmBsneSeCd=05"
+    ],
+    "category": "bids",
+    "author": {
+      "name": "서영호",
+      "role": "공공입찰 전담기자"
+    },
+    "publishedAt": "2026-11-23T06:27:00Z",
+    "eventEndsAt": "2026-11-24T11:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "용인시의 공식 상세와 첨부에서 자격·기한·조건을 확인했다.",
+    "addedValue": "전자입찰에 붙이는 서류와 개찰 후 별도 방문 증빙을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T06:16:00Z",
+    "reporterInsight": "기초금액은 7억9650만5285원이다. 전자입찰은 11월 24일 11시 마감이며 증빙 제출은 별도다.",
+    "readerChecklist": [
+      "전자입찰 첨부 준비",
+      "개찰과 종합평가 구분",
+      "예비 상위 증빙 준비"
+    ],
+    "imageUrl": "/stock/2026-11-23-yongin-jukjeon-electrical-supervisor-bid.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "용인",
+      "죽전",
+      "전기감리",
+      "공동주택",
+      "나라장터",
+      "기초금액",
+      "사업수행능력",
+      "방문제출"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
     "id": "keco-small-business-esg-support-2026",
     "slug": "keco-small-business-esg-support-2026",
     "title": "한국환경공단 ESG 지원 5개사 내외…400만원 이내 컨설팅·평가, 물기업 가점",
