@@ -144372,7 +144372,7 @@ export const CONTENT_ARTICLES: Article[] = [
       "행안부는 7월 9일 카카오페이·토스·네이버페이 등과 서비스 확대 업무협약을 맺었다.",
       "11월 18일 공개한 포상 자료에는 카카오페이·토스의 시작일을 24일로 적었고, 22일 개시 안내에서는 23일로 제시했다. 두 자료에서 날짜가 다른 이유는 확인되지 않았다.",
       "## 출처 메모",
-      "- 행정안전부: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790284 - 행정안전부: https://www.korea.kr/common/download.do?fileId=198594353&tblKey=GMN - 행정안전부: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156789770 - 행정안전부: https://www.korea.kr/common/download.do?fileId=198592465&tblKey=GMN - 행정안전부: https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&nttId=127696 - 국가법령정보센터: https://law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000283190"
+      "- 행정안전부 11월 개시 안내: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790284 - 행정안전부 개시 안내 PDF: https://www.korea.kr/common/download.do?fileId=198594353&tblKey=GMN - 행정안전부 포상 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156789770 - 행정안전부 포상 자료 PDF: https://www.korea.kr/common/download.do?fileId=198592465&tblKey=GMN - 행정안전부 7월 업무협약: https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&nttId=127696 - 국가법령정보센터: https://law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000283190"
     ],
     "category": "society",
     "author": {

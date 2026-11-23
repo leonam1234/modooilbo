@@ -40,9 +40,9 @@ readerChecklist: 카카오페이·토스 개시 안내와 네이버페이 12월 
 
 ## 출처 메모
 
-- 행정안전부: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790284
-- 행정안전부: https://www.korea.kr/common/download.do?fileId=198594353&tblKey=GMN
-- 행정안전부: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156789770
-- 행정안전부: https://www.korea.kr/common/download.do?fileId=198592465&tblKey=GMN
-- 행정안전부: https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&nttId=127696
+- 행정안전부 11월 개시 안내: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790284
+- 행정안전부 개시 안내 PDF: https://www.korea.kr/common/download.do?fileId=198594353&tblKey=GMN
+- 행정안전부 포상 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156789770
+- 행정안전부 포상 자료 PDF: https://www.korea.kr/common/download.do?fileId=198592465&tblKey=GMN
+- 행정안전부 7월 업무협약: https://www.mois.go.kr/frt/bbs/type010/commonSelectBoardArticle.do?bbsId=BBSMSTR_000000000008&nttId=127696
 - 국가법령정보센터: https://law.go.kr/LSW/admRulLsInfoP.do?admRulSeq=2100000283190
