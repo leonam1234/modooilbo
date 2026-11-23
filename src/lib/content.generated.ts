@@ -145177,6 +145177,671 @@ export const CONTENT_ARTICLES: Article[] = [
     "type": "article"
   },
   {
+    "id": "2026-11-24-chilgok-knuh-temp-license-application",
+    "slug": "2026-11-24-chilgok-knuh-temp-license-application",
+    "title": "칠곡경북대병원 임시직 4명, 소방 시설 직무는 전기기능사 이상 필요",
+    "summary": "간호사·임상병리사·병동 보호사·소방 운영지원 각 1명이다. 30일 13시까지 홈페이지로 접수한다.",
+    "body": [
+      "칠곡경북대학교병원이 11월 4차 임시직원을 모집한다.",
+      "네 직무의 채용 인원은 각각 한 명이며 계약 기간과 근무 형태는 직무별로 다르다.",
+      "## 필수 면허와 우대 자격을 구분",
+      "간호 직무는 간호사 면허, 임상병리 직무는 임상병리사 면허를 요구한다. 소방 운영지원은 시설과에서 소방시설과 위험물 저장소 등을 점검하며 전기기능사 이상 자격증이 필수다. 병동 보호사에 나열된 자격증은 공고의 우대 항목이다.",
+      "## 자격시험 합격증으로 대체할 수 없다",
+      "병원은 면허나 자격증 소지가 필수인 직무에서 합격증만으로는 갈음할 수 없다고 안내했다. 지원은 공고상 11월 24일 13시부터 30일 13시까지이며, 홈페이지 공고 하단 접수 버튼을 이용한다.",
+      "## 출처 메모",
+      "- JOB-ALIO 공식 상세: https://job.alio.go.kr/recruitview.do?idx=307351 - 칠곡경북대학교병원 첨부 공고문: https://www.alio.go.kr/download/download.json?fileNo=3089599"
+    ],
+    "category": "labor",
+    "author": {
+      "name": "유승현",
+      "role": "사회부 기자"
+    },
+    "publishedAt": "2026-11-24T06:16:00Z",
+    "eventEndsAt": "2026-11-30T13:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "칠곡경북대학교병원의 공개 공고와 첨부를 대조했다. 개별 접수나 계약 완료를 확인한 것은 아니다.",
+    "addedValue": "각 직무의 필수 면허·자격과 보호사의 우대를 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T06:05:00Z",
+    "reporterInsight": "간호사·임상병리사·병동 보호사·소방 운영지원 각 1명이다. 30일 13시까지 홈페이지로 접수한다.",
+    "readerChecklist": [
+      "직무별 필수 면허 확인",
+      "보호사 우대 자격 구분",
+      "온라인 접수 시각 확인"
+    ],
+    "imageUrl": "/stock/2026-11-24-chilgok-knuh-temp-license-application.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "칠곡경북대학교병원",
+      "임시직",
+      "간호사",
+      "임상병리사",
+      "보호사",
+      "소방시설",
+      "전기기능사",
+      "온라인채용"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-24-expressway-hwaseong-paju-snow-road-workers",
+    "slug": "2026-11-24-expressway-hwaseong-paju-snow-road-workers",
+    "title": "도로공사 화성·파주 제설 도로관리원 2명 모집, 우편은 12월 1일 도착분",
+    "summary": "시급은 1만1100원이며 기상 상황에 따라 야간 연장근로가 발생할 수 있다.",
+    "body": [
+      "한국도로공사 수도권본부가 화성·파주 지사의 겨울철 제설 기간제 도로관리원을 모집한다. 공공기관 채용정보에 공시된 인원은 두 명이다.",
+      "## 제설 차량에 자재를 싣고 도로를 관리",
+      "염화칼슘 수용액 제조와 제설차 상차, 도로 안전관리와 유지관리 등을 맡는다. 근무는 기본적으로 주 5일 하루 8시간이다. 기상 상황에 따라 연장근로가 생길 수 있으며 공고는 연장 시 대기시간에도 급여를 지급한다고 안내한다.",
+      "## 근무지와 채용분야 중복 지원 불가",
+      "지원서는 11월 24일부터 12월 1일까지 이메일·우편·방문으로 제출한다. 우편은 마감일 이내 도착분을 인정하며 제출 뒤 전화로 접수 여부를 확인하도록 안내했다. 서류전형 뒤 체력검정과 면접이 진행된다.",
+      "## 출처 메모",
+      "- JOB-ALIO 공식 상세: https://job.alio.go.kr/recruitview.do?idx=307288 - 한국도로공사 첨부 공고문: https://www.alio.go.kr/download/download.json?fileNo=3089091"
+    ],
+    "category": "labor",
+    "author": {
+      "name": "유승현",
+      "role": "사회부 기자"
+    },
+    "publishedAt": "2026-11-24T06:16:00Z",
+    "eventEndsAt": "2026-12-01T23:59:00Z",
+    "reporting": "desk",
+    "verificationNote": "채용 공지와 공고문에서 지원 기간과 제출 방법을 대조했다. 마감일의 별도 시각은 공고에 명시되지 않았다.",
+    "addedValue": "노동 조건과 중복지원 제한, 우편 도착 기준을 정리했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T06:05:00Z",
+    "reporterInsight": "시급은 1만1100원이며 기상 상황에 따라 야간 연장근로가 발생할 수 있다.",
+    "readerChecklist": [
+      "중복 지원 여부 확인",
+      "기상 연장근로 조건 확인",
+      "제출 뒤 접수 여부 확인"
+    ],
+    "imageUrl": "/stock/2026-11-24-expressway-hwaseong-paju-snow-road-workers.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "한국도로공사",
+      "화성",
+      "파주",
+      "제설",
+      "도로관리원",
+      "기간제",
+      "체력검정",
+      "우편접수"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-24-han-river-water-use-system-maintenance-bid",
+    "slug": "2026-11-24-han-river-water-use-system-maintenance-bid",
+    "title": "한강홍수통제소 하천수 시스템 유지보수, 가격서와 제안서 30일 10시 마감",
+    "summary": "설계금액은 부가세 포함 8200만원이다. 입찰 등록과 공동수급협정은 제출 마감일 전날 18시까지다.",
+    "body": [
+      "한강홍수통제소가 2027년 하천수사용관리시스템 유지보수를 제한경쟁 방식으로 발주했다.",
+      "사업기간은 2027년 1월부터 12월까지다.",
+      "## 소프트웨어 등록에 직접생산증명도 필요",
+      "나라장터에 컴퓨터관련서비스사업 업종코드 1468을 등록하고, 유효한 정보시스템유지관리서비스 직접생산확인증명서와 중소기업 또는 소상공인 확인서를 갖춰야 한다. 직접생산확인증명서는 입찰서 마감 전일까지 발급되고 유효기간 안에 있어야 한다. 공고는 대기업과 중견기업인 소프트웨어 사업자의 입찰을 제한한다. 공동수급은 대표사를 포함해 5인 이하, 구성원별 최소 지분 10%로 꾸릴 수 있다.",
+      "## 공동수급 절차는 투찰보다 먼저",
+      "가격입찰서와 기술제안서는 11월 30일 오전 10시까지 온라인으로 제출한다. 다만 참가자격 등록과 공동수급협정서 제출은 마감일 전날인 29일 18시까지다. 입찰서를 낸 뒤에는 공동수급협정서를 제출할 수 없다. 개찰은 제안서 평가 뒤 진행하며 협상 순위에는 기술평가 90%와 가격평가 10%를 반영한다.",
+      "## 출처 메모",
+      "- 나라장터 공식 상세: https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01835998&bidPbancOrd=000 - 한강홍수통제소 첨부 공고문: https://www.g2b.go.kr/pn/pnp/pnpe/UntyAtchFile/downloadFile.do?bidPbancNo=R26BK01835998&bidPbancOrd=000&fileSeq=2&fileType=&prcmBsneSeCd=03"
+    ],
+    "category": "bids",
+    "author": {
+      "name": "서영호",
+      "role": "공공입찰 전담기자"
+    },
+    "publishedAt": "2026-11-24T06:18:00Z",
+    "eventEndsAt": "2026-11-30T10:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "한강홍수통제소의 공개 공고와 첨부를 대조했다. 개별 접수나 계약 완료를 확인한 것은 아니다.",
+    "addedValue": "참가 등록과 공동수급협정, 가격서와 제안서 제출을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T06:07:00Z",
+    "reporterInsight": "설계금액은 부가세 포함 8200만원이다. 입찰 등록과 공동수급협정은 제출 마감일 전날 18시까지다.",
+    "readerChecklist": [
+      "등록과 증명서 확인",
+      "공동수급협정 선제출",
+      "가격서와 제안서 각각 제출"
+    ],
+    "imageUrl": "/stock/2026-11-24-han-river-water-use-system-maintenance-bid.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "한강홍수통제소",
+      "하천수",
+      "유지보수",
+      "나라장터",
+      "기술제안서",
+      "직접생산확인",
+      "공동수급",
+      "협상계약"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-24-hwaseong-coastal-parking-food-truck-permit",
+    "slug": "2026-11-24-hwaseong-coastal-parking-food-truck-permit",
+    "title": "화성 서해안 주차장 푸드트럭 최대 6대, 한 곳 또는 네 곳 전체로 신청",
+    "summary": "26일 18시까지 방문 접수한다. 전기 사용 지원과 달리 연사용료는 면적·사용일 등에 따라 달라질 수 있다.",
+    "body": [
+      "화성시가 서해안 관광벨트 주차장 네 곳에서 푸드트럭을 운영할 영업자를 다시 모집한다.",
+      "모집 규모는 전체 최대 6대다.",
+      "## 두세 곳만 골라 신청하는 방식은 아니다",
+      "공고는 희망 장소 한 곳 또는 네 곳 전체에 신청할 수 있다고 안내한다. 전체를 신청할 때는 차량 여러 대를 활용해 운영 공백이 없도록 해야 한다. 주말은 필수 운영이며 구체적인 배치와 일정은 시와 협의한다.",
+      "## 선정만으로 영업이 시작되지는 않는다",
+      "전기 사용 지원과 별도로 연사용료는 개별공시지가나 감정평가액에 근거해 산정한다. 11월 26일 18시까지 방문 접수하며 우편은 받지 않는다. 선정 뒤 12월 15일까지 공유재산 사용·수익허가를 받고 29일까지 영업 신고를 마쳐 영업을 시작해야 한다.",
+      "## 출처 메모",
+      "- 기업마당 공식 상세: https://bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000128071 - 화성시 첨부 공고문: https://www.bizinfo.go.kr/DG_viewer/viewer/document/docviewer.do?filepath=/bizinfo/file/2026/11//202611231131090002.hwpx&viewerSelect=image&fileext=hwpx&filename=202611231131090002.hwpx - 화성시 재공고: https://www.hscity.go.kr/www/gosi/BD_selectGosiDetail.do?q_cp=&q_notAncmtSeCode=04&q_notAncmtMgtNo=152252&q_sc=&q_depNm=&q_sv=&q_currPage=1"
+    ],
+    "category": "deals",
+    "author": {
+      "name": "남동균",
+      "role": "문화·스포츠부 기자"
+    },
+    "publishedAt": "2026-11-24T06:16:00Z",
+    "eventEndsAt": "2026-11-26T18:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "화성시의 공개 공고와 첨부를 대조했다. 개별 접수나 계약 완료를 확인한 것은 아니다.",
+    "addedValue": "한 장소 또는 전체 선택 조건과 사용허가·영업절차를 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T06:05:00Z",
+    "reporterInsight": "26일 18시까지 방문 접수한다. 전기 사용 지원과 달리 연사용료는 면적·사용일 등에 따라 달라질 수 있다.",
+    "readerChecklist": [
+      "한 곳과 전체 운영 범위 구분",
+      "사용료와 영업 비용 확인",
+      "허가와 개시 시한 확인"
+    ],
+    "imageUrl": "/stock/2026-11-24-hwaseong-coastal-parking-food-truck-permit.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "화성",
+      "서해안관광벨트",
+      "푸드트럭",
+      "공유재산",
+      "사용허가",
+      "연사용료",
+      "영업신고",
+      "방문접수"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-24-incheon-wastewater-steel-platform-procurement",
+    "slug": "2026-11-24-incheon-wastewater-steel-platform-procurement",
+    "title": "인천 공동폐수처리장 철구조물 공사, 설비 구간 먼저 인도해야",
+    "summary": "기초금액은 2억4438만7370원이다. 나라장터 등록은 25일 18시, 투찰은 26일 10시에 마감한다.",
+    "body": [
+      "가람이 인천 남동구 쓰리디테크 공동폐수처리시설의 복층 작업대 등 철구조물 공사를 발주했다. 기초금액은 부가세 포함 2억4438만7370원이다.",
+      "## 인천 지역 제한과 업종 등록",
+      "공고 전날인 11월 16일부터 계약 체결일까지 인천 소재 요건을 유지해야 한다. 법인은 등기부상 본점, 개인은 사업자등록증 또는 건설업 등록증에 기재된 소재지가 기준이다. 공동수급은 허용하지 않으며 철강구조물공사업이나 금속창호·지붕건축물조립공사업 가운데 한 업종의 등록이 필요하다. 참가자격 등록 마감은 11월 25일 18시이며 나라장터 투찰 마감은 26일 10시, 개찰은 같은 날 11시다.",
+      "## 전체 준공 전에 설비 구간이 필요",
+      "공사기간은 착공일부터 12월 24일까지다. 기계설비 설치 구간은 그보다 앞선 12월 11일까지 먼저 인도해야 한다. 기초금액에 포함된 산업안전보건관리비는 부가세 별도 300만원이며 공고는 입찰금액에 이 금액 이상을 반영하도록 했다.",
+      "## 출처 메모",
+      "- 나라장터 공식 상세: https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01837708&bidPbancOrd=000 - 가람 첨부 공고문: https://www.g2b.go.kr/pn/pnp/pnpe/UntyAtchFile/downloadFile.do?bidPbancNo=R26BK01837708&bidPbancOrd=000&fileSeq=2&fileType=&prcmBsneSeCd=07"
+    ],
+    "category": "bids",
+    "author": {
+      "name": "서영호",
+      "role": "공공입찰 전담기자"
+    },
+    "publishedAt": "2026-11-24T06:18:00Z",
+    "eventEndsAt": "2026-11-26T10:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "가람의 공개 공고와 첨부를 대조했다. 개별 접수나 계약 완료를 확인한 것은 아니다.",
+    "addedValue": "등록, 투찰, 기계설비 구간 선인도 날짜를 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T06:07:00Z",
+    "reporterInsight": "기초금액은 2억4438만7370원이다. 나라장터 등록은 25일 18시, 투찰은 26일 10시에 마감한다.",
+    "readerChecklist": [
+      "인천 소재와 업종 확인",
+      "참가 등록 후 투찰",
+      "설비 구간 선인도 일정 확인"
+    ],
+    "imageUrl": "/stock/2026-11-24-incheon-wastewater-steel-platform-procurement.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "인천",
+      "철구조물",
+      "폐수처리장",
+      "나라장터",
+      "기초금액",
+      "지역제한",
+      "공사일정",
+      "산업안전보건관리비"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-24-inje-export-fair-travel-cost-reimbursement",
+    "slug": "2026-11-24-inje-export-fair-travel-cost-reimbursement",
+    "title": "인제 해외 특판 참가비 지원, 교통·숙박에 기업당 250만원 이내",
+    "summary": "인제 소재 중소 제조·유통기업 4곳 안팎이 대상이다. 현지 체류기간 중 특판 참가기간이 절반 이상이어야 한다.",
+    "body": [
+      "강원특별자치도경제진흥원이 인제군 개별기업 해외 특판행사 참가비 지원 신청을 받는다.",
+      "11월 23일부터 예산이 소진될 때까지 접수한다.",
+      "## 특판 출장과 수출 실적을 함께 확인",
+      "인제군 소재 중소 제조·유통기업이 올해 1월 1일 이후 해외에 수출한 실적이 있어야 한다. 회사 관계자가 직접 출장해 특판에 참여한 경우가 대상이며, 현지 체류기간의 절반 이상을 특판 참가에 써야 한다.",
+      "## 부스 임차료는 지원 대상이 아니다",
+      "한 기업에서 한 명의 항공·숙박 실비를 부가세를 뺀 공급가액의 70%, 기업당 250만원 이내에서 지원한다. 항공은 일반석 실비가 기준이며 선박 이용에도 같은 기준을 적용한다. 숙박은 5박까지, 1박당 20만원 이내다. 임차·물류·통역은 기업 부담이다. 신청은 공고에 제시된 진흥원 이메일로 받는다.",
+      "## 출처 메모",
+      "- 기업마당 공식 상세: https://bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000128082 - 강원특별자치도경제진흥원 첨부 공고문: https://www.bizinfo.go.kr/DG_viewer/viewer/document/docviewer.do?filepath=/bizinfo/file/2026/11//202611231454190371.hwp&viewerSelect=image&fileext=hwp&filename=202611231454190371.hwp"
+    ],
+    "category": "grants",
+    "author": {
+      "name": "최은영",
+      "role": "국제부 기자"
+    },
+    "publishedAt": "2026-11-24T06:18:00Z",
+    "reporting": "desk",
+    "verificationNote": "강원특별자치도경제진흥원의 공개 공고와 첨부를 대조했다. 개별 접수나 계약 완료를 확인한 것은 아니다.",
+    "addedValue": "여비 지원과 회사 부담 항목, 행사 기간 기준을 나눴다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T06:07:00Z",
+    "reporterInsight": "인제 소재 중소 제조·유통기업 4곳 안팎이 대상이다. 현지 체류기간 중 특판 참가기간이 절반 이상이어야 한다.",
+    "readerChecklist": [
+      "수출 실적 확인",
+      "특판 참가일 계산",
+      "항공·숙박 증빙 확인"
+    ],
+    "imageUrl": "/stock/2026-11-24-inje-export-fair-travel-cost-reimbursement.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "인제",
+      "해외특판",
+      "해외수출",
+      "항공료",
+      "숙박비",
+      "실비정산",
+      "지역중소기업",
+      "기업부담"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-24-jeju-film-logistics-reimbursement-dec2",
+    "slug": "2026-11-24-jeju-film-logistics-reimbursement-dec2",
+    "title": "제주 촬영 물류비 작품당 최대 1000만원, 운송 증빙 검토 후 환급",
+    "summary": "12월 2일 18시까지 이메일로 접수한다. 제주 촬영에 사용한 도외 반입 물류비가 중심이며 사전헌팅 비용은 제외한다.",
+    "body": [
+      "제주콘텐츠진흥원이 올해 제주에서 촬영하고 물류비를 지출한 영상물의 추가 지원 신청을 받는다. 작품당 최대 1000만원으로, 2~4개 작품을 지원할 계획이다. 신청 주체는 국내 영상 제작업 등을 신고한 제작사의 대표 또는 프로듀서다. 공고는 최소 60분으로 투자·배급계약 또는 방송·플랫폼 편성이 완료된 작품을 대상으로 하며, 계약·편성 요건은 스튜디오 임대작에 적용하지 않는다고 밝혔다.",
+      "## 촬영 현장까지 실제로 운송한 비용",
+      "제주 촬영에 쓰인 장비차량과 운송비 등이 대상이다. 제주실내영상스튜디오 임대작은 공고가 정한 폐기물 처리 비용도 대상이 될 수 있다. 사전헌팅은 제외하며 동일 지출을 로케이션 인센티브 등 다른 지정 사업과 중복 지원받을 수 없다.",
+      "## 운송과 정산 증빙을 각각 준비",
+      "개인 택배는 인정하지 않으며 택배 물류는 운송장을 증빙으로 요구한다. 공고는 촬영계획표와 지출내역 등도 요구한다. 신청은 12월 2일 오후 6시까지 이메일로 하며 지원은 정산 자료 검토 뒤 환급하는 방식이다.",
+      "## 출처 메모",
+      "- 기업마당 공식 상세: https://bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000128066 - 제주콘텐츠진흥원 첨부 공고문: https://www.bizinfo.go.kr/DG_viewer/viewer/document/docviewer.do?filepath=/bizinfo/file/2026/11//202611231016540543.pdf&viewerSelect=image&fileext=pdf&filename=202611231016540543.pdf"
+    ],
+    "category": "grants",
+    "author": {
+      "name": "남동균",
+      "role": "문화·스포츠부 기자"
+    },
+    "publishedAt": "2026-11-24T06:18:00Z",
+    "eventEndsAt": "2026-12-02T18:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "제주콘텐츠진흥원의 공개 공고와 첨부를 대조했다. 개별 접수나 계약 완료를 확인한 것은 아니다.",
+    "addedValue": "실제 제주 촬영 운송비와 중복·사전헌팅 제외를 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T06:07:00Z",
+    "reporterInsight": "12월 2일 18시까지 이메일로 접수한다. 제주 촬영에 사용한 도외 반입 물류비가 중심이며 사전헌팅 비용은 제외한다.",
+    "readerChecklist": [
+      "제주 촬영 조건 확인",
+      "운송장과 지출 증빙 정리",
+      "동일 항목 중복 지원 확인"
+    ],
+    "imageUrl": "/stock/2026-11-24-jeju-film-logistics-reimbursement-dec2.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "제주",
+      "콘텐츠제작",
+      "촬영물류비",
+      "운송장",
+      "환급",
+      "영상제작",
+      "촬영스튜디오",
+      "중복지원"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-24-kdb-nextone-busan-sixth-corporate-eligibility",
+    "slug": "2026-11-24-kdb-nextone-busan-sixth-corporate-eligibility",
+    "title": "KDB NextONE 부산 6기, 설립등기 7년 이내 법인 모집",
+    "summary": "15곳 안팎을 뽑으며 12월 18일 18시까지 온라인 신청을 받는다. 개인사업자는 지원할 수 없다.",
+    "body": [
+      "한국산업은행이 2027년 상반기 KDB NextONE 부산 6기 참여 기업을 모집한다. 프로그램 운영 기간은 2027년 2월부터 6월까지다.",
+      "## 창업기간은 공고 마감일 기준",
+      "혁신성장산업을 영위하고 공고 마감일 기준 설립등기일로부터 7년 이내인 법인이 대상이다. 공고는 개인사업자와 지정된 다른 NextONE 회차 중복 지원을 제외했다. 부산·울산·경남에 본사나 지사 또는 영업소를 둔 기업은 우대 대상이다.",
+      "## 접수와 선정은 별개",
+      "넥스트원 온라인 플랫폼에서 회원가입 후 12월 18일 오후 6시까지 신청한다. 첫 서류 심사 뒤 대표이사 발표를 포함한 구술심사를 거치는 일정이다. 운영 기간과 심사 일정은 선정이 확정된 개별 기업의 투자나 계약을 보장하지 않는다.",
+      "## 출처 메모",
+      "- 기업마당 공식 상세: https://bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000128076 - 한국산업은행 첨부 공고문: https://www.bizinfo.go.kr/DG_viewer/viewer/document/docviewer.do?filepath=/bizinfo/file/2026/11//202611231321350027.pdf&viewerSelect=image&fileext=pdf&filename=202611231321350027.pdf - 넥스트원 신청 플랫폼: https://www.kdbnextone.kr/"
+    ],
+    "category": "startup",
+    "author": {
+      "name": "최은영",
+      "role": "국제부 기자"
+    },
+    "publishedAt": "2026-11-24T06:16:00Z",
+    "eventEndsAt": "2026-12-18T18:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "한국산업은행의 공개 공고와 첨부를 대조했다. 개별 접수나 계약 완료를 확인한 것은 아니다.",
+    "addedValue": "법인 설립일 기준과 동남권 우대 조건을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T06:05:00Z",
+    "reporterInsight": "15곳 안팎을 뽑으며 12월 18일 18시까지 온라인 신청을 받는다. 개인사업자는 지원할 수 없다.",
+    "readerChecklist": [
+      "법인 설립일 확인",
+      "중복 지원 제한 확인",
+      "대표 발표 준비"
+    ],
+    "imageUrl": "/stock/2026-11-24-kdb-nextone-busan-sixth-corporate-eligibility.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "산업은행",
+      "부산",
+      "KDBNextONE",
+      "스타트업",
+      "혁신성장",
+      "설립등기",
+      "구술심사",
+      "동남권"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-24-korail-rail-booster-factory-safety-support",
+    "slug": "2026-11-24-korail-rail-booster-factory-safety-support",
+    "title": "코레일 협력 산업안전 AI 지원, 기업당 600만원 안팎은 현금 일괄 지급 아냐",
+    "summary": "제조 중소기업 10곳 이내를 뽑는다. 컨설팅과 인프라 직접지원으로 나누며 11월 30일 18시까지 이메일 접수한다.",
+    "body": [
+      "대·중소기업·농어업협력재단이 한국철도공사가 출연하는 중소기업 산업안전 AI 전환 과제 AI-RAIL 부스터의 참여기업을 모집한다.",
+      "산업안전 분야 AI 전환을 희망하는 제조 중소기업이 대상이다.",
+      "## 진단 뒤 지원 종류와 금액을 결정",
+      "기업당 600만원 안팎은 컨설팅과 직접지원을 합친 공고상 규모다. 최종 지원 내용과 금액은 선정 후 진단 결과에 따라 조정될 수 있다. 인프라 직접지원분은 계획이 확정된 뒤 운영기관이 공급기업이나 공급기관에 직접 집행한다.",
+      "## 제조 중소기업 자격과 우대는 별개",
+      "공고의 일반 지역 가점 안내는 대전·충남·충북·세종을 적었지만 세부 선정표는 대전·충남·세종을 적고 해당 항목을 택일하도록 했다. 충북 소재 기업의 적용 여부는 기관 확인 전 단정하기 어렵다. 철도산업과 청년 창업 관련 우대도 공고에 별도로 제시돼 있다. 신청서는 11월 30일 18시까지 공고가 안내한 한국생산성본부 이메일로 제출한다. 선정 뒤에는 기업별 안전관리 과제와 지원 범위를 협의하며 협약 기간은 2027년 1월 말까지다.",
+      "## 출처 메모",
+      "- 기업마당 공식 상세: https://bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000128083 - 대·중소기업·농어업협력재단 첨부 공고문: https://www.bizinfo.go.kr/DG_viewer/viewer/document/docviewer.do?filepath=/bizinfo/file/2026/11//202611231502440016.hwpx&viewerSelect=image&fileext=hwpx&filename=202611231502440016.hwpx"
+    ],
+    "category": "industry",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-24T06:19:00Z",
+    "eventEndsAt": "2026-11-30T18:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "대·중소기업·농어업협력재단의 공개 공고와 첨부를 대조했다. 개별 접수나 계약 완료를 확인한 것은 아니다.",
+    "addedValue": "컨설팅과 공급기업에 직접 집행하는 지원분을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T06:07:00Z",
+    "reporterInsight": "제조 중소기업 10곳 이내를 뽑는다. 컨설팅과 인프라 직접지원으로 나누며 11월 30일 18시까지 이메일 접수한다.",
+    "readerChecklist": [
+      "신청 자격과 우대 구분",
+      "진단 대상 안전 과제 정리",
+      "현금 지급과 직접 집행 구분"
+    ],
+    "imageUrl": "/stock/2026-11-24-korail-rail-booster-factory-safety-support.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "코레일",
+      "제조중소기업",
+      "산업안전",
+      "AI전환",
+      "컨설팅",
+      "직접지원",
+      "한국생산성본부",
+      "지원과제"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-24-motir-mass-production-testing-lead-institute",
+    "slug": "2026-11-24-motir-mass-production-testing-lead-institute",
+    "title": "소부장 양산성능평가, 11월 공모는 총괄기관용…기업 과제는 내년 1월 예정",
+    "summary": "7개 기술 분야에서 총괄기관을 각 한 곳 안팎 뽑는다. IRIS 최종 제출은 30일 18시까지다.",
+    "body": [
+      "산업통상부가 2027년 소재·부품·장비 양산성능평가 지원사업의 총괄주관연구개발기관을 모집한다. 소재·부품 기업의 개별 세부과제 신청을 받는 공고는 아니다.",
+      "## 총괄기관은 수요기업과 공급기업을 연결",
+      "반도체와 디스플레이, 자동차 등 7개 분야에서 총괄기관을 분야별 한 곳 안팎 선정한다. 신청은 공고가 정한 등록 비영리 협회·단체와 국공립·민간 연구기관, 비영리 기업지원기관 등이 단독 또는 컨소시엄으로 할 수 있다. 협회·단체에는 산업 대표성과 주무부처 등록 요건이 적용된다. 총괄기관은 과제를 발굴하고 수요기업과 공급기업을 연결하며 세부과제 관리와 기업 지원을 맡는다. 공고의 2027년 국비 약 21억원은 사업 규모이지 개별 기업의 지급액이 아니다.",
+      "## 기업 공고와 제출 시스템을 구분",
+      "기업이 신청하는 세부주관기관 모집 공고는 2027년 1월로 예정돼 있다. 이번 총괄기관 신청은 범부처통합연구지원시스템에서 11월 30일 18시까지 최종 제출해야 한다. 공고는 기관 대표자와 기관 담당자의 회원가입·연구자 전환 동의, 대표자 정보 등록 등 사전 작업이 필요하다고 안내한다.",
+      "## 출처 메모",
+      "- 기업마당 공식 상세: https://bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000128072 - 산업통상부 첨부 공고문: https://www.bizinfo.go.kr/DG_viewer/viewer/document/docviewer.do?filepath=/bizinfo/file/2026/11//202611231308490481.hwpx&viewerSelect=image&fileext=hwpx&filename=202611231308490481.hwpx - 범부처통합연구지원시스템: https://www.iris.go.kr/"
+    ],
+    "category": "industry",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-24T06:19:00Z",
+    "eventEndsAt": "2026-11-30T18:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "산업통상부의 공개 공고와 첨부를 대조했다. 개별 접수나 계약 완료를 확인한 것은 아니다.",
+    "addedValue": "총괄기관의 이번 공모와 기업 세부과제의 향후 공모를 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T06:07:00Z",
+    "reporterInsight": "7개 기술 분야에서 총괄기관을 각 한 곳 안팎 뽑는다. IRIS 최종 제출은 30일 18시까지다.",
+    "readerChecklist": [
+      "총괄기관과 세부기업 공고 구분",
+      "기관 담당자 등록 확인",
+      "IRIS 최종 제출"
+    ],
+    "imageUrl": "/stock/2026-11-24-motir-mass-production-testing-lead-institute.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "산업통상부",
+      "소부장",
+      "양산성능평가",
+      "총괄연구개발기관",
+      "수요공급기업",
+      "실증시험",
+      "IRIS",
+      "기술사업"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-24-seongnam-startup-desk-cost-application-date",
+    "slug": "2026-11-24-seongnam-startup-desk-cost-application-date",
+    "title": "성남창업센터 7곳 모집, 좌석당 월 5만원…일시납부 기간 확인 필요",
+    "summary": "판교2밸리 4곳과 하이테크밸리 3곳이 모집 규모다. 한 센터만 신청할 수 있다.",
+    "body": [
+      "성남산업진흥원이 판교2밸리와 하이테크밸리 창업지원주택의 창업센터 입주기업을 모집한다.",
+      "제조업과 IT·소프트웨어 등 지식서비스업의 예비창업자 또는 창업 7년 이내 기업이 대상이다.",
+      "## 월 사용료와 계약 때 내는 금액은 다르다",
+      "좌석당 보증금 20만원은 이행보증보험으로 대체한다. 멤버십 사용료는 좌석당 월 5만원이며 공고 입주비 항목은 계약 체결 때 7개월분을 일시납부한다고 적지만, 바로 아래 예시는 12개월분으로 계산한다. 실제 계약 때 납부할 기간과 금액은 계약 전에 확인할 필요가 있다. 센터 두 곳에 동시에 신청할 수 없고, 예비창업자는 계약일로부터 2개월 이내 사업자등록을 마쳐야 한다. 이와 별개로 입주 기업은 공고의 계약 시작 후 2개월 이내 센터 본사 등록과 배정 좌석 인원 확보 요건을 확인해야 한다.",
+      "## 공고 안 접수 날짜 표기가 다르다",
+      "공고의 모집개요와 접수방법에는 12월 2일 15시, 선정절차 표에는 접수 종료일이 12월 3일로 적혀 있다. 진흥원 상세는 2일 15시와 신청 버튼을 표시하지만 로그인 후 제출은 확인하지 않았다. 따라서 신청 기업은 진흥원 홈페이지를 확인하고 앞선 2일 15시 전에 제출하는 편이 안전하다.",
+      "## 출처 메모",
+      "- 기업마당 공식 상세: https://bizinfo.go.kr/biz/bizb/selectBIZB200Detail.do?mvnEntrprsRcritPblancId=MVNP_000000000000831 - 성남산업진흥원 첨부 공고문: https://www.bizinfo.go.kr/DG_viewer/viewer/document/docviewer.do?filepath=/bizinfo/file/2026/11//202611231630110933.pdf&viewerSelect=image&fileext=pdf&filename=202611231630110933.pdf - 성남산업진흥원 모집 상세: https://www.snip.or.kr/SNIP/contents/Business1.do?schM=view&snp=695c930ae3bc11f1b1350200655b0007"
+    ],
+    "category": "startup",
+    "author": {
+      "name": "남동균",
+      "role": "문화·스포츠부 기자"
+    },
+    "publishedAt": "2026-11-24T06:19:00Z",
+    "eventEndsAt": "2026-12-02T15:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "공고 본문과 접수방법의 2일 15시 및 절차표의 3일을 구분했다. 접수창구 종료 시각은 미확인이다.",
+    "addedValue": "좌석당 사용료와 계약 때 납부하는 비용, 공고 내 날짜 차이를 설명했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T06:07:00Z",
+    "reporterInsight": "판교2밸리 4곳과 하이테크밸리 3곳이 모집 규모다. 한 센터만 신청할 수 있다.",
+    "readerChecklist": [
+      "센터 한 곳 선택",
+      "계약 시 사용료 계산",
+      "앞선 접수 마감 기준 확인"
+    ],
+    "imageUrl": "/stock/2026-11-24-seongnam-startup-desk-cost-application-date.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "성남",
+      "판교2밸리",
+      "하이테크밸리",
+      "창업센터",
+      "입주비",
+      "좌석사용료",
+      "예비창업자",
+      "성남산업진흥원"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-24-yeongwol-naedeok-standing-timber-removal",
+    "slug": "2026-11-24-yeongwol-naedeok-standing-timber-removal",
+    "title": "영월 내덕리 입목·부산물 함께 매각, 온비드 투찰과 자격서류는 별도",
+    "summary": "예정가격은 3614만원이다. 30일 17시까지 온비드 입찰과 별도 자격 증명 제출을 모두 마쳐야 한다.",
+    "body": [
+      "영월국유림관리소가 상동읍 내덕리 국유림의 입목과 미이용 산림바이오매스를 함께 매각한다. 물건을 인도받은 날부터 6개월 이내 반출하는 조건이다.",
+      "## 마감 시간은 같지만 제출 창구가 다르다",
+      "입찰서와 보증금은 온비드에서 11월 30일 17시까지 처리한다. 관리소가 요구하는 참가자격 증명은 같은 시간까지 영월읍 영월로 1909-1 영월국유림관리소 또는 팩스 033-373-1341로 도착해야 하며 수신을 확인해야 한다. 벌채실적, 산림기능사 이상 자격, 임업인, 지정 교육 이수, 원목생산업 등록의 다섯 유형 중 하나 이상을 증빙한다. 개찰은 12월 1일 10시다.",
+      "## 현장 설명은 25일 오전 10시",
+      "현장 설명은 내덕리 590-1 임도 진입 초입에서 집결한다. 참석 예정자는 관리소 경영·자원팀에 미리 연락한다. 공고가 요구하는 현지 확인과 현장 설명 참석 안내는 구분된다. 공고는 현지를 확인하고 계약 특수조건을 읽은 뒤 응찰하도록 안내한다. 낙찰은 예정가격 이상으로 낸 유효 입찰이 두 건 이상인 경우 최고가를 기준으로 한다. 대표 이미지는 매각 현장의 사진이 아니다.",
+      "## 출처 메모",
+      "- 온비드 공식 상세: https://www.onbid.co.kr/op/cltrpbancinf/pbanc/pbancdtlinf/PbancDtlInqController/mvmnPbancDtl.do?onbidPbancNo=915187&pbctNo=10122766 - 영월국유림관리소 첨부 공고문: https://www.onbid.co.kr/op/cm/syc/filemng/filemngprcs/FileMngPrcsController/dnldFile.do?atchFileLstNo=17132825&atchSn=3&hashCrpsNo=JFONJCEEADHOGKHGKNOABIACILKENFLKMLHOJGPDANCPPCGBLJENMPPCAEHEGAME"
+    ],
+    "category": "deals",
+    "author": {
+      "name": "유승현",
+      "role": "사회부 기자"
+    },
+    "publishedAt": "2026-11-24T06:19:00Z",
+    "eventEndsAt": "2026-11-30T17:00:00Z",
+    "reporting": "desk",
+    "verificationNote": "영월국유림관리소의 공개 공고와 첨부를 대조했다. 개별 접수나 계약 완료를 확인한 것은 아니다.",
+    "addedValue": "온비드 입찰과 별도 자격 증명의 기한·창구를 나눴다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T06:07:00Z",
+    "reporterInsight": "예정가격은 3614만원이다. 30일 17시까지 온비드 입찰과 별도 자격 증명 제출을 모두 마쳐야 한다.",
+    "readerChecklist": [
+      "현장 설명 사전 연락",
+      "자격서류 수신 확인",
+      "반출 기한과 운반 비용 확인"
+    ],
+    "imageUrl": "/stock/2026-11-24-yeongwol-naedeok-standing-timber-removal.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "영월",
+      "내덕리",
+      "국유임산물",
+      "입목처분",
+      "산림바이오매스",
+      "온비드",
+      "전자입찰",
+      "반출"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
     "id": "keco-small-business-esg-support-2026",
     "slug": "keco-small-business-esg-support-2026",
     "title": "한국환경공단 ESG 지원 5개사 내외…400만원 이내 컨설팅·평가, 물기업 가점",
