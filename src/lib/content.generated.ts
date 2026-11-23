@@ -143969,6 +143969,113 @@ export const CONTENT_ARTICLES: Article[] = [
     "type": "article"
   },
   {
+    "id": "2026-11-23-bank-terms-correction-termination-notice-review-2026",
+    "slug": "2026-11-23-bank-terms-correction-termination-notice-review-2026",
+    "title": "은행·저축은행 약관 73개 조항 시정 요청…해지·서비스 변경·통지에서 41개",
+    "summary": "공정거래위원회가 금융위원회에 시정을 요청한 조항을 다시 세니 해지 14개, 서비스 변경 20개, 고객 통지 7개였다.",
+    "body": [
+      "공정거래위원회가 2026년 11월 23일 금융위원회에 시정을 요청했다고 밝힌 은행·저축은행 약관 73개 조항 가운데 서비스 변경, 해지, 통지 관련 항목은 41개다. 두 업권의 표를 합산하면 서비스 변경 20개, 계약 해지 14개, 고객 통지 7개다.",
+      "공정위는 2025년에 제정·개정된 은행 약관 1,034개와 저축은행 약관 516개를 심사했다. 시정 요청 대상은 약관 전체 1,550개 가운데 식별한 73개 조항으로, 은행 65개와 저축은행 8개다.",
+      "## 어떤 조항이 시정 요청에 포함됐나",
+      "서비스 변경 20개는 서비스를 자의적으로 바꾸거나 중단·제한하는 조항 11개와 급부 내용을 일방적으로 결정하는 조항 9개다. 해지 관련 14개에는 금융회사의 일방적 해지권과 고객의 해지권을 부당하게 제한한 조항이 포함됐다. 고객에게 불리한 내용을 개별 통지하지 않거나 부적절한 방식으로 알리도록 한 조항은 은행 4개, 저축은행 3개였다.",
+      "## 요청 이후 계약에 적용되는 시점",
+      "공정위가 공개한 자료에는 시정 요청의 유형과 대표 사례가 담겼다. 개인 계약에 어떤 문구가 적용되는지는 금융회사의 개정 약관과 효력 발생일을 확인해야 한다. 이번 발표는 금융위원회에 시정을 요청한 단계까지 확인해 준다.",
+      "## 출처 메모 - 공정거래위원회 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790305 - 공정거래위원회 보도자료 PDF: https://www.korea.kr/common/download.do?fileId=198594443&tblKey=GMN"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-23T12:14:00Z",
+    "reporting": "desk",
+    "verificationNote": "공정거래위원회 보도자료 본문과 첨부 PDF의 은행·저축은행 유형별 표를 대조해 서비스 변경과 해지, 통지 항목을 다시 합산했다.",
+    "addedValue": "시정 요청 대상 73개 조항 중 세 유형 41개가 차지하는 범위를 따로 집계하고, 시정 요청 단계와 개별 계약의 개정 효력 시점을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T11:53:00Z",
+    "reporterInsight": "시정 요청 대상 73개 조항 중 세 유형 41개가 차지하는 범위를 따로 집계하고, 시정 요청 단계와 개별 계약의 개정 효력 시점을 구분했다.",
+    "readerChecklist": [
+      "73개 중 조항 유형별 합계 확인",
+      "금융회사 개정 약관과 개별 통지 확인",
+      "개정 문구의 효력 발생일 확인"
+    ],
+    "imageUrl": "/stock/2026-11-23-bank-terms-correction-termination-notice-review-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "은행 약관",
+      "저축은행 약관",
+      "불공정 약관",
+      "개별통지",
+      "시정요청",
+      "계약 해지",
+      "서비스 변경",
+      "공정거래위원회"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-23-cop31-cover-decision-just-transition-work-programme-2026",
+    "slug": "2026-11-23-cop31-cover-decision-just-transition-work-programme-2026",
+    "title": "COP31 대표결정문 불발…정의로운 전환 논의는 이어가기로",
+    "summary": "안탈리아 대표결정문 채택은 불발됐지만, 별도 결정에서 정의로운 전환 작업프로그램을 3년 연장하고 이행 지원 메커니즘을 단계적으로 운영하기로 했다.",
+    "body": [
+      "한국 정부는 튀르키예 안탈리아에서 열린 제31차 유엔기후변화협약 당사국총회(COP31)가 현지시간 2026년 11월 22일 오후 7시께 대표결정문 채택에 이르지 못한 채 폐막했다고 밝혔다. 한국시간으로는 23일 오전 1시께다. 개별 의제 중에서는 정의로운 전환을 논의하는 작업프로그램을 연장하기로 했다.",
+      "## 정의로운 전환 논의와 이행 지원",
+      "파리협정 당사국회의(CMA8)는 별도 결정에서 각국이 경험을 공유하고 전환의 장벽을 논의하는 정의로운 전환 작업프로그램(JTWP)을 3년 연장했다. 각국의 이행을 지원하는 정의로운 전환 메커니즘(JTM)은 당사국회의의 권한과 지침 아래 단계적으로 운영하기로 했다. 구체적인 기능과 운영 방식·세칙은 2027년 6월 부속기구 회기에서 마련해 같은 해 11월 제9차 파리협정 당사국회의(CMA9)에서 검토·채택하는 것이 목표다.",
+      "## 적응재원 확대의 구체 경로는 미합의",
+      "정부의 폐막 결과에 따르면 당사국들은 지난해 합의한 기후재원 작업프로그램의 구체적인 운영 방식을 결정했다. 지난해 결정에 담긴 2035년까지 적응재원을 최소 세 배로 늘리려는 노력에 대해서는 구체적인 이행 경로가 나오지 않았다. 정부는 별도 대표결정문 초안에 화석연료 전환 관련 문구가 빠지는 등을 둘러싸고 이견이 있었다고 설명했다.",
+      "## 출처 메모 - 기후에너지환경부 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790337 - 기후에너지환경부 보도자료 PDF: https://www.korea.kr/common/download.do?fileId=198594567&tblKey=GMN - UNFCCC 정의로운 전환 CMA8 채택본 PDF: https://unfccc.int/sites/default/files/resource/UAEJTWP_DT_SB65_final.pdf"
+    ],
+    "category": "world",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-23T12:21:00Z",
+    "reporting": "desk",
+    "verificationNote": "정부 폐막 자료와 UNFCCC CMA8 채택본을 대조해 대표결정문, 작업프로그램 연장 기간, 전환 메커니즘의 단계적 운영과 후속 일정을 확인했다.",
+    "addedValue": "대표결정문 불발과 별도 의제의 채택을 구분하고, 작업프로그램 3년 연장, 전환 메커니즘의 단계적 운영과 세칙 마련 일정, 적응재원 경로를 나눴다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T12:10:00Z",
+    "reporterInsight": "대표결정문 불발과 별도 의제의 채택을 구분하고, 작업프로그램 3년 연장, 전환 메커니즘의 단계적 운영과 세칙 마련 일정, 적응재원 경로를 나눴다.",
+    "readerChecklist": [
+      "대표결정문과 CMA8 별도 채택본 구분",
+      "작업프로그램 3년 연장과 메커니즘 운영·세칙 일정 확인",
+      "적응재원 목표와 구체 경로 구분"
+    ],
+    "imageUrl": "/stock/2026-11-23-cop31-cover-decision-just-transition-work-programme-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "COP31 안탈리아",
+      "대표결정문",
+      "정의로운 전환 작업프로그램",
+      "JTWP",
+      "JTM",
+      "적응재원",
+      "기후재원",
+      "유엔기후변화협약"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
     "id": "2026-11-23-daejeon-indie-game-marketing-reimbursement",
     "slug": "2026-11-23-daejeon-indie-game-marketing-reimbursement",
     "title": "대전 인디게임 마케팅 지원, 기업당 500만원…먼저 집행한 뒤 정산",
@@ -144130,6 +144237,221 @@ export const CONTENT_ARTICLES: Article[] = [
       "사용료",
       "관리비",
       "방문접수"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-23-growtech-antalya-korea-pavilion-exhibitor-mix-2026",
+    "slug": "2026-11-23-growtech-antalya-korea-pavilion-exhibitor-mix-2026",
+    "title": "안탈리아 농산업박람회 한국관 20개사…비료·친환경농자재가 11개사",
+    "summary": "농림축산식품부가 공개한 한국관 참가 업체를 품목별로 세면 비료 6곳과 친환경농자재 5곳이 전체의 55%를 차지한다.",
+    "body": [
+      "농림축산식품부가 2026년 11월 23일 공개한 튀르키예 안탈리아 국제 농산업박람회 한국관 명단에서 비료와 친환경농자재 기업은 20곳 가운데 11곳이다. 품목별 참가 업체 수를 합산한 비중은 55%다. 한국관은 현지 기준 24일부터 27일까지 운영할 예정이다.",
+      "## 다섯 품목 가운데 비료가 6곳",
+      "농식품부가 공개한 명단은 비료 6곳, 친환경농자재 5곳, 농기계 4곳, 시설자재 4곳, 농약 1곳으로 나뉜다. 농기계와 시설자재 두 분야를 합하면 8곳이다. 업체 수 기준이므로 계약 규모나 전시 제품 수와는 집계 범위가 다르다.",
+      "## 현장 상담 계획과 기존 실적",
+      "한국관에서는 업체별 제품 홍보와 수출 상담 등을 진행할 예정이다. 발표에 나온 업무협약 107건과 현장 계약 35건은 올해 앞서 다른 해외 박람회와 수출상담회에서 집계한 실적이다. 두 수치는 각각 협약과 계약을 집계한 결과다. 이번 안탈리아 박람회 성과는 발표 당시 집계되지 않았다.",
+      "## 출처 메모 - 농림축산식품부 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790329 - 농림축산식품부 보도자료 PDF: https://www.korea.kr/common/download.do?fileId=198594535&tblKey=GMN"
+    ],
+    "category": "industry",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-23T12:17:00Z",
+    "reporting": "desk",
+    "verificationNote": "농림축산식품부 발표 본문과 첨부 PDF 명단을 대조해 한국관 20개사를 품목별로 합산하고 현지 운영 예정일을 확인했다.",
+    "addedValue": "비료·친환경농자재 11개사를 전체 20개사와 대조해 55%를 산출하고, 업체 수의 품목 구성과 다른 행사에서 집계한 계약 실적을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T12:03:00Z",
+    "reporterInsight": "비료·친환경농자재 11개사를 전체 20개사와 대조해 55%를 산출하고, 업체 수의 품목 구성과 다른 행사에서 집계한 계약 실적을 구분했다.",
+    "readerChecklist": [
+      "현지 한국관 운영 날짜 확인",
+      "참가 명단의 품목별 업체 수 대조",
+      "기존 협약·계약 실적과 이번 행사 성과 구분"
+    ],
+    "imageUrl": "/stock/2026-11-23-growtech-antalya-korea-pavilion-exhibitor-mix-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "안탈리아 농산업박람회",
+      "농기자재 한국관",
+      "비료",
+      "친환경농자재",
+      "Growtech",
+      "농림축산식품부",
+      "농기계",
+      "수출 상담"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-23-haman-gayari-excavation-wall-living-surfaces-2026",
+    "slug": "2026-11-23-haman-gayari-excavation-wall-living-surfaces-2026",
+    "title": "함안 가야리 성벽서 흙 다짐용 목재 확인…성 안에선 여러 겹 생활면",
+    "summary": "국립가야문화유산연구소가 북서쪽 골짜기의 성벽·생활면·집수지 조사 결과를 공개했다. 세 구역의 유물과 구조는 각각 다른 흔적을 남긴다.",
+    "body": [
+      "경남 함안 가야리 유적의 성벽에서 흙을 다질 때 세웠던 목재인 협판이 확인됐다. 국가유산청 국립가야문화유산연구소는 2026년 11월 23일 아라가야 왕성으로 추정되는 이 유적에서 성 안쪽의 생활공간을 여러 차례 조성한 흔적도 확인했다고 밝혔다. 조사 자료와 사진을 구역별로 맞춰 보면 성벽의 목재는 축조 방식을, 성 안의 생활면은 공간 사용의 변화를 보여준다. 집수지의 퇴적층에는 과거 환경을 분석할 자료가 남아 있다.",
+      "## 성벽과 생활면에서 각각 무엇이 나왔나",
+      "판축은 나무틀 안에서 흙을 여러 층으로 다져 벽을 만드는 방식이다. 연구소는 성벽을 따라 두 줄로 놓인 고정목과 협판, 성벽에 덧쌓은 보강 흔적을 확인했다. 성 안쪽에서는 높이를 달리한 생활면에서 기둥구멍과 구덩이가 나왔고, 일부 면에서는 토기를 버린 흔적도 발견했다.",
+      "## 약 2m는 집수지 퇴적층 두께",
+      "물의 흐름을 조절하는 집수지에는 돌로 쌓은 호안과 약 2m 두께의 내부 퇴적층이 남아 있었다. 약 2m는 퇴적층의 두께로, 당시 물의 깊이를 나타내는 값은 아니다. 식물 흔적 등 유기물이 남아 있어 과거 환경을 살필 수 있지만 분석 결과는 이번 발표에 포함되지 않았다.",
+      "## 출처 메모 - 국가유산청 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790310 - 국가유산청 붙임 PDF: https://www.korea.kr/common/download.do?fileId=198594453&tblKey=GMN - 국가유산청 본문 HWPX: https://www.korea.kr/common/download.do?fileId=198594454&tblKey=GMN"
+    ],
+    "category": "culture",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-23T12:16:00Z",
+    "reporting": "desk",
+    "verificationNote": "국가유산청 발표와 조사 붙임 PDF 및 본문 HWPX에서 성벽, 생활면, 집수지의 구조와 퇴적층 수치 표기를 대조했다.",
+    "addedValue": "성벽의 축조 재료와 생활면의 사용 흔적을 구분하고, 집수지 약 2m가 과거 물 깊이가 아닌 퇴적층 두께임을 밝혔다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T12:03:00Z",
+    "reporterInsight": "성벽의 축조 재료와 생활면의 사용 흔적을 구분하고, 집수지 약 2m가 과거 물 깊이가 아닌 퇴적층 두께임을 밝혔다.",
+    "readerChecklist": [
+      "성벽·생활면·집수지를 구역별로 확인",
+      "약 2m가 집수지 퇴적층 두께인지 확인",
+      "퇴적 유기물 분석의 발표 여부 확인"
+    ],
+    "imageUrl": "/stock/2026-11-23-haman-gayari-excavation-wall-living-surfaces-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "국가유산청",
+      "국립가야문화유산연구소",
+      "함안가야리유적",
+      "아라가야",
+      "판축성벽",
+      "협판",
+      "고정목",
+      "집수지",
+      "생활면"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-23-iec-board-smb-korea-2027-2029-roles-2026",
+    "slug": "2026-11-23-iec-board-smb-korea-2027-2029-roles-2026",
+    "title": "IEC 이사회 이정준 연임·표준화관리이사회 유장진 선출",
+    "summary": "함부르크 총회에서 선출된 두 사람은 2027~2029년에 활동한다. 국표원 붙임에는 이번 선거에 나온 자리 외에도 다른 기구의 한국인 재임자가 기재됐다.",
+    "body": [
+      "국가기술표준원은 제90차 국제전기기술위원회(IEC) 함부르크 총회에서 이정준 서울대 객원교수가 이사회에 연임되고 유장진 LG디스플레이 연구위원이 표준화관리이사회에 선출됐다고 밝혔다. 두 사람은 2027년부터 2029년까지 일한다. 국표원은 이 결과를 온라인 보도시점 2026년 11월 22일로 표시한 자료에서 공개했다. 두 자리의 임기는 같지만 거치는 결정은 다르다.",
+      "## 정책 결정과 기술위원회 관리는 다른 역할",
+      "IEC 이사회는 기구의 정책과 전략을 정한다. 표준화관리이사회는 기술위원회를 신설하거나 운영하는 문제와 국제 의장·간사 임명 등을 다룬다. 두 사람의 선출은 두 기구에서 활동할 자리가 결정됐다는 의미다. 어떤 국내 기술이 국제표준으로 채택됐다는 발표는 이번 자료에 들어 있지 않다.",
+      "## 다른 기구의 한국인 재임자는 별도",
+      "국표원 붙임의 한국인 진출 현황표에는 적합성평가이사회 1명, 시장전략이사회 2명도 나온다. 이번 선거에서 확인된 2명과 표에 별도로 적힌 3명을 합치면 기구 4곳에 총 5명이 기재돼 있다. 기존 세 자리의 임기는 각각 달라 표의 다섯 자리를 같은 선거의 결과로 계산할 수 없다.",
+      "## 출처 메모 - 국가기술표준원 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790289 - 국가기술표준원 보도자료 PDF: https://www.korea.kr/common/download.do?fileId=198594381&tblKey=GMN"
+    ],
+    "category": "industry",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-23T12:16:00Z",
+    "reporting": "desk",
+    "verificationNote": "국가기술표준원 발표 본문과 첨부 PDF의 한국인 진출 현황표를 대조해 신규 선출 두 자리와 기존 재임 세 자리의 기구 및 임기를 확인했다.",
+    "addedValue": "정책 결정과 기술위원회 운영을 맡는 이사회의 기능을 구분하고, 전체 한국인 재임 현황을 이번 선거 결과 두 자리와 따로 집계했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T12:04:00Z",
+    "reporterInsight": "정책 결정과 기술위원회 운영을 맡는 이사회의 기능을 구분하고, 전체 한국인 재임 현황을 이번 선거 결과 두 자리와 따로 집계했다.",
+    "readerChecklist": [
+      "두 이사회의 권한 차이 확인",
+      "신규 두 자리의 2027~2029년 임기 확인",
+      "기존 재임 세 자리를 별도 집계"
+    ],
+    "imageUrl": "/stock/2026-11-23-iec-board-smb-korea-2027-2029-roles-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "국제전기기술위원회",
+      "IEC 총회",
+      "표준화관리이사회",
+      "국가기술표준원",
+      "국제표준",
+      "함부르크 총회",
+      "IEC 이사회",
+      "한국인 재임자"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-23-ip-statistics-markdown-guide-source-workbooks-2026",
+    "slug": "2026-11-23-ip-statistics-markdown-guide-source-workbooks-2026",
+    "title": "지식재산 통계 마크다운 열어보니 분석 안내서…수치는 PDF·엑셀로 확인",
+    "summary": "지식재산처가 연보와 월보에 추가한 마크다운 두 파일을 내려받아 확인했다. 두 파일 모두 원래 통계표를 함께 사용하도록 안내한다.",
+    "body": [
+      "지식재산처가 지식재산 통계연보와 통계월보에 추가한 마크다운 파일 두 개를 내려받아 대조했다.",
+      "두 파일은 제목과 문서 첫머리에 스스로를 분석용 안내서라고 설명한다. 수치를 확인하려면 연보 PDF·통계표 또는 해당 월보의 엑셀 파일을 같이 봐야 한다.",
+      "지식재산처는 2026년 11월 22일 온라인 공개로 표시한 보도자료에서 AI 검색·분석을 위해 마크다운 형식을 도입한다고 밝혔다. 통계 간행물 목록에는 2025년 기준 연보와 2026년 10월 월보에 새 파일이 표시돼 있다.",
+      "## 연보와 월보가 안내하는 원본은 다르다",
+      "2025년 기준 연보는 2026년 7월 발행분이다. 연보 마크다운은 수치가 필요하면 엑셀 원본을 먼저 대조하고 작성 기준과 각주는 해당 PDF 표를 보도록 안내한다. 월보 마크다운은 분석하려는 호의 원본 엑셀을 따로 열도록 요구한다. 두 파일 모두 문서 앞부분에 공개 검토용 초안으로 표시돼 있다.",
+      "## 자료가 같은 달을 가리키는지 확인",
+      "10월 월보 마크다운의 예시는 당월과 1~10월 누계를 다루지만, 10월 실적을 제시하려면 해당 엑셀을 실제로 읽도록 안내한다. 공개 목록에서 2024년 기준 연보에는 ZIP과 PDF, 2026년 9월 월보에는 엑셀 링크가 표시됐다. 마크다운 이용자는 통계의 기준연도나 월을 먼저 맞춘 뒤 같은 항목의 원본 표를 확인할 수 있다.",
+      "## 출처 메모 - 지식재산처 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790324 - 지식재산처 보도자료 PDF: https://www.korea.kr/common/download.do?fileId=198594515&tblKey=GMN - 지식재산처 통계 간행물: https://www.moip.go.kr/ko/stat/kpoStatPgmMgmt.do?menuCd=SCD0200661&parntMenuCd2=SCD0200284 - 지식재산처 연보 분석 가이드: https://www.moip.go.kr/ko/stat/kpoStatFileDown.do?pgmSeq=437&pgmId=PGM0000030&atflSeq=4 - 지식재산처 월보 분석 가이드: https://www.moip.go.kr/ko/stat/kpoStatFileDown.do?pgmSeq=442&pgmId=PGM0000030&atflSeq=2"
+    ],
+    "category": "industry",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-23T12:14:00Z",
+    "reporting": "desk",
+    "verificationNote": "지식재산처 보도자료와 통계 간행물 목록에서 연보·월보 마크다운 두 파일을 대조하고, 각 안내서가 가리키는 PDF와 엑셀 원본 범위를 확인했다.",
+    "addedValue": "마크다운 두 파일이 각각 어떤 원본을 열도록 안내하는지 정리하고, 수치를 인용하기 전에 기준연도와 해당 월의 원본 표를 맞추는 방법을 제시했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T11:59:00Z",
+    "reporterInsight": "마크다운 두 파일이 각각 어떤 원본을 열도록 안내하는지 정리하고, 수치를 인용하기 전에 기준연도와 해당 월의 원본 표를 맞추는 방법을 제시했다.",
+    "readerChecklist": [
+      "연보 기준연도 또는 월보 해당 월 확인",
+      "가이드와 동일한 호의 원본 PDF·엑셀 열기",
+      "당월과 누계 및 원본 각주 대조"
+    ],
+    "imageUrl": "/stock/2026-11-23-ip-statistics-markdown-guide-source-workbooks-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "지식재산 통계연보",
+      "통계월보",
+      "마크다운",
+      "분석 가이드",
+      "원본 통계표",
+      "지식재산처",
+      "통계 엑셀",
+      "통계 기준연도"
     ],
     "isBreaking": false,
     "readCount": 0,
@@ -144358,6 +144680,113 @@ export const CONTENT_ARTICLES: Article[] = [
     "type": "article"
   },
   {
+    "id": "2026-11-23-national-palace-museum-preliminary-heritage-six-five-sections-2026",
+    "slug": "2026-11-23-national-palace-museum-preliminary-heritage-six-five-sections-2026",
+    "title": "예비문화유산 6건을 사진으로…국립고궁박물관 전시는 5부 구성",
+    "summary": "국가유산청이 공개한 전시 구성에서 서로 따로 선정된 부마민주항쟁 자료 2건이 한 부에 배치됐다.",
+    "body": [
+      "국가유산청이 2026년 11월 23일부터 12월 6일까지 서울 국립고궁박물관에서 올해 선정한 예비문화유산 6건을 사진으로 소개한다고 밝혔다. 선정 자료와 전시 안내를 대조하면 전시가 5부로 구성된 이유가 드러난다. 2부에 따로 선정한 부마민주항쟁 자료 두 건을 함께 배치했다.",
+      "## 만화 원고와 대본은 한 건, 부마 자료는 두 건",
+      "1부는 비둘기 합창 만화 원고와 독고탁의 비둘기 합창 TV애니메이션 대본을 다룬다. 매체는 둘이지만 선정 목록에는 한 건으로 묶였다. 2부의 부마민주항쟁 김택용 취재 원고와 부마민주항쟁 민주투쟁선언문은 각각 선정 목록에 올랐다.",
+      "## 3부부터 5부까지는 각 한 건",
+      "3부는 이응노 군상 연작과 관련 유품, 4부는 제41회 지바 세계탁구선수권대회 남북단일팀 기념물, 5부는 산악인 김홍빈 등반 장비와 자료를 다룬다. 이에 따라 선정 건수는 각 부 순서대로 1건, 2건, 1건, 1건, 1건이다. 국가유산청은 전시장인 국립고궁박물관 1층 기획전시실에서 이 자료들을 사진으로 선보인다고 안내했다.",
+      "## 출처 메모 - 국가유산청 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790296 - 국가유산청 붙임 PDF: https://www.korea.kr/common/download.do?fileId=198594398&tblKey=GMN - 국가유산청 본문 HWPX: https://www.korea.kr/common/download.do?fileId=198594399&tblKey=GMN - 국가유산청 선정 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156788672 - 부천시 만화 원고 안내: https://news.bucheon.go.kr/home/kor/M771882326/board.do?act=detail&deleteAt=N&idx=cb00d1a0008a85e71a41b8741facbffeae4d04b6afb1bf83baad01e32f0d9041"
+    ],
+    "category": "culture",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-23T12:17:00Z",
+    "reporting": "desk",
+    "verificationNote": "국가유산청 전시 발표와 PDF·HWPX 첨부, 선정 발표 및 부천시 안내를 대조해 선정 건수와 전시 부별 구성을 확인했다.",
+    "addedValue": "별도로 선정된 부마민주항쟁 자료 두 건을 같은 전시 부에 배치한 점과, 매체가 다른 만화 원고와 대본을 한 건으로 선정한 점을 대조했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T12:03:00Z",
+    "reporterInsight": "별도로 선정된 부마민주항쟁 자료 두 건을 같은 전시 부에 배치한 점과, 매체가 다른 만화 원고와 대본을 한 건으로 선정한 점을 대조했다.",
+    "readerChecklist": [
+      "국립고궁박물관 운영 여부와 종료일 확인",
+      "부별 전시 구성 확인",
+      "예비문화유산 선정 단위와 전시 부 수 구분"
+    ],
+    "imageUrl": "/stock/2026-11-23-national-palace-museum-preliminary-heritage-six-five-sections-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "예비문화유산 사진전",
+      "우리 삶의 기록 미래의 유산으로",
+      "비둘기 합창",
+      "부마민주항쟁 취재 원고",
+      "국립고궁박물관",
+      "국가유산청",
+      "김홍빈 등반 장비",
+      "전시 5부"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-23-post-csat-high-school-labor-education-topics-2026",
+    "slug": "2026-11-23-post-csat-high-school-labor-education-topics-2026",
+    "title": "수능 뒤 학교로 찾아가는 노동교육…일반고 3학년 2만1천여 명 대상",
+    "summary": "한국고용노동교육원 특별교육은 일반고 3학년을 대상으로 한다. 붙임의 교육시간은 2시간이고, 교과표에는 진로와 아르바이트 노동법이 따로 제시됐다.",
+    "body": [
+      "한국고용노동교육원이 2026년 11월 23일부터 12월 4일까지 일반고 3학년을 대상으로 찾아가는 노동교육을 운영한다. 11월 23일 발표 본문은 고3 학생 약 2만1천 명을 대상으로 밝히고, 붙임 교육 개요에서 학교 유형을 일반고로 명시했다.",
+      "전문 강사가 학교를 방문해 소집단 활동을 진행한다. 교육원은 진로 탐색과 첫 아르바이트에 필요한 노동 지식을 교과표에서 각각 설명했다.",
+      "## 교과표에 적힌 내용과 수업 시간",
+      "‘다양한 노동과 진로’에는 노동시장과 직업 가치 탐색이, ‘아르바이트를 위한 노동법’에는 근로계약서 작성과 부당대우 대처가 포함됐다. 붙임에는 교육시간이 2시간으로 쓰였고 각 교과 항목에도 2시간이 적혀 있다. 자료에는 학생 한 명이 두 교과를 모두 네 시간 듣는다는 설명은 없다.",
+      "## 2만1천 명이 가리키는 대상",
+      "2만1천여 명은 이번 특별교육의 대상 규모다. 교육원이 매년 전국 중·고등학생 약 14만 명에게 제공한다고 밝힌 전체 노동교육과는 집계 범위가 다르다. 학교별 수업 배정과 개인 접수 방법은 발표문에 제시되지 않았다.",
+      "## 출처 메모 - 한국고용노동교육원 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790286 - 한국고용노동교육원 보도자료 PDF: https://www.korea.kr/common/download.do?fileId=198594371&tblKey=GMN"
+    ],
+    "category": "society",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-23T12:14:00Z",
+    "reporting": "desk",
+    "verificationNote": "한국고용노동교육원 발표 본문과 붙임 교육 개요 및 교과표에서 대상 학교 유형, 교육시간과 교과별 항목을 대조했다.",
+    "addedValue": "이번 특별교육 대상 2만1천여 명을 연간 교육 인원과 구분하고, 두 교과 항목의 시간 표기에서 개인별 총시간을 확정할 수 있는지 확인했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T11:53:00Z",
+    "reporterInsight": "이번 특별교육 대상 2만1천여 명을 연간 교육 인원과 구분하고, 두 교과 항목의 시간 표기에서 개인별 총시간을 확정할 수 있는지 확인했다.",
+    "readerChecklist": [
+      "일반고 3학년 대상 범위 확인",
+      "교육 개요와 교과별 시간 표기 대조",
+      "학교별 배정 및 개인 접수 공지 확인"
+    ],
+    "imageUrl": "/stock/2026-11-23-post-csat-high-school-labor-education-topics-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "고3 노동교육",
+      "찾아가는 노동교육",
+      "청소년 노동",
+      "수능 이후 근로계약",
+      "일반고",
+      "아르바이트 노동법",
+      "진로 탐색",
+      "한국고용노동교육원"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
     "id": "2026-11-23-resident-id-remote-customer-verification-rollout",
     "slug": "2026-11-23-resident-id-remote-customer-verification-rollout",
     "title": "카카오페이·토스 비대면 고객확인 때 주민등록증 사진 대조…행안부 “23일부터”",
@@ -144519,6 +144948,60 @@ export const CONTENT_ARTICLES: Article[] = [
       "전시한국관",
       "상담통역",
       "출장비"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-23-winter-crew-safety-public-vessels-mlc-scope-2026",
+    "slug": "2026-11-23-winter-crew-safety-public-vessels-mlc-scope-2026",
+    "title": "겨울 선원 안전 설명은 관공선 기관에…MLC 인증 지도 대상은 따로",
+    "summary": "해양수산부는 24일 관공선 운영기관에 선내 안전 기준을 설명하고, 해사노동협약 인증 검사 기준의 겨울철 집중 지도를 별도로 추진한다.",
+    "body": [
+      "해양수산부와 한국선급은 겨울철 선원 안전을 위해 관공선 운영기관 대상 설명회와 해사노동협약(MLC) 인증 검사 기준 집중 지도를 진행한다고 2026년 11월 23일 밝혔다. 두 조치 모두 24일을 시작점으로 삼았지만 적용 대상은 다르다.",
+      "24일 영상설명회는 중앙행정기관, 지방정부, 공공기관 등 관공선 운영기관을 대상으로 한다. 참석 대상이 아닌 민간 선사에는 설명 자료를 배포할 예정이다. 설명회에서는 안전보건교육과 선내 안전위원회 등을 다룬다.",
+      "## 선내 안전 기준과 국제 인증을 구분",
+      "해양수산부 설명에 따르면 선내 안전·보건 및 사고 예방 기준은 선원법이 적용되는 선박 중 어선을 제외한 선박에 적용된다. 수산업 시험·조사·지도·단속·교습 선박도 포함된다. 해양수산부는 총톤수 500톤 이상으로 국제 항해를 하거나 외국 항만 사이를 다니는 선박을 MLC 인증 검사 대상으로 설명했다.",
+      "## 발표한 집중 지도는 내년 2월 4일까지",
+      "해양수산부와 한국선급은 11월 24일부터 2027년 2월 4일까지 인증 검사 기준 준수를 집중 지도할 계획이다. 난방시설을 살피고 결빙으로 미끄러지거나 추락하는 사고를 예방하는 조치 등을 중점적으로 안내한다. 부처는 선내 안전 포스터를 한국어와 영어로 배포할 예정이다.",
+      "## 출처 메모 - 해양수산부 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790331 - 해양수산부 보도자료 PDF: https://www.korea.kr/common/download.do?fileId=198594539&tblKey=GMN"
+    ],
+    "category": "industry",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-23T12:16:00Z",
+    "reporting": "desk",
+    "verificationNote": "해양수산부 발표와 첨부 PDF에서 관공선 영상설명회 참석 대상, 선내 안전 기준 적용 범위, MLC 인증 지도 대상과 일정을 대조했다.",
+    "addedValue": "날짜가 같은 설명회와 집중 지도의 대상 선박을 나누고, 민간 선사 자료 배포와 별도 인증 검사에 적용되는 조건을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-23T11:59:00Z",
+    "reporterInsight": "날짜가 같은 설명회와 집중 지도의 대상 선박을 나누고, 민간 선사 자료 배포와 별도 인증 검사에 적용되는 조건을 구분했다.",
+    "readerChecklist": [
+      "설명회 참석 대상과 자료 배포 대상 구분",
+      "총톤수 및 국제항해 조건 확인",
+      "집중 지도 일정과 안내 항목 확인"
+    ],
+    "imageUrl": "/stock/2026-11-23-winter-crew-safety-public-vessels-mlc-scope-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "선원안전",
+      "관공선",
+      "해사노동협약",
+      "MLC 인증",
+      "겨울철 선박 점검",
+      "해양수산부",
+      "한국선급",
+      "선내 안전보건"
     ],
     "isBreaking": false,
     "readCount": 0,
