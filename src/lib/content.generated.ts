@@ -145233,6 +145233,59 @@ export const CONTENT_ARTICLES: Article[] = [
     "type": "article"
   },
   {
+    "id": "2026-11-24-delivery-price-linkage-nine-awards-company-types-2026",
+    "slug": "2026-11-24-delivery-price-linkage-nine-awards-company-types-2026",
+    "title": "납품대금 연동 우수 9곳 중 중소기업 2곳…값 내릴 때도 조정",
+    "summary": "명단은 공공기관 4곳, 대기업 2곳, 중견기업 1곳, 중소기업 2곳이었다. 주요 에너지경비를 납품대금 연동 대상에 넣는 상생협력법 개정 조항은 12월 3일 시행될 예정이다.",
+    "body": [
+      "중소벤처기업부가 2026년 11월 24일 조간용으로 공개한 납품대금 연동 우수기업 9곳의 명단을 기관 유형별로 세니 공공기관이 4곳으로 가장 많았다. 중소기업은 2곳이다. 중기부가 소개한 수탁기업 대화공업은 원재료 값이 오를 때뿐 아니라 내려갈 때도 납품대금을 조정했다.",
+      "## 위탁기업과 수탁기업의 역할",
+      "명단에는 두 중소기업 외에 대기업 2곳과 중견기업 1곳이 있다. 대화공업은 매월 원재료 가격을 점검하는 방식으로 연동약정을 운용했다고 중기부는 밝혔다. 장관 표창 명단은 우수사례로 뽑힌 곳의 유형을 보여준다. 각 유형의 전체 연동제 참여율은 이 명단에서 계산할 수 없다.",
+      "## 사례에 나온 에너지 비용과 제도 시행일",
+      "중기부는 일부 위탁기업이 전기·가스 비용을 앞서 계약이나 전산시스템에 반영했다고 소개했다. 주요 에너지경비를 납품대금 연동 대상에 넣는 상생협력법 개정 조항은 12월 3일 시행될 예정이다. 하도급법에 따른 에너지비용 연동은 8월 11일 시행됐다. 표창 자료의 계약 사례만으로 개별 거래에 어떤 비용을 연동해야 할지 판단할 수는 없다.",
+      "## 출처 메모 - 중소벤처기업부 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790456 - 중소벤처기업부 보도자료 PDF: https://www.korea.kr/common/download.do?fileId=198595039&tblKey=GMN - 중기부·공정위 에너지경비 가이드 발표: https://www.mss.go.kr/site/smba/ex/bbs/View.do?bcIdx=1069533&cbIdx=86&parentSeq=1069533"
+    ],
+    "category": "economy",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-24T09:44:00Z",
+    "reporting": "desk",
+    "verificationNote": "중기부 우수기업 명단과 첨부 PDF에서 기관 유형 및 납품대금 조정 사례를 대조하고, 에너지경비 가이드와 관련 조항의 시행 시점을 비교했다.",
+    "addedValue": "우수기업 명단을 유형별로 집계하고, 원재료 값 하락에 따른 계약 조정 사례와 업종에 따라 적용될 에너지경비 제도의 시점을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T09:33:00Z",
+    "reporterInsight": "우수기업 명단을 유형별로 집계하고, 원재료 값 하락에 따른 계약 조정 사례와 업종에 따라 적용될 에너지경비 제도의 시점을 구분했다.",
+    "readerChecklist": [
+      "우수기업 유형별 수 확인",
+      "대화공업 조정 사례의 계약 범위 확인",
+      "상생협력법과 하도급법 시행일 구분"
+    ],
+    "imageUrl": "/stock/2026-11-24-delivery-price-linkage-nine-awards-company-types-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "중소벤처기업부",
+      "납품대금",
+      "연동제",
+      "대화공업",
+      "원재료",
+      "에너지경비",
+      "수탁기업",
+      "공공기관"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
     "id": "2026-11-24-expressway-hwaseong-paju-snow-road-workers",
     "slug": "2026-11-24-expressway-hwaseong-paju-snow-road-workers",
     "title": "도로공사 화성·파주 제설 도로관리원 2명 모집, 우편은 12월 1일 도착분",
@@ -145282,6 +145335,60 @@ export const CONTENT_ARTICLES: Article[] = [
       "기간제",
       "체력검정",
       "우편접수"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-24-haccp-four-food-groups-controls-by-process-2026",
+    "slug": "2026-11-24-haccp-four-food-groups-controls-by-process-2026",
+    "title": "해썹 안내서 4종, 관리할 공정도 제품마다 다르다",
+    "summary": "레토르트는 균일 가열, 비살균 식육추출가공품은 신속 냉각이 핵심이다. 소규모 해썹 업체에는 표준기준서도 제공한다.",
+    "body": [
+      "식품의약품안전처와 한국식품안전관리인증원은 2026년 11월 24일 해썹 적용 업체에 식품 유형별 관리 가이드라인 4종을 제공한다고 밝혔다.",
+      "발표 본문과 네 가지 붙임을 대조하면 같은 온도 관리라도 레토르트식품에는 고른 가열을, 비살균 식육추출가공품에는 빠른 냉각을 강조한다.",
+      "## 가열·냉각·위생, 제품 형태부터 확인",
+      "레토르트식품은 가열설비에서 온도가 가장 낮은 지점을 확인하고 설비와 부품을 점검하는 데 초점을 둔다. 식육추출가공품은 비살균 제품의 빠른 냉각과 교차오염 방지, 내포장 후 침지 가열을 안내한다. 특수영양식품·특수의료용도식품은 한 안내 범주로 묶었지만, 분말 제품에는 설비의 건식 위생관리, 유동식·식단형 제품에는 빠른 냉각과 적정 온도 유지를 권한다.",
+      "## 면류는 생면과 유탕면의 관리 항목이 달라",
+      "생면 안내에는 미생물 증식을 줄이기 위한 관리와 숙성·건조실 위생이, 유탕면 안내에는 튀김용 기름의 산패 방지가 담겼다. 식약처는 소규모 해썹 업체가 공정별 조치를 적용할 수 있도록 표준기준서를 함께 개발했다. 한국식품안전관리인증원 프레시의 해썹 종합자료실에서 안내서와 표준기준서 자료를 찾을 수 있다고 설명했다.",
+      "## 출처 메모 - 식품의약품안전처 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790457 - 식품의약품안전처 보도자료 PDF: https://www.korea.kr/common/download.do?fileId=198595042&tblKey=GMN"
+    ],
+    "category": "industry",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-24T09:44:00Z",
+    "reporting": "desk",
+    "verificationNote": "식약처 발표와 붙임에서 해썹 관리 안내서 네 유형의 공정별 관리 지점과 소규모 업체용 표준기준서 제공 범위를 대조했다.",
+    "addedValue": "같은 온도 관리라도 레토르트 가열과 비살균 식육추출가공품 냉각에서 우선 살필 공정이 달라지는 이유를 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T09:33:00Z",
+    "reporterInsight": "같은 온도 관리라도 레토르트 가열과 비살균 식육추출가공품 냉각에서 우선 살필 공정이 달라지는 이유를 구분했다.",
+    "readerChecklist": [
+      "식품 유형과 형태 확인",
+      "가열·냉각·위생 관리 지점 구분",
+      "소규모 업체용 표준기준서 확인"
+    ],
+    "imageUrl": "/stock/2026-11-24-haccp-four-food-groups-controls-by-process-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "식품의약품안전처",
+      "한국식품안전관리인증원",
+      "해썹",
+      "면류",
+      "레토르트식품",
+      "특수용도식품",
+      "식육추출가공품",
+      "표준기준서"
     ],
     "isBreaking": false,
     "readCount": 0,
@@ -145731,6 +145838,218 @@ export const CONTENT_ARTICLES: Article[] = [
     "type": "article"
   },
   {
+    "id": "2026-11-24-opinion-job-postings-guaranteed-pay-hours-2026",
+    "slug": "2026-11-24-opinion-job-postings-guaranteed-pay-hours-2026",
+    "title": "[칼럼] 채용공고 임금 공개, 기본급과 근로시간을 한 줄에",
+    "summary": "청년위원회가 제안한 채용정보 공개를 실제 비교에 쓰려면 보장되는 금액과 변동 항목을 구분한 공통 양식이 필요하다.",
+    "body": [
+      "경제사회노동위원회 청년위원회는 2026년 11월 23일 공동 정책간담회에서 구직자가 임금과 근로시간을 채용 단계에서 확인하고 비교할 수 있는 공개 체계를 제안했다. 이 제안을 실무에 옮길 때는 공고 첫 화면에서 기본급, 그 급여가 적용되는 근로시간, 별도 수당을 바로 나눠 볼 수 있게 해야 한다.",
+      "## 같은 연봉이 같은 조건을 뜻하지 않는다",
+      "연봉 총액만 같아도 어떤 공고에는 성과급을 포함하고 다른 공고에는 포함하지 않을 수 있다. 교대와 고정 연장근무도 소정근로시간과 뒤섞이면 구직자가 근무 일정을 가늠하기 어렵다. 기업은 급여 단위와 세전 여부, 기본급의 하한과 적용 시간, 고정 수당 및 변동급 여부를 한 화면에 표시하자.",
+      "## 공공 채용 플랫폼에서 먼저 시험하자",
+      "노동부와 공공 채용 플랫폼이 같은 입력 항목을 제시하고 공공기관과 자발적 참여 기업의 새 공고에 먼저 적용해 보자. 수습 조건이 다른 경우는 별도 칸을 두고, 수정하면 변경 날짜를 남기는 방식이 적절하다. 공고의 항목 누락률과 수정 빈도, 구직자가 조건을 다시 문의하는 비율을 공개하면 기업 규모별 부담과 비교 가능성을 함께 살필 수 있다.",
+      "## 출처 메모 - 경제사회노동위원회 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790381 - 경제사회노동위원회 보도자료 HWP: https://www.korea.kr/common/download.do?fileId=198594800&tblKey=GMN - 경제사회노동위원회 간담회 원문: https://eslc.go.kr/bbs/data/view.do?SC_KEY=&SC_KEYWORD=&bbs_mst_idx=BM0000000217&data_idx=BD0000001024&memberAuth=Y&menu_idx=2286&pageIndex=1&per_menu_idx=2074&root_yn=Y&stype=&submenu_idx="
+    ],
+    "category": "opinion",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-24T09:46:00Z",
+    "reporting": "desk",
+    "verificationNote": "경제사회노동위원회 발표와 첨부·간담회 원문에서 채용정보 공개 제안의 범위를 대조해 임금 비교 양식에 필요한 항목을 확인했다.",
+    "addedValue": "위촉·근로 조건을 비교할 때 기본급, 해당 근로시간, 별도 수당을 구분해 채용공고 첫 화면에서 확인할 수 있도록 제안했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T09:33:00Z",
+    "reporterInsight": "위촉·근로 조건을 비교할 때 기본급, 해당 근로시간, 별도 수당을 구분해 채용공고 첫 화면에서 확인할 수 있도록 제안했다.",
+    "readerChecklist": [
+      "기본급과 적용 근로시간 비교",
+      "보장 금액과 별도 수당 구분",
+      "채용조건과 실제 계약 내용 대조"
+    ],
+    "imageUrl": "/stock/2026-11-24-opinion-job-postings-guaranteed-pay-hours-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "경제사회노동위원회",
+      "청년위원회",
+      "채용정보",
+      "채용공고",
+      "기본급",
+      "근로시간",
+      "변동급",
+      "구직자"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "opinion"
+  },
+  {
+    "id": "2026-11-24-opinion-safety-disclosure-accident-scope-label-2026",
+    "slug": "2026-11-24-opinion-safety-disclosure-accident-scope-label-2026",
+    "title": "[칼럼] 산재 공시에서 숫자만큼 중요한 ‘누가 포함됐나’",
+    "summary": "재해자 수 옆에 소속·도급, 사고·질병, 승인 기준 기간을 표시하고 범위가 다른 수치의 합산과 순위를 피하자.",
+    "body": [
+      "고용노동부는 2026년 11월 20일 안전보건 현황 공시 가이드안을 행정예고했다. 초안은 소속 근로자의 사고·질병과 도급사업장에서 일하는 관계수급인 근로자의 사고 사망을 다른 항목으로 다룬다. 공시 화면에서도 숫자마다 누구를 어떤 기준으로 셌는지 바로 확인할 수 있어야 한다.",
+      "## 초안의 서로 다른 집계 범위",
+      "가이드안은 전년도 승인 기준으로 소속 근로자의 사고부상·사고사망·질병이환·질병사망을 적도록 했다. 관계수급인 항목은 일정한 도급사업장의 업무상 사고 사망에 해당하고 질병은 제외된다. 두 집계를 하나의 숫자로 합하면 읽는 사람이 비사망 재해나 질병까지 도급 노동자 집계에 들어 있다고 오해할 수 있다.",
+      "## 표준 화면의 항목명과 비교 원칙",
+      "노동부는 항목마다 집계 대상·재해 유형·기준연도를 숫자 바로 옆에 표기하고, 0과 대상 아님, 미입력을 구별하는 표시를 마련해야 한다. 기업 간 비교는 유형과 기간이 같을 때만 제공하는 편이 타당하다. 도급 노동자의 재해 위험을 별도로 비교하려면 사건 수 외에 비교 가능한 대상 규모가 확보됐는지부터 밝혀야 한다.",
+      "## 출처 메모 - 고용노동부 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790373 - 고용노동부 보도자료 PDF: https://www.korea.kr/common/download.do?fileId=198594717&tblKey=GMN - 고용노동부 행정예고: https://www.moel.go.kr/info/lawinfo/lawmaking/view.do?bbs_seq=20261100730 - 고용노동부 안전보건 공시 가이드안 PDF: https://www.moel.go.kr/common/downloadFile.do?file_seq=20261101434&bbs_seq=20261100730&bbs_id=18&file_ext=pdf"
+    ],
+    "category": "opinion",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-24T09:46:00Z",
+    "reporting": "desk",
+    "verificationNote": "고용노동부 보도자료와 행정예고 및 가이드안에서 소속 근로자·관계수급인, 사고·질병, 재해 승인 기간이 집계에 적용되는 방식을 대조했다.",
+    "addedValue": "집계 범위가 다른 안전보건 수치의 합산이나 순위화를 피하고, 실제 공시 화면의 각 숫자에 범위와 기준연도를 표시하자고 제안했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T09:33:00Z",
+    "reporterInsight": "집계 범위가 다른 안전보건 수치의 합산이나 순위화를 피하고, 실제 공시 화면의 각 숫자에 범위와 기준연도를 표시하자고 제안했다.",
+    "readerChecklist": [
+      "소속·도급 포함 범위 확인",
+      "사고와 질병 구분",
+      "재해 승인 기준 기간과 분모 대조"
+    ],
+    "imageUrl": "/stock/2026-11-24-opinion-safety-disclosure-accident-scope-label-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "고용노동부",
+      "안전보건공시",
+      "산업재해",
+      "도급사업장",
+      "관계수급인",
+      "산재승인",
+      "근로자수",
+      "행정예고"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "opinion"
+  },
+  {
+    "id": "2026-11-24-opinion-urban-forest-measure-gate-walking-distance-2026",
+    "slug": "2026-11-24-opinion-urban-forest-measure-gate-walking-distance-2026",
+    "title": "[칼럼] 도시숲 300m, 지도 위 원보다 공원 입구까지 걸어야",
+    "summary": "지자체는 공원 경계에서 잰 직선거리와 실제 입구까지 잰 보행거리의 차이부터 공개해야 한다.",
+    "body": [
+      "산림청은 2026년 11월 23일 심포지엄에서 생활공간에서 보이는 나무 3그루, 동네 수관피복률 30% 이상, 300m 이내 녹지공간이라는 원칙을 국내 도시숲 평가에 어떻게 적용할지 논의했다고 밝혔다. 평가가 실제 생활을 바꾸려면 지자체가 공원 경계까지의 직선거리와 주민이 들어갈 수 있는 입구까지의 보행거리를 함께 공개해야 한다.",
+      "## 숫자 하나만으로 가려지는 길",
+      "원논문의 300m는 집에서 가까운 공공 녹지에 접근할 수 있는지를 묻는 지침이다. 철도나 큰 도로가 있는 동네를 생각해 보자. 아파트에서 공원 울타리까지 직선으로 200m여도 열린 입구까지의 길은 300m를 넘을 수 있다. 이는 가상의 예지만, 서로 다른 방식으로 측정한 300m가 같은 뜻으로 읽힐 수 있다는 문제를 보여준다.",
+      "## 지자체가 지도에 먼저 넣을 정보",
+      "공원 입구와 개방 시간, 횡단보도, 보행이 끊긴 구간을 표시하고 직선과 보행 중 한 기준만 충족하는 주거 구역을 따로 집계하자. 경사로나 계단이 있는 구간은 이동에 제약이 있는 주민이 확인할 수 있도록 표시할 필요가 있다. 지자체는 그 결과를 바탕으로 입구를 더 낼지, 횡단보도를 보완할지, 새 녹지를 조성할지 결정하고 조치 뒤 변화를 이듬해 같은 방법으로 공개해야 한다.",
+      "## 출처 메모 - 산림청 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790409 - 산림청 보도자료 PDF: https://www.korea.kr/common/download.do?fileId=198594920&tblKey=GMN - Konijnendijk 3-30-300 원논문: https://link.springer.com/article/10.1007/s11676-022-01523-z"
+    ],
+    "category": "opinion",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-24T09:45:00Z",
+    "reporting": "desk",
+    "verificationNote": "산림청 발표와 3-30-300 원논문에서 거리 기준의 취지와 국내 평가 적용 논의가 각각 어떤 맥락인지 대조했다.",
+    "addedValue": "녹지까지의 직선거리와 실제 공원 입구까지 걸어야 하는 거리를 함께 공개하자는 제안에 보행로·횡단보도 같은 비교 항목을 제시했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T09:33:00Z",
+    "reporterInsight": "녹지까지의 직선거리와 실제 공원 입구까지 걸어야 하는 거리를 함께 공개하자는 제안에 보행로·횡단보도 같은 비교 항목을 제시했다.",
+    "readerChecklist": [
+      "공원 입구와 보행 연결 위치 확인",
+      "직선거리와 입구 보행거리 구분",
+      "횡단보도와 개방 시간 함께 확인"
+    ],
+    "imageUrl": "/stock/2026-11-24-opinion-urban-forest-measure-gate-walking-distance-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "산림청",
+      "도시숲",
+      "녹지형평성",
+      "수관피복률",
+      "보행거리",
+      "녹지공간",
+      "횡단보도",
+      "도시숲기본계획"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "opinion"
+  },
+  {
+    "id": "2026-11-24-satellite-watershed-six-projects-pilot-2027-2026",
+    "slug": "2026-11-24-satellite-watershed-six-projects-pilot-2027-2026",
+    "title": "위성 유역관리 6개 과제…시범유역 실증은 2027년 하반기",
+    "summary": "사전 공개된 협약 문안은 데이터 활용·공동연구와 실증 장소의 공유·공동 활용을 협력 사항으로 제시했다.",
+    "body": [
+      "국가물관리위원회는 2026년 11월 23일 공개한 자료에서 24일 오후 한국수자원공사 등 4개 공공기관과 위성데이터 기반 유역 통합관리 협약을 체결할 예정이라고 밝혔다. 발표의 협력과제 6개를 분야별로 나누면 물환경 2개, 홍수·가뭄 3개, 시설관리 1개다. 시범유역을 선정해 현장 검증에 착수하는 시점은 2027년 하반기로 제시됐다.",
+      "## 위성으로 살필 물환경과 재해",
+      "물환경 과제는 녹조의 발생·확산과 부유물의 이동·확산이다. 홍수·가뭄 분야는 접경지역 홍수 대응, 계측시설이 없는 지역의 수위·침수 분석, 가뭄 관측이다. 시설 분야에는 시설물 안전관리가 포함됐다. 자료에는 위성으로 확인한 정보가 어떤 방식으로 주민에게 공개될지는 나오지 않았다.",
+      "## 협약서에 담긴 시험 절차",
+      "위원회와 수자원공사·한국환경공단·한국수력원자력·한국농어촌공사가 참여한다. 붙임 협약서는 위성 활용 업무와 계획을 공유하고, 공동연구와 현장 실증 장소 공유를 추진하는 내용도 담았다. 발표에서는 실무위원회 운영 이후 시범유역을 골라 현장 적용을 검증할 방침이라고 밝혔다.",
+      "## 출처 메모 - 국가물관리위원회 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790345 - 국가물관리위원회 보도자료 PDF: https://www.korea.kr/common/download.do?fileId=198594647&tblKey=GMN"
+    ],
+    "category": "society",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-24T09:45:00Z",
+    "reporting": "desk",
+    "verificationNote": "국가물관리위원회 발표와 첨부 협약안에서 오후 체결 예정, 분야별 과제 여섯 개, 실증 장소의 공유와 2027년 일정 표기를 대조했다.",
+    "addedValue": "협약 문안의 데이터·실증 장소 공동 활용 범위와 과제별 활용 분야를 나누고, 협약 체결 예정일과 현장 실증 목표 시점을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T09:33:00Z",
+    "reporterInsight": "협약 문안의 데이터·실증 장소 공동 활용 범위와 과제별 활용 분야를 나누고, 협약 체결 예정일과 현장 실증 목표 시점을 구분했다.",
+    "readerChecklist": [
+      "예정된 협약 체결 공지 확인",
+      "분야별 과제의 적용 범위 구분",
+      "시범유역 실증의 목표 시점 확인"
+    ],
+    "imageUrl": "/stock/2026-11-24-satellite-watershed-six-projects-pilot-2027-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "국가물관리위원회",
+      "위성데이터",
+      "유역관리",
+      "녹조",
+      "홍수",
+      "가뭄",
+      "시설물",
+      "시범유역"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
     "id": "2026-11-24-seongnam-startup-desk-cost-application-date",
     "slug": "2026-11-24-seongnam-startup-desk-cost-application-date",
     "title": "성남창업센터 7곳 모집, 좌석당 월 5만원…일시납부 기간 확인 필요",
@@ -145781,6 +146100,220 @@ export const CONTENT_ARTICLES: Article[] = [
       "좌석사용료",
       "예비창업자",
       "성남산업진흥원"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-24-smart-construction-expo-awards-versus-exhibit-2026",
+    "slug": "2026-11-24-smart-construction-expo-awards-versus-exhibit-2026",
+    "title": "스마트건설 엑스포, 경연 93팀과 전시 258개사는 다른 집계",
+    "summary": "붙임의 경연에는 안전관리 30팀이 참가했다. 수상 기술과 전시관 시연 목록도 따로 공개됐다.",
+    "body": [
+      "국토교통부는 2026년 11월 24일 고양 킨텍스에서 25~27일 스마트건설·안전·AI 엑스포를 연다고 밝혔다. 발표의 숫자 두 가지는 서로 다른 집계다. 앞서 열린 기술 경연에는 93팀이 참가했고, 이번 엑스포 기술전시에는 258개 기업이 참여할 예정이다.",
+      "## 경연 다섯 분야 가운데 안전관리 30팀",
+      "국토부가 공개한 경연 참가 현황은 안전관리 30팀, 단지·주택 19팀, 도로 18팀, 철도 11팀, 건설정보모델링 15팀이다. 합계 93팀 중 안전관리가 약 32%다. 분야별 최우수팀 1곳씩 5팀은 엑스포에서 상을 받을 예정이다. 철도 분야 수상 기술은 작업 상황별 안전 점검표를 작성하도록 돕는 도구다.",
+      "## 주관기관 전시관에 배치된 기술",
+      "기술전시는 818개 부스를 스마트 건설관리, 스마트 안전관리, 스마트 유지관리, 로봇·건설자동화, 설계자동화, 지속가능경영 등 6개 존으로 나눈다. 별도 주관기관 소개에는 한국도로공사의 원격 터널화재 진압설비와 한국철도공사의 선로작업 이동형 CCTV 등이 적혔다. 전시 목록은 경연 수상 명단과 집계 기준이 다르다.",
+      "## 출처 메모 - 국토교통부 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790452 - 국토교통부 보도자료 PDF: https://www.korea.kr/common/download.do?fileId=198595023&tblKey=GMN - 스마트건설 엑스포 공식 일정: https://smartconexpo.com/about/overveiw/"
+    ],
+    "category": "industry",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-24T09:44:00Z",
+    "reporting": "desk",
+    "verificationNote": "국토교통부 발표와 첨부 PDF에서 기술 경연 93팀과 기업 258개사의 전시 집계가 별도임을 확인하고 행사 공식 일정과 대조했다.",
+    "addedValue": "경연 참가팀과 전시 기업 수를 구분하고, 경연 수상 기술과 실물·시연 중심의 전시장 정보가 어느 자료에 나오는지 정리했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T09:33:00Z",
+    "reporterInsight": "경연 참가팀과 전시 기업 수를 구분하고, 경연 수상 기술과 실물·시연 중심의 전시장 정보가 어느 자료에 나오는지 정리했다.",
+    "readerChecklist": [
+      "공식 관람 일정 확인",
+      "기술 경연과 기업 전시 집계 구분",
+      "시연 희망 기술의 전시관 위치 확인"
+    ],
+    "imageUrl": "/stock/2026-11-24-smart-construction-expo-awards-versus-exhibit-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "국토교통부",
+      "스마트건설",
+      "킨텍스",
+      "건설로봇",
+      "안전관리",
+      "기술전시",
+      "한국도로공사",
+      "국가철도공단"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-24-student-health-awards-ten-schools-three-tracks-2026",
+    "slug": "2026-11-24-student-health-awards-ten-schools-three-tracks-2026",
+    "title": "학생 건강증진 우수학교 10곳, 동아리·영상에서 6곳",
+    "summary": "교육부가 공개한 선정표를 보면 교육활동 4곳, 동아리 4곳, 교육 영상 2곳이다. 붙임에는 분야별 참가 방식과 시상 단위도 담겼다.",
+    "body": [
+      "교육부가 2026년 11월 24일 공개한 학생 건강증진 교육활동 공모에서 우수학교 10곳 중 6곳이 교내 동아리나 교육 영상 분야에서 선정됐다.",
+      "올해 공모는 학교 교육활동, 동아리 운영, 영상 제작을 나눠 심사했다. 교육부는 74개교가 접수했다고 밝혔다.",
+      "## 학교 단위 교육활동에 상장, 동아리·영상은 참여자별",
+      "일반 교육활동에서 학교가 상장을 받고 공적이 있는 교사는 별도 표창을 받는다. 교내 동아리와 영상 분야에서는 지도교사와 동아리 또는 학생에게 상장이 수여된다. 동아리 분야는 자율동아리를 제외했고, 영상은 1분 이상 10분 이내로 인공지능 도구를 썼다면 어떤 도구인지 표시하도록 했다.",
+      "## 학교가 참고할 사례의 범위",
+      "대상인 수성중학교는 수업과 동아리, 가정 활동을 이었고 예산꿈빛학교는 특수교육 대상 학생을 위한 신체활동과 식습관 프로그램을 운영했다. 동아리·영상 사례까지 합친 자료집은 내년 2월 중 공유할 계획이다. 접수 학교 74곳은 전체 규모다. 분야별 접수 건수가 제시되지 않아 각 분야 선정률을 계산할 수는 없다.",
+      "## 출처 메모 - 교육부 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790454 - 교육부 본문 HWPX: https://www.korea.kr/common/download.do?fileId=198595029&tblKey=GMN"
+    ],
+    "category": "society",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-24T09:44:00Z",
+    "reporting": "desk",
+    "verificationNote": "교육부 발표와 붙임에서 우수학교 10곳의 분야별 수, 참가 대상과 상장·표창이 주어지는 단위를 대조했다.",
+    "addedValue": "학교 단위의 교육활동과 학생·교사 참여 단위인 동아리·영상 사례를 구분해 학교가 살펴볼 자료의 범위를 정리했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T09:33:00Z",
+    "reporterInsight": "학교 단위의 교육활동과 학생·교사 참여 단위인 동아리·영상 사례를 구분해 학교가 살펴볼 자료의 범위를 정리했다.",
+    "readerChecklist": [
+      "분야별 선정표 확인",
+      "교사·학생 참여 단위 확인",
+      "학교 활동 사례와 수상 단위 구분"
+    ],
+    "imageUrl": "/stock/2026-11-24-student-health-awards-ten-schools-three-tracks-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "교육부",
+      "학생건강",
+      "건강증진",
+      "교육활동",
+      "동아리",
+      "교육영상",
+      "수성중학교",
+      "예산꿈빛학교"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-24-ticket-resale-referral-november-offer-count-share-2026",
+    "slug": "2026-11-24-ticket-resale-referral-november-offer-count-share-2026",
+    "title": "암표 추가 수사의뢰…판매 제안 2,335매 중 스포츠 1,770매",
+    "summary": "공연 39명, 스포츠 31명이 의뢰 대상이다. 스포츠 쪽은 인원이 더 적지만 판매 제안 매수 비중이 컸다.",
+    "body": [
+      "문화체육관광부가 2026년 11월 23일 경찰에 추가로 수사를 의뢰했다고 밝힌 공연·스포츠 암표 의심 사례에서, 판매하려고 제시한 입장권 2,335매 중 스포츠가 1,770매였다. 분야별 현황을 합산해 계산하면 스포츠가 약 75.8%다.",
+      "## 의뢰 인원과 판매 제안 매수로 본 비중",
+      "의뢰 인원은 공연 39명, 스포츠 31명이었다. 공연은 565매, 스포츠는 1,770매를 판매하겠다고 제시한 사례다. 인원과 매수의 비중이 다른 만큼 어느 분야에서 의뢰 대상이 더 많았는지와 어느 쪽의 판매 제안 규모가 컸는지는 분리해 봐야 한다. 문체부는 공연 쪽 의뢰에 자체 모니터링으로 포착한 의심자 33명이 포함됐다고 설명했다.",
+      "## 10월의 31명은 별도 발표",
+      "앞서 모두일보가 다룬 10월 20일 수사 의뢰는 10월 13~19일 신고 자료를 바탕으로 한 별도 발표다. 새 자료에는 스포츠 31명과 앞선 31명의 인원 중복을 확인할 정보가 없어 합계로 계산하지 않았다. 새 발표의 판매청약금액도 게시물에서 제시한 액수다. 실제 결제액과 처벌 여부는 수사 의뢰 발표에서 확인되지 않는다.",
+      "## 출처 메모 - 문화체육관광부 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790401 - 문화체육관광부 보도자료 PDF: https://www.korea.kr/common/download.do?fileId=198594835&tblKey=GMN - 문화체육관광부 10월 20일 이전 의뢰 PDF: https://www.korea.kr/common/download.do?fileId=198573668&tblKey=GMN"
+    ],
+    "category": "sports",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-24T09:45:00Z",
+    "reporting": "desk",
+    "verificationNote": "문체부 11월 발표와 첨부 표에서 의뢰 인원과 판매 제안 매수를 각각 합산하고, 10월 공개 자료의 별도 집계와 비교했다.",
+    "addedValue": "판매 제안 2335매 중 스포츠 1770매를 계산하고, 판매 제안 매수와 수사 의뢰 인원 및 실제 거래 실적을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T09:33:00Z",
+    "reporterInsight": "판매 제안 2335매 중 스포츠 1770매를 계산하고, 판매 제안 매수와 수사 의뢰 인원 및 실제 거래 실적을 구분했다.",
+    "readerChecklist": [
+      "사례 집계 기간 확인",
+      "의뢰 인원과 제시 매수 구분",
+      "10월 발표와 이번 추가 수사의뢰 비교"
+    ],
+    "imageUrl": "/stock/2026-11-24-ticket-resale-referral-november-offer-count-share-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "문화체육관광부",
+      "암표",
+      "공연",
+      "프로야구",
+      "입장권",
+      "중고거래플랫폼",
+      "판매청약",
+      "수사의뢰"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-24-worker-health-centres-gimpo-pohang-priority-and-services-2026",
+    "slug": "2026-11-24-worker-health-centres-gimpo-pohang-priority-and-services-2026",
+    "title": "김포·포항 근로자건강센터 신설…50인 미만 사업장 우선 지원",
+    "summary": "붙임은 플랫폼노동자와 특수형태근로종사자도 지원 대상에 포함했다. 김포는 제조·물류, 포항은 철강 등 작업환경에 초점을 맞춘다.",
+    "body": [
+      "고용노동부와 한국산업안전보건공단이 2026년 11월 23일 공개한 신설 안내에 따르면 김포와 포항에 근로자건강센터가 문을 열어 전국 센터는 24곳에서 26곳으로 늘었다.",
+      "보도자료의 대상 안내를 붙임과 맞춰 보면 플랫폼노동자·특수형태근로종사자도 포함되며, 50인 미만은 사업장 우선 지원 기준이다.",
+      "## 김포는 제조·물류, 포항은 철강 작업환경",
+      "김포센터는 중소 제조업 노동자의 건강진단 사후관리와 근골격계질환 예방, 물류·운송업 노동자의 뇌·심혈관질환 예방 지원을 중점으로 안내했다. 경북동부센터는 포항 철강산업 특성에 맞춰 소음·분진·화학물질 노출에 관한 예방 상담과 사업장 개선 지도를 중심으로 운영할 예정이다. 개소식 날짜는 포항 11월 17일, 김포 11월 23일이다.",
+      "## 개인 상담과 작업장 개선 지원",
+      "붙임 서비스표에는 건강검진 결과 상담과 직무스트레스 상담, 소음·분진 등 작업환경 개선 자문이 따로 나온다. 노동부는 직업병 예방과 건강 상담 등 서비스를 무료로 제공한다고 설명했다. 센터별 예약 시간이나 프로그램 배정은 이번 발표에 제시되지 않았다.",
+      "## 출처 메모 - 고용노동부 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790397 - 고용노동부 보도자료 PDF: https://www.korea.kr/common/download.do?fileId=198594833&tblKey=GMN"
+    ],
+    "category": "labor",
+    "author": {
+      "name": "류주형",
+      "role": "취재기자"
+    },
+    "publishedAt": "2026-11-24T09:45:00Z",
+    "reporting": "desk",
+    "verificationNote": "고용노동부 발표와 첨부 서비스표에서 센터별 지원 분야, 50인 미만 우선 기준과 플랫폼·특수형태근로종사자 지원 범위를 대조했다.",
+    "addedValue": "사업장 규모의 우선 기준과 개인 서비스 이용 대상을 나누고, 김포와 포항에서 각각 안내된 상담·작업환경 지원을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-24T09:33:00Z",
+    "reporterInsight": "사업장 규모의 우선 기준과 개인 서비스 이용 대상을 나누고, 김포와 포항에서 각각 안내된 상담·작업환경 지원을 구분했다.",
+    "readerChecklist": [
+      "센터 관할과 이용 대상 확인",
+      "상담과 작업장 개선 지원 구분",
+      "소속 사업장 규모에 따른 우선 기준 확인"
+    ],
+    "imageUrl": "/stock/2026-11-24-worker-health-centres-gimpo-pohang-priority-and-services-2026.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "고용노동부",
+      "한국산업안전보건공단",
+      "근로자건강센터",
+      "김포",
+      "포항",
+      "플랫폼노동자",
+      "특수형태근로종사자",
+      "작업환경"
     ],
     "isBreaking": false,
     "readCount": 0,
