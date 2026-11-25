@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   //    other에 넣으면 기사 페이지에서만 조용히 사라져 검토가 반려된다.
   verification: {
     other: {
-      "naver-site-verification": "9fa5ad35d86ef9d80fc2a12bc20f8a57d5512de7",
+      "naver-site-verification": "385b0a42827c413a7e005518200dd90f3481aaba",
       // 애드센스 사이트 소유권 확인. ads.txt의 pub-1741876528103024와 동일 계정.
       "google-adsense-account": "ca-pub-1741876528103024",
     },
