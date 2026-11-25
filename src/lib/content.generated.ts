@@ -146375,6 +146375,491 @@ export const CONTENT_ARTICLES: Article[] = [
     "type": "article"
   },
   {
+    "id": "2026-11-25-anseong-eco-trail-two-roles-five-hire",
+    "slug": "2026-11-25-anseong-eco-trail-two-roles-five-hire",
+    "title": "안성 국가생태탐방로 기간제 5명, 보수·환경관리 중 한 분야만 지원",
+    "summary": "국립공원공단이 탐방로 보수 3명과 환경관리 2명을 모집한다. 원서접수는 12월 8일 18시까지다.",
+    "body": [
+      "국립공원공단 중부지역본부가 안성시 국가생태탐방로 관리단에서 일할 기간제 근로자 5명을 공개 모집한다. 탐방로 보수는 3명, 환경관리는 2명이다. 같은 공고의 두 직무에 동시 지원하면 모두 불합격 처리한다. 신청은 12월 8일 오후 6시까지 공단 채용사이트에서 받는다.",
+      "## 보수 직무는 시설점검, 환경관리는 순찰·안내",
+      "보수 업무에는 노면 정리, 훼손지 복구, 시설 안전점검이 포함된다. 환경관리는 시설과 탐방로의 청결 유지, 현장 순찰과 탐방객 안내를 맡는다. 두 분야 모두 주 40시간 전일제이고 근무계획에 따라 휴일에 일할 수 있다. 계약기간은 2027년 1월 1일부터 12월 31일까지로 공고에 적혀 있으며 시작일은 여건에 따라 바뀔 수 있다.",
+      "공고가 적은 세전 월급은 보수 약 279만원, 환경관리 약 225만3000원이다. 두 숫자는 2026년 기준을 기재한 것으로 2027년 급여가 확정된 금액은 아니다. 공고는 2027년 급여에 공정수당·적정임금이 반영될 예정이라고 밝혔다. 원서는 입사지원서와 경험·경력기술서를 온라인으로 입력해 제출하고 지원한 직무를 다시 확인하면 된다.",
+      "## 출처 메모",
+      "- 잡알리오 국립공원공단 공고: https://job.alio.go.kr/recruitview.do?idx=307368 - 국립공원공단 첨부 채용 공고문: https://www.alio.go.kr/download/download.json?fileNo=3089703 - 국립공원공단 채용 접수: https://knps.fairy.im"
+    ],
+    "category": "labor",
+    "author": {
+      "name": "유승현",
+      "role": "사회부 기자"
+    },
+    "publishedAt": "2026-11-25T09:26:00Z",
+    "reporting": "desk",
+    "verificationNote": "공개 원문과 해당 첨부의 조건·수치·일시를 대조했다.",
+    "addedValue": "직무별 인원·업무를 비교하고 공고에 적힌 급여가 채용연도 확정 금액이 아님을 확인했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-25T09:12:00Z",
+    "reporterInsight": "직무별 인원·업무를 비교하고 공고에 적힌 급여가 채용연도 확정 금액이 아님을 확인했다.",
+    "readerChecklist": [
+      "한 가지 직무 선택",
+      "경험·경력기술서 작성",
+      "공고의 급여 기준연도 확인"
+    ],
+    "imageUrl": "/stock/2026-11-25-anseong-eco-trail-two-roles-five-hire.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "안성",
+      "국가생태탐방로",
+      "국립공원공단",
+      "기간제",
+      "탐방로보수",
+      "환경관리",
+      "채용",
+      "잡알리오"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-25-busan-iso45001-first-certification-cost",
+    "slug": "2026-11-25-busan-iso45001-first-certification-cost",
+    "title": "부산 ISO 45001 신규 인증비 최대 300만원, 컨설팅만은 신청 불가",
+    "summary": "산재보험에 가입한 부산 소재 50인 미만 사업장이 대상이다. 11월 27일까지 우편과 이메일로 모두 서류를 보내야 한다.",
+    "body": [
+      "부산테크노파크가 부산 소재 50인 미만 사업장의 안전보건경영시스템 ISO 45001 신규 취득을 지원한다. 산재보험에 가입한 사업장이 대상이며 기존 인증 갱신은 지원 범위에서 빠진다.",
+      "기업마당과 부산테크노파크 모두 접수 마지막 날을 11월 27일로 안내하고, 부산테크노파크는 오후 6시 마감과 2곳 안팎의 지원 규모를 명시했다.",
+      "## 200만원은 별도 지원금이 아닌 컨설팅 상한",
+      "기업당 한도는 부가가치세 10%를 제외한 300만원이다. 인증 심사와 함께 컨설팅이 필요하면 총 한도 안에서 컨설팅 비용을 최대 200만원까지 편성할 수 있다. 예를 들어 컨설팅에 200만원을 편성하면 한도 안에서 심사비에 배정할 수 있는 금액은 최대 100만원이다. 컨설팅만 받는 신청은 허용하지 않는다. 사업은 2곳 안팎을 지원하며 공고는 신청 순서에 따라 지원순위를 부여한다고 안내한다. 지원금은 수행 결과와 증빙 검토를 거쳐 사후 정산한다.",
+      "## 우편과 이메일 제출 범위가 다르다",
+      "포털에는 우편과 이메일 중 하나를 고르는 방식이 아니라 둘 다 제출하라고 적혀 있다. 첨부의 제출서류 표는 신청서·확약서·동의서·서약서·자체 점검표를 우편과 이메일로, 사업자등록증과 납세증명서 등 나머지 증빙을 이메일로 내도록 구분한다. 우편 제출분은 원본과 사본 각 1부다. 이메일 서류는 한 압축파일로 묶어야 한다. 공고가 안내한 파일명은 ‘2026_산업안전보건인증_신청기업명’이다.",
+      "## 출처 메모",
+      "- 부산테크노파크 공고: https://www.btp.or.kr/kor/CMS/Board/Board.do?board_seq=9582714&mCode=MN013&mgr_seq=16&mode=view - 기업마당 제출방법과 첨부 공고: https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000128087"
+    ],
+    "category": "grants",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-25T09:26:00Z",
+    "reporting": "desk",
+    "verificationNote": "공개 원문과 해당 첨부의 조건·수치·일시를 대조했다.",
+    "addedValue": "인증 전체 한도와 그 안의 컨설팅 한도를 분리하고 우편과 이메일별 제출서류 범위를 대조했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-25T09:15:00Z",
+    "reporterInsight": "인증 전체 한도와 그 안의 컨설팅 한도를 분리하고 우편과 이메일별 제출서류 범위를 대조했다.",
+    "readerChecklist": [
+      "산재보험과 50인 미만 조건 확인",
+      "인증 신규 취득 여부 확인",
+      "우편과 이메일 파일 준비"
+    ],
+    "imageUrl": "/stock/2026-11-25-busan-iso45001-first-certification-cost.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "부산테크노파크",
+      "부산",
+      "ISO45001",
+      "안전보건경영",
+      "소규모사업장",
+      "인증심사",
+      "컨설팅",
+      "산재보험"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-25-eu-hybrid-provisional-quota-korean-origin",
+    "slug": "2026-11-25-eu-hybrid-provisional-quota-korean-origin",
+    "title": "EU 하이브리드 수입 잠정 쿼터 12월 1일 적용, 한국산은 국가별 배정",
+    "summary": "EU 집행위는 물량 한도를 두는 잠정조치를 발표했다. 차종별 적용 범위와 수출 대상 차량의 원산지를 구분해야 한다.",
+    "body": [
+      "유럽연합(EU) 집행위원회가 11월 24일 일부 수입 하이브리드 승용차에 대한 세이프가드 잠정조치를 발표했다.",
+      "산업통상부는 시행기간을 12월 1일부터 2027년 6월 18일까지로 안내했다. EU가 정한 조치는 수입물량 제한이며, 집행위는 해당 쿼터를 넘어서는 수입은 허용하지 않는다고 밝혔다.",
+      "## 한국산은 수출 국적이 아닌 원산지 기준부터 확인",
+      "EU 집행위는 주요 공급국에는 국가별 물량을, 그 밖의 원산지에는 공동 물량을 두는 방식으로 설명했다. 산업부는 한국산에 국가별 쿼터가 배정된다고 밝혔다. 한국 업체라도 차량 생산지가 다르면 같은 쿼터를 쓴다고 단정해선 안 된다. 출하 계획을 점검할 때 회사의 국적과 차량 원산지를 별개로 확인해야 한다.",
+      "## 조사 개시와 최종 조치는 다른 단계",
+      "집행위는 조사 범위에 일반 하이브리드와 플러그인 하이브리드, 마일드 하이브리드가 포함된다고 설명했다. 잠정조치의 실제 적용 대상과 통관에 쓰는 세부 분류는 EU 관보의 시행규정에서 확인해야 한다. 조사는 10월 30일 시작됐으며 집행위 발표는 이번 수입 제한이 잠정조치임을 명시했다. 대상 여부를 파악하려는 기업은 EU 수입자와 원산지, 통관 품목코드, 예정 통관일을 맞춰 확인할 필요가 있다.",
+      "## 출처 메모",
+      "- EU 시행규정 2026/2614: https://eur-lex.europa.eu/eli/reg_impl/2026/2614/oj - EU 집행위원회 발표 PDF: https://ec.europa.eu/commission/presscorner/api/files/document/print/en/ip_26_2564/IP_26_2564_EN.pdf - 산업통상부 설명: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790630"
+    ],
+    "category": "industry",
+    "author": {
+      "name": "최은영",
+      "role": "국제부 기자"
+    },
+    "publishedAt": "2026-11-25T09:26:00Z",
+    "reporting": "desk",
+    "verificationNote": "공개 원문과 해당 첨부의 조건·수치·일시를 대조했다.",
+    "addedValue": "EU 시행규정과 산업부 안내에서 원산지 기준, 잠정기간과 물량 제한의 효과를 비교했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-25T09:12:00Z",
+    "reporterInsight": "EU 시행규정과 산업부 안내에서 원산지 기준, 잠정기간과 물량 제한의 효과를 비교했다.",
+    "readerChecklist": [
+      "대상 세번 확인",
+      "차량 원산지 확인",
+      "현지 통관일과 해당 쿼터 확인"
+    ],
+    "imageUrl": "/stock/2026-11-25-eu-hybrid-provisional-quota-korean-origin.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "유럽연합",
+      "하이브리드",
+      "잠정조치",
+      "세이프가드",
+      "무역",
+      "수입쿼터",
+      "원산지",
+      "통관"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-25-goyang-changneung-kitchen-four-product-proof",
+    "slug": "2026-11-25-goyang-changneung-kitchen-four-product-proof",
+    "title": "고양창릉 주방가구 입찰, 제조 등록 4품목과 실내건축 업종 요구",
+    "summary": "12월 10일 10시 가격입찰을 마감한다. 참가등록은 전날 18시까지이며 가정용싱크대 우수단체표준제품확인서도 필요하다.",
+    "body": [
+      "서울지방조달청이 한국토지주택공사 경기북부지역본부의 고양창릉 S-5BL 아파트 2공구 주방가구 제작·설치 입찰을 공고했다.",
+      "부가세를 뺀 추정가격은 36억1625만2994원이며 공고에 적힌 납품기한은 2027년 7월 31일이다.",
+      "## 싱크대와 조리대부터 받침대·찬장까지",
+      "전자로 접수하는 가격입찰은 12월 8일 오전 10시부터 10일 오전 10시까지다. 경쟁입찰 참가등록은 9일 오후 6시에 먼저 닫힌다. 개찰은 10일 오전 11시다. 첨부 공고를 대조하면 참가자는 가정용싱크대·가정용조리대·주방기기용받침대·찬장을 모두 제조물품으로 등록하고, 실내건축공사업(4990) 업종도 등록해야 한다.",
+      "직접생산확인증명서 역시 네 품목 각각에 필요하다. 공고는 네 품목 모두에서 스테인리스를 주원재료로 하는 경우를 제외한다는 특이사항을 달았다. 중소기업·소상공인 확인서 외에 가정용싱크대 우수단체표준제품확인서가 필요하다. 이 확인서는 12월 9일까지 발급된 유효한 서류여야 한다. 계약이행능력심사 대상자는 심사서류를 낼 때 이 확인서와 우수단체표준제품 유지확인서를 함께 제출해야 한다. 일반 공동수급은 불허하고, 공고는 별도로 정한 조건을 충족하는 적격조합의 참가 요건도 안내한다.",
+      "## 출처 메모",
+      "- 나라장터 최신 차수 공고: https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01849570&bidPbancOrd=000 - 나라장터 첨부 입찰공고서 PDF: https://www.g2b.go.kr/pn/pnp/pnpe/UntyAtchFile/downloadFile.do?bidPbancNo=R26BK01849570&bidPbancOrd=000&fileType=&fileSeq=2&prcmBsneSeCd=01"
+    ],
+    "category": "bids",
+    "author": {
+      "name": "서영호",
+      "role": "공공입찰 전담기자"
+    },
+    "publishedAt": "2026-11-25T09:27:00Z",
+    "reporting": "desk",
+    "verificationNote": "공개 원문과 해당 첨부의 조건·수치·일시를 대조했다.",
+    "addedValue": "제조물품 등록 네 품목, 공사업 업종 및 추가 확인서의 조건을 첨부 공고에서 대조했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-25T09:15:00Z",
+    "reporterInsight": "제조물품 등록 네 품목, 공사업 업종 및 추가 확인서의 조건을 첨부 공고에서 대조했다.",
+    "readerChecklist": [
+      "네 제조물품 코드 확인",
+      "실내건축공사업 등록 확인",
+      "단체표준 확인서 유효기간 대조"
+    ],
+    "imageUrl": "/stock/2026-11-25-goyang-changneung-kitchen-four-product-proof.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "고양창릉",
+      "주방가구",
+      "조달청",
+      "나라장터",
+      "직접생산",
+      "단체표준",
+      "실내건축",
+      "한국토지주택공사"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-25-incheon-gongchon-recovered-materials-all-removal",
+    "slug": "2026-11-25-incheon-gongchon-recovered-materials-all-removal",
+    "title": "인천 공촌정수사업소 발생품 매각, 창고 잔재물도 함께 반출",
+    "summary": "온비드 입찰과 보증금 납부는 25일 17시까지다. 기초금액 520만원에 목록 84종과 창고 보관 잡자재 전체가 포함된다.",
+    "body": [
+      "인천 공촌정수사업소가 시설에서 나온 발생품 84종과 창고 잡자재를 온비드에서 일괄 매각한다. 입찰서와 입찰보증금 납부 마감은 11월 25일 오후 5시다. 개찰은 26일 오전 10시이며 기초금액은 520만원이다.",
+      "## 폐기물 수집·운반 허가와 신고 모두 요구",
+      "첨부 공고는 온비드 회원 및 전자입찰 인증 등록 외에 폐기물 수집·운반업 허가와 고철·폐지 등의 수집·운반 또는 재활용에 관한 폐기물처리 신고를 요구한다. 대리나 공동입찰은 허용하지 않는다. 입찰보증금은 입찰가의 5%이고 낙찰자가 계약 때 내는 계약금은 매각대금의 10%다. 공고는 계약금 납부 확인 후 입찰보증금을 별도로 반환한다고 명시했다.",
+      "입찰 전 물품의 실제 상태를 확인해야 한다. 공고는 별도 설명회 없이 25일 오전 9시부터 오후 5시까지 사업소에서 열람할 수 있도록 안내했다. 방문자는 신분증을 지참해야 한다. 계약일부터 20일 이내에 직접 인수하고 반출해야 한다. 고철 등 유용한 자재만 싣고 나오는 방식은 금지돼 있으며, 창고 안 불용품과 잔재물도 걷어내고 현장을 정돈한 뒤 담당자 확인을 받아야 한다. 인수·운반비는 낙찰자가 부담한다. 입찰가는 목록 물품의 가치뿐 아니라 목록 밖 잔재물 처리 비용까지 감안해 산정할 필요가 있다.",
+      "## 출처 메모",
+      "- 인천광역시 매각 공고: https://www.incheon.go.kr/IC010307/view?curPage=8&gosigbn=A&sno=68556 - 첨부 입찰공고문: https://www.incheon.go.kr/comm/getFile?srvcId=IR_004&upperNo=20068556&fileTy=file&fileNo=2 - 첨부 매각시방서: https://www.incheon.go.kr/comm/getFile?srvcId=IR_004&upperNo=20068556&fileTy=file&fileNo=3"
+    ],
+    "category": "deals",
+    "author": {
+      "name": "서영호",
+      "role": "공공입찰 전담기자"
+    },
+    "publishedAt": "2026-11-25T09:27:00Z",
+    "reporting": "desk",
+    "verificationNote": "공개 원문과 해당 첨부의 조건·수치·일시를 대조했다.",
+    "addedValue": "웹 공고와 첨부를 대조해 일괄 반출 범위와 입찰보증금·계약금의 처리 차이를 정리했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-25T09:15:00Z",
+    "reporterInsight": "웹 공고와 첨부를 대조해 일괄 반출 범위와 입찰보증금·계약금의 처리 차이를 정리했다.",
+    "readerChecklist": [
+      "수집운반업 허가와 처리 신고 확인",
+      "현장 반출 비용 산정",
+      "입찰보증금 납부 확인"
+    ],
+    "imageUrl": "/stock/2026-11-25-incheon-gongchon-recovered-materials-all-removal.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "인천",
+      "공촌정수사업소",
+      "온비드",
+      "발생품",
+      "불용품",
+      "입찰보증금",
+      "폐기물",
+      "반출"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-25-mdb-forum-projects-consulting-procurement",
+    "slug": "2026-11-25-mdb-forum-projects-consulting-procurement",
+    "title": "MDB 플라자 48개 사업 소개, 305억달러는 입찰 확정액과 구분",
+    "summary": "24일 발주처 설명에 이어 25일 개별 상담이 예정됐다. 기업이 실제로 응찰하려면 발주기관의 별도 조달 공고를 확인해야 한다.",
+    "body": [
+      "재정경제부와 산업통상부가 24~25일 개최하는 다자개발은행(MDB) 프로젝트 플라자에서 교통·에너지·수자원 등 48개 프로젝트를 소개한다. 정부는 규모를 약 305억달러로 집계했다. 세계은행과 아시아개발은행을 포함한 5개 다자개발은행과 17개국 29개 해외 발주처가 참가하는 행사다.",
+      "## 설명회와 1대1 상담 프로젝트를 나눠 봐야",
+      "행사 세부안은 24일에 정부 수주지원 사업 안내, MDB 포럼, 해외 발주처 설명회를 배치했다. 정부 자료에는 케냐 간선도로와 인도네시아 폐기물 에너지, 불가리아 양수발전소가 소개 사례로 들어 있다. 25일 1대1 상담의 사례로는 콜롬비아 보고타 메트로 2호선과 베트남 호치민~껀터 철도를 별도로 들었다. 상담은 국내 기업의 사전 수요를 반영해 주선한다.",
+      "305억달러는 다루는 사업 기회의 합계다. 같은 규모의 입찰이 한꺼번에 열리거나 수주가 확정됐다는 뜻으로 읽으면 안 된다. 참여를 검토하는 기업은 행사 프로그램의 사업명을 확보한 뒤 사업별 발주처, 재원기관, 조달 공고번호와 제안서 기한을 별도로 확인해야 한다. 정부는 조달청의 글로벌 공공조달 수출상담회도 25~26일 연계 개최한다고 안내했다.",
+      "## 출처 메모",
+      "- 재정경제부·산업통상부 공동 발표: https://www.korea.kr/briefing/pressReleaseView.do?newsId=156790589 - 공동 발표 붙임 행사 계획 PDF: https://www.korea.kr/common/download.do?fileId=198595615&tblKey=GMN"
+    ],
+    "category": "industry",
+    "author": {
+      "name": "최은영",
+      "role": "국제부 기자"
+    },
+    "publishedAt": "2026-11-25T09:27:00Z",
+    "reporting": "desk",
+    "verificationNote": "공개 원문과 해당 첨부의 조건·수치·일시를 대조했다.",
+    "addedValue": "첨부 행사 개요와 양일 프로그램에서 발주처 소개 사업과 개별 상담의 예시 및 발주 규모의 성격을 분리했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-25T09:12:00Z",
+    "reporterInsight": "첨부 행사 개요와 양일 프로그램에서 발주처 소개 사업과 개별 상담의 예시 및 발주 규모의 성격을 분리했다.",
+    "readerChecklist": [
+      "소개 사업과 상담 사업 구분",
+      "발주처와 재원기관 확인",
+      "개별 조달 공고번호 확인"
+    ],
+    "imageUrl": "/stock/2026-11-25-mdb-forum-projects-consulting-procurement.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "다자개발은행",
+      "해외조달",
+      "코트라",
+      "프로젝트플라자",
+      "인프라",
+      "입찰",
+      "산업통상부",
+      "재정경제부"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-25-national-assembly-library-it-proposal-first",
+    "slug": "2026-11-25-national-assembly-library-it-proposal-first",
+    "title": "국회도서관 정보기기 위탁운영 재공고, 제안서 제출 뒤 가격입찰",
+    "summary": "공고상 총 사업금액은 3억7400만원이다. 자격등록은 12월 7일 18시, 제안서와 가격입찰은 8일 10시까지다.",
+    "body": [
+      "서울지방조달청이 국회도서관의 2027~2028년 정보기기 위탁운영 사업을 재공고했다. 나라장터 공고번호는 R26BK01851462다. 사업금액은 부가세를 포함해 3억7400만원이고, 부가세를 제외한 추정가격은 3억4000만원이다. 사업금액을 기준으로 2027년과 2028년에 1억8700만원씩 차수계약을 맺는 구조다.",
+      "## 7일 저녁 자격등록, 8일 오전 투찰",
+      "경쟁입찰 참가자격 등록 마감은 12월 7일 오후 6시다. 가격과 제안서 제출은 12월 4일 오전 10시부터 8일 오전 10시까지다. 공고 첫 표에는 8일 오전 11시를 입찰·개찰 일시로 표시했지만, 상세 조항은 가격 개찰을 제안서 기술능력평가 후에 진행한다고 명시했다. 공고는 제안서를 최종 제출한 뒤에만 가격입찰서를 낼 수 있도록 했고, 둘 중 하나라도 빠지면 입찰을 무효로 처리한다. 제안서 화면의 제출 완료 상태를 먼저 확인해야 한다.",
+      "## 1468 업종 등록, 공동수급 불가",
+      "공고가 요구하는 등록 업종은 소프트웨어사업자 가운데 컴퓨터관련서비스사업(1468)이다. 대기업·중견 소프트웨어사업자는 참여할 수 없고 공동수급도 허용하지 않는다. 계약 체결이 지연될 경우 실제 용역 시작일부터 정산한다는 조항이 있다. 투찰자는 2년 전체 일정으로 가격을 산정하면서 실제 시작일에 따라 첫 지급액이 달라질 수 있음을 확인해야 한다.",
+      "## 출처 메모",
+      "- 나라장터 최신 차수 공고: https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01851462&bidPbancOrd=000 - 나라장터 첨부 입찰공고서 PDF: https://www.g2b.go.kr/pn/pnp/pnpe/UntyAtchFile/downloadFile.do?bidPbancNo=R26BK01851462&bidPbancOrd=000&fileType=&fileSeq=2&prcmBsneSeCd=03"
+    ],
+    "category": "bids",
+    "author": {
+      "name": "서영호",
+      "role": "공공입찰 전담기자"
+    },
+    "publishedAt": "2026-11-25T09:28:00Z",
+    "reporting": "desk",
+    "verificationNote": "공개 원문과 해당 첨부의 조건·수치·일시를 대조했다.",
+    "addedValue": "자격등록과 제안서·가격입찰 마감을 비교하고 2년 사업금액의 연차별 차수계약을 구분했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-25T09:15:00Z",
+    "reporterInsight": "자격등록과 제안서·가격입찰 마감을 비교하고 2년 사업금액의 연차별 차수계약을 구분했다.",
+    "readerChecklist": [
+      "1468 업종등록 확인",
+      "제안서 최종 제출",
+      "가격입찰·제안서 모두 제출 확인"
+    ],
+    "imageUrl": "/stock/2026-11-25-national-assembly-library-it-proposal-first.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "국회도서관",
+      "정보기기",
+      "위탁운영",
+      "나라장터",
+      "재공고",
+      "제안서",
+      "가격입찰",
+      "소프트웨어사업"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-25-small-business-export-platform-track-cost",
+    "slug": "2026-11-25-small-business-export-platform-track-cost",
+    "title": "소상공인 해외 플랫폼 지원 2차, 입점·활용·물류마다 신청 기준 달라",
+    "summary": "소진공이 12월 8일 18시까지 접수한다. 희망 플랫폼의 기존 입점 여부와 전년도 수출 물류비 증빙에 따라 신청할 사업이 달라진다.",
+    "body": [
+      "소상공인시장진흥공단이 해외 온라인 플랫폼 판로지원 2차 참여사를 12월 8일 오후 6시까지 소상공인24로 모집한다. 공고가 제시한 모집 목표는 입점 250곳, 활용 250곳, 물류 100곳 안팎이다. 총 600곳은 계획 규모로, 사업별 신청 상황에 따라 조정될 수 있다.",
+      "세 사업을 가르는 것은 지원받을 플랫폼의 현재 상태다. 입점 지원은 희망 플랫폼에 아직 들어가지 않은 소상공인이 신청한다. 다른 플랫폼에 이미 입점했어도 새 플랫폼으로 진출할 때는 신청할 수 있다. 활용 지원은 아마존·쇼피·큐텐재팬 가운데 지원받을 플랫폼에 입점한 곳이 대상이다. 물류 지원은 전년도 해외 수출로 물류비가 발생했다는 자료가 필요하다.",
+      "## 국비 상한과 실제 납입액을 구분해야",
+      "국비 한도는 입점 450만원, 활용 350만원, 물류 600만원이다. 최대 지원액 기준 공고 예시에서 업체가 낼 자부담금과 부가세의 합은 각각 168만7500원, 131만2500원, 225만원이다. 계약금액에 따라 실제 부담은 달라진다. 신청자는 공고의 사업별 중복수혜 제한을 확인한 뒤 입점 지원이면 국내 판매 주소, 활용·물류 지원이면 해외 판매 주소를 준비하면 된다. 공고는 선정 후 2주 안에 계약하고 계약 후 2주 안에 부담금과 부가세를 납부하도록 안내한다.",
+      "## 출처 메모",
+      "- 기업마당 소진공 공고 및 첨부 비교표: https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000128092 - 소상공인24 신청: https://www.sbiz24.kr/"
+    ],
+    "category": "grants",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-25T09:28:00Z",
+    "reporting": "desk",
+    "verificationNote": "공개 원문과 해당 첨부의 조건·수치·일시를 대조했다.",
+    "addedValue": "신청 자격을 플랫폼 입점 상태로 나누고 공고의 국비 한도와 자부담·부가세 합계 예시를 비교했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-25T09:12:00Z",
+    "reporterInsight": "신청 자격을 플랫폼 입점 상태로 나누고 공고의 국비 한도와 자부담·부가세 합계 예시를 비교했다.",
+    "readerChecklist": [
+      "희망 플랫폼 입점 상태 확인",
+      "2025년 수출 물류비 증빙 확인",
+      "자부담과 부가세 계산"
+    ],
+    "imageUrl": "/stock/2026-11-25-small-business-export-platform-track-cost.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "소상공인",
+      "수출",
+      "해외플랫폼",
+      "소상공인24",
+      "판로지원",
+      "물류비",
+      "자부담",
+      "부가세"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-25-taebaek-physical-therapist-email-deadline",
+    "slug": "2026-11-25-taebaek-physical-therapist-email-deadline",
+    "title": "태백병원 물리치료사 1명, 서명한 원서는 12월 4일 17시 30분까지",
+    "summary": "근로복지공단은 원서를 이메일로 받는다. 지원 자격은 물리치료사 면허 소지자이며 임용 때 3개월 시보를 거친다.",
+    "body": [
+      "근로복지공단이 태백병원 의료직 6급 물리치료사 한 명을 모집한다.",
+      "잡알리오 요약에는 12월 4일까지라고 표시돼 있지만, 병원 공고는 같은 날 오후 5시 30분까지 이메일이 도착해야 한다고 명시했다. 접수 후에는 채용 담당자의 수신 확인 회신을 확인해야 한다.",
+      "## 원서·자기소개서·동의서를 한 파일로",
+      "응시원서와 자기소개서, 개인정보 동의서를 작성하고 응시원서에 서명 또는 날인한 뒤 세 서류를 하나의 PDF로 묶는다. 공고는 직장이나 학교가 드러나는 메일 계정을 사용하지 말고 일반 포털 계정을 쓰라고 안내한다. 직군 표에는 물리·작업치료사라는 명칭이 있지만 이번 공고가 명시한 자격은 물리치료사 면허다.",
+      "## 임용 예정일은 1월 6일, 5년 전보제한",
+      "서류전형 결과는 12월 11일, 최종합격 통보는 23일 일정이며, 임용 예정일은 2027년 1월 6일이다. 3개월간 시보로 근무하고 그 기간의 근무성적이 양호하면 정규직으로 임용하는 방식이다. 근무예정기관을 정해 채용하는 경우 임용일부터 5년 동안 해당 기관에서 계속 근무하도록 한다는 전보제한도 공고에 있다.",
+      "## 출처 메모",
+      "- 잡알리오 태백병원 채용: https://job.alio.go.kr/recruitview.do?idx=307369 - 근로복지공단 첨부 채용 공고문: https://www.alio.go.kr/download/download.json?fileNo=3089707"
+    ],
+    "category": "labor",
+    "author": {
+      "name": "유승현",
+      "role": "사회부 기자"
+    },
+    "publishedAt": "2026-11-25T09:28:00Z",
+    "reporting": "desk",
+    "verificationNote": "공개 원문과 해당 첨부의 조건·수치·일시를 대조했다.",
+    "addedValue": "잡알리오의 날짜와 첨부의 이메일 도착 마감시각, 직군명과 실제 요구 면허를 나눠 확인했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-25T09:12:00Z",
+    "reporterInsight": "잡알리오의 날짜와 첨부의 이메일 도착 마감시각, 직군명과 실제 요구 면허를 나눠 확인했다.",
+    "readerChecklist": [
+      "물리치료사 면허 확인",
+      "원서 서명 후 PDF 한 파일로 묶기",
+      "담당자 수신 회신 확인"
+    ],
+    "imageUrl": "/stock/2026-11-25-taebaek-physical-therapist-email-deadline.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "태백병원",
+      "물리치료사",
+      "근로복지공단",
+      "정규직채용",
+      "시보",
+      "면허",
+      "전보제한",
+      "잡알리오"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
     "id": "keco-small-business-esg-support-2026",
     "slug": "keco-small-business-esg-support-2026",
     "title": "한국환경공단 ESG 지원 5개사 내외…400만원 이내 컨설팅·평가, 물기업 가점",
