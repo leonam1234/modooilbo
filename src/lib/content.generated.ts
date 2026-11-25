@@ -146860,6 +146860,444 @@ export const CONTENT_ARTICLES: Article[] = [
     "type": "article"
   },
   {
+    "id": "2026-11-26-busan-social-economy-popup-sales-application",
+    "slug": "2026-11-26-busan-social-economy-popup-sales-application",
+    "title": "부산 사회연대경제 팝업 판매전, 30개사 안팎 선착순 모집",
+    "summary": "부산 소재 사회적경제기업·공유기업·소셜벤처 등이 대상이다. 접수는 12월 2일 오후 3시까지다.",
+    "body": [
+      "부산 사회연대경제 WEEK 팝업빌리지가 지역 판매기획전에 참여할 기업을 모집한다. 부산 소재 사회적경제기업과 공유기업, 소셜벤처 등이 대상이다. 제품 전시 마켓에 30개사 안팎을 받으며 선착순으로 마감한다.",
+      "## 판매전 일정과 신청 마감은 다르다",
+      "판매전은 12월 11~13일 정오부터 오후 8시까지 농심호텔 야외광장에서 열린다. 기업 신청은 12월 2일 오후 3시에 끝나지만, 모집 규모를 먼저 채우면 그 전에 마감될 수 있다. 신청 서식은 제품의 가격을 부가세 포함 기준으로 받고 사진과 관련 인증을 적도록 구성돼 있다.",
+      "## 첨부 네 항목을 PDF 하나로",
+      "공고에는 참가 신청서와 개인정보 동의서, 사업자등록증 사본, 사회적경제기업 인증서가 제출 항목으로 기재됐다. 해당 인증 유형이 명확하지 않은 기업은 신청 전에 센터에 적용 서류를 확인하는 편이 좋다. 파일을 PDF 하나로 합치고 이메일 제목과 파일명에 공고가 지정한 문구와 기업명을 쓰면 된다. 선정 결과는 신청 기업별로 통보한다.",
+      "## 출처 메모",
+      "- 기업마당 공식 상세 및 첨부 공고문: https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000128119 - 부산사회적경제지원센터: https://www.bsec.or.kr/business/recruitment.view?idx=402"
+    ],
+    "category": "deals",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-26T06:27:00Z",
+    "reporting": "desk",
+    "verificationNote": "공식 공고 본문과 첨부 원문의 주요 수치·조건·일정을 대조했다.",
+    "addedValue": "접수 마감과 선착순 조건, 신청 파일 묶는 방법을 정리했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-26T06:14:00Z",
+    "reporterInsight": "부산사회적경제지원센터의 원 공고에서 참가 요건과 판매전 신청 안내를 확인했고, 대표 이미지가 행사 현장을 묘사하지 않는 점을 대조했다.",
+    "readerChecklist": [
+      "부산 소재와 자격 확인",
+      "품목과 판매가 준비",
+      "서류를 PDF 한 개로 제출"
+    ],
+    "imageUrl": "/stock/2026-11-26-busan-social-economy-popup-sales-application.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "부산",
+      "사회연대경제",
+      "팝업빌리지",
+      "판로지원",
+      "소셜벤처",
+      "협동조합",
+      "판매기획전",
+      "부산경제진흥원"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-26-gwangjin-it-maintenance-two-registrations",
+    "slug": "2026-11-26-gwangjin-it-maintenance-two-registrations",
+    "title": "광진구시설관리공단 통합 유지보수 입찰, 등록 업종 두 가지 요구",
+    "summary": "기초금액은 1억4873만7000원이다. 나라장터 자격등록은 12월 2일 오후 6시, 투찰은 3일 정오까지다.",
+    "body": [
+      "광진구시설관리공단이 2027년 정보통신시스템 통합 유지보수 용역을 입찰에 부쳤다.",
+      "공고번호는 R26BK01854152이며 부가세를 포함한 기초금액은 1억4873만7000원이다. 예정 용역 기간은 2027년 1월 1일부터 12월 31일까지다.",
+      "## 소프트웨어·정보통신공사 등록 모두 확인",
+      "공고는 소프트웨어사업자 중 컴퓨터관련서비스사업(1468) 신고와 정보통신공사업(0036) 등록을 요구한다. 관련 기업 확인서와 직접생산 확인증명서는 투찰 마감일 전일까지 발급된 유효 서류여야 한다고 안내한다. 나라장터의 참가자격 등록과 공공구매 종합정보망에서 확인되는 증명서 상태를 따로 점검할 필요가 있다.",
+      "입찰금액의 5%를 보증해야 한다. 투찰 마감인 12월 3일 정오까지 나라장터에 전자 보증서를 제출하고, 전자 발급이 불가능하면 같은 시각까지 원본을 내야 한다. 보증을 내지 않거나 금액·기간 조건에 미달하면 입찰은 무효다.",
+      "## 정오 마감, 연초 이후 계약이면 지급액 정산",
+      "나라장터의 참가자격 등록은 12월 2일 오후 6시까지다. 투찰 마감은 3일 정오, 개찰은 같은 날 오후 1시로 안내됐다. 공고는 회계연도 개시 전 체결 사업으로 예산 확정에 따라 계약금액이 달라질 수 있다고 명시했다. 2027년 1월 1일 이후 계약할 경우 계약 체결일부터 정산하며 한 달 미만분은 30분의 1 기준으로 일할 계산한다.",
+      "계약 전에는 제조사 기술지원 확약서를, 계약 시에는 기술인력과 인증 증빙을 제출한다. 공고는 CISSP·정보보안기사·CPPG 각각 1인 이상, 정보보안산업기사 2인, 정보처리기사 3인 이상을 요구한다. 기술평가등급 T4 이상과 정보통신 운영·유지보수 범위의 ISO 9001:2015 인증도 명시했다. 낙찰 후 요건을 충족하지 못하면 보증금이 귀속될 수 있다.",
+      "## 출처 메모",
+      "- 나라장터 최신 차수: https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01854152&bidPbancOrd=000 - 나라장터 첨부 입찰 공고문: https://www.g2b.go.kr/pn/pnp/pnpe/UntyAtchFile/downloadFile.do?bidPbancNo=R26BK01854152&bidPbancOrd=000&fileType=&fileSeq=5&prcmBsneSeCd=03"
+    ],
+    "category": "bids",
+    "author": {
+      "name": "서영호",
+      "role": "공공입찰 전담기자"
+    },
+    "publishedAt": "2026-11-26T06:25:00Z",
+    "reporting": "desk",
+    "verificationNote": "공식 공고 본문과 첨부 원문의 주요 수치·조건·일정을 대조했다.",
+    "addedValue": "두 업종 등록과 확인서 유효성, 계약 시작이 늦어질 경우의 대금 정산 조건을 비교했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-26T06:14:00Z",
+    "reporterInsight": "두 업종 등록과 확인서 유효성, 계약 시작이 늦어질 경우의 대금 정산 조건을 비교했다.",
+    "readerChecklist": [
+      "업종코드 1468·0036 확인",
+      "확인서 발급시점 확인",
+      "투찰시각 확인"
+    ],
+    "imageUrl": "/stock/2026-11-26-gwangjin-it-maintenance-two-registrations.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "광진구시설관리공단",
+      "나라장터",
+      "유지보수",
+      "정보통신공사업",
+      "소프트웨어사업",
+      "입찰자격",
+      "전자입찰",
+      "중소기업"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-26-jeonbuk-industrial-technology-matching",
+    "slug": "2026-11-26-jeonbuk-industrial-technology-matching",
+    "title": "전북 기술연결 지원, 기업 보조금 없이 외부 기술·전문가 매칭",
+    "summary": "전북 사업장이 있는 기업이 12월 18일 오후 6시까지 신청할 수 있다. 제조 공정이나 제품 개발의 기술 과제를 제시하는 방식이다.",
+    "body": [
+      "전북특별자치도와 전북테크노파크가 기업의 기술 문제를 대학·연구기관 등과 연결하는 ILP 기술연결 사업의 10차 수요를 모집한다. 전북에 본사·지점·공장·연구소 등 사업장을 두고 기술 수요나 생산 과정의 기술 문제를 가진 기업이 대상이다. 휴업·폐업 상태이거나 도내 사업장이 없으면 신청할 수 없다.",
+      "## 현금 지급 대신 문제 정의와 기술 탐색 지원",
+      "기업이 기술 과제를 제시하면 필요에 따라 상담과 전문가 자문으로 요구 조건을 구체화한다. 전북테크노파크와 전문가가 적합 기술을 찾아 보유 기관과 연결하고 기술 확보 방안을 돕는다. 이 과정의 자문 비용을 지원하며 선정 기업에 사업비를 직접 지급하지 않는다.",
+      "## 신청서에는 현행 방식과 목표값을 함께",
+      "접수 기간은 12월 18일 오후 6시까지다. 전북 ILP에 가입한 후 기술찾기 메뉴의 기술요청 목록에서 신규 기술요청을 누르거나 개별 기술 상세의 기술 연결 요청으로 신청한다. 연간 지원 목표 50건은 이번 10차의 선정 규모와 구분해야 한다. 예를 들어 검사 공정 문제를 신청하려면 현재 처리 방식과 검출이 어려운 불량, 달성하려는 정확도나 처리량을 함께 제시하면 기술을 찾는 기준이 명확해진다. 후속 사업화 지원은 별도 공고로 이뤄진다.",
+      "## 출처 메모",
+      "- 기업마당 공식 상세 및 첨부 공고문: https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000128094 - 전북테크노파크 ILP 10차 공고: https://ilp.jbtp.or.kr/BusinessAnnouncement/Details/15"
+    ],
+    "category": "industry",
+    "author": {
+      "name": "최은영",
+      "role": "국제부 기자"
+    },
+    "publishedAt": "2026-11-26T06:26:00Z",
+    "reporting": "desk",
+    "verificationNote": "공식 공고 본문과 첨부 원문의 주요 수치·조건·일정을 대조했다.",
+    "addedValue": "컨설팅·탐색 비용 지원과 별도 제품개발 자금의 차이를 확인하고 기술수요 작성 요령을 설명했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-26T06:14:00Z",
+    "reporterInsight": "컨설팅·탐색 비용 지원과 별도 제품개발 자금의 차이를 확인하고 기술수요 작성 요령을 설명했다.",
+    "readerChecklist": [
+      "전북 사업장 확인",
+      "해결하려는 기술 과제 설명",
+      "공고 신청서 제출"
+    ],
+    "imageUrl": "/stock/2026-11-26-jeonbuk-industrial-technology-matching.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "전북특별자치도",
+      "전북테크노파크",
+      "기술연결",
+      "기술사업화",
+      "산학협력",
+      "공공기술",
+      "기업지원",
+      "기술수요"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-26-kepco-kps-hanbit-office-contract",
+    "slug": "2026-11-26-kepco-kps-hanbit-office-contract",
+    "title": "한전KPS 한빛1발전소 사무보조 1명, 12월 1일까지 이메일 접수",
+    "summary": "계약은 12월 11일부터 이듬해 4월 30일까지 예정됐다. 채용 공고에 숙식과 통근버스는 제공되지 않는다고 적혀 있다.",
+    "body": [
+      "한전KPS 원자력정비기술센터가 한빛1발전소에서 일할 사무보조 단기노무원 1명을 모집한다. 채용 공고가 안내한 업무는 작업 문서 정리, 출장 증빙 취합, 정산 자료 작성 보조 등이다. 근무 예정 기간은 2026년 12월 11일부터 2027년 4월 30일까지다.",
+      "## 일급은 협의, 숙식과 통근버스는 미제공",
+      "급여는 일급으로 협의하며 4대보험을 적용한다. 주 5일, 하루 8시간이 원칙이지만 사업소 사정에 따라 달라질 수 있다. 공고는 숙식과 통근버스를 제공하지 않는다고 밝혔다. 용역이 취소되면 채용도 취소될 수 있고 현장 일정에 따라 근무지와 계약 기간이 바뀔 수 있다. 계약 만료 후 정규직 전환 혜택은 없다.",
+      "## 접수 이메일 제목에 발전소·이름·직무",
+      "12월 1일까지 공고에 적힌 담당자 이메일로 신청한다. 이메일 제목에 지원 발전소와 이름, 직무를 표시해야 한다. 면접은 12월 3일, 신체검사는 4~7일로 예정됐다. 면접 때 신분증을 지참해야 하므로 접수 서류와 면접 준비물을 구분해 챙길 필요가 있다.",
+      "## 출처 메모",
+      "- 잡알리오 공식 채용 공고: https://job.alio.go.kr/recruitview.do?idx=307396 - 공공기관 채용 첨부 원문: https://www.alio.go.kr/download/download.json?fileNo=3089853"
+    ],
+    "category": "labor",
+    "author": {
+      "name": "유승현",
+      "role": "사회부 기자"
+    },
+    "publishedAt": "2026-11-26T06:26:00Z",
+    "reporting": "desk",
+    "verificationNote": "공식 공고 본문과 첨부 원문의 주요 수치·조건·일정을 대조했다.",
+    "addedValue": "접수와 면접의 제출 조건을 나누고 계약 기간·근무지 변동 가능성과 통근 조건을 정리했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-26T06:11:00Z",
+    "reporterInsight": "접수와 면접의 제출 조건을 나누고 계약 기간·근무지 변동 가능성과 통근 조건을 정리했다.",
+    "readerChecklist": [
+      "이메일 제목 항목 확인",
+      "현장 통근 확인",
+      "면접 신분증 준비"
+    ],
+    "imageUrl": "/stock/2026-11-26-kepco-kps-hanbit-office-contract.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "한전KPS",
+      "한빛1발전소",
+      "영광",
+      "사무보조",
+      "단기노무원",
+      "기간제",
+      "공공기관채용",
+      "이메일접수"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-26-kice-textbook-prototype-separate-proposal",
+    "slug": "2026-11-26-kice-textbook-prototype-separate-proposal",
+    "title": "교과서 자동 점검 시제품 입찰, 가격은 온라인·제안서는 진천 방문",
+    "summary": "한국교육과정평가원이 사업예산 3억원을 편성했다. 두 제출 창구 모두 2027년 1월 5일 오전 11시에 마감한다.",
+    "body": [
+      "한국교육과정평가원이 교과용 도서 자동 점검 시스템 시제품 개발을 공고했다. 나라장터 번호는 R26BK01850549이며 예산은 부가세를 포함해 3억원이다. 계약 체결일부터 2027년 5월 31일까지 수행하는 사업이다.",
+      "## 제출 마감은 같지만 접수 방식은 두 가지",
+      "가격 제안서는 나라장터로 제출하며 세부 규격을 명시한 입찰금액 산출내역서를 첨부한다. 기술 제안서와 발표자료 등은 충북 진천의 평가원 구매계약부 336호에 직접 제출해야 한다. 방문할 때 제안서와 발표자료를 각각 12부, 두 자료를 담은 USB 2개, 입찰금액의 5% 이상인 입찰이행보증보험증권 1부 등을 준비해야 한다. 두 제출 모두 12월 31일 오전 10시에 시작해 이듬해 1월 5일 오전 11시에 끝난다. 나라장터 참가자격 등록 마감은 1월 4일 오후 6시다.",
+      "## 기술배점 90점 중 76.5점이 협상 기준",
+      "입찰가격이 사업예산 이하이고 기술평가 배점한도의 85% 이상을 받아야 협상적격자가 된다. 기술 배점이 90점이므로 이를 환산하면 76.5점이다. 업종코드 1468 등록과 정보시스템개발서비스 직접생산확인증명서 등의 요건이 적용되며 공고는 공동수급과 하도급을 모두 허용하지 않는다.",
+      "## 출처 메모",
+      "- 나라장터 최신 차수: https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01850549&bidPbancOrd=000 - 나라장터 첨부 입찰 공고문: https://www.g2b.go.kr/pn/pnp/pnpe/UntyAtchFile/downloadFile.do?bidPbancNo=R26BK01850549&bidPbancOrd=000&fileType=&fileSeq=1&prcmBsneSeCd=03"
+    ],
+    "category": "bids",
+    "author": {
+      "name": "서영호",
+      "role": "공공입찰 전담기자"
+    },
+    "publishedAt": "2026-11-26T06:25:00Z",
+    "reporting": "desk",
+    "verificationNote": "공식 공고 본문과 첨부 원문의 주요 수치·조건·일정을 대조했다.",
+    "addedValue": "같은 마감에 걸린 두 제출 창구와 기술평가의 협상 진입 기준을 나눠 확인했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-26T06:14:00Z",
+    "reporterInsight": "같은 마감에 걸린 두 제출 창구와 기술평가의 협상 진입 기준을 나눠 확인했다.",
+    "readerChecklist": [
+      "1468 등록 확인",
+      "산출내역서 첨부",
+      "방문 제안서 별도 제출"
+    ],
+    "imageUrl": "/stock/2026-11-26-kice-textbook-prototype-separate-proposal.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "한국교육과정평가원",
+      "교과용도서",
+      "나라장터",
+      "프로토타입",
+      "제안서",
+      "전자입찰",
+      "직접생산확인",
+      "협상계약"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-26-lx-geo-ai-instructor-post-phd",
+    "slug": "2026-11-26-lx-geo-ai-instructor-post-phd",
+    "title": "LX 공간정보 AI 조교수 1명 재공고, 박사 취득 뒤 경력 5년 필요",
+    "summary": "공주 국토정보교육원에서 근무하는 2년 임기제다. 지원서는 12월 7일 오후 5시까지 채용 홈페이지에서 받는다.",
+    "body": [
+      "한국국토정보공사(LX)가 공간정보 인공지능과 공간데이터 분석을 담당할 전문경력직 조교수 1명을 재공고했다. 공주 국토정보교육원 근무를 예정한 4급 상당, 2년 임기제다.",
+      "공고의 연봉 약 8000만원은 세전으로 수당을 포함하고 성과급은 뺀 금액이다.",
+      "## 관련 박사학위 취득 이후 경력을 따로 계산",
+      "필수 자격은 관련 분야 박사학위를 받은 뒤 해당 분야에서 5년 이상 실무를 한 경력이다. 학위 수여일까지의 기간은 이 요건의 5년에 합산할 수 없다. 맡을 업무에는 위치 데이터 분석과 예측 교육, 대용량 공간데이터 처리, 교재와 교과목 개발이 포함된다.",
+      "## 증빙은 하나의 PDF로 제출",
+      "채용 홈페이지에서 12월 7일 오후 5시까지 받는다. 입사지원 증빙은 하나의 PDF로 합쳐 제출한다. 서류심사 뒤 인성검사와 발표면접을 진행하며, 인성검사 점수는 평가에 합산하지 않고 면접의 참고자료로 사용한다. 지원자는 학위 취득일과 이후 경력 시작일이 증빙에서 구분되는지 먼저 확인할 수 있다.",
+      "## 출처 메모",
+      "- 잡알리오 공식 채용 공고: https://job.alio.go.kr/recruitview.do?idx=307393 - 공공기관 채용 첨부 원문: https://www.alio.go.kr/download/download.json?fileNo=3089844 - 한국국토정보공사 채용 공지: https://www.lx.or.kr/kor/BBSMSTR_000000000001/25772/view.do"
+    ],
+    "category": "labor",
+    "author": {
+      "name": "유승현",
+      "role": "사회부 기자"
+    },
+    "publishedAt": "2026-11-26T06:26:00Z",
+    "reporting": "desk",
+    "verificationNote": "공식 공고 본문과 첨부 원문의 주요 수치·조건·일정을 대조했다.",
+    "addedValue": "박사 취득 이후 실무경력 기준과 증빙 PDF 제출 방식을 설명했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-26T06:14:00Z",
+    "reporterInsight": "잡알리오 공식 채용 첨부의 지원 일정표에서 12월 7일 17시 접수 마감을 확인하고 근무형태와 보수에 관한 설명을 대조했다.",
+    "readerChecklist": [
+      "박사 취득일과 실무경력 대조",
+      "증빙 PDF 통합",
+      "채용 홈페이지 제출"
+    ],
+    "imageUrl": "/stock/2026-11-26-lx-geo-ai-instructor-post-phd.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "한국국토정보공사",
+      "국토정보교육원",
+      "공주",
+      "공간정보",
+      "GeoAI",
+      "전문경력직",
+      "임기제",
+      "공공기관채용"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-26-smart-factory-ai-data-stage-budget",
+    "slug": "2026-11-26-smart-factory-ai-data-stage-budget",
+    "title": "스마트공장 제조AI 지원, 데이터 검증부터 받으면 2단계 한도에서 차감",
+    "summary": "2027년 구축지원 접수는 12월 7일부터다. 제조AI특화에서 검증과 구축을 모두 받는 경우 합산 정부지원금 한도는 2억원이다.",
+    "body": [
+      "중소벤처기업부가 2027년 스마트공장 구축지원사업 모집 공고를 냈다. 접수는 12월 7일 시작해 2027년 1월 6일 오후 5시에 끝난다.",
+      "제조AI특화에 신청할 기업은 공정 데이터를 바로 활용할 수 있는지부터 확인해야 한다.",
+      "## 데이터 검증과 구축의 합산 한도는 2억원",
+      "공고는 데이터가 있는 기업의 AI공장 구축을 최대 9개월, 2억원까지 지원한다고 안내했다. 데이터 수집·검증이 필요한 기업은 먼저 최대 6개월, 5000만원의 1단계를 신청할 수 있다. 이후 AI공장 구축에서 지원금을 받더라도 두 단계 합계가 2억원을 넘을 수 없다. 가령 1단계 지원금이 3000만원이었다면, 두 번째 건의 한도는 1억7000만원이다. 1단계 종료 후에도 차년도 이후 별도 선정평가를 받아야 한다.",
+      "## 검증 유형도 최종 구축 범위 작성",
+      "데이터 수집·검증 유형 신청서에도 최종적으로 구축하려는 AI공장 범위를 적는다. 제조AI특화와 자율형공장 사업은 제조데이터 표준(AAS) 구축 계획서도 필요하다. 스마트공장 사업관리시스템으로 신청하며, 마감 전 과제신청 상태가 제출완료인지 확인해야 한다.",
+      "## 출처 메모",
+      "- 기업마당 공식 상세 및 첨부 공고문: https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000128085 - 스마트공장 사업관리시스템: https://www.smart-factory.kr/"
+    ],
+    "category": "industry",
+    "author": {
+      "name": "최은영",
+      "role": "국제부 기자"
+    },
+    "publishedAt": "2026-11-26T06:26:00Z",
+    "reporting": "desk",
+    "verificationNote": "공식 공고 본문과 첨부 원문의 주요 수치·조건·일정을 대조했다.",
+    "addedValue": "사전 검증 수혜액을 2단계 한도에서 차감하는 계산과 별도 선정 요건을 정리했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-26T06:11:00Z",
+    "reporterInsight": "사전 검증 수혜액을 2단계 한도에서 차감하는 계산과 별도 선정 요건을 정리했다.",
+    "readerChecklist": [
+      "데이터 보유 수준 확인",
+      "구축 범위와 AAS 계획 작성",
+      "과제 제출완료 확인"
+    ],
+    "imageUrl": "/stock/2026-11-26-smart-factory-ai-data-stage-budget.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "중소벤처기업부",
+      "스마트공장",
+      "제조AI",
+      "제조데이터",
+      "구축지원",
+      "공급기업",
+      "사업계획서",
+      "제조업"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-26-yeongjong-gu-guarantee-facility-operating",
+    "slug": "2026-11-26-yeongjong-gu-guarantee-facility-operating",
+    "title": "영종구 소상공인 특례보증, 시설개선 3000만원·경영자금 2000만원 한도",
+    "summary": "영종구 사업장 운영 소상공인을 대상으로 한다. 첫 3년간 구가 이자의 2.5%포인트를 지원한다.",
+    "body": [
+      "인천 영종구가 관내 사업장 소상공인을 대상으로 특례보증을 공고했다.",
+      "신규 융자 재원 12억원에 전년도 남은 재원을 합쳐 운영한다. 사업장 시설개선은 3000만원, 경영자금은 2000만원까지 융자 한도를 뒀다.",
+      "## 5년 상환 중 이자 지원은 첫 3년",
+      "상환 구조는 1년 거치 후 4년 균등분할이다. 대출금리는 신청인의 신용도에 따라 달라지고, 구가 부담하는 이자는 최초 3년간 2.5%포인트다. 시설개선 자금을 신청할 경우 공고가 요구하는 리모델링 계약서를 준비해야 한다.",
+      "## 기존 융자와 보증 이용 여부부터 확인",
+      "영종구와 종전 중구의 소상공인 융자를 받고 상환을 끝내지 않은 사업자는 제외된다. 공고에서 열거한 기관의 보증을 이용 중이거나 국세·지방세를 체납한 경우에도 제한된다. 자금 소진 시까지 인천신용보증재단 영종출장소의 사전 상담을 거쳐 방문 또는 보증드림 앱으로 신청할 수 있다. 재단과 금융기관 심사에 따라 개별 보증·대출 여부와 금액이 결정된다.",
+      "## 출처 메모",
+      "- 기업마당 공식 상세 및 첨부 공고문: https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000128129 - 영종구 원 공고: https://www.yeongjong.go.kr/main/pst/view.do?pst_id=mn_pub_ntc&pst_sn=338334"
+    ],
+    "category": "grants",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-26T06:25:00Z",
+    "reporting": "desk",
+    "verificationNote": "공식 공고 본문과 첨부 원문의 주요 수치·조건·일정을 대조했다.",
+    "addedValue": "융자 목적별 한도와 이자 지원 기간을 구분하고 기존 융자 미상환자의 자격 제한을 정리했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-26T06:11:00Z",
+    "reporterInsight": "융자 목적별 한도와 이자 지원 기간을 구분하고 기존 융자 미상환자의 자격 제한을 정리했다.",
+    "readerChecklist": [
+      "융자 용도 확인",
+      "기존 보증·융자 상환 확인",
+      "재단 사전상담"
+    ],
+    "imageUrl": "/stock/2026-11-26-yeongjong-gu-guarantee-facility-operating.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "영종구",
+      "소상공인",
+      "특례보증",
+      "시설개선",
+      "경영자금",
+      "이차보전",
+      "인천신용보증재단",
+      "보증드림"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
     "id": "keco-small-business-esg-support-2026",
     "slug": "keco-small-business-esg-support-2026",
     "title": "한국환경공단 ESG 지원 5개사 내외…400만원 이내 컨설팅·평가, 물기업 가점",
