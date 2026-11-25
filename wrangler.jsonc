@@ -32,15 +32,16 @@
       "binding": "DB",
       "database_name": "modooilbo-members",
       "database_id": "68ca4b6d-3084-4dbc-b514-0d09ac82c5a4"
+    },
+    // ── 기업 데이터 뉴스 계층3: paseco(지원파트너) 원천 공고 read-only 바인딩 ──
+    //   지원파트너 수집 일꾼이 K-Startup·기업마당·보조금24 를 6시간마다 programs 표에 적재한다.
+    //   modooilbo Pages는 이 D1을 SELECT 조회만(쓰기 금지) — functions/api/candidates.ts 의 env.RAW_DB.
+    //   ⚠️ D1 바인딩에는 읽기 전용 권한이 없다. 같은 D1 의 leads 등 다른 표를 읽는 코드를 추가하지 말 것.
+    //   2026-11-22 활성화: database_id 오타(…4306…) → 실제 값(…4366…)으로 정정(wrangler d1 list 확인).
+    {
+      "binding": "RAW_DB",
+      "database_name": "paseco-leads",
+      "database_id": "3e6c5371-20b8-4366-b079-cceae4a68b02"
     }
-    // ── 기업 데이터 뉴스 계층3: paseco 원천 공고 read-only 바인딩(그룹장이 대시보드에서 등록) ──
-    //   modooilbo Pages는 이 D1을 SELECT 조회만(쓰기 금지). 코드는 env.RAW_DB 가정(functions/api/candidates.ts).
-    //   ⚠️ 실제 활성화 전까지 아래는 주석 유지 — Pages 프로젝트가 해당 D1 접근 권한을 받은 뒤 주석 해제.
-    //   database_id는 그룹장이 paseco-leads 실제 값으로 확인 후 등록(지시서 기재값 기준 초안).
-    // ,{
-    //   "binding": "RAW_DB",
-    //   "database_name": "paseco-leads",
-    //   "database_id": "3e6c5371-20b8-4306-b079-cceae4a68b02"
-    // }
   ]
 }
