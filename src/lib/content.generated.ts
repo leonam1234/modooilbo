@@ -148021,6 +148021,62 @@ export const CONTENT_ARTICLES: Article[] = [
     "type": "article"
   },
   {
+    "id": "2026-11-27-cheonan-bus-display-maintenance-qualification",
+    "slug": "2026-11-27-cheonan-bus-display-maintenance-qualification",
+    "title": "천안 버스정보 현장장비 입찰, 전광판 등 직접생산 3개 품목 확인",
+    "summary": "2027년 현장장비 유지관리 기초금액은 부가세 포함 3억3996만6000원이다. 나라장터 투찰은 12월 2일 오후 2시까지다.",
+    "body": [
+      "천안시가 2027년 버스정보시스템 현장장비 유지관리 사업을 나라장터에 공고했다. 공고번호 R26BK01854643의 기초금액은 부가가치세를 포함해 3억3996만6000원이다. 과업 기간은 2027년 1월 1일부터 12월 31일까지다.",
+      "## 업종 두 가지와 직접생산 세 품목",
+      "정보통신공사업(0036)과 컴퓨터관련서비스사업(1468)을 모두 등록한 업체가 대상이다. 공공구매 종합정보망에서 유효한 중소기업·소상공인 확인서와 안내전광판(5512190301), 버스 및 차량 정보안내장치(4321151403), 정보시스템유지관리서비스(8111189901) 직접생산확인증명서를 확인할 수 있어야 한다.",
+      "직접생산확인증명서 세 품목은 투찰 마감 전날인 12월 1일까지 발급받아야 하며 유효기간 내 서류여야 한다. 소재지는 법인은 등기부상 본점, 개인사업자는 사업자등록증 또는 관련 인허가·등록 서류의 사업장 주소를 기준으로 본다. 원칙적으로 공고일 180일 전부터 입찰서 제출일까지 충남에 있어야 하며 낙찰자는 계약일까지 유지해야 한다. 신규사업자는 법인등기일 또는 사업자등록일이 그 180일 기준일 이후인 경우도 포함한다. 공동계약은 허용하지 않는다.",
+      "## 개찰 결과는 업체가 직접 조회",
+      "나라장터 참가자격 등록은 12월 1일 오후 6시까지다. 전자입찰 마감은 12월 2일 오후 2시, 개찰은 같은 날 오후 3시로 공지됐다. 예정가격 이하이면서 낙찰하한율 87.995% 이상인 투찰자 중 낮은 가격 순으로 적격심사를 하며, 종합평점 88점 이상을 낙찰 기준으로 삼는다.",
+      "천안시는 개찰 1순위에 별도 통지하지 않고 나라장터 개찰 결과 열람으로 통지를 갈음한다. 1순위 업체는 개찰 다음 날부터 7일 안에 적격심사 서류를 내야 한다. 계약이 늦어져 2027년 1월 1일 이후 착수하면 착수 전일까지의 유지관리 금액을 일할 계산해 감액할 수 있다.",
+      "## 출처 메모",
+      "- 나라장터 최신 차수: https://www.g2b.go.kr/link/PNPE027_01/single/?bidPbancNo=R26BK01854643&bidPbancOrd=000 - 천안시 첨부 입찰 공고문: https://www.g2b.go.kr/pn/pnp/pnpe/UntyAtchFile/downloadFile.do?bidPbancNo=R26BK01854643&bidPbancOrd=000&fileSeq=4&fileType=&prcmBsneSeCd=03 - 천안시 과업지시서: https://www.g2b.go.kr/pn/pnp/pnpe/UntyAtchFile/downloadFile.do?bidPbancNo=R26BK01854643&bidPbancOrd=000&fileSeq=2&fileType=&prcmBsneSeCd=03"
+    ],
+    "category": "bids",
+    "author": {
+      "name": "서영호",
+      "role": "공공입찰 전담기자"
+    },
+    "publishedAt": "2026-11-27T06:52:00Z",
+    "reporting": "desk",
+    "verificationNote": "나라장터 최신 차수와 천안시 공고문에서 참가자격·제출 일정·보증 조건을 대조했다.",
+    "addedValue": "두 업종 등록에 더해 갖춰야 할 직접생산 품목 세 가지와 개찰 이후 별도 통지 없는 서류 마감을 연결했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-27T06:32:00Z",
+    "reporterInsight": "나라장터 최신 차수와 천안시 공고문에서 참가자격·제출 일정·보증 조건을 대조했다. 두 업종 등록에 더해 갖춰야 할 직접생산 품목 세 가지와 개찰 이후 별도 통지 없는 서류 마감을 연결했다.",
+    "readerChecklist": [
+      "충남 소재 요건 확인",
+      "직접생산 3개 품목 확인",
+      "개찰 후 적격심사 서류기한 확인"
+    ],
+    "imageUrl": "/stock/2026-11-27-cheonan-bus-display-maintenance-qualification.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "천안시",
+      "버스정보시스템",
+      "안내전광판",
+      "나라장터",
+      "정보시스템유지관리",
+      "직접생산확인",
+      "적격심사",
+      "전자입찰"
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
     "id": "2026-11-27-chungnam-ems-export-additional-recruitment",
     "slug": "2026-11-27-chungnam-ems-export-additional-recruitment",
     "title": "충남 국제특송 추가 모집, 10만원 발송 시 기업 부담 2만6400원",
@@ -148180,6 +148236,62 @@ export const CONTENT_ARTICLES: Article[] = [
       "\"수요기업\"",
       "\"사업화\"",
       "\"지원금\""
+    ],
+    "isBreaking": false,
+    "readCount": 0,
+    "type": "article"
+  },
+  {
+    "id": "2026-11-27-gwangyang-exhibition-expense-reimbursement",
+    "slug": "2026-11-27-gwangyang-exhibition-expense-reimbursement",
+    "title": "광양시 박람회 참가비 2곳 지원, 최근 3년 미수혜 기업 우선",
+    "summary": "광양에 본사나 공장을 둔 중소기업이 대상이다. 기업당 최대 100만원이며, 12월 4일 오후 6시까지 방문·우편으로 접수한다.",
+    "body": [
+      "광양시가 국내외 박람회 참가경비를 지원할 중소기업 두 곳을 추가로 모집한다.",
+      "지원 한도는 기업당 100만원이다. 광양에 본사 또는 공장을 둔 중소기업이 2025년 11월 1일 이후 참가한 박람회의 비용을 신청할 수 있다.",
+      "## 같은 전시회 지원 이력부터 확인",
+      "시가 내건 첫 번째 선발 기준은 최근 3년 동안 이 지원을 받은 적이 없는 기업이다. 다음 순위에는 최근 3년 안에 공고가 정한 표창을 받았거나 현재 광양시 벤처기업지원센터에 입주한 기업이 포함된다. 기준일 이후 박람회에 두 번 이상 참가한 기업은 세 번째 순위다.",
+      "국세·지방세가 체납됐거나 같은 전시회에 다른 기관 지원으로 참가하는 기업은 대상에서 제외된다. 대리점이나 자회사 명의로 참가한 경우도 제외된다. 시가 인정하는 항목에는 부스 임차료, 장치비, 운송료, 항공료가 있다. 신청서 양식은 비용에서 부가가치세를 뺀 금액을 적도록 했다.",
+      "## 마감일 오후 6시 도착 기준",
+      "신청서는 12월 4일 오후 6시까지 광양시청 투자경제과에 도착해야 한다. 사업자등록증과 통장 사본, 대상 박람회 참가를 보여주는 세금계산서나 사진 등을 함께 낸다. 표창이나 별도 전시회 참가 실적으로 순위를 확인받으려면 해당 증빙도 준비해야 한다.",
+      "## 출처 메모",
+      "- 기업마당 공식 공고 및 첨부: https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000128152 - 시행기관 상세 공고: https://gwangyang.go.kr/saeol/gosi.es?mid=a10909020000&act=view&type_code=02,04&seq=62787&nPage=3"
+    ],
+    "category": "grants",
+    "author": {
+      "name": "김영환",
+      "role": "경제부 기자"
+    },
+    "publishedAt": "2026-11-27T06:51:00Z",
+    "reporting": "desk",
+    "verificationNote": "공식 공고와 확인할 수 있는 첨부 자료에서 대상·일정·조건을 확인했다.",
+    "addedValue": "선정 우선순위와 지원 제외, 신청서의 부가세 제외 금액을 대조했다.",
+    "sourceBasis": "primary",
+    "visualType": "ai-illustration",
+    "aiRole": [
+      "research-assist",
+      "draft-assist",
+      "image"
+    ],
+    "reviewedBy": "모두일보 독립 리뷰 담당",
+    "reviewedAt": "2026-11-27T06:32:00Z",
+    "reporterInsight": "공식 공고와 확인할 수 있는 첨부 자료에서 대상·일정·조건을 확인했다. 선정 우선순위와 지원 제외, 신청서의 부가세 제외 금액을 대조했다.",
+    "readerChecklist": [
+      "본사·공장 소재지 확인",
+      "동일 전시회 중복 지원 여부 확인",
+      "신청서와 지출 증빙 대조"
+    ],
+    "imageUrl": "/stock/2026-11-27-gwangyang-exhibition-expense-reimbursement.jpg",
+    "imageCaption": "AI 생성 이미지. 실제 사진이 아닙니다.",
+    "tags": [
+      "\"광양시\"",
+      "\"박람회\"",
+      "\"전시회\"",
+      "\"참가경비\"",
+      "\"중소기업\"",
+      "\"세금계산서\"",
+      "\"판로\"",
+      "\"부스\""
     ],
     "isBreaking": false,
     "readCount": 0,
